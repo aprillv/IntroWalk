@@ -6,8 +6,9 @@
 //  Copyright © 2015 HapApp. All rights reserved.
 //
 
-#import <UIKit/UIKit.h>
+
 #import <CoreData/CoreData.h>
+#import <UIKit/UIKit.h>
 
 @interface AppDelegate : UIResponder <UIApplicationDelegate>
 

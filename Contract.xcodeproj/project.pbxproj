@@ -14,6 +14,36 @@
 		1108B1BA1BFC2691004B5D48 /* Contract.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 1108B1B81BFC2691004B5D48 /* Contract.xcdatamodeld */; };
 		1108B1BC1BFC2691004B5D48 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1108B1BB1BFC2691004B5D48 /* Assets.xcassets */; };
 		1108B1BF1BFC2691004B5D48 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1108B1BD1BFC2691004B5D48 /* LaunchScreen.storyboard */; };
+		1108B21B1BFC290F004B5D48 /* DrawSignView.m in Sources */ = {isa = PBXBuildFile; fileRef = 1108B2141BFC290F004B5D48 /* DrawSignView.m */; };
+		1108B21C1BFC290F004B5D48 /* MyView.m in Sources */ = {isa = PBXBuildFile; fileRef = 1108B2161BFC290F004B5D48 /* MyView.m */; };
+		1108B21D1BFC290F004B5D48 /* PopSignUtil.m in Sources */ = {isa = PBXBuildFile; fileRef = 1108B2181BFC290F004B5D48 /* PopSignUtil.m */; };
+		1108B21E1BFC290F004B5D48 /* SignatureView.m in Sources */ = {isa = PBXBuildFile; fileRef = 1108B21A1BFC290F004B5D48 /* SignatureView.m */; };
+		1108B2201BFC2A3B004B5D48 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1108B21F1BFC2A3B004B5D48 /* Foundation.framework */; };
+		1108B2221BFC2A66004B5D48 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1108B2211BFC2A66004B5D48 /* CoreGraphics.framework */; };
+		1108B2241BFC2A6D004B5D48 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1108B2231BFC2A6D004B5D48 /* UIKit.framework */; };
+		1108B25B1BFC4047004B5D48 /* PDFSerializer.m in Sources */ = {isa = PBXBuildFile; fileRef = 1108B2291BFC4047004B5D48 /* PDFSerializer.m */; };
+		1108B25C1BFC4047004B5D48 /* PDFViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1108B22B1BFC4047004B5D48 /* PDFViewController.m */; };
+		1108B25D1BFC4047004B5D48 /* PDFArray.m in Sources */ = {isa = PBXBuildFile; fileRef = 1108B22F1BFC4047004B5D48 /* PDFArray.m */; };
+		1108B25E1BFC4047004B5D48 /* PDFDictionary.m in Sources */ = {isa = PBXBuildFile; fileRef = 1108B2311BFC4047004B5D48 /* PDFDictionary.m */; };
+		1108B25F1BFC4047004B5D48 /* PDFName.m in Sources */ = {isa = PBXBuildFile; fileRef = 1108B2331BFC4047004B5D48 /* PDFName.m */; };
+		1108B2601BFC4047004B5D48 /* PDFNull.m in Sources */ = {isa = PBXBuildFile; fileRef = 1108B2351BFC4047004B5D48 /* PDFNull.m */; };
+		1108B2611BFC4047004B5D48 /* PDFNumber.m in Sources */ = {isa = PBXBuildFile; fileRef = 1108B2371BFC4047004B5D48 /* PDFNumber.m */; };
+		1108B2621BFC4047004B5D48 /* PDFStream.m in Sources */ = {isa = PBXBuildFile; fileRef = 1108B23A1BFC4047004B5D48 /* PDFStream.m */; };
+		1108B2631BFC4047004B5D48 /* PDFString.m in Sources */ = {isa = PBXBuildFile; fileRef = 1108B23C1BFC4047004B5D48 /* PDFString.m */; };
+		1108B2641BFC4047004B5D48 /* PDFDocument.m in Sources */ = {isa = PBXBuildFile; fileRef = 1108B23E1BFC4047004B5D48 /* PDFDocument.m */; };
+		1108B2651BFC4047004B5D48 /* PDFForm.m in Sources */ = {isa = PBXBuildFile; fileRef = 1108B2401BFC4047004B5D48 /* PDFForm.m */; };
+		1108B2661BFC4047004B5D48 /* PDFFormContainer.m in Sources */ = {isa = PBXBuildFile; fileRef = 1108B2421BFC4047004B5D48 /* PDFFormContainer.m */; };
+		1108B2671BFC4047004B5D48 /* PDFPage.m in Sources */ = {isa = PBXBuildFile; fileRef = 1108B2441BFC4047004B5D48 /* PDFPage.m */; };
+		1108B2681BFC4047004B5D48 /* PDFObjectParser.m in Sources */ = {isa = PBXBuildFile; fileRef = 1108B2481BFC4047004B5D48 /* PDFObjectParser.m */; };
+		1108B2691BFC4047004B5D48 /* PDFUtility.m in Sources */ = {isa = PBXBuildFile; fileRef = 1108B24A1BFC4047004B5D48 /* PDFUtility.m */; };
+		1108B26A1BFC4047004B5D48 /* PDFFormButtonField.m in Sources */ = {isa = PBXBuildFile; fileRef = 1108B24D1BFC4047004B5D48 /* PDFFormButtonField.m */; };
+		1108B26B1BFC4047004B5D48 /* PDFFormChoiceField.m in Sources */ = {isa = PBXBuildFile; fileRef = 1108B24F1BFC4047004B5D48 /* PDFFormChoiceField.m */; };
+		1108B26C1BFC4047004B5D48 /* PDFFormImageView.m in Sources */ = {isa = PBXBuildFile; fileRef = 1108B2511BFC4047004B5D48 /* PDFFormImageView.m */; };
+		1108B26D1BFC4047004B5D48 /* PDFFormSignatureField.m in Sources */ = {isa = PBXBuildFile; fileRef = 1108B2531BFC4047004B5D48 /* PDFFormSignatureField.m */; };
+		1108B26E1BFC4047004B5D48 /* PDFFormTextField.m in Sources */ = {isa = PBXBuildFile; fileRef = 1108B2551BFC4047004B5D48 /* PDFFormTextField.m */; };
+		1108B26F1BFC4047004B5D48 /* PDFView.m in Sources */ = {isa = PBXBuildFile; fileRef = 1108B2571BFC4047004B5D48 /* PDFView.m */; };
+		1108B2701BFC4047004B5D48 /* PDFWidgetAnnotationView.m in Sources */ = {isa = PBXBuildFile; fileRef = 1108B2591BFC4047004B5D48 /* PDFWidgetAnnotationView.m */; };
+		1108B2711BFC4047004B5D48 /* testA.pdf in Resources */ = {isa = PBXBuildFile; fileRef = 1108B25A1BFC4047004B5D48 /* testA.pdf */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -28,6 +58,65 @@
 		1108B1BB1BFC2691004B5D48 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		1108B1BE1BFC2691004B5D48 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		1108B1C01BFC2691004B5D48 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		1108B2131BFC290F004B5D48 /* DrawSignView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DrawSignView.h; sourceTree = "<group>"; };
+		1108B2141BFC290F004B5D48 /* DrawSignView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DrawSignView.m; sourceTree = "<group>"; };
+		1108B2151BFC290F004B5D48 /* MyView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MyView.h; sourceTree = "<group>"; };
+		1108B2161BFC290F004B5D48 /* MyView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MyView.m; sourceTree = "<group>"; };
+		1108B2171BFC290F004B5D48 /* PopSignUtil.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PopSignUtil.h; sourceTree = "<group>"; };
+		1108B2181BFC290F004B5D48 /* PopSignUtil.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PopSignUtil.m; sourceTree = "<group>"; };
+		1108B2191BFC290F004B5D48 /* SignatureView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SignatureView.h; sourceTree = "<group>"; };
+		1108B21A1BFC290F004B5D48 /* SignatureView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SignatureView.m; sourceTree = "<group>"; };
+		1108B21F1BFC2A3B004B5D48 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
+		1108B2211BFC2A66004B5D48 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
+		1108B2231BFC2A6D004B5D48 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
+		1108B2251BFC2B0B004B5D48 /* ILPDFKitSample-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "ILPDFKitSample-Prefix.pch"; sourceTree = "<group>"; };
+		1108B2281BFC4047004B5D48 /* PDFSerializer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PDFSerializer.h; sourceTree = "<group>"; };
+		1108B2291BFC4047004B5D48 /* PDFSerializer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PDFSerializer.m; sourceTree = "<group>"; };
+		1108B22A1BFC4047004B5D48 /* PDFViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PDFViewController.h; sourceTree = "<group>"; };
+		1108B22B1BFC4047004B5D48 /* PDFViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PDFViewController.m; sourceTree = "<group>"; };
+		1108B22E1BFC4047004B5D48 /* PDFArray.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PDFArray.h; sourceTree = "<group>"; };
+		1108B22F1BFC4047004B5D48 /* PDFArray.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PDFArray.m; sourceTree = "<group>"; };
+		1108B2301BFC4047004B5D48 /* PDFDictionary.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PDFDictionary.h; sourceTree = "<group>"; };
+		1108B2311BFC4047004B5D48 /* PDFDictionary.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PDFDictionary.m; sourceTree = "<group>"; };
+		1108B2321BFC4047004B5D48 /* PDFName.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PDFName.h; sourceTree = "<group>"; };
+		1108B2331BFC4047004B5D48 /* PDFName.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PDFName.m; sourceTree = "<group>"; };
+		1108B2341BFC4047004B5D48 /* PDFNull.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PDFNull.h; sourceTree = "<group>"; };
+		1108B2351BFC4047004B5D48 /* PDFNull.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PDFNull.m; sourceTree = "<group>"; };
+		1108B2361BFC4047004B5D48 /* PDFNumber.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PDFNumber.h; sourceTree = "<group>"; };
+		1108B2371BFC4047004B5D48 /* PDFNumber.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PDFNumber.m; sourceTree = "<group>"; };
+		1108B2381BFC4047004B5D48 /* PDFObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PDFObject.h; sourceTree = "<group>"; };
+		1108B2391BFC4047004B5D48 /* PDFStream.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PDFStream.h; sourceTree = "<group>"; };
+		1108B23A1BFC4047004B5D48 /* PDFStream.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PDFStream.m; sourceTree = "<group>"; };
+		1108B23B1BFC4047004B5D48 /* PDFString.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PDFString.h; sourceTree = "<group>"; };
+		1108B23C1BFC4047004B5D48 /* PDFString.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PDFString.m; sourceTree = "<group>"; };
+		1108B23D1BFC4047004B5D48 /* PDFDocument.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PDFDocument.h; sourceTree = "<group>"; };
+		1108B23E1BFC4047004B5D48 /* PDFDocument.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PDFDocument.m; sourceTree = "<group>"; };
+		1108B23F1BFC4047004B5D48 /* PDFForm.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PDFForm.h; sourceTree = "<group>"; };
+		1108B2401BFC4047004B5D48 /* PDFForm.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PDFForm.m; sourceTree = "<group>"; };
+		1108B2411BFC4047004B5D48 /* PDFFormContainer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PDFFormContainer.h; sourceTree = "<group>"; };
+		1108B2421BFC4047004B5D48 /* PDFFormContainer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PDFFormContainer.m; sourceTree = "<group>"; };
+		1108B2431BFC4047004B5D48 /* PDFPage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PDFPage.h; sourceTree = "<group>"; };
+		1108B2441BFC4047004B5D48 /* PDFPage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PDFPage.m; sourceTree = "<group>"; };
+		1108B2451BFC4047004B5D48 /* PDF.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PDF.h; sourceTree = "<group>"; };
+		1108B2471BFC4047004B5D48 /* PDFObjectParser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PDFObjectParser.h; sourceTree = "<group>"; };
+		1108B2481BFC4047004B5D48 /* PDFObjectParser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PDFObjectParser.m; sourceTree = "<group>"; };
+		1108B2491BFC4047004B5D48 /* PDFUtility.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PDFUtility.h; sourceTree = "<group>"; };
+		1108B24A1BFC4047004B5D48 /* PDFUtility.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PDFUtility.m; sourceTree = "<group>"; };
+		1108B24C1BFC4047004B5D48 /* PDFFormButtonField.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PDFFormButtonField.h; sourceTree = "<group>"; };
+		1108B24D1BFC4047004B5D48 /* PDFFormButtonField.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PDFFormButtonField.m; sourceTree = "<group>"; };
+		1108B24E1BFC4047004B5D48 /* PDFFormChoiceField.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PDFFormChoiceField.h; sourceTree = "<group>"; };
+		1108B24F1BFC4047004B5D48 /* PDFFormChoiceField.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PDFFormChoiceField.m; sourceTree = "<group>"; };
+		1108B2501BFC4047004B5D48 /* PDFFormImageView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PDFFormImageView.h; sourceTree = "<group>"; };
+		1108B2511BFC4047004B5D48 /* PDFFormImageView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PDFFormImageView.m; sourceTree = "<group>"; };
+		1108B2521BFC4047004B5D48 /* PDFFormSignatureField.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PDFFormSignatureField.h; sourceTree = "<group>"; };
+		1108B2531BFC4047004B5D48 /* PDFFormSignatureField.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PDFFormSignatureField.m; sourceTree = "<group>"; };
+		1108B2541BFC4047004B5D48 /* PDFFormTextField.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PDFFormTextField.h; sourceTree = "<group>"; };
+		1108B2551BFC4047004B5D48 /* PDFFormTextField.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PDFFormTextField.m; sourceTree = "<group>"; };
+		1108B2561BFC4047004B5D48 /* PDFView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PDFView.h; sourceTree = "<group>"; };
+		1108B2571BFC4047004B5D48 /* PDFView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PDFView.m; sourceTree = "<group>"; };
+		1108B2581BFC4047004B5D48 /* PDFWidgetAnnotationView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PDFWidgetAnnotationView.h; sourceTree = "<group>"; };
+		1108B2591BFC4047004B5D48 /* PDFWidgetAnnotationView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PDFWidgetAnnotationView.m; sourceTree = "<group>"; };
+		1108B25A1BFC4047004B5D48 /* testA.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; path = testA.pdf; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -35,6 +124,9 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1108B2241BFC2A6D004B5D48 /* UIKit.framework in Frameworks */,
+				1108B2221BFC2A66004B5D48 /* CoreGraphics.framework in Frameworks */,
+				1108B2201BFC2A3B004B5D48 /* Foundation.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -44,6 +136,9 @@
 		1108B1A01BFC2690004B5D48 = {
 			isa = PBXGroup;
 			children = (
+				1108B2231BFC2A6D004B5D48 /* UIKit.framework */,
+				1108B2211BFC2A66004B5D48 /* CoreGraphics.framework */,
+				1108B21F1BFC2A3B004B5D48 /* Foundation.framework */,
 				1108B1AB1BFC2691004B5D48 /* Contract */,
 				1108B1AA1BFC2690004B5D48 /* Products */,
 			);
@@ -60,6 +155,8 @@
 		1108B1AB1BFC2691004B5D48 /* Contract */ = {
 			isa = PBXGroup;
 			children = (
+				1108B2261BFC4047004B5D48 /* ILPDFKit */,
+				1108B2121BFC290F004B5D48 /* Signature */,
 				1108B1AF1BFC2691004B5D48 /* AppDelegate.h */,
 				1108B1B01BFC2691004B5D48 /* AppDelegate.m */,
 				1108B1B21BFC2691004B5D48 /* ViewController.h */,
@@ -77,9 +174,119 @@
 		1108B1AC1BFC2691004B5D48 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				1108B2251BFC2B0B004B5D48 /* ILPDFKitSample-Prefix.pch */,
 				1108B1AD1BFC2691004B5D48 /* main.m */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		1108B2121BFC290F004B5D48 /* Signature */ = {
+			isa = PBXGroup;
+			children = (
+				1108B2131BFC290F004B5D48 /* DrawSignView.h */,
+				1108B2141BFC290F004B5D48 /* DrawSignView.m */,
+				1108B2151BFC290F004B5D48 /* MyView.h */,
+				1108B2161BFC290F004B5D48 /* MyView.m */,
+				1108B2171BFC290F004B5D48 /* PopSignUtil.h */,
+				1108B2181BFC290F004B5D48 /* PopSignUtil.m */,
+				1108B2191BFC290F004B5D48 /* SignatureView.h */,
+				1108B21A1BFC290F004B5D48 /* SignatureView.m */,
+			);
+			path = Signature;
+			sourceTree = "<group>";
+		};
+		1108B2261BFC4047004B5D48 /* ILPDFKit */ = {
+			isa = PBXGroup;
+			children = (
+				1108B2271BFC4047004B5D48 /* Controller */,
+				1108B22C1BFC4047004B5D48 /* Model */,
+				1108B2451BFC4047004B5D48 /* PDF.h */,
+				1108B2461BFC4047004B5D48 /* Utility */,
+				1108B24B1BFC4047004B5D48 /* View */,
+			);
+			path = ILPDFKit;
+			sourceTree = "<group>";
+		};
+		1108B2271BFC4047004B5D48 /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				1108B2281BFC4047004B5D48 /* PDFSerializer.h */,
+				1108B2291BFC4047004B5D48 /* PDFSerializer.m */,
+				1108B22A1BFC4047004B5D48 /* PDFViewController.h */,
+				1108B22B1BFC4047004B5D48 /* PDFViewController.m */,
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
+		1108B22C1BFC4047004B5D48 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				1108B22D1BFC4047004B5D48 /* Objects */,
+				1108B23D1BFC4047004B5D48 /* PDFDocument.h */,
+				1108B23E1BFC4047004B5D48 /* PDFDocument.m */,
+				1108B23F1BFC4047004B5D48 /* PDFForm.h */,
+				1108B2401BFC4047004B5D48 /* PDFForm.m */,
+				1108B2411BFC4047004B5D48 /* PDFFormContainer.h */,
+				1108B2421BFC4047004B5D48 /* PDFFormContainer.m */,
+				1108B2431BFC4047004B5D48 /* PDFPage.h */,
+				1108B2441BFC4047004B5D48 /* PDFPage.m */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		1108B22D1BFC4047004B5D48 /* Objects */ = {
+			isa = PBXGroup;
+			children = (
+				1108B22E1BFC4047004B5D48 /* PDFArray.h */,
+				1108B22F1BFC4047004B5D48 /* PDFArray.m */,
+				1108B2301BFC4047004B5D48 /* PDFDictionary.h */,
+				1108B2311BFC4047004B5D48 /* PDFDictionary.m */,
+				1108B2321BFC4047004B5D48 /* PDFName.h */,
+				1108B2331BFC4047004B5D48 /* PDFName.m */,
+				1108B2341BFC4047004B5D48 /* PDFNull.h */,
+				1108B2351BFC4047004B5D48 /* PDFNull.m */,
+				1108B2361BFC4047004B5D48 /* PDFNumber.h */,
+				1108B2371BFC4047004B5D48 /* PDFNumber.m */,
+				1108B2381BFC4047004B5D48 /* PDFObject.h */,
+				1108B2391BFC4047004B5D48 /* PDFStream.h */,
+				1108B23A1BFC4047004B5D48 /* PDFStream.m */,
+				1108B23B1BFC4047004B5D48 /* PDFString.h */,
+				1108B23C1BFC4047004B5D48 /* PDFString.m */,
+			);
+			path = Objects;
+			sourceTree = "<group>";
+		};
+		1108B2461BFC4047004B5D48 /* Utility */ = {
+			isa = PBXGroup;
+			children = (
+				1108B2471BFC4047004B5D48 /* PDFObjectParser.h */,
+				1108B2481BFC4047004B5D48 /* PDFObjectParser.m */,
+				1108B2491BFC4047004B5D48 /* PDFUtility.h */,
+				1108B24A1BFC4047004B5D48 /* PDFUtility.m */,
+			);
+			path = Utility;
+			sourceTree = "<group>";
+		};
+		1108B24B1BFC4047004B5D48 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				1108B24C1BFC4047004B5D48 /* PDFFormButtonField.h */,
+				1108B24D1BFC4047004B5D48 /* PDFFormButtonField.m */,
+				1108B24E1BFC4047004B5D48 /* PDFFormChoiceField.h */,
+				1108B24F1BFC4047004B5D48 /* PDFFormChoiceField.m */,
+				1108B2501BFC4047004B5D48 /* PDFFormImageView.h */,
+				1108B2511BFC4047004B5D48 /* PDFFormImageView.m */,
+				1108B2521BFC4047004B5D48 /* PDFFormSignatureField.h */,
+				1108B2531BFC4047004B5D48 /* PDFFormSignatureField.m */,
+				1108B2541BFC4047004B5D48 /* PDFFormTextField.h */,
+				1108B2551BFC4047004B5D48 /* PDFFormTextField.m */,
+				1108B2561BFC4047004B5D48 /* PDFView.h */,
+				1108B2571BFC4047004B5D48 /* PDFView.m */,
+				1108B2581BFC4047004B5D48 /* PDFWidgetAnnotationView.h */,
+				1108B2591BFC4047004B5D48 /* PDFWidgetAnnotationView.m */,
+				1108B25A1BFC4047004B5D48 /* testA.pdf */,
+			);
+			path = View;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -113,6 +320,7 @@
 				TargetAttributes = {
 					1108B1A81BFC2690004B5D48 = {
 						CreatedOnToolsVersion = 7.1.1;
+						DevelopmentTeam = 7D8CVP7EK4;
 					};
 				};
 			};
@@ -141,6 +349,7 @@
 			files = (
 				1108B1BF1BFC2691004B5D48 /* LaunchScreen.storyboard in Resources */,
 				1108B1BC1BFC2691004B5D48 /* Assets.xcassets in Resources */,
+				1108B2711BFC4047004B5D48 /* testA.pdf in Resources */,
 				1108B1B71BFC2691004B5D48 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -152,10 +361,36 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1108B2701BFC4047004B5D48 /* PDFWidgetAnnotationView.m in Sources */,
+				1108B2651BFC4047004B5D48 /* PDFForm.m in Sources */,
+				1108B2671BFC4047004B5D48 /* PDFPage.m in Sources */,
+				1108B2691BFC4047004B5D48 /* PDFUtility.m in Sources */,
+				1108B25B1BFC4047004B5D48 /* PDFSerializer.m in Sources */,
+				1108B2641BFC4047004B5D48 /* PDFDocument.m in Sources */,
+				1108B26A1BFC4047004B5D48 /* PDFFormButtonField.m in Sources */,
+				1108B25C1BFC4047004B5D48 /* PDFViewController.m in Sources */,
 				1108B1B41BFC2691004B5D48 /* ViewController.m in Sources */,
+				1108B2681BFC4047004B5D48 /* PDFObjectParser.m in Sources */,
+				1108B25D1BFC4047004B5D48 /* PDFArray.m in Sources */,
 				1108B1B11BFC2691004B5D48 /* AppDelegate.m in Sources */,
+				1108B26C1BFC4047004B5D48 /* PDFFormImageView.m in Sources */,
+				1108B2611BFC4047004B5D48 /* PDFNumber.m in Sources */,
+				1108B25F1BFC4047004B5D48 /* PDFName.m in Sources */,
+				1108B26D1BFC4047004B5D48 /* PDFFormSignatureField.m in Sources */,
+				1108B26B1BFC4047004B5D48 /* PDFFormChoiceField.m in Sources */,
+				1108B26E1BFC4047004B5D48 /* PDFFormTextField.m in Sources */,
 				1108B1AE1BFC2691004B5D48 /* main.m in Sources */,
+				1108B21E1BFC290F004B5D48 /* SignatureView.m in Sources */,
+				1108B26F1BFC4047004B5D48 /* PDFView.m in Sources */,
+				1108B21B1BFC290F004B5D48 /* DrawSignView.m in Sources */,
+				1108B21C1BFC290F004B5D48 /* MyView.m in Sources */,
+				1108B21D1BFC290F004B5D48 /* PopSignUtil.m in Sources */,
+				1108B2661BFC4047004B5D48 /* PDFFormContainer.m in Sources */,
+				1108B2621BFC4047004B5D48 /* PDFStream.m in Sources */,
+				1108B25E1BFC4047004B5D48 /* PDFDictionary.m in Sources */,
+				1108B2631BFC4047004B5D48 /* PDFString.m in Sources */,
 				1108B1BA1BFC2691004B5D48 /* Contract.xcdatamodeld in Sources */,
+				1108B2601BFC4047004B5D48 /* PDFNull.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -267,7 +502,11 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "Contract/ILPDFKitSample-Prefix.pch";
 				INFOPLIST_FILE = Contract/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.ba.Contract;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -278,7 +517,11 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "Contract/ILPDFKitSample-Prefix.pch";
 				INFOPLIST_FILE = Contract/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.ba.Contract;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -304,6 +547,7 @@
 				1108B1C51BFC2691004B5D48 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 
