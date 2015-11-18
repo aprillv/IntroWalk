@@ -8,16 +8,36 @@
 
 import UIKit
 
-class LoginViewController: UIViewController {
+class LoginViewController: BaseViewController {
 
+    private struct constants{
+        static let PasswordEmptyMsg : String = "Password Required."
+        static let EmailEmptyMsg :  String = "Email Required."
+    }
     @IBOutlet weak var emailTxt: UITextField!
     @IBOutlet weak var passwordTxt: UITextField!
     @IBOutlet weak var rememberMeSwitch: UISwitch!
+    
     @IBAction func Login(sender: UIButton) {
+        
+        emailTxt.resignFirstResponder()
+        passwordTxt.resignFirstResponder()
+        
+        let email = emailTxt.text
+        let password = passwordTxt.text
+        
+        if email == nil || email == "" {
+            self.PopMsgWithJustOK(msg: constants.EmailEmptyMsg, txtField: emailTxt)
+        }else{
+            if password == nil || password == "" {
+                self.PopMsgWithJustOK(msg: constants.PasswordEmptyMsg, txtField: passwordTxt)
+            }else {
+                // do login
+            }
+        }
     }
     override func viewDidLoad() {
         super.viewDidLoad()
-emailTxt.text = "april test"
         // Do any additional setup after loading the view.
     }
 

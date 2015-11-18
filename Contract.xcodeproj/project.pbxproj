@@ -9,7 +9,6 @@
 /* Begin PBXBuildFile section */
 		1108B1AE1BFC2691004B5D48 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 1108B1AD1BFC2691004B5D48 /* main.m */; };
 		1108B1B11BFC2691004B5D48 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 1108B1B01BFC2691004B5D48 /* AppDelegate.m */; };
-		1108B1B41BFC2691004B5D48 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1108B1B31BFC2691004B5D48 /* ViewController.m */; };
 		1108B1B71BFC2691004B5D48 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1108B1B51BFC2691004B5D48 /* Main.storyboard */; };
 		1108B1BA1BFC2691004B5D48 /* Contract.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 1108B1B81BFC2691004B5D48 /* Contract.xcdatamodeld */; };
 		1108B1BC1BFC2691004B5D48 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1108B1BB1BFC2691004B5D48 /* Assets.xcassets */; };
@@ -45,6 +44,7 @@
 		1108B2701BFC4047004B5D48 /* PDFWidgetAnnotationView.m in Sources */ = {isa = PBXBuildFile; fileRef = 1108B2591BFC4047004B5D48 /* PDFWidgetAnnotationView.m */; };
 		1108B2711BFC4047004B5D48 /* testA.pdf in Resources */ = {isa = PBXBuildFile; fileRef = 1108B25A1BFC4047004B5D48 /* testA.pdf */; };
 		1108B2751BFC55CF004B5D48 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1108B2741BFC55CF004B5D48 /* LoginViewController.swift */; };
+		1108B2791BFC6133004B5D48 /* BaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1108B2781BFC6133004B5D48 /* BaseViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -52,8 +52,6 @@
 		1108B1AD1BFC2691004B5D48 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		1108B1AF1BFC2691004B5D48 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		1108B1B01BFC2691004B5D48 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
-		1108B1B21BFC2691004B5D48 /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
-		1108B1B31BFC2691004B5D48 /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
 		1108B1B61BFC2691004B5D48 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		1108B1B91BFC2691004B5D48 /* Contract.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Contract.xcdatamodel; sourceTree = "<group>"; };
 		1108B1BB1BFC2691004B5D48 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -120,6 +118,7 @@
 		1108B25A1BFC4047004B5D48 /* testA.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; path = testA.pdf; sourceTree = "<group>"; };
 		1108B2731BFC55CF004B5D48 /* Contract-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Contract-Bridging-Header.h"; sourceTree = "<group>"; };
 		1108B2741BFC55CF004B5D48 /* LoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
+		1108B2781BFC6133004B5D48 /* BaseViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BaseViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -163,8 +162,6 @@
 				1108B2121BFC290F004B5D48 /* Signature */,
 				1108B1AF1BFC2691004B5D48 /* AppDelegate.h */,
 				1108B1B01BFC2691004B5D48 /* AppDelegate.m */,
-				1108B1B21BFC2691004B5D48 /* ViewController.h */,
-				1108B1B31BFC2691004B5D48 /* ViewController.m */,
 				1108B1B51BFC2691004B5D48 /* Main.storyboard */,
 				1108B1BB1BFC2691004B5D48 /* Assets.xcassets */,
 				1108B1BD1BFC2691004B5D48 /* LaunchScreen.storyboard */,
@@ -298,6 +295,7 @@
 			children = (
 				1108B2741BFC55CF004B5D48 /* LoginViewController.swift */,
 				1108B2731BFC55CF004B5D48 /* Contract-Bridging-Header.h */,
+				1108B2781BFC6133004B5D48 /* BaseViewController.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -378,11 +376,11 @@
 				1108B2651BFC4047004B5D48 /* PDFForm.m in Sources */,
 				1108B2671BFC4047004B5D48 /* PDFPage.m in Sources */,
 				1108B2691BFC4047004B5D48 /* PDFUtility.m in Sources */,
+				1108B2791BFC6133004B5D48 /* BaseViewController.swift in Sources */,
 				1108B25B1BFC4047004B5D48 /* PDFSerializer.m in Sources */,
 				1108B2641BFC4047004B5D48 /* PDFDocument.m in Sources */,
 				1108B26A1BFC4047004B5D48 /* PDFFormButtonField.m in Sources */,
 				1108B25C1BFC4047004B5D48 /* PDFViewController.m in Sources */,
-				1108B1B41BFC2691004B5D48 /* ViewController.m in Sources */,
 				1108B2681BFC4047004B5D48 /* PDFObjectParser.m in Sources */,
 				1108B25D1BFC4047004B5D48 /* PDFArray.m in Sources */,
 				1108B1B11BFC2691004B5D48 /* AppDelegate.m in Sources */,
