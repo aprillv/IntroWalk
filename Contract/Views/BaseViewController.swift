@@ -18,7 +18,7 @@ class BaseViewController: UIViewController {
         
         let alert: UIAlertController = UIAlertController(title: ProjectConstants.MsgTitle, message: msg1, preferredStyle: .Alert)
         
-        //Create and add the Cancel action
+        //Create and add the OK action
         let oKAction: UIAlertAction = UIAlertAction(title: ProjectConstants.MsgOKTitle, style: .Cancel) { action -> Void in
             //Do some stuff
             txtField?.becomeFirstResponder()

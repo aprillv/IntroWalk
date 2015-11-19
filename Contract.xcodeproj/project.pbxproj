@@ -138,9 +138,6 @@
 		1108B1A01BFC2690004B5D48 = {
 			isa = PBXGroup;
 			children = (
-				1108B2231BFC2A6D004B5D48 /* UIKit.framework */,
-				1108B2211BFC2A66004B5D48 /* CoreGraphics.framework */,
-				1108B21F1BFC2A3B004B5D48 /* Foundation.framework */,
 				1108B1AB1BFC2691004B5D48 /* Contract */,
 				1108B1AA1BFC2690004B5D48 /* Products */,
 			);
@@ -177,6 +174,9 @@
 			children = (
 				1108B2251BFC2B0B004B5D48 /* ILPDFKitSample-Prefix.pch */,
 				1108B1AD1BFC2691004B5D48 /* main.m */,
+				1108B2231BFC2A6D004B5D48 /* UIKit.framework */,
+				1108B2211BFC2A66004B5D48 /* CoreGraphics.framework */,
+				1108B21F1BFC2A3B004B5D48 /* Foundation.framework */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";
