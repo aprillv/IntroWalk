@@ -45,6 +45,10 @@
 		1108B2711BFC4047004B5D48 /* testA.pdf in Resources */ = {isa = PBXBuildFile; fileRef = 1108B25A1BFC4047004B5D48 /* testA.pdf */; };
 		1108B2751BFC55CF004B5D48 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1108B2741BFC55CF004B5D48 /* LoginViewController.swift */; };
 		1108B2791BFC6133004B5D48 /* BaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1108B2781BFC6133004B5D48 /* BaseViewController.swift */; };
+		1176D20F1BFDC67C001C1C3E /* AdressListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1176D20E1BFDC67C001C1C3E /* AdressListViewController.swift */; };
+		11FA0B551BFD73E100F6605D /* Sanchez-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 11FA0B541BFD73E100F6605D /* Sanchez-Regular.ttf */; };
+		11FA0B5B1BFD79BC00F6605D /* Lato-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 11FA0B591BFD797B00F6605D /* Lato-Bold.ttf */; };
+		11FA0B5C1BFD79BC00F6605D /* Lato-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 11FA0B5A1BFD797B00F6605D /* Lato-Regular.ttf */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -119,6 +123,10 @@
 		1108B2731BFC55CF004B5D48 /* Contract-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Contract-Bridging-Header.h"; sourceTree = "<group>"; };
 		1108B2741BFC55CF004B5D48 /* LoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		1108B2781BFC6133004B5D48 /* BaseViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BaseViewController.swift; sourceTree = "<group>"; };
+		1176D20E1BFDC67C001C1C3E /* AdressListViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AdressListViewController.swift; sourceTree = "<group>"; };
+		11FA0B541BFD73E100F6605D /* Sanchez-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Sanchez-Regular.ttf"; sourceTree = "<group>"; };
+		11FA0B591BFD797B00F6605D /* Lato-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Lato-Bold.ttf"; sourceTree = "<group>"; };
+		11FA0B5A1BFD797B00F6605D /* Lato-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Lato-Regular.ttf"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -154,6 +162,7 @@
 		1108B1AB1BFC2691004B5D48 /* Contract */ = {
 			isa = PBXGroup;
 			children = (
+				11FA0B531BFD73D600F6605D /* Font */,
 				1108B2721BFC55A2004B5D48 /* Views */,
 				1108B2261BFC4047004B5D48 /* ILPDFKit */,
 				1108B2121BFC290F004B5D48 /* Signature */,
@@ -293,11 +302,22 @@
 		1108B2721BFC55A2004B5D48 /* Views */ = {
 			isa = PBXGroup;
 			children = (
-				1108B2741BFC55CF004B5D48 /* LoginViewController.swift */,
 				1108B2731BFC55CF004B5D48 /* Contract-Bridging-Header.h */,
 				1108B2781BFC6133004B5D48 /* BaseViewController.swift */,
+				1108B2741BFC55CF004B5D48 /* LoginViewController.swift */,
+				1176D20E1BFDC67C001C1C3E /* AdressListViewController.swift */,
 			);
 			path = Views;
+			sourceTree = "<group>";
+		};
+		11FA0B531BFD73D600F6605D /* Font */ = {
+			isa = PBXGroup;
+			children = (
+				11FA0B591BFD797B00F6605D /* Lato-Bold.ttf */,
+				11FA0B5A1BFD797B00F6605D /* Lato-Regular.ttf */,
+				11FA0B541BFD73E100F6605D /* Sanchez-Regular.ttf */,
+			);
+			path = Font;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -358,9 +378,12 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				11FA0B5B1BFD79BC00F6605D /* Lato-Bold.ttf in Resources */,
+				11FA0B5C1BFD79BC00F6605D /* Lato-Regular.ttf in Resources */,
 				1108B1BF1BFC2691004B5D48 /* LaunchScreen.storyboard in Resources */,
 				1108B1BC1BFC2691004B5D48 /* Assets.xcassets in Resources */,
 				1108B2711BFC4047004B5D48 /* testA.pdf in Resources */,
+				11FA0B551BFD73E100F6605D /* Sanchez-Regular.ttf in Resources */,
 				1108B1B71BFC2691004B5D48 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -394,6 +417,7 @@
 				1108B1AE1BFC2691004B5D48 /* main.m in Sources */,
 				1108B21E1BFC290F004B5D48 /* SignatureView.m in Sources */,
 				1108B26F1BFC4047004B5D48 /* PDFView.m in Sources */,
+				1176D20F1BFDC67C001C1C3E /* AdressListViewController.swift in Sources */,
 				1108B21B1BFC290F004B5D48 /* DrawSignView.m in Sources */,
 				1108B21C1BFC290F004B5D48 /* MyView.m in Sources */,
 				1108B21D1BFC290F004B5D48 /* PopSignUtil.m in Sources */,
@@ -464,7 +488,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 9.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
@@ -502,7 +526,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 9.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = 2;
