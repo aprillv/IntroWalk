@@ -26,7 +26,7 @@ class BaseViewController: UIViewController {
     }
     
     func IsNilOrEmpty(str : String?) -> Bool{
-        if str == nil || str == "" {
+        if str == nil || str!.isEmpty {
             return true
         }else {
             return false

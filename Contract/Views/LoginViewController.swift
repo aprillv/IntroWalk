@@ -139,13 +139,7 @@ class LoginViewController: BaseViewController, UITextFieldDelegate {
                         if let rtnValue = response.result.value as? [String: AnyObject]{
                             let rtn = Contract(dicInfo: rtnValue)
                             
-                            self.signInBtn.hidden = false
-                            self.emailTxt.enabled = true
-                            self.passwordTxt.enabled = true
-                            self.rememberMeSwitch.enabled = true
-                            self.emailTxt.textColor = UIColor.blackColor()
-                            self.passwordTxt.textColor = UIColor.blackColor()
-                            self.spinner.stopAnimating()
+                            self.toEablePageControl()
                             
                             if rtn.activeyn == 1{
                                 self.saveEmailAndPwdToDisk(email: email!, password: password!)
@@ -155,9 +149,11 @@ class LoginViewController: BaseViewController, UITextFieldDelegate {
                                 self.PopMsgValidationWithJustOK(msg: constants.WrongEmailOrPwdMsg, txtField: nil)
                             }
                         }else{
+                            self.toEablePageControl()
                             self.PopServerError()
                         }
                     }else{
+                        self.toEablePageControl()
                         self.PopNetworkError()
                     }
                 }
@@ -168,6 +164,16 @@ class LoginViewController: BaseViewController, UITextFieldDelegate {
             }
         }
         
+    }
+    
+   private func toEablePageControl(){
+    self.signInBtn.hidden = false
+    self.emailTxt.enabled = true
+    self.passwordTxt.enabled = true
+    self.rememberMeSwitch.enabled = true
+    self.emailTxt.textColor = UIColor.blackColor()
+    self.passwordTxt.textColor = UIColor.blackColor()
+    self.spinner.stopAnimating()
     }
     
     func saveEmailAndPwdToDisk(email email: String, password: String){

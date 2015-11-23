@@ -11,8 +11,12 @@ import Alamofire
 
 class AddressListViewController: UITableViewController, UISearchBarDelegate {
 
+    var AddressListOrigin : [ContractsItem]?
     var AddressList : [ContractsItem]? {
         didSet{
+            if AddressListOrigin == nil {
+                AddressListOrigin = AddressList
+            }
             self.tableView?.reloadData()
         }
     }
@@ -40,12 +44,26 @@ class AddressListViewController: UITableViewController, UISearchBarDelegate {
         self.title = constants.Title
         
         self.tableView.reloadData()
-        
+        self.tableView.separatorInset = UIEdgeInsets(top: 0, left: 8, bottom: 0, right: 8)
     }
 
     
     // MARK: - Search Bar Deleagte
     func searchBar(searchBar: UISearchBar, textDidChange searchText: String) {
+        if let txt = searchBar.text?.lowercaseString{
+            if txt.isEmpty{
+                AddressList = AddressListOrigin
+            }else{
+                AddressList = AddressListOrigin?.filter(){
+                    return $0.cianame!.lowercaseString.containsString(txt)
+                        || $0.assignsales1name!.lowercaseString.containsString(txt)
+                        || $0.nproject!.lowercaseString.containsString(txt)
+                        || $0.client!.lowercaseString.containsString(txt)
+                }
+            }
+        }else{
+            AddressList = AddressListOrigin
+        }
         
     }
     
@@ -71,15 +89,10 @@ class AddressListViewController: UITableViewController, UISearchBarDelegate {
         let cell = tableView.dequeueReusableCellWithIdentifier(constants.CellIdentifier, forIndexPath: indexPath)
 
         if let cellitem = cell as? AddressListViewCell {
-            let item: ContractsItem = AddressList![indexPath.row]
-            cellitem.CiaNmLbl.text = item.cianame
-            cellitem.ProjectNmLbl.text = item.nproject
-            cellitem.DateLbl.text = item.refdate
-            cellitem.ClientLbl.text = item.client
+            cellitem.contractInfo = AddressList![indexPath.row]
+            cell.separatorInset = UIEdgeInsets(top: 0, left: -10, bottom: 0, right: 8)
         }
         
-        
-
         return cell
     }
     
@@ -92,54 +105,54 @@ class AddressListViewController: UITableViewController, UISearchBarDelegate {
             parameters: ContractRequestItem(contractInfo: item).DictionaryFromObject()).responseJSON{ (response) -> Void in
             if response.result.isSuccess {
                 if let rtnValue = response.result.value as? [String: AnyObject]{
-                    let rtn = ContractSignature(dicInfo: rtnValue)
-                   let pdfData = NSData(base64EncodedString: rtn.base64pdf!, options: NSDataBase64DecodingOptions(rawValue: 0))
-//                    [webview loadData:pdfData MIMEType:@"application/pdf" textEncodingName:@"utf-8" baseURL:nil];
-                    let path =  NSSearchPathForDirectoriesInDomains(.DocumentDirectory, .UserDomainMask, true)[0]
-                    let pdfPath = path.stringByAppendingString("_\(rtn.idcia)_\(rtn.idcity)_\(rtn.idproject).pdf")
-                    let filemanager = NSFileManager.defaultManager()
-                    if !filemanager.fileExistsAtPath(pdfPath){
-                        if NSFileManager.defaultManager().createFileAtPath(pdfPath, contents: pdfData, attributes: nil){
-                            print("success")
-                        }else{
-                            print("fail")
-                        }
-                    }
-                    
-                    //    NSString *PDFPath = [path stringByAppendingPathComponent:@"123.pdf"];
-                    //    _pdfViewController = [[PDFViewController alloc] initWithPath:PDFPath];
-                    
-                    let pdfConr = PDFViewController(path: pdfPath)
-                    self.navigationController?.pushViewController(pdfConr, animated: true)
-//                    _pdfViewController = [[PDFViewController alloc] initWithResource:@"testA.pdf"];
+//                    let rtn = ContractSignature(dicInfo: rtnValue)
+//                   let pdfData = NSData(base64EncodedString: rtn.base64pdf!, options: NSDataBase64DecodingOptions(rawValue: 0))
+////                    [webview loadData:pdfData MIMEType:@"application/pdf" textEncodingName:@"utf-8" baseURL:nil];
+//                    let path =  NSSearchPathForDirectoriesInDomains(.DocumentDirectory, .UserDomainMask, true)[0]
+//                    let pdfPath = path.stringByAppendingString("_\(rtn.idcia)_\(rtn.idcity)_\(rtn.idproject).pdf")
+//                    let filemanager = NSFileManager.defaultManager()
+//                    if !filemanager.fileExistsAtPath(pdfPath){
+//                        if NSFileManager.defaultManager().createFileAtPath(pdfPath, contents: pdfData, attributes: nil){
+//                            print("success")
+//                        }else{
+//                            print("fail")
+//                        }
+//                    }
 //                    
+//                    //    NSString *PDFPath = [path stringByAppendingPathComponent:@"123.pdf"];
+//                    //    _pdfViewController = [[PDFViewController alloc] initWithPath:PDFPath];
 //                    
-//                    _pdfViewController.title = @"Sample PDF";
+//                    let pdfConr = PDFViewController(path: pdfPath)
+//                    self.navigationController?.pushViewController(pdfConr, animated: true)
+////                    _pdfViewController = [[PDFViewController alloc] initWithResource:@"testA.pdf"];
+////                    
+////                    
+////                    _pdfViewController.title = @"Sample PDF";
+////                    
+////                    _navigationController = [[UINavigationController alloc] initWithRootViewController:_pdfViewController];
+////                    [self.window setRootViewController:_navigationController];
+////                    _navigationController.view.autoresizingMask =  UIViewAutoresizingFlexibleHeight|UIViewAutoresizingFlexibleWidth|UIViewAutoresizingFlexibleTopMargin|UIViewAutoresizingFlexibleLeftMargin;
+////                    _navigationController.navigationBar.translucent = NO;
+////                    UIBarButtonItem *saveBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"Save" style:UIBarButtonItemStylePlain target:self action:@selector(save:)];
+////                    [_pdfViewController.navigationItem setRightBarButtonItems:@[saveBarButtonItem]];
 //                    
-//                    _navigationController = [[UINavigationController alloc] initWithRootViewController:_pdfViewController];
-//                    [self.window setRootViewController:_navigationController];
-//                    _navigationController.view.autoresizingMask =  UIViewAutoresizingFlexibleHeight|UIViewAutoresizingFlexibleWidth|UIViewAutoresizingFlexibleTopMargin|UIViewAutoresizingFlexibleLeftMargin;
-//                    _navigationController.navigationBar.translucent = NO;
-//                    UIBarButtonItem *saveBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"Save" style:UIBarButtonItemStylePlain target:self action:@selector(save:)];
-//                    [_pdfViewController.navigationItem setRightBarButtonItems:@[saveBarButtonItem]];
-                    
-//                    let handle = NSFileHandle.
-                    
-//                    NSString *path = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES)[0];
-                    //2>.拼接路径
-//                    NSString *PDFPath = [path stringByAppendingPathComponent:@"123.pdf"];
+////                    let handle = NSFileHandle.
 //                    
-//                    NSArray *searchPaths = NSSearchPathForDirectoriesInDomains(NSCachesDirectory, NSUserDomainMask, YES);
-//                    NSString *documentFolderPath = [searchPaths objectAtIndex: 0];
-//                    NSString *imagePath = [documentFolderPath stringByAppendingPathComponent:@"yourPdfFileName.pdf"];
-//                    
-//                    NSFileManager *filemanager=[NSFileManager defaultManager];
-//                    if(![filemanager fileExistsAtPath:filePath])
-//                    [[NSFileManager defaultManager] createFileAtPath:filePath   contents: nil attributes: nil];
-//                    
-//                    NSFileHandle *handle = [NSFileHandle fileHandleForWritingAtPath:filePath];
-//                    
-//                    [handle writeData:data];
+////                    NSString *path = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES)[0];
+//                    //2>.拼接路径
+////                    NSString *PDFPath = [path stringByAppendingPathComponent:@"123.pdf"];
+////                    
+////                    NSArray *searchPaths = NSSearchPathForDirectoriesInDomains(NSCachesDirectory, NSUserDomainMask, YES);
+////                    NSString *documentFolderPath = [searchPaths objectAtIndex: 0];
+////                    NSString *imagePath = [documentFolderPath stringByAppendingPathComponent:@"yourPdfFileName.pdf"];
+////                    
+////                    NSFileManager *filemanager=[NSFileManager defaultManager];
+////                    if(![filemanager fileExistsAtPath:filePath])
+////                    [[NSFileManager defaultManager] createFileAtPath:filePath   contents: nil attributes: nil];
+////                    
+////                    NSFileHandle *handle = [NSFileHandle fileHandleForWritingAtPath:filePath];
+////                    
+////                    [handle writeData:data];
                     
                     
                 }else{
