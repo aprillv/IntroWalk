@@ -7,13 +7,15 @@
 //
 
 import UIKit
+import Alamofire
 
 class LoginViewController: BaseViewController, UITextFieldDelegate {
 
+    // MARK: - Page constants
     private struct constants{
         static let PasswordEmptyMsg : String = "Password Required."
         static let EmailEmptyMsg :  String = "Email Required."
-        static let WrongEmailOrPwdMsg :  String = "Your Email or password is incorrect."
+        static let WrongEmailOrPwdMsg :  String = "Email or password is incorrect."
         
         static let BorderColor : UIColor = UIColor(red: 204/255.0, green: 204/255.0, blue: 204/255.0, alpha: 1)
         
@@ -22,8 +24,11 @@ class LoginViewController: BaseViewController, UITextFieldDelegate {
         static let UserInfoPwd :  String = "Login Password"
         
         static let SegueToAddressList :  String = "adressList"
+        
+        static let LoginServiceURL: String = "bacontract_login.json"
     }
     
+    // MARK: Outlets
     @IBOutlet weak var emailTxt: UITextField!{
         didSet{
             emailTxt.returnKeyType = .Next
@@ -46,30 +51,7 @@ class LoginViewController: BaseViewController, UITextFieldDelegate {
             }
         }
     }
-    @IBOutlet weak var signInBtn: UIButton!
     
-    @IBOutlet weak var spinner: UIActivityIndicatorView!
-    
-    func textFieldShouldReturn(textField: UITextField) -> Bool {
-        switch textField{
-        case emailTxt:
-            passwordTxt.becomeFirstResponder()
-        case passwordTxt:
-            Login(signInBtn)
-        default:
-            break
-        }
-        return true
-    }
-    
-    func textFieldDidEndEditing(textField: UITextField) {
-        setSignInBtn()
-    }
-    
-    private func setSignInBtn(){
-        signInBtn.enabled = !self.IsNilOrEmpty(passwordTxt.text)
-            && !self.IsNilOrEmpty(emailTxt.text)
-    }
     @IBOutlet weak var rememberMeSwitch: UISwitch!{
         didSet {
             rememberMeSwitch.transform = CGAffineTransformMakeScale(0.9, 0.9)
@@ -91,6 +73,42 @@ class LoginViewController: BaseViewController, UITextFieldDelegate {
         }
     }
     
+    @IBOutlet weak var signInBtn: UIButton!
+    
+    @IBOutlet weak var spinner: UIActivityIndicatorView!
+    
+    // MARK: UITextField Delegate
+    func textFieldShouldReturn(textField: UITextField) -> Bool {
+        switch textField{
+        case emailTxt:
+            passwordTxt.becomeFirstResponder()
+        case passwordTxt:
+            Login(signInBtn)
+        default:
+            break
+        }
+        return true
+    }
+    
+    func textFieldDidEndEditing(textField: UITextField) {
+        setSignInBtn()
+    }
+    
+    private func setSignInBtn(){
+        signInBtn.enabled = !self.IsNilOrEmpty(passwordTxt.text)
+            && !self.IsNilOrEmpty(emailTxt.text)
+    }
+    
+    
+    // MARK: Outlet Action
+    @IBAction func rememberChanged(sender: UISwitch) {
+        let userInfo = NSUserDefaults.standardUserDefaults()
+        userInfo.setObject(rememberMeSwitch.on, forKey: constants.UserInfoRememberMe)
+        if !rememberMeSwitch.on {
+            userInfo.setObject("", forKey: constants.UserInfoPwd)
+        }
+    }
+    
     @IBAction func Login(sender: UIButton) {
         emailTxt.resignFirstResponder()
         passwordTxt.resignFirstResponder()
@@ -108,24 +126,45 @@ class LoginViewController: BaseViewController, UITextFieldDelegate {
                 signInBtn.hidden = true
                 emailTxt.enabled = false
                 passwordTxt.enabled = false
+                rememberMeSwitch.enabled = false
                 emailTxt.textColor = UIColor.darkGrayColor()
                 passwordTxt.textColor = UIColor.darkGrayColor()
                 spinner.startAnimating()
-                saveEmailAndPwdToDisk(email: email!, password: password!)
-                self.performSegueWithIdentifier(constants.SegueToAddressList, sender: self)
-            }
-        }
-        
-    }
-    
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        if let identifier = segue.identifier {
-            switch identifier {
-                case constants.SegueToAddressList:
-                    print("go to address list")
-                break
-            default:
-                break
+            
+                let loginUserInfo = LoginUser(email: email!, password: password!)
+                
+                let a = loginUserInfo.DictionaryFromObject()
+                Alamofire.request(.POST, ProjectOpenConstants.ServerURL + constants.LoginServiceURL, parameters: a).responseJSON{ (response) -> Void in
+                    if response.result.isSuccess {
+                        if let rtnValue = response.result.value as? [String: AnyObject]{
+                            let rtn = Contract(dicInfo: rtnValue)
+                            
+                            self.signInBtn.hidden = false
+                            self.emailTxt.enabled = true
+                            self.passwordTxt.enabled = true
+                            self.rememberMeSwitch.enabled = true
+                            self.emailTxt.textColor = UIColor.blackColor()
+                            self.passwordTxt.textColor = UIColor.blackColor()
+                            self.spinner.stopAnimating()
+                            
+                            if rtn.activeyn == 1{
+                                self.saveEmailAndPwdToDisk(email: email!, password: password!)
+                                self.loginResult = rtn
+                                self.performSegueWithIdentifier(constants.SegueToAddressList, sender: self)
+                            }else{
+                                self.PopMsgValidationWithJustOK(msg: constants.WrongEmailOrPwdMsg, txtField: nil)
+                            }
+                        }else{
+                            self.PopServerError()
+                        }
+                    }else{
+                        self.PopNetworkError()
+                    }
+                }
+                
+////                request(method: Alamofire.Method, _ URLString: URLStringConvertible, parameters: [String : AnyObject]? = default, encoding: Alamofire.ParameterEncoding = default, headers: [String : String]? = default) -> Alamofire.Request
+                
+                
             }
         }
         
@@ -143,32 +182,45 @@ class LoginViewController: BaseViewController, UITextFieldDelegate {
             userInfo.setObject("", forKey: constants.UserInfoPwd)
         }
     }
+    
+    
+    // MARK: PrepareForSegue
+    private var loginResult : Contract?{
+        didSet{
+            if loginResult != nil{
+                let userInfo = NSUserDefaults.standardUserDefaults()
+                userInfo.setObject(loginResult!.username, forKey: ProjectOpenConstants.LoggedUserNameKey)
+            }
+        }
+    }
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        if let identifier = segue.identifier {
+            switch identifier {
+                case constants.SegueToAddressList:
+                    if let addressListView = segue.destinationViewController as? AddressListViewController{
+                        addressListView.AddressList = loginResult?.contracts
+                    }
+                break
+            default:
+                break
+            }
+        }
+        
+    }
+    
+    // MARK: Life cycle
     override func viewDidLoad() {
         super.viewDidLoad()
+        setSignInBtn()
+    }
+    
+    override func viewWillAppear(animated: Bool) {
+        super.viewWillAppear(animated)
         self.navigationController?.navigationBarHidden = true
-       setSignInBtn()
-        
-        
-
-        
-        // Do any additional setup after loading the view.
-    }
-
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
     }
     
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
+    override func viewWillDisappear(animated: Bool) {
+        super.viewWillDisappear(animated)
+        self.navigationController?.navigationBarHidden = false
     }
-    */
-    
-
 }

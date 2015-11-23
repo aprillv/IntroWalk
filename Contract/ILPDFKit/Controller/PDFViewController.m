@@ -57,7 +57,7 @@
         if ([sign isKindOfClass:[SignatureView class]]) {
             if (CGRectIntersectsRect(sign.superview.bounds, sign.frame)) {
                 if ((item.tag == 1 && [sign.sname hasSuffix:@"bottom1"]) || (item.tag == 2 && [sign.sname hasSuffix:@"bottom2"])) {
-                    //buyer
+                    // buyer
                     [sign toSignautre];
                     return;
                 }
