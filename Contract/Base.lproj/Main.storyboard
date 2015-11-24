@@ -3,7 +3,6 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9051"/>
-        <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <scenes>
@@ -207,53 +206,23 @@
                                     <rect key="frame" x="0.0" y="0.0" width="600" height="43"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Cia Name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="g68-H6-0ap">
-                                            <rect key="frame" x="8" y="11" width="74" height="21"/>
+                                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="dKV-kd-zYX">
+                                            <rect key="frame" x="8" y="4" width="584" height="35"/>
+                                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                             <constraints>
-                                                <constraint firstAttribute="width" secondItem="g68-H6-0ap" secondAttribute="height" multiplier="74:21" id="pt8-eD-bGo"/>
-                                                <constraint firstAttribute="width" secondItem="g68-H6-0ap" secondAttribute="height" multiplier="160:43" id="unY-RR-J7u"/>
+                                                <constraint firstAttribute="height" constant="35" id="asM-4W-NLk"/>
                                             </constraints>
-                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                            <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                                            <nil key="highlightedColor"/>
-                                            <variation key="default">
-                                                <mask key="constraints">
-                                                    <exclude reference="pt8-eD-bGo"/>
-                                                    <exclude reference="unY-RR-J7u"/>
-                                                </mask>
-                                            </variation>
-                                        </label>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Project Name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0mN-5l-1uf">
-                                            <rect key="frame" x="176" y="11" width="171" height="21"/>
-                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                            <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                                            <nil key="highlightedColor"/>
-                                        </label>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Client" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Hvo-PN-JNc">
-                                            <rect key="frame" x="547" y="11" width="45" height="21"/>
-                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                            <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                                            <nil key="highlightedColor"/>
-                                        </label>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Date" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="APm-QB-0KR">
-                                            <rect key="frame" x="444" y="11" width="66" height="21"/>
-                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                            <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                                            <nil key="highlightedColor"/>
-                                        </label>
+                                        </view>
                                     </subviews>
                                     <constraints>
-                                        <constraint firstItem="g68-H6-0ap" firstAttribute="centerY" secondItem="Dj7-R1-2es" secondAttribute="centerY" id="3Oo-0x-RfC"/>
-                                        <constraint firstAttribute="leadingMargin" secondItem="g68-H6-0ap" secondAttribute="leading" id="Cmd-UR-AFG"/>
-                                        <constraint firstItem="Hvo-PN-JNc" firstAttribute="centerY" secondItem="Dj7-R1-2es" secondAttribute="centerY" id="JXl-cv-OH6"/>
-                                        <constraint firstAttribute="trailingMargin" secondItem="Hvo-PN-JNc" secondAttribute="trailing" id="bBe-gD-FI3"/>
+                                        <constraint firstAttribute="leadingMargin" secondItem="dKV-kd-zYX" secondAttribute="leading" id="PT5-mh-NnP"/>
+                                        <constraint firstItem="dKV-kd-zYX" firstAttribute="centerX" secondItem="Dj7-R1-2es" secondAttribute="centerX" id="kCf-2l-FNb"/>
+                                        <constraint firstAttribute="trailingMargin" secondItem="dKV-kd-zYX" secondAttribute="trailing" id="q80-XQ-IOe"/>
+                                        <constraint firstItem="dKV-kd-zYX" firstAttribute="centerY" secondItem="Dj7-R1-2es" secondAttribute="centerY" id="y9z-t0-JXR"/>
                                     </constraints>
                                 </tableViewCellContentView>
                                 <connections>
-                                    <outlet property="CiaNmLbl" destination="g68-H6-0ap" id="Kwu-aq-NZQ"/>
-                                    <outlet property="ClientLbl" destination="Hvo-PN-JNc" id="K3R-Yx-TGB"/>
-                                    <outlet property="DateLbl" destination="APm-QB-0KR" id="5Bc-GJ-lK8"/>
-                                    <outlet property="ProjectNmLbl" destination="0mN-5l-1uf" id="xZk-tX-PWT"/>
+                                    <outlet property="backView" destination="dKV-kd-zYX" id="zF3-MV-EXf"/>
                                 </connections>
                             </tableViewCell>
                         </prototypes>
@@ -267,6 +236,12 @@
                         <barButtonItem key="rightBarButtonItem" title="Item" id="anD-9t-uD6"/>
                     </navigationItem>
                     <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
+                    <refreshControl key="refreshControl" opaque="NO" multipleTouchEnabled="YES" contentMode="center" enabled="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" id="1U6-pS-cP6">
+                        <autoresizingMask key="autoresizingMask"/>
+                        <connections>
+                            <action selector="refreshAddressList:" destination="dHY-yp-nIM" eventType="valueChanged" id="gMf-0h-BRF"/>
+                        </connections>
+                    </refreshControl>
                     <connections>
                         <outlet property="LoginUserName" destination="anD-9t-uD6" id="bXd-sT-jNa"/>
                     </connections>

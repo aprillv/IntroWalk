@@ -25,6 +25,7 @@
 @class PDFWidgetAnnotationView;
 @class PDFView;
 
+
 /** The PDFWidgetAnnotationViewDelegate responds to user interaction with a PDFWidgetAnnotationView.
  */
 @protocol PDFWidgetAnnotationViewDelegate <NSObject>
@@ -52,7 +53,8 @@
  @discussion If there is an associated PDFForm to the view, then set of values are synced using key value observing.
  */
 @property (nonatomic, strong) NSString *value;
-@property (nonatomic, strong) UIImage *value1;
+@property (nonatomic, strong) NSString *xname;
+//@property (nonatomic, strong) UIImage *value1;
 
 /** The options of the element.
  @discussion If there is an associated PDFForm to the view, then set of options are synced using key value observing.
@@ -107,5 +109,7 @@
 /** Resigns th input focus.
  */
 - (void)resign;
+
+-(NSString *)printself;
 
 @end

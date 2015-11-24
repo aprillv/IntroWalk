@@ -48,6 +48,14 @@
     return self;
 }
 
+-(NSString *)printself{
+    if (self.value) {
+        return [NSString stringWithFormat:@"%@: %@\n", self.xname, self.value];
+    }
+    return @"";
+    
+//    NSLog(@"name: %@ value: %@", self.xname, self.value);
+}
 
 #pragma mark - PDFWidgetAnnotationView
 
@@ -99,5 +107,7 @@
         self.options = change[NSKeyValueChangeNewKey];
     }
 }
+
+
 
 @end

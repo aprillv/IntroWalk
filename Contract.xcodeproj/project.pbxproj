@@ -42,9 +42,10 @@
 		1108B26E1BFC4047004B5D48 /* PDFFormTextField.m in Sources */ = {isa = PBXBuildFile; fileRef = 1108B2551BFC4047004B5D48 /* PDFFormTextField.m */; };
 		1108B26F1BFC4047004B5D48 /* PDFView.m in Sources */ = {isa = PBXBuildFile; fileRef = 1108B2571BFC4047004B5D48 /* PDFView.m */; };
 		1108B2701BFC4047004B5D48 /* PDFWidgetAnnotationView.m in Sources */ = {isa = PBXBuildFile; fileRef = 1108B2591BFC4047004B5D48 /* PDFWidgetAnnotationView.m */; };
-		1108B2711BFC4047004B5D48 /* testA.pdf in Resources */ = {isa = PBXBuildFile; fileRef = 1108B25A1BFC4047004B5D48 /* testA.pdf */; };
 		1108B2751BFC55CF004B5D48 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1108B2741BFC55CF004B5D48 /* LoginViewController.swift */; };
 		1108B2791BFC6133004B5D48 /* BaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1108B2781BFC6133004B5D48 /* BaseViewController.swift */; };
+		110CE6A61C03F3370096E630 /* ContractSignatureError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 110CE6A51C03F3370096E630 /* ContractSignatureError.swift */; };
+		110CE6AF1C043A010096E630 /* testA.pdf in Resources */ = {isa = PBXBuildFile; fileRef = 110CE6AE1C043A010096E630 /* testA.pdf */; };
 		113CB5961BFEC8D60081FDE7 /* ContractObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = 113CB5951BFEC8D60081FDE7 /* ContractObject.swift */; };
 		113CB5BA1BFEE27A0081FDE7 /* ContractsItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 113CB5B91BFEE27A0081FDE7 /* ContractsItem.swift */; };
 		113CB5BC1BFEE2D80081FDE7 /* Contract.swift in Sources */ = {isa = PBXBuildFile; fileRef = 113CB5BB1BFEE2D80081FDE7 /* Contract.swift */; };
@@ -54,6 +55,8 @@
 		113CB5E21BFF06E90081FDE7 /* AddressListViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 113CB5E11BFF06E90081FDE7 /* AddressListViewCell.swift */; };
 		113CB5E41BFF0CBF0081FDE7 /* ContractRequestItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 113CB5E31BFF0CBF0081FDE7 /* ContractRequestItem.swift */; };
 		113CB5E61BFF11EC0081FDE7 /* ContractSignature.swift in Sources */ = {isa = PBXBuildFile; fileRef = 113CB5E51BFF11EC0081FDE7 /* ContractSignature.swift */; };
+		11643C0E1C02EEEE000E2C0A /* AddressListViewHeadView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11643C0D1C02EEEE000E2C0A /* AddressListViewHeadView.swift */; };
+		11643C161C030B8E000E2C0A /* CConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11643C151C030B8E000E2C0A /* CConstants.swift */; };
 		1176D20F1BFDC67C001C1C3E /* AddressListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1176D20E1BFDC67C001C1C3E /* AddressListViewController.swift */; };
 		11FA0B551BFD73E100F6605D /* Sanchez-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 11FA0B541BFD73E100F6605D /* Sanchez-Regular.ttf */; };
 		11FA0B5B1BFD79BC00F6605D /* Lato-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 11FA0B591BFD797B00F6605D /* Lato-Bold.ttf */; };
@@ -208,10 +211,11 @@
 		1108B2571BFC4047004B5D48 /* PDFView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PDFView.m; sourceTree = "<group>"; };
 		1108B2581BFC4047004B5D48 /* PDFWidgetAnnotationView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PDFWidgetAnnotationView.h; sourceTree = "<group>"; };
 		1108B2591BFC4047004B5D48 /* PDFWidgetAnnotationView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PDFWidgetAnnotationView.m; sourceTree = "<group>"; };
-		1108B25A1BFC4047004B5D48 /* testA.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; path = testA.pdf; sourceTree = "<group>"; };
 		1108B2731BFC55CF004B5D48 /* Contract-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Contract-Bridging-Header.h"; sourceTree = "<group>"; };
 		1108B2741BFC55CF004B5D48 /* LoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		1108B2781BFC6133004B5D48 /* BaseViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BaseViewController.swift; sourceTree = "<group>"; };
+		110CE6A51C03F3370096E630 /* ContractSignatureError.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContractSignatureError.swift; sourceTree = "<group>"; };
+		110CE6AE1C043A010096E630 /* testA.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; name = testA.pdf; path = "../../../../../Downloads/ILPDFKit-master/ILPDFKit/View/testA.pdf"; sourceTree = "<group>"; };
 		113CB5951BFEC8D60081FDE7 /* ContractObject.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContractObject.swift; sourceTree = "<group>"; };
 		113CB5B91BFEE27A0081FDE7 /* ContractsItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContractsItem.swift; sourceTree = "<group>"; };
 		113CB5BB1BFEE2D80081FDE7 /* Contract.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Contract.swift; sourceTree = "<group>"; };
@@ -220,6 +224,8 @@
 		113CB5E11BFF06E90081FDE7 /* AddressListViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddressListViewCell.swift; sourceTree = "<group>"; };
 		113CB5E31BFF0CBF0081FDE7 /* ContractRequestItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContractRequestItem.swift; sourceTree = "<group>"; };
 		113CB5E51BFF11EC0081FDE7 /* ContractSignature.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContractSignature.swift; sourceTree = "<group>"; };
+		11643C0D1C02EEEE000E2C0A /* AddressListViewHeadView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddressListViewHeadView.swift; sourceTree = "<group>"; };
+		11643C151C030B8E000E2C0A /* CConstants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CConstants.swift; sourceTree = "<group>"; };
 		1176D20E1BFDC67C001C1C3E /* AddressListViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddressListViewController.swift; sourceTree = "<group>"; };
 		11FA0B541BFD73E100F6605D /* Sanchez-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Sanchez-Regular.ttf"; sourceTree = "<group>"; };
 		11FA0B591BFD797B00F6605D /* Lato-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Lato-Bold.ttf"; sourceTree = "<group>"; };
@@ -261,6 +267,7 @@
 		1108B1AB1BFC2691004B5D48 /* Contract */ = {
 			isa = PBXGroup;
 			children = (
+				110CE6AD1C0439A70096E630 /* pdf */,
 				113CB5901BFEC87A0081FDE7 /* Model */,
 				11FA0B531BFD73D600F6605D /* Font */,
 				1108B2721BFC55A2004B5D48 /* Views */,
@@ -394,7 +401,6 @@
 				1108B2571BFC4047004B5D48 /* PDFView.m */,
 				1108B2581BFC4047004B5D48 /* PDFWidgetAnnotationView.h */,
 				1108B2591BFC4047004B5D48 /* PDFWidgetAnnotationView.m */,
-				1108B25A1BFC4047004B5D48 /* testA.pdf */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -406,9 +412,19 @@
 				1108B2781BFC6133004B5D48 /* BaseViewController.swift */,
 				1108B2741BFC55CF004B5D48 /* LoginViewController.swift */,
 				113CB5E11BFF06E90081FDE7 /* AddressListViewCell.swift */,
+				11643C0D1C02EEEE000E2C0A /* AddressListViewHeadView.swift */,
 				1176D20E1BFDC67C001C1C3E /* AddressListViewController.swift */,
+				11643C151C030B8E000E2C0A /* CConstants.swift */,
 			);
 			path = Views;
+			sourceTree = "<group>";
+		};
+		110CE6AD1C0439A70096E630 /* pdf */ = {
+			isa = PBXGroup;
+			children = (
+				110CE6AE1C043A010096E630 /* testA.pdf */,
+			);
+			path = pdf;
 			sourceTree = "<group>";
 		};
 		113CB5901BFEC87A0081FDE7 /* Model */ = {
@@ -420,6 +436,7 @@
 				113CB5DD1BFEE5A80081FDE7 /* LoginUser.swift */,
 				113CB5E31BFF0CBF0081FDE7 /* ContractRequestItem.swift */,
 				113CB5E51BFF11EC0081FDE7 /* ContractSignature.swift */,
+				110CE6A51C03F3370096E630 /* ContractSignatureError.swift */,
 			);
 			name = Model;
 			path = Views/Model;
@@ -570,9 +587,9 @@
 			files = (
 				11FA0B5B1BFD79BC00F6605D /* Lato-Bold.ttf in Resources */,
 				11FA0B5C1BFD79BC00F6605D /* Lato-Regular.ttf in Resources */,
+				110CE6AF1C043A010096E630 /* testA.pdf in Resources */,
 				1108B1BF1BFC2691004B5D48 /* LaunchScreen.storyboard in Resources */,
 				1108B1BC1BFC2691004B5D48 /* Assets.xcassets in Resources */,
-				1108B2711BFC4047004B5D48 /* testA.pdf in Resources */,
 				11FA0B551BFD73E100F6605D /* Sanchez-Regular.ttf in Resources */,
 				1108B1B71BFC2691004B5D48 /* Main.storyboard in Resources */,
 			);
@@ -595,6 +612,7 @@
 				1108B2641BFC4047004B5D48 /* PDFDocument.m in Sources */,
 				1108B26A1BFC4047004B5D48 /* PDFFormButtonField.m in Sources */,
 				1108B25C1BFC4047004B5D48 /* PDFViewController.m in Sources */,
+				11643C161C030B8E000E2C0A /* CConstants.swift in Sources */,
 				1108B2681BFC4047004B5D48 /* PDFObjectParser.m in Sources */,
 				1108B25D1BFC4047004B5D48 /* PDFArray.m in Sources */,
 				1108B1B11BFC2691004B5D48 /* AppDelegate.m in Sources */,
@@ -619,7 +637,9 @@
 				1108B2661BFC4047004B5D48 /* PDFFormContainer.m in Sources */,
 				113CB5DE1BFEE5A80081FDE7 /* LoginUser.swift in Sources */,
 				1108B2621BFC4047004B5D48 /* PDFStream.m in Sources */,
+				11643C0E1C02EEEE000E2C0A /* AddressListViewHeadView.swift in Sources */,
 				1108B25E1BFC4047004B5D48 /* PDFDictionary.m in Sources */,
+				110CE6A61C03F3370096E630 /* ContractSignatureError.swift in Sources */,
 				1108B2631BFC4047004B5D48 /* PDFString.m in Sources */,
 				1108B1BA1BFC2691004B5D48 /* Contract.xcdatamodeld in Sources */,
 				1108B2601BFC4047004B5D48 /* PDFNull.m in Sources */,

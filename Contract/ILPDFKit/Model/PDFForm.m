@@ -1,4 +1,4 @@
-h;// PDFForm.m
+// PDFForm.m
 //
 // Copyright (c) 2015 Iwe Labs
 //
@@ -52,7 +52,10 @@ h;// PDFForm.m
 
 #pragma mark - PDFForm
 #pragma mark - Initialization
-
+//-(instancetype)init{
+//    self = [super init];
+//    return self;
+//}
 - (instancetype)initWithFieldDictionary:(PDFDictionary *)leaf page:(PDFPage *)pg parent:(PDFFormContainer *)p {
     self = [super init];
     if (self != nil) {
@@ -379,6 +382,7 @@ h;// PDFForm.m
     }
     if (_formUIElement) {
         [_formUIElement setValue:self.value];
+        [_formUIElement setXname:_name];
         _formUIElement.delegate = self;
         [self addObserver:_formUIElement forKeyPath:@"value" options:NSKeyValueObservingOptionNew context:NULL];
         [self addObserver:_formUIElement forKeyPath:@"options" options:NSKeyValueObservingOptionNew context:NULL];

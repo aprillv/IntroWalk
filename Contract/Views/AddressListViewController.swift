@@ -11,12 +11,14 @@ import Alamofire
 
 class AddressListViewController: UITableViewController, UISearchBarDelegate {
 
-    var AddressListOrigin : [ContractsItem]?
-    var AddressList : [ContractsItem]? {
+    var head : AddressListViewHeadView?
+    var AddressListOrigin : [ContractsItem]?{
         didSet{
-            if AddressListOrigin == nil {
-                AddressListOrigin = AddressList
-            }
+            AddressList = AddressListOrigin
+        }
+    }
+    private var AddressList : [ContractsItem]? {
+        didSet{
             self.tableView?.reloadData()
         }
     }
@@ -24,14 +26,14 @@ class AddressListViewController: UITableViewController, UISearchBarDelegate {
     @IBOutlet weak var LoginUserName: UIBarButtonItem!{
         didSet{
             let userInfo = NSUserDefaults.standardUserDefaults()
-            LoginUserName.title = userInfo.objectForKey(BaseViewController.ProjectOpenConstants.LoggedUserNameKey) as? String
+            LoginUserName.title = userInfo.objectForKey(CConstants.LoggedUserNameKey) as? String
         }
     }
     // MARK: - Constanse
     private struct constants{
         static let Title : String = "Address List"
         static let CellIdentifier : String = "Address Cell Identifier"
-        static let ContractServiceURL = "bacontract_signature.json"
+        
     }
     
     
@@ -45,6 +47,30 @@ class AddressListViewController: UITableViewController, UISearchBarDelegate {
         
         self.tableView.reloadData()
         self.tableView.separatorInset = UIEdgeInsets(top: 0, left: 8, bottom: 0, right: 8)
+    }
+    
+    override func viewWillAppear(animated: Bool) {
+        super.viewWillAppear(animated)
+        for cell in self.tableView.visibleCells{
+            if cell.isKindOfClass(AddressListViewCell){
+                if let cella = cell as? AddressListViewCell {
+                    cella.addObserverCell()
+                }
+                
+                
+            }
+        }
+    }
+    
+    override func viewWillDisappear(animated: Bool) {
+        super.viewWillDisappear(animated)
+        for cell in self.tableView.visibleCells{
+            if cell.isKindOfClass(AddressListViewCell){
+                if let cella = cell as? AddressListViewCell {
+                    cella.removeObserverCell()
+                }
+            }
+        }
     }
 
     
@@ -73,7 +99,16 @@ class AddressListViewController: UITableViewController, UISearchBarDelegate {
     }
 
     // MARK: - Table view data source
-
+    override func tableView(tableView1: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+        if head == nil{
+            head = AddressListViewHeadView(frame: CGRect(x: 0, y: 0, width: tableView1.frame.width, height: 44))
+        }
+        return head
+    }
+    
+    override func tableView(tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+        return 44
+    }
     override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
         // #warning Incomplete implementation, return the number of sections
         return 1
@@ -101,65 +136,42 @@ class AddressListViewController: UITableViewController, UISearchBarDelegate {
         tableView.deselectRowAtIndexPath(indexPath, animated: true)
        let item: ContractsItem = AddressList![indexPath.row]
         Alamofire.request(.POST,
-            BaseViewController.ProjectOpenConstants.ServerURL + constants.ContractServiceURL,
+            CConstants.ServerURL + CConstants.ContractServiceURL,
             parameters: ContractRequestItem(contractInfo: item).DictionaryFromObject()).responseJSON{ (response) -> Void in
             if response.result.isSuccess {
                 if let rtnValue = response.result.value as? [String: AnyObject]{
-//                    let rtn = ContractSignature(dicInfo: rtnValue)
-//                   let pdfData = NSData(base64EncodedString: rtn.base64pdf!, options: NSDataBase64DecodingOptions(rawValue: 0))
-////                    [webview loadData:pdfData MIMEType:@"application/pdf" textEncodingName:@"utf-8" baseURL:nil];
-//                    let path =  NSSearchPathForDirectoriesInDomains(.DocumentDirectory, .UserDomainMask, true)[0]
-//                    let pdfPath = path.stringByAppendingString("_\(rtn.idcia)_\(rtn.idcity)_\(rtn.idproject).pdf")
-//                    let filemanager = NSFileManager.defaultManager()
-//                    if !filemanager.fileExistsAtPath(pdfPath){
-//                        if NSFileManager.defaultManager().createFileAtPath(pdfPath, contents: pdfData, attributes: nil){
-//                            print("success")
-//                        }else{
-//                            print("fail")
-//                        }
-//                    }
-//                    
-//                    //    NSString *PDFPath = [path stringByAppendingPathComponent:@"123.pdf"];
-//                    //    _pdfViewController = [[PDFViewController alloc] initWithPath:PDFPath];
-//                    
-//                    let pdfConr = PDFViewController(path: pdfPath)
-//                    self.navigationController?.pushViewController(pdfConr, animated: true)
-////                    _pdfViewController = [[PDFViewController alloc] initWithResource:@"testA.pdf"];
-////                    
-////                    
-////                    _pdfViewController.title = @"Sample PDF";
-////                    
-////                    _navigationController = [[UINavigationController alloc] initWithRootViewController:_pdfViewController];
-////                    [self.window setRootViewController:_navigationController];
-////                    _navigationController.view.autoresizingMask =  UIViewAutoresizingFlexibleHeight|UIViewAutoresizingFlexibleWidth|UIViewAutoresizingFlexibleTopMargin|UIViewAutoresizingFlexibleLeftMargin;
-////                    _navigationController.navigationBar.translucent = NO;
-////                    UIBarButtonItem *saveBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"Save" style:UIBarButtonItemStylePlain target:self action:@selector(save:)];
-////                    [_pdfViewController.navigationItem setRightBarButtonItems:@[saveBarButtonItem]];
-//                    
-////                    let handle = NSFileHandle.
-//                    
-////                    NSString *path = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES)[0];
-//                    //2>.拼接路径
-////                    NSString *PDFPath = [path stringByAppendingPathComponent:@"123.pdf"];
-////                    
-////                    NSArray *searchPaths = NSSearchPathForDirectoriesInDomains(NSCachesDirectory, NSUserDomainMask, YES);
-////                    NSString *documentFolderPath = [searchPaths objectAtIndex: 0];
-////                    NSString *imagePath = [documentFolderPath stringByAppendingPathComponent:@"yourPdfFileName.pdf"];
-////                    
-////                    NSFileManager *filemanager=[NSFileManager defaultManager];
-////                    if(![filemanager fileExistsAtPath:filePath])
-////                    [[NSFileManager defaultManager] createFileAtPath:filePath   contents: nil attributes: nil];
-////                    
-////                    NSFileHandle *handle = [NSFileHandle fileHandleForWritingAtPath:filePath];
-////                    
-////                    [handle writeData:data];
-                    
-                    
+                    if let msg = rtnValue["message"] as? String{
+                        if msg.isEmpty{
+                            let rtn = ContractSignature(dicInfo: rtnValue)
+                            let pdfData = NSData(base64EncodedString: rtn.base64pdf!, options: NSDataBase64DecodingOptions(rawValue: 0))
+//                            //                    [webview loadData:pdfData MIMEType:@"application/pdf" textEncodingName:@"utf-8" baseURL:nil];
+//                            let path =  NSSearchPathForDirectoriesInDomains(.DocumentDirectory, .UserDomainMask, true)[0]
+//                            let pdfPath = path.stringByAppendingString("_\(rtn.idcia)_\(rtn.idcity)_\(rtn.idproject).pdf")
+//                            let filemanager = NSFileManager.defaultManager()
+//                            if !filemanager.fileExistsAtPath(pdfPath){
+//                                if NSFileManager.defaultManager().createFileAtPath(pdfPath, contents: pdfData, attributes: nil){
+//                                    print("success")
+//                                }else{
+//                                    print("fail")
+//                                }
+//                            }
+                            
+                            //    NSString *PDFPath = [path stringByAppendingPathComponent:@"123.pdf"];
+                            //    _pdfViewController = [[PDFViewController alloc] initWithPath:PDFPath];
+                            
+                            let pdfConr = PDFViewController(data: pdfData)
+                            self.navigationController?.pushViewController(pdfConr, animated: true)
+                        }else{
+                            self.PopMsgWithJustOK(msg: msg)
+                        }
+                    }else{
+                        self.PopMsgWithJustOK(msg: CConstants.MsgServerError)
+                    }
                 }else{
-//                    self.PopServerError()
+                    self.PopMsgWithJustOK(msg: CConstants.MsgServerError)
                 }
             }else{
-//                self.PopNetworkError()
+                self.PopMsgWithJustOK(msg: CConstants.MsgNetworkError)
             }
         }
     }
@@ -208,4 +220,49 @@ class AddressListViewController: UITableViewController, UISearchBarDelegate {
     }
     */
 
+    @IBAction func refreshAddressList(sender: UIRefreshControl) {
+        let userInfo = NSUserDefaults.standardUserDefaults()
+        let email = userInfo.valueForKey(CConstants.UserInfoEmail) as? String
+        let password = userInfo.valueForKey(CConstants.UserInfoPwd) as? String
+        let loginUserInfo = LoginUser(email: email!, password: password!)
+        
+        let a = loginUserInfo.DictionaryFromObject()
+        Alamofire.request(.POST, CConstants.ServerURL + CConstants.LoginServiceURL, parameters: a).responseJSON{ (response) -> Void in
+            if response.result.isSuccess {
+                if let rtnValue = response.result.value as? [String: AnyObject]{
+                    let rtn = Contract(dicInfo: rtnValue)
+                    
+                    if rtn.activeyn == 1{
+                        self.AddressListOrigin = rtn.contracts
+                        sender.endRefreshing()
+                    }else{
+                        sender.endRefreshing()
+                    }
+                }else{
+                    sender.endRefreshing()
+                }
+            }else{
+                sender.endRefreshing()
+            }
+        }
+        
+    }
+    
+    private func PopMsgWithJustOK(msg msg1: String){
+        
+        let alert: UIAlertController = UIAlertController(title: CConstants.MsgTitle, message: msg1, preferredStyle: .Alert)
+        
+        //Create and add the OK action
+        let oKAction: UIAlertAction = UIAlertAction(title: CConstants.MsgOKTitle, style: .Cancel) { Void in
+            
+        }
+        alert.addAction(oKAction)
+        
+        
+        //Present the AlertController
+        self.presentViewController(alert, animated: true, completion: nil)
+        
+        
+    }
+    
 }

@@ -17,15 +17,6 @@ class LoginViewController: BaseViewController, UITextFieldDelegate {
         static let EmailEmptyMsg :  String = "Email Required."
         static let WrongEmailOrPwdMsg :  String = "Email or password is incorrect."
         
-        static let BorderColor : UIColor = UIColor(red: 204/255.0, green: 204/255.0, blue: 204/255.0, alpha: 1)
-        
-        static let UserInfoRememberMe :  String = "Login Remember Me"
-        static let UserInfoEmail :  String = "Login Email"
-        static let UserInfoPwd :  String = "Login Password"
-        
-        static let SegueToAddressList :  String = "adressList"
-        
-        static let LoginServiceURL: String = "bacontract_login.json"
     }
     
     // MARK: Outlets
@@ -34,7 +25,7 @@ class LoginViewController: BaseViewController, UITextFieldDelegate {
             emailTxt.returnKeyType = .Next
             emailTxt.delegate = self
             let userInfo = NSUserDefaults.standardUserDefaults()
-            emailTxt.text = userInfo.objectForKey(constants.UserInfoEmail) as? String
+            emailTxt.text = userInfo.objectForKey(CConstants.UserInfoEmail) as? String
         }
     }
     @IBOutlet weak var passwordTxt: UITextField!{
@@ -43,9 +34,9 @@ class LoginViewController: BaseViewController, UITextFieldDelegate {
             passwordTxt.enablesReturnKeyAutomatically = true
             passwordTxt.delegate = self
             let userInfo = NSUserDefaults.standardUserDefaults()
-            if let isRemembered = userInfo.objectForKey(constants.UserInfoRememberMe) as? Bool{
+            if let isRemembered = userInfo.objectForKey(CConstants.UserInfoRememberMe) as? Bool{
                 if isRemembered {
-                    passwordTxt.text = userInfo.objectForKey(constants.UserInfoPwd) as? String
+                    passwordTxt.text = userInfo.objectForKey(CConstants.UserInfoPwd) as? String
                 }
                 
             }
@@ -56,7 +47,7 @@ class LoginViewController: BaseViewController, UITextFieldDelegate {
         didSet {
             rememberMeSwitch.transform = CGAffineTransformMakeScale(0.9, 0.9)
             let userInfo = NSUserDefaults.standardUserDefaults()
-            if let isRemembered = userInfo.objectForKey(constants.UserInfoRememberMe) as? Bool{
+            if let isRemembered = userInfo.objectForKey(CConstants.UserInfoRememberMe) as? Bool{
                 rememberMeSwitch.on = isRemembered
             }else{
                 rememberMeSwitch.on = true
@@ -67,7 +58,7 @@ class LoginViewController: BaseViewController, UITextFieldDelegate {
     @IBOutlet weak var backView: UIView!{
         didSet{
             backView.backgroundColor = UIColor.whiteColor()
-            backView.layer.borderColor = constants.BorderColor.CGColor
+            backView.layer.borderColor = CConstants.BorderColor.CGColor
             backView.layer.borderWidth = 1.0
             backView.layer.cornerRadius = 8
         }
@@ -103,13 +94,56 @@ class LoginViewController: BaseViewController, UITextFieldDelegate {
     // MARK: Outlet Action
     @IBAction func rememberChanged(sender: UISwitch) {
         let userInfo = NSUserDefaults.standardUserDefaults()
-        userInfo.setObject(rememberMeSwitch.on, forKey: constants.UserInfoRememberMe)
+        userInfo.setObject(rememberMeSwitch.on, forKey: CConstants.UserInfoRememberMe)
         if !rememberMeSwitch.on {
-            userInfo.setObject("", forKey: constants.UserInfoPwd)
+            userInfo.setObject("", forKey: CConstants.UserInfoPwd)
         }
     }
     
+    
+    func checkUpate(){
+        let version = NSBundle.mainBundle().infoDictionary?["CFBundleVersion"]
+        let parameter = ["version": (version == nil ?  "" : version!)]
+        Alamofire.request(.POST,
+            CConstants.ServerURL + CConstants.CheckUpdateServiceURL,
+            parameters: parameter).responseJSON{ (response) -> Void in
+            if response.result.isSuccess {
+                if let rtnValue = response.result.value{
+                    if rtnValue.integerValue == 1 {
+                         self.doLogin()
+                    }else{
+                        if let url = NSURL(string: CConstants.InstallAppLink){
+                            self.toEablePageControl()
+                            UIApplication.sharedApplication().openURL(url)
+                        }else{
+                             self.doLogin()
+                        }
+                    }
+                }else{
+                    self.doLogin()
+                }
+            }else{
+                self.doLogin()
+            }
+        }
+        //     NSString*   version = [[[NSBundle mainBundle] infoDictionary] objectForKey:@"CFBundleVersion"];
+    }
+    
     @IBAction func Login(sender: UIButton) {
+        disAblePageControl()
+        checkUpate()
+    }
+    
+    private func disAblePageControl(){
+        signInBtn.hidden = true
+        emailTxt.enabled = false
+        passwordTxt.enabled = false
+        rememberMeSwitch.enabled = false
+        emailTxt.textColor = UIColor.darkGrayColor()
+        passwordTxt.textColor = UIColor.darkGrayColor()
+        spinner.startAnimating()
+    }
+    private func doLogin(){
         emailTxt.resignFirstResponder()
         passwordTxt.resignFirstResponder()
         
@@ -117,24 +151,22 @@ class LoginViewController: BaseViewController, UITextFieldDelegate {
         let password = passwordTxt.text
         
         if IsNilOrEmpty(email) {
+            self.toEablePageControl()
             self.PopMsgWithJustOK(msg: constants.EmailEmptyMsg, txtField: emailTxt)
         }else{
             if IsNilOrEmpty(password) {
+                self.toEablePageControl()
                 self.PopMsgWithJustOK(msg: constants.PasswordEmptyMsg, txtField: passwordTxt)
             }else {
                 // do login
-                signInBtn.hidden = true
-                emailTxt.enabled = false
-                passwordTxt.enabled = false
-                rememberMeSwitch.enabled = false
-                emailTxt.textColor = UIColor.darkGrayColor()
-                passwordTxt.textColor = UIColor.darkGrayColor()
-                spinner.startAnimating()
-            
+                
+                //                self.view.userInteractionEnabled = false
+                
+                
                 let loginUserInfo = LoginUser(email: email!, password: password!)
                 
                 let a = loginUserInfo.DictionaryFromObject()
-                Alamofire.request(.POST, ProjectOpenConstants.ServerURL + constants.LoginServiceURL, parameters: a).responseJSON{ (response) -> Void in
+                Alamofire.request(.POST, CConstants.ServerURL + CConstants.LoginServiceURL, parameters: a).responseJSON{ (response) -> Void in
                     if response.result.isSuccess {
                         if let rtnValue = response.result.value as? [String: AnyObject]{
                             let rtn = Contract(dicInfo: rtnValue)
@@ -144,7 +176,7 @@ class LoginViewController: BaseViewController, UITextFieldDelegate {
                             if rtn.activeyn == 1{
                                 self.saveEmailAndPwdToDisk(email: email!, password: password!)
                                 self.loginResult = rtn
-                                self.performSegueWithIdentifier(constants.SegueToAddressList, sender: self)
+                                self.performSegueWithIdentifier(CConstants.SegueToAddressList, sender: self)
                             }else{
                                 self.PopMsgValidationWithJustOK(msg: constants.WrongEmailOrPwdMsg, txtField: nil)
                             }
@@ -158,15 +190,14 @@ class LoginViewController: BaseViewController, UITextFieldDelegate {
                     }
                 }
                 
-////                request(method: Alamofire.Method, _ URLString: URLStringConvertible, parameters: [String : AnyObject]? = default, encoding: Alamofire.ParameterEncoding = default, headers: [String : String]? = default) -> Alamofire.Request
+                ////                request(method: Alamofire.Method, _ URLString: URLStringConvertible, parameters: [String : AnyObject]? = default, encoding: Alamofire.ParameterEncoding = default, headers: [String : String]? = default) -> Alamofire.Request
                 
                 
             }
         }
-        
     }
-    
    private func toEablePageControl(){
+//    self.view.userInteractionEnabled = true
     self.signInBtn.hidden = false
     self.emailTxt.enabled = true
     self.passwordTxt.enabled = true
@@ -179,14 +210,12 @@ class LoginViewController: BaseViewController, UITextFieldDelegate {
     func saveEmailAndPwdToDisk(email email: String, password: String){
         let userInfo = NSUserDefaults.standardUserDefaults()
         if rememberMeSwitch.on {
-            userInfo.setObject(true, forKey: constants.UserInfoRememberMe)
-            userInfo.setObject(email, forKey: constants.UserInfoEmail)
-            userInfo.setObject(password, forKey: constants.UserInfoPwd)
+            userInfo.setObject(true, forKey: CConstants.UserInfoRememberMe)
         }else{
-            userInfo.setObject(false, forKey: constants.UserInfoRememberMe)
-            userInfo.setObject(email, forKey: constants.UserInfoEmail)
-            userInfo.setObject("", forKey: constants.UserInfoPwd)
+            userInfo.setObject(false, forKey: CConstants.UserInfoRememberMe)
         }
+        userInfo.setObject(email, forKey: CConstants.UserInfoEmail)
+        userInfo.setObject(password, forKey: CConstants.UserInfoPwd)
     }
     
     
@@ -195,16 +224,16 @@ class LoginViewController: BaseViewController, UITextFieldDelegate {
         didSet{
             if loginResult != nil{
                 let userInfo = NSUserDefaults.standardUserDefaults()
-                userInfo.setObject(loginResult!.username, forKey: ProjectOpenConstants.LoggedUserNameKey)
+                userInfo.setObject(loginResult!.username, forKey: CConstants.LoggedUserNameKey)
             }
         }
     }
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         if let identifier = segue.identifier {
             switch identifier {
-                case constants.SegueToAddressList:
+                case CConstants.SegueToAddressList:
                     if let addressListView = segue.destinationViewController as? AddressListViewController{
-                        addressListView.AddressList = loginResult?.contracts
+                        addressListView.AddressListOrigin = loginResult?.contracts
                     }
                 break
             default:

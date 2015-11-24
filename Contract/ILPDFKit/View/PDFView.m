@@ -34,6 +34,8 @@
 
 @implementation PDFView {
     BOOL _canvasLoaded;
+    UIActivityIndicatorView *spinner;
+    NSArray *nwidgetAnnotationViews;
 }
 
 #pragma mark - PDFView
@@ -43,30 +45,35 @@
     if (self) {
         CGRect contentFrame = CGRectMake(0, 0, frame.size.width, frame.size.height);
         _pdfView = [[UIWebView alloc] initWithFrame:contentFrame];
+//        _pdfView.backgroundColor = [UIColor whiteColor];
+         [self addSubview: _pdfView];
+        
+        
         _pdfView.scalesPageToFit = YES;
         _pdfView.scrollView.delegate = self;
         _pdfView.scrollView.bouncesZoom = NO;
         _pdfView.delegate = self;
         _pdfView.autoresizingMask =  UIViewAutoresizingFlexibleHeight|UIViewAutoresizingFlexibleWidth|UIViewAutoresizingFlexibleTopMargin|UIViewAutoresizingFlexibleLeftMargin;
          self.autoresizingMask =  UIViewAutoresizingFlexibleHeight|UIViewAutoresizingFlexibleWidth|UIViewAutoresizingFlexibleTopMargin|UIViewAutoresizingFlexibleLeftMargin;
-        [self addSubview:_pdfView];
+//        self.backgroundColor = [UIColor greenColor];
+//        [self addSubview: _pdfView];
+//        _pdfView.backgroundColor = [UIColor redColor];
         [_pdfView.scrollView setZoomScale:1];
         [_pdfView.scrollView setContentOffset:CGPointZero];
         //This allows us to prevent the keyboard from obscuring text fields near the botton of the document.
-        [_pdfView.scrollView setContentInset:UIEdgeInsetsMake(0, 0, frame.size.height/2, 0)];
-        _pdfWidgetAnnotationViews = [[NSMutableArray alloc] initWithArray:widgetAnnotationViews];
-        for (PDFWidgetAnnotationView *element in _pdfWidgetAnnotationViews) {
-            element.alpha = 0;
-            element.parentView = self;
-            [_pdfView.scrollView addSubview:element];
-            if ([element isKindOfClass:[PDFFormButtonField class]]) {
-                [(PDFFormButtonField*)element setButtonSuperview];
-            }
-        }
+        [_pdfView.scrollView setContentInset: UIEdgeInsetsMake(0, 0, 0, 0)];
+        nwidgetAnnotationViews = widgetAnnotationViews;
+        
+        spinner = [[UIActivityIndicatorView alloc]initWithFrame:CGRectMake(0, 0, 50, 50)];
+        spinner.hidesWhenStopped = YES;
+        spinner.center = _pdfView.center;
+        [_pdfView addSubview:spinner];
         
         if ([dataOrPath isKindOfClass:[NSString class]]) {
+            [spinner startAnimating];
             [_pdfView loadRequest:[NSURLRequest requestWithURL:[NSURL fileURLWithPath:dataOrPath]]];
         } else if([dataOrPath isKindOfClass:[NSData class]]) {
+            [spinner startAnimating];
             [_pdfView loadData:dataOrPath MIMEType:@"application/pdf" textEncodingName:@"NSASCIIStringEncoding" baseURL:nil];
         }
 
@@ -106,11 +113,29 @@
 #pragma mark - UIWebViewDelegate
 
 - (void)webViewDidFinishLoad:(UIWebView *)webView {
+    [spinner stopAnimating];
+    
+    _pdfWidgetAnnotationViews = [[NSMutableArray alloc] initWithArray:nwidgetAnnotationViews];
+    for (PDFWidgetAnnotationView *element in _pdfWidgetAnnotationViews) {
+        element.alpha = 0;
+        element.parentView = self;
+        [_pdfView.scrollView addSubview:element];
+        if ([element isKindOfClass:[PDFFormButtonField class]]) {
+            [(PDFFormButtonField*)element setButtonSuperview];
+        }
+    }
+    
     _canvasLoaded = YES;
     if (_pdfWidgetAnnotationViews) {
         [self fadeInWidgetAnnotations];
     }
 }
+
+//- (BOOL)webView:(UIWebView *)webView shouldStartLoadWithRequest:(NSURLRequest *)request navigationType:(UIWebViewNavigationType)navigationType;
+//- (void)webViewDidStartLoad:(UIWebView *)webView;
+//- (void)webViewDidFinishLoad:(UIWebView *)webView;
+//- (void)webView:(UIWebView *)webView didFailLoadWithError:(nullable NSError *)error;
+
 
 #pragma mark - UIScrollViewDelegate
 

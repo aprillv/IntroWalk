@@ -40,17 +40,41 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    
+//    self.view.backgroundColor = [UIColor whiteColor];
+    self.title = @"Contract";
+    self.navigationItem.hidesBackButton = NO;
+    UIBarButtonItem *backItem = [[UIBarButtonItem alloc] initWithTitle:@"<" style:UIBarButtonItemStylePlain target:self action:@selector(back:)];
     UIBarButtonItem *saveBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"Buyer 1" style:UIBarButtonItemStylePlain target:self action:@selector(buyer1Signature:)];
     saveBarButtonItem.tag = 1;
     UIBarButtonItem * saveBarButtonItem2 = [[UIBarButtonItem alloc] initWithTitle:@"Buyer 2" style:UIBarButtonItemStylePlain target:self action:@selector(buyer1Signature:)];
     saveBarButtonItem2.tag = 2;
-    [self.navigationItem setLeftBarButtonItems:@[saveBarButtonItem, saveBarButtonItem2]];
     
+    UIBarButtonItem *saveBarButtonItema = [[UIBarButtonItem alloc] initWithTitle:@"Save" style:UIBarButtonItemStylePlain target:self action:@selector(save:)];
+    
+    [self.navigationItem setLeftBarButtonItems:@[backItem, saveBarButtonItem, saveBarButtonItem2]];
+    
+     [self.navigationItem setRightBarButtonItem:saveBarButtonItema];
     [self loadPDFView];
     
     
 }
+-(void)back:(id)sender{
+    [self.navigationController popViewControllerAnimated:YES];
+}
+- (void)save:(id)sender {
+//    NSString *savedPdfPath = [_pdfViewController.document savedStaticPDFData];
+//    
+//    [_pdfViewController removeFromParentViewController];
+//    //    _pdfViewController = [[PDFViewController alloc] initWithData:savedStaticData];
+//    
+//    _pdfViewController = [[PDFViewController alloc] initWithPath:savedPdfPath];
+//    
+//    _pdfViewController.title = @"Saved Static PDF";
+//    UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"Save Complete" message:@"The displayed PDF file is a static version of the previous file, but with the form values added. The starting PDF has not been modified and this static PDF no longer contains forms." delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
+//    [alertView show];
+//    [_navigationController setViewControllers:@[_pdfViewController]];
+}
+
 
 - (void)buyer1Signature:(UIBarButtonItem *)item{
     for (SignatureView * sign in self.pdfView.pdfWidgetAnnotationViews) {
@@ -65,9 +89,6 @@
             }
         }
     }
-    
-    
-
 }
 
 - (void)buyer2Signature{
@@ -96,7 +117,7 @@
 #pragma mark - PDFViewController
 
 - (instancetype)initWithData:(NSData *)data {
-    self = [super init];
+    self = [super initWithNibName:nil bundle:nil];
     if (self != nil) {
         _document = [[PDFDocument alloc] initWithData:data];
     }
@@ -104,7 +125,7 @@
 }
 
 - (instancetype)initWithResource:(NSString *)name {
-    self = [super init];
+    self = [super initWithNibName:nil bundle:nil];
     if (self != nil) {
         _document = [[PDFDocument alloc] initWithResource:name];
     }
@@ -112,7 +133,7 @@
 }
 
 - (instancetype)initWithPath:(NSString *)path {
-    self = [super init];
+    self = [super initWithNibName:nil bundle:nil];
     if(self != nil) {
         _document = [[PDFDocument alloc] initWithPath:path];
     }
@@ -132,6 +153,15 @@
     id pass = (_document.documentPath ? _document.documentPath:_document.documentData);
     CGPoint margins = [self getMargins];
     NSArray *additionViews = [_document.forms createWidgetAnnotationViewsForSuperviewWithWidth:self.view.bounds.size.width margin:margins.x hMargin:margins.y];
+    
+    NSMutableString * str = [[NSMutableString alloc]init];
+    for (PDFWidgetAnnotationView * pv in additionViews) {
+       
+        [str appendString:[pv printself]];
+        
+    }
+    
+    NSLog(@"%@", str);
     _pdfView = [[PDFView alloc] initWithFrame:self.view.bounds dataOrPath:pass additionViews:additionViews];
     [self.view addSubview:_pdfView];
 }
@@ -146,12 +176,14 @@
     static const float PDFPortraitPhoneHMargin = 6.7f;
     static const float PDFLandscapePhoneWMargin = 6.8f;
     static const float PDFLandscapePhoneHMargin = 6.5f;
-    
+    UIInterfaceOrientation a = [[UIApplication sharedApplication] statusBarOrientation];
     if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad) {
-        if (UIInterfaceOrientationIsPortrait(self.interfaceOrientation))return CGPointMake(PDFPortraitPadWMargin,PDFPortraitPadHMargin);
+        
+        
+        if (UIInterfaceOrientationIsPortrait(a))return CGPointMake(PDFPortraitPadWMargin,PDFPortraitPadHMargin);
         else return CGPointMake(PDFLandscapePadWMargin,PDFLandscapePadHMargin);
     } else {
-        if (UIInterfaceOrientationIsPortrait(self.interfaceOrientation))return CGPointMake(PDFPortraitPhoneWMargin,PDFPortraitPhoneHMargin);
+        if (UIInterfaceOrientationIsPortrait(a))return CGPointMake(PDFPortraitPhoneWMargin,PDFPortraitPhoneHMargin);
         else return CGPointMake(PDFLandscapePhoneWMargin,PDFLandscapePhoneHMargin);
     }
 }
