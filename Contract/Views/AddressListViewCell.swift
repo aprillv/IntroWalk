@@ -26,6 +26,7 @@ class AddressListViewCell: UITableViewCell {
             backView.addSubview(ProjectNmLbl)
             
             DateLbl = UILabel()
+            DateLbl.textAlignment = NSTextAlignment.Right
             backView.addSubview(DateLbl)
             
             ClientLbl = UILabel()
@@ -63,16 +64,26 @@ class AddressListViewCell: UITableViewCell {
         if backView != nil{
         let frame = backView.frame
         let space : CGFloat = 10.0
-        let xwidth = frame.width - space * 3
+        
         let xheight = frame.height
-        
-        CiaNmLbl.frame = CGRect(x: 0, y: 0, width: xwidth * 0.26, height: xheight)
-        
-        ProjectNmLbl.frame  = CGRect(x: CiaNmLbl.frame.width + space, y: 0, width: xwidth * 0.30, height: xheight)
-        
-        DateLbl.frame  = CGRect(x: ProjectNmLbl.frame.origin.x + ProjectNmLbl.frame.width + space, y: 0, width: xwidth * 0.16, height: xheight)
-        
-        ClientLbl.frame  = CGRect(x: DateLbl.frame.origin.x + DateLbl.frame.width + space, y: 0, width: xwidth * 0.28, height: xheight)
+//        let xwidth = frame.width - space * 3
+//        CiaNmLbl.frame = CGRect(x: 0, y: 0, width: xwidth * 0.26, height: xheight)
+//            ProjectNmLbl.frame  = CGRect(x: CiaNmLbl.frame.width + space, y: 0, width: xwidth * 0.30, height: xheight)
+//            
+//            DateLbl.frame  = CGRect(x: ProjectNmLbl.frame.origin.x + ProjectNmLbl.frame.width + space, y: 0, width: xwidth * 0.16, height: xheight)
+//            
+//            ClientLbl.frame  = CGRect(x: DateLbl.frame.origin.x + DateLbl.frame.width + space, y: 0, width: xwidth * 0.28, height: xheight)
+           let xwidth = frame.width - space * 2
+            CiaNmLbl.frame = CGRect(x: 0, y: 0, width: 0, height: 0)
+            ProjectNmLbl.frame  = CGRect(x: CiaNmLbl.frame.width, y: 0, width: xwidth * 0.43, height: xheight)
+            
+            
+            
+            ClientLbl.frame  = CGRect(x: ProjectNmLbl.frame.origin.x + ProjectNmLbl.frame.width + space, y: 0, width: xwidth * 0.41, height: xheight)
+            
+            DateLbl.frame  = CGRect(x: ClientLbl.frame.origin.x + ClientLbl.frame.width + space, y: 0, width: xwidth * 0.16, height: xheight)
+            
+       
         }
         
         

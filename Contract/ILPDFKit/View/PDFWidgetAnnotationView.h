@@ -110,6 +110,6 @@
  */
 - (void)resign;
 
--(NSString *)printself;
+-(NSDictionary *)printself;
 
 @end

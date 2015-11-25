@@ -154,14 +154,25 @@
     CGPoint margins = [self getMargins];
     NSArray *additionViews = [_document.forms createWidgetAnnotationViewsForSuperviewWithWidth:self.view.bounds.size.width margin:margins.x hMargin:margins.y];
     
-    NSMutableString * str = [[NSMutableString alloc]init];
+//    NSMutableString * str = [[NSMutableString alloc]init];
+    NSMutableDictionary *dics = [[NSMutableDictionary alloc]init];
     for (PDFWidgetAnnotationView * pv in additionViews) {
        
-        [str appendString:[pv printself]];
+//        [str appendString:[pv printself]];
+        NSDictionary *dic = [pv printself];
+        if (dic) {
+            if ([dics.allKeys containsObject:[dic allKeys].firstObject]){
+                NSLog(@"%@", dic);
+            }
+            if (dic){
+                [dics addEntriesFromDictionary:dic];
+            }
+        }
+        
         
     }
     
-    NSLog(@"%@", str);
+//    NSLog(@"%d %d %@", additionViews.count, dics.allKeys.count, dics);
     _pdfView = [[PDFView alloc] initWithFrame:self.view.bounds dataOrPath:pass additionViews:additionViews];
     [self.view addSubview:_pdfView];
 }

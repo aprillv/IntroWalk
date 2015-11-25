@@ -46,6 +46,7 @@
 		1108B2791BFC6133004B5D48 /* BaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1108B2781BFC6133004B5D48 /* BaseViewController.swift */; };
 		110CE6A61C03F3370096E630 /* ContractSignatureError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 110CE6A51C03F3370096E630 /* ContractSignatureError.swift */; };
 		110CE6AF1C043A010096E630 /* testA.pdf in Resources */ = {isa = PBXBuildFile; fileRef = 110CE6AE1C043A010096E630 /* testA.pdf */; };
+		112118E31C056EC1000F85CE /* AddressListViewHeadView2.swift in Sources */ = {isa = PBXBuildFile; fileRef = 112118E21C056EC1000F85CE /* AddressListViewHeadView2.swift */; };
 		113CB5961BFEC8D60081FDE7 /* ContractObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = 113CB5951BFEC8D60081FDE7 /* ContractObject.swift */; };
 		113CB5BA1BFEE27A0081FDE7 /* ContractsItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 113CB5B91BFEE27A0081FDE7 /* ContractsItem.swift */; };
 		113CB5BC1BFEE2D80081FDE7 /* Contract.swift in Sources */ = {isa = PBXBuildFile; fileRef = 113CB5BB1BFEE2D80081FDE7 /* Contract.swift */; };
@@ -216,6 +217,7 @@
 		1108B2781BFC6133004B5D48 /* BaseViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BaseViewController.swift; sourceTree = "<group>"; };
 		110CE6A51C03F3370096E630 /* ContractSignatureError.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContractSignatureError.swift; sourceTree = "<group>"; };
 		110CE6AE1C043A010096E630 /* testA.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; name = testA.pdf; path = "../../../../../Downloads/ILPDFKit-master/ILPDFKit/View/testA.pdf"; sourceTree = "<group>"; };
+		112118E21C056EC1000F85CE /* AddressListViewHeadView2.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddressListViewHeadView2.swift; sourceTree = "<group>"; };
 		113CB5951BFEC8D60081FDE7 /* ContractObject.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContractObject.swift; sourceTree = "<group>"; };
 		113CB5B91BFEE27A0081FDE7 /* ContractsItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContractsItem.swift; sourceTree = "<group>"; };
 		113CB5BB1BFEE2D80081FDE7 /* Contract.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Contract.swift; sourceTree = "<group>"; };
@@ -415,6 +417,7 @@
 				11643C0D1C02EEEE000E2C0A /* AddressListViewHeadView.swift */,
 				1176D20E1BFDC67C001C1C3E /* AddressListViewController.swift */,
 				11643C151C030B8E000E2C0A /* CConstants.swift */,
+				112118E21C056EC1000F85CE /* AddressListViewHeadView2.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -617,6 +620,7 @@
 				1108B25D1BFC4047004B5D48 /* PDFArray.m in Sources */,
 				1108B1B11BFC2691004B5D48 /* AppDelegate.m in Sources */,
 				1108B26C1BFC4047004B5D48 /* PDFFormImageView.m in Sources */,
+				112118E31C056EC1000F85CE /* AddressListViewHeadView2.swift in Sources */,
 				1108B2751BFC55CF004B5D48 /* LoginViewController.swift in Sources */,
 				113CB5961BFEC8D60081FDE7 /* ContractObject.swift in Sources */,
 				1108B2611BFC4047004B5D48 /* PDFNumber.m in Sources */,

@@ -11,11 +11,7 @@ import UIKit
 class BaseViewController: UIViewController {
     
     func IsNilOrEmpty(str : String?) -> Bool{
-        if str == nil || str!.isEmpty {
-            return true
-        }else {
-            return false
-        }
+        return str == nil || str!.isEmpty
     }
     
     func PopMsgWithJustOK(msg msg1: String, txtField : UITextField?){

@@ -10,7 +10,7 @@ import UIKit
 import Alamofire
 
 class AddressListViewController: UITableViewController, UISearchBarDelegate {
-
+private  var spinner : UIActivityIndicatorView?
     var head : AddressListViewHeadView?
     var AddressListOrigin : [ContractsItem]?{
         didSet{
@@ -19,9 +19,39 @@ class AddressListViewController: UITableViewController, UISearchBarDelegate {
     }
     private var AddressList : [ContractsItem]? {
         didSet{
+            AddressList?.sortInPlace(){$0.idcia < $1.idcia}
+//            AddressList?
+            
+            if AddressList != nil{
+                CiaNmArray = [String : [ContractsItem]]()
+                var citems = [ContractsItem]()
+                CiaNm = [String]()
+                if let first = AddressList?.first{
+                    var thetmp = first
+                    for item in AddressList!{
+                        
+                        if thetmp.idcia != item.idcia {
+                            CiaNmArray![thetmp.idcia!] = citems
+                            CiaNm?.append(thetmp.idcia!)
+                            thetmp = item
+                            citems = [ContractsItem]()
+                        }
+                        citems.append(item)
+                    }
+                    
+                    if citems.count > 0 {
+                        CiaNmArray![thetmp.idcia!] = citems
+                        CiaNm?.append(thetmp.idcia!)
+                    }
+                }
+            }
+            
             self.tableView?.reloadData()
         }
     }
+    private var CiaNm : [String]?
+    private var CiaNmArray : [String : [ContractsItem]]?
+    
     
     @IBOutlet weak var LoginUserName: UIBarButtonItem!{
         didSet{
@@ -100,23 +130,32 @@ class AddressListViewController: UITableViewController, UISearchBarDelegate {
 
     // MARK: - Table view data source
     override func tableView(tableView1: UITableView, viewForHeaderInSection section: Int) -> UIView? {
-        if head == nil{
-            head = AddressListViewHeadView(frame: CGRect(x: 0, y: 0, width: tableView1.frame.width, height: 44))
-        }
-        return head
+        let  heada = AddressListViewHeadView2(frame: CGRect(x: 0, y: 0, width: tableView1.frame.width, height: 30))
+        let ddd = CiaNmArray?[CiaNm?[section] ?? ""]
+        heada.CiaNmLbl.text = ddd?.first?.cianame ?? ""
+        return heada
     }
     
-    override func tableView(tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
-        return 44
-    }
+    
+//    override func tableView(tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+//        return 44
+//    }
     override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
-        // #warning Incomplete implementation, return the number of sections
-        return 1
+        return CiaNm?.count ?? 1
     }
-
+//    override func tableView(tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+//        
+//        let ddd = CiaNmArray?[CiaNm?[section] ?? ""]
+//        return ddd?.first?.cianame ?? ""
+//        
+//    }
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
-        return AddressList?.count ?? 0
+        
+//        let a = CiaNmArray?[CiaNm?[section] ?? ""]!.count ?? 0
+//        print("\(a) \(CiaNm?[section])")
+        return CiaNmArray?[CiaNm?[section] ?? ""]!.count ?? 0
+//        return AddressList?.count ?? 0
     }
 
     
@@ -124,7 +163,8 @@ class AddressListViewController: UITableViewController, UISearchBarDelegate {
         let cell = tableView.dequeueReusableCellWithIdentifier(constants.CellIdentifier, forIndexPath: indexPath)
 
         if let cellitem = cell as? AddressListViewCell {
-            cellitem.contractInfo = AddressList![indexPath.row]
+            let ddd = CiaNmArray?[CiaNm?[indexPath.section] ?? ""]
+            cellitem.contractInfo = ddd![indexPath.row]
             cell.separatorInset = UIEdgeInsets(top: 0, left: -10, bottom: 0, right: 8)
         }
         
@@ -135,10 +175,21 @@ class AddressListViewController: UITableViewController, UISearchBarDelegate {
         
         tableView.deselectRowAtIndexPath(indexPath, animated: true)
        let item: ContractsItem = AddressList![indexPath.row]
+        if (spinner == nil){
+            spinner = UIActivityIndicatorView(frame: CGRect(x: tableView.frame.midX - 25, y: tableView.frame.midY - 25, width: 50, height: 50))
+            tableView.addSubview(spinner!)
+            spinner?.hidesWhenStopped = true
+            spinner?.center = tableView.center
+            
+        }
+        
+        spinner?.startAnimating()
         Alamofire.request(.POST,
             CConstants.ServerURL + CConstants.ContractServiceURL,
             parameters: ContractRequestItem(contractInfo: item).DictionaryFromObject()).responseJSON{ (response) -> Void in
-            if response.result.isSuccess {
+                self.spinner?.stopAnimating()
+                if response.result.isSuccess {
+                
                 if let rtnValue = response.result.value as? [String: AnyObject]{
                     if let msg = rtnValue["message"] as? String{
                         if msg.isEmpty{
@@ -171,6 +222,7 @@ class AddressListViewController: UITableViewController, UISearchBarDelegate {
                     self.PopMsgWithJustOK(msg: CConstants.MsgServerError)
                 }
             }else{
+                self.spinner?.stopAnimating()
                 self.PopMsgWithJustOK(msg: CConstants.MsgNetworkError)
             }
         }
