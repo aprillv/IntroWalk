@@ -116,7 +116,7 @@
  Useful for saving a PDF with forms that have been filled out.
  @return The data for the static flattened PDF.
  */
-- (NSString *)savedStaticPDFData;
+- (NSData *)savedStaticPDFData;
 
 /**
  @param docToAppend

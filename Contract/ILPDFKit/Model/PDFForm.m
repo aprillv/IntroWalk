@@ -284,6 +284,9 @@
 - (void)vectorRenderInPDFContext:(CGContextRef)ctx forRect:(CGRect)rect {
     if (self.formType == PDFFormTypeText || self.formType == PDFFormTypeChoice) {
         NSString *text = self.value;
+        if (self.formType == PDFFormTypeText) {
+            NSLog(@"%@ %@", self.name, self.value);
+        }
         UIFont *font = [UIFont systemFontOfSize:[PDFWidgetAnnotationView fontSizeForRect:rect value:self.value multiline:((_flags & PDFFormFlagTextFieldMultiline) > 0 && self.formType == PDFFormTypeText) choice:self.formType == PDFFormTypeChoice]];
         UIGraphicsPushContext(ctx);
         NSMutableParagraphStyle *paragraphStyle = [[NSMutableParagraphStyle defaultParagraphStyle] mutableCopy];

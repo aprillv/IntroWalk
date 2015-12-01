@@ -63,7 +63,6 @@ private  var spinner : UIActivityIndicatorView?
     private struct constants{
         static let Title : String = "Address List"
         static let CellIdentifier : String = "Address Cell Identifier"
-        
     }
     
     
@@ -174,7 +173,8 @@ private  var spinner : UIActivityIndicatorView?
     override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         
         tableView.deselectRowAtIndexPath(indexPath, animated: true)
-       let item: ContractsItem = AddressList![indexPath.row]
+        let ddd = CiaNmArray?[CiaNm?[indexPath.section] ?? ""]
+       let item: ContractsItem = ddd![indexPath.row]
         if (spinner == nil){
             spinner = UIActivityIndicatorView(frame: CGRect(x: tableView.frame.midX - 25, y: tableView.frame.midY - 25, width: 50, height: 50))
             tableView.addSubview(spinner!)
@@ -195,23 +195,22 @@ private  var spinner : UIActivityIndicatorView?
                         if msg.isEmpty{
                             let rtn = ContractSignature(dicInfo: rtnValue)
                             let pdfData = NSData(base64EncodedString: rtn.base64pdf!, options: NSDataBase64DecodingOptions(rawValue: 0))
-//                            //                    [webview loadData:pdfData MIMEType:@"application/pdf" textEncodingName:@"utf-8" baseURL:nil];
-//                            let path =  NSSearchPathForDirectoriesInDomains(.DocumentDirectory, .UserDomainMask, true)[0]
-//                            let pdfPath = path.stringByAppendingString("_\(rtn.idcia)_\(rtn.idcity)_\(rtn.idproject).pdf")
-//                            let filemanager = NSFileManager.defaultManager()
-//                            if !filemanager.fileExistsAtPath(pdfPath){
-//                                if NSFileManager.defaultManager().createFileAtPath(pdfPath, contents: pdfData, attributes: nil){
-//                                    print("success")
-//                                }else{
-//                                    print("fail")
-//                                }
+                            
+                            let pdfkey = rtn.idcia! + "_" + rtn.idcity!
+                            let pdfCoreData = cl_pdf()
+                            self.performSegueWithIdentifier(CConstants.SegueToSignaturePdf, sender: rtn)
+//                            if let _ = pdfCoreData.getPDFByKey(pdfkey){
+//                                let pdfConr = PDFViewController(resource: "BaseContract.pdf")
+//                                pdfConr.pdfInfo = rtn
+//                                self.navigationController?.pushViewController(pdfConr, animated: true)
+                            
+//                            }else{
+//                                let pdfConr = PDFViewController(data: pdfData)
+//                                pdfConr.pdfInfo = response.result.value as! [String: String]
+//                                self.navigationController?.pushViewController(pdfConr, animated: true)
 //                            }
                             
-                            //    NSString *PDFPath = [path stringByAppendingPathComponent:@"123.pdf"];
-                            //    _pdfViewController = [[PDFViewController alloc] initWithPath:PDFPath];
                             
-                            let pdfConr = PDFViewController(data: pdfData)
-                            self.navigationController?.pushViewController(pdfConr, animated: true)
                         }else{
                             self.PopMsgWithJustOK(msg: msg)
                         }
@@ -224,6 +223,17 @@ private  var spinner : UIActivityIndicatorView?
             }else{
                 self.spinner?.stopAnimating()
                 self.PopMsgWithJustOK(msg: CConstants.MsgNetworkError)
+            }
+        }
+    }
+    
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        if let identifier = segue.identifier {
+            if identifier == CConstants.SegueToSignaturePdf {
+                if let controller = segue.destinationViewController as? PDFSignViewController {
+                    controller.pdfInfo = sender as? ContractSignature
+                    controller.initWithResource("BaseContract.pdf")
+                }
             }
         }
     }

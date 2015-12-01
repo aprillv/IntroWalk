@@ -22,7 +22,7 @@ class AddressListViewHeadView2: UIView {
         CiaNmLbl = UILabel()
         self.addSubview(CiaNmLbl)
         CiaNmLbl.font = UIFont.boldSystemFontOfSize(15)
-        
+        CiaNmLbl.textAlignment = NSTextAlignment.Center
         setDisplaySubViews()
         CiaNmLbl.autoresizingMask = UIViewAutoresizing.FlexibleWidth
     }

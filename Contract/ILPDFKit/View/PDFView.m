@@ -22,6 +22,7 @@
 
 #import <QuartzCore/QuartzCore.h>
 #import "PDFFormButtonField.h"
+#import "PDFFormTextField.h"
 #import "PDF.h"
 #import "SignatureView.h"
 
@@ -122,6 +123,9 @@
         [_pdfView.scrollView addSubview:element];
         if ([element isKindOfClass:[PDFFormButtonField class]]) {
             [(PDFFormButtonField*)element setButtonSuperview];
+        }
+        if ([element isKindOfClass:[PDFFormTextField class]]) {
+            [(PDFFormTextField*)element setValue:element.value];
         }
     }
     

@@ -33,6 +33,8 @@
 
 @interface PDFViewController : UIViewController
 
+
+@property (nonatomic, retain)  NSDictionary *pdfInfo;
 /** The PDFDocument that represents the model for the PDFViewController
  */
 @property (nonatomic, strong) PDFDocument *document;

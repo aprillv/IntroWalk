@@ -49,6 +49,7 @@
 }
 
 -(NSDictionary *)printself{
+//    NSLog(@"name: %@ value: %@", self.xname, self.value);
     if (self.value && ![self.value isEqualToString:@""]) {
         return @{self.xname: self.value};
 //        return [NSString stringWithFormat:@"%@: %@\n", self.xname, self.value];
@@ -81,11 +82,12 @@
 }
 
 - (void)setValue:(NSString *)value {
+//    NSLog(@"%@", value);
 }
 
-- (NSString *)value {
-    return nil;
-}
+//- (NSString *)value {
+//    return nil;
+//}
 
 - (void)setOptions:(NSArray *)options {
 }

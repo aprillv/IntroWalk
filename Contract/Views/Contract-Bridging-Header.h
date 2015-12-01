@@ -4,3 +4,9 @@
 
 #import <CommonCrypto/CommonCrypto.h>
 #import "PDFViewController.h"
+#import "cl_pdf.h"
+#import "PDFDocument.h"
+#import "PDFView.h"
+#import "PDFFormContainer.h"
+#import "PDFWidgetAnnotationView.h"
+#import "SignatureView.h"

@@ -25,6 +25,7 @@ struct CConstants{
     static let UserInfoPwd :  String = "Login Password"
     
     static let SegueToAddressList :  String = "adressList"
+    static let SegueToSignaturePdf : String = "pdfSignature"
     
     
     
@@ -37,5 +38,13 @@ struct CConstants{
     static let CheckUpdateServiceURL: String = "bacontract_version.json"
     //get contract signature
     static let ContractServiceURL = "bacontract_signature.json"
+    //upload pdf
+    static let ContractUploadPdfURL = "bacontract_upload.json"
+   
+    
+    
     
 }
+
+
+

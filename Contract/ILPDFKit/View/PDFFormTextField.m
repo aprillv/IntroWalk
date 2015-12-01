@@ -89,10 +89,12 @@
 #pragma mark - PDFWidgetAnnotationView
 
 - (void)setValue:(NSString *)value {
+    
     if ([value isKindOfClass:[NSNull class]]) {
         [self setValue:nil];
         return;
     }
+    [self.delegate widgetAnnotationValueChanged:self];
     [_textFieldOrTextView performSelector:@selector(setText:) withObject:value];
     [self refresh];
 }
@@ -135,6 +137,8 @@
     [self.delegate widgetAnnotationValueChanged:self];
 }
 
+
+
 - (BOOL)textView:(UITextView *)textView shouldChangeTextInRange:(NSRange)range replacementText:(NSString *)text {
     CGSize contentSize = CGSizeMake(textView.bounds.size.width-PDFFormMinFontSize, CGFLOAT_MAX);
     float numLines = ceilf((textView.bounds.size.height / textView.font.lineHeight));
@@ -167,6 +171,7 @@
     [self.delegate widgetAnnotationEntered:self];
      self.parentView.activeWidgetAnnotationView = self;
 }
+
 
 - (void)textFieldDidEndEditing:(UITextField *)textField {
     self.parentView.activeWidgetAnnotationView = nil;

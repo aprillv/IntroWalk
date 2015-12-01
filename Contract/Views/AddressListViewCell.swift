@@ -57,7 +57,7 @@ class AddressListViewCell: UITableViewCell {
     
     func removeObserverCell(){
 //        print("\(backView.observationInfo)")
-        backView?.removeObserver(self, forKeyPath: "center")
+//        backView?.removeObserver(self, forKeyPath: "center")
     }
     
     func setDisplaySubViews(){

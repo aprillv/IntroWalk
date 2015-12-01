@@ -29,5 +29,7 @@ class ContractSignature: ContractObject {
     var base64pdf: String?
     var code: String?
     var found: String?
-    var message: String? 
+    var message: String?
+    var zipcode: String?
+    var county: String?
 }

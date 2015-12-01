@@ -24,6 +24,7 @@ class ContractRequestItem: NSObject {
         return ["idnumber" : cInfo?.idnumber ?? ""
             , "idcity" : cInfo?.idcity ?? ""
             , "idcia": cInfo?.idcia ?? ""
-            , "code": cInfo?.code ?? ""]
+            , "code": cInfo?.code ?? ""
+            , "ispdf": "0"]
     }
 }

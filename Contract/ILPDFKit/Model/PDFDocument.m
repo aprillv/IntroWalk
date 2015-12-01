@@ -160,25 +160,35 @@ static void renderPage(NSUInteger page, CGContextRef ctx, CGPDFDocumentRef doc, 
     return [self.forms formXML];
 }
 
-- (NSString *)savedStaticPDFData {
+- (NSData *)savedStaticPDFData {
+//    NSUInteger numberOfPages = [self numberOfPages];
+////    NSMutableData *pageData = [NSMutableData data];
+////    UIGraphicsBeginPDFContextToData(pageData, CGRectZero , nil);
+//    
+//    //1>.获取沙盒路径
+//    NSString *path = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES)[0];
+//    //2>.拼接路径
+//    NSString *PDFPath = [path stringByAppendingPathComponent:@"123.pdf"];
+//    //3>.创建PDF上下文
+//    UIGraphicsBeginPDFContextToFile(PDFPath, CGRectZero, NULL);
+//    
+////    UIGraphicsBeginPDFContextToFile(@"", CGRectZero, nil);
+//    CGContextRef ctx = UIGraphicsGetCurrentContext();
+//    for (NSUInteger page = 1; page <= numberOfPages; page++) {
+//        renderPage(page, ctx, _document, self.forms);
+//    }
+//    UIGraphicsEndPDFContext();
+//    return PDFPath;
+    
     NSUInteger numberOfPages = [self numberOfPages];
-//    NSMutableData *pageData = [NSMutableData data];
-//    UIGraphicsBeginPDFContextToData(pageData, CGRectZero , nil);
-    
-    //1>.获取沙盒路径
-    NSString *path = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES)[0];
-    //2>.拼接路径
-    NSString *PDFPath = [path stringByAppendingPathComponent:@"123.pdf"];
-    //3>.创建PDF上下文
-    UIGraphicsBeginPDFContextToFile(PDFPath, CGRectZero, NULL);
-    
-//    UIGraphicsBeginPDFContextToFile(@"", CGRectZero, nil);
+    NSMutableData *pageData = [NSMutableData data];
+    UIGraphicsBeginPDFContextToData(pageData, CGRectZero , nil);
     CGContextRef ctx = UIGraphicsGetCurrentContext();
     for (NSUInteger page = 1; page <= numberOfPages; page++) {
         renderPage(page, ctx, _document, self.forms);
     }
     UIGraphicsEndPDFContext();
-    return PDFPath;
+    return pageData;
 }
 
 

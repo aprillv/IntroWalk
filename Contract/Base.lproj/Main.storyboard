@@ -4,6 +4,7 @@
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9051"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
+        <capability name="Navigation items with more than one left or right bar item" minToolsVersion="7.0"/>
     </dependencies>
     <scenes>
         <!--Contract-->
@@ -244,11 +245,54 @@
                     </refreshControl>
                     <connections>
                         <outlet property="LoginUserName" destination="anD-9t-uD6" id="bXd-sT-jNa"/>
+                        <segue destination="bI5-rz-cgu" kind="show" identifier="pdfSignature" id="Lgo-oy-gpi"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="akO-Zu-3HL" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="2760" y="-460"/>
+        </scene>
+        <!--Signature-->
+        <scene sceneID="rVO-CQ-ugE">
+            <objects>
+                <viewController id="bI5-rz-cgu" customClass="PDFSignViewController" customModule="Contract" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="UfL-Da-Im2"/>
+                        <viewControllerLayoutGuide type="bottom" id="dUg-aZ-h1L"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="Mdn-2e-kCv">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                    <navigationItem key="navigationItem" title="Signature" id="5nA-mG-z85">
+                        <leftBarButtonItems>
+                            <barButtonItem title="&lt; " id="xP6-2w-6GP">
+                                <connections>
+                                    <action selector="goBack:" destination="bI5-rz-cgu" id="6EH-LC-aiJ"/>
+                                </connections>
+                            </barButtonItem>
+                            <barButtonItem tag="1" title="Buyer1" id="YEv-1a-NhX">
+                                <connections>
+                                    <action selector="BuyerSign:" destination="bI5-rz-cgu" id="Rpy-Ua-dCa"/>
+                                </connections>
+                            </barButtonItem>
+                            <barButtonItem tag="2" title="Buyer2" id="7zn-aL-Btf">
+                                <connections>
+                                    <action selector="BuyerSign:" destination="bI5-rz-cgu" id="4O4-Ac-uOc"/>
+                                </connections>
+                            </barButtonItem>
+                        </leftBarButtonItems>
+                        <barButtonItem key="rightBarButtonItem" title="Save" id="woH-jy-Y2Z">
+                            <connections>
+                                <action selector="savePDF:" destination="bI5-rz-cgu" id="5D7-sa-K49"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="2BD-za-Val" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="3590" y="-226"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="Ugg-Z2-cHQ">

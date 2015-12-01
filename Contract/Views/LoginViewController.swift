@@ -104,6 +104,9 @@ class LoginViewController: BaseViewController, UITextFieldDelegate {
     func checkUpate(){
         let version = NSBundle.mainBundle().infoDictionary?["CFBundleVersion"]
         let parameter = ["version": (version == nil ?  "" : version!)]
+        
+        
+        
         Alamofire.request(.POST,
             CConstants.ServerURL + CConstants.CheckUpdateServiceURL,
             parameters: parameter).responseJSON{ (response) -> Void in
