@@ -88,7 +88,7 @@
  @param selected YES if the button is selected
  @param radio YES is the button is a radio type button
  */
-+ (void)drawWithRect:(CGRect)frame context:(CGContextRef)ctx back:(BOOL)back selected:(BOOL)selected radio:(BOOL)radio;
+- (void)drawWithRect:(CGRect)frame context:(CGContextRef)ctx back:(BOOL)back selected:(BOOL)selected radio:(BOOL)radio;
 
 
 

@@ -41,7 +41,7 @@
         return;
     }
     CGContextRef ctx = UIGraphicsGetCurrentContext();
-    [PDFFormButtonField drawWithRect:rect context:ctx back:YES selected:_button.selected radio:_radio];
+    [self drawWithRect:rect context:ctx back:YES selected:_button.selected radio:_radio];
 }
 
 #pragma mark - PDFWidgetAnnotationView
@@ -131,16 +131,27 @@
 
 #pragma mark - Rendering
 
-+ (void)drawWithRect:(CGRect)frame context:(CGContextRef)ctx back:(BOOL)back selected:(BOOL)selected radio:(BOOL)radio {
+- (void)drawWithRect:(CGRect)frame context:(CGContextRef)ctx back:(BOOL)back selected:(BOOL)selected radio:(BOOL)radio {
+    
+    NSArray *na = @[@"22a3", @"22a10", @"22a15"];
+    radio = [na containsObject:self.xname];
+    if (radio) {
+        if (frame.size.width != frame.size.height) {
+            frame.size.width = frame.size.height = MIN(frame.size.width, frame.size.height);
+        }
+    }
     CGFloat minDim = PDFButtonMinScaledDimension(frame);
+    if (radio) {
+        minDim *= 1/.85;
+    }
     CGPoint center = CGPointMake(frame.size.width/2,frame.size.height/2);
     CGRect rect = CGRectMake(center.x-minDim/2, center.y-minDim/2, minDim, minDim);
-    if (back) {
-        CGContextSaveGState(ctx);
-        CGContextSetFillColorWithColor(ctx,PDFWidgetColor.CGColor);
-        radio = NO;
-        if (!radio) {
-            
+//    if (back) {
+//        CGContextSaveGState(ctx);
+//        CGContextSetFillColorWithColor(ctx,PDFWidgetColor.CGColor);
+//        
+//        if (!radio) {
+//            
 //            CGContextRef context = ctx;
 //            CGFloat radius = minDim/6;
 //            CGContextMoveToPoint(context, rect.origin.x, rect.origin.y + radius);
@@ -153,20 +164,35 @@
 //            CGContextAddLineToPoint(context, rect.origin.x + radius, rect.origin.y);
 //            CGContextAddArc(context, rect.origin.x + radius, rect.origin.y + radius, radius,-M_PI / 2, M_PI, 1);
 //            CGContextFillPath(context);
-            
-        } else {
-            CGContextFillEllipseInRect(ctx, rect);
-        }
-        CGContextRestoreGState(ctx);
-    }
+//            
+//        } else {
+//            CGContextFillEllipseInRect(ctx, rect);
+//        }
+//        CGContextRestoreGState(ctx);
+//    }
     if (selected) {
         CGContextSaveGState(ctx);
         CGFloat margin = minDim/3;
         if (radio) {
             CGContextSetFillColorWithColor(ctx, [UIColor blackColor].CGColor);
             CGContextTranslateCTM(ctx, rect.origin.x, rect.origin.y);
-            CGContextAddEllipseInRect(ctx, CGRectMake(margin, margin, rect.size.width-2*margin, rect.size.height-2*margin));
+            CGFloat cw = (rect.size.width-2*margin);
+            CGContextAddEllipseInRect(ctx, CGRectMake(margin, margin, cw, cw));
             CGContextFillPath(ctx);
+            CGContextTranslateCTM(ctx, rect.origin.x, rect.origin.y);
+            
+            CGContextAddEllipseInRect(ctx, CGRectMake(margin-(cw*0.8), margin-(cw*0.8), cw*2.6, cw*2.6));
+            CGContextSetLineWidth(ctx, rect.size.width/11);
+            CGContextStrokePath(ctx);
+//            CGContextSetFillColorWithColor(ctx, [UIColor blackColor].CGColor);
+//            CGContextTranslateCTM(ctx, rect.origin.x, rect.origin.y);
+//            CGContextAddEllipseInRect(ctx, CGRectMake(margin-1, margin-1, rect.size.width-2*(margin-0.5), rect.size.height-2*(margin-0.5)));
+//            CGContextFillPath(ctx);
+//            CGContextTranslateCTM(ctx, rect.origin.x, rect.origin.y);
+//            CGFloat cw = (rect.size.width-2*(margin-0.5))*1.95;
+//            CGContextAddEllipseInRect(ctx, CGRectMake(margin-1, margin-1, cw, cw));
+//            CGContextSetLineWidth(ctx, rect.size.width/9);
+//            CGContextStrokePath(ctx);
         } else {
             CGContextTranslateCTM(ctx, rect.origin.x, rect.origin.y);
             CGContextSetLineWidth(ctx, rect.size.width/8);

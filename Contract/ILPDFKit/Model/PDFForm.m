@@ -284,9 +284,9 @@
 - (void)vectorRenderInPDFContext:(CGContextRef)ctx forRect:(CGRect)rect {
     if (self.formType == PDFFormTypeText || self.formType == PDFFormTypeChoice) {
         NSString *text = self.value;
-        if (self.formType == PDFFormTypeText) {
-            NSLog(@"%@ %@", self.name, self.value);
-        }
+//        if (self.formType == PDFFormTypeText) {
+//            NSLog(@"%@ %@", self.name, self.value);
+//        }
         UIFont *font = [UIFont systemFontOfSize:[PDFWidgetAnnotationView fontSizeForRect:rect value:self.value multiline:((_flags & PDFFormFlagTextFieldMultiline) > 0 && self.formType == PDFFormTypeText) choice:self.formType == PDFFormTypeChoice]];
         UIGraphicsPushContext(ctx);
         NSMutableParagraphStyle *paragraphStyle = [[NSMutableParagraphStyle defaultParagraphStyle] mutableCopy];
@@ -298,7 +298,8 @@
         SignatureView *sw = (SignatureView *)_formUIElement;
         [sw drawInRect:rect withContext:ctx];
     } else if (self.formType == PDFFormTypeButton) {
-        [PDFFormButtonField drawWithRect:rect context:ctx back:NO selected:[self.value isEqualToString:self.exportValue] && (_flags & PDFFormFlagButtonPushButton) == 0 radio:(_flags & PDFFormFlagButtonRadio) > 0];
+         PDFFormButtonField *sw = (PDFFormButtonField *)_formUIElement;
+        [sw drawWithRect:rect context:ctx back:NO selected:[self.value isEqualToString:self.exportValue] && (_flags & PDFFormFlagButtonPushButton) == 0 radio:(_flags & PDFFormFlagButtonRadio) > 0];
     }
 }
 
@@ -392,6 +393,7 @@
     }
     return _formUIElement;
 }
+
 
 
 #pragma mark - PDFWidgetAnnotationViewDelegate

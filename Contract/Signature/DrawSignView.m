@@ -48,6 +48,7 @@ static NSMutableArray *colors;
 
 
 
+
 - (id)initWithFrame:(CGRect)frame
 {
     self = [super initWithFrame:frame];
@@ -70,12 +71,14 @@ static NSMutableArray *colors;
 
     //self
     self.frame = CGRectMake(0, 0, 500, 1000);
-    self.backgroundColor = [UIColor colorWithRed:59./255. green:73./255. blue:82./255. alpha:1];
+   
 //    self.backgroundColor = [UIColor lightGrayColor];
     CALayer *layer = self.layer;
     [layer setCornerRadius:15.0];
     layer.borderColor = [[UIColor grayColor] CGColor];
     layer.borderWidth = 1;
+     self.backgroundColor = [UIColor colorWithRed:59./255. green:73./255. blue:82./255. alpha:1];
+//    layer.backgroundColor = [UIColor colorWithRed:59./255. green:73./255. blue:82./255. alpha:1].CGColor;
 
 
     //contentLbl
@@ -149,7 +152,7 @@ static NSMutableArray *colors;
      id<UIApplicationDelegate> appDelegate = [[UIApplication sharedApplication] delegate];
     
     CGRect appFrame = appDelegate.window.rootViewController.view.frame;
-    CGFloat cx = appFrame.size.width - btn_w * 3 - 60 - btn_mid * 2;
+    CGFloat cx = MIN(appFrame.size.width, appFrame.size.height) - btn_w * 3 - 60 - btn_mid * 2;
     for (UIButton *btn in btnRArr) {
         btn.frame = CGRectMake(cx + i * (btn_w+btn_mid), 400, btn_w, btn_h);
         i++;
@@ -183,7 +186,7 @@ static NSMutableArray *colors;
     colors=[[NSMutableArray alloc]initWithObjects:[UIColor greenColor],[UIColor blueColor],[UIColor redColor],[UIColor blackColor],[UIColor whiteColor], nil];
     self.buttonHidden=YES;
     self.widthHidden=YES;
-    self.drawView=[[MyView alloc]initWithFrame:CGRectMake(40, 100, appFrame.size.width - 100, 800/3.0)];
+    self.drawView=[[MyView alloc]initWithFrame:CGRectMake(40, 100, MIN(appFrame.size.width, appFrame.size.height) - 100, 800/3.0)];
     [self.drawView setBackgroundColor:RGBCOLOR(255, 255, 255)];
     [self addSubview: self.drawView];
     [self sendSubviewToBack:self.drawView];

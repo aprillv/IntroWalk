@@ -56,6 +56,7 @@ static PopSignUtil *popSignUtil = nil;
     if (!zhezhaoView) {
         zhezhaoView = [[UIView alloc]init];
         zhezhaoView.backgroundColor = [UIColor colorWithWhite:0.2 alpha:0.5];
+//        zhezhaoView.autoresizingMask = UIViewAutoresizingFlexibleHeight|UIViewAutoresizingFlexibleWidth;
     }else{
         for (UIView *tmp in zhezhaoView.subviews) {
             [tmp removeFromSuperview];
@@ -64,6 +65,7 @@ static PopSignUtil *popSignUtil = nil;
     id<UIApplicationDelegate> appDelegate = [[UIApplication sharedApplication] delegate];
     [appDelegate.window.rootViewController.view addSubview:zhezhaoView];
     CGSize screenSize = [appDelegate.window.rootViewController.view bounds].size;
+//    NSLog(@"%@", appDelegate.window.rootViewController.view);
     zhezhaoView.frame = CGRectMake(screenSize.height, 0, screenSize.height, screenSize.width);
 
     DrawSignView *conformView = [[DrawSignView alloc]init];
@@ -77,16 +79,29 @@ static PopSignUtil *popSignUtil = nil;
 
     CGRect appFrame = appDelegate.window.rootViewController.view.frame;
 //    CGFloat v_x = (screenSize.height-conformView.frame.size.height)/2.0;
-    CGFloat v_y = (appFrame.size.height-conformView.frame.size.width)/2.0;
-    conformView.frame = CGRectMake( 10, v_y, appFrame.size.width-20,conformView.frame.size.width);
+//    CGFloat v_y = (appFrame.size.height-conformView.frame.size.width)/2.0;
+    CGFloat h = MIN(appFrame.size.width, appFrame.size.height);
+//    CGFloat w = MAX(appFrame.size.width, appFrame.size.height);
+//    if (appFrame.size.width == h) {
+//        conformView.frame = CGRectMake( 10, v_y, h-20, conformView.frame.size.width);
+//    }else{
+//        conformView.frame = CGRectMake( (w-h)/2, v_y, h-20,conformView.frame.size.width);
+//    }
+    conformView.frame = CGRectMake( 0, 0, h-20, conformView.frame.size.width);
+    conformView.center = zhezhaoView.center;
     [zhezhaoView addSubview:conformView];
 //    [conformView release];
-
+    conformView.autoresizingMask = UIViewAutoresizingFlexibleLeftMargin | UIViewAutoresizingFlexibleRightMargin | UIViewAutoresizingFlexibleTopMargin | UIViewAutoresizingFlexibleBottomMargin;
+    
+    zhezhaoView.autoresizesSubviews = YES;
+    zhezhaoView.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
     [UIView beginAnimations:nil context:NULL];
 	[UIView setAnimationDuration:0.3];
     zhezhaoView.frame = appFrame;
+    conformView.center = zhezhaoView.center;
     [UIView commitAnimations];
 }
+
 
 
 /** 关闭弹出框 */

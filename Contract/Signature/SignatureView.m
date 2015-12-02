@@ -84,11 +84,12 @@
             self.LineWidth = sv.LineWidth;
         [PopSignUtil closePop];
     } withCancel:^{
-        NSLog(@"");
+//        NSLog(@"");
         [PopSignUtil closePop];
     }];
     
 }
+
 
 
 -(void)drawInRect:(CGRect)rect withContext:(CGContextRef )context{

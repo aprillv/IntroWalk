@@ -130,7 +130,8 @@ class PDFSignViewController: BaseViewController {
         let margins = getMargins()
         let additionViews = document?.forms.createWidgetAnnotationViewsForSuperviewWithWidth(view.bounds.size.width, margin: margins.x, hMargin: margins.y) as? [PDFWidgetAnnotationView]
         
-        let overrideFields : [String: String] = [PDFFields.CompanyName : PDFFields.CompanyName1
+        let overrideFields : [String: String]
+                   = [PDFFields.CompanyName : PDFFields.CompanyName1
                     , PDFFields.Buyer : PDFFields.Buyer1
                     , PDFFields.Lot: PDFFields.Lot1
                     , PDFFields.Block : PDFFields.Block1
@@ -225,5 +226,6 @@ class PDFSignViewController: BaseViewController {
             }
         }
     }
+    
     
 }
