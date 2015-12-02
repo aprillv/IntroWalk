@@ -15,65 +15,19 @@ class PDFSignViewController: BaseViewController {
     var pdfView  : PDFView?
     var isDownload : Bool?
     var pdfInfo : ContractSignature?
+    var spinner : UIActivityIndicatorView?
+    var progressBar : UIAlertController?
     
-    @IBAction func goBack(sender: UIBarButtonItem) {
-        navigationController?.popViewControllerAnimated(true)
-    }
-    @IBAction func BuyerSign(sender: UIBarButtonItem) {
-        for sign0 in pdfView!.pdfWidgetAnnotationViews {
-            if let sign = sign0 as? SignatureView{
-                if CGRectIntersectsRect(sign.superview!.bounds, sign.frame) {
-                    if (sender.tag == 1 && sign.sname.hasSuffix(PDFFields.Buyer1Signature))
-                        || (sender.tag == 2 && sign.sname.hasSuffix(PDFFields.Buyer2Signature)) {
-                            sign.toSignautre()
-                    }
-                }
-            }
-        }
-    }
-    @IBAction func savePDF(sender: UIBarButtonItem) {
-        
-        let savedPdfData = document?.savedStaticPDFData()
-        let fileBase64String = savedPdfData?.base64EncodedStringWithOptions(NSDataBase64EncodingOptions.EncodingEndLineWithLineFeed)
-        let parame : [String : String] = ["idcia" : pdfInfo!.idcia!
-            , "idproject" : pdfInfo!.idproject!
-            , "username" : NSUserDefaults.standardUserDefaults().valueForKey(CConstants.LoggedUserNameKey) as? String ?? ""
-            , "code" : pdfInfo!.code!
-            , "file" : fileBase64String!]
-        
-//        print("\(parame)")
-//        return;
-        Alamofire.request(.POST,
-            CConstants.ServerURL + CConstants.ContractUploadPdfURL,
-            parameters: parame).responseJSON{ (response) -> Void in
-//                self.spinner?.stopAnimating()
-                if response.result.isSuccess {
-                    print(response.result.value)
-                    if let rtnValue = response.result.value as? [String: AnyObject]{
-//                        print(rtnValue)
-//                        if let msg = rtnValue["status"] as? String{
-//                            print(rtnValue)
-////                            if msg == "success"{
-////                                
-////                            }else{
-////                                self.PopMsgWithJustOK(msg: msg)
-////                            }
-//                        }else{
-//                            self.PopMsgWithJustOK(msg: CConstants.MsgServerError, txtField: nil)
-//                        }
-                    }else{
-                        self.PopMsgWithJustOK(msg: CConstants.MsgServerError, txtField: nil)
-                    }
-                }else{
-//                    self.spinner?.stopAnimating()
-                    self.PopMsgWithJustOK(msg: CConstants.MsgNetworkError, txtField: nil)
-                }
-        }
-        
-    }
     private struct PDFFields{
+        
+        static let SavedMsg = "Saving to the BA Server"
+        static let SavedSuccessMsg = "Saved successfully."
+        static let SavedFailMsg = "Saved fail."
+        
         static let Buyer1Signature = "bottom1"
         static let Buyer2Signature = "bottom2"
+        static let Seller1Signature = "bottom3"
+        static let Seller2Signature = "bottom4"
         
         static let CompanyName = "sellercompany"
         static let Buyer = "buyer"
@@ -96,6 +50,80 @@ class PDFSignViewController: BaseViewController {
         static let SalePrice1 = "sold"
         
     }
+    
+    @IBAction func goBack(sender: UIBarButtonItem) {
+        navigationController?.popViewControllerAnimated(true)
+    }
+    @IBAction func BuyerSign(sender: UIBarButtonItem) {
+        for sign0 in pdfView!.pdfWidgetAnnotationViews {
+            if let sign = sign0 as? SignatureView{
+                if CGRectIntersectsRect(sign.superview!.bounds, sign.frame) {
+                    if (sender.tag == 1 && sign.sname.hasSuffix(PDFFields.Buyer1Signature))
+                        || (sender.tag == 2 && sign.sname.hasSuffix(PDFFields.Buyer2Signature))
+                        || (sender.tag == 3 && sign.sname.hasSuffix(PDFFields.Seller1Signature))
+                        || (sender.tag == 4 && sign.sname.hasSuffix(PDFFields.Seller2Signature)){
+                            sign.toSignautre()
+                    }
+                }
+            }
+        }
+    }
+    @IBAction func savePDF(sender: UIBarButtonItem) {
+        
+        let savedPdfData = document?.savedStaticPDFData()
+        let fileBase64String = savedPdfData?.base64EncodedStringWithOptions(NSDataBase64EncodingOptions.EncodingEndLineWithLineFeed)
+        let parame : [String : String] = ["idcia" : pdfInfo!.idcia!
+            , "idproject" : pdfInfo!.idproject!
+            , "username" : NSUserDefaults.standardUserDefaults().valueForKey(CConstants.LoggedUserNameKey) as? String ?? ""
+            , "code" : pdfInfo!.code!
+            , "file" : fileBase64String!]
+        
+//        print("\(parame)")
+//        return;
+        
+        if (spinner == nil){
+            
+            spinner = UIActivityIndicatorView(frame: CGRect(x: 0, y: 4, width: 50, height: 50))
+            spinner?.hidesWhenStopped = true
+//            view.addSubview(spinner!)
+            spinner?.activityIndicatorViewStyle = .Gray
+//            spinner?.center = view.center
+            
+//            spinner?.center = progressBar!.view.center
+        }
+        
+        progressBar = UIAlertController(title: nil, message: PDFFields.SavedMsg, preferredStyle: .Alert)
+        progressBar?.view.addSubview(spinner!)
+        
+        spinner?.startAnimating()
+        self.presentViewController(progressBar!, animated: true, completion: nil)
+        
+        Alamofire.request(.POST,
+            CConstants.ServerURL + CConstants.ContractUploadPdfURL,
+            parameters: parame).responseJSON{ (response) -> Void in
+                self.spinner?.stopAnimating()
+                self.spinner?.removeFromSuperview()
+                if response.result.isSuccess {
+                    if let rtnValue = response.result.value as? [String: String]{
+                        if rtnValue["status"] == "success" {
+                            self.progressBar?.message = PDFFields.SavedSuccessMsg
+                        }else{
+                            self.progressBar?.message = PDFFields.SavedFailMsg
+                        }
+                    }else{
+                        self.progressBar?.message = CConstants.MsgServerError
+                    }
+                }else{
+                    self.progressBar?.message = CConstants.MsgNetworkError
+                }
+                self.performSelector("dismissProgress", withObject: nil, afterDelay: 0.5)
+        }
+        
+    }
+    func dismissProgress(){
+        self.progressBar?.dismissViewControllerAnimated(true, completion: nil)
+    }
+    
     func initWithData(data: NSData){
         isDownload = true
         document = PDFDocument(data: data)

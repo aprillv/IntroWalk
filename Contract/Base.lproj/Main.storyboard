@@ -265,6 +265,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
+                    <toolbarItems/>
                     <navigationItem key="navigationItem" title="Signature" id="5nA-mG-z85">
                         <leftBarButtonItems>
                             <barButtonItem title="&lt; " id="xP6-2w-6GP">
@@ -283,11 +284,23 @@
                                 </connections>
                             </barButtonItem>
                         </leftBarButtonItems>
-                        <barButtonItem key="rightBarButtonItem" title="Save" id="woH-jy-Y2Z">
-                            <connections>
-                                <action selector="savePDF:" destination="bI5-rz-cgu" id="5D7-sa-K49"/>
-                            </connections>
-                        </barButtonItem>
+                        <rightBarButtonItems>
+                            <barButtonItem title="Save" id="woH-jy-Y2Z">
+                                <connections>
+                                    <action selector="savePDF:" destination="bI5-rz-cgu" id="5D7-sa-K49"/>
+                                </connections>
+                            </barButtonItem>
+                            <barButtonItem tag="4" title="Seller2" id="Uud-gp-fyb">
+                                <connections>
+                                    <action selector="BuyerSign:" destination="bI5-rz-cgu" id="nqh-mI-Wt2"/>
+                                </connections>
+                            </barButtonItem>
+                            <barButtonItem tag="3" title="Seller1" id="xEm-6G-xNQ">
+                                <connections>
+                                    <action selector="BuyerSign:" destination="bI5-rz-cgu" id="kpR-NR-muR"/>
+                                </connections>
+                            </barButtonItem>
+                        </rightBarButtonItems>
                     </navigationItem>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="2BD-za-Val" userLabel="First Responder" sceneMemberID="firstResponder"/>
