@@ -150,7 +150,20 @@ class PDFSignViewController: BaseViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         navigationItem.hidesBackButton = true
+        
         loadPDFView()
+    }
+    
+    private func addEntitiesToDictionary(fromDic fromDic: [String: String], toDic: [String: String]?) -> [String: String]{
+        var rtnDic = toDic ?? [String: String]()
+        for one in fromDic {
+            rtnDic[one.0] = one.1
+        }
+        return rtnDic
+    }
+    
+    private func getFileName() -> String{
+        return "contract1pdf_" + self.pdfInfo!.idcity! + "_" + self.pdfInfo!.idcia!
     }
     
     private func loadPDFView(){
@@ -158,20 +171,30 @@ class PDFSignViewController: BaseViewController {
         let margins = getMargins()
         let additionViews = document?.forms.createWidgetAnnotationViewsForSuperviewWithWidth(view.bounds.size.width, margin: margins.x, hMargin: margins.y) as? [PDFWidgetAnnotationView]
         
-        let overrideFields : [String: String]
-                   = [PDFFields.CompanyName : PDFFields.CompanyName1
-                    , PDFFields.Buyer : PDFFields.Buyer1
-                    , PDFFields.Lot: PDFFields.Lot1
-                    , PDFFields.Block : PDFFields.Block1
-                    , PDFFields.Section : PDFFields.Section1
-                    , PDFFields.City : PDFFields.City1
-                    , PDFFields.County : PDFFields.County1
-                    , PDFFields.Address : PDFFields.Address1
-                    , PDFFields.SalePrice : PDFFields.SalePrice1]
+        if let filedsFromTxt = readContractFieldsFromTxt(getFileName()) {
+            
+            
+            let na = filedsFromTxt.keys
+            for pv : PDFWidgetAnnotationView in additionViews!{
+                if na.contains(pv.xname){
+                    pv.value = filedsFromTxt[pv.xname]
+                }
+            }
+            
+        }
+        var overrideFields : [String: String]
+        overrideFields = [PDFFields.CompanyName : PDFFields.CompanyName1
+            , PDFFields.Buyer : PDFFields.Buyer1
+            , PDFFields.Lot: PDFFields.Lot1
+            , PDFFields.Block : PDFFields.Block1
+            , PDFFields.Section : PDFFields.Section1
+            , PDFFields.City : PDFFields.City1
+            , PDFFields.County : PDFFields.County1
+            , PDFFields.Address : PDFFields.Address1
+            , PDFFields.SalePrice : PDFFields.SalePrice1]
+        
         
         let na = overrideFields.keys
-
-//        var tmp : [PDFWidgetAnnotationView] = [PDFWidgetAnnotationView]()
         for pv : PDFWidgetAnnotationView in additionViews!{
             if na.contains(pv.xname){
                 if PDFFields.Address == pv.xname{
@@ -183,45 +206,10 @@ class PDFSignViewController: BaseViewController {
                     
                 }
             }
-//            tmp.append(pv)
-//
-//            if let dic = pv.printself() {
-//            
-//            }
-            
-            
         }
-        
         pdfView = PDFView(frame: view.bounds, dataOrPath: pass, additionViews: additionViews)
-//        print("\(view!)")
         view.addSubview(pdfView!)
-//            NSDictionary *dic = [pv printself];
-//            if (dic) {
-//                if ([dics.allKeys containsObject:[dic allKeys].firstObject]){
-//                    [Samedics addObject:[dic allKeys].firstObject];
-//                }else{
-//                    [dics addEntriesFromDictionary:dic];
-//                }
-//            }
-//        }
-//        
-//        for (NSString *xkey in Samedics) {
-//            [dics removeObjectForKey:xkey];
-//        }
-//        cl_pdf *pdf = [[cl_pdf alloc] init];
-//        NSString* pdfkey = [NSString stringWithFormat:@"%@_%@", self.pdfInfo[@"idcia"], self.pdfInfo[@"idcity"]];
-//        if (isDownload) {
-//            NSData *pdfData = [NSJSONSerialization dataWithJSONObject:dics options:kNilOptions error:nil];
-//            [pdf addToPDF:pdfData withId: pdfkey];
-//        }else{
-//            NSData *pdfData = [pdf getPDFByKey:pdfkey];
-//            
-//            //        NSLog(@"%@", [NSJSONSerialization JSONObjectWithData:pdfData options:kNilOptions error:nil]);
-//        }
-//        
-//        //    NSLog(@"%d %d %@", additionViews.count, dics.allKeys.count, dics);
-//        _pdfView = [[PDFView alloc] initWithFrame:self.view.bounds dataOrPath:pass additionViews:additionViews];
-//        [self.view addSubview:_pdfView];
+        
     }
     
 
@@ -255,5 +243,28 @@ class PDFSignViewController: BaseViewController {
         }
     }
     
+    
+    private func readContractFieldsFromTxt(fileName: String) ->[String: String]? {
+        if let path = NSBundle.mainBundle().pathForResource(fileName, ofType: "txt") {
+            var fieldsDic = [String : String]()
+            do {
+                let fieldsStr = try NSString(contentsOfFile: path, encoding: NSUTF8StringEncoding)
+                let n = fieldsStr.componentsSeparatedByString("\n")
+                
+                for one in n{
+                    let s = one.componentsSeparatedByString(":")
+                    if s.count != 2 {
+                        print(one)
+                    }else{
+                        fieldsDic[s.first!] = s.last!
+                    }
+                }
+            }
+            catch {/* error handling here */}
+            return fieldsDic
+        }
+        
+        return nil
+    }
     
 }
