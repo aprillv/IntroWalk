@@ -194,10 +194,10 @@ private  var spinner : UIActivityIndicatorView?
                     if let msg = rtnValue["message"] as? String{
                         if msg.isEmpty{
                             let rtn = ContractSignature(dicInfo: rtnValue)
-                            let pdfData = NSData(base64EncodedString: rtn.base64pdf!, options: NSDataBase64DecodingOptions(rawValue: 0))
-                            
-                            let pdfkey = rtn.idcia! + "_" + rtn.idcity!
-                            let pdfCoreData = cl_pdf()
+//                            let pdfData = NSData(base64EncodedString: rtn.base64pdf!, options: NSDataBase64DecodingOptions(rawValue: 0))
+//                            
+//                            let pdfkey = rtn.idcia! + "_" + rtn.idcity!
+//                            let pdfCoreData = cl_pdf()
                             self.performSegueWithIdentifier(CConstants.SegueToSignaturePdf, sender: rtn)
 //                            if let _ = pdfCoreData.getPDFByKey(pdfkey){
 //                                let pdfConr = PDFViewController(resource: "BaseContract.pdf")

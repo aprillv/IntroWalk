@@ -33,7 +33,6 @@
 #import "PDFDocument.h"
 #import "PDFView.h"
 #import "PDFWidgetAnnotationView.h"
-#import "PDFViewController.h"
 #import "PDFUtility.h"
 
 // This is the color for all PDF forms.

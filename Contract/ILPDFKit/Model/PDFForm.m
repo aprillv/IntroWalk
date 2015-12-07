@@ -362,10 +362,15 @@
         }
             break;
         case PDFFormTypeButton: {
+            
             BOOL radio = ((_flags & PDFFormFlagButtonRadio) > 0);
+            
             if (_setAppearanceStream) {
                 if ([_setAppearanceStream rangeOfString:@"ZaDb"].location != NSNotFound && [_setAppearanceStream rangeOfString:@"(l)"].location!=NSNotFound)radio = YES;
             }
+            
+            
+            
             PDFFormButtonField *temp = [[PDFFormButtonField alloc] initWithFrame:_uiBaseFrame radio:radio];
             temp.noOff = ((_flags & PDFFormFlagButtonNoToggleToOff) > 0);
             temp.name = self.name;

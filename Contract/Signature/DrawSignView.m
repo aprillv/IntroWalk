@@ -19,6 +19,7 @@
 @property (strong,nonatomic)  MyView *drawView;
 @property (assign,nonatomic)  BOOL buttonHidden;
 @property (assign,nonatomic)  BOOL widthHidden;
+
 @end
 
 
@@ -37,6 +38,8 @@ static NSMutableArray *colors;
     UIButton *cancelBtn;//取消
 
     UISlider *penBoldSlider;
+    
+    UISwitch *toAllSwitch;
 
 //    MyView *drawView;//画图的界面，宽高3:1
 
@@ -83,7 +86,7 @@ static NSMutableArray *colors;
 
     //contentLbl
     UILabel *contentLbl = [[UILabel alloc]init];
-    contentLbl.text = @"Please sign here";
+    contentLbl.text = @"Please print your initial here";
     contentLbl.textAlignment = NSTextAlignmentLeft;
     contentLbl.textColor = [UIColor whiteColor];
     contentLbl.frame = CGRectMake(40, 40, 500, 50);
@@ -163,24 +166,39 @@ static NSMutableArray *colors;
 
 
     //sliderLbl
-    UILabel *sliderLbl = [[UILabel alloc]init];
-    sliderLbl.text = @"Line Width:";
-    sliderLbl.textAlignment = NSTextAlignmentLeft;
-    sliderLbl.textColor = [UIColor whiteColor];
-    sliderLbl.frame = CGRectMake(40, 400, 120, 20);
-    sliderLbl.font = [UIFont systemFontOfSize:18.0];
-    sliderLbl.backgroundColor = [UIColor clearColor];
-    [self addSubview:sliderLbl];
+//    UILabel *sliderLbl = [[UILabel alloc]init];
+//    sliderLbl.text = @"Line Width:";
+//    sliderLbl.textAlignment = NSTextAlignmentLeft;
+//    sliderLbl.textColor = [UIColor whiteColor];
+//    sliderLbl.frame = CGRectMake(40, 400, 120, 20);
+//    sliderLbl.font = [UIFont systemFontOfSize:18.0];
+//    sliderLbl.backgroundColor = [UIColor clearColor];
+//    [self addSubview:sliderLbl];
 //    [sliderLbl release];
+    
+    UISwitch *applyToAll = [[UISwitch alloc]initWithFrame:CGRectMake(40, 400, 60, 20)];
+    [self addSubview:applyToAll];
+    toAllSwitch = applyToAll;
+    applyToAll.transform = CGAffineTransformMakeScale(0.9, 0.9);
+    
+        UILabel *sliderLbl = [[UILabel alloc]init];
+        sliderLbl.text = @"Apply to all pages";
+        sliderLbl.textAlignment = NSTextAlignmentLeft;
+        sliderLbl.textColor = [UIColor whiteColor];
+        sliderLbl.frame = CGRectMake(100, 405, 220, 20);
+        sliderLbl.font = [UIFont systemFontOfSize:18.0];
+        sliderLbl.backgroundColor = [UIColor clearColor];
+        [self addSubview:sliderLbl];
+    
 
     //penBoldSlider
-    penBoldSlider = [[UISlider alloc]init];
-    penBoldSlider.frame = CGRectMake(160, 400, 200, 20);
-    penBoldSlider.minimumValue = 0;
-    penBoldSlider.maximumValue = 9;
-    penBoldSlider.value = 0;
-    [penBoldSlider addTarget:self action:@selector(updateValue:) forControlEvents:UIControlEventValueChanged];
-    [self addSubview:penBoldSlider];
+//    penBoldSlider = [[UISlider alloc]init];
+//    penBoldSlider.frame = CGRectMake(160, 400, 200, 20);
+//    penBoldSlider.minimumValue = 0;
+//    penBoldSlider.maximumValue = 9;
+//    penBoldSlider.value = 0;
+//    [penBoldSlider addTarget:self action:@selector(updateValue:) forControlEvents:UIControlEventValueChanged];
+//    [self addSubview:penBoldSlider];
 
     //
     colors=[[NSMutableArray alloc]initWithObjects:[UIColor greenColor],[UIColor blueColor],[UIColor redColor],[UIColor blackColor],[UIColor whiteColor], nil];
@@ -285,7 +303,7 @@ static NSMutableArray *colors;
     if (sender == cancelBtn) {
         cancelBlock();
     }else if (sender == okBtn){
-        signCallBackBlock([self.drawView Signature]);
+        signCallBackBlock([self.drawView Signature], toAllSwitch.on);
 //        signCallBackBlock([self saveScreen]);
     }else if (sender == redoBtn){
        [ self.drawView revocation];
@@ -298,16 +316,16 @@ static NSMutableArray *colors;
 }
 
 
-/** 笔触粗细 */
--(void)updateValue:(id)sender{
-    if (sender == penBoldSlider) {
-        CGFloat f = penBoldSlider.value;
-//        NSLog(@"%f",f);
-        NSInteger w = (int)ceilf(f);
-        [self.drawView setlineWidth:w];
-        [self.drawView setNeedsDisplay];
-    }
-}
+///** 笔触粗细 */
+//-(void)updateValue:(id)sender{
+//    if (sender == penBoldSlider) {
+//        CGFloat f = penBoldSlider.value;
+////        NSLog(@"%f",f);
+//        NSInteger w = (int)ceilf(f);
+//        [self.drawView setlineWidth:w];
+//        [self.drawView setNeedsDisplay];
+//    }
+//}
 
 /** 颜色变化 */
 void ProviderReleaseData (void *info, const void *data, size_t size)

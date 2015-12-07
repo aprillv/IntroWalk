@@ -49,24 +49,66 @@ class PDFSignViewController: BaseViewController {
         static let Address1 = "nproject"
         static let SalePrice1 = "sold"
         
+        static let cashportion  = "3a"
+        
+        static let financing  = "3b"
+        
+        static let estimatedclosing_MMdd = "9a1"
+        
+        static let estimatedclosing_yy = "9a2"
+        
+        static let tobuyer1 = "tobuyer1"
+        
+        static let tobuyer2 = "tobuyer2"
+        
+        static let tobuyer4 = "tobuyer4"
+        
+        static let tobuyer6 = "tobuyer6"
+        
+        static let tobuyer7 = "tobuyer7"
+        
+        static let executeddd = "executeddd"
+        
+        static let executedmm = "executedmm"
+        static let executedyy = "executedyy"
+        static let buyer_2 = "buyer_2"
+        static let buyer_3 = "buyer_3"
+        static let seller_3 = "seller_3"
+        static let pdf2211 = "2211"
+        static let pdf2212 = "2212"
+        
+        static let pdf22a15 = "22a152"
+        static let pdf22a3 = "22a32"
+        static let pdf22a10 = "22a102"
+        
     }
     
     @IBAction func goBack(sender: UIBarButtonItem) {
         navigationController?.popViewControllerAnimated(true)
     }
     @IBAction func BuyerSign(sender: UIBarButtonItem) {
+//        var theSign : SignatureView?
+//        var allSigns : [SignatureView] = [SignatureView]()
         for sign0 in pdfView!.pdfWidgetAnnotationViews {
             if let sign = sign0 as? SignatureView{
-                if CGRectIntersectsRect(sign.superview!.bounds, sign.frame) {
-                    if (sender.tag == 1 && sign.sname.hasSuffix(PDFFields.Buyer1Signature))
-                        || (sender.tag == 2 && sign.sname.hasSuffix(PDFFields.Buyer2Signature))
-                        || (sender.tag == 3 && sign.sname.hasSuffix(PDFFields.Seller1Signature))
-                        || (sender.tag == 4 && sign.sname.hasSuffix(PDFFields.Seller2Signature)){
+                if (    sender.tag == 1 && sign.sname.hasSuffix(PDFFields.Buyer1Signature))
+                    || (sender.tag == 2 && sign.sname.hasSuffix(PDFFields.Buyer2Signature))
+                    || (sender.tag == 3 && sign.sname.hasSuffix(PDFFields.Seller1Signature))
+                    || (sender.tag == 4 && sign.sname.hasSuffix(PDFFields.Seller2Signature)){
+                        if CGRectIntersectsRect(sign.superview!.bounds, sign.frame) {
                             sign.toSignautre()
-                    }
+//                            theSign = sign
+//                        }else{
+//                            allSigns.append(sign)
+                        }
                 }
+                
             }
         }
+        
+//        if let sign = theSign {
+//            sign.toSignautreWithAll(allSigns)
+//        }
     }
     @IBAction func savePDF(sender: UIBarButtonItem) {
         
@@ -78,18 +120,10 @@ class PDFSignViewController: BaseViewController {
             , "code" : pdfInfo!.code!
             , "file" : fileBase64String!]
         
-//        print("\(parame)")
-//        return;
-        
         if (spinner == nil){
-            
             spinner = UIActivityIndicatorView(frame: CGRect(x: 0, y: 4, width: 50, height: 50))
             spinner?.hidesWhenStopped = true
-//            view.addSubview(spinner!)
             spinner?.activityIndicatorViewStyle = .Gray
-//            spinner?.center = view.center
-            
-//            spinner?.center = progressBar!.view.center
         }
         
         progressBar = UIAlertController(title: nil, message: PDFFields.SavedMsg, preferredStyle: .Alert)
@@ -193,21 +227,78 @@ class PDFSignViewController: BaseViewController {
             , PDFFields.Address : PDFFields.Address1
             , PDFFields.SalePrice : PDFFields.SalePrice1]
         
-        
+        pdfView = PDFView(frame: view.bounds, dataOrPath: pass, additionViews: additionViews)
         let na = overrideFields.keys
         for pv : PDFWidgetAnnotationView in additionViews!{
             if na.contains(pv.xname){
                 if PDFFields.Address == pv.xname{
                     pv.value = "\(pdfInfo!.nproject!)/\(pdfInfo!.zipcode!)"
+                }else if(PDFFields.Buyer == pv.xname){
+                    if (pdfInfo!.client2 != ""){
+                        pv.value = pdfInfo!.client! + " and " + pdfInfo!.client2!
+                    }else{
+                        pv.value = pdfInfo!.client!
+                    }
+                
                 }else{
                     if let a = overrideFields[pv.xname!]{
                         pv.value = pdfInfo!.valueForKey(a) as! String
                     }
                     
                 }
+            }else {
+                switch pv.xname {
+                    case PDFFields.cashportion:
+                        pv.value = pdfInfo?.cashportion!
+                    case PDFFields.financing:
+                        pv.value = pdfInfo?.financing!
+                case PDFFields.estimatedclosing_MMdd:
+                    pv.value = pdfInfo?.estimatedclosing_MMdd!
+                case PDFFields.estimatedclosing_yy:
+                    pv.value = pdfInfo?.estimatedclosing_yy!
+                case PDFFields.tobuyer1:
+                    pv.value = pdfInfo?.client!
+                case PDFFields.tobuyer2:
+                    pv.value = pdfInfo?.tobuyer2!
+                case PDFFields.tobuyer4:
+                    pv.value = pdfInfo?.bmobile1 == "" ? pdfInfo?.boffice1! : pdfInfo?.bmobile1!
+                case PDFFields.tobuyer6:
+                    pv.value = pdfInfo?.bfax1!
+                case PDFFields.tobuyer7:
+                    pv.value = pdfInfo?.bemail1!
+                case PDFFields.executeddd:
+                    pv.value = pdfInfo?.executeddd!
+                case PDFFields.executedmm:
+                    pv.value = pdfInfo?.executedmm!
+                case PDFFields.executedyy:
+                    pv.value = pdfInfo?.executedyy!
+                case PDFFields.buyer_2:
+                    pv.value = pdfInfo?.client!
+                case PDFFields.buyer_3:
+                    pv.value = pdfInfo?.client2!
+                case PDFFields.seller_3:
+                    pv.value = pdfInfo?.cianame!
+                case PDFFields.pdf2211:
+                    pv.value = pdfInfo?.trec1!
+                case PDFFields.pdf2212:
+                    pv.value = pdfInfo?.trec2!
+                case PDFFields.pdf22a3:
+                    pv.value = pdfInfo?.other! == "1" ? PDFFields.pdf22a3 : ""
+                case PDFFields.pdf22a10:
+                    pv.value = pdfInfo?.hoa! == "1" ? PDFFields.pdf22a10 : ""
+                case PDFFields.pdf22a15:
+                    pv.value = pdfInfo?.environment! == "1" ? PDFFields.pdf22a10 : ""
+                    
+                default:
+                    break
+                }
+            }
+            if let sign = pv as? SignatureView{
+                sign.pdfViewsssss = pdfView
             }
         }
-        pdfView = PDFView(frame: view.bounds, dataOrPath: pass, additionViews: additionViews)
+        
+        
         view.addSubview(pdfView!)
         
     }

@@ -22,7 +22,6 @@
 		1108B2221BFC2A66004B5D48 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1108B2211BFC2A66004B5D48 /* CoreGraphics.framework */; };
 		1108B2241BFC2A6D004B5D48 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1108B2231BFC2A6D004B5D48 /* UIKit.framework */; };
 		1108B25B1BFC4047004B5D48 /* PDFSerializer.m in Sources */ = {isa = PBXBuildFile; fileRef = 1108B2291BFC4047004B5D48 /* PDFSerializer.m */; };
-		1108B25C1BFC4047004B5D48 /* PDFViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1108B22B1BFC4047004B5D48 /* PDFViewController.m */; };
 		1108B25D1BFC4047004B5D48 /* PDFArray.m in Sources */ = {isa = PBXBuildFile; fileRef = 1108B22F1BFC4047004B5D48 /* PDFArray.m */; };
 		1108B25E1BFC4047004B5D48 /* PDFDictionary.m in Sources */ = {isa = PBXBuildFile; fileRef = 1108B2311BFC4047004B5D48 /* PDFDictionary.m */; };
 		1108B25F1BFC4047004B5D48 /* PDFName.m in Sources */ = {isa = PBXBuildFile; fileRef = 1108B2331BFC4047004B5D48 /* PDFName.m */; };
@@ -184,8 +183,6 @@
 		1108B2251BFC2B0B004B5D48 /* ILPDFKitSample-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "ILPDFKitSample-Prefix.pch"; sourceTree = "<group>"; };
 		1108B2281BFC4047004B5D48 /* PDFSerializer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PDFSerializer.h; sourceTree = "<group>"; };
 		1108B2291BFC4047004B5D48 /* PDFSerializer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PDFSerializer.m; sourceTree = "<group>"; };
-		1108B22A1BFC4047004B5D48 /* PDFViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PDFViewController.h; sourceTree = "<group>"; };
-		1108B22B1BFC4047004B5D48 /* PDFViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PDFViewController.m; sourceTree = "<group>"; };
 		1108B22E1BFC4047004B5D48 /* PDFArray.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PDFArray.h; sourceTree = "<group>"; };
 		1108B22F1BFC4047004B5D48 /* PDFArray.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PDFArray.m; sourceTree = "<group>"; };
 		1108B2301BFC4047004B5D48 /* PDFDictionary.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PDFDictionary.h; sourceTree = "<group>"; };
@@ -371,8 +368,6 @@
 			children = (
 				1108B2281BFC4047004B5D48 /* PDFSerializer.h */,
 				1108B2291BFC4047004B5D48 /* PDFSerializer.m */,
-				1108B22A1BFC4047004B5D48 /* PDFViewController.h */,
-				1108B22B1BFC4047004B5D48 /* PDFViewController.m */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -679,7 +674,6 @@
 				1108B25B1BFC4047004B5D48 /* PDFSerializer.m in Sources */,
 				1108B2641BFC4047004B5D48 /* PDFDocument.m in Sources */,
 				1108B26A1BFC4047004B5D48 /* PDFFormButtonField.m in Sources */,
-				1108B25C1BFC4047004B5D48 /* PDFViewController.m in Sources */,
 				11643C161C030B8E000E2C0A /* CConstants.swift in Sources */,
 				1108B2681BFC4047004B5D48 /* PDFObjectParser.m in Sources */,
 				1108B25D1BFC4047004B5D48 /* PDFArray.m in Sources */,

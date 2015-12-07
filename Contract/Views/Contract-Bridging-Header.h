@@ -3,7 +3,6 @@
 //
 
 #import <CommonCrypto/CommonCrypto.h>
-#import "PDFViewController.h"
 #import "cl_pdf.h"
 #import "PDFDocument.h"
 #import "PDFView.h"

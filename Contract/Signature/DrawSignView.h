@@ -10,7 +10,7 @@
 #import "MyView.h"
 #import <UIKit/UIKit.h>
 
-typedef void(^SignCallBackBlock) (UIView*);
+typedef void(^SignCallBackBlock) (UIView*image, BOOL isToAll);
 typedef void(^CallBackBlock) ();
 
 @interface DrawSignView : UIView

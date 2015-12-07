@@ -12,6 +12,8 @@
 @implementation SignatureView{
 //    CGRect cts;
     CGFloat ratios;
+    
+    
 }
 
 @synthesize lineArray, LineWidth;
@@ -56,7 +58,7 @@
 
 -(void)toSignautre{
     [self becomeFirstResponder];
-    UIMenuItem *menuItem = [[UIMenuItem alloc] initWithTitle:@"Signature" action:@selector(changeColor:)];
+    UIMenuItem *menuItem = [[UIMenuItem alloc] initWithTitle:@"Initial" action:@selector(popSignature:)];
     UIMenuController *menuCont = [UIMenuController sharedMenuController];
     [menuCont setTargetRect:self.frame inView:self.superview];
     menuCont.arrowDirection = UIMenuControllerArrowDown;
@@ -68,23 +70,33 @@
 
 - (BOOL)canBecomeFirstResponder { return YES; }
 
-- (void)changeColor:(id)sender {
-//    NSLog(@"changeColor");
+- (void)popSignature:(id)sender {
     
-    [PopSignUtil getSignWithVC:nil withOk:^(UIView *image) {
-        //        NSLog(@"image");
+    [PopSignUtil getSignWithVC:nil withOk:^(UIView *image, BOOL isToAll) {
+        CGRect ct = self.frame;
+        SignatureView *sv = (SignatureView *)image;
+        self.frame = sv.frame;
+        self.frame = ct;
+        self.lineArray = sv.lineArray;
+        self.originHeight =sv.originHeight;
+        self.LineWidth = sv.LineWidth;
         
-//        if (currentSignature) {
-            CGRect ct = self.frame;
-            SignatureView *sv = (SignatureView *)image;
-            self.frame = image.frame;
-            self.frame = ct;
-            self.lineArray = sv.lineArray;
-            self.originHeight =sv.originHeight;
-            self.LineWidth = sv.LineWidth;
+        if (isToAll) {
+            for (SignatureView *other in self.pdfViewsssss.pdfWidgetAnnotationViews) {
+                if ([other isKindOfClass:[SignatureView class]]
+                    && [other.sname hasSuffix: [self.sname substringFromIndex:2] ]){
+                    CGRect ct = other.frame;
+                    other.frame = sv.frame;
+                    other.frame = ct;
+                    other.lineArray = sv.lineArray;
+                    other.originHeight =sv.originHeight;
+                    other.LineWidth = sv.LineWidth;
+                }
+            }
+        }
+        
         [PopSignUtil closePop];
     } withCancel:^{
-//        NSLog(@"");
         [PopSignUtil closePop];
     }];
     

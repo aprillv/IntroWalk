@@ -32,4 +32,24 @@ class ContractSignature: ContractObject {
     var message: String?
     var zipcode: String?
     var county: String?
+    
+    var boffice1 : String?
+    var cashportion : String?
+    var financing : String?
+    
+    var estimatedclosing_MMdd : String?
+    var estimatedclosing_yy : String?
+    var tobuyer2 : String?
+    
+    var executeddd : String?
+    var executedmm : String?
+    var executedyy : String?
+    
+    var trec1 : String?
+    var trec2 : String?
+    
+    var hoa : String?
+    var environment : String?
+    var other : String?
+    
 }

@@ -21,10 +21,12 @@ class ContractRequestItem: NSObject {
     }
     
     func DictionaryFromObject() -> [String: String]{
-        return ["idnumber" : cInfo?.idnumber ?? ""
+        let a = ["idnumber" : cInfo?.idnumber ?? ""
             , "idcity" : cInfo?.idcity ?? ""
             , "idcia": cInfo?.idcia ?? ""
             , "code": cInfo?.code ?? ""
             , "ispdf": "0"]
+        print(a)
+        return a
     }
 }
