@@ -15,6 +15,6 @@
 @property(nonatomic,copy)CallBackBlock noB;
 
 +(void)getSignWithVC:(UIViewController *)VC withOk:(SignCallBackBlock)signCallBackBlock
-          withCancel:(CallBackBlock)callBackBlock;
+          withCancel:(CallBackBlock)callBackBlock showAll:(BOOL) show;
 +(void)closePop;
 @end

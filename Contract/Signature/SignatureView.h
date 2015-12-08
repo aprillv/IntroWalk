@@ -22,5 +22,4 @@
 //static NSMutableArray *WidthArray;
 //static int widthCount;
 -(void)toSignautre;
--(void)toSignautreWithAll:(NSArray *)allSignature;
 @end

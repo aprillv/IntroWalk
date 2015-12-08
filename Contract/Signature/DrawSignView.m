@@ -40,6 +40,10 @@ static NSMutableArray *colors;
     UISlider *penBoldSlider;
     
     UISwitch *toAllSwitch;
+    
+    UILabel *sliderLbl;
+    
+    UILabel *contentLbl;
 
 //    MyView *drawView;//画图的界面，宽高3:1
 
@@ -85,7 +89,7 @@ static NSMutableArray *colors;
 
 
     //contentLbl
-    UILabel *contentLbl = [[UILabel alloc]init];
+    contentLbl = [[UILabel alloc]init];
     contentLbl.text = @"Please print your initial here";
     contentLbl.textAlignment = NSTextAlignmentLeft;
     contentLbl.textColor = [UIColor whiteColor];
@@ -176,19 +180,22 @@ static NSMutableArray *colors;
 //    [self addSubview:sliderLbl];
 //    [sliderLbl release];
     
+    
     UISwitch *applyToAll = [[UISwitch alloc]initWithFrame:CGRectMake(40, 400, 60, 20)];
     [self addSubview:applyToAll];
     toAllSwitch = applyToAll;
     applyToAll.transform = CGAffineTransformMakeScale(0.9, 0.9);
     
-        UILabel *sliderLbl = [[UILabel alloc]init];
-        sliderLbl.text = @"Apply to all pages";
-        sliderLbl.textAlignment = NSTextAlignmentLeft;
-        sliderLbl.textColor = [UIColor whiteColor];
-        sliderLbl.frame = CGRectMake(100, 405, 220, 20);
-        sliderLbl.font = [UIFont systemFontOfSize:18.0];
-        sliderLbl.backgroundColor = [UIColor clearColor];
-        [self addSubview:sliderLbl];
+    sliderLbl = [[UILabel alloc]init];
+    sliderLbl.text = @"Apply to all pages";
+    sliderLbl.textAlignment = NSTextAlignmentLeft;
+    sliderLbl.textColor = [UIColor whiteColor];
+    sliderLbl.frame = CGRectMake(100, 405, 220, 20);
+    sliderLbl.font = [UIFont systemFontOfSize:18.0];
+    sliderLbl.backgroundColor = [UIColor clearColor];
+    [self addSubview:sliderLbl];
+    
+    
     
 
     //penBoldSlider
@@ -211,6 +218,11 @@ static NSMutableArray *colors;
 	// Do any additional setup after loading the view, typically from a nib.
 }
 
+-(void)setShowSwitch:(BOOL)showSwitch{
+    toAllSwitch.hidden = !showSwitch;
+    sliderLbl.hidden = !showSwitch;
+    contentLbl.text = showSwitch? @"Please print your initial here" : @"Please signature here";
+}
 
 -(void)changeColors:(id)sender{
     if (self.buttonHidden==YES) {

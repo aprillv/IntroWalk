@@ -91,35 +91,8 @@
         if ([formTypeString isEqualToString:@"Btn"]) {
             _formType = PDFFormTypeButton;
         } else if([formTypeString isEqualToString:@"Tx"]) {
-            if ([_name isEqualToString:@"p6bottom1"]
-               || [_name isEqualToString:@"p6bottom2"]
-                || [_name isEqualToString:@"p6bottom3"]
-                || [_name isEqualToString:@"p6bottom4"]
-                || [_name isEqualToString:@"p7bottom1"]
-                || [_name isEqualToString:@"p7bottom2"]
-                || [_name isEqualToString:@"p7bottom3"]
-                || [_name isEqualToString:@"p7bottom4"]
-                || [_name isEqualToString:@"p1bottom1"]
-                || [_name isEqualToString:@"p1bottom2"]
-                || [_name isEqualToString:@"p1bottom3"]
-                || [_name isEqualToString:@"p1bottom4"]
-                || [_name isEqualToString:@"p2bottom2"]
-                || [_name isEqualToString:@"p2bottom1"]
-                || [_name isEqualToString:@"p2bottom3"]
-                || [_name isEqualToString:@"p2bottom4"]
-                || [_name isEqualToString:@"p3bottom2"]
-                || [_name isEqualToString:@"p3bottom3"]
-                || [_name isEqualToString:@"p3bottom1"]
-                || [_name isEqualToString:@"p3bottom4"]
-                || [_name isEqualToString:@"p4bottom1"]
-                || [_name isEqualToString:@"p4bottom2"]
-                || [_name isEqualToString:@"p4bottom3"]
-                || [_name isEqualToString:@"p4bottom4"]
-                || [_name isEqualToString:@"p5bottom1"]
-                || [_name isEqualToString:@"p5bottom2"]
-                || [_name isEqualToString:@"p5bottom3"]
-                || [_name isEqualToString:@"p5bottom4"]) {
-//                isReadOnly = NO;
+            if ((_name.length == 9 &&  [[_name substringWithRange:NSMakeRange(2, 6)] isEqualToString: @"bottom"])
+                || (_name.length > 9 && [_name hasSuffix:@"Sign"])){
                 _formType = PDFFormTypeImageView;
             }else{
                 isReadOnly = NO;

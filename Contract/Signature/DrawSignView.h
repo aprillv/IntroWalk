@@ -15,7 +15,7 @@ typedef void(^CallBackBlock) ();
 
 @interface DrawSignView : UIView
 
-
+@property(nonatomic, assign) BOOL showSwitch;
 @property(nonatomic,copy)SignCallBackBlock signCallBackBlock;
 @property(nonatomic,copy)CallBackBlock cancelBlock;
 @end

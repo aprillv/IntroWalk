@@ -24,6 +24,9 @@
     if (self) {
         ratios = 1;
         self.backgroundColor = [UIColor clearColor];
+        UILongPressGestureRecognizer *gesture = [[UILongPressGestureRecognizer alloc]initWithTarget:self action:@selector(toSignautre)];
+        
+        [self addGestureRecognizer:gesture];
     }
     return self;
 }
@@ -52,19 +55,20 @@
     UITouch *theTouch = [touches anyObject];
     if ([theTouch tapCount] == 2) {
         [self toSignautre];
-        
     }
 }
 
 -(void)toSignautre{
     [self becomeFirstResponder];
-    UIMenuItem *menuItem = [[UIMenuItem alloc] initWithTitle:@"Initial" action:@selector(popSignature:)];
+    UIMenuItem *menuItem = [[UIMenuItem alloc] initWithTitle: [self.xname hasSuffix:@"Sign"]? @"Signature" : @"Initial" action:@selector(popSignature:)];
     UIMenuController *menuCont = [UIMenuController sharedMenuController];
+    
     [menuCont setTargetRect:self.frame inView:self.superview];
     menuCont.arrowDirection = UIMenuControllerArrowDown;
     menuCont.menuItems = [NSArray arrayWithObject:menuItem];
     [menuCont setMenuVisible:YES animated:YES];
 }
+
 
 - (void)touchesCancelled:(NSSet *)touches withEvent:(UIEvent *)event {}
 
@@ -98,7 +102,7 @@
         [PopSignUtil closePop];
     } withCancel:^{
         [PopSignUtil closePop];
-    }];
+    } showAll:![self.xname hasSuffix:@"Sign"]];
     
 }
 

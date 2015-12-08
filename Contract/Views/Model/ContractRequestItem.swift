@@ -10,10 +10,6 @@ import Foundation
 
 class ContractRequestItem: NSObject {
     var cInfo : ContractsItem?
-//    var idnumber: String?
-//    var idcity: String?
-//    var idcia: String?
-//    var code: String?
     
     required init(contractInfo : ContractsItem){
         super.init()
@@ -26,7 +22,6 @@ class ContractRequestItem: NSObject {
             , "idcia": cInfo?.idcia ?? ""
             , "code": cInfo?.code ?? ""
             , "ispdf": "0"]
-        print(a)
         return a
     }
 }

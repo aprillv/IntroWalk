@@ -133,12 +133,13 @@
 
 - (void)drawWithRect:(CGRect)frame context:(CGContextRef)ctx back:(BOOL)back selected:(BOOL)selected radio:(BOOL)radio {
     
-    NSArray *na = @[@"22a3", @"22a10", @"22a15"];
-    radio = [na containsObject:self.xname];
+    NSArray *na = @[@"22a32", @"22a102", @"22a152"];
+    radio = [na containsObject:self.exportValue];
     if (radio) {
         if (frame.size.width != frame.size.height) {
             frame.size.width = frame.size.height = MIN(frame.size.width, frame.size.height);
         }
+//        selected = NO;
     }
     CGFloat minDim = PDFButtonMinScaledDimension(frame);
     if (radio) {
@@ -146,34 +147,11 @@
     }
     CGPoint center = CGPointMake(frame.size.width/2,frame.size.height/2);
     CGRect rect = CGRectMake(center.x-minDim/2, center.y-minDim/2, minDim, minDim);
-//    if (back) {
-//        CGContextSaveGState(ctx);
-//        CGContextSetFillColorWithColor(ctx,PDFWidgetColor.CGColor);
-//        
-//        if (!radio) {
-//            
-//            CGContextRef context = ctx;
-//            CGFloat radius = minDim/6;
-//            CGContextMoveToPoint(context, rect.origin.x, rect.origin.y + radius);
-//            CGContextAddLineToPoint(context, rect.origin.x, rect.origin.y + rect.size.height - radius);
-//            CGContextAddArc(context, rect.origin.x + radius, rect.origin.y + rect.size.height - radius,radius, M_PI, M_PI / 2, 1);
-//            CGContextAddLineToPoint(context, rect.origin.x + rect.size.width - radius,rect.origin.y + rect.size.height);
-//            CGContextAddArc(context, rect.origin.x + rect.size.width - radius,rect.origin.y + rect.size.height - radius, radius, M_PI / 2, 0.0f, 1);
-//            CGContextAddLineToPoint(context, rect.origin.x + rect.size.width, rect.origin.y + radius);
-//            CGContextAddArc(context, rect.origin.x + rect.size.width - radius, rect.origin.y + radius,radius, 0.0f, -M_PI / 2, 1);
-//            CGContextAddLineToPoint(context, rect.origin.x + radius, rect.origin.y);
-//            CGContextAddArc(context, rect.origin.x + radius, rect.origin.y + radius, radius,-M_PI / 2, M_PI, 1);
-//            CGContextFillPath(context);
-//            
-//        } else {
-//            CGContextFillEllipseInRect(ctx, rect);
-//        }
-//        CGContextRestoreGState(ctx);
-//    }
     if (selected) {
         CGContextSaveGState(ctx);
         CGFloat margin = minDim/3;
         if (radio) {
+//            NSLog(@"===%@==%@==%@", self.xname, self.value, self.exportValue);
             CGContextSetFillColorWithColor(ctx, [UIColor blackColor].CGColor);
             CGContextTranslateCTM(ctx, rect.origin.x, rect.origin.y);
             CGFloat cw = (rect.size.width-2*margin);
@@ -184,33 +162,42 @@
             CGContextAddEllipseInRect(ctx, CGRectMake(margin-(cw*0.8), margin-(cw*0.8), cw*2.6, cw*2.6));
             CGContextSetLineWidth(ctx, rect.size.width/11);
             CGContextStrokePath(ctx);
-//            CGContextSetFillColorWithColor(ctx, [UIColor blackColor].CGColor);
-//            CGContextTranslateCTM(ctx, rect.origin.x, rect.origin.y);
-//            CGContextAddEllipseInRect(ctx, CGRectMake(margin-1, margin-1, rect.size.width-2*(margin-0.5), rect.size.height-2*(margin-0.5)));
-//            CGContextFillPath(ctx);
-//            CGContextTranslateCTM(ctx, rect.origin.x, rect.origin.y);
-//            CGFloat cw = (rect.size.width-2*(margin-0.5))*1.95;
-//            CGContextAddEllipseInRect(ctx, CGRectMake(margin-1, margin-1, cw, cw));
-//            CGContextSetLineWidth(ctx, rect.size.width/9);
-//            CGContextStrokePath(ctx);
         } else {
+//            NSLog(@"+===%@+==%@+==%@", self.xname, self.value, self.exportValue);
             CGContextTranslateCTM(ctx, rect.origin.x, rect.origin.y);
             CGContextSetLineWidth(ctx, rect.size.width/8);
             CGContextSetLineCap(ctx,kCGLineCapRound);
             CGContextSetStrokeColorWithColor(ctx, [UIColor blackColor].CGColor);
-//            CGContextMoveToPoint(ctx, margin*PDFButtonMarginScaleFactor, rect.size.height/2);
-//            CGContextAddLineToPoint(ctx, rect.size.width/2-margin/4, rect.size.height-margin);
-//            CGContextAddLineToPoint(ctx, rect.size.width-margin*PDFButtonMarginScaleFactor, margin/2);
+            //            CGContextMoveToPoint(ctx, margin*PDFButtonMarginScaleFactor, rect.size.height/2);
+            //            CGContextAddLineToPoint(ctx, rect.size.width/2-margin/4, rect.size.height-margin);
+            //            CGContextAddLineToPoint(ctx, rect.size.width-margin*PDFButtonMarginScaleFactor, margin/2);
             
             CGContextMoveToPoint(ctx, rect.origin.x + margin/4, rect.origin.y + margin/4);
             CGContextAddLineToPoint(ctx, rect.origin.x - margin + rect.size.width, rect.origin.y - margin + rect.size.height);
             CGContextMoveToPoint(ctx, rect.origin.x - margin + rect.size.width, rect.origin.y + margin/4);
             CGContextAddLineToPoint(ctx, rect.origin.x + margin/4, rect.origin.y - margin + rect.size.height);
-//            CGContextAddLineToPoint(ctx, rect.size.width-margin*PDFButtonMarginScaleFactor, margin/2);
+            //            CGContextAddLineToPoint(ctx, rect.size.width-margin*PDFButtonMarginScaleFactor, margin/2);
             
             CGContextStrokePath(ctx);
         }
         CGContextRestoreGState(ctx);
+    }else{
+//    NSLog(@"-===%@-==%@-==%@", self.xname, self.value, self.exportValue);
+        
+        CGContextSaveGState(ctx);
+        CGFloat margin = minDim/3;
+        if (radio) {
+            //            NSLog(@"===%@==%@==%@", self.xname, self.value, self.exportValue);
+            CGContextSetFillColorWithColor(ctx, [UIColor blackColor].CGColor);
+            CGFloat cw = (rect.size.width-2*margin);
+            CGContextTranslateCTM(ctx, rect.origin.x, rect.origin.y);
+            
+            CGContextAddEllipseInRect(ctx, CGRectMake(margin-(cw*0.8), margin-(cw*0.8), cw*2.6, cw*2.6));
+            CGContextSetLineWidth(ctx, rect.size.width/11);
+            CGContextStrokePath(ctx);
+        }
+        CGContextRestoreGState(ctx);
+        
     }
 }
 

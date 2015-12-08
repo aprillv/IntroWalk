@@ -61,8 +61,9 @@ class PDFSignViewController: BaseViewController {
         
         static let tobuyer2 = "tobuyer2"
         
+        static let tobuyer3 = "tobuyer3"
         static let tobuyer4 = "tobuyer4"
-        
+        static let tobuyer5 = "tobuyer5"
         static let tobuyer6 = "tobuyer6"
         
         static let tobuyer7 = "tobuyer7"
@@ -77,9 +78,14 @@ class PDFSignViewController: BaseViewController {
         static let pdf2211 = "2211"
         static let pdf2212 = "2212"
         
-        static let pdf22a15 = "22a152"
-        static let pdf22a3 = "22a32"
-        static let pdf22a10 = "22a102"
+        static let pdf22a15 = "22a15"
+        static let pdf22a3 = "22a3"
+        static let pdf22a10 = "22a10"
+        
+        static let buyer2Sign = "buyer2Sign"
+        static let buyer3Sign = "buyer3Sign"
+        static let seller2Sign = "seller2Sign"
+        static let seller3Sign = "seller3Sign"
         
     }
     
@@ -87,8 +93,7 @@ class PDFSignViewController: BaseViewController {
         navigationController?.popViewControllerAnimated(true)
     }
     @IBAction func BuyerSign(sender: UIBarButtonItem) {
-//        var theSign : SignatureView?
-//        var allSigns : [SignatureView] = [SignatureView]()
+    
         for sign0 in pdfView!.pdfWidgetAnnotationViews {
             if let sign = sign0 as? SignatureView{
                 if (    sender.tag == 1 && sign.sname.hasSuffix(PDFFields.Buyer1Signature))
@@ -97,18 +102,26 @@ class PDFSignViewController: BaseViewController {
                     || (sender.tag == 4 && sign.sname.hasSuffix(PDFFields.Seller2Signature)){
                         if CGRectIntersectsRect(sign.superview!.bounds, sign.frame) {
                             sign.toSignautre()
-//                            theSign = sign
-//                        }else{
-//                            allSigns.append(sign)
+                            return
                         }
                 }
                 
             }
         }
-        
-//        if let sign = theSign {
-//            sign.toSignautreWithAll(allSigns)
-//        }
+        for sign0 in pdfView!.pdfWidgetAnnotationViews {
+            if let sign = sign0 as? SignatureView{
+                if (    sender.tag == 1 && sign.sname == PDFFields.buyer2Sign)
+                    || (sender.tag == 2 && sign.sname == PDFFields.buyer3Sign)
+                    || (sender.tag == 3 && sign.sname == PDFFields.seller2Sign)
+                    || (sender.tag == 4 && sign.sname == PDFFields.seller3Sign){
+                        if CGRectIntersectsRect(sign.superview!.bounds, sign.frame) {
+                            sign.toSignautre()
+                            return
+                        }
+                }
+                
+            }
+        }
     }
     @IBAction func savePDF(sender: UIBarButtonItem) {
         
@@ -216,6 +229,42 @@ class PDFSignViewController: BaseViewController {
             }
             
         }
+        
+        var tobuyer3 : String
+        var tobuyer4 : String
+        if let b = pdfInfo?.bmobile1 == "" ? pdfInfo?.boffice1! : pdfInfo?.bmobile1! {
+            let a = b.componentsSeparatedByString("-")
+            if a.count > 2 {
+                tobuyer3 = a[0]
+                let index1 = b.startIndex.advancedBy(4)
+                tobuyer4 = b.substringFromIndex(index1)
+            }else{
+                tobuyer3 = ""
+                tobuyer4 = ""
+            }
+        }else{
+            tobuyer3 = ""
+            tobuyer4 = ""
+        }
+        
+        var tobuyer5 : String
+        var tobuyer6 : String
+        if let b = pdfInfo?.bfax1! {
+            let a = b.componentsSeparatedByString("-")
+            if a.count > 2 {
+                tobuyer5 = a[0]
+                let index1 = b.startIndex.advancedBy(4)
+                tobuyer6 = b.substringFromIndex(index1)
+            }else{
+                tobuyer5 = ""
+                tobuyer6 = ""
+            }
+        }else{
+            tobuyer5 = ""
+            tobuyer6 = ""
+        }
+        
+        
         var overrideFields : [String: String]
         overrideFields = [PDFFields.CompanyName : PDFFields.CompanyName1
             , PDFFields.Buyer : PDFFields.Buyer1
@@ -247,11 +296,12 @@ class PDFSignViewController: BaseViewController {
                     
                 }
             }else {
+                
                 switch pv.xname {
-                    case PDFFields.cashportion:
-                        pv.value = pdfInfo?.cashportion!
-                    case PDFFields.financing:
-                        pv.value = pdfInfo?.financing!
+                case PDFFields.cashportion:
+                    pv.value = pdfInfo?.cashportion!
+                case PDFFields.financing:
+                    pv.value = pdfInfo?.financing!
                 case PDFFields.estimatedclosing_MMdd:
                     pv.value = pdfInfo?.estimatedclosing_MMdd!
                 case PDFFields.estimatedclosing_yy:
@@ -260,10 +310,14 @@ class PDFSignViewController: BaseViewController {
                     pv.value = pdfInfo?.client!
                 case PDFFields.tobuyer2:
                     pv.value = pdfInfo?.tobuyer2!
+                case PDFFields.tobuyer3:
+                    pv.value = tobuyer3
                 case PDFFields.tobuyer4:
-                    pv.value = pdfInfo?.bmobile1 == "" ? pdfInfo?.boffice1! : pdfInfo?.bmobile1!
+                    pv.value = tobuyer4
+                case PDFFields.tobuyer5:
+                    pv.value = tobuyer5
                 case PDFFields.tobuyer6:
-                    pv.value = pdfInfo?.bfax1!
+                    pv.value = tobuyer6
                 case PDFFields.tobuyer7:
                     pv.value = pdfInfo?.bemail1!
                 case PDFFields.executeddd:
@@ -283,11 +337,26 @@ class PDFSignViewController: BaseViewController {
                 case PDFFields.pdf2212:
                     pv.value = pdfInfo?.trec2!
                 case PDFFields.pdf22a3:
-                    pv.value = pdfInfo?.other! == "1" ? PDFFields.pdf22a3 : ""
+                    if let radio = pv as? PDFFormButtonField {
+                        if radio.exportValue == pv.xname + "2" {
+                            radio.value = pdfInfo?.other! == "1" ? pv.xname + "2" : ""
+                        }
+                    }
                 case PDFFields.pdf22a10:
-                    pv.value = pdfInfo?.hoa! == "1" ? PDFFields.pdf22a10 : ""
+                    if let radio = pv as? PDFFormButtonField {
+                        if radio.exportValue == pv.xname + "2" {
+                            radio.value = pdfInfo?.hoa! == "1" ? pv.xname + "2" : ""
+                        }
+                    }
                 case PDFFields.pdf22a15:
-                    pv.value = pdfInfo?.environment! == "1" ? PDFFields.pdf22a10 : ""
+                    if let radio = pv as? PDFFormButtonField {
+                        if radio.exportValue == pv.xname + "2" {
+                            radio.value = pdfInfo?.environment! == "1" ? pv.xname + "2" : ""
+                        }
+                    }
+//                case "buyer_2", "buyer_3", "seller_2", "seller_3":
+//                case "buyer_2":
+                    
                     
                 default:
                     break
