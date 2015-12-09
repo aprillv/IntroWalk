@@ -36,7 +36,8 @@ class PDFSignViewController: BaseViewController {
         static let Section = "block2"
         static let City = "city"
         static let County = "county"
-        static let Address = "address_1"
+        static let Address_zip = "address_zip"
+        static let Address = "address"
         static let SalePrice = "saleprice"
         
         static let CompanyName1 = "cianame"
@@ -236,8 +237,15 @@ class PDFSignViewController: BaseViewController {
             let a = b.componentsSeparatedByString("-")
             if a.count > 2 {
                 tobuyer3 = a[0]
-                let index1 = b.startIndex.advancedBy(4)
-                tobuyer4 = b.substringFromIndex(index1)
+                if tobuyer3.characters.count != 3 {
+                    tobuyer3 = ""
+                    tobuyer4 = b
+                }else{
+                    let index1 = b.startIndex.advancedBy(4)
+                    tobuyer4 = b.substringFromIndex(index1)
+                }
+                
+                
             }else{
                 tobuyer3 = ""
                 tobuyer4 = ""
@@ -246,6 +254,7 @@ class PDFSignViewController: BaseViewController {
             tobuyer3 = ""
             tobuyer4 = ""
         }
+        
         
         var tobuyer5 : String
         var tobuyer6 : String
@@ -274,14 +283,22 @@ class PDFSignViewController: BaseViewController {
             , PDFFields.City : PDFFields.City1
             , PDFFields.County : PDFFields.County1
             , PDFFields.Address : PDFFields.Address1
+            , PDFFields.Address_zip : PDFFields.Address1
             , PDFFields.SalePrice : PDFFields.SalePrice1]
         
         pdfView = PDFView(frame: view.bounds, dataOrPath: pass, additionViews: additionViews)
         let na = overrideFields.keys
         for pv : PDFWidgetAnnotationView in additionViews!{
             if na.contains(pv.xname){
-                if PDFFields.Address == pv.xname{
-                    pv.value = "\(pdfInfo!.nproject!)/\(pdfInfo!.zipcode!)"
+                if PDFFields.Address_zip == pv.xname{
+                    
+                    if pdfInfo!.zipcode! != "" {
+                        pv.value = "\(pdfInfo!.nproject!)/\(pdfInfo!.zipcode!)"
+                    }else{
+                        pv.value = pdfInfo!.nproject!
+                    }
+                }else if PDFFields.Address == pv.xname{
+                    pv.value = pdfInfo!.nproject
                 }else if(PDFFields.Buyer == pv.xname){
                     if (pdfInfo!.client2 != ""){
                         pv.value = pdfInfo!.client! + " and " + pdfInfo!.client2!
@@ -299,7 +316,8 @@ class PDFSignViewController: BaseViewController {
                 
                 switch pv.xname {
                 case PDFFields.cashportion:
-                    pv.value = pdfInfo?.cashportion!
+                    pv.value = pdfInfo?.cashportion! == "" ? "0.00" : pdfInfo?.cashportion!
+                    
                 case PDFFields.financing:
                     pv.value = pdfInfo?.financing!
                 case PDFFields.estimatedclosing_MMdd:
@@ -336,19 +354,19 @@ class PDFSignViewController: BaseViewController {
                     pv.value = pdfInfo?.trec1!
                 case PDFFields.pdf2212:
                     pv.value = pdfInfo?.trec2!
-                case PDFFields.pdf22a3:
+                case PDFFields.pdf22a15:
                     if let radio = pv as? PDFFormButtonField {
                         if radio.exportValue == pv.xname + "2" {
                             radio.value = pdfInfo?.other! == "1" ? pv.xname + "2" : ""
                         }
                     }
-                case PDFFields.pdf22a10:
+                case PDFFields.pdf22a3:
                     if let radio = pv as? PDFFormButtonField {
                         if radio.exportValue == pv.xname + "2" {
                             radio.value = pdfInfo?.hoa! == "1" ? pv.xname + "2" : ""
                         }
                     }
-                case PDFFields.pdf22a15:
+                case PDFFields.pdf22a10:
                     if let radio = pv as? PDFFormButtonField {
                         if radio.exportValue == pv.xname + "2" {
                             radio.value = pdfInfo?.environment! == "1" ? pv.xname + "2" : ""

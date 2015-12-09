@@ -13,7 +13,7 @@ class ContractRequestItem: NSObject {
     
     required init(contractInfo : ContractsItem){
         super.init()
-        cInfo = contractInfo
+        cInfo = contractInfo  
     }
     
     func DictionaryFromObject() -> [String: String]{
@@ -22,6 +22,7 @@ class ContractRequestItem: NSObject {
             , "idcia": cInfo?.idcia ?? ""
             , "code": cInfo?.code ?? ""
             , "ispdf": "0"]
+        print(a)
         return a
     }
 }

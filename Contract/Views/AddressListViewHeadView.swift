@@ -10,28 +10,51 @@ import UIKit
 
 class AddressListViewHeadView: UIView {
     
-    private var CiaNmLbl: UILabel!
+    var CiaNmLbl: UILabel!
+    
     private var ProjectNmLbl: UILabel!
-    private var DateLbl: UILabel!
+    private var ConsultantLbl: UILabel!
     private var ClientLbl: UILabel!
     
     private struct constants{
-        static let CiaNM = "Company"
         static let ProjectNM = "Project"
-        static let DateS = "* Date"
+        static let Consultant = "Consultant"
         static let Client = "Client"
         static let HeadBackGroudColor = UIColor(red: 204/255.0, green: 204/255.0, blue: 204/255.0, alpha: 1)
     }
-   required init?(coder aDecoder: NSCoder) {
+    
+    required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
     }
     override init(frame: CGRect) {
         super.init(frame: frame)
-        self.backgroundColor = constants.HeadBackGroudColor
-        backView = UIView(frame: CGRect(x: 8, y: 4, width: frame.width - 16, height: 44-8))
-        backView.autoresizingMask = UIViewAutoresizing.FlexibleWidth
-        self.addSubview(backView)
-        addSubviews()
+        self.backgroundColor = CConstants.BackColor
+        
+        CiaNmLbl = UILabel()
+        self.addSubview(CiaNmLbl)
+        CiaNmLbl.font = UIFont.boldSystemFontOfSize(17)
+        CiaNmLbl.textAlignment = NSTextAlignment.Left
+        
+        ProjectNmLbl = UILabel()
+        addSubview(ProjectNmLbl)
+        ProjectNmLbl.textAlignment = .Left
+        ProjectNmLbl.text = constants.ProjectNM
+        ProjectNmLbl.font = UIFont.boldSystemFontOfSize(16)
+        
+        ConsultantLbl = UILabel()
+        addSubview(ConsultantLbl)
+        ConsultantLbl.text = constants.Consultant
+        ConsultantLbl.textAlignment = .Left
+        ConsultantLbl.font = UIFont.boldSystemFontOfSize(16)
+        
+        ClientLbl = UILabel()
+        addSubview(ClientLbl)
+        ClientLbl.textAlignment = .Left
+        ClientLbl.text = constants.Client
+        ClientLbl.font = UIFont.boldSystemFontOfSize(16)
+        
+        setDisplaySubViews()
+        
     }
     
     override func layoutSubviews() {
@@ -39,54 +62,29 @@ class AddressListViewHeadView: UIView {
         self.setDisplaySubViews()
     }
     
-    private var backView : UIView!
-    
-    private func addSubviews(){
-        CiaNmLbl = UILabel()
-        backView.addSubview(CiaNmLbl)
-        CiaNmLbl.font = UIFont.boldSystemFontOfSize(17)
-        
-        ProjectNmLbl = UILabel()
-        backView.addSubview(ProjectNmLbl)
-        ProjectNmLbl.font = UIFont.boldSystemFontOfSize(17)
-        
-        DateLbl = UILabel()
-        backView.addSubview(DateLbl)
-        DateLbl.font = UIFont.boldSystemFontOfSize(17)
-        
-        ClientLbl = UILabel()
-        backView.addSubview(ClientLbl)
-        ClientLbl.font = UIFont.boldSystemFontOfSize(17)
-        
-        //            addObserverCell()
-        SetFields()
-        setDisplaySubViews()
-    }
-    
    
     
-    func setDisplaySubViews(){
-        if backView != nil{
-            let frame = backView.frame
-            let space : CGFloat = 10.0
-            let xwidth = frame.width - space * 3
-            let xheight = frame.height
-            
-            CiaNmLbl.frame = CGRect(x: 0, y: 0, width: xwidth * 0.26, height: xheight)
-            
-            ProjectNmLbl.frame  = CGRect(x: CiaNmLbl.frame.width + space, y: 0, width: xwidth * 0.30, height: xheight)
-            
-            DateLbl.frame  = CGRect(x: ProjectNmLbl.frame.origin.x + ProjectNmLbl.frame.width + space, y: 0, width: xwidth * 0.16, height: xheight)
-            
-            ClientLbl.frame  = CGRect(x: DateLbl.frame.origin.x + DateLbl.frame.width + space, y: 0, width: xwidth * 0.28, height: xheight)
-        }
-    }
+     
     
-    func SetFields(){
-        CiaNmLbl.text = constants.CiaNM
-        ProjectNmLbl.text = constants.ProjectNM
-        DateLbl.text = constants.DateS
-        ClientLbl.text = constants.Client
+    func setDisplaySubViews(){
+        
+          CiaNmLbl.frame = CGRect(x: 8, y: 0, width: frame.width-16, height: frame.height * 0.5)
+        
+        
+        let space : CGFloat = 10.0
+        
+        let xheight = frame.height * 0.5
+        let xy = CiaNmLbl.frame.height
+        
+        let xwidth = frame.width - space * 2 - 16
+        ProjectNmLbl.frame  = CGRect(x: 8, y: xy, width: xwidth * 0.34, height: xheight)
+        
+        
+        
+        ClientLbl.frame  = CGRect(x: ProjectNmLbl.frame.origin.x + ProjectNmLbl.frame.width + space, y: xy, width: xwidth * 0.33, height: xheight)
+        
+        ConsultantLbl.frame  = CGRect(x: ClientLbl.frame.origin.x + ClientLbl.frame.width + space, y: xy, width: xwidth * 0.33, height: xheight)
+        
     }
     
 }

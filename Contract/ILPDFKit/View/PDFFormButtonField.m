@@ -152,16 +152,36 @@
         CGFloat margin = minDim/3;
         if (radio) {
 //            NSLog(@"===%@==%@==%@", self.xname, self.value, self.exportValue);
-            CGContextSetFillColorWithColor(ctx, [UIColor blackColor].CGColor);
-            CGContextTranslateCTM(ctx, rect.origin.x, rect.origin.y);
-            CGFloat cw = (rect.size.width-2*margin);
-            CGContextAddEllipseInRect(ctx, CGRectMake(margin, margin, cw, cw));
-            CGContextFillPath(ctx);
-            CGContextTranslateCTM(ctx, rect.origin.x, rect.origin.y);
+//            CGContextSetFillColorWithColor(ctx, [UIColor blackColor].CGColor);
+//            CGContextTranslateCTM(ctx, rect.origin.x, rect.origin.y);
+//            CGFloat cw = (rect.size.width-2*margin);
+//            CGContextAddEllipseInRect(ctx, CGRectMake(margin, margin, cw, cw));
+//            CGContextFillPath(ctx);
+//            CGContextTranslateCTM(ctx, rect.origin.x, rect.origin.y);
+//            
+//            CGContextAddEllipseInRect(ctx, CGRectMake(margin-(cw*0.8), margin-(cw*0.8), cw*2.6, cw*2.6));
+//            CGContextSetLineWidth(ctx, rect.size.width/11);
+//            CGContextStrokePath(ctx);
             
-            CGContextAddEllipseInRect(ctx, CGRectMake(margin-(cw*0.8), margin-(cw*0.8), cw*2.6, cw*2.6));
-            CGContextSetLineWidth(ctx, rect.size.width/11);
+            CGContextTranslateCTM(ctx, rect.origin.x, rect.origin.y);
+            CGContextSetLineWidth(ctx, rect.size.width/8);
+            CGContextSetLineCap(ctx,kCGLineCapRound);
+            CGContextSetStrokeColorWithColor(ctx, [UIColor blackColor].CGColor);
+            
+            CGContextMoveToPoint(ctx, rect.origin.x + margin/4, rect.origin.y + margin/4);
+            CGContextAddLineToPoint(ctx, rect.origin.x + rect.size.width - margin/4, rect.origin.y +margin/4);
+            CGContextAddLineToPoint(ctx, rect.origin.x + rect.size.width - margin/4, rect.origin.y + rect.size.height - margin/4);
+            CGContextAddLineToPoint(ctx, rect.origin.x + margin/4, rect.origin.y + rect.size.height - margin/4);
+            CGContextAddLineToPoint(ctx, rect.origin.x + margin/4, rect.origin.y + margin/4);
+            
+            CGContextMoveToPoint(ctx, rect.origin.x + margin, rect.origin.y + margin);
+            CGContextAddLineToPoint(ctx, rect.origin.x - margin + rect.size.width, rect.origin.y - margin + rect.size.height);
+            CGContextMoveToPoint(ctx, rect.origin.x - margin + rect.size.width, rect.origin.y + margin);
+            CGContextAddLineToPoint(ctx, rect.origin.x + margin, rect.origin.y - margin + rect.size.height);
+            //            CGContextAddLineToPoint(ctx, rect.size.width-margin*PDFButtonMarginScaleFactor, margin/2);
+            
             CGContextStrokePath(ctx);
+            
         } else {
 //            NSLog(@"+===%@+==%@+==%@", self.xname, self.value, self.exportValue);
             CGContextTranslateCTM(ctx, rect.origin.x, rect.origin.y);
@@ -181,22 +201,23 @@
             CGContextStrokePath(ctx);
         }
         CGContextRestoreGState(ctx);
-    }else{
-//    NSLog(@"-===%@-==%@-==%@", self.xname, self.value, self.exportValue);
-        
-        CGContextSaveGState(ctx);
-        CGFloat margin = minDim/3;
-        if (radio) {
-            //            NSLog(@"===%@==%@==%@", self.xname, self.value, self.exportValue);
-            CGContextSetFillColorWithColor(ctx, [UIColor blackColor].CGColor);
-            CGFloat cw = (rect.size.width-2*margin);
-            CGContextTranslateCTM(ctx, rect.origin.x, rect.origin.y);
-            
-            CGContextAddEllipseInRect(ctx, CGRectMake(margin-(cw*0.8), margin-(cw*0.8), cw*2.6, cw*2.6));
-            CGContextSetLineWidth(ctx, rect.size.width/11);
-            CGContextStrokePath(ctx);
-        }
-        CGContextRestoreGState(ctx);
+//    }else{
+////    NSLog(@"-===%@-==%@-==%@", self.xname, self.value, self.exportValue);
+//        
+//        CGContextSaveGState(ctx);
+//        CGFloat margin = minDim/3;
+//        if (radio) {
+//            //            NSLog(@"===%@==%@==%@", self.xname, self.value, self.exportValue);
+//            CGContextSetFillColorWithColor(ctx, [UIColor blackColor].CGColor);
+//            CGFloat cw = (rect.size.width-2*margin);
+//            CGContextTranslateCTM(ctx, rect.origin.x, rect.origin.y);
+//            
+//            CGContextAddEllipseInRect(ctx, CGRectMake(margin-(cw*0.8), margin-(cw*0.8), cw*2.6, cw*2.6));
+//            CGContextSetLineWidth(ctx, rect.size.width/11);
+//            CGContextStrokePath(ctx);
+//            
+//        }
+//        CGContextRestoreGState(ctx);
         
     }
 }

@@ -206,24 +206,9 @@
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="MWM-YE-Ihm" id="Dj7-R1-2es">
                                     <rect key="frame" x="0.0" y="0.0" width="600" height="43"/>
                                     <autoresizingMask key="autoresizingMask"/>
-                                    <subviews>
-                                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="dKV-kd-zYX">
-                                            <rect key="frame" x="8" y="4" width="584" height="35"/>
-                                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                                            <constraints>
-                                                <constraint firstAttribute="height" constant="35" id="asM-4W-NLk"/>
-                                            </constraints>
-                                        </view>
-                                    </subviews>
-                                    <constraints>
-                                        <constraint firstAttribute="leadingMargin" secondItem="dKV-kd-zYX" secondAttribute="leading" id="PT5-mh-NnP"/>
-                                        <constraint firstItem="dKV-kd-zYX" firstAttribute="centerX" secondItem="Dj7-R1-2es" secondAttribute="centerX" id="kCf-2l-FNb"/>
-                                        <constraint firstAttribute="trailingMargin" secondItem="dKV-kd-zYX" secondAttribute="trailing" id="q80-XQ-IOe"/>
-                                        <constraint firstItem="dKV-kd-zYX" firstAttribute="centerY" secondItem="Dj7-R1-2es" secondAttribute="centerY" id="y9z-t0-JXR"/>
-                                    </constraints>
                                 </tableViewCellContentView>
                                 <connections>
-                                    <outlet property="backView" destination="dKV-kd-zYX" id="zF3-MV-EXf"/>
+                                    <outlet property="cview" destination="Dj7-R1-2es" id="pZD-5r-zVb"/>
                                 </connections>
                             </tableViewCell>
                         </prototypes>

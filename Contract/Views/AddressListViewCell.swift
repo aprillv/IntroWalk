@@ -9,82 +9,46 @@
 import UIKit
 
 class AddressListViewCell: UITableViewCell {
-
-    private var CiaNmLbl: UILabel!
     private var ProjectNmLbl: UILabel!
-    private var DateLbl: UILabel!
+    private var ConsultantLbl: UILabel!
     private var ClientLbl: UILabel!
     
     
-    
-    @IBOutlet weak var backView: UIView!{
+    @IBOutlet weak var cview: UIView!{
         didSet{
-            CiaNmLbl = UILabel()
-            backView.addSubview(CiaNmLbl)
             
             ProjectNmLbl = UILabel()
-            backView.addSubview(ProjectNmLbl)
+            cview.addSubview(ProjectNmLbl)
             
-            DateLbl = UILabel()
-            DateLbl.textAlignment = NSTextAlignment.Right
-            backView.addSubview(DateLbl)
+            ConsultantLbl = UILabel()
+            ConsultantLbl.textAlignment = NSTextAlignment.Left
+            cview.addSubview(ConsultantLbl)
             
             ClientLbl = UILabel()
-            backView.addSubview(ClientLbl)
-            
-//            addObserverCell()
-            backView.autoresizesSubviews = true
-            
-            backView?.addObserver(self, forKeyPath: "center", options: NSKeyValueObservingOptions.Old, context: nil)
+            cview.addSubview(ClientLbl)
             setDisplaySubViews()
         }
     }
 
     
-    func addObserverCell(){
-//        removeObserverCell()
-        backView?.addObserver(self, forKeyPath: "center", options: NSKeyValueObservingOptions.Old, context: nil)
-       
-//         print("\(backView.observationInfo)")
-        
-    }
-    
-    override func observeValueForKeyPath(keyPath: String?, ofObject object: AnyObject?, change: [String : AnyObject]?, context: UnsafeMutablePointer<Void>) {
-        if keyPath == "center"{
-            self.setDisplaySubViews()
-        }
-    }
-    
-    func removeObserverCell(){
-//        print("\(backView.observationInfo)")
-//        backView?.removeObserver(self, forKeyPath: "center")
+    override func layoutSubviews() {
+        super.layoutSubviews()
+        setDisplaySubViews()
     }
     
     func setDisplaySubViews(){
-        if backView != nil{
-        let frame = backView.frame
+        
         let space : CGFloat = 10.0
         
         let xheight = frame.height
-//        let xwidth = frame.width - space * 3
-//        CiaNmLbl.frame = CGRect(x: 0, y: 0, width: xwidth * 0.26, height: xheight)
-//            ProjectNmLbl.frame  = CGRect(x: CiaNmLbl.frame.width + space, y: 0, width: xwidth * 0.30, height: xheight)
-//            
-//            DateLbl.frame  = CGRect(x: ProjectNmLbl.frame.origin.x + ProjectNmLbl.frame.width + space, y: 0, width: xwidth * 0.16, height: xheight)
-//            
-//            ClientLbl.frame  = CGRect(x: DateLbl.frame.origin.x + DateLbl.frame.width + space, y: 0, width: xwidth * 0.28, height: xheight)
-           let xwidth = frame.width - space * 2
-            CiaNmLbl.frame = CGRect(x: 0, y: 0, width: 0, height: 0)
-            ProjectNmLbl.frame  = CGRect(x: CiaNmLbl.frame.width, y: 0, width: xwidth * 0.43, height: xheight)
-            
-            
-            
-            ClientLbl.frame  = CGRect(x: ProjectNmLbl.frame.origin.x + ProjectNmLbl.frame.width + space, y: 0, width: xwidth * 0.41, height: xheight)
-            
-            DateLbl.frame  = CGRect(x: ClientLbl.frame.origin.x + ClientLbl.frame.width + space, y: 0, width: xwidth * 0.16, height: xheight)
-            
-       
-        }
+        let xwidth = frame.width - space * 2 - 16
+        ProjectNmLbl.frame  = CGRect(x: 8, y: 0, width: xwidth * 0.34, height: xheight)
+        
+        
+        
+        ClientLbl.frame  = CGRect(x: ProjectNmLbl.frame.origin.x + ProjectNmLbl.frame.width + space, y: 0, width: xwidth * 0.33, height: xheight)
+        
+        ConsultantLbl.frame  = CGRect(x: ClientLbl.frame.origin.x + ClientLbl.frame.width + space, y: 0, width: xwidth * 0.23, height: xheight)
         
         
     }
@@ -95,9 +59,8 @@ class AddressListViewCell: UITableViewCell {
     var contractInfo: ContractsItem? {
         didSet{
             if let item = contractInfo{
-                CiaNmLbl.text = item.cianame
                 ProjectNmLbl.text = item.nproject
-                DateLbl.text = item.refdate
+                ConsultantLbl.text = item.assignsales1name
                 ClientLbl.text = item.client
             }
         }

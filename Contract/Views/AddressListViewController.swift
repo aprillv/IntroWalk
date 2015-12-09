@@ -78,29 +78,7 @@ private  var spinner : UIActivityIndicatorView?
         self.tableView.separatorInset = UIEdgeInsets(top: 0, left: 8, bottom: 0, right: 8)
     }
     
-    override func viewWillAppear(animated: Bool) {
-        super.viewWillAppear(animated)
-        for cell in self.tableView.visibleCells{
-            if cell.isKindOfClass(AddressListViewCell){
-                if let cella = cell as? AddressListViewCell {
-                    cella.addObserverCell()
-                }
-                
-                
-            }
-        }
-    }
     
-    override func viewWillDisappear(animated: Bool) {
-        super.viewWillDisappear(animated)
-        for cell in self.tableView.visibleCells{
-            if cell.isKindOfClass(AddressListViewCell){
-                if let cella = cell as? AddressListViewCell {
-                    cella.removeObserverCell()
-                }
-            }
-        }
-    }
 
     
     // MARK: - Search Bar Deleagte
@@ -129,7 +107,7 @@ private  var spinner : UIActivityIndicatorView?
 
     // MARK: - Table view data source
     override func tableView(tableView1: UITableView, viewForHeaderInSection section: Int) -> UIView? {
-        let  heada = AddressListViewHeadView2(frame: CGRect(x: 0, y: 0, width: tableView1.frame.width, height: 30))
+        let  heada = AddressListViewHeadView(frame: CGRect(x: 0, y: 0, width: tableView1.frame.width, height: 44))
         let ddd = CiaNmArray?[CiaNm?[section] ?? ""]
         heada.CiaNmLbl.text = ddd?.first?.cianame ?? ""
         return heada
@@ -157,7 +135,9 @@ private  var spinner : UIActivityIndicatorView?
 //        return AddressList?.count ?? 0
     }
 
-    
+    override func tableView(tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+        return 66
+    }
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCellWithIdentifier(constants.CellIdentifier, forIndexPath: indexPath)
 
