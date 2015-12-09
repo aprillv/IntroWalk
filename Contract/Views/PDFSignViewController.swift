@@ -75,7 +75,8 @@ class PDFSignViewController: BaseViewController {
         static let executedyy = "executedyy"
         static let buyer_2 = "buyer_2"
         static let buyer_3 = "buyer_3"
-        static let seller_3 = "seller_3"
+        static let seller_2 = "seller_2"
+        //        static let seller_3 = "seller_3"
         static let pdf2211 = "2211"
         static let pdf2212 = "2212"
         
@@ -348,7 +349,7 @@ class PDFSignViewController: BaseViewController {
                     pv.value = pdfInfo?.client!
                 case PDFFields.buyer_3:
                     pv.value = pdfInfo?.client2!
-                case PDFFields.seller_3:
+                case PDFFields.seller_2:
                     pv.value = pdfInfo?.cianame!
                 case PDFFields.pdf2211:
                     pv.value = pdfInfo?.trec1!
