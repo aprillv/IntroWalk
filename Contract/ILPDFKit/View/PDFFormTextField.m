@@ -106,7 +106,8 @@
 
 - (void)updateWithZoom:(CGFloat)zoom {
     [super updateWithZoom:zoom];
-    [_textFieldOrTextView performSelector:@selector(setFont:) withObject:[UIFont systemFontOfSize:_currentFontSize = _baseFontSize*zoom]];
+    UIFont *font = [UIFont fontWithName:@"Verdana" size:_currentFontSize = _baseFontSize*zoom];
+    [_textFieldOrTextView performSelector:@selector(setFont:) withObject:font];
     [_textFieldOrTextView setNeedsDisplay];
     [self setNeedsDisplay];
 }
@@ -140,6 +141,7 @@
 
 
 - (BOOL)textView:(UITextView *)textView shouldChangeTextInRange:(NSRange)range replacementText:(NSString *)text {
+//    NSLog(@"%@", textView.font);
     CGSize contentSize = CGSizeMake(textView.bounds.size.width-PDFFormMinFontSize, CGFLOAT_MAX);
     float numLines = ceilf((textView.bounds.size.height / textView.font.lineHeight));
     NSString *newString = [textView.text stringByReplacingCharactersInRange:range withString:text];

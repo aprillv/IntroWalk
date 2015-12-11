@@ -27,6 +27,8 @@ class ContractObject : NSObject{
         if let dic = value as? [Dictionary<String, AnyObject>]{
             var tmpArray : [ContractObject] = [ContractObject]()
             for tmp0 in dic{
+//                print(GetCapitalFirstWord(key))
+                
                 let anyobjecType: AnyObject.Type = NSClassFromString(GetCapitalFirstWord(key)!)!
                 if anyobjecType is ContractObject.Type {
                     let vc = (anyobjecType as! ContractObject.Type).init(dicInfo: tmp0)

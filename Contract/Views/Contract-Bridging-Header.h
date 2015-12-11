@@ -10,3 +10,4 @@
 #import "PDFWidgetAnnotationView.h"
 #import "SignatureView.h"
 #import "PDFFormButtonField.h"
+#import "PDFFormTextField.h"

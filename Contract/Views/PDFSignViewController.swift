@@ -134,7 +134,7 @@ class PDFSignViewController: BaseViewController {
             , "username" : NSUserDefaults.standardUserDefaults().valueForKey(CConstants.LoggedUserNameKey) as? String ?? ""
             , "code" : pdfInfo!.code!
             , "file" : fileBase64String!]
-        
+        print(parame)
         if (spinner == nil){
             spinner = UIActivityIndicatorView(frame: CGRect(x: 0, y: 4, width: 50, height: 50))
             spinner?.hidesWhenStopped = true

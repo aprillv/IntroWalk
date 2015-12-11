@@ -63,6 +63,8 @@ private  var spinner : UIActivityIndicatorView?
     private struct constants{
         static let Title : String = "Address List"
         static let CellIdentifier : String = "Address Cell Identifier"
+        static let ActionTitleAddendumC : String = "Addendum C"
+        static let ActionTitleContract : String = "Contract"
     }
     
     
@@ -99,11 +101,6 @@ private  var spinner : UIActivityIndicatorView?
         }
         
     }
-    
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
-    }
 
     // MARK: - Table view data source
     override func tableView(tableView1: UITableView, viewForHeaderInSection section: Int) -> UIView? {
@@ -113,26 +110,11 @@ private  var spinner : UIActivityIndicatorView?
         return heada
     }
     
-    
-//    override func tableView(tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
-//        return 44
-//    }
     override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
         return CiaNm?.count ?? 1
     }
-//    override func tableView(tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
-//        
-//        let ddd = CiaNmArray?[CiaNm?[section] ?? ""]
-//        return ddd?.first?.cianame ?? ""
-//        
-//    }
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        // #warning Incomplete implementation, return the number of rows
-        
-//        let a = CiaNmArray?[CiaNm?[section] ?? ""]!.count ?? 0
-//        print("\(a) \(CiaNm?[section])")
         return CiaNmArray?[CiaNm?[section] ?? ""]!.count ?? 0
-//        return AddressList?.count ?? 0
     }
 
     override func tableView(tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
@@ -150,117 +132,138 @@ private  var spinner : UIActivityIndicatorView?
         return cell
     }
     
-    override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-        
-        tableView.deselectRowAtIndexPath(indexPath, animated: true)
-        let ddd = CiaNmArray?[CiaNm?[indexPath.section] ?? ""]
-       let item: ContractsItem = ddd![indexPath.row]
-        if (spinner == nil){
-            spinner = UIActivityIndicatorView(frame: CGRect(x: tableView.frame.midX - 25, y: tableView.frame.midY - 25, width: 50, height: 50))
-            tableView.addSubview(spinner!)
-            spinner?.hidesWhenStopped = true
-            spinner?.center = tableView.center
-            
+    private func getLongString(originStr : String) -> String{
+        if originStr.characters.count < 16 {
+            let tmp = "                "
+            return originStr.stringByAppendingString(tmp.substringFromIndex(originStr.endIndex))
+        }else{
+            return originStr
         }
-        
-        spinner?.startAnimating()
-        Alamofire.request(.POST,
-            CConstants.ServerURL + CConstants.ContractServiceURL,
-            parameters: ContractRequestItem(contractInfo: item).DictionaryFromObject()).responseJSON{ (response) -> Void in
-                self.spinner?.stopAnimating()
-                if response.result.isSuccess {
+    }
+    
+    // go to print Addendum C signature
+    private func doAddendumCAction(_ : UIAlertAction) -> Void {
+        if let indexPath = tableView.indexPathForSelectedRow {
+            
+            let ddd = self.CiaNmArray?[self.CiaNm?[indexPath.section] ?? ""]
+            let item: ContractsItem = ddd![indexPath.row]
+            if (self.spinner == nil){
+                self.spinner = UIActivityIndicatorView(frame: CGRect(x: tableView.frame.midX - 25, y: tableView.frame.midY - 25, width: 50, height: 50))
+                tableView.addSubview(self.spinner!)
+                self.spinner?.hidesWhenStopped = true
+                self.spinner?.center = tableView.center
                 
-                if let rtnValue = response.result.value as? [String: AnyObject]{
-                    if let msg = rtnValue["message"] as? String{
-                        if msg.isEmpty{
-                            let rtn = ContractSignature(dicInfo: rtnValue)
-//                            let pdfData = NSData(base64EncodedString: rtn.base64pdf!, options: NSDataBase64DecodingOptions(rawValue: 0))
-//                            
-//                            let pdfkey = rtn.idcia! + "_" + rtn.idcity!
-//                            let pdfCoreData = cl_pdf()
-                            self.performSegueWithIdentifier(CConstants.SegueToSignaturePdf, sender: rtn)
-//                            if let _ = pdfCoreData.getPDFByKey(pdfkey){
-//                                let pdfConr = PDFViewController(resource: "BaseContract.pdf")
-//                                pdfConr.pdfInfo = rtn
-//                                self.navigationController?.pushViewController(pdfConr, animated: true)
-                            
-//                            }else{
-//                                let pdfConr = PDFViewController(data: pdfData)
-//                                pdfConr.pdfInfo = response.result.value as! [String: String]
-//                                self.navigationController?.pushViewController(pdfConr, animated: true)
-//                            }
-                            
-                            
+            }
+            
+            self.spinner?.startAnimating()
+            Alamofire.request(.POST,
+                CConstants.ServerURL + CConstants.AddendumCServiceURL,
+                parameters: ContractRequestItem(contractInfo: item).DictionaryFromObject()).responseJSON{ (response) -> Void in
+                    self.spinner?.stopAnimating()
+                    if response.result.isSuccess {
+                        
+                        if let rtnValue = response.result.value as? [String: AnyObject]{
+                            if let msg = rtnValue["message"] as? String{
+                                if msg.isEmpty{
+                                    let rtn = ContractAddendumC(dicInfo: rtnValue)
+                                    rtn.code = item.code
+                                    self.performSegueWithIdentifier(CConstants.SegueToAddendumC, sender: rtn)
+                                    
+                                }else{
+                                    self.PopMsgWithJustOK(msg: msg)
+                                }
+                            }else{
+                                self.PopMsgWithJustOK(msg: CConstants.MsgServerError)
+                            }
                         }else{
-                            self.PopMsgWithJustOK(msg: msg)
+                            self.PopMsgWithJustOK(msg: CConstants.MsgServerError)
                         }
                     }else{
-                        self.PopMsgWithJustOK(msg: CConstants.MsgServerError)
+                        self.spinner?.stopAnimating()
+                        self.PopMsgWithJustOK(msg: CConstants.MsgNetworkError)
                     }
-                }else{
-                    self.PopMsgWithJustOK(msg: CConstants.MsgServerError)
-                }
-            }else{
-                self.spinner?.stopAnimating()
-                self.PopMsgWithJustOK(msg: CConstants.MsgNetworkError)
             }
+            tableView.deselectRowAtIndexPath(indexPath, animated: true)
         }
+    }
+    // go to print Contract signature
+    private func doContractAction(_ : UIAlertAction) -> Void {
+        if let indexPath = tableView.indexPathForSelectedRow {
+            
+            let ddd = self.CiaNmArray?[self.CiaNm?[indexPath.section] ?? ""]
+            let item: ContractsItem = ddd![indexPath.row]
+            if (self.spinner == nil){
+                self.spinner = UIActivityIndicatorView(frame: CGRect(x: tableView.frame.midX - 25, y: tableView.frame.midY - 25, width: 50, height: 50))
+                tableView.addSubview(self.spinner!)
+                self.spinner?.hidesWhenStopped = true
+                self.spinner?.center = tableView.center
+                
+            }
+            
+            self.spinner?.startAnimating()
+            Alamofire.request(.POST,
+                CConstants.ServerURL + CConstants.ContractServiceURL,
+                parameters: ContractRequestItem(contractInfo: item).DictionaryFromObject()).responseJSON{ (response) -> Void in
+                    self.spinner?.stopAnimating()
+                    if response.result.isSuccess {
+                        
+                        if let rtnValue = response.result.value as? [String: AnyObject]{
+                            if let msg = rtnValue["message"] as? String{
+                                if msg.isEmpty{
+                                    let rtn = ContractSignature(dicInfo: rtnValue)
+                                    self.performSegueWithIdentifier(CConstants.SegueToSignaturePdf, sender: rtn)
+                                    
+                                }else{
+                                    self.PopMsgWithJustOK(msg: msg)
+                                }
+                            }else{
+                                self.PopMsgWithJustOK(msg: CConstants.MsgServerError)
+                            }
+                        }else{
+                            self.PopMsgWithJustOK(msg: CConstants.MsgServerError)
+                        }
+                    }else{
+                        self.spinner?.stopAnimating()
+                        self.PopMsgWithJustOK(msg: CConstants.MsgNetworkError)
+                    }
+            }
+            tableView.deselectRowAtIndexPath(indexPath, animated: true)
+        }
+    }
+    
+    override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+        
+        let alert: UIAlertController = UIAlertController(title: nil, message: nil, preferredStyle: .Alert)
+        
+        let addendumCAction: UIAlertAction = UIAlertAction(title: getLongString(constants.ActionTitleAddendumC), style: .Default, handler: doAddendumCAction)
+        let contractAction: UIAlertAction = UIAlertAction(title: getLongString(constants.ActionTitleContract), style: .Default, handler: doContractAction)
+    let cancelAction: UIAlertAction = UIAlertAction(title: "Cancel", style: .Cancel, handler: nil)
+        
+        alert.addAction(addendumCAction)
+        alert.addAction(contractAction)
+        alert.addAction(cancelAction)
+        self.presentViewController(alert, animated: true, completion: nil)
+        
     }
     
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         if let identifier = segue.identifier {
-            if identifier == CConstants.SegueToSignaturePdf {
-                if let controller = segue.destinationViewController as? PDFSignViewController {
-                    controller.pdfInfo = sender as? ContractSignature
-                    controller.initWithResource("BaseContract.pdf")
+            switch identifier {
+            case CConstants.SegueToSignaturePdf:
+                    if let controller = segue.destinationViewController as? PDFSignViewController {
+                        controller.pdfInfo = sender as? ContractSignature
+                        controller.initWithResource("BaseContract.pdf")
+                    }
+            case CConstants.SegueToAddendumC:
+                if let controller = segue.destinationViewController as? AddendumCViewController {
+                    controller.pdfInfo = sender as? ContractAddendumC
+                    controller.initWithResource("AddendumC.pdf")
                 }
+            default:
+                break;
             }
         }
     }
-    /*
-    // Override to support conditional editing of the table view.
-    override func tableView(tableView: UITableView, canEditRowAtIndexPath indexPath: NSIndexPath) -> Bool {
-        // Return false if you do not want the specified item to be editable.
-        return true
-    }
-    */
-
-    /*
-    // Override to support editing the table view.
-    override func tableView(tableView: UITableView, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: NSIndexPath) {
-        if editingStyle == .Delete {
-            // Delete the row from the data source
-            tableView.deleteRowsAtIndexPaths([indexPath], withRowAnimation: .Fade)
-        } else if editingStyle == .Insert {
-            // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
-        }    
-    }
-    */
-
-    /*
-    // Override to support rearranging the table view.
-    override func tableView(tableView: UITableView, moveRowAtIndexPath fromIndexPath: NSIndexPath, toIndexPath: NSIndexPath) {
-
-    }
-    */
-
-    /*
-    // Override to support conditional rearranging of the table view.
-    override func tableView(tableView: UITableView, canMoveRowAtIndexPath indexPath: NSIndexPath) -> Bool {
-        // Return false if you do not want the item to be re-orderable.
-        return true
-    }
-    */
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-    }
-    */
 
     @IBAction func refreshAddressList(sender: UIRefreshControl) {
         let userInfo = NSUserDefaults.standardUserDefaults()
