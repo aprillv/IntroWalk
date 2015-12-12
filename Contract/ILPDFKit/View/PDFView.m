@@ -145,7 +145,7 @@
 
 - (void)scrollViewDidZoom:(UIScrollView *)scrollView {
     CGFloat scale = scrollView.zoomScale;
-    if (scale < 1.0f) scale = 1.0f;
+//    if (scale < 1.0f) scale = 1.0f;
     for (PDFWidgetAnnotationView *element in _pdfWidgetAnnotationViews) {
         [element updateWithZoom:scale];
     }

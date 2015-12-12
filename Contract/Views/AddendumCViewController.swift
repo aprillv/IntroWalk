@@ -242,22 +242,22 @@ class AddendumCViewController: BaseViewController {
                 }
            
         }
-        if let price = aPrice {
-            var pf : PDFFormTextField?
-            var y : CGFloat = price.frame.origin.y + price.frame.size.height + 37
-            if let list = pdfInfo?.itemlist {
-                for items in list {
-                    pf = PDFFormTextField(frame: CGRect(x: aCiaName!.frame.origin.x, y: y, width: 600, height: price.frame.size.height), multiline: false, alignment: NSTextAlignment.Left, secureEntry: false, readOnly: true)
-                    pf?.xname = "april"
-                    y = y + price.frame.size.height + 8
-                    pf?.value = items.xitem! + "    " +  items.xdescription!
-                    additionViews?.append(pf!)
-                    //                pf = PDFFormTextField()
-                    //               (391 273; 200 15)
-                    //                (521 363; 266 20)
-                }
-            }
-        }
+//        if let price = aPrice {
+//            var pf : PDFFormTextField?
+//            var y : CGFloat = price.frame.origin.y + price.frame.size.height + 37
+//            if let list = pdfInfo?.itemlist {
+//                for items in list {
+//                    pf = PDFFormTextField(frame: CGRect(x: aCiaName!.frame.origin.x, y: y, width: 600, height: price.frame.size.height), multiline: false, alignment: NSTextAlignment.Left, secureEntry: false, readOnly: true)
+//                    pf?.xname = "april"
+//                    y = y + price.frame.size.height + 8
+//                    pf?.value = items.xitem! + "    " +  items.xdescription!
+//                    additionViews?.append(pf!)
+//                    //                pf = PDFFormTextField()
+//                    //               (391 273; 200 15)
+//                    //                (521 363; 266 20)
+//                }
+//            }
+//        }
         
         pdfView = PDFView(frame: view.bounds, dataOrPath: pass, additionViews: additionViews)
         view.addSubview(pdfView!)

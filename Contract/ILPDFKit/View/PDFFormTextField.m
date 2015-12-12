@@ -106,11 +106,13 @@
 
 - (void)updateWithZoom:(CGFloat)zoom {
     [super updateWithZoom:zoom];
+    NSLog(@"%f %f %f %f %f  %f %f %f %f", zoom, self.frame.origin.x, self.frame.origin.y, self.frame.size.width, self.frame.size.height, _textFieldOrTextView.frame.origin.x, _textFieldOrTextView.frame.origin.y, _textFieldOrTextView.frame.size.width, _textFieldOrTextView.frame.size.height);
     UIFont *font = [UIFont fontWithName:@"Verdana" size:_currentFontSize = _baseFontSize*zoom];
     [_textFieldOrTextView performSelector:@selector(setFont:) withObject:font];
     [_textFieldOrTextView setNeedsDisplay];
     [self setNeedsDisplay];
 }
+
 
 - (void)refresh {
     [self setNeedsDisplay];
