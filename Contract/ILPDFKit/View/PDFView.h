@@ -37,6 +37,9 @@
  */
 @property (nonatomic, weak) PDFWidgetAnnotationView *activeWidgetAnnotationView;
 
+
+@property (nonatomic, retain) NSArray *addedAnnotationViews;
+
 /** The webview used to render the PDF.
  */
 @property (nonatomic, readonly) UIWebView *pdfView;

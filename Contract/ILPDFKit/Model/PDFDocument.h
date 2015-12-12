@@ -37,7 +37,7 @@
 
 /** The form container holding the forms for the document.
  */
-@property (nonatomic, readonly) PDFFormContainer *forms;
+@property (nonatomic, retain) PDFFormContainer *forms;
 
 /** The path for the PDF document if it was loaded from file.
  @discussion If the document was loaded from memory, documentPath is nil.
@@ -117,7 +117,7 @@
  @return The data for the static flattened PDF.
  */
 - (NSData *)savedStaticPDFData;
-
+- (NSData *)savedStaticPDFData :(NSArray *)addedview;
 /**
  @param docToAppend
  @return The PDF data of the result when the passed document is appended to the receiver.

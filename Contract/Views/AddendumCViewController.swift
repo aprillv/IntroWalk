@@ -42,19 +42,13 @@ class AddendumCViewController: BaseViewController {
         static let SubDivision  = "txtSubDivision"
         static let Price  = "txtPrice"
         
-        static let Buyer1Signature = "txtHomebuyer1Sign"
-        static let Buyer2Signature = "txtHomebuyer2Sign"
-        static let ConsultantSignature = "txtConsultantSign"
-        static let ConsultantSignatureDate = "txtConsultantDate"
-        static let Buyer1SignatureDate = "txtHomebuyer1Date"
-        static let Buyer2SignatureDate = "txtHomebuyer2Date"
-        
-        static let Buyer1SignatureLbl = "txtHomebuyer1Signlbl"
-        static let Buyer2SignatureLbl = "txtHomebuyer2Signlbl"
-        static let ConsultantSignatureLbl = "txtConsultantSignlbl"
-        static let ConsultantSignatureDateLbl = "txtConsultantSignDatelbl"
-        static let Buyer1SignatureDateLbl = "txtHomebuyer1SignDatelbl"
-        static let Buyer2SignatureDateLbl = "txtHomebuyer2SignDatelbl"
+        static let SignArray : [String] = [
+              "Homebuyer # 1 - Sign"
+            , "Homebuyer # 2 - Sign"
+            , "Consultant - Sign"
+            , "Homebuyer # 1 - Date"
+            , "Homebuyer # 1 - Date"
+            , "Consultant - Date"]
         
     }
     
@@ -94,14 +88,14 @@ class AddendumCViewController: BaseViewController {
     }
     @IBAction func savePDF(sender: UIBarButtonItem) {
         return
-        let savedPdfData = document?.savedStaticPDFData()
+        let savedPdfData = document?.savedStaticPDFData(pdfView?.addedAnnotationViews)
         let fileBase64String = savedPdfData?.base64EncodedStringWithOptions(NSDataBase64EncodingOptions.EncodingEndLineWithLineFeed)
         let parame : [String : String] = ["idcia" : pdfInfo!.idcia!
             , "idproject" : pdfInfo!.idproject!
             , "username" : NSUserDefaults.standardUserDefaults().valueForKey(CConstants.LoggedUserNameKey) as? String ?? ""
             , "code" : pdfInfo!.code!
             , "file" : fileBase64String!]
-        print(parame)
+//        print(parame)
         if (spinner == nil){
             spinner = UIActivityIndicatorView(frame: CGRect(x: 0, y: 4, width: 50, height: 50))
             spinner?.hidesWhenStopped = true
@@ -166,7 +160,6 @@ class AddendumCViewController: BaseViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         navigationItem.hidesBackButton = true
-        
         loadPDFView()
     }
     
@@ -186,18 +179,10 @@ class AddendumCViewController: BaseViewController {
         let pass = document?.documentPath ?? document?.documentData
         let margins = getMargins()
         var additionViews = document?.forms.createWidgetAnnotationViewsForSuperviewWithWidth(view.bounds.size.width, margin: margins.x, hMargin: margins.y) as? [PDFWidgetAnnotationView]
-        
-        
-        
-        
-        
         var aPrice : PDFWidgetAnnotationView?
         var aCiaName : PDFWidgetAnnotationView?
-        
+        var aStage : PDFWidgetAnnotationView?
         for pv : PDFWidgetAnnotationView in additionViews!{
-            print(pv.xname, pv.frame)
-            
-                
                 switch pv.xname {
                 case PDFFields.CompanyName:
                     aCiaName = pv
@@ -220,6 +205,7 @@ class AddendumCViewController: BaseViewController {
                     pv.value = pdfInfo?.estimatedclosing!
                 case PDFFields.StageContract:
                     pv.value = pdfInfo?.stage!
+                    aStage = pv
                 case PDFFields.JobAddress:
                     pv.value = pdfInfo?.jobaddress!
                 case PDFFields.Buyer:
@@ -231,36 +217,80 @@ class AddendumCViewController: BaseViewController {
                 case PDFFields.Price:
                     aPrice = pv
                     pv.value = pdfInfo?.price!
-//                case PDFFields.Buyer1SignatureDate:
-//                    pv.value = "fasfadfdfaffasfasdfafdasfd"
-//                    pv.frame = CGRectMake(508, 500, 190, 28)
-//                case PDFFields.ConsultantSignatureDate:
-//                    pv.value = "fasfasdfafdasfd"
-//                    pv.frame = CGRectMake(508, 300, 190, 28)
                 default:
                     break
                 }
            
         }
-//        if let price = aPrice {
-//            var pf : PDFFormTextField?
-//            var y : CGFloat = price.frame.origin.y + price.frame.size.height + 37
-//            if let list = pdfInfo?.itemlist {
-//                for items in list {
-//                    pf = PDFFormTextField(frame: CGRect(x: aCiaName!.frame.origin.x, y: y, width: 600, height: price.frame.size.height), multiline: false, alignment: NSTextAlignment.Left, secureEntry: false, readOnly: true)
-//                    pf?.xname = "april"
-//                    y = y + price.frame.size.height + 8
-//                    pf?.value = items.xitem! + "    " +  items.xdescription!
-//                    additionViews?.append(pf!)
-//                    //                pf = PDFFormTextField()
-//                    //               (391 273; 200 15)
-//                    //                (521 363; 266 20)
-//                }
-//            }
-//        }
         
-        pdfView = PDFView(frame: view.bounds, dataOrPath: pass, additionViews: additionViews)
-        view.addSubview(pdfView!)
+        var addedAnnotationViews : [PDFWidgetAnnotationView] = [PDFWidgetAnnotationView]()
+        if let price = aPrice {
+            var pf : PDFFormTextField?
+            var line : PDFWidgetAnnotationView?
+            var x : CGFloat = aCiaName!.frame.origin.x
+            var y : CGFloat = price.frame.origin.y + price.frame.size.height + 20
+            let w : CGFloat = (aStage!.frame.width + aStage!.frame.origin.x - aCiaName!.frame.origin.x)
+            var h : CGFloat = price.frame.height
+            if let list = pdfInfo?.itemlist {
+                for items in list {
+                    pf = PDFFormTextField(frame: CGRect(x: x, y: y, width: w, height: h), multiline: false, alignment: NSTextAlignment.Left, secureEntry: false, readOnly: true)
+                    pf?.xname = "april"
+                    y = y + price.frame.size.height + 2
+                    pf?.value = items.xitem! + "    " +  items.xdescription!
+                    addedAnnotationViews.append(pf!)
+                    
+                    line = PDFWidgetAnnotationView(frame: CGRect(x: pf!.frame.origin.x, y: y, width: pf!.frame.size.width, height: 0.5))
+                    line?.backgroundColor = UIColor.lightGrayColor()
+                    addedAnnotationViews.append(line!)
+                    
+                    y = y + 5.5
+                }
+            }
+            
+            y = y + 22
+            pf = PDFFormTextField(frame: CGRect(x: x, y: y, width: w, height: h), multiline: false, alignment: NSTextAlignment.Left, secureEntry: false, readOnly: true)
+            pf?.xname = "april"
+            y = y + price.frame.size.height + 2
+            pf?.value = pdfInfo?.agree!
+            addedAnnotationViews.append(pf!)
+            
+            y = y + h
+            h = w * 0.0521
+            var sign : SignatureView?
+            for i: Int in 0...5 {
+                
+                sign = SignatureView(frame: CGRect(x: x, y: y, width: w * 0.28, height: h))
+                sign?.xname = "aprilSign"
+                addedAnnotationViews.append(sign!)
+                
+                
+                line = PDFWidgetAnnotationView(frame: CGRect(x: x, y: y + h, width: w * 0.28, height: 0.5))
+                line?.backgroundColor = UIColor.lightGrayColor()
+                addedAnnotationViews.append(line!)
+                
+                pf = PDFFormTextField(frame: CGRect(x: x, y: y + h + 5 , width: w * 0.28, height: price.frame.height), multiline: false, alignment: NSTextAlignment.Left, secureEntry: false, readOnly: true)
+                pf?.xname = "april"
+                pf?.value = PDFFields.SignArray[i]
+                addedAnnotationViews.append(pf!)
+                x += w * 0.36
+                
+                if (i == 2) {
+                    x = aCiaName!.frame.origin.x
+                    y = y + w * 0.1
+                }
+                
+            }
+            
+            additionViews?.appendContentsOf(addedAnnotationViews)
+            pdfView = PDFView(frame: view.bounds, dataOrPath: pass, additionViews: additionViews)
+            pdfView?.addedAnnotationViews = addedAnnotationViews
+            view.addSubview(pdfView!)
+        }
+        
+        
+        
+        
+        
         
     }
     

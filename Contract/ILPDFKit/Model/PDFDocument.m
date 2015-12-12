@@ -28,6 +28,7 @@
 #import "PDFPage.h"
 #import "PDFUtility.h"
 #import "PDFFormButtonField.h"
+#import "PDFFormTextField.h"
 #import "PDFFormContainer.h"
 #import "PDFSerializer.h"
 #import "PDF.h"
@@ -51,6 +52,58 @@ static void renderPage(NSUInteger page, CGContextRef ctx, CGPDFDocumentRef doc, 
             CGContextTranslateCTM(ctx, correctedFrame.origin.x, correctedFrame.origin.y);
             [form vectorRenderInPDFContext:ctx forRect:correctedFrame];
             CGContextRestoreGState(ctx);
+        }
+    }
+}
+
+static void renderPage1(NSUInteger page, CGContextRef ctx, CGPDFDocumentRef doc, PDFFormContainer *forms, NSArray *viewarray) {
+    CGRect mediaRect = CGPDFPageGetBoxRect(CGPDFDocumentGetPage(doc,page), kCGPDFMediaBox);
+    CGRect cropRect = CGPDFPageGetBoxRect(CGPDFDocumentGetPage(doc,page), kCGPDFCropBox);
+    CGRect artRect = CGPDFPageGetBoxRect(CGPDFDocumentGetPage(doc,page), kCGPDFArtBox);
+    CGRect bleedRect = CGPDFPageGetBoxRect(CGPDFDocumentGetPage(doc,page), kCGPDFBleedBox);
+    UIGraphicsBeginPDFPageWithInfo(mediaRect, @{(NSString*)kCGPDFContextCropBox:[NSValue valueWithCGRect:cropRect],(NSString*)kCGPDFContextArtBox:[NSValue valueWithCGRect:artRect],(NSString*)kCGPDFContextBleedBox:[NSValue valueWithCGRect:bleedRect]});
+    CGContextSaveGState(ctx);
+    CGContextScaleCTM(ctx,1,-1);
+    CGContextTranslateCTM(ctx, 0, -mediaRect.size.height);
+    CGContextDrawPDFPage(ctx, CGPDFDocumentGetPage(doc,page));
+    CGContextRestoreGState(ctx);
+    for (PDFForm *form in forms) {
+        if (form.page == page) {
+            CGContextSaveGState(ctx);
+            CGRect frame = form.frame;
+            CGRect correctedFrame = CGRectMake(frame.origin.x-mediaRect.origin.x, mediaRect.size.height-frame.origin.y-frame.size.height-mediaRect.origin.y, frame.size.width, frame.size.height);
+            CGContextTranslateCTM(ctx, correctedFrame.origin.x, correctedFrame.origin.y);
+            [form vectorRenderInPDFContext:ctx forRect:correctedFrame];
+            CGContextRestoreGState(ctx);
+        }
+    }
+    
+    for (PDFWidgetAnnotationView *addedView in viewarray) {
+        if ([addedView isKindOfClass:[PDFFormTextField class]]) {
+            CGContextSaveGState(ctx);
+            CGRect frame = addedView.frame;
+            CGRect correctedFrame = CGRectMake(frame.origin.x + mediaRect.origin.x, frame.origin.y, frame.size.width, frame.size.height);
+            
+            PDFFormTextField *texta = (PDFFormTextField *)addedView;
+            NSString *text = texta.value;
+            //        if (self.formType == PDFFormTypeText) {
+            //            NSLog(@"%@ %@", self.name, self.value);
+            //        }
+            CGRect rect = correctedFrame;
+            UIFont *font = [UIFont systemFontOfSize:[PDFWidgetAnnotationView fontSizeForRect:rect value:texta.value multiline:NO choice:NO]];
+            UIGraphicsPushContext(ctx);
+            NSMutableParagraphStyle *paragraphStyle = [[NSMutableParagraphStyle defaultParagraphStyle] mutableCopy];
+            paragraphStyle.lineBreakMode = NSLineBreakByWordWrapping;
+            paragraphStyle.alignment = NSTextAlignmentLeft;
+            [text drawInRect:correctedFrame  withAttributes:@{NSFontAttributeName:font,NSParagraphStyleAttributeName: paragraphStyle}];
+            UIGraphicsPopContext();
+            CGContextRestoreGState(ctx);
+//        }else if(self.formType == PDFFormTypeImageView) {
+//            SignatureView *sw = (SignatureView *)_formUIElement;
+//            [sw drawInRect:rect withContext:ctx];
+//        } else if (self.formType == PDFFormTypeButton) {
+//            PDFFormButtonField *sw = (PDFFormButtonField *)_formUIElement;
+//            [sw drawWithRect:rect context:ctx back:NO selected:[self.value isEqualToString:self.exportValue] && (_flags & PDFFormFlagButtonPushButton) == 0 radio:(_flags & PDFFormFlagButtonRadio) > 0];
         }
     }
 }
@@ -161,24 +214,6 @@ static void renderPage(NSUInteger page, CGContextRef ctx, CGPDFDocumentRef doc, 
 }
 
 - (NSData *)savedStaticPDFData {
-//    NSUInteger numberOfPages = [self numberOfPages];
-////    NSMutableData *pageData = [NSMutableData data];
-////    UIGraphicsBeginPDFContextToData(pageData, CGRectZero , nil);
-//    
-//    //1>.获取沙盒路径
-//    NSString *path = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES)[0];
-//    //2>.拼接路径
-//    NSString *PDFPath = [path stringByAppendingPathComponent:@"123.pdf"];
-//    //3>.创建PDF上下文
-//    UIGraphicsBeginPDFContextToFile(PDFPath, CGRectZero, NULL);
-//    
-////    UIGraphicsBeginPDFContextToFile(@"", CGRectZero, nil);
-//    CGContextRef ctx = UIGraphicsGetCurrentContext();
-//    for (NSUInteger page = 1; page <= numberOfPages; page++) {
-//        renderPage(page, ctx, _document, self.forms);
-//    }
-//    UIGraphicsEndPDFContext();
-//    return PDFPath;
     
     NSUInteger numberOfPages = [self numberOfPages];
     NSMutableData *pageData = [NSMutableData data];
@@ -190,6 +225,19 @@ static void renderPage(NSUInteger page, CGContextRef ctx, CGPDFDocumentRef doc, 
     UIGraphicsEndPDFContext();
     return pageData;
 }
+
+- (NSData *)savedStaticPDFData :(NSArray *)addedview{
+    NSUInteger numberOfPages = [self numberOfPages];
+    NSMutableData *pageData = [NSMutableData data];
+    UIGraphicsBeginPDFContextToData(pageData, CGRectZero , nil);
+    CGContextRef ctx = UIGraphicsGetCurrentContext();
+    for (NSUInteger page = 1; page <= numberOfPages; page++) {
+        renderPage1(page, ctx, _document, self.forms, addedview);
+    }
+    UIGraphicsEndPDFContext();
+    return pageData;
+}
+
 
 
 - (NSData *)mergedDataWithDocument:(PDFDocument *)docToAppend {

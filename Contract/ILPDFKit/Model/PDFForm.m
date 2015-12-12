@@ -314,15 +314,11 @@
     _uiBaseFrame = CGRectIntegral(CGRectMake(_pageFrame.origin.x, _pageFrame.origin.y+pageOffset, _pageFrame.size.width, _pageFrame.size.height));
     switch (_formType) {
         case PDFFormTypeText:
-//            _formUIElement = [[PDFFormTextField alloc] initWithFrame:_uiBaseFrame multiline:((_flags & PDFFormFlagTextFieldMultiline) > 0) alignment:_textAlignment secureEntry:((_flags & PDFFormFlagTextFieldPassword) > 0) readOnly:((_flags & PDFFormFlagReadOnly) > 0 || isReadOnly)];
         {
-//            UIImageView *t =[[UIImageView alloc] initWithFrame:_uiBaseFrame];
-//            t.image= [UIImage imageNamed:@"img.png"];
-//            if (isReadOnly){
-                _formUIElement = [[PDFFormTextField alloc] initWithFrame:_uiBaseFrame multiline:((_flags & PDFFormFlagTextFieldMultiline) > 0) alignment:_textAlignment secureEntry:((_flags & PDFFormFlagTextFieldPassword) > 0) readOnly:((_flags & PDFFormFlagReadOnly) > 0 || isReadOnly)];
-//            }else{
-//                _formUIElement = [[PDFFormImageView alloc]initWithFrame:_uiBaseFrame];
-//            }
+            if ([self.name hasPrefix:@"txt"]) {
+                isReadOnly = YES;
+            }
+            _formUIElement = [[PDFFormTextField alloc] initWithFrame:_uiBaseFrame multiline:((_flags & PDFFormFlagTextFieldMultiline) > 0) alignment:_textAlignment secureEntry:((_flags & PDFFormFlagTextFieldPassword) > 0) readOnly:((_flags & PDFFormFlagReadOnly) > 0 || isReadOnly)];
             
         }
             
@@ -351,13 +347,13 @@
             temp.exportValue = self.exportValue;
             _formUIElement = temp;
         }
-        break;
+            break;
         case PDFFormTypeChoice:
             _formUIElement = [[PDFFormChoiceField alloc] initWithFrame:_uiBaseFrame options:_options];
-        break;
+            break;
         case PDFFormTypeSignature:
             _formUIElement = [[PDFFormSignatureField alloc] initWithFrame:_uiBaseFrame];
-        break;
+            break;
         case PDFFormTypeNone:
         default:
             break;

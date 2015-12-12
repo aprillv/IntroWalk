@@ -10,6 +10,12 @@ import UIKit
 
 class BaseViewController: UIViewController {
     
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        edgesForExtendedLayout = .None
+    }
+    
     func IsNilOrEmpty(str : String?) -> Bool{
         return str == nil || str!.isEmpty
     }

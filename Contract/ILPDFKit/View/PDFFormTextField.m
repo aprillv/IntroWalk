@@ -46,6 +46,7 @@
 
 - (instancetype)initWithFrame:(CGRect)frame multiline:(BOOL)multiline alignment:(NSTextAlignment)alignment secureEntry:(BOOL)secureEntry readOnly:(BOOL)ro {
     self = [super initWithFrame:frame];
+   
     if (self != nil) {
         
         self.opaque = NO;
@@ -76,11 +77,19 @@
             ((UITextField *)_textFieldOrTextView).autoresizingMask = UIViewAutoresizingFlexibleWidth|UIViewAutoresizingFlexibleHeight;
             [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(textChanged:) name:UITextFieldTextDidChangeNotification object:_textFieldOrTextView];
         }
+        
+        
+        
         _textFieldOrTextView.opaque = NO;
         _textFieldOrTextView.backgroundColor = [UIColor clearColor];
         _baseFontSize = [PDFWidgetAnnotationView fontSizeForRect:frame value:nil multiline:multiline choice:NO];
+        
         _currentFontSize = _baseFontSize;
-        [_textFieldOrTextView performSelector:@selector(setFont:) withObject:[UIFont systemFontOfSize:_baseFontSize]];
+        
+        UIFont *font = [UIFont fontWithName:@"Verdana" size: _baseFontSize];
+        
+        
+        [_textFieldOrTextView performSelector:@selector(setFont:) withObject:font];
         [self addSubview:_textFieldOrTextView];
     }
     return self;
@@ -106,8 +115,9 @@
 
 - (void)updateWithZoom:(CGFloat)zoom {
     [super updateWithZoom:zoom];
-    NSLog(@"%f %f %f %f %f  %f %f %f %f", zoom, self.frame.origin.x, self.frame.origin.y, self.frame.size.width, self.frame.size.height, _textFieldOrTextView.frame.origin.x, _textFieldOrTextView.frame.origin.y, _textFieldOrTextView.frame.size.width, _textFieldOrTextView.frame.size.height);
+//    NSLog(@"%f %f %f %f %f  %f %f %f %f", zoom, self.frame.origin.x, self.frame.origin.y, self.frame.size.width, self.frame.size.height, _textFieldOrTextView.frame.origin.x, _textFieldOrTextView.frame.origin.y, _textFieldOrTextView.frame.size.width, _textFieldOrTextView.frame.size.height);
     UIFont *font = [UIFont fontWithName:@"Verdana" size:_currentFontSize = _baseFontSize*zoom];
+//    NSLog(@"%@ %f", self.xname, _currentFontSize);
     [_textFieldOrTextView performSelector:@selector(setFont:) withObject:font];
     [_textFieldOrTextView setNeedsDisplay];
     [self setNeedsDisplay];
