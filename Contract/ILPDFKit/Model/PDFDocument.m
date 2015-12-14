@@ -19,7 +19,8 @@
 // LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 // OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 // THE SOFTWARE.
-
+#define UIDeviceOrientationIsPortrait(orientation)  ((orientation) == UIDeviceOrientationPortrait || (orientation) == UIDeviceOrientationPortraitUpsideDown)
+#define UIDeviceOrientationIsLandscape(orientation) ((orientation) == UIDeviceOrientationLandscapeLeft || (orientation) == UIDeviceOrientationLandscapeRight)
 #import "PDFDocument.h"
 #import "PDFForm.h"
 #import "PDFDictionary.h"
@@ -29,6 +30,7 @@
 #import "PDFUtility.h"
 #import "PDFFormButtonField.h"
 #import "PDFFormTextField.h"
+#import "SignatureView.h"
 #import "PDFFormContainer.h"
 #import "PDFSerializer.h"
 #import "PDF.h"
@@ -77,20 +79,32 @@ static void renderPage1(NSUInteger page, CGContextRef ctx, CGPDFDocumentRef doc,
             CGContextRestoreGState(ctx);
         }
     }
+    CGFloat xmargin;
+    CGFloat ymargin;
+    CGFloat factor;
+    if (UIDeviceOrientationIsPortrait([UIApplication sharedApplication].statusBarOrientation)){
+        xmargin = 9;
+        ymargin = 6.1;
+        factor = 750/612.0;
+    }else{
+        xmargin = 13;
+        ymargin = 7.25;
+        factor = 998/612.0;
+    }
     
     for (PDFWidgetAnnotationView *addedView in viewarray) {
+        CGRect frame = addedView.frame;
+        CGRect correctedFrame = CGRectMake((frame.origin.x - xmargin)/factor, (frame.origin.y-ymargin)/factor, frame.size.width/factor, frame.size.height/factor);
         if ([addedView isKindOfClass:[PDFFormTextField class]]) {
             CGContextSaveGState(ctx);
-            CGRect frame = addedView.frame;
-            CGRect correctedFrame = CGRectMake(frame.origin.x + mediaRect.origin.x, frame.origin.y, frame.size.width, frame.size.height);
+            
             
             PDFFormTextField *texta = (PDFFormTextField *)addedView;
             NSString *text = texta.value;
-            //        if (self.formType == PDFFormTypeText) {
-            //            NSLog(@"%@ %@", self.name, self.value);
-            //        }
-            CGRect rect = correctedFrame;
-            UIFont *font = [UIFont systemFontOfSize:[PDFWidgetAnnotationView fontSizeForRect:rect value:texta.value multiline:NO choice:NO]];
+//            CGRect rect = correctedFrame;
+//            NSLog(@"%f", floor(([texta currentFontSize] / factor)));
+            UIFont *font = [UIFont fontWithName:@"Verdana" size:floor(([texta currentFontSize] / factor))];
+//            UIFont *font = [UIFont systemFontOfSize:[PDFWidgetAnnotationView fontSizeForRect:rect value:texta.value multiline:NO choice:NO]];
             UIGraphicsPushContext(ctx);
             NSMutableParagraphStyle *paragraphStyle = [[NSMutableParagraphStyle defaultParagraphStyle] mutableCopy];
             paragraphStyle.lineBreakMode = NSLineBreakByWordWrapping;
@@ -98,12 +112,16 @@ static void renderPage1(NSUInteger page, CGContextRef ctx, CGPDFDocumentRef doc,
             [text drawInRect:correctedFrame  withAttributes:@{NSFontAttributeName:font,NSParagraphStyleAttributeName: paragraphStyle}];
             UIGraphicsPopContext();
             CGContextRestoreGState(ctx);
-//        }else if(self.formType == PDFFormTypeImageView) {
-//            SignatureView *sw = (SignatureView *)_formUIElement;
-//            [sw drawInRect:rect withContext:ctx];
-//        } else if (self.formType == PDFFormTypeButton) {
-//            PDFFormButtonField *sw = (PDFFormButtonField *)_formUIElement;
-//            [sw drawWithRect:rect context:ctx back:NO selected:[self.value isEqualToString:self.exportValue] && (_flags & PDFFormFlagButtonPushButton) == 0 radio:(_flags & PDFFormFlagButtonRadio) > 0];
+        }else if([addedView isKindOfClass:[SignatureView class]]) {
+            SignatureView *sw = (SignatureView *)addedView;
+            [sw drawInRect2:correctedFrame withContext:ctx];
+        }else{
+            CGContextBeginPath(ctx);
+            CGContextMoveToPoint(ctx, correctedFrame.origin.x, correctedFrame.origin.y);
+            CGContextAddLineToPoint(ctx, correctedFrame.origin.x + correctedFrame.size.width, correctedFrame.origin.y);
+            CGContextSetStrokeColorWithColor(ctx, [UIColor blackColor].CGColor);
+            CGContextSetLineWidth(ctx, correctedFrame.size.height);
+            CGContextStrokePath(ctx);
         }
     }
 }

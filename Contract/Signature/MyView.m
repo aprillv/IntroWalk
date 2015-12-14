@@ -177,9 +177,10 @@ static NSMutableArray *colors;
 //        maxy += width;
         
         NSMutableArray *na = [[NSMutableArray alloc] init];
-        NSMutableArray *na1 = [[NSMutableArray alloc] init];
+       
         CGRect ct = CGRectMake(0, 0, maxx - minx + width*2, maxy - miny + width*2);
         for (NSArray* lineArray1 in lineArray) {
+             NSMutableArray *na1 = [[NSMutableArray alloc] init];
             for (NSString* cpline in lineArray1) {
                 CGPoint sPoint=CGPointFromString(cpline);
                 sPoint.x -= minx - width;
@@ -247,6 +248,7 @@ static CGPoint MyBeganpoint;
 //    [colorArray addObject:num];
 //    pointArray=[[NSMutableArray alloc]init];
 //    NSLog(@"touches end");
+    
 }
 //电话呼入等事件取消时候发出
 -(void)touchesCancelled:(NSSet *)touches withEvent:(UIEvent *)event

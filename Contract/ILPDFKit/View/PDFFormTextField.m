@@ -41,7 +41,9 @@
     [[NSNotificationCenter defaultCenter]
     removeObserver:self];
 }
-
+-(CGFloat)currentFontSize{
+    return _currentFontSize;
+}
 #pragma mark - PDFFormTextField
 
 - (instancetype)initWithFrame:(CGRect)frame multiline:(BOOL)multiline alignment:(NSTextAlignment)alignment secureEntry:(BOOL)secureEntry readOnly:(BOOL)ro {
@@ -51,6 +53,69 @@
         
         self.opaque = NO;
 //        self.backgroundColor = ro ? [UIColor clearColor]:[UIColor lightGrayColor];
+        if (!multiline) {
+            self.layer.cornerRadius = self.frame.size.height/6;
+        }
+        _multiline = multiline;
+        Class textCls = multiline ? [UITextView class]:[UITextField class];
+        _textFieldOrTextView = [[textCls alloc] initWithFrame:CGRectMake(0, 0, frame.size.width, frame.size.height)];
+        if (secureEntry) {
+            ((UITextField *)_textFieldOrTextView).secureTextEntry = YES;
+        }
+        if (ro) {
+            _textFieldOrTextView.userInteractionEnabled = NO;
+        }
+        if (multiline) {
+            ((UITextView *)_textFieldOrTextView).textAlignment = (NSTextAlignment)alignment;
+            ((UITextView *)_textFieldOrTextView).autoresizingMask = UIViewAutoresizingFlexibleWidth|UIViewAutoresizingFlexibleHeight;
+            ((UITextView *)_textFieldOrTextView).delegate = self;
+            ((UITextView *)_textFieldOrTextView).scrollEnabled = NO;
+            [((UITextView *)_textFieldOrTextView) setTextContainerInset:UIEdgeInsetsMake(0, 0, 0, 0)];
+//            UITextView * a = ((UITextView *)_textFieldOrTextView);
+//            a setauto = NO;
+        } else {
+            ((UITextField *)_textFieldOrTextView).textAlignment = (NSTextAlignment)alignment;
+            ((UITextField *)_textFieldOrTextView).delegate = self;
+            ((UITextField *)_textFieldOrTextView).adjustsFontSizeToFitWidth = YES;
+            ((UITextField *)_textFieldOrTextView).minimumFontSize = PDFFormMinFontSize;
+            ((UITextField *)_textFieldOrTextView).autoresizingMask = UIViewAutoresizingFlexibleWidth|UIViewAutoresizingFlexibleHeight;
+            [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(textChanged:) name:UITextFieldTextDidChangeNotification object:_textFieldOrTextView];
+        }
+        
+        
+        
+        _textFieldOrTextView.opaque = NO;
+        _textFieldOrTextView.backgroundColor = [UIColor clearColor];
+        _baseFontSize = [PDFWidgetAnnotationView fontSizeForRect:frame value:nil multiline:multiline choice:NO];
+        
+        _currentFontSize = _baseFontSize;
+        
+        UIFont *font = [UIFont fontWithName:@"Verdana" size: _baseFontSize];
+        
+        
+        [_textFieldOrTextView performSelector:@selector(setFont:) withObject:font];
+        [self addSubview:_textFieldOrTextView];
+    }
+    return self;
+}
+
+
+-(void)sizeToFit{
+    [super sizeToFit];
+    if (_multiline) {
+        [_textFieldOrTextView sizeToFit];
+        _textFieldOrTextView.frame = CGRectMake(0, 0, self.frame.size.width, _textFieldOrTextView.frame.size.height+1);
+        self.frame = CGRectMake(self.frame.origin.x, self.frame.origin.y, self.frame.size.width, _textFieldOrTextView.frame.size.height+2);
+//        [self refresh];
+    }
+}
+- (instancetype)initWithFrame:(CGRect)frame multiline:(BOOL)multiline alignment:(NSTextAlignment)alignment secureEntry:(BOOL)secureEntry readOnly:(BOOL)ro withFont:(CGFloat)fontsize{
+    self = [super initWithFrame:frame];
+    
+    if (self != nil) {
+        
+        self.opaque = NO;
+        //        self.backgroundColor = ro ? [UIColor clearColor]:[UIColor lightGrayColor];
         if (!multiline) {
             self.layer.cornerRadius = self.frame.size.height/6;
         }
@@ -84,7 +149,7 @@
         _textFieldOrTextView.backgroundColor = [UIColor clearColor];
         _baseFontSize = [PDFWidgetAnnotationView fontSizeForRect:frame value:nil multiline:multiline choice:NO];
         
-        _currentFontSize = _baseFontSize;
+        _currentFontSize = _baseFontSize = fontsize;
         
         UIFont *font = [UIFont fontWithName:@"Verdana" size: _baseFontSize];
         
@@ -94,6 +159,7 @@
     }
     return self;
 }
+
 
 #pragma mark - PDFWidgetAnnotationView
 

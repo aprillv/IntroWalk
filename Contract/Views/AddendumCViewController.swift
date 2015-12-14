@@ -87,7 +87,7 @@ class AddendumCViewController: BaseViewController {
 //        }
     }
     @IBAction func savePDF(sender: UIBarButtonItem) {
-        return
+//        return
         let savedPdfData = document?.savedStaticPDFData(pdfView?.addedAnnotationViews)
         let fileBase64String = savedPdfData?.base64EncodedStringWithOptions(NSDataBase64EncodingOptions.EncodingEndLineWithLineFeed)
         let parame : [String : String] = ["idcia" : pdfInfo!.idcia!
@@ -179,7 +179,7 @@ class AddendumCViewController: BaseViewController {
         let pass = document?.documentPath ?? document?.documentData
         let margins = getMargins()
         var additionViews = document?.forms.createWidgetAnnotationViewsForSuperviewWithWidth(view.bounds.size.width, margin: margins.x, hMargin: margins.y) as? [PDFWidgetAnnotationView]
-        var aPrice : PDFWidgetAnnotationView?
+        var aPrice : PDFFormTextField?
         var aCiaName : PDFWidgetAnnotationView?
         var aStage : PDFWidgetAnnotationView?
         for pv : PDFWidgetAnnotationView in additionViews!{
@@ -215,7 +215,7 @@ class AddendumCViewController: BaseViewController {
                 case PDFFields.SubDivision:
                     pv.value = pdfInfo?.subdivision!
                 case PDFFields.Price:
-                    aPrice = pv
+                    aPrice = pv as? PDFFormTextField
                     pv.value = pdfInfo?.price!
                 default:
                     break
@@ -233,13 +233,31 @@ class AddendumCViewController: BaseViewController {
             var h : CGFloat = price.frame.height
             if let list = pdfInfo?.itemlist {
                 for items in list {
-                    pf = PDFFormTextField(frame: CGRect(x: x, y: y, width: w, height: h), multiline: false, alignment: NSTextAlignment.Left, secureEntry: false, readOnly: true)
+//                    UIFont *font = [UIFont fontWithName:@"Verdana" size:floor()];
+                    let font = floor(aPrice!.currentFontSize())
+                    let lbl = UILabel(frame: CGRect(x: 0, y: 0, width: w-30, height: h));
+                    lbl.font = UIFont(name: "Verdana", size: font)
+                    lbl.numberOfLines = 0
+                    lbl.text = items.xdescription!
+                    lbl.sizeToFit()
+                    print(lbl.frame)
+                    pf = PDFFormTextField(frame: CGRect(x: x, y: y+3, width: 20, height: h), multiline: false, alignment: NSTextAlignment.Left, secureEntry: false, readOnly: true, withFont: font)
                     pf?.xname = "april"
-                    y = y + price.frame.size.height + 2
-                    pf?.value = items.xitem! + "    " +  items.xdescription!
+                    pf?.value = items.xitem!
                     addedAnnotationViews.append(pf!)
                     
-                    line = PDFWidgetAnnotationView(frame: CGRect(x: pf!.frame.origin.x, y: y, width: pf!.frame.size.width, height: 0.5))
+                    pf = PDFFormTextField(frame: CGRect(x: x+20, y: y, width: w-20, height: h), multiline: true, alignment: NSTextAlignment.Left, secureEntry: false, readOnly: true, withFont: font)
+                    
+                    pf?.xname = "april"
+                    
+                    pf?.value = items.xdescription!
+                    addedAnnotationViews.append(pf!)
+//                    print(pf?.frame)
+                    pf?.sizeToFit()
+//                    print(pf?.frame)
+//                    pf = PDFFormTextField(frame: pf!.frame, multiline: true, alignment: NSTextAlignment.Left, secureEntry: false, readOnly: true, withFont: font)
+                    y = y + pf!.frame.height + 2
+                    line = PDFWidgetAnnotationView(frame: CGRect(x: x, y: y, width: w, height: 0.5))
                     line?.backgroundColor = UIColor.lightGrayColor()
                     addedAnnotationViews.append(line!)
                     

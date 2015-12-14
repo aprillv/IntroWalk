@@ -22,4 +22,5 @@
 //static NSMutableArray *WidthArray;
 //static int widthCount;
 -(void)toSignautre;
+-(void)drawInRect2:(CGRect)rect withContext:(CGContextRef )context;
 @end

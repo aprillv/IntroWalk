@@ -69,7 +69,7 @@
 }
 
 + (CGFloat)fontSizeForRect:(CGRect)rect value:(NSString *)value multiline:(BOOL)multiline choice:(BOOL)choice {
-    if (multiline) return PDFFormMinFontSize;
+//    if (multiline) return PDFFormMinFontSize;
     CGFloat baseSize;
     if (choice) baseSize = roundf(MIN(MAX(floorf(rect.size.height*PDFChoiceFieldBaseFontSizeToFrameHeightScaleFactor),PDFFormMinFontSize),PDFFormMaxFontSize));
     else baseSize = roundf(MAX(MIN(PDFFormMaxFontSize,MIN(rect.size.height, PDFFormMaxFontSize)*PDFTextFieldFontScaleFactor),PDFFormMinFontSize));

@@ -68,7 +68,6 @@
 		114733FB1C103053000FC8D6 /* contract1pdf_1_101.txt in Resources */ = {isa = PBXBuildFile; fileRef = 114733F01C103053000FC8D6 /* contract1pdf_1_101.txt */; };
 		11643C161C030B8E000E2C0A /* CConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11643C151C030B8E000E2C0A /* CConstants.swift */; };
 		1176D20F1BFDC67C001C1C3E /* AddressListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1176D20E1BFDC67C001C1C3E /* AddressListViewController.swift */; };
-		11A2F6481C1BE4F800935F08 /* PDFFormLine.m in Sources */ = {isa = PBXBuildFile; fileRef = 11A2F6471C1BE4F800935F08 /* PDFFormLine.m */; };
 		11A2F6541C1BF84B00935F08 /* AddendumC.pdf in Resources */ = {isa = PBXBuildFile; fileRef = 11A2F6531C1BF84B00935F08 /* AddendumC.pdf */; };
 		11D911001C1AB33D00CD018A /* ContractAddendumC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11D910FF1C1AB33D00CD018A /* ContractAddendumC.swift */; };
 		11D911021C1AB36000CD018A /* ContractAddendumCItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11D911011C1AB36000CD018A /* ContractAddendumCItem.swift */; };
@@ -248,8 +247,6 @@
 		114733F01C103053000FC8D6 /* contract1pdf_1_101.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = contract1pdf_1_101.txt; sourceTree = "<group>"; };
 		11643C151C030B8E000E2C0A /* CConstants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CConstants.swift; sourceTree = "<group>"; };
 		1176D20E1BFDC67C001C1C3E /* AddressListViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddressListViewController.swift; sourceTree = "<group>"; };
-		11A2F6461C1BE4F800935F08 /* PDFFormLine.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PDFFormLine.h; sourceTree = "<group>"; };
-		11A2F6471C1BE4F800935F08 /* PDFFormLine.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PDFFormLine.m; sourceTree = "<group>"; };
 		11A2F6531C1BF84B00935F08 /* AddendumC.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; path = AddendumC.pdf; sourceTree = "<group>"; };
 		11D910FF1C1AB33D00CD018A /* ContractAddendumC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContractAddendumC.swift; sourceTree = "<group>"; };
 		11D911011C1AB36000CD018A /* ContractAddendumCItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContractAddendumCItem.swift; sourceTree = "<group>"; };
@@ -438,8 +435,6 @@
 				1108B2571BFC4047004B5D48 /* PDFView.m */,
 				1108B2581BFC4047004B5D48 /* PDFWidgetAnnotationView.h */,
 				1108B2591BFC4047004B5D48 /* PDFWidgetAnnotationView.m */,
-				11A2F6461C1BE4F800935F08 /* PDFFormLine.h */,
-				11A2F6471C1BE4F800935F08 /* PDFFormLine.m */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -710,7 +705,6 @@
 				111B69511C191E9200970927 /* AddendumCViewController.swift in Sources */,
 				110CE6A61C03F3370096E630 /* ContractSignatureError.swift in Sources */,
 				1108B2631BFC4047004B5D48 /* PDFString.m in Sources */,
-				11A2F6481C1BE4F800935F08 /* PDFFormLine.m in Sources */,
 				1108B1BA1BFC2691004B5D48 /* Contract.xcdatamodeld in Sources */,
 				1107C09C1C0C3B530041D8D7 /* cl_pdf.m in Sources */,
 				1108B2601BFC4047004B5D48 /* PDFNull.m in Sources */,

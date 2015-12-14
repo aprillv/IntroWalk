@@ -164,4 +164,61 @@
     
 }
 
+-(void)drawInRect2:(CGRect)rect withContext:(CGContextRef )context{
+    if (self.originHeight > 0) {
+        //        ratios = MIN(frame.size.width/self.frame.size.width, frame.size.height/self.frame.size.height);
+        ratios = rect.size.height/self.originHeight;
+    }else{
+        ratios = 1;
+    }
+    
+    
+    CGFloat prex = 2;
+    //    CGContextRef context=UIGraphicsGetCurrentContext();
+    CGContextBeginPath(context);
+    CGContextSetLineWidth(context, LineWidth*ratios);
+    //线条拐角样式，设置为平滑
+    CGContextSetLineJoin(context,kCGLineJoinRound);
+    //线条开始样式，设置为平滑
+    CGContextSetLineCap(context, kCGLineCapRound);
+    //    CGContextSetLineCap(context, kCGLineJoinRound);
+    //查看lineArray数组里是否有线条，有就将之前画的重绘，没有只画当前线条
+    if ([lineArray count]>0) {
+        //        self.backgroundColor = [UIColor redColor];
+        for (int i=0; i<[lineArray count]; i++) {
+            NSArray * array=[NSArray
+                             arrayWithArray:[lineArray objectAtIndex:i]];
+            
+            if ([array count]>0)
+            {
+                CGContextBeginPath(context);
+                CGPoint myStartPoint=CGPointFromString([array objectAtIndex:0]);
+                CGContextMoveToPoint(context, myStartPoint.x*ratios+prex + rect.origin.x, myStartPoint.y*ratios +rect.origin.y);
+                
+                for (int j=0; j<[array count]-1; j++)
+                {
+                    CGPoint myEndPoint=CGPointFromString([array objectAtIndex:j+1]);
+                    //--------------------------------------------------------
+                    CGContextAddLineToPoint(context, myEndPoint.x*ratios+prex+ rect.origin.x,myEndPoint.y*ratios+ rect.origin.y);
+                }
+                //获取colorArray数组里的要绘制线条的颜色
+                
+                UIColor *lineColor=[UIColor blackColor];
+                //获取WidthArray数组里的要绘制线条的宽度
+                
+                //设置线条的颜色，要取uicolor的CGColor
+                CGContextSetStrokeColorWithColor(context,[lineColor CGColor]);
+                //-------------------------------------------------------
+                //设置线条宽度
+                CGContextSetLineWidth(context, LineWidth*ratios);
+                //保存自己画的
+                CGContextStrokePath(context);
+            }
+        }
+    }
+    
+    
+}
+
+
 @end
