@@ -17,6 +17,7 @@ class AddendumCViewController: BaseViewController {
     var pdfInfo : ContractAddendumC?
     var spinner : UIActivityIndicatorView?
     var progressBar : UIAlertController?
+    var sender: UIBarButtonItem?
     
     private struct PDFFields{
         
@@ -55,36 +56,26 @@ class AddendumCViewController: BaseViewController {
     @IBAction func goBack(sender: UIBarButtonItem) {
         navigationController?.popViewControllerAnimated(true)
     }
-    @IBAction func BuyerSign(sender: UIBarButtonItem) {
+    @IBAction func BuyerSign(sender0: UIBarButtonItem) {
+        sender = sender0;
+        self.pdfView!.pdfView.scrollView.scrollRectToVisible(CGRect(x: 0, y: self.pdfView!.pdfView.scrollView.contentSize.height - self.pdfView!.pdfView.scrollView.frame.size.height, width: 100, height: self.pdfView!.pdfView.scrollView.frame.size.height), animated: true)
+        NSTimer.scheduledTimerWithTimeInterval(0.3, target: self, selector: "signature", userInfo: sender, repeats: false)
         
-//        for sign0 in pdfView!.pdfWidgetAnnotationViews {
-//            if let sign = sign0 as? SignatureView{
-//                if (    sender.tag == 1 && sign.sname.hasSuffix(PDFFields.Buyer1Signature))
-//                    || (sender.tag == 2 && sign.sname.hasSuffix(PDFFields.Buyer2Signature))
-//                    || (sender.tag == 3 && sign.sname.hasSuffix(PDFFields.Seller1Signature))
-//                    || (sender.tag == 4 && sign.sname.hasSuffix(PDFFields.Seller2Signature)){
-//                        if CGRectIntersectsRect(sign.superview!.bounds, sign.frame) {
-//                            sign.toSignautre()
-//                            return
-//                        }
-//                }
-//                
-//            }
-//        }
-//        for sign0 in pdfView!.pdfWidgetAnnotationViews {
-//            if let sign = sign0 as? SignatureView{
-//                if (    sender.tag == 1 && sign.sname == PDFFields.buyer2Sign)
-//                    || (sender.tag == 2 && sign.sname == PDFFields.buyer3Sign)
-//                    || (sender.tag == 3 && sign.sname == PDFFields.seller2Sign)
-//                    || (sender.tag == 4 && sign.sname == PDFFields.seller3Sign){
-//                        if CGRectIntersectsRect(sign.superview!.bounds, sign.frame) {
-//                            sign.toSignautre()
-//                            return
-//                        }
-//                }
-//                
-//            }
-//        }
+    }
+    func signature(){
+        for sign0 in pdfView!.pdfWidgetAnnotationViews {
+            if let sign = sign0 as? SignatureView{
+                if (    sender!.tag == 1 && sign.xname.hasSuffix("0Sign"))
+                    || (sender!.tag == 2 && sign.xname.hasSuffix("1Sign"))
+                    || (sender!.tag == 3 && sign.xname.hasSuffix("2Sign")) {
+                        if CGRectIntersectsRect(sign.superview!.bounds, sign.frame) {
+                            sign.toSignautre()
+                            return
+                        }
+                }
+                
+            }
+        }
     }
     @IBAction func savePDF(sender: UIBarButtonItem) {
 //        return
@@ -233,30 +224,31 @@ class AddendumCViewController: BaseViewController {
             var h : CGFloat = price.frame.height
             if let list = pdfInfo?.itemlist {
                 for items in list {
-//                    UIFont *font = [UIFont fontWithName:@"Verdana" size:floor()];
+                    
                     let font = floor(aPrice!.currentFontSize())
-                    let lbl = UILabel(frame: CGRect(x: 0, y: 0, width: w-30, height: h));
-                    lbl.font = UIFont(name: "Verdana", size: font)
-                    lbl.numberOfLines = 0
-                    lbl.text = items.xdescription!
-                    lbl.sizeToFit()
-                    print(lbl.frame)
-                    pf = PDFFormTextField(frame: CGRect(x: x, y: y+3, width: 20, height: h), multiline: false, alignment: NSTextAlignment.Left, secureEntry: false, readOnly: true, withFont: font)
+                    pf = PDFFormTextField(frame: CGRect(x: x, y: y+1, width: 30, height: h), multiline: false, alignment: NSTextAlignment.Left, secureEntry: false, readOnly: true, withFont: font)
                     pf?.xname = "april"
                     pf?.value = items.xitem!
                     addedAnnotationViews.append(pf!)
                     
-                    pf = PDFFormTextField(frame: CGRect(x: x+20, y: y, width: w-20, height: h), multiline: true, alignment: NSTextAlignment.Left, secureEntry: false, readOnly: true, withFont: font)
-                    
-                    pf?.xname = "april"
-                    
-                    pf?.value = items.xdescription!
-                    addedAnnotationViews.append(pf!)
-//                    print(pf?.frame)
-                    pf?.sizeToFit()
-//                    print(pf?.frame)
-//                    pf = PDFFormTextField(frame: pf!.frame, multiline: true, alignment: NSTextAlignment.Left, secureEntry: false, readOnly: true, withFont: font)
-                    y = y + pf!.frame.height + 2
+                    let textView = UITextView(frame: CGRect(x: 0, y: 0, width: w-30, height: h))
+                    textView.scrollEnabled = false
+                    textView.font = UIFont(name: "Verdana", size: font)
+                    textView.text = items.xdescription!
+                    textView.sizeToFit()
+                    textView.layoutManager.enumerateLineFragmentsForGlyphRange(NSMakeRange(0, items.xdescription!.characters.count), usingBlock: { (rect, usedRect, textContainer, glyphRange, _) -> Void in
+                        if  let a : NSString = items.xdescription! as NSString {
+//                        print("----" + a.substringWithRange(glyphRange))
+                            pf = PDFFormTextField(frame: CGRect(x: x+30, y: y, width: w-30, height: h), multiline: false, alignment: NSTextAlignment.Left, secureEntry: false, readOnly: true, withFont: font)
+                            pf?.xname = "april"
+                            pf?.value = a.substringWithRange(glyphRange)
+                            addedAnnotationViews.append(pf!)
+                            pf?.sizeToFit()
+                            y = y + pf!.frame.height
+                            
+                        }
+                    })
+                    y = y + 2
                     line = PDFWidgetAnnotationView(frame: CGRect(x: x, y: y, width: w, height: 0.5))
                     line?.backgroundColor = UIColor.lightGrayColor()
                     addedAnnotationViews.append(line!)
@@ -278,7 +270,8 @@ class AddendumCViewController: BaseViewController {
             for i: Int in 0...5 {
                 
                 sign = SignatureView(frame: CGRect(x: x, y: y, width: w * 0.28, height: h))
-                sign?.xname = "aprilSign"
+                sign?.xname = "april" + "\(i)" + "Sign"
+                
                 addedAnnotationViews.append(sign!)
                 
                 

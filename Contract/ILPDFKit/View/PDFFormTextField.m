@@ -69,10 +69,8 @@
             ((UITextView *)_textFieldOrTextView).textAlignment = (NSTextAlignment)alignment;
             ((UITextView *)_textFieldOrTextView).autoresizingMask = UIViewAutoresizingFlexibleWidth|UIViewAutoresizingFlexibleHeight;
             ((UITextView *)_textFieldOrTextView).delegate = self;
-            ((UITextView *)_textFieldOrTextView).scrollEnabled = NO;
-            [((UITextView *)_textFieldOrTextView) setTextContainerInset:UIEdgeInsetsMake(0, 0, 0, 0)];
-//            UITextView * a = ((UITextView *)_textFieldOrTextView);
-//            a setauto = NO;
+            ((UITextView *)_textFieldOrTextView).scrollEnabled = YES;
+            [((UITextView *)_textFieldOrTextView) setTextContainerInset:UIEdgeInsetsMake(4, 4, 4, 4)];
         } else {
             ((UITextField *)_textFieldOrTextView).textAlignment = (NSTextAlignment)alignment;
             ((UITextField *)_textFieldOrTextView).delegate = self;
@@ -132,8 +130,8 @@
             ((UITextView *)_textFieldOrTextView).textAlignment = (NSTextAlignment)alignment;
             ((UITextView *)_textFieldOrTextView).autoresizingMask = UIViewAutoresizingFlexibleWidth|UIViewAutoresizingFlexibleHeight;
             ((UITextView *)_textFieldOrTextView).delegate = self;
-            ((UITextView *)_textFieldOrTextView).scrollEnabled = YES;
-            [((UITextView *)_textFieldOrTextView) setTextContainerInset:UIEdgeInsetsMake(4, 4, 4, 4)];
+            ((UITextView *)_textFieldOrTextView).scrollEnabled = NO;
+            [((UITextView *)_textFieldOrTextView) setTextContainerInset:UIEdgeInsetsMake(0, 0, 0, 0)];
         } else {
             ((UITextField *)_textFieldOrTextView).textAlignment = (NSTextAlignment)alignment;
             ((UITextField *)_textFieldOrTextView).delegate = self;
@@ -171,6 +169,8 @@
     }
     [self.delegate widgetAnnotationValueChanged:self];
     [_textFieldOrTextView performSelector:@selector(setText:) withObject:value];
+    
+    
     [self refresh];
 }
 
@@ -182,7 +182,7 @@
 - (void)updateWithZoom:(CGFloat)zoom {
     [super updateWithZoom:zoom];
 //    NSLog(@"%f %f %f %f %f  %f %f %f %f", zoom, self.frame.origin.x, self.frame.origin.y, self.frame.size.width, self.frame.size.height, _textFieldOrTextView.frame.origin.x, _textFieldOrTextView.frame.origin.y, _textFieldOrTextView.frame.size.width, _textFieldOrTextView.frame.size.height);
-    UIFont *font = [UIFont fontWithName:@"Verdana" size:_currentFontSize = _baseFontSize*zoom];
+    UIFont *font = [UIFont fontWithName:@"Verdana" size:_currentFontSize = (_baseFontSize*zoom)];
 //    NSLog(@"%@ %f", self.xname, _currentFontSize);
     [_textFieldOrTextView performSelector:@selector(setFont:) withObject:font];
     [_textFieldOrTextView setNeedsDisplay];
@@ -219,7 +219,7 @@
 
 
 - (BOOL)textView:(UITextView *)textView shouldChangeTextInRange:(NSRange)range replacementText:(NSString *)text {
-//    NSLog(@"%@", textView.font);
+//    NSLog(@"%@", text);
     CGSize contentSize = CGSizeMake(textView.bounds.size.width-PDFFormMinFontSize, CGFLOAT_MAX);
     float numLines = ceilf((textView.bounds.size.height / textView.font.lineHeight));
     NSString *newString = [textView.text stringByReplacingCharactersInRange:range withString:text];

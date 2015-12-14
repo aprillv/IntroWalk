@@ -597,12 +597,12 @@
                             </barButtonItem>
                             <barButtonItem tag="1" title="Buyer1" id="738-yL-khA">
                                 <connections>
-                                    <action selector="BuyerSign:" destination="evC-Xi-Ufn" id="HMI-r1-GUh"/>
+                                    <action selector="BuyerSign:" destination="evC-Xi-Ufn" id="fK5-1Y-LjY"/>
                                 </connections>
                             </barButtonItem>
                             <barButtonItem tag="2" title="Buyer2" id="uei-WI-dfA">
                                 <connections>
-                                    <action selector="BuyerSign:" destination="evC-Xi-Ufn" id="WPd-4Q-SjV"/>
+                                    <action selector="BuyerSign:" destination="evC-Xi-Ufn" id="mLn-Af-Zv3"/>
                                 </connections>
                             </barButtonItem>
                         </leftBarButtonItems>
@@ -612,9 +612,9 @@
                                     <action selector="savePDF:" destination="evC-Xi-Ufn" id="fIH-O9-sRF"/>
                                 </connections>
                             </barButtonItem>
-                            <barButtonItem tag="4" title="Consultant" id="ErF-dg-L0L">
+                            <barButtonItem tag="3" title="Consultant" id="ErF-dg-L0L">
                                 <connections>
-                                    <action selector="BuyerSign:" destination="evC-Xi-Ufn" id="PS4-yB-3Vh"/>
+                                    <action selector="BuyerSign:" destination="evC-Xi-Ufn" id="p0M-Sl-UtQ"/>
                                 </connections>
                             </barButtonItem>
                         </rightBarButtonItems>
