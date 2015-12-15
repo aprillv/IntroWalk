@@ -82,14 +82,25 @@ static void renderPage1(NSUInteger page, CGContextRef ctx, CGPDFDocumentRef doc,
     CGFloat xmargin;
     CGFloat ymargin;
     CGFloat factor;
+    
     if (UIDeviceOrientationIsPortrait([UIApplication sharedApplication].statusBarOrientation)){
         xmargin = 9;
         ymargin = 6.1;
-        factor = 750/612.0;
+        if ([UIScreen mainScreen].bounds.size.width > 1024 || [UIScreen mainScreen].bounds.size.height > 1024) {
+            factor = 1006/612.0;
+        }else{
+            factor = 750/612.0;
+        }
+        
     }else{
         xmargin = 13;
         ymargin = 7.25;
-        factor = 998/612.0;
+        if ([UIScreen mainScreen].bounds.size.width > 1024 || [UIScreen mainScreen].bounds.size.height > 1024) {
+            factor = 1340/612.0;
+        }else{
+            factor = 998/612.0;
+        }
+        
     }
     
     for (PDFWidgetAnnotationView *addedView in viewarray) {
@@ -103,7 +114,7 @@ static void renderPage1(NSUInteger page, CGContextRef ctx, CGPDFDocumentRef doc,
             NSString *text = texta.value;
 //            CGRect rect = correctedFrame;
 //            NSLog(@"%f", floor(([texta currentFontSize] / factor)));
-            UIFont *font = [UIFont fontWithName:@"Verdana" size:floor(([texta currentFontSize] / factor))];
+            UIFont *font = [UIFont fontWithName:@"Verdana" size:(([texta currentFontSize] / factor))];
 //            UIFont *font = [UIFont systemFontOfSize:[PDFWidgetAnnotationView fontSizeForRect:rect value:texta.value multiline:NO choice:NO]];
             UIGraphicsPushContext(ctx);
             NSMutableParagraphStyle *paragraphStyle = [[NSMutableParagraphStyle defaultParagraphStyle] mutableCopy];
@@ -119,7 +130,7 @@ static void renderPage1(NSUInteger page, CGContextRef ctx, CGPDFDocumentRef doc,
             CGContextBeginPath(ctx);
             CGContextMoveToPoint(ctx, correctedFrame.origin.x, correctedFrame.origin.y);
             CGContextAddLineToPoint(ctx, correctedFrame.origin.x + correctedFrame.size.width, correctedFrame.origin.y);
-            CGContextSetStrokeColorWithColor(ctx, [UIColor blackColor].CGColor);
+            CGContextSetStrokeColorWithColor(ctx, [UIColor darkGrayColor].CGColor);
             CGContextSetLineWidth(ctx, correctedFrame.size.height);
             CGContextStrokePath(ctx);
         }

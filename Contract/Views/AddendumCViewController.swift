@@ -85,7 +85,8 @@ class AddendumCViewController: BaseViewController {
             , "idproject" : pdfInfo!.idproject!
             , "username" : NSUserDefaults.standardUserDefaults().valueForKey(CConstants.LoggedUserNameKey) as? String ?? ""
             , "code" : pdfInfo!.code!
-            , "file" : fileBase64String!]
+            , "file" : fileBase64String!
+            , "filetype" : pdfInfo!.jobaddress! + "_AddendumC_FromApp"]
 //        print(parame)
         if (spinner == nil){
             spinner = UIActivityIndicatorView(frame: CGRect(x: 0, y: 4, width: 50, height: 50))

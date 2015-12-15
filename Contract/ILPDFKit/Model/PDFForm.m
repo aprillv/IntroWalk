@@ -19,7 +19,7 @@
 // LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 // OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 // THE SOFTWARE.
-
+#define UIDeviceOrientationIsPortrait(orientation)  ((orientation) == UIDeviceOrientationPortrait || (orientation) == UIDeviceOrientationPortraitUpsideDown)
 #import "PDF.h"
 #import "PDFFormButtonField.h"
 #import "PDFFormTextField.h"
@@ -283,10 +283,18 @@
     if ((_annotFlags & PDFAnnotationFlagInvisible) > 0) return nil;
     if ((_annotFlags & PDFAnnotationFlagNoView) > 0) return nil;
     CGFloat width = _cropBox.size.width;
+    
+    CGFloat height = _cropBox.size.height;
     CGFloat maxWidth = width;
+//    CGFloat maxHeight = height;
     for (PDFPage *pg in self.parent.document.pages) {
+//        NSLog(@"==== %f %f", [pg cropBox].size.width, [pg cropBox].size.height);
         if([pg cropBox].size.width > maxWidth) maxWidth = [pg cropBox].size.width;
+//        NSLog(@"==== %f %f", [pg cropBox].size.width, [pg cropBox].size.height);
+//        if([pg cropBox].size.height > maxHeight) maxHeight = [pg cropBox].size.height;
     }
+    
+    
     /*
      vwidth-2*xmargin = pixel width of canvas on screen for full screen scaled page
      xmargin = pixel width of grey border between canvas and edge of UIWebView for full scaled page.
@@ -295,25 +303,43 @@
      Thus hmargin is the horizonal pixel margin from the border of the screen to the beginning of the page canvas.
      */
     CGFloat hmargin = ((maxWidth-width)/2)*((vwidth-2*xmargin)/maxWidth)+xmargin;
-    CGFloat height = _cropBox.size.height;
+//    CGFloat vmargin = ((maxHeight-height)/2)*((vwidth-2*xmargin)/maxWidth)+xmargin;
+    
     CGRect correctedFrame = CGRectMake(_frame.origin.x-_cropBox.origin.x, height-_frame.origin.y-_frame.size.height-_cropBox.origin.y, _frame.size.width, _frame.size.height);
     CGFloat realWidth = vwidth-2*hmargin;
     CGFloat factor = realWidth/width;
+    CGFloat factor2;
+   
+    if ([UIScreen mainScreen].bounds.size.height > 1024 || [UIScreen mainScreen].bounds.size.width > 1024) {
+        if (UIDeviceOrientationIsPortrait([UIApplication sharedApplication].statusBarOrientation)){
+            factor2 = 1.632378;
+        }else{
+            ymargin = 2.5;
+            factor2 = 2.182430;
+            factor = factor - 0.0015;
+        }
+      
+    }else{
+        factor2 = factor;
+    }
+    
     CGFloat pageOffset = 0;
     for (NSUInteger c = 0; c < self.page-1; c++) {
         PDFPage *pg = self.parent.document.pages[c];
-        CGFloat iwidth = [pg cropBox].size.width;
-        CGFloat ihmargin = ((maxWidth-iwidth)/2)*((vwidth-2*xmargin)/maxWidth)+xmargin;
+//        CGFloat iwidth = [pg cropBox].size.width;
+//        CGFloat ihmargin = ((maxWidth-iwidth)/2)*((vwidth-2*xmargin)/maxWidth)+xmargin;
         CGFloat iheight = [pg cropBox].size.height;
-        CGFloat irealWidth = vwidth-2*ihmargin;
-        CGFloat ifactor = irealWidth/iwidth;
-        pageOffset+= iheight*ifactor+ymargin;
+//        CGFloat irealWidth = vwidth-2*ihmargin;
+//        CGFloat ifactor = irealWidth/iwidth;
+        pageOffset+= iheight*factor2+ymargin;
     }
-    _pageFrame =  CGRectIntegral(CGRectMake(correctedFrame.origin.x*factor+hmargin, correctedFrame.origin.y*factor+ymargin, correctedFrame.size.width*factor, correctedFrame.size.height*factor));
+//    _pageFrame =  CGRectIntegral(CGRectMake(correctedFrame.origin.x*factor+hmargin, correctedFrame.origin.y*factor+ymargin, correctedFrame.size.width*factor, correctedFrame.size.height*factor));
+ _pageFrame =  CGRectMake(correctedFrame.origin.x*factor + hmargin, correctedFrame.origin.y*factor2+ymargin, correctedFrame.size.width*factor, correctedFrame.size.height*factor2);
     if (_formUIElement) {
         _formUIElement = nil;
     }
-    _uiBaseFrame = CGRectIntegral(CGRectMake(_pageFrame.origin.x, _pageFrame.origin.y+pageOffset, _pageFrame.size.width, _pageFrame.size.height));
+//    _uiBaseFrame = CGRectIntegral(CGRectMake(_pageFrame.origin.x, _pageFrame.origin.y+pageOffset, _pageFrame.size.width, _pageFrame.size.height));
+    _uiBaseFrame = CGRectMake(_pageFrame.origin.x, _pageFrame.origin.y+pageOffset, _pageFrame.size.width, _pageFrame.size.height);
     switch (_formType) {
         case PDFFormTypeText:
         {
@@ -339,9 +365,6 @@
             if (_setAppearanceStream) {
                 if ([_setAppearanceStream rangeOfString:@"ZaDb"].location != NSNotFound && [_setAppearanceStream rangeOfString:@"(l)"].location!=NSNotFound)radio = YES;
             }
-            
-            
-            
             PDFFormButtonField *temp = [[PDFFormButtonField alloc] initWithFrame:_uiBaseFrame radio:radio];
             temp.noOff = ((_flags & PDFFormFlagButtonNoToggleToOff) > 0);
             temp.name = self.name;

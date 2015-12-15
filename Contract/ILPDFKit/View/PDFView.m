@@ -49,7 +49,6 @@
 //        _pdfView.backgroundColor = [UIColor whiteColor];
          [self addSubview: _pdfView];
         
-        
         _pdfView.scalesPageToFit = YES;
         _pdfView.scrollView.delegate = self;
         _pdfView.scrollView.bouncesZoom = NO;
@@ -112,15 +111,13 @@
 }
 
 #pragma mark - UIWebViewDelegate
-
 - (void)webViewDidFinishLoad:(UIWebView *)webView {
     [spinner stopAnimating];
-    
     _pdfWidgetAnnotationViews = [[NSMutableArray alloc] initWithArray:nwidgetAnnotationViews];
     for (PDFWidgetAnnotationView *element in _pdfWidgetAnnotationViews) {
         element.alpha = 0;
         element.parentView = self;
-        [_pdfView.scrollView addSubview:element];
+        [_pdfView.scrollView addSubview: element];
         if ([element isKindOfClass:[PDFFormButtonField class]]) {
             [(PDFFormButtonField*)element setButtonSuperview];
         }
@@ -133,6 +130,9 @@
     if (_pdfWidgetAnnotationViews) {
         [self fadeInWidgetAnnotations];
     }
+    
+//    NSLog(@"%f == %f == %f", webView.scrollView.contentSize.width, webView.scrollView.contentSize.height, (webView.scrollView.contentSize.height - 25)/9/792);
+    
 }
 
 //- (BOOL)webView:(UIWebView *)webView shouldStartLoadWithRequest:(NSURLRequest *)request navigationType:(UIWebViewNavigationType)navigationType;
@@ -145,19 +145,11 @@
 
 - (void)scrollViewDidZoom:(UIScrollView *)scrollView {
     CGFloat scale = scrollView.zoomScale;
-//    if (scale < 1.0f) scale = 1.0f;
     for (PDFWidgetAnnotationView *element in _pdfWidgetAnnotationViews) {
         [element updateWithZoom:scale];
     }
 }
-//- (nullable UIView *)viewForZoomingInScrollView:(UIScrollView *)scrollView{
-//    for (UIView *im in scrollView.subviews) {
-//        if ([im isKindOfClass:[PDFFormImageView class]]){
-//            return im;
-//        }
-//    }
-//    return NULL;
-//}
+
 - (void)scrollViewDidScroll:(UIScrollView *)scrollView {
 }
 

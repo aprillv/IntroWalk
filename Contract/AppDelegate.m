@@ -21,24 +21,26 @@
 //    [application registerUserNotificationSettings:[UIUserNotificationSettings settingsForTypes:(UIUserNotificationTypeSound | UIUserNotificationTypeAlert | UIUserNotificationTypeBadge) categories:nil]];
 //    
 //    [application registerForRemoteNotifications];
+    
+//    [UIApplication sharedApplication] maiins
     return YES;
 }
 
 -(void)application:(UIApplication *)application didRegisterForRemoteNotificationsWithDeviceToken:(NSData *)deviceToken{
-    NSLog(@"%@", [[NSString alloc] initWithData:deviceToken encoding:NSUTF8StringEncoding]);
+//    NSLog(@"%@", [[NSString alloc] initWithData:deviceToken encoding:NSUTF8StringEncoding]);
 }
 - (void)application:(UIApplication *)app didFailToRegisterForRemoteNotificationsWithError:(NSError *)err {
     
-    NSString *str = [NSString stringWithFormat: @"Error: %@", err];
-    NSLog(str);
+//    NSString *str = [NSString stringWithFormat: @"Error: %@", err];
+//    NSLog(str);
     
 }
 
 - (void)application:(UIApplication *)application didReceiveRemoteNotification:(NSDictionary *)userInfo {
     
-    for (id key in userInfo) {
-        NSLog(@"key: %@, value: %@", key, [userInfo objectForKey:key]);
-    }
+//    for (id key in userInfo) {
+//        NSLog(@"key: %@, value: %@", key, [userInfo objectForKey:key]);
+//    }
     
 }
 

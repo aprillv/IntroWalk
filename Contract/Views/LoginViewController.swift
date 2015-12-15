@@ -249,6 +249,7 @@ class LoginViewController: BaseViewController, UITextFieldDelegate {
     // MARK: Life cycle
     override func viewDidLoad() {
         super.viewDidLoad()
+        print(view.frame.size)
         setSignInBtn()
     }
     
