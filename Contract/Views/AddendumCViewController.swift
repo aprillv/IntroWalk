@@ -93,7 +93,7 @@ class AddendumCViewController: BaseViewController {
             spinner?.hidesWhenStopped = true
             spinner?.activityIndicatorViewStyle = .Gray
         }
-        
+
         progressBar = UIAlertController(title: nil, message: PDFFields.SavedMsg, preferredStyle: .Alert)
         progressBar?.view.addSubview(spinner!)
         
@@ -231,6 +231,7 @@ class AddendumCViewController: BaseViewController {
                     pf?.xname = "april"
                     pf?.value = items.xitem!
                     addedAnnotationViews.append(pf!)
+//                    print( "number \(pf?.frame) \(y)")
                     
                     let textView = UITextView(frame: CGRect(x: 0, y: 0, width: w-30, height: h))
                     textView.scrollEnabled = false
@@ -244,17 +245,18 @@ class AddendumCViewController: BaseViewController {
                             pf?.xname = "april"
                             pf?.value = a.substringWithRange(glyphRange)
                             addedAnnotationViews.append(pf!)
-                            pf?.sizeToFit()
+//                            pf?.sizeToFit()
                             y = y + pf!.frame.height
+//                            print( "text \(pf?.frame)")
                             
                         }
                     })
-                    y = y + 2
-                    line = PDFWidgetAnnotationView(frame: CGRect(x: x, y: y, width: w, height: 0.5))
+                    y = y + 4
+                    line = PDFWidgetAnnotationView(frame: CGRect(x: x, y: y, width: w, height: 1))
                     line?.backgroundColor = UIColor.lightGrayColor()
                     addedAnnotationViews.append(line!)
-                    
-                    y = y + 5.5
+//                    print( "line \(line?.frame) \(y)")
+                    y = y + 3.5
                 }
             }
             
@@ -276,11 +278,11 @@ class AddendumCViewController: BaseViewController {
                 addedAnnotationViews.append(sign!)
                 
                 
-                line = PDFWidgetAnnotationView(frame: CGRect(x: x, y: y + h, width: w * 0.28, height: 0.5))
+                line = PDFWidgetAnnotationView(frame: CGRect(x: x, y: y + 2+h, width: w * 0.28, height: 1))
                 line?.backgroundColor = UIColor.lightGrayColor()
                 addedAnnotationViews.append(line!)
                 
-                pf = PDFFormTextField(frame: CGRect(x: x, y: y + h + 5 , width: w * 0.28, height: price.frame.height), multiline: false, alignment: NSTextAlignment.Left, secureEntry: false, readOnly: true)
+                pf = PDFFormTextField(frame: CGRect(x: x, y: y + h + 3 , width: w * 0.28, height: price.frame.height), multiline: false, alignment: NSTextAlignment.Left, secureEntry: false, readOnly: true)
                 pf?.xname = "april"
                 pf?.value = PDFFields.SignArray[i]
                 addedAnnotationViews.append(pf!)

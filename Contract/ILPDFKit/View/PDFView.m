@@ -118,6 +118,7 @@
         element.alpha = 0;
         element.parentView = self;
         [_pdfView.scrollView addSubview: element];
+//        NSLog(@"%@", element);
         if ([element isKindOfClass:[PDFFormButtonField class]]) {
             [(PDFFormButtonField*)element setButtonSuperview];
         }

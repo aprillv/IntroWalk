@@ -131,7 +131,8 @@ static void renderPage1(NSUInteger page, CGContextRef ctx, CGPDFDocumentRef doc,
             CGContextMoveToPoint(ctx, correctedFrame.origin.x, correctedFrame.origin.y);
             CGContextAddLineToPoint(ctx, correctedFrame.origin.x + correctedFrame.size.width, correctedFrame.origin.y);
             CGContextSetStrokeColorWithColor(ctx, [UIColor darkGrayColor].CGColor);
-            CGContextSetLineWidth(ctx, correctedFrame.size.height);
+//            CGContextSetLineWidth(ctx, correctedFrame.size.height);
+            CGContextSetLineWidth(ctx, 0.5);
             CGContextStrokePath(ctx);
         }
     }

@@ -65,7 +65,11 @@
 
 - (void)updateWithZoom:(CGFloat)zoom {
     _zoomScale = zoom;
-    self.frame = CGRectMake(_baseFrame.origin.x*zoom,_baseFrame.origin.y*zoom,_baseFrame.size.width*zoom,_baseFrame.size.height*zoom);
+    self.frame = CGRectMake(_baseFrame.origin.x*zoom
+                            , _baseFrame.origin.y*zoom
+                            , _baseFrame.size.width*zoom
+                            , _baseFrame.size.height*zoom);
+//    NSLog(@"fasdfsdfdfafasdf");
 }
 
 + (CGFloat)fontSizeForRect:(CGRect)rect value:(NSString *)value multiline:(BOOL)multiline choice:(BOOL)choice {
