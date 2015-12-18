@@ -264,7 +264,7 @@ class AddendumCViewController: BaseViewController {
                         pf?.value = description
                         addedAnnotationViews.append(pf!)
                         //                            pf?.sizeToFit()
-                        y = y + pf!.frame.height + 1
+                        y = y + pf!.frame.height
                         //                            print( "text \(pf?.frame)")
                     }
                     
@@ -273,7 +273,7 @@ class AddendumCViewController: BaseViewController {
                     line?.backgroundColor = UIColor.lightGrayColor()
                     addedAnnotationViews.append(line!)
 //                    print( "line \(line?.frame) \(y)")
-                    y = y + 3.5
+                    y = y + 5.5
                     
                     if has2Pages && y+50 > (aPrice2!.frame.origin.y - aPrice!.frame.origin.y) {
                         has2Pages = false
