@@ -257,7 +257,33 @@ private  var spinner : UIActivityIndicatorView?
             case CConstants.SegueToAddendumC:
                 if let controller = segue.destinationViewController as? AddendumCViewController {
                     controller.pdfInfo = sender as? ContractAddendumC
-                    controller.initWithResource("AddendumC.pdf")
+                    var itemList = [[String]]()
+                    var i = 0
+                    if let list = controller.pdfInfo?.itemlist {
+                        for items in list {
+                            
+                            var itemList1 = [String]()
+                            let textView = UITextView(frame: CGRect(x: 0, y: 0, width: 657.941, height: 13.2353))
+                            textView.scrollEnabled = false
+                            textView.font = UIFont(name: "Verdana", size: 11.0)
+                            textView.text = items.xdescription!
+                            textView.sizeToFit()
+                            textView.layoutManager.enumerateLineFragmentsForGlyphRange(NSMakeRange(0, items.xdescription!.characters.count), usingBlock: { (rect, usedRect, textContainer, glyphRange, _) -> Void in
+                                if  let a : NSString = items.xdescription! as NSString {
+                                    
+                                    i++
+                                    itemList1.append(a.substringWithRange(glyphRange))
+                                }
+                            })
+//                            itemList1.append("april test")
+                            itemList.append(itemList1)
+                        }
+                    }
+                    controller.pdfInfo!.itemlistStr = itemList
+                    
+                    let pass = i > 19 ? "AddendumC2.pdf" : "AddendumC.pdf"
+                    
+                    controller.initWithResource(pass)
                 }
             default:
                 break;

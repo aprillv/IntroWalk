@@ -30,6 +30,7 @@ class ContractAddendumC : ContractObject {
     var price: String?
     var agree: String?
     var itemlist:[ItemlistItem]?
+    var itemlistStr:[[String]]?
     var found: String?
     var message: String?
     var code: String?
