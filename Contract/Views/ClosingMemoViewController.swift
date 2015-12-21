@@ -67,63 +67,14 @@ class ClosingMemoViewController: PDFBaseViewController {
         static let XType = "txtType"
         static let Amount = "txtAmount"
         
-        
+        static let SavedFileName = "ClosingMemo"
     }
     
     
     
     @IBAction override func savePDF(sender: UIBarButtonItem) {
-        //        return
-        let savedPdfData = document?.savedStaticPDFData(pdfView?.addedAnnotationViews)
-        let fileBase64String = savedPdfData?.base64EncodedStringWithOptions(NSDataBase64EncodingOptions.EncodingEndLineWithLineFeed)
-        let parame : [String : String] = ["idcia" : pdfInfo!.idcia!
-            , "idproject" : pdfInfo!.idproject!
-            , "username" : NSUserDefaults.standardUserDefaults().valueForKey(CConstants.LoggedUserNameKey) as? String ?? ""
-            , "code" : pdfInfo!.code!
-            , "file" : fileBase64String!
-            , "filetype" : pdfInfo!.jobAddress! + "_ClosingMemo_FromApp"]
-        //        print(parame)
-        if (spinner == nil){
-            spinner = UIActivityIndicatorView(frame: CGRect(x: 0, y: 4, width: 50, height: 50))
-            spinner?.hidesWhenStopped = true
-            spinner?.activityIndicatorViewStyle = .Gray
-        }
-        
-        progressBar = UIAlertController(title: nil, message: CConstants.SavedMsg, preferredStyle: .Alert)
-        progressBar?.view.addSubview(spinner!)
-        
-        spinner?.startAnimating()
-        self.presentViewController(progressBar!, animated: true, completion: nil)
-        
-        Alamofire.request(.POST,
-            CConstants.ServerURL + CConstants.ContractUploadPdfURL,
-            parameters: parame).responseJSON{ (response) -> Void in
-                self.spinner?.stopAnimating()
-                self.spinner?.removeFromSuperview()
-                if response.result.isSuccess {
-                    if let rtnValue = response.result.value as? [String: String]{
-                        if rtnValue["status"] == "success" {
-                            self.progressBar?.message = CConstants.SavedSuccessMsg
-                        }else{
-                            self.progressBar?.message = CConstants.SavedFailMsg
-                        }
-                    }else{
-                        self.progressBar?.message = CConstants.MsgServerError
-                    }
-                }else{
-                    self.progressBar?.message = CConstants.MsgNetworkError
-                }
-                self.performSelector("dismissProgress", withObject: nil, afterDelay: 0.5)
-        }
-        
+        savePDFToServer(PDFFields.SavedFileName)
     }
-    
-    
-    
-   
-    
-    
-    
     override func loadPDFView(){
         
         let pass = document?.documentPath ?? document?.documentData

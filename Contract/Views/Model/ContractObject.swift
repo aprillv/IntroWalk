@@ -22,7 +22,7 @@ class ContractObject : NSObject{
     }
     
     
-    override func setValue(value: AnyObject?, forKey key: String) {
+    override func setValue(value0: AnyObject?, forKey key: String) {
         var skey : String
 //        if key == "description" {
 //            skey = "cdescription"
@@ -30,21 +30,24 @@ class ContractObject : NSObject{
             skey = key
 //        }
 //        print("\(skey)")
-        if let dic = value as? [Dictionary<String, AnyObject>]{
-            var tmpArray : [ContractObject] = [ContractObject]()
-            for tmp0 in dic{
-//                print(GetCapitalFirstWord(key))
-                
-                let anyobjecType: AnyObject.Type = NSClassFromString(GetCapitalFirstWord(skey)!)!
-                if anyobjecType is ContractObject.Type {
-                    let vc = (anyobjecType as! ContractObject.Type).init(dicInfo: tmp0)
-                    tmpArray.append(vc)
+        if let value = value0{
+            if let dic = value as? [Dictionary<String, AnyObject>]{
+                var tmpArray : [ContractObject] = [ContractObject]()
+                for tmp0 in dic{
+                    //                print(GetCapitalFirstWord(key))
+                    
+                    let anyobjecType: AnyObject.Type = NSClassFromString(GetCapitalFirstWord(skey)!)!
+                    if anyobjecType is ContractObject.Type {
+                        let vc = (anyobjecType as! ContractObject.Type).init(dicInfo: tmp0)
+                        tmpArray.append(vc)
+                    }
                 }
+                super.setValue(tmpArray, forKey: skey)
+            }else{
+                super.setValue(value, forKey: skey as String)
             }
-            super.setValue(tmpArray, forKey: skey)
-        }else{
-            super.setValue(value, forKey: skey as String)
         }
+        
         
     }
     

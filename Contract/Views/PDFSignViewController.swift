@@ -85,6 +85,8 @@ class PDFSignViewController: PDFBaseViewController {
         static let seller2Sign = "seller2Sign"
         static let seller3Sign = "seller3Sign"
         
+          static let SavedFileName = "Contract"
+        
     }
     
     @IBAction func BuyerSign(sender: UIBarButtonItem) {
@@ -120,7 +122,7 @@ class PDFSignViewController: PDFBaseViewController {
     }
     @IBAction override func savePDF(sender: UIBarButtonItem) {
         
-        savePDFToServer("Contract")
+        savePDFToServer(PDFFields.SavedFileName)
     }
    
     

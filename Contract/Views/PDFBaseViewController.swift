@@ -98,7 +98,12 @@ class PDFBaseViewController: BaseViewController {
             , "code" : pdfInfo0!.code!
             ,"filetype" : pdfInfo0!.nproject! + "_\(xname)_FromApp"]
         
-        let savedPdfData = document?.savedStaticPDFData()
+        var savedPdfData: NSData?
+        if let added = pdfView?.addedAnnotationViews{
+            savedPdfData = document?.savedStaticPDFData(added)
+        }else{
+            savedPdfData = document?.savedStaticPDFData()
+        }
         let fileBase64String = savedPdfData?.base64EncodedStringWithOptions(NSDataBase64EncodingOptions.EncodingEndLineWithLineFeed)
         parame["file"] = fileBase64String
         parame["username"] = NSUserDefaults.standardUserDefaults().valueForKey(CConstants.LoggedUserNameKey) as? String ?? ""

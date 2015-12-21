@@ -6,6 +6,6 @@
 //  Copyright © 2015 HapApp. All rights reserved.
 //
 
-class DesignCenterViewController: BaseViewController {
+class DesignCenterViewController: PDFBaseViewController {
 
 }
