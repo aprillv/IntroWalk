@@ -8,11 +8,9 @@
 
 import Foundation
 
-class ContractSignature: ContractObject {
+class ContractSignature: ContractPDFBaseModel {
     var idnumber: String?
     var idcity: String?
-    var idcia: String?
-    var idproject: String?
     var cianame: String?
     var client: String?
     var lot: String?
@@ -20,14 +18,12 @@ class ContractSignature: ContractObject {
     var section: String?
     var cityname: String?
     var country: String?
-    var nproject: String?
     var sold: String?
     var client2: String?
     var bmobile1: String?
     var bfax1: String?
     var bemail1: String?
     var base64pdf: String?
-    var code: String?
     var found: String?
     var message: String?
     var zipcode: String?

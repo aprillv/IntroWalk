@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="9060" systemVersion="14F1021" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="6N7-GH-wKp">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="9531" systemVersion="14F1509" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="6N7-GH-wKp">
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9051"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9529"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="Navigation items with more than one left or right bar item" minToolsVersion="7.0"/>
     </dependencies>
@@ -233,6 +233,8 @@
                         <segue destination="bI5-rz-cgu" kind="show" identifier="pdfSignature" id="Lgo-oy-gpi"/>
                         <segue destination="mBc-V1-1VY" kind="show" identifier="addendumc-" id="9Fw-Vm-bz9"/>
                         <segue destination="evC-Xi-Ufn" kind="show" identifier="addendumc" id="WeB-Iq-hSs"/>
+                        <segue destination="NGU-fJ-Ify" kind="show" identifier="closingmemo" id="NYW-nj-mtF"/>
+                        <segue destination="MOm-Ac-c8C" kind="show" identifier="designcenter" id="d6q-rX-aF3"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="akO-Zu-3HL" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -622,7 +624,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="YKP-B5-tPZ" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3315" y="174"/>
+            <point key="canvasLocation" x="3383" y="339"/>
         </scene>
         <!--Signature-->
         <scene sceneID="rVO-CQ-ugE">
@@ -677,7 +679,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="2BD-za-Val" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3584" y="-316"/>
+            <point key="canvasLocation" x="3536" y="-498"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="Ugg-Z2-cHQ">
@@ -696,6 +698,70 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="6CK-ue-dUb" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1202" y="-286"/>
+        </scene>
+        <!--Closing Memo-->
+        <scene sceneID="pIw-Kg-V9P">
+            <objects>
+                <viewController id="NGU-fJ-Ify" customClass="ClosingMemoViewController" customModule="Contract" customModuleProvider="target" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationItem key="navigationItem" title="Closing Memo" id="niw-lE-gSP">
+                        <barButtonItem key="leftBarButtonItem" title="&lt; " id="IaG-Zs-c0C">
+                            <connections>
+                                <action selector="goBack:" destination="NGU-fJ-Ify" id="nIe-a5-vYG"/>
+                            </connections>
+                        </barButtonItem>
+                        <barButtonItem key="rightBarButtonItem" title="Save" id="fJB-ux-Lm7">
+                            <connections>
+                                <action selector="savePDF:" destination="NGU-fJ-Ify" id="pTh-hs-XoM"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="1Tn-rf-83b" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="3573" y="-348"/>
+        </scene>
+        <!--Design Center-->
+        <scene sceneID="BoN-gb-Onp">
+            <objects>
+                <viewController id="MOm-Ac-c8C" customClass="DesignCenterViewController" customModule="Contract" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="EUI-gT-c0r"/>
+                        <viewControllerLayoutGuide type="bottom" id="WuS-f5-CcU"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="WKq-dx-B9X">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                    <navigationItem key="navigationItem" title="Design Center" id="9qP-c8-6aQ">
+                        <leftBarButtonItems>
+                            <barButtonItem title="&lt; " id="BAb-T4-tOY">
+                                <connections>
+                                    <action selector="goBack:" destination="MOm-Ac-c8C" id="XAR-Qv-zcD"/>
+                                </connections>
+                            </barButtonItem>
+                            <barButtonItem tag="1" title="Buyer1" id="BNL-oe-EHg">
+                                <connections>
+                                    <action selector="BuyerSign:" destination="MOm-Ac-c8C" id="zdl-yy-ljL"/>
+                                </connections>
+                            </barButtonItem>
+                            <barButtonItem tag="2" title="Buyer2" id="sxq-0M-Ddl">
+                                <connections>
+                                    <action selector="BuyerSign:" destination="MOm-Ac-c8C" id="QMS-El-tBu"/>
+                                </connections>
+                            </barButtonItem>
+                        </leftBarButtonItems>
+                        <barButtonItem key="rightBarButtonItem" title="Save" id="Edf-8U-q4y">
+                            <connections>
+                                <action selector="savePDF:" destination="MOm-Ac-c8C" id="ehn-TI-afo"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="4zj-fO-mNU" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="3615" y="62"/>
         </scene>
     </scenes>
 </document>

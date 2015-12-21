@@ -64,6 +64,8 @@ private  var spinner : UIActivityIndicatorView?
         static let Title : String = "Address List"
         static let CellIdentifier : String = "Address Cell Identifier"
         static let ActionTitleAddendumC : String = "Addendum C"
+        static let ActionTitleClosingMemo : String = "Closing Memo"
+        static let ActionTitleDesignCenter : String = "Design Center"
         static let ActionTitleContract : String = "Contract"
     }
     
@@ -143,51 +145,22 @@ private  var spinner : UIActivityIndicatorView?
     
     // go to print Addendum C signature
     private func doAddendumCAction(_ : UIAlertAction) -> Void {
-        if let indexPath = tableView.indexPathForSelectedRow {
-            
-            let ddd = self.CiaNmArray?[self.CiaNm?[indexPath.section] ?? ""]
-            let item: ContractsItem = ddd![indexPath.row]
-            if (self.spinner == nil){
-                self.spinner = UIActivityIndicatorView(frame: CGRect(x: tableView.frame.midX - 25, y: tableView.frame.midY - 25, width: 50, height: 50))
-                tableView.addSubview(self.spinner!)
-                self.spinner?.hidesWhenStopped = true
-                self.spinner?.center = tableView.center
-                
-            }
-            
-            self.spinner?.startAnimating()
-            Alamofire.request(.POST,
-                CConstants.ServerURL + CConstants.AddendumCServiceURL,
-                parameters: ContractRequestItem(contractInfo: item).DictionaryFromObject()).responseJSON{ (response) -> Void in
-                    self.spinner?.stopAnimating()
-                    if response.result.isSuccess {
-                        
-                        if let rtnValue = response.result.value as? [String: AnyObject]{
-                            if let msg = rtnValue["message"] as? String{
-                                if msg.isEmpty{
-                                    let rtn = ContractAddendumC(dicInfo: rtnValue)
-                                    rtn.code = item.code
-                                    self.performSegueWithIdentifier(CConstants.SegueToAddendumC, sender: rtn)
-                                    
-                                }else{
-                                    self.PopMsgWithJustOK(msg: msg)
-                                }
-                            }else{
-                                self.PopMsgWithJustOK(msg: CConstants.MsgServerError)
-                            }
-                        }else{
-                            self.PopMsgWithJustOK(msg: CConstants.MsgServerError)
-                        }
-                    }else{
-                        self.spinner?.stopAnimating()
-                        self.PopMsgWithJustOK(msg: CConstants.MsgNetworkError)
-                    }
-            }
-            tableView.deselectRowAtIndexPath(indexPath, animated: true)
-        }
+        callService(CConstants.AddendumCServiceURL)
+    }
+    // go to print ClosingMemo
+    private func doClosingMemoAction(_ : UIAlertAction) -> Void {
+        callService(CConstants.ClosingMemoServiceURL)
+    }
+    // go to print DesignCenter
+    private func doDesignCenterAction(_ : UIAlertAction) -> Void {
+//        callService(CConstants.ClosingMemoServiceURL)
     }
     // go to print Contract signature
     private func doContractAction(_ : UIAlertAction) -> Void {
+        callService(CConstants.ContractServiceURL)
+    }
+    
+    private func callService(serviceUrl: String){
         if let indexPath = tableView.indexPathForSelectedRow {
             
             let ddd = self.CiaNmArray?[self.CiaNm?[indexPath.section] ?? ""]
@@ -202,7 +175,7 @@ private  var spinner : UIActivityIndicatorView?
             
             self.spinner?.startAnimating()
             Alamofire.request(.POST,
-                CConstants.ServerURL + CConstants.ContractServiceURL,
+                CConstants.ServerURL + serviceUrl,
                 parameters: ContractRequestItem(contractInfo: item).DictionaryFromObject()).responseJSON{ (response) -> Void in
                     self.spinner?.stopAnimating()
                     if response.result.isSuccess {
@@ -210,8 +183,22 @@ private  var spinner : UIActivityIndicatorView?
                         if let rtnValue = response.result.value as? [String: AnyObject]{
                             if let msg = rtnValue["message"] as? String{
                                 if msg.isEmpty{
-                                    let rtn = ContractSignature(dicInfo: rtnValue)
-                                    self.performSegueWithIdentifier(CConstants.SegueToSignaturePdf, sender: rtn)
+                                    switch serviceUrl {
+                                    case CConstants.AddendumCServiceURL:
+                                        let rtn = ContractAddendumC(dicInfo: rtnValue)
+                                        rtn.code = item.code
+                                        self.performSegueWithIdentifier(CConstants.SegueToAddendumC, sender: rtn)
+                                    case CConstants.ClosingMemoServiceURL:
+                                        let rtn = ContractClosingMemo(dicInfo: rtnValue)
+                                        rtn.code = item.code
+                                        self.performSegueWithIdentifier(CConstants.SegueToClosingMemo, sender: rtn)
+                                    case CConstants.ContractServiceURL:
+                                        let rtn = ContractSignature(dicInfo: rtnValue)
+                                        self.performSegueWithIdentifier(CConstants.SegueToSignaturePdf, sender: rtn)
+                                    default:
+                                        break;
+                                    }
+                                    
                                     
                                 }else{
                                     self.PopMsgWithJustOK(msg: msg)
@@ -236,10 +223,14 @@ private  var spinner : UIActivityIndicatorView?
         let alert: UIAlertController = UIAlertController(title: nil, message: nil, preferredStyle: .Alert)
         
         let addendumCAction: UIAlertAction = UIAlertAction(title: getLongString(constants.ActionTitleAddendumC), style: .Default, handler: doAddendumCAction)
+        let closingMemoAction: UIAlertAction = UIAlertAction(title: getLongString(constants.ActionTitleClosingMemo), style: .Default, handler: doClosingMemoAction)
+        let designCenterAction: UIAlertAction = UIAlertAction(title: getLongString(constants.ActionTitleDesignCenter), style: .Default, handler: doDesignCenterAction)
         let contractAction: UIAlertAction = UIAlertAction(title: getLongString(constants.ActionTitleContract), style: .Default, handler: doContractAction)
     let cancelAction: UIAlertAction = UIAlertAction(title: "Cancel", style: .Cancel, handler: nil)
         
         alert.addAction(addendumCAction)
+        alert.addAction(closingMemoAction)
+        alert.addAction(designCenterAction)
         alert.addAction(contractAction)
         alert.addAction(cancelAction)
         self.presentViewController(alert, animated: true, completion: nil)
@@ -254,6 +245,16 @@ private  var spinner : UIActivityIndicatorView?
                         controller.pdfInfo = sender as? ContractSignature
                         controller.initWithResource("BaseContract.pdf")
                     }
+            case CConstants.SegueToClosingMemo:
+                if let controller = segue.destinationViewController as? ClosingMemoViewController {
+                    controller.pdfInfo = sender as? ContractClosingMemo
+                    controller.initWithResource("ClosingMemo.pdf")
+                }
+            case CConstants.SegueToDesignCenter:
+                if let controller = segue.destinationViewController as? ClosingMemoViewController {
+                    //                    controller.pdfInfo = sender as? ContractSignature
+//                    controller.initWithResource("ClosingMemo.pdf")
+                }
             case CConstants.SegueToAddendumC:
                 if let controller = segue.destinationViewController as? AddendumCViewController {
                     controller.pdfInfo = sender as? ContractAddendumC

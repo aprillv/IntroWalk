@@ -8,11 +8,9 @@
 
 import Foundation
 
-class ContractAddendumC : ContractObject {
+class ContractAddendumC : ContractPDFBaseModel {
     var idnumber: String?
     var idcity: String?
-    var idcia: String?
-    var idproject: String?
     var cianame: String?
     var ciaaddress: String?
     var ciacityzip: String?
@@ -33,5 +31,4 @@ class ContractAddendumC : ContractObject {
     var itemlistStr:[[String]]?
     var found: String?
     var message: String?
-    var code: String?
 }

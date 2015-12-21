@@ -6,23 +6,19 @@
 //  Copyright © 2015 HapApp. All rights reserved.
 //
 
-import UIKit
 import Alamofire
 
-class PDFSignViewController: BaseViewController {
+class PDFSignViewController: PDFBaseViewController {
 
-    var document : PDFDocument?
-    var pdfView  : PDFView?
+  
     var isDownload : Bool?
-    var pdfInfo : ContractSignature?
-    var spinner : UIActivityIndicatorView?
-    var progressBar : UIAlertController?
+    var pdfInfo : ContractSignature?{
+        didSet{
+            pdfInfo0 = pdfInfo;
+        }
+    }
     
     private struct PDFFields{
-        
-        static let SavedMsg = "Saving to the BA Server"
-        static let SavedSuccessMsg = "Saved successfully."
-        static let SavedFailMsg = "Saved fail."
         
         static let Buyer1Signature = "bottom1"
         static let Buyer2Signature = "bottom2"
@@ -91,9 +87,6 @@ class PDFSignViewController: BaseViewController {
         
     }
     
-    @IBAction func goBack(sender: UIBarButtonItem) {
-        navigationController?.popViewControllerAnimated(true)
-    }
     @IBAction func BuyerSign(sender: UIBarButtonItem) {
     
         for sign0 in pdfView!.pdfWidgetAnnotationViews {
@@ -125,98 +118,19 @@ class PDFSignViewController: BaseViewController {
             }
         }
     }
-    @IBAction func savePDF(sender: UIBarButtonItem) {
+    @IBAction override func savePDF(sender: UIBarButtonItem) {
         
-        let savedPdfData = document?.savedStaticPDFData()
-        let fileBase64String = savedPdfData?.base64EncodedStringWithOptions(NSDataBase64EncodingOptions.EncodingEndLineWithLineFeed)
-        let parame : [String : String] = ["idcia" : pdfInfo!.idcia!
-            , "idproject" : pdfInfo!.idproject!
-            , "username" : NSUserDefaults.standardUserDefaults().valueForKey(CConstants.LoggedUserNameKey) as? String ?? ""
-            , "code" : pdfInfo!.code!
-            , "file" : fileBase64String!
-            ,"filetype" : pdfInfo!.nproject! + "_Contract_FromApp"]
-//        print(parame)
-        if (spinner == nil){
-            spinner = UIActivityIndicatorView(frame: CGRect(x: 0, y: 4, width: 50, height: 50))
-            spinner?.hidesWhenStopped = true
-            spinner?.activityIndicatorViewStyle = .Gray
-        }
-        
-        progressBar = UIAlertController(title: nil, message: PDFFields.SavedMsg, preferredStyle: .Alert)
-        progressBar?.view.addSubview(spinner!)
-        
-        spinner?.startAnimating()
-        self.presentViewController(progressBar!, animated: true, completion: nil)
-        
-        Alamofire.request(.POST,
-            CConstants.ServerURL + CConstants.ContractUploadPdfURL,
-            parameters: parame).responseJSON{ (response) -> Void in
-                self.spinner?.stopAnimating()
-                self.spinner?.removeFromSuperview()
-                if response.result.isSuccess {
-                    if let rtnValue = response.result.value as? [String: String]{
-                        if rtnValue["status"] == "success" {
-                            self.progressBar?.message = PDFFields.SavedSuccessMsg
-                        }else{
-                            self.progressBar?.message = PDFFields.SavedFailMsg
-                        }
-                    }else{
-                        self.progressBar?.message = CConstants.MsgServerError
-                    }
-                }else{
-                    self.progressBar?.message = CConstants.MsgNetworkError
-                }
-                self.performSelector("dismissProgress", withObject: nil, afterDelay: 0.5)
-        }
-        
+        savePDFToServer("Contract")
     }
-    func dismissProgress(){
-        self.progressBar?.dismissViewControllerAnimated(true, completion: nil)
-    }
+   
     
-    func initWithData(data: NSData){
-        isDownload = true
-        document = PDFDocument(data: data)
-    }
-    
-    func initWithResource(name: String){
-        isDownload = false
-        document = PDFDocument(resource: name)
-    }
-    
-    func initWithPath(path: String){
-        isDownload = false
-        document = PDFDocument(resource: path)
-    }
-    
-    func reload(){
-        document?.refresh()
-        pdfView?.removeFromSuperview()
-        pdfView = nil
-        loadPDFView()
-    }
-    
-    
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        navigationItem.hidesBackButton = true
-        
-        loadPDFView()
-    }
-    
-    private func addEntitiesToDictionary(fromDic fromDic: [String: String], toDic: [String: String]?) -> [String: String]{
-        var rtnDic = toDic ?? [String: String]()
-        for one in fromDic {
-            rtnDic[one.0] = one.1
-        }
-        return rtnDic
-    }
+
     
     private func getFileName() -> String{
         return "contract1pdf_" + self.pdfInfo!.idcity! + "_" + self.pdfInfo!.idcia!
     }
     
-    private func loadPDFView(){
+    override func loadPDFView(){
         let pass = document?.documentPath ?? document?.documentData
         let margins = getMargins()
         let additionViews = document?.forms.createWidgetAnnotationViewsForSuperviewWithWidth(view.bounds.size.width, margin: margins.x, hMargin: margins.y) as? [PDFWidgetAnnotationView]
@@ -393,35 +307,7 @@ class PDFSignViewController: BaseViewController {
     }
     
 
-    private struct PDFMargin{
-        static let PDFLandscapePadWMargin: CGFloat = 13.0
-        static let PDFLandscapePadHMargin: CGFloat = 7.25
-        static let PDFPortraitPadWMargin: CGFloat = 9.0
-        static let PDFPortraitPadHMargin: CGFloat = 6.10
-        static let PDFPortraitPhoneWMargin: CGFloat = 3.5
-        static let PDFPortraitPhoneHMargin: CGFloat = 6.7
-        static let PDFLandscapePhoneWMargin: CGFloat = 6.8
-        static let PDFLandscapePhoneHMargin: CGFloat = 6.5
-        
-    }
-    private func getMargins() -> CGPoint {
-        let currentOrientation = UIApplication.sharedApplication().statusBarOrientation
-        switch (UI_USER_INTERFACE_IDIOM()){
-        case .Pad:
-            if UIInterfaceOrientationIsPortrait(currentOrientation) {
-                return CGPoint(x:PDFMargin.PDFPortraitPadWMargin, y:PDFMargin.PDFPortraitPadHMargin)
-            }else{
-                return CGPoint(x:PDFMargin.PDFLandscapePadWMargin, y:PDFMargin.PDFLandscapePadHMargin)
-            }
-            
-        default:
-            if UIInterfaceOrientationIsPortrait(currentOrientation) {
-                return CGPoint(x:PDFMargin.PDFPortraitPhoneWMargin, y:PDFMargin.PDFPortraitPhoneHMargin)
-            }else{
-                return CGPoint(x:PDFMargin.PDFLandscapePhoneWMargin, y:PDFMargin.PDFLandscapePhoneHMargin)
-            }
-        }
-    }
+    
     
     
     private func readContractFieldsFromTxt(fileName: String) ->[String: String]? {
