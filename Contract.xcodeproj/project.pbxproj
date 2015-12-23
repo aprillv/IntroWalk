@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		110750791C28E91600B68141 /* ClosingMemo.pdf in Resources */ = {isa = PBXBuildFile; fileRef = 110750781C28E91600B68141 /* ClosingMemo.pdf */; };
+		1107507B1C29222600B68141 /* SendOperationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1107507A1C29222600B68141 /* SendOperationViewController.swift */; };
 		1107C09C1C0C3B530041D8D7 /* cl_pdf.m in Sources */ = {isa = PBXBuildFile; fileRef = 1107C09B1C0C3B530041D8D7 /* cl_pdf.m */; };
 		1108B1AE1BFC2691004B5D48 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 1108B1AD1BFC2691004B5D48 /* main.m */; };
 		1108B1B11BFC2691004B5D48 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 1108B1B01BFC2691004B5D48 /* AppDelegate.m */; };
@@ -70,7 +72,6 @@
 		11475E6B1C23F8250034A801 /* AddendumC2.pdf in Resources */ = {isa = PBXBuildFile; fileRef = 11475E6A1C23F8250034A801 /* AddendumC2.pdf */; };
 		115338C21C27DE5900E1B65A /* PDFBaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 115338C11C27DE5900E1B65A /* PDFBaseViewController.swift */; };
 		115338CA1C27F59E00E1B65A /* ContractPDFBaseModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 115338C91C27F59E00E1B65A /* ContractPDFBaseModel.swift */; };
-		11633B881C27907D00C11A20 /* ClosingMemo.pdf in Resources */ = {isa = PBXBuildFile; fileRef = 11633B871C27907D00C11A20 /* ClosingMemo.pdf */; };
 		11633B911C279B3700C11A20 /* ClosingMemoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11633B901C279B3700C11A20 /* ClosingMemoViewController.swift */; };
 		11633B931C279E2900C11A20 /* DesignCenterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11633B921C279E2900C11A20 /* DesignCenterViewController.swift */; };
 		11633BA01C27DA0000C11A20 /* ContractClosingMemoItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11633B9F1C27DA0000C11A20 /* ContractClosingMemoItem.swift */; };
@@ -82,9 +83,6 @@
 		11D911231C1ACC7700CD018A /* Alamofire.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 11D911161C1ACC7100CD018A /* Alamofire.framework */; };
 		11D911241C1ACC7700CD018A /* Alamofire.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 11D911161C1ACC7100CD018A /* Alamofire.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		11F4E51C1C17B5F8001DFEF6 /* BaseContract.pdf in Resources */ = {isa = PBXBuildFile; fileRef = 11F4E51B1C17B5F8001DFEF6 /* BaseContract.pdf */; };
-		11FA0B551BFD73E100F6605D /* Sanchez-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 11FA0B541BFD73E100F6605D /* Sanchez-Regular.ttf */; };
-		11FA0B5B1BFD79BC00F6605D /* Lato-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 11FA0B591BFD797B00F6605D /* Lato-Bold.ttf */; };
-		11FA0B5C1BFD79BC00F6605D /* Lato-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 11FA0B5A1BFD797B00F6605D /* Lato-Regular.ttf */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -161,6 +159,8 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		110750781C28E91600B68141 /* ClosingMemo.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; path = ClosingMemo.pdf; sourceTree = "<group>"; };
+		1107507A1C29222600B68141 /* SendOperationViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SendOperationViewController.swift; sourceTree = "<group>"; };
 		1107C09A1C0C3B530041D8D7 /* cl_pdf.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = cl_pdf.h; sourceTree = "<group>"; };
 		1107C09B1C0C3B530041D8D7 /* cl_pdf.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = cl_pdf.m; sourceTree = "<group>"; };
 		1108B1A91BFC2690004B5D48 /* Contract.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Contract.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -257,7 +257,6 @@
 		11475E6A1C23F8250034A801 /* AddendumC2.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; path = AddendumC2.pdf; sourceTree = "<group>"; };
 		115338C11C27DE5900E1B65A /* PDFBaseViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PDFBaseViewController.swift; sourceTree = "<group>"; };
 		115338C91C27F59E00E1B65A /* ContractPDFBaseModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContractPDFBaseModel.swift; sourceTree = "<group>"; };
-		11633B871C27907D00C11A20 /* ClosingMemo.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; path = ClosingMemo.pdf; sourceTree = "<group>"; };
 		11633B901C279B3700C11A20 /* ClosingMemoViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ClosingMemoViewController.swift; sourceTree = "<group>"; };
 		11633B921C279E2900C11A20 /* DesignCenterViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DesignCenterViewController.swift; sourceTree = "<group>"; };
 		11633B9F1C27DA0000C11A20 /* ContractClosingMemoItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContractClosingMemoItem.swift; sourceTree = "<group>"; };
@@ -268,9 +267,6 @@
 		11D911011C1AB36000CD018A /* ContractAddendumCItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContractAddendumCItem.swift; sourceTree = "<group>"; };
 		11D9110B1C1ACC7000CD018A /* Alamofire.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = Alamofire.xcodeproj; path = "../../Alamofire-master 2/Alamofire.xcodeproj"; sourceTree = "<group>"; };
 		11F4E51B1C17B5F8001DFEF6 /* BaseContract.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; path = BaseContract.pdf; sourceTree = "<group>"; };
-		11FA0B541BFD73E100F6605D /* Sanchez-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Sanchez-Regular.ttf"; sourceTree = "<group>"; };
-		11FA0B591BFD797B00F6605D /* Lato-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Lato-Bold.ttf"; sourceTree = "<group>"; };
-		11FA0B5A1BFD797B00F6605D /* Lato-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Lato-Regular.ttf"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -322,7 +318,6 @@
 				1107C0901C0C359B0041D8D7 /* Data */,
 				110CE6AD1C0439A70096E630 /* pdf */,
 				113CB5901BFEC87A0081FDE7 /* Model */,
-				11FA0B531BFD73D600F6605D /* Font */,
 				1108B2721BFC55A2004B5D48 /* Views */,
 				1108B2261BFC4047004B5D48 /* ILPDFKit */,
 				1108B2121BFC290F004B5D48 /* Signature */,
@@ -470,6 +465,7 @@
 				111B69501C191E9200970927 /* AddendumCViewController.swift */,
 				11633B901C279B3700C11A20 /* ClosingMemoViewController.swift */,
 				11633B921C279E2900C11A20 /* DesignCenterViewController.swift */,
+				1107507A1C29222600B68141 /* SendOperationViewController.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -477,7 +473,7 @@
 		110CE6AD1C0439A70096E630 /* pdf */ = {
 			isa = PBXGroup;
 			children = (
-				11633B871C27907D00C11A20 /* ClosingMemo.pdf */,
+				110750781C28E91600B68141 /* ClosingMemo.pdf */,
 				11475E6A1C23F8250034A801 /* AddendumC2.pdf */,
 				11475E681C23F1270034A801 /* AddendumC.pdf */,
 				11F4E51B1C17B5F8001DFEF6 /* BaseContract.pdf */,
@@ -528,16 +524,6 @@
 				11D911221C1ACC7100CD018A /* Alamofire.framework */,
 			);
 			name = Products;
-			sourceTree = "<group>";
-		};
-		11FA0B531BFD73D600F6605D /* Font */ = {
-			isa = PBXGroup;
-			children = (
-				11FA0B591BFD797B00F6605D /* Lato-Bold.ttf */,
-				11FA0B5A1BFD797B00F6605D /* Lato-Regular.ttf */,
-				11FA0B541BFD73E100F6605D /* Sanchez-Regular.ttf */,
-			);
-			path = Font;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -659,8 +645,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				114733F21C103053000FC8D6 /* contract1pdf_3_265.txt in Resources */,
-				11FA0B5B1BFD79BC00F6605D /* Lato-Bold.ttf in Resources */,
-				11FA0B5C1BFD79BC00F6605D /* Lato-Regular.ttf in Resources */,
 				1108B1BF1BFC2691004B5D48 /* LaunchScreen.storyboard in Resources */,
 				114733F41C103053000FC8D6 /* contract1pdf_1_100.txt in Resources */,
 				114733F91C103053000FC8D6 /* contract1pdf_1_306.txt in Resources */,
@@ -670,9 +654,8 @@
 				11475E691C23F1270034A801 /* AddendumC.pdf in Resources */,
 				114733F71C103053000FC8D6 /* contract1pdf_2_100.txt in Resources */,
 				1108B1BC1BFC2691004B5D48 /* Assets.xcassets in Resources */,
-				11633B881C27907D00C11A20 /* ClosingMemo.pdf in Resources */,
+				110750791C28E91600B68141 /* ClosingMemo.pdf in Resources */,
 				114733F51C103053000FC8D6 /* contract1pdf_2_306.txt in Resources */,
-				11FA0B551BFD73E100F6605D /* Sanchez-Regular.ttf in Resources */,
 				114733F31C103053000FC8D6 /* contract1pdf_3_306.txt in Resources */,
 				1108B1B71BFC2691004B5D48 /* Main.storyboard in Resources */,
 				114733F81C103053000FC8D6 /* contract1pdf_1_9999.txt in Resources */,
@@ -714,6 +697,7 @@
 				113CB5961BFEC8D60081FDE7 /* ContractObject.swift in Sources */,
 				1108B2611BFC4047004B5D48 /* PDFNumber.m in Sources */,
 				113CB5BA1BFEE27A0081FDE7 /* ContractsItem.swift in Sources */,
+				1107507B1C29222600B68141 /* SendOperationViewController.swift in Sources */,
 				1108B25F1BFC4047004B5D48 /* PDFName.m in Sources */,
 				1108B26D1BFC4047004B5D48 /* PDFFormSignatureField.m in Sources */,
 				113CB5BC1BFEE2D80081FDE7 /* Contract.swift in Sources */,

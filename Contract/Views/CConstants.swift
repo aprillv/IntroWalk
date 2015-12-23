@@ -27,6 +27,8 @@ struct CConstants{
     static let SavedMsg = "Saving to the BA Server"
     static let SavedSuccessMsg = "Saved successfully."
     static let SavedFailMsg = "Saved fail."
+    static let SendEmailSuccessfullMsg = "Sent email successfully."
+    static let PrintSuccessfullMsg = "Print successfully."
     
     static let SegueToAddressList :  String = "adressList"
     static let SegueToSignaturePdf : String = "pdfSignature"

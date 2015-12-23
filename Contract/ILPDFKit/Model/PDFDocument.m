@@ -112,6 +112,7 @@ static void renderPage1(NSUInteger page, CGContextRef ctx, CGPDFDocumentRef doc,
             
             PDFFormTextField *texta = (PDFFormTextField *)addedView;
             NSString *text = texta.value;
+        
 //            CGRect rect = correctedFrame;
 //            NSLog(@"%f", floor(([texta currentFontSize] / factor)));
             UIFont *font = [UIFont fontWithName:@"Verdana" size:(([texta currentFontSize] / factor))];
@@ -119,7 +120,7 @@ static void renderPage1(NSUInteger page, CGContextRef ctx, CGPDFDocumentRef doc,
             UIGraphicsPushContext(ctx);
             NSMutableParagraphStyle *paragraphStyle = [[NSMutableParagraphStyle defaultParagraphStyle] mutableCopy];
             paragraphStyle.lineBreakMode = NSLineBreakByWordWrapping;
-            paragraphStyle.alignment = NSTextAlignmentLeft;
+            paragraphStyle.alignment = texta.alignment;
             [text drawInRect:correctedFrame  withAttributes:@{NSFontAttributeName:font,NSParagraphStyleAttributeName: paragraphStyle}];
             UIGraphicsPopContext();
             CGContextRestoreGState(ctx);
@@ -130,7 +131,7 @@ static void renderPage1(NSUInteger page, CGContextRef ctx, CGPDFDocumentRef doc,
             CGContextBeginPath(ctx);
             CGContextMoveToPoint(ctx, correctedFrame.origin.x, correctedFrame.origin.y);
             CGContextAddLineToPoint(ctx, correctedFrame.origin.x + correctedFrame.size.width, correctedFrame.origin.y);
-            CGContextSetStrokeColorWithColor(ctx, [UIColor darkGrayColor].CGColor);
+            CGContextSetStrokeColorWithColor(ctx, [UIColor blackColor].CGColor);
 //            CGContextSetLineWidth(ctx, correctedFrame.size.height);
             CGContextSetLineWidth(ctx, 0.5);
             CGContextStrokePath(ctx);

@@ -37,8 +37,6 @@ class AddendumCViewController: PDFBaseViewController {
         static let SubDivision  = "txtSubDivision"
         static let Price  = "txtPrice"
         
-         static let SavedFileName = "AddendumC"
-        
         static let SignArray : [String] = [
               "Homebuyer # 1 - Sign"
             , "Homebuyer # 2 - Sign"
@@ -71,11 +69,6 @@ class AddendumCViewController: PDFBaseViewController {
             }
         }
     }
-    @IBAction override func savePDF(sender: UIBarButtonItem) {
-//        return
-        savePDFToServer(PDFFields.SavedFileName)
-    }
-   
     
    
     

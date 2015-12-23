@@ -44,6 +44,17 @@
 -(CGFloat)currentFontSize{
     return _currentFontSize;
 }
+-(NSTextAlignment)alignment{
+//    Class textCls = _multiline ? [UITextView class]:[UITextField class];
+    if (_multiline) {
+        UITextView* textfield = (UITextView *)_textFieldOrTextView;
+        return textfield.textAlignment;
+    }else{
+        UITextField* textfield = (UITextField *)_textFieldOrTextView;
+        return textfield.textAlignment;
+    }
+    
+}
 #pragma mark - PDFFormTextField
 
 - (instancetype)initWithFrame:(CGRect)frame multiline:(BOOL)multiline alignment:(NSTextAlignment)alignment secureEntry:(BOOL)secureEntry readOnly:(BOOL)ro {

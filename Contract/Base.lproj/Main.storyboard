@@ -592,7 +592,7 @@
                     </view>
                     <navigationItem key="navigationItem" title="Addendum C" id="RpX-ZK-AQq">
                         <leftBarButtonItems>
-                            <barButtonItem title="&lt; " id="Ij8-a7-nq4">
+                            <barButtonItem image="back" id="Ij8-a7-nq4">
                                 <connections>
                                     <action selector="goBack:" destination="evC-Xi-Ufn" id="QmK-Ea-d5L"/>
                                 </connections>
@@ -609,9 +609,11 @@
                             </barButtonItem>
                         </leftBarButtonItems>
                         <rightBarButtonItems>
-                            <barButtonItem title="Save" id="1xL-jZ-4ba">
+                            <barButtonItem image="send" id="1xL-jZ-4ba">
                                 <connections>
-                                    <action selector="savePDF:" destination="evC-Xi-Ufn" id="fIH-O9-sRF"/>
+                                    <segue destination="Rzu-Cw-vxk" kind="popoverPresentation" identifier="Show Operations" popoverAnchorBarButtonItem="1xL-jZ-4ba" id="5tg-36-cc8">
+                                        <popoverArrowDirection key="popoverArrowDirection" up="YES" down="YES" left="YES" right="YES"/>
+                                    </segue>
                                 </connections>
                             </barButtonItem>
                             <barButtonItem tag="3" title="Consultant" id="ErF-dg-L0L">
@@ -626,7 +628,7 @@
             </objects>
             <point key="canvasLocation" x="3383" y="339"/>
         </scene>
-        <!--Signature-->
+        <!--Contract-->
         <scene sceneID="rVO-CQ-ugE">
             <objects>
                 <viewController id="bI5-rz-cgu" customClass="PDFSignViewController" customModule="Contract" customModuleProvider="target" sceneMemberID="viewController">
@@ -640,9 +642,9 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
                     <toolbarItems/>
-                    <navigationItem key="navigationItem" title="Signature" id="5nA-mG-z85">
+                    <navigationItem key="navigationItem" title="Contract" id="5nA-mG-z85">
                         <leftBarButtonItems>
-                            <barButtonItem title="&lt; " id="xP6-2w-6GP">
+                            <barButtonItem image="back" id="xP6-2w-6GP">
                                 <connections>
                                     <action selector="goBack:" destination="bI5-rz-cgu" id="6EH-LC-aiJ"/>
                                 </connections>
@@ -659,9 +661,11 @@
                             </barButtonItem>
                         </leftBarButtonItems>
                         <rightBarButtonItems>
-                            <barButtonItem title="Save" id="woH-jy-Y2Z">
+                            <barButtonItem image="send" id="woH-jy-Y2Z">
                                 <connections>
-                                    <action selector="savePDF:" destination="bI5-rz-cgu" id="5D7-sa-K49"/>
+                                    <segue destination="Rzu-Cw-vxk" kind="popoverPresentation" identifier="Show Operations" popoverAnchorBarButtonItem="woH-jy-Y2Z" id="13E-Oe-Tq2">
+                                        <popoverArrowDirection key="popoverArrowDirection" up="YES" down="YES" left="YES" right="YES"/>
+                                    </segue>
                                 </connections>
                             </barButtonItem>
                             <barButtonItem tag="4" title="Seller2" id="Uud-gp-fyb">
@@ -705,21 +709,64 @@
                 <viewController id="NGU-fJ-Ify" customClass="ClosingMemoViewController" customModule="Contract" customModuleProvider="target" sceneMemberID="viewController">
                     <toolbarItems/>
                     <navigationItem key="navigationItem" title="Closing Memo" id="niw-lE-gSP">
-                        <barButtonItem key="leftBarButtonItem" title="&lt; " id="IaG-Zs-c0C">
+                        <barButtonItem key="leftBarButtonItem" image="back" id="IaG-Zs-c0C">
                             <connections>
                                 <action selector="goBack:" destination="NGU-fJ-Ify" id="nIe-a5-vYG"/>
                             </connections>
                         </barButtonItem>
-                        <barButtonItem key="rightBarButtonItem" title="Save" id="fJB-ux-Lm7">
+                        <barButtonItem key="rightBarButtonItem" image="send" id="fJB-ux-Lm7">
                             <connections>
-                                <action selector="savePDF:" destination="NGU-fJ-Ify" id="pTh-hs-XoM"/>
+                                <segue destination="Rzu-Cw-vxk" kind="popoverPresentation" identifier="Show Operations" popoverAnchorBarButtonItem="fJB-ux-Lm7" id="2MV-5K-42V">
+                                    <popoverArrowDirection key="popoverArrowDirection" up="YES" down="YES" left="YES" right="YES"/>
+                                </segue>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="1Tn-rf-83b" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3573" y="-348"/>
+            <point key="canvasLocation" x="3691" y="-498"/>
+        </scene>
+        <!--Send Operation View Controller-->
+        <scene sceneID="LCD-XA-1Pt">
+            <objects>
+                <viewController id="Rzu-Cw-vxk" customClass="SendOperationViewController" customModule="Contract" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="eJw-0T-DcC"/>
+                        <viewControllerLayoutGuide type="bottom" id="YHf-nS-mTs"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="Krd-Zp-zZd">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="9Jy-oD-ck3">
+                                <rect key="frame" x="0.0" y="0.0" width="200" height="226"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <prototypes>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="operationCellIdentifier" id="mPn-0f-gpj">
+                                        <rect key="frame" x="0.0" y="28" width="200" height="44"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="mPn-0f-gpj" id="MQe-hz-deQ">
+                                            <rect key="frame" x="0.0" y="0.0" width="200" height="43"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
+                                </prototypes>
+                                <connections>
+                                    <outlet property="dataSource" destination="Rzu-Cw-vxk" id="32S-QM-W5H"/>
+                                    <outlet property="delegate" destination="Rzu-Cw-vxk" id="hDh-aI-nUO"/>
+                                </connections>
+                            </tableView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                    <connections>
+                        <outlet property="tableView" destination="9Jy-oD-ck3" id="Btr-SY-wht"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="10r-H9-1gg" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="4678" y="-417"/>
         </scene>
         <!--Design Center-->
         <scene sceneID="BoN-gb-Onp">
@@ -736,7 +783,7 @@
                     </view>
                     <navigationItem key="navigationItem" title="Design Center" id="9qP-c8-6aQ">
                         <leftBarButtonItems>
-                            <barButtonItem title="&lt; " id="BAb-T4-tOY">
+                            <barButtonItem image="back" id="BAb-T4-tOY">
                                 <connections>
                                     <action selector="goBack:" destination="MOm-Ac-c8C" id="XAR-Qv-zcD"/>
                                 </connections>
@@ -752,9 +799,11 @@
                                 </connections>
                             </barButtonItem>
                         </leftBarButtonItems>
-                        <barButtonItem key="rightBarButtonItem" title="Save" id="Edf-8U-q4y">
+                        <barButtonItem key="rightBarButtonItem" image="send" id="Edf-8U-q4y">
                             <connections>
-                                <action selector="savePDF:" destination="MOm-Ac-c8C" id="ehn-TI-afo"/>
+                                <segue destination="Rzu-Cw-vxk" kind="popoverPresentation" identifier="Show Operations" popoverAnchorBarButtonItem="Edf-8U-q4y" id="KMc-yt-S0g">
+                                    <popoverArrowDirection key="popoverArrowDirection" up="YES" down="YES" left="YES" right="YES"/>
+                                </segue>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
@@ -764,4 +813,11 @@
             <point key="canvasLocation" x="3615" y="62"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="back" width="30" height="30"/>
+        <image name="send" width="30" height="30"/>
+    </resources>
+    <inferredMetricsTieBreakers>
+        <segue reference="13E-Oe-Tq2"/>
+    </inferredMetricsTieBreakers>
 </document>

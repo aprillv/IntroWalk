@@ -76,6 +76,7 @@
 //            [data2 appendData:data];
 //            [_pdfView loadData:data MIMEType:@"application/pdf" textEncodingName:@"NSASCIIStringEncoding" baseURL:nil];
 //            [_pdfView loadData:data MIMEType:@"application/pdf" textEncodingName:@"NSASCIIStringEncoding" baseURL:nil];
+//            NSLog(@"%@", dataOrPath);
             [_pdfView loadRequest:[NSURLRequest requestWithURL:[NSURL fileURLWithPath:dataOrPath]]];
         } else if([dataOrPath isKindOfClass:[NSData class]]) {
             [spinner startAnimating];
