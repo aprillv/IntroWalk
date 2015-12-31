@@ -15,6 +15,8 @@ class DesignCenterViewController: PDFBaseViewController {
         }
     }
     
+    var sender: UIBarButtonItem?
+    
     private struct PDFFields{
         static let txtCiaNm = "txtCiaNm"
         static let txtAddress = "txtAddress"
@@ -174,18 +176,32 @@ class DesignCenterViewController: PDFBaseViewController {
         }
     }
     
-    @IBAction func BuyerSign(sender: UIBarButtonItem) {
-        for sign0 in pdfView!.pdfWidgetAnnotationViews {
-                if let sign = sign0 as? SignatureView{
-                    if (    sender.tag == 1 && sign.xname.hasSuffix("1Sign"))
-                        || (sender.tag == 2 && sign.xname.hasSuffix("2Sign")) {
-                            if CGRectIntersectsRect(sign.superview!.bounds, sign.frame) {
-                                sign.toSignautre()
-                                return
-                            }
-                    }
-                    
-                }
+    @IBAction func BuyerSign(sender0: UIBarButtonItem) {
+        sender = sender0;
+        if (UIDeviceOrientationIsLandscape(UIDevice.currentDevice().orientation)){
+            self.pdfView!.pdfView.scrollView.scrollRectToVisible(CGRect(x: 0, y: self.pdfView!.pdfView.scrollView.contentSize.height - self.pdfView!.pdfView.scrollView.frame.size.height, width: 100, height: self.pdfView!.pdfView.scrollView.frame.size.height), animated: true)
+            NSTimer.scheduledTimerWithTimeInterval(0.3, target: self, selector: "signature", userInfo: sender, repeats: false)
+        }else{
+            signature()
         }
+        
+        
+    }
+    
+    func signature(){
+        for sign0 in self.pdfView!.pdfWidgetAnnotationViews {
+            if let sign = sign0 as? SignatureView{
+                if (    sender!.tag == 1 && sign.xname.hasSuffix("1Sign"))
+                    || (sender!.tag == 2 && sign.xname.hasSuffix("2Sign")) {
+                        if CGRectIntersectsRect(sign.superview!.bounds, sign.frame) {
+                            sign.toSignautre()
+                            return
+                        }
+                }
+                
+            }
+        }
+
+        
     }
 }
