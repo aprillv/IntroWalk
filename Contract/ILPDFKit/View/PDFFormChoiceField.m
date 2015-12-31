@@ -78,7 +78,7 @@
         _tv.separatorStyle = UITableViewCellSeparatorStyleNone;
         _tv.separatorColor = [UIColor clearColor];
         self.clipsToBounds = YES;
-        _baseFontHeight = [PDFWidgetAnnotationView fontSizeForRect:frame value:nil multiline:NO choice:YES];
+        _baseFontHeight = [PDFWidgetAnnotationView fontSizeForRect:frame value:nil multiline:NO choice:YES font:@"Verdana"];
         _selection = [[UILabel alloc] initWithFrame:CGRectMake(1, 0, frame.size.width-frame.size.height, frame.size.height)];
         _selection.opaque = NO;
         _selection.adjustsFontSizeToFitWidth = YES;

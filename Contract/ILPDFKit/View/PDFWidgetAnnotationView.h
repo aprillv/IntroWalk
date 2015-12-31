@@ -90,8 +90,8 @@
  @param multiline YES if multiple lines of text are permitted.
  @param choice YES if the field is a choice field.
  */
-+ (CGFloat)fontSizeForRect:(CGRect)rect value:(NSString *)value multiline:(BOOL)multiline choice:(BOOL)choice;
-
+//+ (CGFloat)fontSizeForRect:(CGRect)rect value:(NSString *)value multiline:(BOOL)multiline choice:(BOOL)choice;
++ (CGFloat)fontSizeForRect:(CGRect)rect value:(NSString *)value multiline:(BOOL)multiline choice:(BOOL)choice font:(NSString *)fontName;
 /**---------------------------------------------------------------------------------------
  * @name Updating Data
  *  ---------------------------------------------------------------------------------------

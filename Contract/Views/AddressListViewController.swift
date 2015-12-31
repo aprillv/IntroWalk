@@ -153,7 +153,7 @@ private  var spinner : UIActivityIndicatorView?
     }
     // go to print DesignCenter
     private func doDesignCenterAction(_ : UIAlertAction) -> Void {
-//        callService(CConstants.ClosingMemoServiceURL)
+        callService(CConstants.DesignCenterServiceURL)
     }
     // go to print Contract signature
     private func doContractAction(_ : UIAlertAction) -> Void {
@@ -192,6 +192,10 @@ private  var spinner : UIActivityIndicatorView?
                                         let rtn = ContractClosingMemo(dicInfo: rtnValue)
                                         rtn.code = item.code
                                         self.performSegueWithIdentifier(CConstants.SegueToClosingMemo, sender: rtn)
+                                    case CConstants.DesignCenterServiceURL:
+                                        let rtn = ContractDesignCenter(dicInfo: rtnValue)
+                                        rtn.code = item.code
+                                        self.performSegueWithIdentifier(CConstants.SegueToDesignCenter, sender: rtn)
                                     case CConstants.ContractServiceURL:
                                         let rtn = ContractSignature(dicInfo: rtnValue)
                                         self.performSegueWithIdentifier(CConstants.SegueToSignaturePdf, sender: rtn)
@@ -251,9 +255,9 @@ private  var spinner : UIActivityIndicatorView?
                     controller.initWithResource("ClosingMemo.pdf")
                 }
             case CConstants.SegueToDesignCenter:
-                if let controller = segue.destinationViewController as? ClosingMemoViewController {
-                    //                    controller.pdfInfo = sender as? ContractSignature
-//                    controller.initWithResource("ClosingMemo.pdf")
+                if let controller = segue.destinationViewController as? DesignCenterViewController {
+                    controller.pdfInfo = sender as? ContractDesignCenter
+                    controller.initWithResource("DesignCenter.pdf")
                 }
             case CConstants.SegueToAddendumC:
                 if let controller = segue.destinationViewController as? AddendumCViewController {

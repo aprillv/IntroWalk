@@ -51,6 +51,11 @@
         self.value = nil;
         return;
     }
+    if ([value isEqualToString:@"1"]) {
+        value = @"Yes";
+    }else{
+        value = @"false";
+    }
     if (_val != value) {
         _val = value;
     }
@@ -147,79 +152,71 @@
     }
     CGPoint center = CGPointMake(frame.size.width/2,frame.size.height/2);
     CGRect rect = CGRectMake(center.x-minDim/2, center.y-minDim/2, minDim, minDim);
-    if (selected) {
+    if (selected && radio) {
         CGContextSaveGState(ctx);
         CGFloat margin = minDim/3;
-        if (radio) {
-//            NSLog(@"===%@==%@==%@", self.xname, self.value, self.exportValue);
-//            CGContextSetFillColorWithColor(ctx, [UIColor blackColor].CGColor);
-//            CGContextTranslateCTM(ctx, rect.origin.x, rect.origin.y);
-//            CGFloat cw = (rect.size.width-2*margin);
-//            CGContextAddEllipseInRect(ctx, CGRectMake(margin, margin, cw, cw));
-//            CGContextFillPath(ctx);
-//            CGContextTranslateCTM(ctx, rect.origin.x, rect.origin.y);
-//            
-//            CGContextAddEllipseInRect(ctx, CGRectMake(margin-(cw*0.8), margin-(cw*0.8), cw*2.6, cw*2.6));
-//            CGContextSetLineWidth(ctx, rect.size.width/11);
-//            CGContextStrokePath(ctx);
-            
-            CGContextTranslateCTM(ctx, rect.origin.x, rect.origin.y);
-            CGContextSetLineWidth(ctx, rect.size.width/8);
-            CGContextSetLineCap(ctx,kCGLineCapRound);
-            CGContextSetStrokeColorWithColor(ctx, [UIColor blackColor].CGColor);
-            
-            CGContextMoveToPoint(ctx, rect.origin.x + margin/4, rect.origin.y + margin/4);
-            CGContextAddLineToPoint(ctx, rect.origin.x + rect.size.width - margin/4, rect.origin.y +margin/4);
-            CGContextAddLineToPoint(ctx, rect.origin.x + rect.size.width - margin/4, rect.origin.y + rect.size.height - margin/4);
-            CGContextAddLineToPoint(ctx, rect.origin.x + margin/4, rect.origin.y + rect.size.height - margin/4);
-            CGContextAddLineToPoint(ctx, rect.origin.x + margin/4, rect.origin.y + margin/4);
-            
-            CGContextMoveToPoint(ctx, rect.origin.x + margin, rect.origin.y + margin);
-            CGContextAddLineToPoint(ctx, rect.origin.x - margin + rect.size.width, rect.origin.y - margin + rect.size.height);
-            CGContextMoveToPoint(ctx, rect.origin.x - margin + rect.size.width, rect.origin.y + margin);
-            CGContextAddLineToPoint(ctx, rect.origin.x + margin, rect.origin.y - margin + rect.size.height);
-            //            CGContextAddLineToPoint(ctx, rect.size.width-margin*PDFButtonMarginScaleFactor, margin/2);
-            
-            CGContextStrokePath(ctx);
-            
-        } else {
-//            NSLog(@"+===%@+==%@+==%@", self.xname, self.value, self.exportValue);
-            CGContextTranslateCTM(ctx, rect.origin.x, rect.origin.y);
-            CGContextSetLineWidth(ctx, rect.size.width/8);
-            CGContextSetLineCap(ctx,kCGLineCapRound);
-            CGContextSetStrokeColorWithColor(ctx, [UIColor blackColor].CGColor);
-            //            CGContextMoveToPoint(ctx, margin*PDFButtonMarginScaleFactor, rect.size.height/2);
-            //            CGContextAddLineToPoint(ctx, rect.size.width/2-margin/4, rect.size.height-margin);
-            //            CGContextAddLineToPoint(ctx, rect.size.width-margin*PDFButtonMarginScaleFactor, margin/2);
-            
-            CGContextMoveToPoint(ctx, rect.origin.x + margin/4, rect.origin.y + margin/4);
-            CGContextAddLineToPoint(ctx, rect.origin.x - margin + rect.size.width, rect.origin.y - margin + rect.size.height);
-            CGContextMoveToPoint(ctx, rect.origin.x - margin + rect.size.width, rect.origin.y + margin/4);
-            CGContextAddLineToPoint(ctx, rect.origin.x + margin/4, rect.origin.y - margin + rect.size.height);
-            //            CGContextAddLineToPoint(ctx, rect.size.width-margin*PDFButtonMarginScaleFactor, margin/2);
-            
-            CGContextStrokePath(ctx);
-        }
-        CGContextRestoreGState(ctx);
-//    }else{
-////    NSLog(@"-===%@-==%@-==%@", self.xname, self.value, self.exportValue);
-//        
-//        CGContextSaveGState(ctx);
-//        CGFloat margin = minDim/3;
-//        if (radio) {
-//            //            NSLog(@"===%@==%@==%@", self.xname, self.value, self.exportValue);
-//            CGContextSetFillColorWithColor(ctx, [UIColor blackColor].CGColor);
-//            CGFloat cw = (rect.size.width-2*margin);
-//            CGContextTranslateCTM(ctx, rect.origin.x, rect.origin.y);
-//            
-//            CGContextAddEllipseInRect(ctx, CGRectMake(margin-(cw*0.8), margin-(cw*0.8), cw*2.6, cw*2.6));
-//            CGContextSetLineWidth(ctx, rect.size.width/11);
-//            CGContextStrokePath(ctx);
-//            
-//        }
-//        CGContextRestoreGState(ctx);
+        CGContextTranslateCTM(ctx, rect.origin.x, rect.origin.y);
+        CGContextSetLineWidth(ctx, rect.size.width/8);
+        CGContextSetLineCap(ctx,kCGLineCapRound);
+        CGContextSetStrokeColorWithColor(ctx, [UIColor blackColor].CGColor);
         
+        CGContextMoveToPoint(ctx, rect.origin.x + margin/4, rect.origin.y + margin/4);
+        CGContextAddLineToPoint(ctx, rect.origin.x + rect.size.width - margin/4, rect.origin.y +margin/4);
+        CGContextAddLineToPoint(ctx, rect.origin.x + rect.size.width - margin/4, rect.origin.y + rect.size.height - margin/4);
+        CGContextAddLineToPoint(ctx, rect.origin.x + margin/4, rect.origin.y + rect.size.height - margin/4);
+        CGContextAddLineToPoint(ctx, rect.origin.x + margin/4, rect.origin.y + margin/4);
+        
+        CGContextMoveToPoint(ctx, rect.origin.x + margin, rect.origin.y + margin);
+        CGContextAddLineToPoint(ctx, rect.origin.x - margin + rect.size.width, rect.origin.y - margin + rect.size.height);
+        CGContextMoveToPoint(ctx, rect.origin.x - margin + rect.size.width, rect.origin.y + margin);
+        CGContextAddLineToPoint(ctx, rect.origin.x + margin, rect.origin.y - margin + rect.size.height);
+        //            CGContextAddLineToPoint(ctx, rect.size.width-margin*PDFButtonMarginScaleFactor, margin/2);
+        
+        CGContextStrokePath(ctx);
+        
+        
+        CGContextRestoreGState(ctx);
+    }else {
+        CGContextSaveGState(ctx);
+        CGFloat margin = minDim/3;
+//        NSLog(@"+===%@+==%@+==%@", self.xname, self.value, self.exportValue);
+        CGContextTranslateCTM(ctx, rect.origin.x, rect.origin.y);
+        
+        CGContextSetLineCap(ctx,kCGLineCapSquare);
+        CGContextSetStrokeColorWithColor(ctx, [UIColor blackColor].CGColor);
+        
+        if ([self.xname hasPrefix:@"dcChk"]) {
+            CGContextSetLineWidth(ctx, rect.size.width/16);
+            CGContextMoveToPoint(ctx, rect.origin.x - margin/4, rect.origin.y -margin/4);
+            CGContextAddLineToPoint(ctx, rect.origin.x + rect.size.width - margin/4, rect.origin.y - margin/4);
+            CGContextAddLineToPoint(ctx, rect.origin.x + rect.size.width - margin/4, rect.origin.y + rect.size.height - margin/4);
+            CGContextAddLineToPoint(ctx, rect.origin.x - margin/4, rect.origin.y + rect.size.height - margin/4);
+            CGContextAddLineToPoint(ctx, rect.origin.x - margin/4, rect.origin.y - margin/4);
+            CGContextStrokePath(ctx);
+            if (selected) {
+                CGContextSetLineWidth(ctx, rect.size.width/8);
+                CGContextMoveToPoint(ctx, rect.origin.x + frame.size.width*41/236  - margin/2, rect.origin.y  + frame.size.width*115/236 - margin/2);
+                CGContextAddLineToPoint(ctx, rect.origin.x + frame.size.width*84/236 - margin/2, rect.origin.y  + frame.size.width*167/236 - margin/2);
+                CGContextAddLineToPoint(ctx, rect.origin.x + frame.size.width*191/236 - margin/2, rect.origin.y + frame.size.width*64/236 - margin/2);
+            }
+            
+        }else{
+            if (selected) {
+                CGContextSetLineWidth(ctx, rect.size.width/8);
+                CGContextMoveToPoint(ctx, rect.origin.x + margin/4, rect.origin.y + margin/4);
+                CGContextAddLineToPoint(ctx, rect.origin.x - margin + rect.size.width, rect.origin.y - margin + rect.size.height);
+                CGContextMoveToPoint(ctx, rect.origin.x - margin + rect.size.width, rect.origin.y + margin/4);
+                CGContextAddLineToPoint(ctx, rect.origin.x + margin/4, rect.origin.y - margin + rect.size.height);
+            }
+        }
+        
+        
+        
+        CGContextStrokePath(ctx);
+        CGContextRestoreGState(ctx);
     }
+    
+    
 }
 
 @end

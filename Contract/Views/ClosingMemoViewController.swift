@@ -14,7 +14,6 @@ class ClosingMemoViewController: PDFBaseViewController {
             pdfInfo?.nproject = pdfInfo?.jobAddress
         }
     }
-    var path: String?
     
     private struct PDFFields{
         
@@ -258,7 +257,6 @@ class ClosingMemoViewController: PDFBaseViewController {
             additionViews.appendContentsOf(addedAnnotationViews)
             pdfView = PDFView(frame: view.bounds, dataOrPath: pass, additionViews: additionViews)
             pdfView?.addedAnnotationViews = addedAnnotationViews
-            view.addSubview(pdfView!)
             view.addSubview(pdfView!)
         }
     }

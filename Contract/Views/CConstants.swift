@@ -51,6 +51,8 @@ struct CConstants{
     static let AddendumCServiceURL = "bacontract_addendumc.json"
     //get contract ClosingMemo
     static let ClosingMemoServiceURL = "bacontract_closingMemo.json"
+    //get contract Design Center
+    static let DesignCenterServiceURL = "bacontract_designCenter.json"
     //upload pdf
     static let ContractUploadPdfURL = "bacontract_upload.json"
    

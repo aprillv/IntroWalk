@@ -72,13 +72,19 @@
 //    NSLog(@"fasdfsdfdfafasdf");
 }
 
-+ (CGFloat)fontSizeForRect:(CGRect)rect value:(NSString *)value multiline:(BOOL)multiline choice:(BOOL)choice {
++ (CGFloat)fontSizeForRect:(CGRect)rect value:(NSString *)value multiline:(BOOL)multiline choice:(BOOL)choice font:(NSString *)fontName {
 //    if (multiline) return PDFFormMinFontSize;
     CGFloat baseSize;
     if (choice) baseSize = roundf(MIN(MAX(floorf(rect.size.height*PDFChoiceFieldBaseFontSizeToFrameHeightScaleFactor),PDFFormMinFontSize),PDFFormMaxFontSize));
     else baseSize = roundf(MAX(MIN(PDFFormMaxFontSize,MIN(rect.size.height, PDFFormMaxFontSize)*PDFTextFieldFontScaleFactor),PDFFormMinFontSize));
     if (value) {
-        while (baseSize >= PDFFormMinFontSize && [value sizeWithAttributes:@{NSFontAttributeName:[UIFont systemFontOfSize:baseSize]}].width > rect.size.width-PDFFormMinFontSize) {
+        UIFont *font;
+        if ([fontName isEqualToString:@""]) {
+            font = [UIFont systemFontOfSize:baseSize];
+        }else{
+           font = [UIFont fontWithName:fontName size:baseSize];
+        }
+        while (baseSize >= PDFFormMinFontSize && [value sizeWithAttributes:@{NSFontAttributeName:font}].width > rect.size.width-PDFFormMinFontSize) {
             baseSize -= 1.0;
         }
         return baseSize;

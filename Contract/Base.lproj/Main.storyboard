@@ -790,12 +790,12 @@
                             </barButtonItem>
                             <barButtonItem tag="1" title="Buyer1" id="BNL-oe-EHg">
                                 <connections>
-                                    <action selector="BuyerSign:" destination="MOm-Ac-c8C" id="zdl-yy-ljL"/>
+                                    <action selector="BuyerSign:" destination="MOm-Ac-c8C" id="uZx-ZI-6c8"/>
                                 </connections>
                             </barButtonItem>
                             <barButtonItem tag="2" title="Buyer2" id="sxq-0M-Ddl">
                                 <connections>
-                                    <action selector="BuyerSign:" destination="MOm-Ac-c8C" id="QMS-El-tBu"/>
+                                    <action selector="BuyerSign:" destination="MOm-Ac-c8C" id="hFY-rK-MbC"/>
                                 </connections>
                             </barButtonItem>
                         </leftBarButtonItems>
@@ -818,6 +818,6 @@
         <image name="send" width="30" height="30"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="13E-Oe-Tq2"/>
+        <segue reference="KMc-yt-S0g"/>
     </inferredMetricsTieBreakers>
 </document>

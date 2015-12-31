@@ -95,7 +95,7 @@
         
         _textFieldOrTextView.opaque = NO;
         _textFieldOrTextView.backgroundColor = [UIColor clearColor];
-        _baseFontSize = [PDFWidgetAnnotationView fontSizeForRect:frame value:nil multiline:multiline choice:NO];
+        _baseFontSize = [PDFWidgetAnnotationView fontSizeForRect:frame value:nil multiline:multiline choice:NO font:@"Verdana"];
         
         _currentFontSize = _baseFontSize;
         
@@ -156,7 +156,7 @@
         
         _textFieldOrTextView.opaque = NO;
         _textFieldOrTextView.backgroundColor = [UIColor clearColor];
-        _baseFontSize = [PDFWidgetAnnotationView fontSizeForRect:frame value:nil multiline:multiline choice:NO];
+        _baseFontSize = [PDFWidgetAnnotationView fontSizeForRect:frame value:nil multiline:multiline choice:NO  font:@"Verdana"];
         
         _currentFontSize = _baseFontSize = fontsize;
         
@@ -173,6 +173,28 @@
 #pragma mark - PDFWidgetAnnotationView
 
 - (void)setValue:(NSString *)value {
+    
+    UIFont *font ;
+    
+    if ([self.xname isEqualToString:@"txtDesignDate"]) {
+//        _baseFontSize = [PDFWidgetAnnotationView fontSizeForRect:self.frame value:nil multiline:_multiline choice:NO font:@"Verdana-Bold"];
+        
+        CGFloat size = UIDeviceOrientationIsLandscape([UIDevice currentDevice].orientation) ? 14 : 10;
+        if (UIDeviceOrientationIsLandscape([UIDevice currentDevice].orientation)) {
+            size = [UIScreen mainScreen].bounds.size.width / 1024 * 14;
+        }else{
+            size = [UIScreen mainScreen].bounds.size.width / 768 * 10;
+        }
+        
+        _currentFontSize = _baseFontSize = size;
+        
+//        NSLog(@"%@", [UIScreen mainScreen]);
+        
+        font = [UIFont fontWithName:@"Verdana-Bold" size: _baseFontSize];
+        [_textFieldOrTextView performSelector:@selector(setFont:) withObject:font];
+    }else if([self.xname isEqualToString:@"txtMaxHourEdit"]){
+        _textFieldOrTextView.userInteractionEnabled = YES;
+    }
     
     if ([value isKindOfClass:[NSNull class]]) {
         [self setValue:nil];
@@ -193,7 +215,13 @@
 - (void)updateWithZoom:(CGFloat)zoom {
     [super updateWithZoom:zoom];
 //    NSLog(@"%f %f %f %f %f  %f %f %f %f", zoom, self.frame.origin.x, self.frame.origin.y, self.frame.size.width, self.frame.size.height, _textFieldOrTextView.frame.origin.x, _textFieldOrTextView.frame.origin.y, _textFieldOrTextView.frame.size.width, _textFieldOrTextView.frame.size.height);
-    UIFont *font = [UIFont fontWithName:@"Verdana" size:_currentFontSize = (_baseFontSize*zoom)];
+    UIFont *font;
+    if ([self.xname isEqualToString:@"txtDesignDate"]) {
+        font = [UIFont fontWithName:@"Verdana-Bold" size:_currentFontSize = (_baseFontSize*zoom)];
+    }else{
+    font = [UIFont fontWithName:@"Verdana" size:_currentFontSize = (_baseFontSize*zoom)];
+    }
+    
 //    NSLog(@"%@ %f", self.xname, _currentFontSize);
     [_textFieldOrTextView performSelector:@selector(setFont:) withObject:font];
     [_textFieldOrTextView setNeedsDisplay];

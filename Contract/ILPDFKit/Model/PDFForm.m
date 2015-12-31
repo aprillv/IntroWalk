@@ -260,21 +260,37 @@
 //        if (self.formType == PDFFormTypeText) {
 //            NSLog(@"%@ %@", self.name, self.value);
 //        }
-        UIFont *font = [UIFont fontWithName:@"Verdana" size:[PDFWidgetAnnotationView fontSizeForRect:rect value:self.value multiline:((_flags & PDFFormFlagTextFieldMultiline) > 0 && self.formType == PDFFormTypeText) choice:self.formType == PDFFormTypeChoice]];
         
-//        UIFont *font = [UIFont systemFontOfSize:[PDFWidgetAnnotationView fontSizeForRect:rect value:self.value multiline:((_flags & PDFFormFlagTextFieldMultiline) > 0 && self.formType == PDFFormTypeText) choice:self.formType == PDFFormTypeChoice]];
         UIGraphicsPushContext(ctx);
         NSMutableParagraphStyle *paragraphStyle = [[NSMutableParagraphStyle defaultParagraphStyle] mutableCopy];
         paragraphStyle.lineBreakMode = NSLineBreakByWordWrapping;
         paragraphStyle.alignment = self.textAlignment;
-        [text drawInRect:CGRectMake(0, 0, rect.size.width, rect.size.height*2.0) withAttributes:@{NSFontAttributeName:font,NSParagraphStyleAttributeName: paragraphStyle}];
-        UIGraphicsPopContext();
+        
+        UIFont *font;
+        if ([self.name isEqualToString:@"txtDesignDate"]) {
+            CGFloat fontsize;
+            fontsize = 9;
+            font = [UIFont fontWithName:@"Verdana-Bold" size:fontsize];
+            
+            [text drawInRect:CGRectMake(0, 0, rect.size.width, rect.size.height) withAttributes:@{NSFontAttributeName:font,NSParagraphStyleAttributeName: paragraphStyle}];
+            UIGraphicsPopContext();
+            
+        }else{
+            font = [UIFont fontWithName:@"Verdana" size:[PDFWidgetAnnotationView fontSizeForRect:rect value:self.value multiline:((_flags & PDFFormFlagTextFieldMultiline) > 0 && self.formType == PDFFormTypeText) choice:self.formType == PDFFormTypeChoice font:@"Verdana"]];
+            [text drawInRect:CGRectMake(0, 0, rect.size.width, rect.size.height) withAttributes:@{NSFontAttributeName:font,NSParagraphStyleAttributeName: paragraphStyle}];
+            UIGraphicsPopContext();
+        }
+        
+//        UIFont *font = [UIFont systemFontOfSize:[PDFWidgetAnnotationView fontSizeForRect:rect value:self.value multiline:((_flags & PDFFormFlagTextFieldMultiline) > 0 && self.formType == PDFFormTypeText) choice:self.formType == PDFFormTypeChoice]];
+        
+        
     }else if(self.formType == PDFFormTypeImageView) {
         SignatureView *sw = (SignatureView *)_formUIElement;
         [sw drawInRect:rect withContext:ctx];
     } else if (self.formType == PDFFormTypeButton) {
          PDFFormButtonField *sw = (PDFFormButtonField *)_formUIElement;
-        [sw drawWithRect:rect context:ctx back:NO selected:[self.value isEqualToString:self.exportValue] && (_flags & PDFFormFlagButtonPushButton) == 0 radio:(_flags & PDFFormFlagButtonRadio) > 0];
+        [sw drawWithRect:rect context:ctx back:NO selected:[sw.value isEqualToString:self.exportValue] && (_flags & PDFFormFlagButtonPushButton) == 0 radio:(_flags & PDFFormFlagButtonRadio) > 0];
+        
     }
 }
 
