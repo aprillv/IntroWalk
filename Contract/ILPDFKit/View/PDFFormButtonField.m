@@ -83,7 +83,12 @@
 
 #pragma mark - PDFFormButtonField
 #pragma mark - Initialization
-
+- (instancetype)initWithCoder:(NSCoder *)aDecoder{
+    return [self initWithFrame:CGRectZero];
+}
+- (instancetype)initWithFrame:(CGRect)frame{
+    return [self initWithFrame:frame radio:NO];
+}
 - (instancetype)initWithFrame:(CGRect)frame radio:(BOOL)rad {
     self = [super initWithFrame:frame];
     if (self) {

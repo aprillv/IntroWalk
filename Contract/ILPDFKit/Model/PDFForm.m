@@ -52,10 +52,9 @@
 
 #pragma mark - PDFForm
 #pragma mark - Initialization
-//-(instancetype)init{
-//    self = [super init];
-//    return self;
-//}
+-(instancetype)init{
+    return [self initWithFieldDictionary:nil page:nil parent:nil];
+}
 - (instancetype)initWithFieldDictionary:(PDFDictionary *)leaf page:(PDFPage *)pg parent:(PDFFormContainer *)p {
     self = [super init];
     if (self != nil) {

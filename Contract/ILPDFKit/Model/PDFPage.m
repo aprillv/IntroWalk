@@ -35,7 +35,9 @@
 }
 
 #pragma mark - Initialization
-
+- (instancetype)init{
+    return [self initWithPage:nil];
+}
 - (instancetype)initWithPage:(CGPDFPageRef)pg {
     self = [super init];
     if (self != nil) {

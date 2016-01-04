@@ -78,8 +78,7 @@ static NSMutableArray *colors;
 
     //self
     self.frame = CGRectMake(0, 0, 500, 1000);
-   
-//    self.backgroundColor = [UIColor lightGrayColor];
+//       self.backgroundColor = [UIColor gr];
     CALayer *layer = self.layer;
     [layer setCornerRadius:15.0];
     layer.borderColor = [[UIColor grayColor] CGColor];
@@ -222,6 +221,10 @@ static NSMutableArray *colors;
     toAllSwitch.hidden = !showSwitch;
     sliderLbl.hidden = !showSwitch;
     contentLbl.text = showSwitch? @"Please print your initial here" : @"Please signature here";
+}
+
+-(void) setTitle: (NSString *)xtitle{
+    contentLbl.text = xtitle;
 }
 
 -(void)changeColors:(id)sender{

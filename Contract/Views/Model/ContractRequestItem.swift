@@ -22,7 +22,7 @@ class ContractRequestItem: NSObject {
             , "idcia": cInfo?.idcia ?? ""
             , "code": cInfo?.code ?? ""
             , "ispdf": "0"]
-        print(a)
+//        print(a)
         return a
     }
 }

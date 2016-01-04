@@ -40,7 +40,12 @@
 }
 
 #pragma mark - PDFView
-
+- (instancetype)initWithCoder:(NSCoder *)aDecoder{
+    return [self initWithFrame:CGRectZero];
+}
+- (instancetype)initWithFrame:(CGRect)frame{
+    return [self initWithFrame:frame dataOrPath:nil additionViews:nil];
+}
 - (instancetype)initWithFrame:(CGRect)frame dataOrPath:(id)dataOrPath additionViews:(NSArray*)widgetAnnotationViews {
     self = [super initWithFrame:frame];
     if (self) {
@@ -80,7 +85,7 @@
             [_pdfView loadRequest:[NSURLRequest requestWithURL:[NSURL fileURLWithPath:dataOrPath]]];
         } else if([dataOrPath isKindOfClass:[NSData class]]) {
             [spinner startAnimating];
-            [_pdfView loadData:dataOrPath MIMEType:@"application/pdf" textEncodingName:@"NSASCIIStringEncoding" baseURL:nil];
+            [_pdfView loadData:dataOrPath MIMEType:@"application/pdf" textEncodingName:@"NSASCIIStringEncoding" baseURL:[NSURL URLWithString:@"https://www.buildersaccess.com"]];
             
         }
 

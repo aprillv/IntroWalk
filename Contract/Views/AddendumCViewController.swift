@@ -209,7 +209,12 @@ class AddendumCViewController: PDFBaseViewController {
             for i: Int in 0...5 {
                 
                 sign = SignatureView(frame: CGRect(x: x, y: y, width: w * 0.28, height: h))
-                sign?.xname = "april" + "\(i)" + "Sign"
+                if i < 3 {
+                    sign?.xname = "april" + "\(i)" + "Sign"
+                }else{
+                    sign?.xname = "april" + "\(i)" + "DateSign"
+                }
+                
                 
                 addedAnnotationViews.append(sign!)
                 

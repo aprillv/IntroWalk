@@ -48,10 +48,21 @@ static PopSignUtil *popSignUtil = nil;
     [p setPopWithVC:VC withOk:signCallBackBlock withCancel:callBackBlock showAll:show];
 }
 
++(void)getSignWithVC:(UIViewController *)VC withOk:(SignCallBackBlock)signCallBackBlock
+          withCancel:(CallBackBlock)callBackBlock title:(NSString *) title{
+    PopSignUtil *p = [PopSignUtil shareRestance];
+    [p setPopWithVC:VC withOk:signCallBackBlock withCancel:callBackBlock showAll:NO title:title];
+}
+
+
 
 /** 设定 */
 -(void)setPopWithVC:(UIViewController *)VCrrr withOk:(SignCallBackBlock)signCallBackBlock
          withCancel:(CallBackBlock)cancelBlock showAll:(BOOL) show{
+    [self setPopWithVC:VCrrr withOk:signCallBackBlock withCancel:cancelBlock showAll:show title:@""];
+}
+-(void)setPopWithVC:(UIViewController *)VCrrr withOk:(SignCallBackBlock)signCallBackBlock
+         withCancel:(CallBackBlock)cancelBlock showAll:(BOOL) show title:(NSString *) title{
 
     if (!zhezhaoView) {
         zhezhaoView = [[UIView alloc]init];
@@ -70,6 +81,9 @@ static PopSignUtil *popSignUtil = nil;
 
     DrawSignView *conformView = [[DrawSignView alloc]init];
     conformView.showSwitch = show;
+    if (![title isEqualToString:@""]) {
+        [conformView setTitle: title];
+    }
 //    [conformView setConformMsg:@"XXX" okTitle:@"确定" cancelTitle:@"取消"];
 //    conformView.yesB = yesB;
 //    conformView.noB = noB;

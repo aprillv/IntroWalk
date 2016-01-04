@@ -16,5 +16,8 @@
 
 +(void)getSignWithVC:(UIViewController *)VC withOk:(SignCallBackBlock)signCallBackBlock
           withCancel:(CallBackBlock)callBackBlock showAll:(BOOL) show;
+
++(void)getSignWithVC:(UIViewController *)VC withOk:(SignCallBackBlock)signCallBackBlock
+          withCancel:(CallBackBlock)callBackBlock title:(NSString *) title;
 +(void)closePop;
 @end

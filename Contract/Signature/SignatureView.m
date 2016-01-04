@@ -60,7 +60,13 @@
 
 -(void)toSignautre{
     [self becomeFirstResponder];
-    UIMenuItem *menuItem = [[UIMenuItem alloc] initWithTitle: [self.xname hasSuffix:@"Sign"]? @"Signature" : @"Initial" action:@selector(popSignature:)];
+    NSString *xtitle;
+    if ([self.xname hasSuffix:@"DateSign"]) {
+        xtitle = @"Sign Date";
+    }else{
+        xtitle = [self.xname hasSuffix:@"Sign"]? @"Signature" : @"Initial";
+    }
+    UIMenuItem *menuItem = [[UIMenuItem alloc] initWithTitle:xtitle  action:@selector(popSignature:)];
     UIMenuController *menuCont = [UIMenuController sharedMenuController];
     
     [menuCont setTargetRect:self.frame inView:self.superview];
@@ -76,33 +82,64 @@
 
 - (void)popSignature:(id)sender {
     
-    [PopSignUtil getSignWithVC:nil withOk:^(UIView *image, BOOL isToAll) {
-        CGRect ct = self.frame;
-        SignatureView *sv = (SignatureView *)image;
-        self.frame = sv.frame;
-        self.frame = ct;
-        self.lineArray = sv.lineArray;
-        self.originHeight =sv.originHeight;
-        self.LineWidth = sv.LineWidth;
-        
-        if (isToAll) {
-            for (SignatureView *other in self.pdfViewsssss.pdfWidgetAnnotationViews) {
-                if ([other isKindOfClass:[SignatureView class]]
-                    && [other.sname hasSuffix: [self.sname substringFromIndex:2] ]){
-                    CGRect ct = other.frame;
-                    other.frame = sv.frame;
-                    other.frame = ct;
-                    other.lineArray = sv.lineArray;
-                    other.originHeight =sv.originHeight;
-                    other.LineWidth = sv.LineWidth;
+    if ([self.xname hasSuffix:@"DateSign"]) {
+        [PopSignUtil getSignWithVC:nil withOk:^(UIView *image, BOOL isToAll) {
+            CGRect ct = self.frame;
+            SignatureView *sv = (SignatureView *)image;
+            self.frame = sv.frame;
+            self.frame = ct;
+            self.lineArray = sv.lineArray;
+            self.originHeight =sv.originHeight;
+            self.LineWidth = sv.LineWidth;
+            
+            if (isToAll) {
+                for (SignatureView *other in self.pdfViewsssss.pdfWidgetAnnotationViews) {
+                    if ([other isKindOfClass:[SignatureView class]]
+                        && [other.sname hasSuffix: [self.sname substringFromIndex:2] ]){
+                        CGRect ct = other.frame;
+                        other.frame = sv.frame;
+                        other.frame = ct;
+                        other.lineArray = sv.lineArray;
+                        other.originHeight =sv.originHeight;
+                        other.LineWidth = sv.LineWidth;
+                    }
                 }
             }
-        }
-        
-        [PopSignUtil closePop];
-    } withCancel:^{
-        [PopSignUtil closePop];
-    } showAll:![self.xname hasSuffix:@"Sign"]];
+            
+            [PopSignUtil closePop];
+        } withCancel:^{
+            [PopSignUtil closePop];
+        } title: @"Please sign Date here"];
+    }else{
+        [PopSignUtil getSignWithVC:nil withOk:^(UIView *image, BOOL isToAll) {
+            CGRect ct = self.frame;
+            SignatureView *sv = (SignatureView *)image;
+            self.frame = sv.frame;
+            self.frame = ct;
+            self.lineArray = sv.lineArray;
+            self.originHeight =sv.originHeight;
+            self.LineWidth = sv.LineWidth;
+            
+            if (isToAll) {
+                for (SignatureView *other in self.pdfViewsssss.pdfWidgetAnnotationViews) {
+                    if ([other isKindOfClass:[SignatureView class]]
+                        && [other.sname hasSuffix: [self.sname substringFromIndex:2] ]){
+                        CGRect ct = other.frame;
+                        other.frame = sv.frame;
+                        other.frame = ct;
+                        other.lineArray = sv.lineArray;
+                        other.originHeight =sv.originHeight;
+                        other.LineWidth = sv.LineWidth;
+                    }
+                }
+            }
+            
+            [PopSignUtil closePop];
+        } withCancel:^{
+            [PopSignUtil closePop];
+        } showAll:![self.xname hasSuffix:@"Sign"]];
+    }
+    
     
 }
 

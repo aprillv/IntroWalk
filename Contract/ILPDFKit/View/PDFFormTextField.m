@@ -56,7 +56,12 @@
     
 }
 #pragma mark - PDFFormTextField
-
+-(instancetype)initWithCoder:(NSCoder *)aDecoder{
+    return [self initWithFrame: CGRectZero];
+}
+- (instancetype)initWithFrame:(CGRect)frame{
+    return [self initWithFrame:frame multiline:NO alignment:NSTextAlignmentLeft secureEntry:NO readOnly:YES];
+}
 - (instancetype)initWithFrame:(CGRect)frame multiline:(BOOL)multiline alignment:(NSTextAlignment)alignment secureEntry:(BOOL)secureEntry readOnly:(BOOL)ro {
     self = [super initWithFrame:frame];
    

@@ -71,7 +71,9 @@
 }
 
 #pragma mark - PDFArray
-
+- (instancetype)init{
+    return [self initWithArray:nil];
+}
 - (instancetype)initWithArray:(CGPDFArrayRef)parr {
     self = [super init];
     if (self != nil) {

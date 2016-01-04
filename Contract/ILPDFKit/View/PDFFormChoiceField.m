@@ -59,7 +59,12 @@
 }
 
 #pragma mark - PDFFormChoiceField
-
+-(instancetype)initWithCoder:(NSCoder *)aDecoder{
+    return [self initWithFrame: CGRectZero];
+}
+- (instancetype)initWithFrame:(CGRect)frame{
+    return [self initWithFrame:frame options:nil];
+}
 - (instancetype)initWithFrame:(CGRect)frame options:(NSArray *)opt {
     self = [super initWithFrame:frame];
     if (self != nil) {

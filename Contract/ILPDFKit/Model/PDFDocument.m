@@ -154,7 +154,9 @@ static void renderPage1(NSUInteger page, CGContextRef ctx, CGPDFDocumentRef doc,
 }
 
 #pragma mark - PDFDocument
-
+- (instancetype)init{
+    return [self initWithData:nil];
+}
 - (instancetype)initWithData:(NSData *)data {
     self = [super init];
     if (self != nil) {

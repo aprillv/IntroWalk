@@ -75,8 +75,8 @@ class PDFBaseViewController: BaseViewController, DoOperationDelegate, UIPopoverP
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
         fileName = self.navigationItem.title!
-        print(fileName)
         loadPDFView()
     }
     

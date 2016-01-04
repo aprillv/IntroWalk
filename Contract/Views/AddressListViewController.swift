@@ -10,7 +10,10 @@ import UIKit
 import Alamofire
 
 class AddressListViewController: UITableViewController, UISearchBarDelegate {
-private  var spinner : UIActivityIndicatorView?
+    
+    private  var spinner : UIActivityIndicatorView?
+    private var progressBar: UIAlertController?
+    
     var head : AddressListViewHeadView?
     var AddressListOrigin : [ContractsItem]?{
         didSet{
@@ -163,59 +166,66 @@ private  var spinner : UIActivityIndicatorView?
     private func callService(serviceUrl: String){
         if let indexPath = tableView.indexPathForSelectedRow {
             
+            if (spinner == nil){
+                spinner = UIActivityIndicatorView(frame: CGRect(x: 0, y: 4, width: 50, height: 50))
+                spinner?.hidesWhenStopped = true
+                spinner?.activityIndicatorViewStyle = .Gray
+            }
+            
+            progressBar = UIAlertController(title: nil, message: CConstants.RequestMsg, preferredStyle: .Alert)
+            progressBar?.view.addSubview(spinner!)
+            spinner?.startAnimating()
+            self.presentViewController(progressBar!, animated: true, completion: nil)
+            
             let ddd = self.CiaNmArray?[self.CiaNm?[indexPath.section] ?? ""]
             let item: ContractsItem = ddd![indexPath.row]
-            if (self.spinner == nil){
-                self.spinner = UIActivityIndicatorView(frame: CGRect(x: tableView.frame.midX - 25, y: tableView.frame.midY - 25, width: 50, height: 50))
-                tableView.addSubview(self.spinner!)
-                self.spinner?.hidesWhenStopped = true
-                self.spinner?.center = tableView.center
-                
-            }
+            
             
             self.spinner?.startAnimating()
             Alamofire.request(.POST,
                 CConstants.ServerURL + serviceUrl,
                 parameters: ContractRequestItem(contractInfo: item).DictionaryFromObject()).responseJSON{ (response) -> Void in
-                    self.spinner?.stopAnimating()
-                    if response.result.isSuccess {
-                        
-                        if let rtnValue = response.result.value as? [String: AnyObject]{
-                            if let msg = rtnValue["message"] as? String{
-                                if msg.isEmpty{
-                                    switch serviceUrl {
-                                    case CConstants.AddendumCServiceURL:
-                                        let rtn = ContractAddendumC(dicInfo: rtnValue)
-                                        rtn.code = item.code
-                                        self.performSegueWithIdentifier(CConstants.SegueToAddendumC, sender: rtn)
-                                    case CConstants.ClosingMemoServiceURL:
-                                        let rtn = ContractClosingMemo(dicInfo: rtnValue)
-                                        rtn.code = item.code
-                                        self.performSegueWithIdentifier(CConstants.SegueToClosingMemo, sender: rtn)
-                                    case CConstants.DesignCenterServiceURL:
-                                        let rtn = ContractDesignCenter(dicInfo: rtnValue)
-                                        rtn.code = item.code
-                                        self.performSegueWithIdentifier(CConstants.SegueToDesignCenter, sender: rtn)
-                                    case CConstants.ContractServiceURL:
-                                        let rtn = ContractSignature(dicInfo: rtnValue)
-                                        self.performSegueWithIdentifier(CConstants.SegueToSignaturePdf, sender: rtn)
-                                    default:
-                                        break;
+                    self.progressBar?.dismissViewControllerAnimated(true){ () -> Void in
+                        self.spinner?.stopAnimating()
+                        if response.result.isSuccess {
+                            
+                            if let rtnValue = response.result.value as? [String: AnyObject]{
+                                if let msg = rtnValue["message"] as? String{
+                                    if msg.isEmpty{
+                                        switch serviceUrl {
+                                        case CConstants.AddendumCServiceURL:
+                                            let rtn = ContractAddendumC(dicInfo: rtnValue)
+                                            rtn.code = item.code
+                                            self.performSegueWithIdentifier(CConstants.SegueToAddendumC, sender: rtn)
+                                        case CConstants.ClosingMemoServiceURL:
+                                            let rtn = ContractClosingMemo(dicInfo: rtnValue)
+                                            rtn.code = item.code
+                                            self.performSegueWithIdentifier(CConstants.SegueToClosingMemo, sender: rtn)
+                                        case CConstants.DesignCenterServiceURL:
+                                            let rtn = ContractDesignCenter(dicInfo: rtnValue)
+                                            rtn.code = item.code
+                                            self.performSegueWithIdentifier(CConstants.SegueToDesignCenter, sender: rtn)
+                                        case CConstants.ContractServiceURL:
+                                            let rtn = ContractSignature(dicInfo: rtnValue)
+                                            self.performSegueWithIdentifier(CConstants.SegueToSignaturePdf, sender: rtn)
+                                        default:
+                                            break;
+                                        }
+                                        
+                                        
+                                    }else{
+                                        self.PopMsgWithJustOK(msg: msg)
                                     }
-                                    
-                                    
                                 }else{
-                                    self.PopMsgWithJustOK(msg: msg)
+                                    self.PopMsgWithJustOK(msg: CConstants.MsgServerError)
                                 }
                             }else{
                                 self.PopMsgWithJustOK(msg: CConstants.MsgServerError)
                             }
                         }else{
-                            self.PopMsgWithJustOK(msg: CConstants.MsgServerError)
+                            self.spinner?.stopAnimating()
+                            self.PopMsgWithJustOK(msg: CConstants.MsgNetworkError)
                         }
-                    }else{
-                        self.spinner?.stopAnimating()
-                        self.PopMsgWithJustOK(msg: CConstants.MsgNetworkError)
                     }
             }
             tableView.deselectRowAtIndexPath(indexPath, animated: true)
@@ -230,7 +240,7 @@ private  var spinner : UIActivityIndicatorView?
         let closingMemoAction: UIAlertAction = UIAlertAction(title: getLongString(constants.ActionTitleClosingMemo), style: .Default, handler: doClosingMemoAction)
         let designCenterAction: UIAlertAction = UIAlertAction(title: getLongString(constants.ActionTitleDesignCenter), style: .Default, handler: doDesignCenterAction)
         let contractAction: UIAlertAction = UIAlertAction(title: getLongString(constants.ActionTitleContract), style: .Default, handler: doContractAction)
-    let cancelAction: UIAlertAction = UIAlertAction(title: "Cancel", style: .Cancel, handler: nil)
+        let cancelAction: UIAlertAction = UIAlertAction(title: "Cancel", style: .Cancel, handler: nil)
         
         alert.addAction(addendumCAction)
         alert.addAction(closingMemoAction)

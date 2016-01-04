@@ -49,6 +49,7 @@
 		110A0B901C2A2E7C00CE7FA7 /* Alamofire.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 110A0B831C2A2E2100CE7FA7 /* Alamofire.framework */; };
 		110A0B911C2A2E7C00CE7FA7 /* Alamofire.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 110A0B831C2A2E2100CE7FA7 /* Alamofire.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		110CE6A61C03F3370096E630 /* ContractSignatureError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 110CE6A51C03F3370096E630 /* ContractSignatureError.swift */; };
+		1113F91A1C3A3660000FA22A /* DesignCenter.pdf in Resources */ = {isa = PBXBuildFile; fileRef = 1113F9191C3A3660000FA22A /* DesignCenter.pdf */; };
 		111B69511C191E9200970927 /* AddendumCViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 111B69501C191E9200970927 /* AddendumCViewController.swift */; };
 		112118E31C056EC1000F85CE /* AddressListViewHeadView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 112118E21C056EC1000F85CE /* AddressListViewHeadView.swift */; };
 		113BF5631C0D706500175B22 /* PDFSignViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 113BF5621C0D706500175B22 /* PDFSignViewController.swift */; };
@@ -75,7 +76,6 @@
 		115338C21C27DE5900E1B65A /* PDFBaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 115338C11C27DE5900E1B65A /* PDFBaseViewController.swift */; };
 		115338CA1C27F59E00E1B65A /* ContractPDFBaseModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 115338C91C27F59E00E1B65A /* ContractPDFBaseModel.swift */; };
 		1157B3C41C34C68D008ED758 /* ContractDesignCenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1157B3C31C34C68D008ED758 /* ContractDesignCenter.swift */; };
-		1157B3CC1C351B59008ED758 /* DesignCenter.pdf in Resources */ = {isa = PBXBuildFile; fileRef = 1157B3CB1C351B59008ED758 /* DesignCenter.pdf */; };
 		11633B911C279B3700C11A20 /* ClosingMemoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11633B901C279B3700C11A20 /* ClosingMemoViewController.swift */; };
 		11633B931C279E2900C11A20 /* DesignCenterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11633B921C279E2900C11A20 /* DesignCenterViewController.swift */; };
 		11633BA01C27DA0000C11A20 /* ContractClosingMemoItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11633B9F1C27DA0000C11A20 /* ContractClosingMemoItem.swift */; };
@@ -235,6 +235,7 @@
 		1108B2781BFC6133004B5D48 /* BaseViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BaseViewController.swift; sourceTree = "<group>"; };
 		110A0B781C2A2E2100CE7FA7 /* Alamofire.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = Alamofire.xcodeproj; path = "Alamofire-master/Alamofire.xcodeproj"; sourceTree = "<group>"; };
 		110CE6A51C03F3370096E630 /* ContractSignatureError.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContractSignatureError.swift; sourceTree = "<group>"; };
+		1113F9191C3A3660000FA22A /* DesignCenter.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; path = DesignCenter.pdf; sourceTree = "<group>"; };
 		111B69501C191E9200970927 /* AddendumCViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddendumCViewController.swift; sourceTree = "<group>"; };
 		112118E21C056EC1000F85CE /* AddressListViewHeadView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddressListViewHeadView.swift; sourceTree = "<group>"; };
 		113BF5621C0D706500175B22 /* PDFSignViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PDFSignViewController.swift; sourceTree = "<group>"; };
@@ -261,7 +262,6 @@
 		115338C11C27DE5900E1B65A /* PDFBaseViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PDFBaseViewController.swift; sourceTree = "<group>"; };
 		115338C91C27F59E00E1B65A /* ContractPDFBaseModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContractPDFBaseModel.swift; sourceTree = "<group>"; };
 		1157B3C31C34C68D008ED758 /* ContractDesignCenter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContractDesignCenter.swift; sourceTree = "<group>"; };
-		1157B3CB1C351B59008ED758 /* DesignCenter.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; path = DesignCenter.pdf; sourceTree = "<group>"; };
 		11633B901C279B3700C11A20 /* ClosingMemoViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ClosingMemoViewController.swift; sourceTree = "<group>"; };
 		11633B921C279E2900C11A20 /* DesignCenterViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DesignCenterViewController.swift; sourceTree = "<group>"; };
 		11633B9F1C27DA0000C11A20 /* ContractClosingMemoItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContractClosingMemoItem.swift; sourceTree = "<group>"; };
@@ -491,7 +491,7 @@
 		110CE6AD1C0439A70096E630 /* pdf */ = {
 			isa = PBXGroup;
 			children = (
-				1157B3CB1C351B59008ED758 /* DesignCenter.pdf */,
+				1113F9191C3A3660000FA22A /* DesignCenter.pdf */,
 				110750781C28E91600B68141 /* ClosingMemo.pdf */,
 				11475E6A1C23F8250034A801 /* AddendumC2.pdf */,
 				11475E681C23F1270034A801 /* AddendumC.pdf */,
@@ -650,7 +650,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				1157B3CC1C351B59008ED758 /* DesignCenter.pdf in Resources */,
+				1113F91A1C3A3660000FA22A /* DesignCenter.pdf in Resources */,
 				114733F21C103053000FC8D6 /* contract1pdf_3_265.txt in Resources */,
 				1108B1BF1BFC2691004B5D48 /* LaunchScreen.storyboard in Resources */,
 				114733F41C103053000FC8D6 /* contract1pdf_1_100.txt in Resources */,
@@ -865,7 +865,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OBJC_BRIDGING_HEADER = "Contract/Views/Contract-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 2;
 			};
 			name = Debug;
 		};
@@ -885,7 +885,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.ba.Contract;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OBJC_BRIDGING_HEADER = "Contract/Views/Contract-Bridging-Header.h";
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 2;
 			};
 			name = Release;
 		};

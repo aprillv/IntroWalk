@@ -44,6 +44,9 @@ typedef struct {
     return [[PDFObjectParser alloc] initWithBytes:bytes];
 }
 
+- (instancetype)init{
+    return [self initWithBytes:nil];
+}
 - (instancetype)initWithBytes:(NSData *)bytes {
     self = [super init];
     if (self != nil) {
