@@ -81,7 +81,7 @@ class LoginViewController: BaseViewController, UITextFieldDelegate {
         return true
     }
     
-    func textFieldDidEndEditing(textField: UITextField) {
+    @IBAction func textChanaged() {
         setSignInBtn()
     }
     
