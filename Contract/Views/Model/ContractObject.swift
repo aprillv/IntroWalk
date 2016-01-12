@@ -30,6 +30,7 @@ class ContractObject : NSObject{
             skey = key
 //        }
 //        print("\(skey)")
+        
         if let value = value0{
             if let dic = value as? [Dictionary<String, AnyObject>]{
                 var tmpArray : [ContractObject] = [ContractObject]()

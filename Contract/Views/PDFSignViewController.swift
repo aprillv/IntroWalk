@@ -64,6 +64,7 @@ class PDFSignViewController: PDFBaseViewController {
         static let tobuyer6 = "tobuyer6"
         
         static let tobuyer7 = "tobuyer7"
+        static let page7e2 = "page7e2"
         
         static let executeddd = "executeddd"
         
@@ -285,6 +286,8 @@ class PDFSignViewController: PDFBaseViewController {
                             radio.value = pdfInfo?.environment! == "1" ? pv.xname + "2" : ""
                         }
                     }
+                case PDFFields.page7e2:
+                    pv.value = pdfInfo?.page7e2!
 //                case "buyer_2", "buyer_3", "seller_2", "seller_3":
 //                case "buyer_2":
                     
