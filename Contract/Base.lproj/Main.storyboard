@@ -225,7 +225,11 @@
                     </tableView>
                     <toolbarItems/>
                     <navigationItem key="navigationItem" title="Address List" id="OEj-Gr-2H6">
-                        <barButtonItem key="rightBarButtonItem" title="Item" id="anD-9t-uD6"/>
+                        <barButtonItem key="rightBarButtonItem" title="Logout" id="anD-9t-uD6">
+                            <connections>
+                                <action selector="doLogout:" destination="dHY-yp-nIM" id="eD5-ml-0R6"/>
+                            </connections>
+                        </barButtonItem>
                     </navigationItem>
                     <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
                     <refreshControl key="refreshControl" opaque="NO" multipleTouchEnabled="YES" contentMode="center" enabled="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" id="1U6-pS-cP6">
@@ -235,7 +239,6 @@
                         </connections>
                     </refreshControl>
                     <connections>
-                        <outlet property="LoginUserName" destination="anD-9t-uD6" id="bXd-sT-jNa"/>
                         <segue destination="bI5-rz-cgu" kind="show" identifier="pdfSignature" id="Lgo-oy-gpi"/>
                         <segue destination="evC-Xi-Ufn" kind="show" identifier="addendumc" id="WeB-Iq-hSs"/>
                         <segue destination="NGU-fJ-Ify" kind="show" identifier="closingmemo" id="NYW-nj-mtF"/>
@@ -370,7 +373,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="6CK-ue-dUb" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1202" y="-286"/>
+            <point key="canvasLocation" x="1009" y="-592"/>
         </scene>
         <!--Closing Memo-->
         <scene sceneID="pIw-Kg-V9P">

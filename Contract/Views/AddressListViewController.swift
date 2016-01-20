@@ -14,6 +14,9 @@ class AddressListViewController: UITableViewController, UISearchBarDelegate {
     private  var spinner : UIActivityIndicatorView?
     private var progressBar: UIAlertController?
     
+    @IBAction func doLogout(sender: AnyObject) {
+        self.navigationController?.popViewControllerAnimated(true)
+    }
     var head : AddressListViewHeadView?
     var AddressListOrigin : [ContractsItem]?{
         didSet{
