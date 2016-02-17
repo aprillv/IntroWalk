@@ -77,6 +77,7 @@ class PDFSignViewController: PDFBaseViewController {
         static let pdf2211 = "2211"
         static let pdf2212 = "2212"
         
+        static let pdf22a1 = "22a1"
         static let pdf22a15 = "22a15"
         static let pdf22a3 = "22a3"
         static let pdf22a10 = "22a10"
@@ -85,6 +86,23 @@ class PDFSignViewController: PDFBaseViewController {
         static let buyer3Sign = "buyer3Sign"
         static let seller2Sign = "seller2Sign"
         static let seller3Sign = "seller3Sign"
+        
+        static let p9Broker = "Other Broker Firm"
+        static let p9represents = "Buyer only as Buyers agent"
+        static let p9AssociatesName = "Associates Name"
+        static let p9AssociatesEmailAddress = "Associates Email Address"
+        
+        // checkbox
+        static let chkfinancing = "financing"
+        static let chk6c = "6c"
+        static let chk10a = "10a"
+        static let chk7g = "7g"
+        static let chk6e2 = "6e2"
+        static let chk6a83 = "6a83"
+        static let chk6a8 = "6a8"
+        static let chk6a = "6a"
+        
+        
         
     }
     
@@ -147,7 +165,7 @@ class PDFSignViewController: PDFBaseViewController {
         
         var tobuyer3 : String
         var tobuyer4 : String
-        if let b = pdfInfo?.bmobile1 == "" ? pdfInfo?.boffice1! : pdfInfo?.bmobile1! {
+        if let b = pdfInfo!.bmobile1 == "" ? pdfInfo?.boffice1! : pdfInfo?.bmobile1! {
             let a = b.componentsSeparatedByString("-")
             if a.count > 2 {
                 tobuyer3 = a[0]
@@ -172,7 +190,7 @@ class PDFSignViewController: PDFBaseViewController {
         
         var tobuyer5 : String
         var tobuyer6 : String
-        if let b = pdfInfo?.bfax1! {
+        if let b = pdfInfo!.bfax1 {
             let a = b.componentsSeparatedByString("-")
             if a.count > 2 {
                 tobuyer5 = a[0]
@@ -230,18 +248,18 @@ class PDFSignViewController: PDFBaseViewController {
                 
                 switch pv.xname {
                 case PDFFields.cashportion:
-                    pv.value = pdfInfo?.cashportion! == "" ? "0.00" : pdfInfo?.cashportion!
-                    
+//                    pv.value = pdfInfo!.cashportion! == "" ? "0.00" : pdfInfo!.cashportion!
+                    pv.value = pdfInfo!.cashportion!
                 case PDFFields.financing:
-                    pv.value = pdfInfo?.financing!
+                    pv.value = pdfInfo!.financing!
                 case PDFFields.estimatedclosing_MMdd:
-                    pv.value = pdfInfo?.estimatedclosing_MMdd!
+                    pv.value = pdfInfo!.estimatedclosing_MMdd!
                 case PDFFields.estimatedclosing_yy:
-                    pv.value = pdfInfo?.estimatedclosing_yy!
+                    pv.value = pdfInfo!.estimatedclosing_yy!
                 case PDFFields.tobuyer1:
-                    pv.value = pdfInfo?.client!
+                    pv.value = pdfInfo!.client!
                 case PDFFields.tobuyer2:
-                    pv.value = pdfInfo?.tobuyer2!
+                    pv.value = pdfInfo!.tobuyer2!
                 case PDFFields.tobuyer3:
                     pv.value = tobuyer3
                 case PDFFields.tobuyer4:
@@ -251,47 +269,113 @@ class PDFSignViewController: PDFBaseViewController {
                 case PDFFields.tobuyer6:
                     pv.value = tobuyer6
                 case PDFFields.tobuyer7:
-                    pv.value = pdfInfo?.bemail1!
+                    pv.value = pdfInfo!.bemail1!
                 case PDFFields.executeddd:
-                    pv.value = pdfInfo?.executeddd!
+                    pv.value = pdfInfo!.executeddd!
                 case PDFFields.executedmm:
-                    pv.value = pdfInfo?.executedmm!
+                    pv.value = pdfInfo!.executedmm!
                 case PDFFields.executedyy:
-                    pv.value = pdfInfo?.executedyy!
+                    pv.value = pdfInfo!.executedyy!
                 case PDFFields.buyer_2:
-                    pv.value = pdfInfo?.client!
+                    pv.value = pdfInfo!.client!
                 case PDFFields.buyer_3:
-                    pv.value = pdfInfo?.client2!
+                    pv.value = pdfInfo!.client2!
                 case PDFFields.seller_2:
-                    pv.value = pdfInfo?.cianame!
+                    pv.value = pdfInfo!.cianame!
                 case PDFFields.pdf2211:
-                    pv.value = pdfInfo?.trec1!
+                    pv.value = pdfInfo!.trec1!
                 case PDFFields.pdf2212:
-                    pv.value = pdfInfo?.trec2!
+                    pv.value = pdfInfo!.trec2!
+                case PDFFields.pdf22a1:
+                    if let radio = pv as? PDFFormButtonField {
+                        radio .setValue2(pdfInfo!.page7ThirdPartyFinacingAddendum!)
+                    }
                 case PDFFields.pdf22a15:
                     if let radio = pv as? PDFFormButtonField {
-                        if radio.exportValue == pv.xname + "2" {
-                            radio.value = pdfInfo?.other! == "1" ? pv.xname + "2" : ""
-                        }
+                        radio .setValue2(pdfInfo!.other!)
                     }
                 case PDFFields.pdf22a3:
                     if let radio = pv as? PDFFormButtonField {
-                        if radio.exportValue == pv.xname + "2" {
-                            radio.value = pdfInfo?.hoa! == "1" ? pv.xname + "2" : ""
-                        }
+                        radio .setValue2(pdfInfo!.hoa!)
                     }
                 case PDFFields.pdf22a10:
                     if let radio = pv as? PDFFormButtonField {
-                        if radio.exportValue == pv.xname + "2" {
-                            radio.value = pdfInfo?.environment! == "1" ? pv.xname + "2" : ""
-                        }
+                        radio.setValue2(pdfInfo!.environment!)
                     }
                 case PDFFields.page7e2:
-                    pv.value = pdfInfo?.page7e2!
+                    pv.value = pdfInfo!.page7e2!
 //                case "buyer_2", "buyer_3", "seller_2", "seller_3":
 //                case "buyer_2":
                     
-                    
+                case PDFFields.p9Broker:
+                    pv.value = pdfInfo!.page9OtherBrokerFirm
+                case PDFFields.p9represents:
+                    if let radio = pv as? PDFFormButtonField {
+                        radio .setValue2(pdfInfo!.page9BuyeronlyasBuyersagent!)
+                    }
+                case PDFFields.p9AssociatesName:
+                    pv.value = pdfInfo!.page9AssociatesName
+                case PDFFields.p9AssociatesEmailAddress:
+                    pv.value = pdfInfo!.page9AssociatesEmailAddress
+//                    static let chkfinancing = "financing"
+//                    static let chk6c = "6c"
+//                    static let chkcer2 = "cer2"
+//                    static let chkcer1 = "cer1"
+//                    static let chk23a = "23a"
+//                    static let chk10a = "10a"
+//                    static let chk7g = "7g"
+//                    static let chk6e2 = "6e2"
+//                    static let chk6a83 = "6a83"
+//                    static let chk6a8 = "6a8"
+//                    static let chk6a = "6a"
+                case PDFFields.chkfinancing:
+                    if let radio = pv as? PDFFormButtonField {
+                        if radio.exportValue == "4a" {
+                            radio.setValue2("1")
+                        }
+                    }
+                case PDFFields.chk6c:
+                    if let radio = pv as? PDFFormButtonField {
+                        if radio.exportValue == "6c2" {
+                            radio.setValue2("1")
+                        }
+                    }
+                case PDFFields.chk10a:
+                    if let radio = pv as? PDFFormButtonField {
+                        if radio.exportValue == "10a1" {
+                            radio.setValue2("1")
+                        }
+                    }
+                case PDFFields.chk7g:
+                    if let radio = pv as? PDFFormButtonField {
+                        if radio.exportValue == "7g2" {
+                            radio.setValue2("1")
+                        }
+                    }
+                case PDFFields.chk6e2:
+                    if let radio = pv as? PDFFormButtonField {
+                        if radio.exportValue == "6e2" {
+                            radio.setValue2("1")
+                        }
+                    }
+                case PDFFields.chk6a83:
+                    if let radio = pv as? PDFFormButtonField {
+                        if radio.exportValue == "6a831" {
+                            radio.setValue2("1")
+                        }
+                    }
+                case PDFFields.chk6a8:
+                    if let radio = pv as? PDFFormButtonField {
+                        if radio.exportValue == "6a82" {
+                            radio.setValue2("1")
+                        }
+                    }
+                case PDFFields.chk6a:
+                    if let radio = pv as? PDFFormButtonField {
+                        if radio.exportValue == "6a2" {
+                            radio.setValue2("1")
+                        }
+                    }
                 default:
                     break
                 }

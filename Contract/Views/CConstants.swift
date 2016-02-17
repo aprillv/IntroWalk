@@ -33,6 +33,7 @@ struct CConstants{
     
     static let SegueToAddressList :  String = "adressList"
     static let SegueToSignaturePdf : String = "pdfSignature"
+    static let SegueToThridPartyFinacingAddendumPdf : String = "pdfThridPartyFinacingAddendum"
     static let SegueToClosingMemo : String = "closingmemo"
     static let SegueToDesignCenter : String = "designcenter"
     static let SegueToAddendumC : String = "addendumc"
@@ -54,6 +55,8 @@ struct CConstants{
     static let ClosingMemoServiceURL = "bacontract_closingMemo.json"
     //get contract Design Center
     static let DesignCenterServiceURL = "bacontract_designCenter.json"
+    // get Third Party Financing Addendum
+    static let ThirdPartyFinancingAddendumServiceURL = "bacontract_thirdPartyFinancingAddendum.json"
     //upload pdf
     static let ContractUploadPdfURL = "bacontract_upload.json"
    

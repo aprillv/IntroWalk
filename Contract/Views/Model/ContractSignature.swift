@@ -48,5 +48,10 @@ class ContractSignature: ContractPDFBaseModel {
     var environment : String?
     var other : String?
     var page7e2: String?
+    var page7ThirdPartyFinacingAddendum: String?
+    var page9OtherBrokerFirm: String?
+    var page9BuyeronlyasBuyersagent: String?
+    var page9AssociatesName: String?
+    var page9AssociatesEmailAddress: String?
     
 }

@@ -44,28 +44,19 @@
     [self drawWithRect:rect context:ctx back:YES selected:_button.selected radio:_radio];
 }
 
-#pragma mark - PDFWidgetAnnotationView
 
-- (void)setValue:(NSString *)value {
-    if ([value isKindOfClass:[NSNull class]]) {
-        self.value = nil;
-        return;
-    }
+
+- (void)setValue2:(NSString *)value {
     if ([value isEqualToString:@"1"]) {
-        value = @"Yes";
-    }else{
-        value = @"false";
-    }
-    if (_val != value) {
-        _val = value;
-    }
-    if (_val) {
-        _button.selected = [_val isEqualToString:_exportValue];
+        _val = @"1";
+        _button.selected = YES;
     } else {
+        _val = @"0";
         _button.selected = NO;
     }
     [self refresh];
 }
+
 
 - (NSString *)value {
     return _val;
@@ -143,7 +134,10 @@
 
 - (void)drawWithRect:(CGRect)frame context:(CGContextRef)ctx back:(BOOL)back selected:(BOOL)selected radio:(BOOL)radio {
     
-    NSArray *na = @[@"22a32", @"22a102", @"22a152"];
+//    NSLog(@"%@\n%@\n%@", self.name, self.value, self.exportValue);
+//    NSArray *na = @[@"22a32", @"22a102", @"22a152", @"22a12", @"Buyer only as Buyers agent2"];
+    NSArray *na = @[@""];
+
     radio = [na containsObject:self.exportValue];
     if (radio) {
         if (frame.size.width != frame.size.height) {
@@ -208,10 +202,10 @@
         }else{
             if (selected) {
                 CGContextSetLineWidth(ctx, rect.size.width/8);
-                CGContextMoveToPoint(ctx, rect.origin.x + margin/4, rect.origin.y + margin/4);
-                CGContextAddLineToPoint(ctx, rect.origin.x - margin + rect.size.width, rect.origin.y - margin + rect.size.height);
-                CGContextMoveToPoint(ctx, rect.origin.x - margin + rect.size.width, rect.origin.y + margin/4);
-                CGContextAddLineToPoint(ctx, rect.origin.x + margin/4, rect.origin.y - margin + rect.size.height);
+                CGContextMoveToPoint(ctx, rect.origin.x-margin/4 , rect.origin.y + margin/4);
+                CGContextAddLineToPoint(ctx, rect.origin.x - margin + rect.size.width-margin/2, rect.origin.y - margin + rect.size.height);
+                CGContextMoveToPoint(ctx, rect.origin.x - margin + rect.size.width-margin/2, rect.origin.y + margin/4);
+                CGContextAddLineToPoint(ctx, rect.origin.x + margin/4-margin/2, rect.origin.y - margin + rect.size.height);
             }
         }
         

@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="9531" systemVersion="14F1509" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="6N7-GH-wKp">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="9532" systemVersion="14F1605" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="6N7-GH-wKp">
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9529"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9530"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="Navigation items with more than one left or right bar item" minToolsVersion="7.0"/>
     </dependencies>
@@ -46,7 +46,7 @@
                                     <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="sales@lovetthomes.com" textAlignment="natural" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="u81-bT-LIW">
                                         <rect key="frame" x="127" y="10" width="253" height="30"/>
                                         <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="15"/>
-                                        <textInputTraits key="textInputTraits"/>
+                                        <textInputTraits key="textInputTraits" keyboardType="emailAddress" returnKeyType="next"/>
                                         <connections>
                                             <action selector="textChanaged" destination="BYZ-38-t0r" eventType="editingChanged" id="aDU-hO-2TP"/>
                                         </connections>
@@ -60,7 +60,7 @@
                                     <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="required" textAlignment="natural" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="FVu-fz-Cfs">
                                         <rect key="frame" x="127" y="54" width="253" height="29"/>
                                         <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="15"/>
-                                        <textInputTraits key="textInputTraits" secureTextEntry="YES"/>
+                                        <textInputTraits key="textInputTraits" returnKeyType="go" secureTextEntry="YES"/>
                                         <connections>
                                             <action selector="textChanaged" destination="BYZ-38-t0r" eventType="editingChanged" id="O9X-dp-XCa"/>
                                         </connections>
@@ -243,6 +243,7 @@
                         <segue destination="evC-Xi-Ufn" kind="show" identifier="addendumc" id="WeB-Iq-hSs"/>
                         <segue destination="NGU-fJ-Ify" kind="show" identifier="closingmemo" id="NYW-nj-mtF"/>
                         <segue destination="MOm-Ac-c8C" kind="show" identifier="designcenter" id="d6q-rX-aF3"/>
+                        <segue destination="zWA-CC-Fd1" kind="show" identifier="pdfThridPartyFinacingAddendum" id="rxs-16-kuI"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="akO-Zu-3HL" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -355,7 +356,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="2BD-za-Val" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3820" y="443"/>
+            <point key="canvasLocation" x="4043" y="426"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="Ugg-Z2-cHQ">
@@ -484,12 +485,69 @@
             </objects>
             <point key="canvasLocation" x="3603" y="-370"/>
         </scene>
+        <!--Third Party Finacing Addendum-->
+        <scene sceneID="GDM-6d-8EZ">
+            <objects>
+                <viewController id="zWA-CC-Fd1" customClass="ThirdPartyFinacingAddendumViewController" customModule="Contract" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="0Od-pP-zR6"/>
+                        <viewControllerLayoutGuide type="bottom" id="fzK-Sh-nRV"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="ryG-2p-hjd">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                    <toolbarItems/>
+                    <navigationItem key="navigationItem" title="Third Party Finacing Addendum" id="u1d-Nl-F0R">
+                        <leftBarButtonItems>
+                            <barButtonItem image="back" id="lE1-G2-4Hj">
+                                <connections>
+                                    <action selector="goBack:" destination="zWA-CC-Fd1" id="9pk-HF-RMQ"/>
+                                </connections>
+                            </barButtonItem>
+                            <barButtonItem tag="1" title="Buyer1" id="p8s-ci-Wh9">
+                                <connections>
+                                    <action selector="BuyerSign:" destination="zWA-CC-Fd1" id="f9R-2e-4Oo"/>
+                                </connections>
+                            </barButtonItem>
+                            <barButtonItem tag="2" title="Buyer2" id="SKm-lc-20G">
+                                <connections>
+                                    <action selector="BuyerSign:" destination="zWA-CC-Fd1" id="o0p-xZ-deM"/>
+                                </connections>
+                            </barButtonItem>
+                        </leftBarButtonItems>
+                        <rightBarButtonItems>
+                            <barButtonItem image="send" id="w38-kC-O0V">
+                                <connections>
+                                    <segue destination="Rzu-Cw-vxk" kind="popoverPresentation" identifier="Show Operations" popoverAnchorBarButtonItem="w38-kC-O0V" id="ZKx-6K-eOE">
+                                        <popoverArrowDirection key="popoverArrowDirection" up="YES" down="YES" left="YES" right="YES"/>
+                                    </segue>
+                                </connections>
+                            </barButtonItem>
+                            <barButtonItem tag="4" title="Seller2" id="TPF-7p-PuL">
+                                <connections>
+                                    <action selector="BuyerSign:" destination="zWA-CC-Fd1" id="SMl-6q-Ykd"/>
+                                </connections>
+                            </barButtonItem>
+                            <barButtonItem tag="3" title="Seller1" id="v6w-ck-Yws">
+                                <connections>
+                                    <action selector="BuyerSign:" destination="zWA-CC-Fd1" id="6pr-UC-Buz"/>
+                                </connections>
+                            </barButtonItem>
+                        </rightBarButtonItems>
+                    </navigationItem>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="sBZ-1l-NXt" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="3965" y="829"/>
+        </scene>
     </scenes>
     <resources>
         <image name="back" width="30" height="30"/>
         <image name="send" width="30" height="30"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="5tg-36-cc8"/>
+        <segue reference="KMc-yt-S0g"/>
     </inferredMetricsTieBreakers>
 </document>

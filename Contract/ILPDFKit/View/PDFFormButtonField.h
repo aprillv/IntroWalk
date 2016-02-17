@@ -90,7 +90,7 @@
  */
 - (void)drawWithRect:(CGRect)frame context:(CGContextRef)ctx back:(BOOL)back selected:(BOOL)selected radio:(BOOL)radio;
 
-
+- (void)setValue2:(NSString *)value;
 
 
 
