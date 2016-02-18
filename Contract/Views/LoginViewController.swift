@@ -19,6 +19,8 @@ class LoginViewController: BaseViewController, UITextFieldDelegate {
         
     }
     
+    var progressBar : UIAlertController?
+    
     // MARK: Outlets
     @IBOutlet weak var emailTxt: UITextField!{
         didSet{
@@ -57,16 +59,25 @@ class LoginViewController: BaseViewController, UITextFieldDelegate {
     
     @IBOutlet weak var backView: UIView!{
         didSet{
-            backView.backgroundColor = UIColor.whiteColor()
+//            backView.backgroundColor = UIColor.whiteColor()
             backView.layer.borderColor = CConstants.BorderColor.CGColor
             backView.layer.borderWidth = 1.0
-            backView.layer.cornerRadius = 8
+//            backView.layer.cornerRadius = 8
+            backView.layer.shadowColor = UIColor.lightGrayColor().CGColor
+            backView.layer.shadowOpacity = 1
+            backView.layer.shadowRadius = 8.0
+            backView.layer.shadowOffset = CGSize(width: -0.5, height: 0.0)
+            
         }
     }
     
-    @IBOutlet weak var signInBtn: UIButton!
+    @IBOutlet weak var signInBtn: UIButton!{
+        didSet{
+            signInBtn.layer.cornerRadius = 8.0
+        }
+    }
     
-    @IBOutlet weak var spinner: UIActivityIndicatorView!
+    var spinner: UIActivityIndicatorView?
     
     // MARK: UITextField Delegate
     func textFieldShouldReturn(textField: UITextField) -> Bool {
@@ -133,18 +144,34 @@ class LoginViewController: BaseViewController, UITextFieldDelegate {
     }
     
     @IBAction func Login(sender: UIButton) {
+        
         disAblePageControl()
         checkUpate()
     }
     
     private func disAblePageControl(){
-        signInBtn.hidden = true
-        emailTxt.enabled = false
-        passwordTxt.enabled = false
-        rememberMeSwitch.enabled = false
-        emailTxt.textColor = UIColor.darkGrayColor()
-        passwordTxt.textColor = UIColor.darkGrayColor()
-        spinner.startAnimating()
+        
+        //        signInBtn.hidden = true
+        emailTxt.resignFirstResponder()
+        passwordTxt.resignFirstResponder()
+//        emailTxt.enabled = false
+//        passwordTxt.enabled = false
+//        
+//        rememberMeSwitch.enabled = false
+//        emailTxt.textColor = UIColor.darkGrayColor()
+//        passwordTxt.textColor = UIColor.darkGrayColor()
+        //        spinner.startAnimating()
+        if (spinner == nil){
+            spinner = UIActivityIndicatorView(frame: CGRect(x: 20, y: 4, width: 50, height: 50))
+            spinner?.hidesWhenStopped = true
+            spinner?.activityIndicatorViewStyle = .Gray
+        }
+        
+        progressBar = UIAlertController(title: nil, message: CConstants.LoginingMsg, preferredStyle: .Alert)
+        progressBar?.view.addSubview(spinner!)
+        spinner?.startAnimating()
+        self.presentViewController(progressBar!, animated: true, completion: nil)
+        
     }
     private func doLogin(){
         emailTxt.resignFirstResponder()
@@ -170,27 +197,31 @@ class LoginViewController: BaseViewController, UITextFieldDelegate {
                 
                 let a = loginUserInfo.DictionaryFromObject()
                 Alamofire.request(.POST, CConstants.ServerURL + CConstants.LoginServiceURL, parameters: a).responseJSON{ (response) -> Void in
-                    if response.result.isSuccess {
-                        if let rtnValue = response.result.value as? [String: AnyObject]{
-                            let rtn = Contract(dicInfo: rtnValue)
-                            
-                            self.toEablePageControl()
-                            
-                            if rtn.activeyn == 1{
-                                self.saveEmailAndPwdToDisk(email: email!, password: password!)
-                                self.loginResult = rtn
-                                self.performSegueWithIdentifier(CConstants.SegueToAddressList, sender: self)
+                    self.progressBar?.dismissViewControllerAnimated(true){ () -> Void in
+                        self.spinner?.stopAnimating()
+                        if response.result.isSuccess {
+                            if let rtnValue = response.result.value as? [String: AnyObject]{
+                                let rtn = Contract(dicInfo: rtnValue)
+                                
+                                self.toEablePageControl()
+                                
+                                if rtn.activeyn == 1{
+                                    self.saveEmailAndPwdToDisk(email: email!, password: password!)
+                                    self.loginResult = rtn
+                                    self.performSegueWithIdentifier(CConstants.SegueToAddressList, sender: self)
+                                }else{
+                                    self.PopMsgValidationWithJustOK(msg: constants.WrongEmailOrPwdMsg, txtField: nil)
+                                }
                             }else{
-                                self.PopMsgValidationWithJustOK(msg: constants.WrongEmailOrPwdMsg, txtField: nil)
+                                self.toEablePageControl()
+                                self.PopServerError()
                             }
                         }else{
                             self.toEablePageControl()
-                            self.PopServerError()
+                            self.PopNetworkError()
                         }
-                    }else{
-                        self.toEablePageControl()
-                        self.PopNetworkError()
                     }
+                    
                 }
                 
                 ////                request(method: Alamofire.Method, _ URLString: URLStringConvertible, parameters: [String : AnyObject]? = default, encoding: Alamofire.ParameterEncoding = default, headers: [String : String]? = default) -> Alamofire.Request
@@ -201,13 +232,13 @@ class LoginViewController: BaseViewController, UITextFieldDelegate {
     }
    private func toEablePageControl(){
 //    self.view.userInteractionEnabled = true
-    self.signInBtn.hidden = false
-    self.emailTxt.enabled = true
-    self.passwordTxt.enabled = true
-    self.rememberMeSwitch.enabled = true
-    self.emailTxt.textColor = UIColor.blackColor()
-    self.passwordTxt.textColor = UIColor.blackColor()
-    self.spinner.stopAnimating()
+//    self.signInBtn.hidden = false
+//    self.emailTxt.enabled = true
+//    self.passwordTxt.enabled = true
+//    self.rememberMeSwitch.enabled = true
+//    self.emailTxt.textColor = UIColor.blackColor()
+//    self.passwordTxt.textColor = UIColor.blackColor()
+//    self.spinner?.stopAnimating()
     }
     
     func saveEmailAndPwdToDisk(email email: String, password: String){
@@ -255,11 +286,11 @@ class LoginViewController: BaseViewController, UITextFieldDelegate {
     
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
-        self.navigationController?.navigationBarHidden = true
+//        self.navigationController?.navigationBarHidden = true
     }
     
     override func viewWillDisappear(animated: Bool) {
         super.viewWillDisappear(animated)
-        self.navigationController?.navigationBarHidden = false
+//        self.navigationController?.navigationBarHidden = false
     }
 }

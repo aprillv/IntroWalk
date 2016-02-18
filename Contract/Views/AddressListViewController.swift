@@ -9,7 +9,7 @@
 import UIKit
 import Alamofire
 
-class AddressListViewController: UITableViewController, UISearchBarDelegate {
+class AddressListViewController: UITableViewController, UISearchBarDelegate, ToDoPrintDelegate {
     
     private  var spinner : UIActivityIndicatorView?
     private var progressBar: UIAlertController?
@@ -131,11 +131,13 @@ class AddressListViewController: UITableViewController, UISearchBarDelegate {
     }
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCellWithIdentifier(constants.CellIdentifier, forIndexPath: indexPath)
-
+        cell.separatorInset = UIEdgeInsetsZero
+        cell.layoutMargins = UIEdgeInsetsZero
+        cell.preservesSuperviewLayoutMargins = false
         if let cellitem = cell as? AddressListViewCell {
             let ddd = CiaNmArray?[CiaNm?[indexPath.section] ?? ""]
             cellitem.contractInfo = ddd![indexPath.row]
-            cell.separatorInset = UIEdgeInsets(top: 0, left: -10, bottom: 0, right: 8)
+            
         }
         
         return cell
@@ -148,6 +150,25 @@ class AddressListViewController: UITableViewController, UISearchBarDelegate {
         }else{
             return originStr
         }
+    }
+    
+    func GoToPrint(modelNm: String) {
+        switch modelNm{
+        case CConstants.ActionTitleDesignCenter:
+            callService(CConstants.DesignCenterServiceURL)
+        case CConstants.ActionTitleAddendumC:
+            callService(CConstants.AddendumCServiceURL)
+        case CConstants.ActionTitleClosingMemo:
+            callService(CConstants.ClosingMemoServiceURL)
+        case CConstants.ActionTitleContract:
+            callService(CConstants.ContractServiceURL)
+        case CConstants.ActionTitleThirdPartyFinancingAddendum:
+            callService(CConstants.ThirdPartyFinancingAddendumServiceURL)
+        default:
+            break
+        }
+        
+
     }
     
     // go to print Addendum C signature
@@ -218,6 +239,7 @@ class AddressListViewController: UITableViewController, UISearchBarDelegate {
                                         case CConstants.ThirdPartyFinancingAddendumServiceURL:
                                             let rtn = ThirdPartyFinacingAddendum(dicInfo: rtnValue)
                                             self.performSegueWithIdentifier(CConstants.SegueToThridPartyFinacingAddendumPdf, sender: rtn)
+                                            
                                         default:
                                             break;
                                         }
@@ -243,29 +265,47 @@ class AddressListViewController: UITableViewController, UISearchBarDelegate {
     }
     
     override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+//        if let myCell = tableView.cellForRowAtIndexPath(indexPath) {
+//            //Make the rect you want the popover to point at.
+//            let  displayFrom = CGRectMake(myCell.frame.origin.x + myCell.frame.size.width, myCell.center.y + self.tableView.frame.origin.y - self.tableView.contentOffset.y, 1, 1)
+//            
+//            //Now move your anchor button to this location (again, make sure you made your constraints allow this)
+//            self.popOverAnchorButton.frame = displayFrom;
+//            self.performSegueWithIdentifier(CConstants.SegueToPrintModel, sender: myCell)
+//        }
         
-        let alert: UIAlertController = UIAlertController(title: nil, message: nil, preferredStyle: .Alert)
         
-        let addendumCAction: UIAlertAction = UIAlertAction(title: getLongString(constants.ActionTitleAddendumC), style: .Default, handler: doAddendumCAction)
-        let closingMemoAction: UIAlertAction = UIAlertAction(title: getLongString(constants.ActionTitleClosingMemo), style: .Default, handler: doClosingMemoAction)
-        let designCenterAction: UIAlertAction = UIAlertAction(title: getLongString(constants.ActionTitleDesignCenter), style: .Default, handler: doDesignCenterAction)
-        let contractAction: UIAlertAction = UIAlertAction(title: getLongString(constants.ActionTitleContract), style: .Default, handler: doContractAction)
-        let ThirdPartyFinancingAddendumAction: UIAlertAction = UIAlertAction(title: getLongString(constants.ActionThirdPartyFinancingAddendum), style: .Default, handler: doThirdPartyFinancingAddendumAction)
-        let cancelAction: UIAlertAction = UIAlertAction(title: "Cancel", style: .Cancel, handler: nil)
         
-        alert.addAction(addendumCAction)
-        alert.addAction(closingMemoAction)
-        alert.addAction(designCenterAction)
-        alert.addAction(contractAction)
-        alert.addAction(ThirdPartyFinancingAddendumAction)
-        alert.addAction(cancelAction)
-        self.presentViewController(alert, animated: true, completion: nil)
+//        let alert: UIAlertController = UIAlertController(title: nil, message: nil, preferredStyle: .Alert)
+//        let contractAction: UIAlertAction = UIAlertAction(title: getLongString(constants.ActionTitleContract), style: .Default, handler: doContractAction)
+//        let ThirdPartyFinancingAddendumAction: UIAlertAction = UIAlertAction(title: getLongString(constants.ActionThirdPartyFinancingAddendum), style: .Default, handler: doThirdPartyFinancingAddendumAction)
+//        let addendumCAction: UIAlertAction = UIAlertAction(title: getLongString(constants.ActionTitleAddendumC), style: .Default, handler: doAddendumCAction)
+//        let closingMemoAction: UIAlertAction = UIAlertAction(title: getLongString(constants.ActionTitleClosingMemo), style: .Default, handler: doClosingMemoAction)
+//        let designCenterAction: UIAlertAction = UIAlertAction(title: getLongString(constants.ActionTitleDesignCenter), style: .Default, handler: doDesignCenterAction)
+//        
+//        let cancelAction: UIAlertAction = UIAlertAction(title: "Cancel", style: .Cancel, handler: nil)
+//        
+//        alert.addAction(contractAction)
+//        alert.addAction(ThirdPartyFinancingAddendumAction)
+//        alert.addAction(addendumCAction)
+//        alert.addAction(closingMemoAction)
+//        alert.addAction(designCenterAction)
+//        alert.addAction(cancelAction)
+//        self.presentViewController(alert, animated: true, completion: nil)
+        
+        self.performSegueWithIdentifier(CConstants.SegueToPrintModel, sender: nil)
         
     }
     
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         if let identifier = segue.identifier {
             switch identifier {
+            case CConstants.SegueToPrintModel:
+                
+                if let controller = segue.destinationViewController as? PrintModelTableViewController {
+                   controller.delegate = self
+                }
+                break
             case CConstants.SegueToSignaturePdf:
                     if let controller = segue.destinationViewController as? PDFSignViewController {
                         controller.pdfInfo = sender as? ContractSignature

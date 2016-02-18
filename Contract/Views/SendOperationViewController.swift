@@ -53,7 +53,9 @@ class SendOperationViewController: UIViewController, UITableViewDelegate, UITabl
     
      func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCellWithIdentifier(constants.cellReuseIdentifier, forIndexPath: indexPath)
-        
+        cell.separatorInset = UIEdgeInsetsZero
+        cell.layoutMargins = UIEdgeInsetsZero
+        cell.preservesSuperviewLayoutMargins = false
         cell.textLabel?.text = itemList![indexPath.row]
         cell.textLabel?.textAlignment = .Center
         return cell

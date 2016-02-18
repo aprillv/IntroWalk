@@ -24,6 +24,7 @@ struct CConstants{
     static let UserInfoEmail :  String = "Login Email"
     static let UserInfoPwd :  String = "Login Password"
     
+    static let LoginingMsg = "Logining... ...                                                         "
     static let RequestMsg = "Requesting from server"
     static let SavedMsg = "Saving to the BA Server"
     static let SavedSuccessMsg = "Saved successfully."
@@ -37,6 +38,7 @@ struct CConstants{
     static let SegueToClosingMemo : String = "closingmemo"
     static let SegueToDesignCenter : String = "designcenter"
     static let SegueToAddendumC : String = "addendumc"
+    static let SegueToPrintModel : String = "printModel"
     
     
     
@@ -62,7 +64,11 @@ struct CConstants{
    
     
     
-    
+    static let ActionTitleAddendumC : String = "Addendum C"
+    static let ActionTitleClosingMemo : String = "Closing Memo"
+    static let ActionTitleDesignCenter : String = "Design Center"
+    static let ActionTitleContract : String = "Sign Contract"
+    static let ActionTitleThirdPartyFinancingAddendum : String = "Third Party Financing Addendum"
 }
 
 

@@ -16,13 +16,9 @@
 
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
-    // Override point for customization after application launch.
-//    [[UIApplication sharedApplication] registerForRemoteNotifications];
-//    [application registerUserNotificationSettings:[UIUserNotificationSettings settingsForTypes:(UIUserNotificationTypeSound | UIUserNotificationTypeAlert | UIUserNotificationTypeBadge) categories:nil]];
-//    
-//    [application registerForRemoteNotifications];
-    
-//    [UIApplication sharedApplication] maiins
+//    [[UITableViewCell appearance] setSeparatorInset: UIEdgeInsetsZero];
+//    [[UITableViewCell appearance] setLayoutMargins:UIEdgeInsetsZero];
+//    [[UITableViewCell appearance] setPreservesSuperviewLayoutMargins: NO];
     return YES;
 }
 
