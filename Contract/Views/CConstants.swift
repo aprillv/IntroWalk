@@ -24,7 +24,7 @@ struct CConstants{
     static let UserInfoEmail :  String = "Login Email"
     static let UserInfoPwd :  String = "Login Password"
     
-    static let LoginingMsg = "Logining... ...                                                         "
+    static let LoginingMsg = "Logining... ..."
     static let RequestMsg = "Requesting from server"
     static let SavedMsg = "Saving to the BA Server"
     static let SavedSuccessMsg = "Saved successfully."

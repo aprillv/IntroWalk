@@ -13,7 +13,7 @@ class PDFBaseViewController: BaseViewController, DoOperationDelegate, UIPopoverP
     
     var document : PDFDocument?
     var pdfView  : PDFView?
-    var spinner : UIActivityIndicatorView?
+//    var spinner : UIActivityIndicatorView?
 //    var spinner : UIActivityIndicatorView? = UIActivityIndicatorView(frame: CGRect(x: 0, y: 4, width: 50, height: 50)){
 //        didSet{
 //            
@@ -21,7 +21,7 @@ class PDFBaseViewController: BaseViewController, DoOperationDelegate, UIPopoverP
 //            spinner!.activityIndicatorViewStyle = .Gray
 //        }
 //    }
-    var progressBar : UIAlertController?
+  
     
     
     var pdfInfo0 : ContractPDFBaseModel?
@@ -38,10 +38,11 @@ class PDFBaseViewController: BaseViewController, DoOperationDelegate, UIPopoverP
         
     }
     func dismissProgress(){
-        self.progressBar?.dismissViewControllerAnimated(true, completion: nil)
+        self.clearNotice()
     }
     func dismissProgress(controller : UIViewController){
-        self.progressBar?.dismissViewControllerAnimated(true){
+        self.clearNotice()
+//        self.progressBar?.dismissViewControllerAnimated(true){
             if controller.isKindOfClass(UIPrintInteractionController){
                 //            if let c = controller as? UIPrintInteractionController {
                 //                c.dismissAnimated(true)
@@ -49,7 +50,7 @@ class PDFBaseViewController: BaseViewController, DoOperationDelegate, UIPopoverP
             }else{
                 controller.dismissViewControllerAnimated(true, completion: nil)
             }
-        }
+//        }
         
     }
     
@@ -135,36 +136,24 @@ class PDFBaseViewController: BaseViewController, DoOperationDelegate, UIPopoverP
         parame["file"] = fileBase64String
         parame["username"] = NSUserDefaults.standardUserDefaults().valueForKey(CConstants.LoggedUserNameKey) as? String ?? ""
         
-      
-        if (spinner == nil){
-            spinner = UIActivityIndicatorView(frame: CGRect(x: 0, y: 4, width: 50, height: 50))
-            spinner?.hidesWhenStopped = true
-            spinner?.activityIndicatorViewStyle = .Gray
-        }
-        
-        progressBar = UIAlertController(title: nil, message: CConstants.SavedMsg, preferredStyle: .Alert)
-        progressBar?.view.addSubview(spinner!)
-        
-        spinner?.startAnimating()
-        self.presentViewController(progressBar!, animated: true, completion: nil)
+      self.noticeOnlyText(CConstants.SavedMsg)
         
         Alamofire.request(.POST,
             CConstants.ServerURL + CConstants.ContractUploadPdfURL,
             parameters: parame).responseJSON{ (response) -> Void in
-                self.spinner?.stopAnimating()
-                self.spinner?.removeFromSuperview()
+                self.clearNotice()
                 if response.result.isSuccess {
                     if let rtnValue = response.result.value as? [String: String]{
                         if rtnValue["status"] == "success" {
-                            self.progressBar?.message = CConstants.SavedSuccessMsg
+                            self.noticeOnlyTextNoSpinner(CConstants.SavedSuccessMsg)
                         }else{
-                            self.progressBar?.message = CConstants.SavedFailMsg
+                            self.noticeOnlyTextNoSpinner(CConstants.SavedFailMsg)
                         }
                     }else{
-                        self.progressBar?.message = CConstants.MsgServerError
+                        self.noticeOnlyTextNoSpinner(CConstants.MsgServerError)
                     }
                 }else{
-                    self.progressBar?.message = CConstants.MsgNetworkError
+                    self.noticeOnlyTextNoSpinner(CConstants.MsgNetworkError)
                 }
                 self.performSelector("dismissProgress", withObject: nil, afterDelay: 0.5)
         }
@@ -259,8 +248,7 @@ class PDFBaseViewController: BaseViewController, DoOperationDelegate, UIPopoverP
             }
         }else if result.rawValue == 2 {
             controller.dismissViewControllerAnimated(true){
-                self.progressBar = UIAlertController(title: nil, message: CConstants.SendEmailSuccessfullMsg, preferredStyle: .Alert)
-                self.presentViewController(self.progressBar!, animated: true, completion: nil)
+                self.noticeOnlyText(CConstants.SendEmailSuccessfullMsg)
                 self.performSelector("dismissProgress", withObject: nil, afterDelay: 0.5)
             }
         }else {

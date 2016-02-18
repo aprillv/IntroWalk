@@ -11,9 +11,6 @@ import Alamofire
 
 class AddressListViewController: UITableViewController, UISearchBarDelegate, ToDoPrintDelegate {
     
-    private  var spinner : UIActivityIndicatorView?
-    private var progressBar: UIAlertController?
-    
     @IBAction func doLogout(sender: AnyObject) {
         self.navigationController?.popViewControllerAnimated(true)
     }
@@ -194,27 +191,17 @@ class AddressListViewController: UITableViewController, UISearchBarDelegate, ToD
     private func callService(serviceUrl: String){
         if let indexPath = tableView.indexPathForSelectedRow {
             
-            if (spinner == nil){
-                spinner = UIActivityIndicatorView(frame: CGRect(x: 0, y: 4, width: 50, height: 50))
-                spinner?.hidesWhenStopped = true
-                spinner?.activityIndicatorViewStyle = .Gray
-            }
-            
-            progressBar = UIAlertController(title: nil, message: CConstants.RequestMsg, preferredStyle: .Alert)
-            progressBar?.view.addSubview(spinner!)
-            spinner?.startAnimating()
-            self.presentViewController(progressBar!, animated: true, completion: nil)
+           
             
             let ddd = self.CiaNmArray?[self.CiaNm?[indexPath.section] ?? ""]
             let item: ContractsItem = ddd![indexPath.row]
             
 //            print(ContractRequestItem(contractInfo: item).DictionaryFromObject())
-            self.spinner?.startAnimating()
+           self.noticeOnlyText(CConstants.RequestMsg)
             Alamofire.request(.POST,
                 CConstants.ServerURL + serviceUrl,
                 parameters: ContractRequestItem(contractInfo: item).DictionaryFromObject()).responseJSON{ (response) -> Void in
-                    self.progressBar?.dismissViewControllerAnimated(true){ () -> Void in
-                        self.spinner?.stopAnimating()
+                    self.clearNotice()
                         if response.result.isSuccess {
                             
                             if let rtnValue = response.result.value as? [String: AnyObject]{
@@ -255,11 +242,11 @@ class AddressListViewController: UITableViewController, UISearchBarDelegate, ToD
                                 self.PopMsgWithJustOK(msg: CConstants.MsgServerError)
                             }
                         }else{
-                            self.spinner?.stopAnimating()
+//                            self.spinner?.stopAnimating()
                             self.PopMsgWithJustOK(msg: CConstants.MsgNetworkError)
                         }
                     }
-            }
+            
             tableView.deselectRowAtIndexPath(indexPath, animated: true)
         }
     }

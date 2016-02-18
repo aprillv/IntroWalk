@@ -19,7 +19,7 @@ class LoginViewController: BaseViewController, UITextFieldDelegate {
         
     }
     
-    var progressBar : UIAlertController?
+    
     
     // MARK: Outlets
     @IBOutlet weak var emailTxt: UITextField!{
@@ -77,7 +77,6 @@ class LoginViewController: BaseViewController, UITextFieldDelegate {
         }
     }
     
-    var spinner: UIActivityIndicatorView?
     
     // MARK: UITextField Delegate
     func textFieldShouldReturn(textField: UITextField) -> Bool {
@@ -161,16 +160,17 @@ class LoginViewController: BaseViewController, UITextFieldDelegate {
 //        emailTxt.textColor = UIColor.darkGrayColor()
 //        passwordTxt.textColor = UIColor.darkGrayColor()
         //        spinner.startAnimating()
-        if (spinner == nil){
-            spinner = UIActivityIndicatorView(frame: CGRect(x: 20, y: 4, width: 50, height: 50))
-            spinner?.hidesWhenStopped = true
-            spinner?.activityIndicatorViewStyle = .Gray
-        }
-        
-        progressBar = UIAlertController(title: nil, message: CConstants.LoginingMsg, preferredStyle: .Alert)
-        progressBar?.view.addSubview(spinner!)
-        spinner?.startAnimating()
-        self.presentViewController(progressBar!, animated: true, completion: nil)
+//        if (spinner == nil){
+//            spinner = UIActivityIndicatorView(frame: CGRect(x: 20, y: 4, width: 50, height: 50))
+//            spinner?.hidesWhenStopped = true
+//            spinner?.activityIndicatorViewStyle = .Gray
+//        }
+//        
+//        progressBar = UIAlertController(title: nil, message: CConstants.LoginingMsg, preferredStyle: .Alert)
+//        progressBar?.view.addSubview(spinner!)
+//        spinner?.startAnimating()
+//        self.presentViewController(progressBar!, animated: true, completion: nil)
+    self.noticeOnlyText(CConstants.LoginingMsg)
         
     }
     private func doLogin(){
@@ -197,8 +197,9 @@ class LoginViewController: BaseViewController, UITextFieldDelegate {
                 
                 let a = loginUserInfo.DictionaryFromObject()
                 Alamofire.request(.POST, CConstants.ServerURL + CConstants.LoginServiceURL, parameters: a).responseJSON{ (response) -> Void in
-                    self.progressBar?.dismissViewControllerAnimated(true){ () -> Void in
-                        self.spinner?.stopAnimating()
+                    self.clearNotice()
+//                    self.progressBar?.dismissViewControllerAnimated(true){ () -> Void in
+//                        self.spinner?.stopAnimating()
                         if response.result.isSuccess {
                             if let rtnValue = response.result.value as? [String: AnyObject]{
                                 let rtn = Contract(dicInfo: rtnValue)
@@ -222,7 +223,7 @@ class LoginViewController: BaseViewController, UITextFieldDelegate {
                         }
                     }
                     
-                }
+//                }
                 
                 ////                request(method: Alamofire.Method, _ URLString: URLStringConvertible, parameters: [String : AnyObject]? = default, encoding: Alamofire.ParameterEncoding = default, headers: [String : String]? = default) -> Alamofire.Request
                 

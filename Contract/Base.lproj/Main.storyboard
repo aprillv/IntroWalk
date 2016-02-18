@@ -142,15 +142,15 @@
                                         <exclude reference="Wq5-Mu-gVu"/>
                                         <exclude reference="9Dg-N3-afz"/>
                                         <exclude reference="LBa-Y8-lKA"/>
-                                        <exclude reference="I8q-js-rnw"/>
                                         <exclude reference="Eln-Jz-HW8"/>
+                                        <exclude reference="I8q-js-rnw"/>
                                         <exclude reference="szO-Yc-WMg"/>
                                         <exclude reference="R08-O1-9vY"/>
                                         <exclude reference="8G0-gv-OwO"/>
                                         <exclude reference="PEV-LY-lOb"/>
+                                        <exclude reference="AZ6-lx-1dm"/>
                                         <exclude reference="SCA-wA-buL"/>
                                         <exclude reference="sOJ-py-CHz"/>
-                                        <exclude reference="AZ6-lx-1dm"/>
                                     </mask>
                                 </variation>
                             </view>
@@ -196,7 +196,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1774" y="-800"/>
+            <point key="canvasLocation" x="1660" y="-710"/>
         </scene>
         <!--Address List-->
         <scene sceneID="TbO-r3-5Ld">
@@ -259,7 +259,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="akO-Zu-3HL" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2426" y="-468"/>
+            <point key="canvasLocation" x="2340" y="-710"/>
         </scene>
         <!--Addendum C-->
         <scene sceneID="Uef-Z4-ac0">
@@ -310,7 +310,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="YKP-B5-tPZ" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3403" y="-1373"/>
+            <point key="canvasLocation" x="3263" y="-1720"/>
         </scene>
         <!--Contract-->
         <scene sceneID="rVO-CQ-ugE">
@@ -385,7 +385,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="6CK-ue-dUb" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1009" y="-592"/>
+            <point key="canvasLocation" x="979" y="-710"/>
         </scene>
         <!--Closing Memo-->
         <scene sceneID="pIw-Kg-V9P">
@@ -450,7 +450,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="10r-H9-1gg" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2792" y="313"/>
+            <point key="canvasLocation" x="2843" y="711"/>
         </scene>
         <!--Design Center-->
         <scene sceneID="BoN-gb-Onp">
@@ -619,6 +619,6 @@
         <image name="send" width="30" height="30"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="5tg-36-cc8"/>
+        <segue reference="B5t-hU-kem"/>
     </inferredMetricsTieBreakers>
 </document>
