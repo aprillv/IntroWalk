@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		1104A8411C76B54100B59E60 /* AddendumAViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1104A8401C76B54100B59E60 /* AddendumAViewController.swift */; };
+		1104A8491C76B66800B59E60 /* AddendumA.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1104A8481C76B66800B59E60 /* AddendumA.swift */; };
+		1104A8501C76C1B500B59E60 /* AddendumA.pdf in Resources */ = {isa = PBXBuildFile; fileRef = 1104A84F1C76C1B500B59E60 /* AddendumA.pdf */; };
 		110750791C28E91600B68141 /* ClosingMemo.pdf in Resources */ = {isa = PBXBuildFile; fileRef = 110750781C28E91600B68141 /* ClosingMemo.pdf */; };
 		1107507B1C29222600B68141 /* SendOperationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1107507A1C29222600B68141 /* SendOperationViewController.swift */; };
 		1107C09C1C0C3B530041D8D7 /* cl_pdf.m in Sources */ = {isa = PBXBuildFile; fileRef = 1107C09B1C0C3B530041D8D7 /* cl_pdf.m */; };
@@ -166,6 +169,9 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		1104A8401C76B54100B59E60 /* AddendumAViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddendumAViewController.swift; sourceTree = "<group>"; };
+		1104A8481C76B66800B59E60 /* AddendumA.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddendumA.swift; sourceTree = "<group>"; };
+		1104A84F1C76C1B500B59E60 /* AddendumA.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; path = AddendumA.pdf; sourceTree = "<group>"; };
 		110750781C28E91600B68141 /* ClosingMemo.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; path = ClosingMemo.pdf; sourceTree = "<group>"; };
 		1107507A1C29222600B68141 /* SendOperationViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SendOperationViewController.swift; sourceTree = "<group>"; };
 		1107C09A1C0C3B530041D8D7 /* cl_pdf.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = cl_pdf.h; sourceTree = "<group>"; };
@@ -477,6 +483,7 @@
 				1176D20E1BFDC67C001C1C3E /* AddressListViewController.swift */,
 				115338C11C27DE5900E1B65A /* PDFBaseViewController.swift */,
 				113BF5621C0D706500175B22 /* PDFSignViewController.swift */,
+				1104A8401C76B54100B59E60 /* AddendumAViewController.swift */,
 				111B69501C191E9200970927 /* AddendumCViewController.swift */,
 				11633B901C279B3700C11A20 /* ClosingMemoViewController.swift */,
 				11633B921C279E2900C11A20 /* DesignCenterViewController.swift */,
@@ -504,6 +511,7 @@
 		110CE6AD1C0439A70096E630 /* pdf */ = {
 			isa = PBXGroup;
 			children = (
+				1104A84F1C76C1B500B59E60 /* AddendumA.pdf */,
 				119533681C743B45007AA5CD /* BaseContract.pdf */,
 				119533641C7417A2007AA5CD /* Third_Party_Financing_Addendum_TREC.pdf */,
 				1113F9191C3A3660000FA22A /* DesignCenter.pdf */,
@@ -542,6 +550,7 @@
 				11633BA11C27DA8E00C11A20 /* ContractClosingMemo.swift */,
 				115338C91C27F59E00E1B65A /* ContractPDFBaseModel.swift */,
 				1195336A1C7449F5007AA5CD /* ThirdPartyFinacingAddendum.swift */,
+				1104A8481C76B66800B59E60 /* AddendumA.swift */,
 			);
 			name = Model;
 			path = Views/Model;
@@ -676,6 +685,7 @@
 				11475E691C23F1270034A801 /* AddendumC.pdf in Resources */,
 				114733F71C103053000FC8D6 /* contract1pdf_2_100.txt in Resources */,
 				1108B1BC1BFC2691004B5D48 /* Assets.xcassets in Resources */,
+				1104A8501C76C1B500B59E60 /* AddendumA.pdf in Resources */,
 				110750791C28E91600B68141 /* ClosingMemo.pdf in Resources */,
 				114733F51C103053000FC8D6 /* contract1pdf_2_306.txt in Resources */,
 				114733F31C103053000FC8D6 /* contract1pdf_3_306.txt in Resources */,
@@ -732,8 +742,10 @@
 				1108B26B1BFC4047004B5D48 /* PDFFormChoiceField.m in Sources */,
 				1108B26E1BFC4047004B5D48 /* PDFFormTextField.m in Sources */,
 				11D911021C1AB36000CD018A /* ContractAddendumCItem.swift in Sources */,
+				1104A8491C76B66800B59E60 /* AddendumA.swift in Sources */,
 				1108B1AE1BFC2691004B5D48 /* main.m in Sources */,
 				1108B21E1BFC290F004B5D48 /* SignatureView.m in Sources */,
+				1104A8411C76B54100B59E60 /* AddendumAViewController.swift in Sources */,
 				1108B26F1BFC4047004B5D48 /* PDFView.m in Sources */,
 				1176D20F1BFDC67C001C1C3E /* AddressListViewController.swift in Sources */,
 				1108B21B1BFC290F004B5D48 /* DrawSignView.m in Sources */,

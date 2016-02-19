@@ -24,6 +24,7 @@ class PrintModelTableViewController: UIViewController, UITableViewDataSource, UI
 //        }
         
     }
+    @IBOutlet var tableHeight: NSLayoutConstraint!
     
     func gestureRecognizer(gestureRecognizer: UIGestureRecognizer, shouldReceiveTouch touch: UITouch) -> Bool {
         let point = touch.locationInView(view)
@@ -46,17 +47,20 @@ class PrintModelTableViewController: UIViewController, UITableViewDataSource, UI
         static let CellIdentifier : String = "Address Cell Identifier"
         
         static let cellReuseIdentifier = "cellIdentifier"
+        static let cellHeight = 44.0
     }
     var printList: [String] = [
         CConstants.ActionTitleContract
         , CConstants.ActionTitleThirdPartyFinancingAddendum
+        , CConstants.ActionTitleAddendumA
         , CConstants.ActionTitleAddendumC
         , CConstants.ActionTitleClosingMemo
         , CConstants.ActionTitleDesignCenter]
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        tableHeight.constant = CGFloat(Double(printList.count) * constants.cellHeight)
+        tableview.updateConstraintsIfNeeded()
         tableview.reloadData()
     }
     

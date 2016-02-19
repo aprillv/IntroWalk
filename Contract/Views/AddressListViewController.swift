@@ -153,6 +153,8 @@ class AddressListViewController: UITableViewController, UISearchBarDelegate, ToD
         switch modelNm{
         case CConstants.ActionTitleDesignCenter:
             callService(CConstants.DesignCenterServiceURL)
+        case CConstants.ActionTitleAddendumA:
+            callService(CConstants.AddendumAServiceURL)
         case CConstants.ActionTitleAddendumC:
             callService(CConstants.AddendumCServiceURL)
         case CConstants.ActionTitleClosingMemo:
@@ -212,6 +214,9 @@ class AddressListViewController: UITableViewController, UISearchBarDelegate, ToD
                                             let rtn = ContractAddendumC(dicInfo: rtnValue)
                                             rtn.code = item.code
                                             self.performSegueWithIdentifier(CConstants.SegueToAddendumC, sender: rtn)
+                                        case CConstants.AddendumAServiceURL:
+                                            let rtn = AddendumA(dicInfo: rtnValue)
+                                            self.performSegueWithIdentifier(CConstants.SegueToAddendumA, sender: rtn)
                                         case CConstants.ClosingMemoServiceURL:
                                             let rtn = ContractClosingMemo(dicInfo: rtnValue)
                                             rtn.code = item.code
@@ -312,6 +317,11 @@ class AddressListViewController: UITableViewController, UISearchBarDelegate, ToD
                 if let controller = segue.destinationViewController as? ThirdPartyFinacingAddendumViewController {
                     controller.pdfInfo = sender as? ThirdPartyFinacingAddendum
                     controller.initWithResource("Third_Party_Financing_Addendum_TREC.pdf")
+                }
+            case CConstants.SegueToAddendumA:
+                if let controller = segue.destinationViewController as? AddendumAViewController {
+                    controller.pdfInfo = sender as? AddendumA
+                    controller.initWithResource("AddendumA.pdf")
                 }
             case CConstants.SegueToAddendumC:
                 if let controller = segue.destinationViewController as? AddendumCViewController {
