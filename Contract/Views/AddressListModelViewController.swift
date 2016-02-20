@@ -106,7 +106,9 @@ class AddressListModelViewController: UIViewController, UISearchBarDelegate, UIT
 //        cell.preservesSuperviewLayoutMargins = false
 //    }
     
-    
+     func scrollViewWillBeginDragging(scrollView: UIScrollView) {
+        self.searchBar.resignFirstResponder()
+    }
     
     override var preferredContentSize: CGSize {
         

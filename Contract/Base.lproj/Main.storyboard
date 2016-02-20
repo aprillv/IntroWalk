@@ -296,6 +296,7 @@
                         </connections>
                     </refreshControl>
                     <connections>
+                        <outlet property="searchBar" destination="jta-fD-i8W" id="rJv-fv-ovz"/>
                         <segue destination="bI5-rz-cgu" kind="show" identifier="pdfSignature" id="Lgo-oy-gpi"/>
                         <segue destination="evC-Xi-Ufn" kind="show" identifier="addendumc" id="WeB-Iq-hSs"/>
                         <segue destination="NGU-fJ-Ify" kind="show" identifier="closingmemo" id="NYW-nj-mtF"/>
@@ -1003,8 +1004,8 @@
         <image name="send" width="30" height="30"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="Mkk-cX-3do"/>
+        <segue reference="HW8-IB-Dz2"/>
         <segue reference="ZKx-6K-eOE"/>
-        <segue reference="JIi-GP-7wH"/>
+        <segue reference="Mkk-cX-3do"/>
     </inferredMetricsTieBreakers>
 </document>

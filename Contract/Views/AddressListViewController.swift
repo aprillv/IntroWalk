@@ -11,6 +11,7 @@ import Alamofire
 
 class AddressListViewController: UITableViewController, UISearchBarDelegate, ToDoPrintDelegate {
     
+    @IBOutlet var searchBar: UISearchBar!
     @IBAction func doLogout(sender: AnyObject) {
         self.navigationController?.popViewControllerAnimated(true)
     }
@@ -297,6 +298,7 @@ class AddressListViewController: UITableViewController, UISearchBarDelegate, ToD
 //        alert.addAction(designCenterAction)
 //        alert.addAction(cancelAction)
 //        self.presentViewController(alert, animated: true, completion: nil)
+       self.searchBar.resignFirstResponder()
         
         self.performSegueWithIdentifier(CConstants.SegueToPrintModel, sender: nil)
         
@@ -459,6 +461,10 @@ class AddressListViewController: UITableViewController, UISearchBarDelegate, ToD
         self.presentViewController(alert, animated: true, completion: nil)
         
         
+    }
+    
+    override func scrollViewWillBeginDragging(scrollView: UIScrollView) {
+        self.searchBar.resignFirstResponder()
     }
     
 }
