@@ -9,8 +9,6 @@
 import Foundation
 
 class ContractSignature: ContractPDFBaseModel {
-    var idnumber: String?
-    var idcity: String?
     var cianame: String?
     var client: String?
     var lot: String?

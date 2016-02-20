@@ -39,8 +39,16 @@ struct CConstants{
     static let SegueToDesignCenter : String = "designcenter"
     static let SegueToAddendumA : String = "addenduma"
     static let SegueToAddendumC : String = "addendumc"
-    static let SegueToPrintModel : String = "printModel"
     
+    static let SegueToInformationAboutBrokerageServices : String = "InformationAboutBrokerageServices"
+    static let SegueToExhibitA : String = "exhibita"
+    static let SegueToExhibitB : String = "exhibitb"
+    static let SegueToExhibitC : String = "exhibitc"
+    
+    static let SegueToPrintModel : String = "printModel"
+    static let SegueToPrintModelPopover : String = "Print switch"
+    static let SegueToAddressModelPopover : String = "Address switch"
+    static let SegueToOperationsPopover : String = "Show Operations"
     
     
     static let LoggedUserNameKey : String = "LoggedUserNameInDefaults"
@@ -61,18 +69,48 @@ struct CConstants{
     //get contract Design Center
     static let DesignCenterServiceURL = "bacontract_designCenter.json"
     // get Third Party Financing Addendum
-    static let ThirdPartyFinancingAddendumServiceURL = "bacontract_thirdPartyFinancingAddendum.json"
+//    static let ThirdPartyFinancingAddendumServiceURL = "bacontract_thirdPartyFinancingAddendum.json"
     //upload pdf
     static let ContractUploadPdfURL = "bacontract_upload.json"
    
     
+    static let PdfFileNameContract = "BaseContract.pdf"
+    static let PdfFileNameThirdPartyFinancingAddendum = "Third_Party_Financing_Addendum_TREC.pdf"
+    static let PdfFileNameClosingMemo = "ClosingMemo.pdf"
+    static let PdfFileNameDesignCenter = "DesignCenter.pdf"
+    static let PdfFileNameEXHIBIT_A = "EXHIBIT_A.pdf"
+    static let PdfFileNameEXHIBIT_B = "EXHIBIT_B.pdf"
+    static let PdfFileNameEXHIBIT_C = "EXHIBIT_C_General.pdf"
+    static let PdfFileNameINFORMATION_ABOUT_BROKERAGE_SERVICES = "INFORMATION_ABOUT_BROKERAGE_SERVICES.pdf"
+    static let PdfFileNameAddendumA = "AddendumA.pdf"
+    static let PdfFileNameAddendumC = "AddendumC.pdf"
+    static let PdfFileNameAddendumC2 = "AddendumC2.pdf"
+    
+    static let ControllerNameContract = "SignContractViewController"
+    static let ControllerNameExhibitA = "ExhibitAViewController"
+    static let ControllerNameExhibitB = "ExhibitBViewController"
+    static let ControllerNameExhibitC = "ExhibitCGeneralViewController"
+    static let ControllerNameAddendumA = "AddendumAViewController"
+    static let ControllerNameAddendumC = "AddendumCViewController"
+    static let ControllerNameClosingMemo = "ClosingMemoViewController"
+    static let ControllerNameDesignCenter = "DesignCenterViewController"
+    static let ControllerNameThirdPartyFinancingAddendum = "ThirdPartyFinacingAddendumViewController"
+    static let ControllerNameINFORMATION_ABOUT_BROKERAGE_SERVICES = "InformationAboutBrokerageServicesViewController"
+    
+    
+    static let StoryboardName = "Main"
     
     static let ActionTitleAddendumC : String = "Addendum C"
-    static let ActionTitleAddendumA : String = "Addendum \"A\""
+    static let ActionTitleAddendumA : String = "Addendum A"
     static let ActionTitleClosingMemo : String = "Closing Memo"
     static let ActionTitleDesignCenter : String = "Design Center"
     static let ActionTitleContract : String = "Sign Contract"
     static let ActionTitleThirdPartyFinancingAddendum : String = "Third Party Financing Addendum"
+    static let ActionTitleEXHIBIT_A : String = "EXHIBIT A"
+    static let ActionTitleEXHIBIT_B : String = "EXHIBIT B"
+    static let ActionTitleEXHIBIT_C : String = "EXHIBIT C General"
+//    static let ActionTitleINFORMATION_ABOUT_BROKERAGE_SERVICES = "Information about brokerage services"
+    static let ActionTitleINFORMATION_ABOUT_BROKERAGE_SERVICES = "INFORMATION ABOUT BROKERAGE SERVICES"
 }
 
 

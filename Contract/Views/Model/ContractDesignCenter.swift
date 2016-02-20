@@ -9,8 +9,6 @@
 import Foundation
 
 class ContractDesignCenter : ContractPDFBaseModel{
-    var idnumber: String?
-    var idcity: String?
     var cianame: String?
     var ciaaddress: String?
     var ciacityzip: String?

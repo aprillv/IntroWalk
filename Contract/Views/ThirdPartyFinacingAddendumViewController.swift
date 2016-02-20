@@ -9,7 +9,7 @@
 import UIKit
 
 class ThirdPartyFinacingAddendumViewController: PDFBaseViewController {
-    var pdfInfo : ThirdPartyFinacingAddendum?{
+    var pdfInfo : AddendumA?{
         didSet{
             pdfInfo0 = pdfInfo;
             pdfInfo?.nproject = pdfInfo?.nproject
@@ -69,10 +69,13 @@ class ThirdPartyFinacingAddendumViewController: PDFBaseViewController {
     }
     @IBAction func BuyerSign(sender0: UIBarButtonItem) {
         
-        sender = sender0
+        self.dismissViewControllerAnimated(true, completion: nil)
+        self.sender = sender0
         
-         self.pdfView!.pdfView.scrollView.scrollRectToVisible(CGRect(x: 0, y: self.pdfView!.pdfView.scrollView.contentSize.height - self.pdfView!.pdfView.scrollView.frame.size.height, width: 100, height: self.pdfView!.pdfView.scrollView.frame.size.height), animated: true)
-         NSTimer.scheduledTimerWithTimeInterval(0.3, target: self, selector: "signature", userInfo: sender, repeats: false)
+        self.pdfView!.pdfView.scrollView.scrollRectToVisible(CGRect(x: 0, y: self.pdfView!.pdfView.scrollView.contentSize.height - self.pdfView!.pdfView.scrollView.frame.size.height, width: 100, height: self.pdfView!.pdfView.scrollView.frame.size.height), animated: true)
+        NSTimer.scheduledTimerWithTimeInterval(0.3, target: self, selector: "signature", userInfo: self.sender, repeats: false)
+    
+        
         
     }
 

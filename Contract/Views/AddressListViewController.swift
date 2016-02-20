@@ -150,22 +150,8 @@ class AddressListViewController: UITableViewController, UISearchBarDelegate, ToD
     }
     
     func GoToPrint(modelNm: String) {
-        switch modelNm{
-        case CConstants.ActionTitleDesignCenter:
-            callService(CConstants.DesignCenterServiceURL)
-        case CConstants.ActionTitleAddendumA:
-            callService(CConstants.AddendumAServiceURL)
-        case CConstants.ActionTitleAddendumC:
-            callService(CConstants.AddendumCServiceURL)
-        case CConstants.ActionTitleClosingMemo:
-            callService(CConstants.ClosingMemoServiceURL)
-        case CConstants.ActionTitleContract:
-            callService(CConstants.ContractServiceURL)
-        case CConstants.ActionTitleThirdPartyFinancingAddendum:
-            callService(CConstants.ThirdPartyFinancingAddendumServiceURL)
-        default:
-            break
-        }
+        callService(modelNm)
+        
         
 
     }
@@ -187,10 +173,32 @@ class AddressListViewController: UITableViewController, UISearchBarDelegate, ToD
         callService(CConstants.ContractServiceURL)
     }
     private func doThirdPartyFinancingAddendumAction(_: UIAlertAction) -> Void{
-        callService(CConstants.ThirdPartyFinancingAddendumServiceURL)
+        callService(CConstants.AddendumAServiceURL)
     }
     
-    private func callService(serviceUrl: String){
+    private func callService(printModelNm: String){
+        var serviceUrl: String?
+        switch printModelNm{
+        case CConstants.ActionTitleDesignCenter:
+            serviceUrl = CConstants.DesignCenterServiceURL
+//        case CConstants.ActionTitleAddendumA:
+//            serviceUrl = CConstants.AddendumAServiceURL
+        case CConstants.ActionTitleAddendumC:
+            serviceUrl = CConstants.AddendumCServiceURL
+        case CConstants.ActionTitleClosingMemo:
+            serviceUrl = CConstants.ClosingMemoServiceURL
+        case CConstants.ActionTitleContract:
+            serviceUrl = CConstants.ContractServiceURL
+//        case CConstants.ActionTitleThirdPartyFinancingAddendum:
+//            serviceUrl = CConstants.AddendumAServiceURL
+        case CConstants.ActionTitleINFORMATION_ABOUT_BROKERAGE_SERVICES:
+            self.performSegueWithIdentifier(CConstants.SegueToInformationAboutBrokerageServices, sender: nil)
+            return
+        default:
+            serviceUrl = CConstants.AddendumAServiceURL
+        }
+        
+        
         if let indexPath = tableView.indexPathForSelectedRow {
             
            
@@ -201,7 +209,7 @@ class AddressListViewController: UITableViewController, UISearchBarDelegate, ToD
 //            print(ContractRequestItem(contractInfo: item).DictionaryFromObject())
            self.noticeOnlyText(CConstants.RequestMsg)
             Alamofire.request(.POST,
-                CConstants.ServerURL + serviceUrl,
+                CConstants.ServerURL + serviceUrl!,
                 parameters: ContractRequestItem(contractInfo: item).DictionaryFromObject()).responseJSON{ (response) -> Void in
                     self.clearNotice()
                         if response.result.isSuccess {
@@ -209,29 +217,34 @@ class AddressListViewController: UITableViewController, UISearchBarDelegate, ToD
                             if let rtnValue = response.result.value as? [String: AnyObject]{
                                 if let msg = rtnValue["message"] as? String{
                                     if msg.isEmpty{
-                                        switch serviceUrl {
-                                        case CConstants.AddendumCServiceURL:
+                                        switch printModelNm {
+                                        case CConstants.ActionTitleAddendumC:
                                             let rtn = ContractAddendumC(dicInfo: rtnValue)
-                                            rtn.code = item.code
                                             self.performSegueWithIdentifier(CConstants.SegueToAddendumC, sender: rtn)
-                                        case CConstants.AddendumAServiceURL:
+                                        case CConstants.ActionTitleAddendumA:
                                             let rtn = AddendumA(dicInfo: rtnValue)
                                             self.performSegueWithIdentifier(CConstants.SegueToAddendumA, sender: rtn)
-                                        case CConstants.ClosingMemoServiceURL:
+                                        case CConstants.ActionTitleClosingMemo:
                                             let rtn = ContractClosingMemo(dicInfo: rtnValue)
-                                            rtn.code = item.code
                                             self.performSegueWithIdentifier(CConstants.SegueToClosingMemo, sender: rtn)
-                                        case CConstants.DesignCenterServiceURL:
+                                        case CConstants.ActionTitleDesignCenter:
                                             let rtn = ContractDesignCenter(dicInfo: rtnValue)
-                                            rtn.code = item.code
                                             self.performSegueWithIdentifier(CConstants.SegueToDesignCenter, sender: rtn)
-                                        case CConstants.ContractServiceURL:
+                                        case CConstants.ActionTitleContract:
                                             let rtn = ContractSignature(dicInfo: rtnValue)
                                             self.performSegueWithIdentifier(CConstants.SegueToSignaturePdf, sender: rtn)
-                                        case CConstants.ThirdPartyFinancingAddendumServiceURL:
-                                            let rtn = ThirdPartyFinacingAddendum(dicInfo: rtnValue)
+                                        case CConstants.ActionTitleThirdPartyFinancingAddendum:
+                                            let rtn = AddendumA(dicInfo: rtnValue)
                                             self.performSegueWithIdentifier(CConstants.SegueToThridPartyFinacingAddendumPdf, sender: rtn)
-                                            
+                                        case CConstants.ActionTitleEXHIBIT_A:
+                                            let rtn = AddendumA(dicInfo: rtnValue)
+                                            self.performSegueWithIdentifier(CConstants.SegueToExhibitA, sender: rtn)
+                                        case CConstants.ActionTitleEXHIBIT_B:
+                                            let rtn = AddendumA(dicInfo: rtnValue)
+                                            self.performSegueWithIdentifier(CConstants.SegueToExhibitB, sender: rtn)
+                                        case CConstants.ActionTitleEXHIBIT_C:
+                                            let rtn = AddendumA(dicInfo: rtnValue)
+                                            self.performSegueWithIdentifier(CConstants.SegueToExhibitC, sender: rtn)
                                         default:
                                             break;
                                         }
@@ -299,29 +312,71 @@ class AddressListViewController: UITableViewController, UISearchBarDelegate, ToD
                 }
                 break
             case CConstants.SegueToSignaturePdf:
-                    if let controller = segue.destinationViewController as? PDFSignViewController {
+                    if let controller = segue.destinationViewController as? SignContractViewController {
                         controller.pdfInfo = sender as? ContractSignature
-                        controller.initWithResource("BaseContract.pdf")
+                        controller.AddressList = self.AddressListOrigin
+                        controller.initWithResource(CConstants.PdfFileNameContract)
                     }
             case CConstants.SegueToClosingMemo:
                 if let controller = segue.destinationViewController as? ClosingMemoViewController {
+                    controller.AddressList = self.AddressListOrigin
                     controller.pdfInfo = sender as? ContractClosingMemo
-                    controller.initWithResource("ClosingMemo.pdf")
+                    controller.initWithResource(CConstants.PdfFileNameClosingMemo)
                 }
             case CConstants.SegueToDesignCenter:
                 if let controller = segue.destinationViewController as? DesignCenterViewController {
+                    controller.AddressList = self.AddressListOrigin
                     controller.pdfInfo = sender as? ContractDesignCenter
-                    controller.initWithResource("DesignCenter.pdf")
+                    controller.initWithResource(CConstants.PdfFileNameDesignCenter)
                 }
             case CConstants.SegueToThridPartyFinacingAddendumPdf:
                 if let controller = segue.destinationViewController as? ThirdPartyFinacingAddendumViewController {
-                    controller.pdfInfo = sender as? ThirdPartyFinacingAddendum
-                    controller.initWithResource("Third_Party_Financing_Addendum_TREC.pdf")
+                    controller.pdfInfo = sender as? AddendumA
+                    controller.AddressList = self.AddressListOrigin
+                    controller.initWithResource(CConstants.PdfFileNameThirdPartyFinancingAddendum)
                 }
             case CConstants.SegueToAddendumA:
                 if let controller = segue.destinationViewController as? AddendumAViewController {
                     controller.pdfInfo = sender as? AddendumA
-                    controller.initWithResource("AddendumA.pdf")
+                    controller.AddressList = self.AddressListOrigin
+                    controller.initWithResource(CConstants.PdfFileNameAddendumA)
+                }
+            case CConstants.SegueToExhibitA:
+                if let controller = segue.destinationViewController as? ExhibitAViewController {
+                    controller.pdfInfo = sender as? AddendumA
+                    controller.AddressList = self.AddressListOrigin
+                    controller.initWithResource(CConstants.PdfFileNameEXHIBIT_A)
+                }
+            case CConstants.SegueToExhibitB:
+                if let controller = segue.destinationViewController as? ExhibitBViewController {
+                    controller.pdfInfo = sender as? AddendumA
+                    controller.AddressList = self.AddressListOrigin
+                    controller.initWithResource(CConstants.PdfFileNameEXHIBIT_B)
+                }
+            case CConstants.SegueToExhibitC:
+                if let controller = segue.destinationViewController as? ExhibitCGeneralViewController {
+//                    print(sender as? AddendumA)
+//                    print(controller)
+                    controller.AddressList = self.AddressListOrigin
+                    controller.pdfInfo = sender as? AddendumA
+                    controller.initWithResource(CConstants.PdfFileNameEXHIBIT_C)
+                }
+            case CConstants.SegueToInformationAboutBrokerageServices:
+                if let controller = segue.destinationViewController as? InformationAboutBrokerageServicesViewController {
+//                    controller.pdfInfo = sender as? AddendumA
+                    if let indexPath = tableView.indexPathForSelectedRow {
+                        let ddd = self.CiaNmArray?[self.CiaNm?[indexPath.section] ?? ""]
+                        let item: ContractsItem = ddd![indexPath.row]
+                        let info = ContractPDFBaseModel(dicInfo: nil)
+                        info.code = item.code
+                        info.idcia = item.idcia
+                        info.idproject = item.idproject
+                        info.nproject = item.nproject
+                        controller.pdfInfo0 = info
+                        controller.AddressList = self.AddressListOrigin
+                        controller.initWithResource(CConstants.PdfFileNameINFORMATION_ABOUT_BROKERAGE_SERVICES)
+                    }
+                    
                 }
             case CConstants.SegueToAddendumC:
                 if let controller = segue.destinationViewController as? AddendumCViewController {
@@ -349,8 +404,9 @@ class AddressListViewController: UITableViewController, UISearchBarDelegate, ToD
                         }
                     }
                     controller.pdfInfo!.itemlistStr = itemList
+                    controller.AddressList = self.AddressListOrigin
                     
-                    let pass = i > 19 ? "AddendumC2.pdf" : "AddendumC.pdf"
+                    let pass = i > 19 ? CConstants.PdfFileNameAddendumC2 : CConstants.PdfFileNameAddendumC
                     
                     controller.initWithResource(pass)
                 }

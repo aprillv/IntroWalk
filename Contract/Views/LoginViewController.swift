@@ -73,7 +73,7 @@ class LoginViewController: BaseViewController, UITextFieldDelegate {
     
     @IBOutlet weak var signInBtn: UIButton!{
         didSet{
-            signInBtn.layer.cornerRadius = 8.0
+            signInBtn.layer.cornerRadius = 5.0
         }
     }
     

@@ -29,6 +29,7 @@ class AddendumAViewController: PDFBaseViewController {
     }
     
     override func loadPDFView(){
+        
         let margins = getMargins()
         let additionViews = document?.forms.createWidgetAnnotationViewsForSuperviewWithWidth(view.bounds.size.width, margin: margins.x, hMargin: margins.y) as? [PDFWidgetAnnotationView]
         

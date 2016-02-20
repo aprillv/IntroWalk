@@ -7,6 +7,54 @@
         <capability name="Navigation items with more than one left or right bar item" minToolsVersion="7.0"/>
     </dependencies>
     <scenes>
+        <!--INFORMATION ABOUT BROKERAGE SERVICES-->
+        <scene sceneID="hCt-fD-Fba">
+            <objects>
+                <viewController storyboardIdentifier="InformationAboutBrokerageServicesViewController" id="Ier-Ms-c11" customClass="InformationAboutBrokerageServicesViewController" customModule="Contract" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="36o-we-Rd0"/>
+                        <viewControllerLayoutGuide type="bottom" id="FWq-YZ-wdn"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="zpR-Fc-Veh">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                    <navigationItem key="navigationItem" title="INFORMATION ABOUT BROKERAGE SERVICES" id="0cJ-Lb-ogm">
+                        <barButtonItem key="leftBarButtonItem" image="back" id="2tt-Mt-Z6s">
+                            <connections>
+                                <action selector="goBack:" destination="Ier-Ms-c11" id="gsh-jX-CU2"/>
+                            </connections>
+                        </barButtonItem>
+                        <rightBarButtonItems>
+                            <barButtonItem image="send" id="31o-J8-uCZ">
+                                <connections>
+                                    <segue destination="Rzu-Cw-vxk" kind="popoverPresentation" identifier="Show Operations" popoverAnchorBarButtonItem="31o-J8-uCZ" id="gii-ra-4oZ">
+                                        <popoverArrowDirection key="popoverArrowDirection" up="YES" down="YES" left="YES" right="YES"/>
+                                    </segue>
+                                </connections>
+                            </barButtonItem>
+                            <barButtonItem image="Slice 1" id="dSj-7e-whx">
+                                <connections>
+                                    <segue destination="6dt-qR-fh6" kind="popoverPresentation" identifier="Print switch" popoverAnchorBarButtonItem="dSj-7e-whx" id="Spi-Qn-eAn">
+                                        <popoverArrowDirection key="popoverArrowDirection" up="YES" down="YES" left="YES" right="YES"/>
+                                    </segue>
+                                </connections>
+                            </barButtonItem>
+                            <barButtonItem image="houseswitch" id="7R1-es-ZNM">
+                                <connections>
+                                    <segue destination="0JX-MQ-a4E" kind="popoverPresentation" identifier="Address switch" popoverAnchorBarButtonItem="7R1-es-ZNM" id="IP1-hA-Uaj">
+                                        <popoverArrowDirection key="popoverArrowDirection" up="YES" down="YES" left="YES" right="YES"/>
+                                    </segue>
+                                </connections>
+                            </barButtonItem>
+                        </rightBarButtonItems>
+                    </navigationItem>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="zxf-zi-q95" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="3192" y="-3587"/>
+        </scene>
         <!--Contract-->
         <scene sceneID="tne-QT-ifu">
             <objects>
@@ -254,17 +302,70 @@
                         <segue destination="MOm-Ac-c8C" kind="show" identifier="designcenter" id="d6q-rX-aF3"/>
                         <segue destination="zWA-CC-Fd1" kind="show" identifier="pdfThridPartyFinacingAddendum" id="rxs-16-kuI"/>
                         <segue destination="6dt-qR-fh6" kind="presentation" identifier="printModel" modalTransitionStyle="coverVertical" id="HW8-IB-Dz2"/>
-                        <segue destination="S00-fd-U88" kind="show" identifier="addenduma" id="4qg-Sl-k4c"/>
+                        <segue destination="Ier-Ms-c11" kind="show" identifier="InformationAboutBrokerageServices" id="RS7-Tp-leL"/>
+                        <segue destination="GxX-C3-izc" kind="show" identifier="addenduma" id="cdp-RD-ehn"/>
+                        <segue destination="wlX-Pz-6n7" kind="show" identifier="exhibita" id="R9n-IB-Dbo"/>
+                        <segue destination="wel-HV-ddY" kind="show" identifier="exhibitc" id="kxI-qw-A1a"/>
+                        <segue destination="wHy-HG-yPh" kind="show" identifier="exhibitb" id="azo-qE-eGU"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="akO-Zu-3HL" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2320" y="-1170"/>
+            <point key="canvasLocation" x="2875" y="-1129"/>
+        </scene>
+        <!--Addendum A-->
+        <scene sceneID="9ao-L2-mb9">
+            <objects>
+                <viewController storyboardIdentifier="AddendumAViewController" id="GxX-C3-izc" customClass="AddendumAViewController" customModule="Contract" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="5Sl-ok-dk1"/>
+                        <viewControllerLayoutGuide type="bottom" id="wDz-Eh-td8"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="Rc6-5T-hQk">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                    <toolbarItems/>
+                    <navigationItem key="navigationItem" title="Addendum A" id="B2r-yS-yNN">
+                        <barButtonItem key="leftBarButtonItem" image="back" id="7iI-Cu-CP5">
+                            <connections>
+                                <action selector="goBack:" destination="GxX-C3-izc" id="2Bn-YL-TzT"/>
+                            </connections>
+                        </barButtonItem>
+                        <rightBarButtonItems>
+                            <barButtonItem image="send" id="fxj-WF-nOb">
+                                <connections>
+                                    <segue destination="Rzu-Cw-vxk" kind="popoverPresentation" identifier="Show Operations" popoverAnchorBarButtonItem="fxj-WF-nOb" id="pFv-ON-cOj">
+                                        <popoverArrowDirection key="popoverArrowDirection" up="YES" down="YES" left="YES" right="YES"/>
+                                    </segue>
+                                </connections>
+                            </barButtonItem>
+                            <barButtonItem image="Slice 1" id="1II-ek-Mle">
+                                <connections>
+                                    <segue destination="6dt-qR-fh6" kind="popoverPresentation" identifier="Print switch" popoverAnchorBarButtonItem="1II-ek-Mle" id="YwH-fs-Sun">
+                                        <popoverArrowDirection key="popoverArrowDirection" up="YES" down="YES" left="YES" right="YES"/>
+                                    </segue>
+                                </connections>
+                            </barButtonItem>
+                            <barButtonItem image="houseswitch" id="eLZ-6m-OpB">
+                                <connections>
+                                    <segue destination="0JX-MQ-a4E" kind="popoverPresentation" identifier="Address switch" popoverAnchorBarButtonItem="eLZ-6m-OpB" id="TgG-gv-jfr">
+                                        <popoverArrowDirection key="popoverArrowDirection" up="YES" down="YES" left="YES" right="YES"/>
+                                    </segue>
+                                </connections>
+                            </barButtonItem>
+                        </rightBarButtonItems>
+                    </navigationItem>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="0hY-7E-sWB" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="3334" y="-1857"/>
         </scene>
         <!--Addendum C-->
         <scene sceneID="Uef-Z4-ac0">
             <objects>
-                <viewController id="evC-Xi-Ufn" customClass="AddendumCViewController" customModule="Contract" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="AddendumCViewController" id="evC-Xi-Ufn" customClass="AddendumCViewController" customModule="Contract" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="FjR-uX-gpt"/>
                         <viewControllerLayoutGuide type="bottom" id="GRh-RC-k4T"/>
@@ -300,6 +401,20 @@
                                     </segue>
                                 </connections>
                             </barButtonItem>
+                            <barButtonItem image="Slice 1" id="Ax8-GB-db8">
+                                <connections>
+                                    <segue destination="6dt-qR-fh6" kind="popoverPresentation" identifier="Print switch" popoverAnchorBarButtonItem="Ax8-GB-db8" id="SiH-6M-mgE">
+                                        <popoverArrowDirection key="popoverArrowDirection" up="YES" down="YES" left="YES" right="YES"/>
+                                    </segue>
+                                </connections>
+                            </barButtonItem>
+                            <barButtonItem image="houseswitch" id="qHh-7s-6WO">
+                                <connections>
+                                    <segue destination="0JX-MQ-a4E" kind="popoverPresentation" identifier="Address switch" popoverAnchorBarButtonItem="qHh-7s-6WO" id="OHe-6R-v9e">
+                                        <popoverArrowDirection key="popoverArrowDirection" up="YES" down="YES" left="YES" right="YES"/>
+                                    </segue>
+                                </connections>
+                            </barButtonItem>
                             <barButtonItem tag="3" title="Consultant" id="ErF-dg-L0L">
                                 <connections>
                                     <action selector="BuyerSign:" destination="evC-Xi-Ufn" id="p0M-Sl-UtQ"/>
@@ -310,12 +425,12 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="YKP-B5-tPZ" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3304" y="-1760"/>
+            <point key="canvasLocation" x="3101" y="-1794"/>
         </scene>
-        <!--Contract-->
+        <!--Sign Contract-->
         <scene sceneID="rVO-CQ-ugE">
             <objects>
-                <viewController id="bI5-rz-cgu" customClass="PDFSignViewController" customModule="Contract" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="SignContractViewController" id="bI5-rz-cgu" customClass="SignContractViewController" customModule="Contract" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="UfL-Da-Im2"/>
                         <viewControllerLayoutGuide type="bottom" id="dUg-aZ-h1L"/>
@@ -326,7 +441,7 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
                     <toolbarItems/>
-                    <navigationItem key="navigationItem" title="Contract" id="5nA-mG-z85">
+                    <navigationItem key="navigationItem" title="Sign Contract" id="5nA-mG-z85">
                         <leftBarButtonItems>
                             <barButtonItem image="back" id="xP6-2w-6GP">
                                 <connections>
@@ -352,6 +467,20 @@
                                     </segue>
                                 </connections>
                             </barButtonItem>
+                            <barButtonItem image="Slice 1" id="cGL-P6-DdU">
+                                <connections>
+                                    <segue destination="6dt-qR-fh6" kind="popoverPresentation" identifier="Print switch" popoverAnchorBarButtonItem="cGL-P6-DdU" id="fhl-Xg-CKW">
+                                        <popoverArrowDirection key="popoverArrowDirection" up="YES" down="YES" left="YES" right="YES"/>
+                                    </segue>
+                                </connections>
+                            </barButtonItem>
+                            <barButtonItem image="houseswitch" id="AAP-SY-ZPn">
+                                <connections>
+                                    <segue destination="0JX-MQ-a4E" kind="popoverPresentation" identifier="Address switch" popoverAnchorBarButtonItem="AAP-SY-ZPn" id="CAn-8U-hgJ">
+                                        <popoverArrowDirection key="popoverArrowDirection" up="YES" down="YES" left="YES" right="YES"/>
+                                    </segue>
+                                </connections>
+                            </barButtonItem>
                             <barButtonItem tag="4" title="Seller2" id="Uud-gp-fyb">
                                 <connections>
                                     <action selector="BuyerSign:" destination="bI5-rz-cgu" id="nqh-mI-Wt2"/>
@@ -367,7 +496,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="2BD-za-Val" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3304" y="296"/>
+            <point key="canvasLocation" x="3623" y="182"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="Ugg-Z2-cHQ">
@@ -390,7 +519,7 @@
         <!--Closing Memo-->
         <scene sceneID="pIw-Kg-V9P">
             <objects>
-                <viewController id="NGU-fJ-Ify" customClass="ClosingMemoViewController" customModule="Contract" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="ClosingMemoViewController" id="NGU-fJ-Ify" customClass="ClosingMemoViewController" customModule="Contract" customModuleProvider="target" sceneMemberID="viewController">
                     <toolbarItems/>
                     <navigationItem key="navigationItem" title="Closing Memo" id="niw-lE-gSP">
                         <barButtonItem key="leftBarButtonItem" image="back" id="IaG-Zs-c0C">
@@ -398,13 +527,29 @@
                                 <action selector="goBack:" destination="NGU-fJ-Ify" id="nIe-a5-vYG"/>
                             </connections>
                         </barButtonItem>
-                        <barButtonItem key="rightBarButtonItem" image="send" id="fJB-ux-Lm7">
-                            <connections>
-                                <segue destination="Rzu-Cw-vxk" kind="popoverPresentation" identifier="Show Operations" popoverAnchorBarButtonItem="fJB-ux-Lm7" id="2MV-5K-42V">
-                                    <popoverArrowDirection key="popoverArrowDirection" up="YES" down="YES" left="YES" right="YES"/>
-                                </segue>
-                            </connections>
-                        </barButtonItem>
+                        <rightBarButtonItems>
+                            <barButtonItem image="send" id="fJB-ux-Lm7">
+                                <connections>
+                                    <segue destination="Rzu-Cw-vxk" kind="popoverPresentation" identifier="Show Operations" popoverAnchorBarButtonItem="fJB-ux-Lm7" id="2MV-5K-42V">
+                                        <popoverArrowDirection key="popoverArrowDirection" up="YES" down="YES" left="YES" right="YES"/>
+                                    </segue>
+                                </connections>
+                            </barButtonItem>
+                            <barButtonItem image="Slice 1" id="Dlh-vq-6eg">
+                                <connections>
+                                    <segue destination="6dt-qR-fh6" kind="popoverPresentation" identifier="Print switch" popoverAnchorBarButtonItem="Dlh-vq-6eg" id="t90-2c-XzM">
+                                        <popoverArrowDirection key="popoverArrowDirection" up="YES" down="YES" left="YES" right="YES"/>
+                                    </segue>
+                                </connections>
+                            </barButtonItem>
+                            <barButtonItem image="houseswitch" id="9TB-8b-H5S">
+                                <connections>
+                                    <segue destination="0JX-MQ-a4E" kind="popoverPresentation" identifier="Address switch" popoverAnchorBarButtonItem="9TB-8b-H5S" id="1lH-cF-zls">
+                                        <popoverArrowDirection key="popoverArrowDirection" up="YES" down="YES" left="YES" right="YES"/>
+                                    </segue>
+                                </connections>
+                            </barButtonItem>
+                        </rightBarButtonItems>
                     </navigationItem>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="1Tn-rf-83b" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -455,7 +600,7 @@
         <!--Design Center-->
         <scene sceneID="BoN-gb-Onp">
             <objects>
-                <viewController id="MOm-Ac-c8C" customClass="DesignCenterViewController" customModule="Contract" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="DesignCenterViewController" id="MOm-Ac-c8C" customClass="DesignCenterViewController" customModule="Contract" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="EUI-gT-c0r"/>
                         <viewControllerLayoutGuide type="bottom" id="WuS-f5-CcU"/>
@@ -483,23 +628,39 @@
                                 </connections>
                             </barButtonItem>
                         </leftBarButtonItems>
-                        <barButtonItem key="rightBarButtonItem" image="send" id="Edf-8U-q4y">
-                            <connections>
-                                <segue destination="Rzu-Cw-vxk" kind="popoverPresentation" identifier="Show Operations" popoverAnchorBarButtonItem="Edf-8U-q4y" id="KMc-yt-S0g">
-                                    <popoverArrowDirection key="popoverArrowDirection" up="YES" down="YES" left="YES" right="YES"/>
-                                </segue>
-                            </connections>
-                        </barButtonItem>
+                        <rightBarButtonItems>
+                            <barButtonItem image="send" id="Edf-8U-q4y">
+                                <connections>
+                                    <segue destination="Rzu-Cw-vxk" kind="popoverPresentation" identifier="Show Operations" popoverAnchorBarButtonItem="Edf-8U-q4y" id="KMc-yt-S0g">
+                                        <popoverArrowDirection key="popoverArrowDirection" up="YES" down="YES" left="YES" right="YES"/>
+                                    </segue>
+                                </connections>
+                            </barButtonItem>
+                            <barButtonItem image="Slice 1" id="6dS-hy-OZA">
+                                <connections>
+                                    <segue destination="6dt-qR-fh6" kind="popoverPresentation" identifier="Print switch" popoverAnchorBarButtonItem="6dS-hy-OZA" id="JIi-GP-7wH">
+                                        <popoverArrowDirection key="popoverArrowDirection" up="YES" down="YES" left="YES" right="YES"/>
+                                    </segue>
+                                </connections>
+                            </barButtonItem>
+                            <barButtonItem image="houseswitch" id="p6u-zd-prf">
+                                <connections>
+                                    <segue destination="0JX-MQ-a4E" kind="popoverPresentation" identifier="Address switch" popoverAnchorBarButtonItem="p6u-zd-prf" id="w9N-PP-mnn">
+                                        <popoverArrowDirection key="popoverArrowDirection" up="YES" down="YES" left="YES" right="YES"/>
+                                    </segue>
+                                </connections>
+                            </barButtonItem>
+                        </rightBarButtonItems>
                     </navigationItem>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="4zj-fO-mNU" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="3304" y="-406"/>
         </scene>
-        <!--Third Party Finacing Addendum-->
+        <!--Third Party Financing Addendum-->
         <scene sceneID="GDM-6d-8EZ">
             <objects>
-                <viewController id="zWA-CC-Fd1" customClass="ThirdPartyFinacingAddendumViewController" customModule="Contract" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="ThirdPartyFinacingAddendumViewController" id="zWA-CC-Fd1" customClass="ThirdPartyFinacingAddendumViewController" customModule="Contract" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="0Od-pP-zR6"/>
                         <viewControllerLayoutGuide type="bottom" id="fzK-Sh-nRV"/>
@@ -510,7 +671,7 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
                     <toolbarItems/>
-                    <navigationItem key="navigationItem" title="Third Party Finacing Addendum" id="u1d-Nl-F0R">
+                    <navigationItem key="navigationItem" title="Third Party Financing Addendum" id="u1d-Nl-F0R">
                         <leftBarButtonItems>
                             <barButtonItem image="back" id="lE1-G2-4Hj">
                                 <connections>
@@ -532,6 +693,20 @@
                             <barButtonItem image="send" id="w38-kC-O0V">
                                 <connections>
                                     <segue destination="Rzu-Cw-vxk" kind="popoverPresentation" identifier="Show Operations" popoverAnchorBarButtonItem="w38-kC-O0V" id="ZKx-6K-eOE">
+                                        <popoverArrowDirection key="popoverArrowDirection" up="YES" down="YES" left="YES" right="YES"/>
+                                    </segue>
+                                </connections>
+                            </barButtonItem>
+                            <barButtonItem image="Slice 1" id="z4D-2O-cMf">
+                                <connections>
+                                    <segue destination="6dt-qR-fh6" kind="popoverPresentation" identifier="Print switch" popoverAnchorBarButtonItem="z4D-2O-cMf" id="9H6-xq-lkW">
+                                        <popoverArrowDirection key="popoverArrowDirection" up="YES" down="YES" left="YES" right="YES"/>
+                                    </segue>
+                                </connections>
+                            </barButtonItem>
+                            <barButtonItem image="houseswitch" id="XFG-6l-ckt">
+                                <connections>
+                                    <segue destination="0JX-MQ-a4E" kind="popoverPresentation" identifier="Address switch" popoverAnchorBarButtonItem="XFG-6l-ckt" id="Mkk-cX-3do">
                                         <popoverArrowDirection key="popoverArrowDirection" up="YES" down="YES" left="YES" right="YES"/>
                                     </segue>
                                 </connections>
@@ -566,18 +741,18 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" scrollEnabled="NO" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="jJ6-VR-0jp">
-                                <rect key="frame" x="120" y="190" width="360" height="220"/>
+                                <rect key="frame" x="90" y="190" width="420" height="220"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="220" id="Jdv-zC-gAG"/>
-                                    <constraint firstAttribute="width" constant="360" id="egN-F9-Ufz"/>
+                                    <constraint firstAttribute="width" constant="420" id="egN-F9-Ufz"/>
                                 </constraints>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="cellIdentifier" id="7OE-yE-b25">
-                                        <rect key="frame" x="0.0" y="28" width="360" height="44"/>
+                                        <rect key="frame" x="0.0" y="28" width="420" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="7OE-yE-b25" id="NCn-Z4-gyK">
-                                            <rect key="frame" x="0.0" y="0.0" width="360" height="43"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="420" height="43"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                         </tableViewCellContentView>
                                     </tableViewCell>
@@ -601,6 +776,8 @@
                     <connections>
                         <outlet property="tableHeight" destination="Jdv-zC-gAG" id="23k-5C-3Nw"/>
                         <outlet property="tableview" destination="jJ6-VR-0jp" id="3Vw-bt-tsx"/>
+                        <outlet property="tablex" destination="t9S-nO-pwS" id="d8q-e3-ReF"/>
+                        <outlet property="tabley" destination="fPo-z7-6TA" id="wJe-ZN-pra"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="0qJ-wR-Lmq" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -611,39 +788,223 @@
                     </connections>
                 </tapGestureRecognizer>
             </objects>
-            <point key="canvasLocation" x="1737" y="-327"/>
+            <point key="canvasLocation" x="4662" y="-93"/>
         </scene>
-        <!--Addendum “A”-->
-        <scene sceneID="ONw-Qg-94t">
+        <!--Address List Model View Controller-->
+        <scene sceneID="jn7-Ts-MfM">
             <objects>
-                <viewController id="S00-fd-U88" customClass="AddendumAViewController" customModule="Contract" customModuleProvider="target" sceneMemberID="viewController">
-                    <toolbarItems/>
-                    <navigationItem key="navigationItem" title="Addendum “A”" id="B05-Qy-xSr">
-                        <barButtonItem key="leftBarButtonItem" image="back" id="Qi8-mG-lNx">
+                <viewController storyboardIdentifier="AddressListModelViewController" id="0JX-MQ-a4E" customClass="AddressListModelViewController" customModule="Contract" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="UAr-ca-blt"/>
+                        <viewControllerLayoutGuide type="bottom" id="cTU-ED-HDZ"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="Ka4-zz-Ki7">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="KA1-ET-9eo">
+                                <rect key="frame" x="120" y="20" width="360" height="548"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="360" id="kWA-5f-MWE"/>
+                                    <constraint firstAttribute="height" constant="548" id="nLb-Tp-NFH"/>
+                                </constraints>
+                                <searchBar key="tableHeaderView" contentMode="redraw" id="gVq-8h-ZA0">
+                                    <rect key="frame" x="0.0" y="0.0" width="360" height="44"/>
+                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                    <textInputTraits key="textInputTraits"/>
+                                    <connections>
+                                        <outlet property="delegate" destination="0JX-MQ-a4E" id="aHM-ea-P9m"/>
+                                    </connections>
+                                </searchBar>
+                                <prototypes>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="AddressModelUITableViewCell" id="48Q-dK-juq">
+                                        <rect key="frame" x="0.0" y="72" width="360" height="44"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="48Q-dK-juq" id="l57-qx-U0f">
+                                            <rect key="frame" x="0.0" y="0.0" width="360" height="43"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                        </tableViewCellContentView>
+                                        <edgeInsets key="layoutMargins" top="8" left="0.0" bottom="8" right="8"/>
+                                    </tableViewCell>
+                                </prototypes>
+                                <connections>
+                                    <outlet property="dataSource" destination="0JX-MQ-a4E" id="35f-ze-e50"/>
+                                    <outlet property="delegate" destination="0JX-MQ-a4E" id="Qiw-gt-wyq"/>
+                                </connections>
+                            </tableView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="KA1-ET-9eo" firstAttribute="top" secondItem="UAr-ca-blt" secondAttribute="bottom" id="LrI-ra-oRX"/>
+                            <constraint firstItem="KA1-ET-9eo" firstAttribute="centerX" secondItem="Ka4-zz-Ki7" secondAttribute="centerX" id="nEW-sL-yu3"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="searchBar" destination="gVq-8h-ZA0" id="5mc-Wm-8cE"/>
+                        <outlet property="tableView" destination="KA1-ET-9eo" id="Pkq-8H-sLX"/>
+                        <outlet property="tableviewHeight" destination="nLb-Tp-NFH" id="IB7-Gd-Buk"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="BXk-AE-uFq" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="4530" y="-1458"/>
+        </scene>
+        <!--EXHIBIT A-->
+        <scene sceneID="rC6-c8-f0T">
+            <objects>
+                <viewController storyboardIdentifier="ExhibitAViewController" id="wlX-Pz-6n7" customClass="ExhibitAViewController" customModule="Contract" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="eGw-ub-iuh"/>
+                        <viewControllerLayoutGuide type="bottom" id="vZM-P5-x94"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="1fE-gm-aHK">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                    <navigationItem key="navigationItem" title="EXHIBIT A" id="guC-Bu-gC1">
+                        <barButtonItem key="leftBarButtonItem" image="back" id="yjm-Gf-jJC">
                             <connections>
-                                <action selector="goBack:" destination="S00-fd-U88" id="2AA-75-mrx"/>
+                                <action selector="goBack:" destination="wlX-Pz-6n7" id="IN6-W5-O0a"/>
                             </connections>
                         </barButtonItem>
-                        <barButtonItem key="rightBarButtonItem" image="send" id="TkG-Ha-xl0">
-                            <connections>
-                                <segue destination="Rzu-Cw-vxk" kind="popoverPresentation" popoverAnchorBarButtonItem="TkG-Ha-xl0" id="fWp-5l-TDS">
-                                    <popoverArrowDirection key="popoverArrowDirection" up="YES" down="YES" left="YES" right="YES"/>
-                                </segue>
-                            </connections>
-                        </barButtonItem>
+                        <rightBarButtonItems>
+                            <barButtonItem image="send" id="9Sv-Tk-1ga">
+                                <connections>
+                                    <segue destination="Rzu-Cw-vxk" kind="popoverPresentation" identifier="Show Operations" popoverAnchorBarButtonItem="9Sv-Tk-1ga" id="XbF-P3-n58">
+                                        <popoverArrowDirection key="popoverArrowDirection" up="YES" down="YES" left="YES" right="YES"/>
+                                    </segue>
+                                </connections>
+                            </barButtonItem>
+                            <barButtonItem image="Slice 1" id="Dmy-3C-X8Q">
+                                <connections>
+                                    <segue destination="6dt-qR-fh6" kind="popoverPresentation" identifier="Print switch" popoverAnchorBarButtonItem="Dmy-3C-X8Q" id="Nhe-Mn-Exe">
+                                        <popoverArrowDirection key="popoverArrowDirection" up="YES" down="YES" left="YES" right="YES"/>
+                                    </segue>
+                                </connections>
+                            </barButtonItem>
+                            <barButtonItem image="houseswitch" id="7Zt-WS-dS2">
+                                <connections>
+                                    <segue destination="0JX-MQ-a4E" kind="popoverPresentation" identifier="Address switch" popoverAnchorBarButtonItem="7Zt-WS-dS2" id="pJy-z1-0dI">
+                                        <popoverArrowDirection key="popoverArrowDirection" up="YES" down="YES" left="YES" right="YES"/>
+                                    </segue>
+                                </connections>
+                            </barButtonItem>
+                        </rightBarButtonItems>
                     </navigationItem>
                 </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="3G9-7s-faw" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="I56-YH-ocl" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3304" y="-2405"/>
+            <point key="canvasLocation" x="3192" y="-2203"/>
+        </scene>
+        <!--EXHIBIT B-->
+        <scene sceneID="iAq-Hp-tSA">
+            <objects>
+                <viewController storyboardIdentifier="ExhibitBViewController" id="wHy-HG-yPh" customClass="ExhibitBViewController" customModule="Contract" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="38y-HI-reS"/>
+                        <viewControllerLayoutGuide type="bottom" id="iY1-bD-GYc"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="ycB-sf-Wv5">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                    <navigationItem key="navigationItem" title="EXHIBIT B" id="cLX-77-hfj">
+                        <barButtonItem key="leftBarButtonItem" image="back" id="EP0-OY-Mfb">
+                            <connections>
+                                <action selector="goBack:" destination="wHy-HG-yPh" id="oKk-wg-spe"/>
+                            </connections>
+                        </barButtonItem>
+                        <rightBarButtonItems>
+                            <barButtonItem image="send" id="DrM-dG-x7u">
+                                <connections>
+                                    <segue destination="Rzu-Cw-vxk" kind="popoverPresentation" identifier="Show Operations" popoverAnchorBarButtonItem="DrM-dG-x7u" id="vVB-HD-lpT">
+                                        <popoverArrowDirection key="popoverArrowDirection" up="YES" down="YES" left="YES" right="YES"/>
+                                    </segue>
+                                </connections>
+                            </barButtonItem>
+                            <barButtonItem image="Slice 1" id="xxQ-dM-V83">
+                                <connections>
+                                    <segue destination="6dt-qR-fh6" kind="popoverPresentation" identifier="Print switch" popoverAnchorBarButtonItem="xxQ-dM-V83" id="eo8-Nf-dMs">
+                                        <popoverArrowDirection key="popoverArrowDirection" up="YES" down="YES" left="YES" right="YES"/>
+                                    </segue>
+                                </connections>
+                            </barButtonItem>
+                            <barButtonItem image="houseswitch" id="qOH-at-P5j">
+                                <connections>
+                                    <segue destination="0JX-MQ-a4E" kind="popoverPresentation" identifier="Address switch" popoverAnchorBarButtonItem="qOH-at-P5j" id="OZd-bT-LSJ">
+                                        <popoverArrowDirection key="popoverArrowDirection" up="YES" down="YES" left="YES" right="YES"/>
+                                    </segue>
+                                </connections>
+                            </barButtonItem>
+                        </rightBarButtonItems>
+                    </navigationItem>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Dv2-KO-Tzu" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="3381" y="-2089"/>
+        </scene>
+        <!--EXHIBIT C General-->
+        <scene sceneID="n8S-3H-NvP">
+            <objects>
+                <viewController storyboardIdentifier="ExhibitCGeneralViewController" id="wel-HV-ddY" customClass="ExhibitCGeneralViewController" customModule="Contract" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="Tub-UJ-Kno"/>
+                        <viewControllerLayoutGuide type="bottom" id="bjp-Gv-oSc"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="qz5-cv-4yT">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                    <navigationItem key="navigationItem" title="EXHIBIT C General" id="NbB-T1-gXO">
+                        <barButtonItem key="leftBarButtonItem" image="back" id="2JM-ve-L0o">
+                            <connections>
+                                <action selector="goBack:" destination="wel-HV-ddY" id="AOg-SX-Gkc"/>
+                            </connections>
+                        </barButtonItem>
+                        <rightBarButtonItems>
+                            <barButtonItem image="send" id="h83-Ol-CP9">
+                                <connections>
+                                    <segue destination="Rzu-Cw-vxk" kind="popoverPresentation" identifier="Show Operations" popoverAnchorBarButtonItem="h83-Ol-CP9" id="dkW-NT-006">
+                                        <popoverArrowDirection key="popoverArrowDirection" up="YES" down="YES" left="YES" right="YES"/>
+                                    </segue>
+                                </connections>
+                            </barButtonItem>
+                            <barButtonItem image="Slice 1" id="Fw1-S7-S0p">
+                                <connections>
+                                    <segue destination="6dt-qR-fh6" kind="popoverPresentation" identifier="Print switch" popoverAnchorBarButtonItem="Fw1-S7-S0p" id="H3L-aO-zPl">
+                                        <popoverArrowDirection key="popoverArrowDirection" up="YES" down="YES" left="YES" right="YES"/>
+                                    </segue>
+                                </connections>
+                            </barButtonItem>
+                            <barButtonItem image="houseswitch" id="p6Z-YN-sTb">
+                                <connections>
+                                    <segue destination="0JX-MQ-a4E" kind="popoverPresentation" identifier="Address switch" popoverAnchorBarButtonItem="p6Z-YN-sTb" id="yEv-AJ-QrF">
+                                        <popoverArrowDirection key="popoverArrowDirection" up="YES" down="YES" left="YES" right="YES"/>
+                                    </segue>
+                                </connections>
+                            </barButtonItem>
+                        </rightBarButtonItems>
+                    </navigationItem>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="frn-qt-aM7" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="3289" y="-1864"/>
         </scene>
     </scenes>
     <resources>
+        <image name="Slice 1" width="28" height="31"/>
         <image name="back" width="30" height="30"/>
+        <image name="houseswitch" width="31" height="32"/>
         <image name="logo" width="60" height="60"/>
         <image name="send" width="30" height="30"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="fWp-5l-TDS"/>
+        <segue reference="Mkk-cX-3do"/>
+        <segue reference="ZKx-6K-eOE"/>
+        <segue reference="JIi-GP-7wH"/>
     </inferredMetricsTieBreakers>
 </document>

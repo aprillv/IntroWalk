@@ -177,13 +177,15 @@ class DesignCenterViewController: PDFBaseViewController {
     }
     
     @IBAction func BuyerSign(sender0: UIBarButtonItem) {
-        sender = sender0;
+        self.dismissViewControllerAnimated(true, completion: nil)
+        self.sender = sender0;
         if (UIDeviceOrientationIsLandscape(UIDevice.currentDevice().orientation)){
             self.pdfView!.pdfView.scrollView.scrollRectToVisible(CGRect(x: 0, y: self.pdfView!.pdfView.scrollView.contentSize.height - self.pdfView!.pdfView.scrollView.frame.size.height, width: 100, height: self.pdfView!.pdfView.scrollView.frame.size.height), animated: true)
-            NSTimer.scheduledTimerWithTimeInterval(0.3, target: self, selector: "signature", userInfo: sender, repeats: false)
+            NSTimer.scheduledTimerWithTimeInterval(0.3, target: self, selector: "signature", userInfo: self.sender, repeats: false)
         }else{
-            signature()
+            self.signature()
         }
+        
         
         
     }

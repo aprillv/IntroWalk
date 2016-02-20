@@ -85,7 +85,6 @@ class SendOperationViewController: UIViewController, UITableViewDelegate, UITabl
     override var preferredContentSize: CGSize {
         get {
             return CGSize(width: tableView.frame.width, height: constants.rowHeight * CGFloat(itemList!.count))
-            
         }
         set { super.preferredContentSize = newValue }
     }

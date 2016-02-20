@@ -8,6 +8,8 @@
 
 class ContractPDFBaseModel: ContractObject {
     var idcia: String?
+    var idcity: String?
+    var idnumber: String?
     var idproject: String?
     var nproject: String?
     var code: String?

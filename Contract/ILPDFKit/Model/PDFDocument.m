@@ -114,7 +114,7 @@ static void renderPage1(NSUInteger page, CGContextRef ctx, CGPDFDocumentRef doc,
             NSString *text = texta.value;
         
 //            CGRect rect = correctedFrame;
-//            NSLog(@"%f", floor(([texta currentFontSize] / factor)));
+            NSLog(@"%f", [texta currentFontSize]);
             UIFont *font = [UIFont fontWithName:@"Verdana" size:(([texta currentFontSize] / factor))];
 //            UIFont *font = [UIFont systemFontOfSize:[PDFWidgetAnnotationView fontSizeForRect:rect value:texta.value multiline:NO choice:NO]];
             UIGraphicsPushContext(ctx);

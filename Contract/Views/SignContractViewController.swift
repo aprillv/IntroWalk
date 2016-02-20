@@ -8,7 +8,7 @@
 
 import Alamofire
 
-class PDFSignViewController: PDFBaseViewController {
+class SignContractViewController: PDFBaseViewController {
 
   
     var isDownload : Bool?
@@ -107,8 +107,8 @@ class PDFSignViewController: PDFBaseViewController {
     }
     
     @IBAction func BuyerSign(sender: UIBarButtonItem) {
-    
-        for sign0 in pdfView!.pdfWidgetAnnotationViews {
+        self.dismissViewControllerAnimated(true, completion: nil)
+        for sign0 in self.pdfView!.pdfWidgetAnnotationViews {
             if let sign = sign0 as? SignatureView{
                 if (    sender.tag == 1 && sign.sname.hasSuffix(PDFFields.Buyer1Signature))
                     || (sender.tag == 2 && sign.sname.hasSuffix(PDFFields.Buyer2Signature))
@@ -122,7 +122,7 @@ class PDFSignViewController: PDFBaseViewController {
                 
             }
         }
-        for sign0 in pdfView!.pdfWidgetAnnotationViews {
+        for sign0 in self.pdfView!.pdfWidgetAnnotationViews {
             if let sign = sign0 as? SignatureView{
                 if (    sender.tag == 1 && sign.sname == PDFFields.buyer2Sign)
                     || (sender.tag == 2 && sign.sname == PDFFields.buyer3Sign)
@@ -136,6 +136,7 @@ class PDFSignViewController: PDFBaseViewController {
                 
             }
         }
+        
     }
     
    

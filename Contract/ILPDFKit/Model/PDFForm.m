@@ -361,7 +361,8 @@
             if ([self.name hasPrefix:@"txt"]) {
                 isReadOnly = YES;
             }
-            _formUIElement = [[PDFFormTextField alloc] initWithFrame:_uiBaseFrame multiline:((_flags & PDFFormFlagTextFieldMultiline) > 0) alignment:_textAlignment secureEntry:((_flags & PDFFormFlagTextFieldPassword) > 0) readOnly:((_flags & PDFFormFlagReadOnly) > 0 || isReadOnly)];
+           PDFFormTextField *f  = [[PDFFormTextField alloc] initWithFrame:_uiBaseFrame multiline:((_flags & PDFFormFlagTextFieldMultiline) > 0) alignment:_textAlignment secureEntry:((_flags & PDFFormFlagTextFieldPassword) > 0) readOnly:((_flags & PDFFormFlagReadOnly) > 0 || isReadOnly) withName:self.name];
+            _formUIElement = f;
             
         }
             

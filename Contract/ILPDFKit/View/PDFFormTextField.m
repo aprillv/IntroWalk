@@ -60,9 +60,9 @@
     return [self initWithFrame: CGRectZero];
 }
 - (instancetype)initWithFrame:(CGRect)frame{
-    return [self initWithFrame:frame multiline:NO alignment:NSTextAlignmentLeft secureEntry:NO readOnly:YES];
+    return [self initWithFrame:frame multiline:NO alignment:NSTextAlignmentLeft secureEntry:NO readOnly:YES withName: nil];
 }
-- (instancetype)initWithFrame:(CGRect)frame multiline:(BOOL)multiline alignment:(NSTextAlignment)alignment secureEntry:(BOOL)secureEntry readOnly:(BOOL)ro {
+- (instancetype)initWithFrame:(CGRect)frame multiline:(BOOL)multiline alignment:(NSTextAlignment)alignment secureEntry:(BOOL)secureEntry readOnly:(BOOL)ro withName:(NSString *)xname{
     self = [super initWithFrame:frame];
    
     if (self != nil) {
@@ -103,7 +103,13 @@
         _baseFontSize = [PDFWidgetAnnotationView fontSizeForRect:frame value:nil multiline:multiline choice:NO font:@"Verdana"];
         
         _currentFontSize = _baseFontSize;
+        self.xname = xname;
         
+        
+//        if ([xname isEqualToString:@"block2"]){
+//        _currentFontSize = _baseFontSize = _currentFontSize/1.5;
+//        }
+//         NSLog(@"%@ %f", self.xname, _currentFontSize);
         UIFont *font = [UIFont fontWithName:@"Verdana" size: _baseFontSize];
         
         
@@ -224,7 +230,7 @@
     if ([self.xname isEqualToString:@"txtDesignDate"]) {
         font = [UIFont fontWithName:@"Verdana-Bold" size:_currentFontSize = (_baseFontSize*zoom)];
     }else{
-    font = [UIFont fontWithName:@"Verdana" size:_currentFontSize = (_baseFontSize*zoom)];
+        font = [UIFont fontWithName:@"Verdana" size:_currentFontSize = (_baseFontSize*zoom)];
     }
     
 //    NSLog(@"%@ %f", self.xname, _currentFontSize);

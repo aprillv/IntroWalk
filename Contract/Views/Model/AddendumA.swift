@@ -8,14 +8,20 @@
 
 import Foundation
 class AddendumA: ContractPDFBaseModel {
-    var idnumber: String?
-    var idcity: String?
     var Nonrefundable: String?
     var CompanyName: String?
     var delayfees_word: String?
     var delayfees_amount: String?
     var GeneralPartner: String?
     var ExcutedDay: String?
+    
+    var city : String?
+    
+     var Client: String?
+     var exhibitABDate: String?
+     var exhibitCSignatureDate: String?
+//     var Incorporation: String?
+    
     var found: String?
     var message: String?
 }

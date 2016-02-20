@@ -11,9 +11,12 @@ import Foundation
 class ContractRequestItem: NSObject {
     var cInfo : ContractsItem?
     
-    required init(contractInfo : ContractsItem){
+    required init(contractInfo : ContractsItem?){
         super.init()
-        cInfo = contractInfo  
+        if contractInfo != nil {
+            cInfo = contractInfo
+        }
+        
     }
     
     func DictionaryFromObject() -> [String: String]{
@@ -23,6 +26,16 @@ class ContractRequestItem: NSObject {
             , "code": cInfo?.code ?? ""
             , "ispdf": "0"]
 //        print(a)
+        return a
+    }
+    
+    func DictionaryFromBasePdf(model :ContractPDFBaseModel) -> [String: String]{
+        let a = ["idnumber" : model.idnumber!
+            , "idcity" : model.idcity!
+            , "idcia": model.idcia!
+            , "code": model.code!
+            , "ispdf": "0"]
+        //        print(a)
         return a
     }
 }

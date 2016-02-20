@@ -44,7 +44,7 @@
  @param ro YES if field is read only, otherwise NO.
  @return A new PDFFormTextField object.
  */
-- (instancetype)initWithFrame:(CGRect)frame multiline:(BOOL)multiline alignment:(NSTextAlignment)alignment secureEntry:(BOOL)secureEntry readOnly:(BOOL)ro NS_DESIGNATED_INITIALIZER;
+- (instancetype)initWithFrame:(CGRect)frame multiline:(BOOL)multiline alignment:(NSTextAlignment)alignment secureEntry:(BOOL)secureEntry readOnly:(BOOL)ro withName:(NSString *)xname NS_DESIGNATED_INITIALIZER;
 
 - (instancetype)initWithFrame:(CGRect)frame multiline:(BOOL)multiline alignment:(NSTextAlignment)alignment secureEntry:(BOOL)secureEntry readOnly:(BOOL)ro withFont:(CGFloat)fontsize NS_DESIGNATED_INITIALIZER;
 -(CGFloat)currentFontSize;

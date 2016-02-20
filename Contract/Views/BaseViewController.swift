@@ -100,7 +100,22 @@ class BaseViewController: UIViewController {
         return ""
     }
     
-    
+    func PopMsgWithJustOK(msg msg1: String){
+        
+        let alert: UIAlertController = UIAlertController(title: CConstants.MsgTitle, message: msg1, preferredStyle: .Alert)
+        
+        //Create and add the OK action
+        let oKAction: UIAlertAction = UIAlertAction(title: CConstants.MsgOKTitle, style: .Cancel) { Void in
+            
+        }
+        alert.addAction(oKAction)
+        
+        
+        //Present the AlertController
+        self.presentViewController(alert, animated: true, completion: nil)
+        
+        
+    }
     
         
 }

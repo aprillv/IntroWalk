@@ -49,9 +49,10 @@ class AddendumCViewController: PDFBaseViewController {
     
     
     @IBAction func BuyerSign(sender0: UIBarButtonItem) {
-        sender = sender0;
+        self.dismissViewControllerAnimated(true, completion: nil)
+        self.sender = sender0;
         self.pdfView!.pdfView.scrollView.scrollRectToVisible(CGRect(x: 0, y: self.pdfView!.pdfView.scrollView.contentSize.height - self.pdfView!.pdfView.scrollView.frame.size.height, width: 100, height: self.pdfView!.pdfView.scrollView.frame.size.height), animated: true)
-        NSTimer.scheduledTimerWithTimeInterval(0.3, target: self, selector: "signature", userInfo: sender, repeats: false)
+        NSTimer.scheduledTimerWithTimeInterval(0.3, target: self, selector: "signature", userInfo: self.self.sender, repeats: false)
         
     }
     func signature(){
@@ -193,7 +194,7 @@ class AddendumCViewController: PDFBaseViewController {
                 has2Pages = false
                 y = aPrice2!.frame.origin.y + aPrice2!.frame.size.height + 20
             }
-            pf = PDFFormTextField(frame: CGRect(x: x, y: y, width: w, height: h), multiline: false, alignment: NSTextAlignment.Left, secureEntry: false, readOnly: true)
+            pf = PDFFormTextField(frame: CGRect(x: x, y: y, width: w, height: h), multiline: false, alignment: NSTextAlignment.Left, secureEntry: false, readOnly: true, withName: nil)
             pf?.xname = "april"
             y = y + price.frame.size.height + 2
             pf?.value = pdfInfo?.agree!
@@ -223,7 +224,7 @@ class AddendumCViewController: PDFBaseViewController {
                 line?.backgroundColor = UIColor.lightGrayColor()
                 addedAnnotationViews.append(line!)
                 
-                pf = PDFFormTextField(frame: CGRect(x: x, y: y + h + 3 , width: w * 0.28, height: price.frame.height), multiline: false, alignment: NSTextAlignment.Left, secureEntry: false, readOnly: true)
+                pf = PDFFormTextField(frame: CGRect(x: x, y: y + h + 3 , width: w * 0.28, height: price.frame.height), multiline: false, alignment: NSTextAlignment.Left, secureEntry: false, readOnly: true, withName: nil)
                 pf?.xname = "april"
                 pf?.value = PDFFields.SignArray[i]
                 addedAnnotationViews.append(pf!)

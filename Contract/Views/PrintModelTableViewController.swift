@@ -16,6 +16,7 @@ class PrintModelTableViewController: UIViewController, UITableViewDataSource, UI
     
     var delegate : ToDoPrintDelegate?
     
+    
     @IBAction func dismissSelf(sender: UITapGestureRecognizer) {
 //        print(sender)
 //        let point = sender.locationInView(view)
@@ -26,6 +27,8 @@ class PrintModelTableViewController: UIViewController, UITableViewDataSource, UI
     }
     @IBOutlet var tableHeight: NSLayoutConstraint!
     
+    @IBOutlet var tablex: NSLayoutConstraint!
+    @IBOutlet var tabley: NSLayoutConstraint!
     func gestureRecognizer(gestureRecognizer: UIGestureRecognizer, shouldReceiveTouch touch: UITouch) -> Bool {
         let point = touch.locationInView(view)
         return !CGRectContainsPoint(tableview.frame, point)
@@ -55,13 +58,17 @@ class PrintModelTableViewController: UIViewController, UITableViewDataSource, UI
         , CConstants.ActionTitleAddendumA
         , CConstants.ActionTitleAddendumC
         , CConstants.ActionTitleClosingMemo
-        , CConstants.ActionTitleDesignCenter]
+        , CConstants.ActionTitleDesignCenter
+        , CConstants.ActionTitleEXHIBIT_A
+        , CConstants.ActionTitleEXHIBIT_B
+        , CConstants.ActionTitleEXHIBIT_C
+        , CConstants.ActionTitleINFORMATION_ABOUT_BROKERAGE_SERVICES]
 
     override func viewDidLoad() {
         super.viewDidLoad()
         tableHeight.constant = CGFloat(Double(printList.count) * constants.cellHeight)
         tableview.updateConstraintsIfNeeded()
-        tableview.reloadData()
+        
     }
     
      func numberOfSectionsInTableView(tableView: UITableView) -> Int {
@@ -82,7 +89,10 @@ class PrintModelTableViewController: UIViewController, UITableViewDataSource, UI
         cell.preservesSuperviewLayoutMargins = false
         cell.textLabel?.text = printList[indexPath.row]
         cell.textLabel?.textAlignment = .Left
-        cell.accessoryType = UITableViewCellAccessoryType.DisclosureIndicator
+        if self.modalPresentationStyle != .Popover {
+            cell.accessoryType = UITableViewCellAccessoryType.DisclosureIndicator
+        }
+        
         
         return cell
     }
@@ -96,6 +106,15 @@ class PrintModelTableViewController: UIViewController, UITableViewDataSource, UI
         }
         
     }
+    
+    override var preferredContentSize: CGSize {
+        
+        get {
+            return CGSize(width: tableview.frame.width, height: CGFloat(constants.cellHeight * Double(printList.count)))
+        }
+        set { super.preferredContentSize = newValue }
+    }
+    
     
 
 }
