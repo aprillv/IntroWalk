@@ -124,7 +124,7 @@ class SwiftNotice: NSObject {
         mainView.center = window.center
         
         
-        label.frame = CGRect(x: 15, y: 40, width: label.frame.size.width, height: label.frame.size.height)
+        label.frame = CGRect(x: 15, y: 20, width: label.frame.size.width, height: label.frame.size.height)
         //        label.center = mainView.center
         
         window.windowLevel = UIWindowLevelAlert

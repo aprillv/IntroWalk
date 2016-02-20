@@ -32,7 +32,7 @@ class ContractObject : NSObject{
 //        }else{
             skey = key
 //        }
-        print("\(skey)")
+//        print("\(skey)")
         
         if let value = value0{
             if let dic = value as? [Dictionary<String, AnyObject>]{

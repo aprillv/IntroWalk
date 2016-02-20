@@ -373,6 +373,8 @@ class AddressListViewController: UITableViewController, UISearchBarDelegate, ToD
                         info.code = item.code
                         info.idcia = item.idcia
                         info.idproject = item.idproject
+                        info.idnumber = item.idnumber
+                        info.idcity = item.idcity
                         info.nproject = item.nproject
                         controller.pdfInfo0 = info
                         controller.AddressList = self.AddressListOrigin

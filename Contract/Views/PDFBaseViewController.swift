@@ -170,6 +170,7 @@ class PDFBaseViewController: BaseViewController, DoOperationDelegate, UIPopoverP
         if let identifier = segue.identifier {
             switch identifier {
             case CConstants.SegueToOperationsPopover:
+                self.dismissViewControllerAnimated(true, completion: nil)
                 if let tvc = segue.destinationViewController as? SendOperationViewController {
                     if let ppc = tvc.popoverPresentationController {
                         ppc.delegate = self
@@ -178,6 +179,7 @@ class PDFBaseViewController: BaseViewController, DoOperationDelegate, UIPopoverP
                     //                    tvc.text = "april"
                 }
             case CConstants.SegueToPrintModelPopover:
+                self.dismissViewControllerAnimated(true, completion: nil)
                 if let tvc = segue.destinationViewController as? PrintModelTableViewController {
                     if let ppc = tvc.popoverPresentationController {
                         ppc.delegate = self
@@ -186,6 +188,7 @@ class PDFBaseViewController: BaseViewController, DoOperationDelegate, UIPopoverP
                     //                    tvc.text = "april"
                 }
             case CConstants.SegueToAddressModelPopover:
+                self.dismissViewControllerAnimated(true, completion: nil)
                 if let tvc = segue.destinationViewController as? AddressListModelViewController {
                     if let ppc = tvc.popoverPresentationController {
                         ppc.delegate = self
