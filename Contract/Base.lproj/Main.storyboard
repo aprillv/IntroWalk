@@ -7,7 +7,7 @@
         <capability name="Navigation items with more than one left or right bar item" minToolsVersion="7.0"/>
     </dependencies>
     <scenes>
-        <!--INFORMATION ABOUT BROKERAGE SERVICES-->
+        <!--Information about Brokerage Services-->
         <scene sceneID="hCt-fD-Fba">
             <objects>
                 <viewController storyboardIdentifier="InformationAboutBrokerageServicesViewController" id="Ier-Ms-c11" customClass="InformationAboutBrokerageServicesViewController" customModule="Contract" customModuleProvider="target" sceneMemberID="viewController">
@@ -20,7 +20,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
-                    <navigationItem key="navigationItem" title="INFORMATION ABOUT BROKERAGE SERVICES" id="0cJ-Lb-ogm">
+                    <navigationItem key="navigationItem" title="Information about Brokerage Services" id="0cJ-Lb-ogm">
                         <barButtonItem key="leftBarButtonItem" image="back" id="2tt-Mt-Z6s">
                             <connections>
                                 <action selector="goBack:" destination="Ier-Ms-c11" id="gsh-jX-CU2"/>
@@ -741,7 +741,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" scrollEnabled="NO" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="jJ6-VR-0jp">
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" scrollEnabled="NO" dataMode="prototypes" style="plain" separatorStyle="default" allowsMultipleSelection="YES" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="jJ6-VR-0jp">
                                 <rect key="frame" x="90" y="190" width="420" height="220"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <constraints>
@@ -749,13 +749,14 @@
                                     <constraint firstAttribute="width" constant="420" id="egN-F9-Ufz"/>
                                 </constraints>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="cellIdentifier" id="7OE-yE-b25">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" accessoryType="checkmark" indentationWidth="10" reuseIdentifier="cellIdentifier" id="7OE-yE-b25">
                                         <rect key="frame" x="0.0" y="28" width="420" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="7OE-yE-b25" id="NCn-Z4-gyK">
-                                            <rect key="frame" x="0.0" y="0.0" width="420" height="43"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="381" height="43"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                         </tableViewCellContentView>
+                                        <inset key="separatorInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                                     </tableViewCell>
                                 </prototypes>
                                 <connections>
@@ -1004,8 +1005,8 @@
         <image name="send" width="30" height="30"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="HW8-IB-Dz2"/>
-        <segue reference="ZKx-6K-eOE"/>
-        <segue reference="Mkk-cX-3do"/>
+        <segue reference="IP1-hA-Uaj"/>
+        <segue reference="Spi-Qn-eAn"/>
+        <segue reference="gii-ra-4oZ"/>
     </inferredMetricsTieBreakers>
 </document>

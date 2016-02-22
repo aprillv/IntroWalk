@@ -111,6 +111,10 @@
             [PopSignUtil closePop];
         } title: @"Please sign Date here"];
     }else{
+        NSString *xtitle = @"";
+        if ([self.xname hasPrefix:@"p1Tbottom"]) {
+            xtitle = @"Please print your initial here";
+        }
         [PopSignUtil getSignWithVC:nil withOk:^(UIView *image, BOOL isToAll) {
             CGRect ct = self.frame;
             SignatureView *sv = (SignatureView *)image;
@@ -134,10 +138,11 @@
                 }
             }
             
+            
             [PopSignUtil closePop];
         } withCancel:^{
             [PopSignUtil closePop];
-        } showAll:![self.xname hasSuffix:@"Sign"]];
+        } showAll:(![self.xname hasSuffix:@"Sign"] && self.xname.length == 9) withTitle:xtitle];
     }
     
     

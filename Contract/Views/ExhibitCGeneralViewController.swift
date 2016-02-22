@@ -9,7 +9,10 @@
 import UIKit
 
 class ExhibitCGeneralViewController: PDFBaseViewController {
-   
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        self.navigationItem.title = CConstants.ActionTitleEXHIBIT_C
+    }
     var pdfInfo : AddendumA?{
         didSet{
             pdfInfo0 = pdfInfo;

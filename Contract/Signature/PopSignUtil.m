@@ -43,9 +43,9 @@ static PopSignUtil *popSignUtil = nil;
 
 //定制弹出框。模态对话框。
 +(void)getSignWithVC:(UIViewController *)VC withOk:(SignCallBackBlock)signCallBackBlock
-          withCancel:(CallBackBlock)callBackBlock showAll:(BOOL) show{
+          withCancel:(CallBackBlock)callBackBlock showAll:(BOOL) show withTitle: (NSString *)title{
     PopSignUtil *p = [PopSignUtil shareRestance];
-    [p setPopWithVC:VC withOk:signCallBackBlock withCancel:callBackBlock showAll:show];
+    [p setPopWithVC:VC withOk:signCallBackBlock withCancel:callBackBlock showAll:show title:title];
 }
 
 +(void)getSignWithVC:(UIViewController *)VC withOk:(SignCallBackBlock)signCallBackBlock
@@ -80,7 +80,14 @@ static PopSignUtil *popSignUtil = nil;
     zhezhaoView.frame = CGRectMake(screenSize.height, 0, screenSize.height, screenSize.width);
 
     DrawSignView *conformView = [[DrawSignView alloc]init];
-    conformView.showSwitch = show;
+     conformView.showSwitch = show;
+    if (show) {
+        if ([title hasPrefix:@"p1T"]) {
+            [conformView setShowSwitch2:show];
+        }
+    }
+    
+   
     if (![title isEqualToString:@""]) {
         [conformView setTitle: title];
     }

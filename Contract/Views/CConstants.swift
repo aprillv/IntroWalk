@@ -106,11 +106,12 @@ struct CConstants{
     static let ActionTitleDesignCenter : String = "Design Center"
     static let ActionTitleContract : String = "Sign Contract"
     static let ActionTitleThirdPartyFinancingAddendum : String = "Third Party Financing Addendum"
-    static let ActionTitleEXHIBIT_A : String = "EXHIBIT A"
-    static let ActionTitleEXHIBIT_B : String = "EXHIBIT B"
-    static let ActionTitleEXHIBIT_C : String = "EXHIBIT C General"
+    static let ActionTitleEXHIBIT_A : String = "Exhibit A"
+    static let ActionTitleEXHIBIT_B : String = "Exhibit B"
+    static let ActionTitleEXHIBIT_C : String = "Exhibit C General"
 //    static let ActionTitleINFORMATION_ABOUT_BROKERAGE_SERVICES = "Information about brokerage services"
-    static let ActionTitleINFORMATION_ABOUT_BROKERAGE_SERVICES = "INFORMATION ABOUT BROKERAGE SERVICES"
+    static let ActionTitleINFORMATION_ABOUT_BROKERAGE_SERVICES = "Information about Brokerage Services"
+    static let ActionTitleGo : String = "Go"
 }
 
 

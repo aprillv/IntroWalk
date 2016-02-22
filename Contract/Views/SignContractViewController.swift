@@ -219,6 +219,7 @@ class SignContractViewController: PDFBaseViewController {
             , PDFFields.Address_zip : PDFFields.Address1
             , PDFFields.SalePrice : PDFFields.SalePrice1]
         
+        pdfInfo?.section = "MEADOWS AT TRINITY CROSSING PHASE 2-B-1 AMENDED PL"
         pdfView = PDFView(frame: view.bounds, dataOrPath: pass, additionViews: additionViews)
         let na = overrideFields.keys
         for pv : PDFWidgetAnnotationView in additionViews!{

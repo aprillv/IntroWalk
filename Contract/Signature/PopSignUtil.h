@@ -15,7 +15,7 @@
 @property(nonatomic,copy)CallBackBlock noB;
 
 +(void)getSignWithVC:(UIViewController *)VC withOk:(SignCallBackBlock)signCallBackBlock
-          withCancel:(CallBackBlock)callBackBlock showAll:(BOOL) show;
+          withCancel:(CallBackBlock)callBackBlock showAll:(BOOL) show withTitle: (NSString *)title;
 
 +(void)getSignWithVC:(UIViewController *)VC withOk:(SignCallBackBlock)signCallBackBlock
           withCancel:(CallBackBlock)callBackBlock title:(NSString *) title;

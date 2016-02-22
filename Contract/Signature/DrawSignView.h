@@ -16,6 +16,7 @@ typedef void(^CallBackBlock) ();
 @interface DrawSignView : UIView
 
 @property(nonatomic, assign) BOOL showSwitch;
+-(void)setShowSwitch2:(BOOL)showSwitch;
 
 -(void) setTitle: (NSString *)xtitle;
 @property(nonatomic,copy)SignCallBackBlock signCallBackBlock;

@@ -78,9 +78,9 @@
         if (secureEntry) {
             ((UITextField *)_textFieldOrTextView).secureTextEntry = YES;
         }
-        if (ro) {
+//        if (ro) {
             _textFieldOrTextView.userInteractionEnabled = NO;
-        }
+//        }
         if (multiline) {
             ((UITextView *)_textFieldOrTextView).textAlignment = (NSTextAlignment)alignment;
             ((UITextView *)_textFieldOrTextView).autoresizingMask = UIViewAutoresizingFlexibleWidth|UIViewAutoresizingFlexibleHeight;

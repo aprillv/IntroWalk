@@ -220,8 +220,16 @@ static NSMutableArray *colors;
 -(void)setShowSwitch:(BOOL)showSwitch{
     toAllSwitch.hidden = !showSwitch;
     sliderLbl.hidden = !showSwitch;
+    
     contentLbl.text = showSwitch? @"Please print your initial here" : @"Please signature here";
 }
+
+-(void)setShowSwitch2:(BOOL)showSwitch{
+    toAllSwitch.hidden = showSwitch;
+    sliderLbl.hidden = showSwitch;
+    contentLbl.text =  @"Please print your initial here";
+}
+
 
 -(void) setTitle: (NSString *)xtitle{
     contentLbl.text = xtitle;

@@ -210,6 +210,7 @@ class PDFBaseViewController: BaseViewController, DoOperationDelegate, UIPopoverP
     }
     
     func saveToServer() {
+//        IQKeyboardManager.sharedManager().enable = true
         savePDFToServer(fileName!)
     }
     

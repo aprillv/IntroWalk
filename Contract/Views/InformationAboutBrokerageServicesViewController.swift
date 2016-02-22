@@ -9,6 +9,10 @@
 import UIKit
 
 class InformationAboutBrokerageServicesViewController: PDFBaseViewController {
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        self.navigationItem.title = CConstants.ActionTitleINFORMATION_ABOUT_BROKERAGE_SERVICES
+    }
     override func loadPDFView(){
         let margins = getMargins()
         let additionViews = document?.forms.createWidgetAnnotationViewsForSuperviewWithWidth(view.bounds.size.width, margin: margins.x, hMargin: margins.y) as? [PDFWidgetAnnotationView]

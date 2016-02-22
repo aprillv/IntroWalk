@@ -55,14 +55,16 @@ class PrintModelTableViewController: UIViewController, UITableViewDataSource, UI
     var printList: [String] = [
         CConstants.ActionTitleContract
         , CConstants.ActionTitleThirdPartyFinancingAddendum
+        , CConstants.ActionTitleINFORMATION_ABOUT_BROKERAGE_SERVICES
         , CConstants.ActionTitleAddendumA
         , CConstants.ActionTitleAddendumC
-        , CConstants.ActionTitleClosingMemo
-        , CConstants.ActionTitleDesignCenter
         , CConstants.ActionTitleEXHIBIT_A
         , CConstants.ActionTitleEXHIBIT_B
         , CConstants.ActionTitleEXHIBIT_C
-        , CConstants.ActionTitleINFORMATION_ABOUT_BROKERAGE_SERVICES]
+        , CConstants.ActionTitleClosingMemo
+        , CConstants.ActionTitleDesignCenter
+        , CConstants.ActionTitleGo
+        ]
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -97,15 +99,15 @@ class PrintModelTableViewController: UIViewController, UITableViewDataSource, UI
         return cell
     }
     
-     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-        
-        self.dismissViewControllerAnimated(true){
-            if let delegate1 = self.delegate {
-                delegate1.GoToPrint(self.printList[indexPath.row])
-            }
-        }
-        
-    }
+//     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+//        
+//        self.dismissViewControllerAnimated(true){
+//            if let delegate1 = self.delegate {
+//                delegate1.GoToPrint(self.printList[indexPath.row])
+//            }
+//        }
+//        
+//    }
     
     override var preferredContentSize: CGSize {
         

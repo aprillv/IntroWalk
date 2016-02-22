@@ -9,6 +9,10 @@
 import UIKit
 
 class ExhibitAViewController: PDFBaseViewController {
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        self.navigationItem.title = CConstants.ActionTitleEXHIBIT_A
+    }
     private struct PDFFields{
         static let To = "1"
 //        static let From = "CompanyName"

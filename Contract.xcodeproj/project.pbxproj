@@ -53,7 +53,7 @@
 		110CE6A61C03F3370096E630 /* ContractSignatureError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 110CE6A51C03F3370096E630 /* ContractSignatureError.swift */; };
 		1113F91A1C3A3660000FA22A /* DesignCenter.pdf in Resources */ = {isa = PBXBuildFile; fileRef = 1113F9191C3A3660000FA22A /* DesignCenter.pdf */; };
 		111B69511C191E9200970927 /* AddendumCViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 111B69501C191E9200970927 /* AddendumCViewController.swift */; };
-		111ED0451C77EC1200E2CD4C /* EXHIBIT_B.pdf in Resources */ = {isa = PBXBuildFile; fileRef = 111ED0431C77EC1200E2CD4C /* EXHIBIT_B.pdf */; };
+		111D2C0D1C7A975500C936C6 /* Third_Party_Financing_Addendum_TREC.pdf in Resources */ = {isa = PBXBuildFile; fileRef = 111D2C0C1C7A975500C936C6 /* Third_Party_Financing_Addendum_TREC.pdf */; };
 		111ED0481C77ED5F00E2CD4C /* ExhibitAViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 111ED0471C77ED5F00E2CD4C /* ExhibitAViewController.swift */; };
 		111ED04A1C77ED8600E2CD4C /* ExhibitBViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 111ED0491C77ED8600E2CD4C /* ExhibitBViewController.swift */; };
 		111ED04C1C77EDA000E2CD4C /* ExhibitCGeneralViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 111ED04B1C77EDA000E2CD4C /* ExhibitCGeneralViewController.swift */; };
@@ -87,10 +87,10 @@
 		11633BA01C27DA0000C11A20 /* ContractClosingMemoItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11633B9F1C27DA0000C11A20 /* ContractClosingMemoItem.swift */; };
 		11633BA21C27DA8E00C11A20 /* ContractClosingMemo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11633BA11C27DA8E00C11A20 /* ContractClosingMemo.swift */; };
 		11643C161C030B8E000E2C0A /* CConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11643C151C030B8E000E2C0A /* CConstants.swift */; };
+		117454AC1C7AAC8E0060312B /* EXHIBIT_B.pdf in Resources */ = {isa = PBXBuildFile; fileRef = 117454AB1C7AAC8E0060312B /* EXHIBIT_B.pdf */; };
 		1176D20F1BFDC67C001C1C3E /* AddressListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1176D20E1BFDC67C001C1C3E /* AddressListViewController.swift */; };
 		117F9B6B1C756706008B26D5 /* PrintModelTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 117F9B6A1C756706008B26D5 /* PrintModelTableViewController.swift */; };
 		117F9B741C75B8D3008B26D5 /* extensionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 117F9B731C75B8D3008B26D5 /* extensionViewController.swift */; };
-		119533651C7417A2007AA5CD /* Third_Party_Financing_Addendum_TREC.pdf in Resources */ = {isa = PBXBuildFile; fileRef = 119533641C7417A2007AA5CD /* Third_Party_Financing_Addendum_TREC.pdf */; };
 		1195336D1C744CDE007AA5CD /* ThirdPartyFinacingAddendumViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1195336C1C744CDE007AA5CD /* ThirdPartyFinacingAddendumViewController.swift */; };
 		11A50B3E1C78047A0017AA53 /* BaseContract.pdf in Resources */ = {isa = PBXBuildFile; fileRef = 11A50B3D1C78047A0017AA53 /* BaseContract.pdf */; };
 		11A50B401C7838200017AA53 /* EXHIBIT_C_General.pdf in Resources */ = {isa = PBXBuildFile; fileRef = 11A50B3F1C7838200017AA53 /* EXHIBIT_C_General.pdf */; };
@@ -255,7 +255,7 @@
 		110CE6A51C03F3370096E630 /* ContractSignatureError.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContractSignatureError.swift; sourceTree = "<group>"; };
 		1113F9191C3A3660000FA22A /* DesignCenter.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; path = DesignCenter.pdf; sourceTree = "<group>"; };
 		111B69501C191E9200970927 /* AddendumCViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddendumCViewController.swift; sourceTree = "<group>"; };
-		111ED0431C77EC1200E2CD4C /* EXHIBIT_B.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; path = EXHIBIT_B.pdf; sourceTree = "<group>"; };
+		111D2C0C1C7A975500C936C6 /* Third_Party_Financing_Addendum_TREC.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; path = Third_Party_Financing_Addendum_TREC.pdf; sourceTree = "<group>"; };
 		111ED0471C77ED5F00E2CD4C /* ExhibitAViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ExhibitAViewController.swift; sourceTree = "<group>"; };
 		111ED0491C77ED8600E2CD4C /* ExhibitBViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ExhibitBViewController.swift; sourceTree = "<group>"; };
 		111ED04B1C77EDA000E2CD4C /* ExhibitCGeneralViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ExhibitCGeneralViewController.swift; sourceTree = "<group>"; };
@@ -289,10 +289,10 @@
 		11633B9F1C27DA0000C11A20 /* ContractClosingMemoItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContractClosingMemoItem.swift; sourceTree = "<group>"; };
 		11633BA11C27DA8E00C11A20 /* ContractClosingMemo.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContractClosingMemo.swift; sourceTree = "<group>"; };
 		11643C151C030B8E000E2C0A /* CConstants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CConstants.swift; sourceTree = "<group>"; };
+		117454AB1C7AAC8E0060312B /* EXHIBIT_B.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; path = EXHIBIT_B.pdf; sourceTree = "<group>"; };
 		1176D20E1BFDC67C001C1C3E /* AddressListViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddressListViewController.swift; sourceTree = "<group>"; };
 		117F9B6A1C756706008B26D5 /* PrintModelTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PrintModelTableViewController.swift; sourceTree = "<group>"; };
 		117F9B731C75B8D3008B26D5 /* extensionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = extensionViewController.swift; sourceTree = "<group>"; };
-		119533641C7417A2007AA5CD /* Third_Party_Financing_Addendum_TREC.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; path = Third_Party_Financing_Addendum_TREC.pdf; sourceTree = "<group>"; };
 		1195336C1C744CDE007AA5CD /* ThirdPartyFinacingAddendumViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ThirdPartyFinacingAddendumViewController.swift; sourceTree = "<group>"; };
 		11A50B3D1C78047A0017AA53 /* BaseContract.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; path = BaseContract.pdf; sourceTree = "<group>"; };
 		11A50B3F1C7838200017AA53 /* EXHIBIT_C_General.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; path = EXHIBIT_C_General.pdf; sourceTree = "<group>"; };
@@ -532,13 +532,13 @@
 		110CE6AD1C0439A70096E630 /* pdf */ = {
 			isa = PBXGroup;
 			children = (
+				117454AB1C7AAC8E0060312B /* EXHIBIT_B.pdf */,
+				111D2C0C1C7A975500C936C6 /* Third_Party_Financing_Addendum_TREC.pdf */,
 				11A50B3F1C7838200017AA53 /* EXHIBIT_C_General.pdf */,
 				11A50B3D1C78047A0017AA53 /* BaseContract.pdf */,
-				111ED0431C77EC1200E2CD4C /* EXHIBIT_B.pdf */,
 				11F085E31C7715090056AE62 /* EXHIBIT_A.pdf */,
 				11F085E41C7715090056AE62 /* INFORMATION_ABOUT_BROKERAGE_SERVICES.pdf */,
 				11F085E51C7715090056AE62 /* AddendumA.pdf */,
-				119533641C7417A2007AA5CD /* Third_Party_Financing_Addendum_TREC.pdf */,
 				1113F9191C3A3660000FA22A /* DesignCenter.pdf */,
 				110750781C28E91600B68141 /* ClosingMemo.pdf */,
 				11475E6A1C23F8250034A801 /* AddendumC2.pdf */,
@@ -699,9 +699,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				11A50B401C7838200017AA53 /* EXHIBIT_C_General.pdf in Resources */,
-				119533651C7417A2007AA5CD /* Third_Party_Financing_Addendum_TREC.pdf in Resources */,
 				1113F91A1C3A3660000FA22A /* DesignCenter.pdf in Resources */,
 				114733F21C103053000FC8D6 /* contract1pdf_3_265.txt in Resources */,
+				117454AC1C7AAC8E0060312B /* EXHIBIT_B.pdf in Resources */,
 				11F085E81C7715090056AE62 /* EXHIBIT_A.pdf in Resources */,
 				1108B1BF1BFC2691004B5D48 /* LaunchScreen.storyboard in Resources */,
 				114733F41C103053000FC8D6 /* contract1pdf_1_100.txt in Resources */,
@@ -711,7 +711,6 @@
 				114733F61C103053000FC8D6 /* contract1pdf_2_265.txt in Resources */,
 				11475E691C23F1270034A801 /* AddendumC.pdf in Resources */,
 				114733F71C103053000FC8D6 /* contract1pdf_2_100.txt in Resources */,
-				111ED0451C77EC1200E2CD4C /* EXHIBIT_B.pdf in Resources */,
 				1108B1BC1BFC2691004B5D48 /* Assets.xcassets in Resources */,
 				110750791C28E91600B68141 /* ClosingMemo.pdf in Resources */,
 				114733F51C103053000FC8D6 /* contract1pdf_2_306.txt in Resources */,
@@ -719,6 +718,7 @@
 				1108B1B71BFC2691004B5D48 /* Main.storyboard in Resources */,
 				114733F81C103053000FC8D6 /* contract1pdf_1_9999.txt in Resources */,
 				114733FA1C103053000FC8D6 /* contract1pdf_1_265.txt in Resources */,
+				111D2C0D1C7A975500C936C6 /* Third_Party_Financing_Addendum_TREC.pdf in Resources */,
 				114733FB1C103053000FC8D6 /* contract1pdf_1_101.txt in Resources */,
 				11F085EA1C7715090056AE62 /* AddendumA.pdf in Resources */,
 				11F085E91C7715090056AE62 /* INFORMATION_ABOUT_BROKERAGE_SERVICES.pdf in Resources */,
@@ -917,7 +917,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
-				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "iPhone Distribution: EloveIT, Ltd.";
 				DEFINES_MODULE = YES;
 				EMBEDDED_CONTENT_CONTAINS_SWIFT = YES;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
@@ -938,7 +938,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
-				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "iPhone Distribution: EloveIT, Ltd.";
 				DEFINES_MODULE = YES;
 				EMBEDDED_CONTENT_CONTAINS_SWIFT = YES;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
