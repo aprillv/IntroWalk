@@ -83,6 +83,7 @@
 //            [_pdfView loadData:data MIMEType:@"application/pdf" textEncodingName:@"NSASCIIStringEncoding" baseURL:nil];
 //            NSLog(@"%@", dataOrPath);
             [_pdfView loadRequest:[NSURLRequest requestWithURL:[NSURL fileURLWithPath:dataOrPath]]];
+    
         } else if([dataOrPath isKindOfClass:[NSData class]]) {
             [spinner startAnimating];
             [_pdfView loadData:dataOrPath MIMEType:@"application/pdf" textEncodingName:@"NSASCIIStringEncoding" baseURL:[NSURL URLWithString:@"https://www.buildersaccess.com"]];

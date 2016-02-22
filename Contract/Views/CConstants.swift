@@ -111,7 +111,7 @@ struct CConstants{
     static let ActionTitleEXHIBIT_C : String = "Exhibit C General"
 //    static let ActionTitleINFORMATION_ABOUT_BROKERAGE_SERVICES = "Information about brokerage services"
     static let ActionTitleINFORMATION_ABOUT_BROKERAGE_SERVICES = "Information about Brokerage Services"
-    static let ActionTitleGo : String = "Go"
+    static let ActionTitleGo : String = "Print PDF"
 }
 
 

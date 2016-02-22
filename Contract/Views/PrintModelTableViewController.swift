@@ -46,7 +46,7 @@ class PrintModelTableViewController: UIViewController, UITableViewDataSource, UI
     }
     
     private struct constants{
-        static let Title : String = "Address List"
+        static let Title : String = "Select"
         static let CellIdentifier : String = "Address Cell Identifier"
         
         static let cellReuseIdentifier = "cellIdentifier"
@@ -81,6 +81,9 @@ class PrintModelTableViewController: UIViewController, UITableViewDataSource, UI
         return printList.count
     }
     
+//    func tableView(tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+//        return constants.Title
+//    }
 //     func tableView(tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
 //        return 44
 //    }
@@ -90,24 +93,50 @@ class PrintModelTableViewController: UIViewController, UITableViewDataSource, UI
         cell.layoutMargins = UIEdgeInsetsZero
         cell.preservesSuperviewLayoutMargins = false
         cell.textLabel?.text = printList[indexPath.row]
-        cell.textLabel?.textAlignment = .Left
-        if self.modalPresentationStyle != .Popover {
-            cell.accessoryType = UITableViewCellAccessoryType.DisclosureIndicator
+        if indexPath.row == (printList.count - 1) {
+            cell.textLabel?.textAlignment = .Center
+        }else{
+            cell.textLabel?.textAlignment = .Left
         }
+        
+//        if self.modalPresentationStyle != .Popover {
+//            cell.accessoryType = UITableViewCellAccessoryType.DisclosureIndicator
+//        }
         
         
         return cell
     }
     
-//     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-//        
-//        self.dismissViewControllerAnimated(true){
-//            if let delegate1 = self.delegate {
-//                delegate1.GoToPrint(self.printList[indexPath.row])
-//            }
-//        }
-//        
-//    }
+     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+        
+        if indexPath.row < (printList.count - 1) {
+            let cell = tableView.cellForRowAtIndexPath(indexPath)
+            cell?.accessoryType = cell?.accessoryType == UITableViewCellAccessoryType.None ? UITableViewCellAccessoryType.Checkmark : UITableViewCellAccessoryType.None
+            
+        }else{
+            var selectedCellArray = [NSIndexPath]()
+            
+            for i in 0...printList.count-1 {
+                let index = NSIndexPath(forRow: i, inSection: 0)
+                if let cell = tableView.cellForRowAtIndexPath(index) {
+                    if cell.accessoryType == UITableViewCellAccessoryType.Checkmark {
+                        selectedCellArray.append(index)
+                    }
+                }
+            }
+            if selectedCellArray.count == 0 {
+                return
+            }else{
+                self.dismissViewControllerAnimated(true){
+                    if let delegate1 = self.delegate {
+                        delegate1.GoToPrint(self.printList[0])
+                    }
+                }
+            }
+            
+
+        }
+    }
     
     override var preferredContentSize: CGSize {
         
