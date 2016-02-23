@@ -74,17 +74,30 @@ struct CConstants{
     static let ContractUploadPdfURL = "bacontract_upload.json"
    
     
-    static let PdfFileNameContract = "BaseContract.pdf"
-    static let PdfFileNameThirdPartyFinancingAddendum = "Third_Party_Financing_Addendum_TREC.pdf"
-    static let PdfFileNameClosingMemo = "ClosingMemo.pdf"
-    static let PdfFileNameDesignCenter = "DesignCenter.pdf"
-    static let PdfFileNameEXHIBIT_A = "EXHIBIT_A.pdf"
-    static let PdfFileNameEXHIBIT_B = "EXHIBIT_B.pdf"
-    static let PdfFileNameEXHIBIT_C = "EXHIBIT_C_General.pdf"
-    static let PdfFileNameINFORMATION_ABOUT_BROKERAGE_SERVICES = "INFORMATION_ABOUT_BROKERAGE_SERVICES.pdf"
-    static let PdfFileNameAddendumA = "AddendumA.pdf"
-    static let PdfFileNameAddendumC = "AddendumC.pdf"
-    static let PdfFileNameAddendumC2 = "AddendumC2.pdf"
+    static let PdfFileNameContract = "BaseContract"
+    static let PdfFileNameThirdPartyFinancingAddendum = "Third_Party_Financing_Addendum_TREC"
+    static let PdfFileNameClosingMemo = "ClosingMemo"
+    static let PdfFileNameDesignCenter = "DesignCenter"
+    static let PdfFileNameEXHIBIT_A = "EXHIBIT_A"
+    static let PdfFileNameEXHIBIT_B = "EXHIBIT_B"
+    static let PdfFileNameEXHIBIT_C = "EXHIBIT_C_General"
+    static let PdfFileNameINFORMATION_ABOUT_BROKERAGE_SERVICES = "INFORMATION_ABOUT_BROKERAGE_SERVICES"
+    static let PdfFileNameAddendumA = "AddendumA"
+    static let PdfFileNameAddendumC = "AddendumC"
+    static let PdfFileNameAddendumC2 = "AddendumC2"
+    
+    static let PdfFileNameContractPageCount = 9
+    static let PdfFileNameThirdPartyFinancingAddendumPageCount = 2
+    static let PdfFileNameClosingMemoPageCount = 1
+    static let PdfFileNameDesignCenterPageCount = 1
+    static let PdfFileNameEXHIBIT_APageCount = 1
+    static let PdfFileNameEXHIBIT_BPageCount = 1
+    static let PdfFileNameEXHIBIT_CPageCount = 3
+    static let PdfFileNameINFORMATION_ABOUT_BROKERAGE_SERVICESPageCount = 2
+    static let PdfFileNameAddendumAPageCount = 6
+    static let PdfFileNameAddendumCPageCount = 1
+    static let PdfFileNameAddendumC2PageCount = 2
+    
     
     static let ControllerNameContract = "SignContractViewController"
     static let ControllerNameExhibitA = "ExhibitAViewController"

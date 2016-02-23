@@ -12,6 +12,7 @@ import MessageUI
 class PDFBaseViewController: BaseViewController, DoOperationDelegate, UIPopoverPresentationControllerDelegate, MFMailComposeViewControllerDelegate, UIPrintInteractionControllerDelegate, ToDoPrintDelegate, ToSwitchAddressDelegate {
     
     var document : PDFDocument?
+    var documents : [PDFDocument]?
     var pdfView  : PDFView?
     var AddressList : [ContractsItem]? 
 //    var spinner : UIActivityIndicatorView?
@@ -285,7 +286,8 @@ class PDFBaseViewController: BaseViewController, DoOperationDelegate, UIPopoverP
         
     }
     
-    func GoToPrint(modelNm: String) {
+    func GoToPrint(modelNmA: [String]) {
+        let modelNm = modelNmA[0]
         if modelNm == CConstants.ActionTitleINFORMATION_ABOUT_BROKERAGE_SERVICES {
            if let vc = UIStoryboard(name: CConstants.StoryboardName, bundle: nil).instantiateViewControllerWithIdentifier(CConstants.ControllerNameINFORMATION_ABOUT_BROKERAGE_SERVICES) as? PDFBaseViewController{
             

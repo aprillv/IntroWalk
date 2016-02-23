@@ -27,7 +27,7 @@
 /** The PDFView class allows for viewing a PDF file. The controller PDFViewController uses PDFView as its view and PDFDocument as its model.
  PDFView is typically not directly instantiated, but instead is used as the instance that comes with PDFViewController.
  */
-@interface PDFView : UIView 
+@interface PDFViewNew : UIWebView
 
 /** The array contains the PDFWidgetAnnotationView instances that are subviews of the pdfView's scrollView.
  */
@@ -42,9 +42,9 @@
 
 /** The webview used to render the PDF.
  */
-@property (nonatomic, readonly) UIWebView *pdfView;
+//@property (nonatomic, readonly) UIWebView *pdfView;
 
-@property (nonatomic, readonly) NSString *pdfoutPath;
+
 /**---------------------------------------------------------------------------------------
  * @name Creating a PDFView
  *  ---------------------------------------------------------------------------------------
@@ -78,7 +78,5 @@
  @param additionViews The views to add.
  */
 - (void)setWidgetAnnotationViews:(NSArray *)additionViews;
-
-- (instancetype)initWithFrame:(CGRect)frame dataOrPathArray:(NSArray*)dataOrPath additionViews:(NSArray*)widgetAnnotationViews;
 
 @end

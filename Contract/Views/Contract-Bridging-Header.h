@@ -6,6 +6,7 @@
 #import "cl_pdf.h"
 #import "PDFDocument.h"
 #import "PDFView.h"
+#import "PDFViewNew.h"
 #import "PDFFormContainer.h"
 #import "PDFWidgetAnnotationView.h"
 #import "SignatureView.h"

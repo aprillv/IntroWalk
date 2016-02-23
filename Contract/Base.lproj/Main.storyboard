@@ -34,7 +34,7 @@
                                     </segue>
                                 </connections>
                             </barButtonItem>
-                            <barButtonItem image="Slice 1" id="dSj-7e-whx">
+                            <barButtonItem image="fileswitch" id="dSj-7e-whx">
                                 <connections>
                                     <segue destination="6dt-qR-fh6" kind="popoverPresentation" identifier="Print switch" popoverAnchorBarButtonItem="dSj-7e-whx" id="Spi-Qn-eAn">
                                         <popoverArrowDirection key="popoverArrowDirection" up="YES" down="YES" left="YES" right="YES"/>
@@ -308,11 +308,42 @@
                         <segue destination="wlX-Pz-6n7" kind="show" identifier="exhibita" id="R9n-IB-Dbo"/>
                         <segue destination="wel-HV-ddY" kind="show" identifier="exhibitc" id="kxI-qw-A1a"/>
                         <segue destination="wHy-HG-yPh" kind="show" identifier="exhibitb" id="azo-qE-eGU"/>
+                        <segue destination="LV9-aA-wQE" kind="show" identifier="tofile" id="H6H-vv-SnI"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="akO-Zu-3HL" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="2875" y="-1129"/>
+        </scene>
+        <!--Files-->
+        <scene sceneID="22G-ff-vdT">
+            <objects>
+                <viewController id="LV9-aA-wQE" customClass="PDFPrintViewController" customModule="Contract" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="XmY-G3-DmH"/>
+                        <viewControllerLayoutGuide type="bottom" id="Bv5-Oq-Ur7"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="tzw-Xv-NGV">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                    <navigationItem key="navigationItem" title="Files" id="2JW-Am-K0b">
+                        <barButtonItem key="leftBarButtonItem" image="back" id="bw7-Ks-uq5">
+                            <connections>
+                                <action selector="goBack:" destination="LV9-aA-wQE" id="22T-mM-SPE"/>
+                            </connections>
+                        </barButtonItem>
+                        <rightBarButtonItems>
+                            <barButtonItem image="send" id="80F-GD-5rT"/>
+                            <barButtonItem image="fileswitch" id="Hdi-gQ-8fq"/>
+                            <barButtonItem image="houseswitch" id="0jZ-4J-V9l"/>
+                        </rightBarButtonItems>
+                    </navigationItem>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="cql-0G-MsS" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="5206" y="-1331"/>
         </scene>
         <!--Addendum A-->
         <scene sceneID="9ao-L2-mb9">
@@ -342,7 +373,7 @@
                                     </segue>
                                 </connections>
                             </barButtonItem>
-                            <barButtonItem image="Slice 1" id="1II-ek-Mle">
+                            <barButtonItem image="fileswitch" id="1II-ek-Mle">
                                 <connections>
                                     <segue destination="6dt-qR-fh6" kind="popoverPresentation" identifier="Print switch" popoverAnchorBarButtonItem="1II-ek-Mle" id="YwH-fs-Sun">
                                         <popoverArrowDirection key="popoverArrowDirection" up="YES" down="YES" left="YES" right="YES"/>
@@ -402,7 +433,7 @@
                                     </segue>
                                 </connections>
                             </barButtonItem>
-                            <barButtonItem image="Slice 1" id="Ax8-GB-db8">
+                            <barButtonItem image="fileswitch" id="Ax8-GB-db8">
                                 <connections>
                                     <segue destination="6dt-qR-fh6" kind="popoverPresentation" identifier="Print switch" popoverAnchorBarButtonItem="Ax8-GB-db8" id="SiH-6M-mgE">
                                         <popoverArrowDirection key="popoverArrowDirection" up="YES" down="YES" left="YES" right="YES"/>
@@ -468,7 +499,7 @@
                                     </segue>
                                 </connections>
                             </barButtonItem>
-                            <barButtonItem image="Slice 1" id="cGL-P6-DdU">
+                            <barButtonItem image="fileswitch" id="cGL-P6-DdU">
                                 <connections>
                                     <segue destination="6dt-qR-fh6" kind="popoverPresentation" identifier="Print switch" popoverAnchorBarButtonItem="cGL-P6-DdU" id="fhl-Xg-CKW">
                                         <popoverArrowDirection key="popoverArrowDirection" up="YES" down="YES" left="YES" right="YES"/>
@@ -536,7 +567,7 @@
                                     </segue>
                                 </connections>
                             </barButtonItem>
-                            <barButtonItem image="Slice 1" id="Dlh-vq-6eg">
+                            <barButtonItem image="fileswitch" id="Dlh-vq-6eg">
                                 <connections>
                                     <segue destination="6dt-qR-fh6" kind="popoverPresentation" identifier="Print switch" popoverAnchorBarButtonItem="Dlh-vq-6eg" id="t90-2c-XzM">
                                         <popoverArrowDirection key="popoverArrowDirection" up="YES" down="YES" left="YES" right="YES"/>
@@ -637,7 +668,7 @@
                                     </segue>
                                 </connections>
                             </barButtonItem>
-                            <barButtonItem image="Slice 1" id="6dS-hy-OZA">
+                            <barButtonItem image="fileswitch" id="6dS-hy-OZA">
                                 <connections>
                                     <segue destination="6dt-qR-fh6" kind="popoverPresentation" identifier="Print switch" popoverAnchorBarButtonItem="6dS-hy-OZA" id="JIi-GP-7wH">
                                         <popoverArrowDirection key="popoverArrowDirection" up="YES" down="YES" left="YES" right="YES"/>
@@ -698,7 +729,7 @@
                                     </segue>
                                 </connections>
                             </barButtonItem>
-                            <barButtonItem image="Slice 1" id="z4D-2O-cMf">
+                            <barButtonItem image="fileswitch" id="z4D-2O-cMf">
                                 <connections>
                                     <segue destination="6dt-qR-fh6" kind="popoverPresentation" identifier="Print switch" popoverAnchorBarButtonItem="z4D-2O-cMf" id="9H6-xq-lkW">
                                         <popoverArrowDirection key="popoverArrowDirection" up="YES" down="YES" left="YES" right="YES"/>
@@ -879,7 +910,7 @@
                                     </segue>
                                 </connections>
                             </barButtonItem>
-                            <barButtonItem image="Slice 1" id="Dmy-3C-X8Q">
+                            <barButtonItem image="fileswitch" id="Dmy-3C-X8Q">
                                 <connections>
                                     <segue destination="6dt-qR-fh6" kind="popoverPresentation" identifier="Print switch" popoverAnchorBarButtonItem="Dmy-3C-X8Q" id="Nhe-Mn-Exe">
                                         <popoverArrowDirection key="popoverArrowDirection" up="YES" down="YES" left="YES" right="YES"/>
@@ -927,7 +958,7 @@
                                     </segue>
                                 </connections>
                             </barButtonItem>
-                            <barButtonItem image="Slice 1" id="xxQ-dM-V83">
+                            <barButtonItem image="fileswitch" id="xxQ-dM-V83">
                                 <connections>
                                     <segue destination="6dt-qR-fh6" kind="popoverPresentation" identifier="Print switch" popoverAnchorBarButtonItem="xxQ-dM-V83" id="eo8-Nf-dMs">
                                         <popoverArrowDirection key="popoverArrowDirection" up="YES" down="YES" left="YES" right="YES"/>
@@ -975,7 +1006,7 @@
                                     </segue>
                                 </connections>
                             </barButtonItem>
-                            <barButtonItem image="Slice 1" id="Fw1-S7-S0p">
+                            <barButtonItem image="fileswitch" id="Fw1-S7-S0p">
                                 <connections>
                                     <segue destination="6dt-qR-fh6" kind="popoverPresentation" identifier="Print switch" popoverAnchorBarButtonItem="Fw1-S7-S0p" id="H3L-aO-zPl">
                                         <popoverArrowDirection key="popoverArrowDirection" up="YES" down="YES" left="YES" right="YES"/>
@@ -998,15 +1029,15 @@
         </scene>
     </scenes>
     <resources>
-        <image name="Slice 1" width="28" height="31"/>
         <image name="back" width="30" height="30"/>
+        <image name="fileswitch" width="28" height="31"/>
         <image name="houseswitch" width="31" height="32"/>
         <image name="logo" width="60" height="60"/>
         <image name="send" width="30" height="30"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="IP1-hA-Uaj"/>
-        <segue reference="Spi-Qn-eAn"/>
-        <segue reference="gii-ra-4oZ"/>
+        <segue reference="pFv-ON-cOj"/>
+        <segue reference="TgG-gv-jfr"/>
+        <segue reference="YwH-fs-Sun"/>
     </inferredMetricsTieBreakers>
 </document>

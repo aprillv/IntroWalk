@@ -37,6 +37,8 @@
     BOOL _canvasLoaded;
     UIActivityIndicatorView *spinner;
     NSArray *nwidgetAnnotationViews;
+    
+    NSString *outpatha;
 }
 
 #pragma mark - PDFView
@@ -76,13 +78,13 @@
         
         if ([dataOrPath isKindOfClass:[NSString class]]) {
             [spinner startAnimating];
-//            NSData *data = [[NSData alloc]initWithContentsOfFile:dataOrPath];
-//            NSMutableData *data2 = [data mutableCopy];
-//            [data2 appendData:data];
-//            [_pdfView loadData:data MIMEType:@"application/pdf" textEncodingName:@"NSASCIIStringEncoding" baseURL:nil];
-//            [_pdfView loadData:data MIMEType:@"application/pdf" textEncodingName:@"NSASCIIStringEncoding" baseURL:nil];
-//            NSLog(@"%@", dataOrPath);
-            [_pdfView loadRequest:[NSURLRequest requestWithURL:[NSURL fileURLWithPath:dataOrPath]]];
+//            [_pdfView loadRequest:[NSURLRequest requestWithURL:[NSURL fileURLWithPath:dataOrPath]]];
+            
+            
+//            NSString *str = [dataOrPath stringByReplacingOccurrencesOfString:@"BaseContract" withString:@"EXHIBIT_B"];
+//            NSString *t = [PDFView joinPDF:@[dataOrPath, str]];
+//            NSLog(@"sfasdf   %@", t);
+                        [_pdfView loadRequest:[NSURLRequest requestWithURL:[NSURL fileURLWithPath:dataOrPath]]];
     
         } else if([dataOrPath isKindOfClass:[NSData class]]) {
             [spinner startAnimating];
@@ -95,6 +97,50 @@
         tapGestureRecognizer.delegate = self;
     }
     return self;
+}
+
+- (instancetype)initWithFrame:(CGRect)frame dataOrPathArray:(NSArray *)filesArray additionViews:(NSArray*)widgetAnnotationViews {
+    self = [self initWithFrame:frame];
+    if (self) {
+        CGRect contentFrame = CGRectMake(0, 0, frame.size.width, frame.size.height);
+        _pdfView = [[UIWebView alloc] initWithFrame:contentFrame];
+        //        _pdfView.backgroundColor = [UIColor whiteColor];
+        [self addSubview: _pdfView];
+        
+        _pdfView.scalesPageToFit = YES;
+        _pdfView.scrollView.delegate = self;
+        _pdfView.scrollView.bouncesZoom = NO;
+        _pdfView.delegate = self;
+        _pdfView.autoresizingMask =  UIViewAutoresizingFlexibleHeight|UIViewAutoresizingFlexibleWidth|UIViewAutoresizingFlexibleTopMargin|UIViewAutoresizingFlexibleLeftMargin;
+        self.autoresizingMask =  UIViewAutoresizingFlexibleHeight|UIViewAutoresizingFlexibleWidth|UIViewAutoresizingFlexibleTopMargin|UIViewAutoresizingFlexibleLeftMargin;
+        //        self.backgroundColor = [UIColor greenColor];
+        //        [self addSubview: _pdfView];
+        //        _pdfView.backgroundColor = [UIColor redColor];
+        [_pdfView.scrollView setZoomScale:1];
+        [_pdfView.scrollView setContentOffset:CGPointZero];
+        //This allows us to prevent the keyboard from obscuring text fields near the botton of the document.
+        [_pdfView.scrollView setContentInset: UIEdgeInsetsMake(0, 0, 0, 0)];
+        nwidgetAnnotationViews = widgetAnnotationViews;
+        
+        spinner = [[UIActivityIndicatorView alloc]initWithFrame:CGRectMake(0, 0, 50, 50)];
+        spinner.hidesWhenStopped = YES;
+        spinner.center = _pdfView.center;
+        [_pdfView addSubview:spinner];
+        
+        outpatha = [PDFView joinPDF:filesArray];
+//        NSLog(@"sfasdf   %@", t);
+        [_pdfView loadRequest:[NSURLRequest requestWithURL:[NSURL fileURLWithPath:outpatha]]];
+        
+        
+        UITapGestureRecognizer *tapGestureRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:nil action:NULL];
+        [self addGestureRecognizer:tapGestureRecognizer];
+        tapGestureRecognizer.delegate = self;
+    }
+    return self;
+}
+
+-(NSString *)pdfoutPath{
+    return outpatha;
 }
 
 - (void)addPDFWidgetAnnotationView:(PDFWidgetAnnotationView *)viewToAdd {
@@ -192,6 +238,54 @@
         for (UIView *v in _pdfWidgetAnnotationViews) v.alpha = 1;
     } completion:^(BOOL finished) {}];
 }
+
+
++ (NSString *)joinPDF:(NSArray *)listOfPaths {
+    // File paths
+    NSString *fileName = @"ALL.pdf";
+    NSString *pdfPathOutput = [[NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) objectAtIndex:0] stringByAppendingPathComponent:fileName];
+    
+    CFURLRef pdfURLOutput = (  CFURLRef)CFBridgingRetain([NSURL fileURLWithPath:pdfPathOutput]);
+    
+    NSInteger numberOfPages = 0;
+    // Create the output context
+    CGContextRef writeContext = CGPDFContextCreateWithURL(pdfURLOutput, NULL, NULL);
+    
+    for (NSString *source1 in listOfPaths) {
+        NSString *source = [[NSBundle mainBundle] pathForResource:source1 ofType:@"pdf"];
+        
+        CFURLRef pdfURL = (  CFURLRef)CFBridgingRetain([[NSURL alloc] initFileURLWithPath:source]);
+        
+        //file ref
+        CGPDFDocumentRef pdfRef = CGPDFDocumentCreateWithURL((CFURLRef) pdfURL);
+        numberOfPages = CGPDFDocumentGetNumberOfPages(pdfRef);
+        
+        // Loop variables
+        CGPDFPageRef page;
+        CGRect mediaBox;
+        
+        // Read the first PDF and generate the output pages
+        //        DLog(@"GENERATING PAGES FROM PDF 1 (%@)...", source);
+        for (int i=1; i<=numberOfPages; i++) {
+            page = CGPDFDocumentGetPage(pdfRef, i);
+            mediaBox = CGPDFPageGetBoxRect(page, kCGPDFMediaBox);
+            CGContextBeginPage(writeContext, &mediaBox);
+            CGContextDrawPDFPage(writeContext, page);
+            CGContextEndPage(writeContext);
+        }
+        
+        CGPDFDocumentRelease(pdfRef);
+        CFRelease(pdfURL);
+    }
+    CFRelease(pdfURLOutput);
+    
+    // Finalize the output file
+    CGPDFContextClose(writeContext);
+    CGContextRelease(writeContext);
+    
+    return pdfPathOutput;
+}
+
 
 
 @end

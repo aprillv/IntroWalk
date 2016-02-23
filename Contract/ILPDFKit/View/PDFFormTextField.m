@@ -212,6 +212,7 @@
         return;
     }
     [self.delegate widgetAnnotationValueChanged:self];
+    if ([_textFieldOrTextView isKindOfClass:[UITextField class]] || [_textFieldOrTextView isKindOfClass:[UITextView class]])
     [_textFieldOrTextView performSelector:@selector(setText:) withObject:value];
     
     

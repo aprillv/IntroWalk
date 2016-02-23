@@ -21,6 +21,8 @@ class AddressListViewController: UITableViewController, UISearchBarDelegate, ToD
             AddressList = AddressListOrigin
         }
     }
+    
+    private var filesNms : [String]?
     private var AddressList : [ContractsItem]? {
         didSet{
             AddressList?.sortInPlace(){$0.idcia < $1.idcia}
@@ -150,8 +152,17 @@ class AddressListViewController: UITableViewController, UISearchBarDelegate, ToD
         }
     }
     
-    func GoToPrint(modelNm: String) {
-        callService(modelNm)
+    func GoToPrint(modelNm: [String]) {
+        self.filesNms = modelNm
+        if modelNm.contains(CConstants.ActionTitleAddendumC){
+            callService(CConstants.ActionTitleAddendumC)
+        }else{
+            self.performSegueWithIdentifier("tofile", sender: modelNm)
+        }
+       
+//
+        return
+//        callService(modelNm)
         
         
 
@@ -221,7 +232,8 @@ class AddressListViewController: UITableViewController, UISearchBarDelegate, ToD
                                         switch printModelNm {
                                         case CConstants.ActionTitleAddendumC:
                                             let rtn = ContractAddendumC(dicInfo: rtnValue)
-                                            self.performSegueWithIdentifier(CConstants.SegueToAddendumC, sender: rtn)
+//                                            self.performSegueWithIdentifier(CConstants.SegueToAddendumC, sender: rtn)
+                                            self.performSegueWithIdentifier("tofile", sender: rtn)
                                         case CConstants.ActionTitleAddendumA:
                                             let rtn = AddendumA(dicInfo: rtnValue)
                                             self.performSegueWithIdentifier(CConstants.SegueToAddendumA, sender: rtn)
@@ -233,7 +245,8 @@ class AddressListViewController: UITableViewController, UISearchBarDelegate, ToD
                                             self.performSegueWithIdentifier(CConstants.SegueToDesignCenter, sender: rtn)
                                         case CConstants.ActionTitleContract:
                                             let rtn = ContractSignature(dicInfo: rtnValue)
-                                            self.performSegueWithIdentifier(CConstants.SegueToSignaturePdf, sender: rtn)
+//                                            self.performSegueWithIdentifier(CConstants.SegueToSignaturePdf, sender: rtn)
+                                             self.performSegueWithIdentifier("tofile", sender: rtn)
                                         case CConstants.ActionTitleThirdPartyFinancingAddendum:
                                             let rtn = AddendumA(dicInfo: rtnValue)
                                             self.performSegueWithIdentifier(CConstants.SegueToThridPartyFinacingAddendumPdf, sender: rtn)
@@ -319,6 +332,61 @@ class AddressListViewController: UITableViewController, UISearchBarDelegate, ToD
                         controller.AddressList = self.AddressListOrigin
                         controller.initWithResource(CConstants.PdfFileNameContract)
                     }
+            case "tofile":
+                if let controller = segue.destinationViewController as? PDFPrintViewController {
+                    if let indexPath = tableView.indexPathForSelectedRow {
+                        let ddd = self.CiaNmArray?[self.CiaNm?[indexPath.section] ?? ""]
+                        let item: ContractsItem = ddd![indexPath.row]
+                        let info = ContractPDFBaseModel(dicInfo: nil)
+                        info.code = item.code
+                        info.idcia = item.idcia
+                        info.idproject = item.idproject
+                        info.idnumber = item.idnumber
+                        info.idcity = item.idcity
+                        info.nproject = item.nproject
+                        controller.pdfInfo0 = info
+                        controller.AddressList = self.AddressListOrigin
+                        controller.filesArray = self.filesNms
+                        controller.page2 = false
+                        controller.initWithResource(CConstants.PdfFileNameContract)
+                        return
+                    }
+                    if let info = sender as? ContractAddendumC {
+                        controller.pdfInfo0 = info
+                        controller.addendumCpdfInfo = info
+                        var itemList = [[String]]()
+                        var i = 0
+                        if let list = controller.addendumCpdfInfo?.itemlist {
+                            for items in list {
+                                
+                                var itemList1 = [String]()
+                                let textView = UITextView(frame: CGRect(x: 0, y: 0, width: 657.941, height: 13.2353))
+                                textView.scrollEnabled = false
+                                textView.font = UIFont(name: "Verdana", size: 11.0)
+                                textView.text = items.xdescription!
+                                textView.sizeToFit()
+                                textView.layoutManager.enumerateLineFragmentsForGlyphRange(NSMakeRange(0, items.xdescription!.characters.count), usingBlock: { (rect, usedRect, textContainer, glyphRange, _) -> Void in
+                                    if  let a : NSString = items.xdescription! as NSString {
+                                        
+                                        i++
+                                        itemList1.append(a.substringWithRange(glyphRange))
+                                    }
+                                })
+                                //                            itemList1.append("april test")
+                                itemList.append(itemList1)
+                            }
+                        }
+                        controller.addendumCpdfInfo!.itemlistStr = itemList
+                        controller.AddressList = self.AddressListOrigin
+                        controller.filesArray = self.filesNms
+                        let pass = i > 19 ? CConstants.PdfFileNameAddendumC2 : CConstants.PdfFileNameAddendumC
+                        
+                        controller.page2 = i > 19
+                        controller.initWithResource(pass)
+                        
+                    }
+                    
+                }
             case CConstants.SegueToClosingMemo:
                 if let controller = segue.destinationViewController as? ClosingMemoViewController {
                     controller.AddressList = self.AddressListOrigin

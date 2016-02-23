@@ -350,6 +350,7 @@
 //        CGFloat irealWidth = vwidth-2*ihmargin;
 //        CGFloat ifactor = irealWidth/iwidth;
         pageOffset+= iheight*factor2+ymargin;
+        [[NSUserDefaults standardUserDefaults] setObject:[NSString stringWithFormat:@"%f", iheight*factor2+ymargin] forKey: @"pageHMargin"];
     }
 //    _pageFrame =  CGRectIntegral(CGRectMake(correctedFrame.origin.x*factor+hmargin, correctedFrame.origin.y*factor+ymargin, correctedFrame.size.width*factor, correctedFrame.size.height*factor));
  _pageFrame =  CGRectMake(correctedFrame.origin.x*factor + hmargin, correctedFrame.origin.y*factor2+ymargin, correctedFrame.size.width*factor, correctedFrame.size.height*factor2);

@@ -65,6 +65,7 @@
 #pragma mark - Getting Forms
 
 - (NSArray *)formsWithName:(NSString *)name {
+//    NSLog(@"%@", name);
     id current = _nameTree;
     NSArray *comps = [name componentsSeparatedByString:@"."];
     for (NSString *comp in comps) {

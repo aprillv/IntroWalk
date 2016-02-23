@@ -9,7 +9,7 @@
 import UIKit
 protocol ToDoPrintDelegate
 {
-    func GoToPrint(modelNm: String)
+    func GoToPrint(modelNm: [String])
 }
 class PrintModelTableViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, UIGestureRecognizerDelegate{
     // MARK: - Constanse
@@ -129,7 +129,16 @@ class PrintModelTableViewController: UIViewController, UITableViewDataSource, UI
             }else{
                 self.dismissViewControllerAnimated(true){
                     if let delegate1 = self.delegate {
-                        delegate1.GoToPrint(self.printList[0])
+                        var filesNames = [String]()
+                        for indexPath0 in selectedCellArray {
+                            let title = self.printList[indexPath0.row]
+                            filesNames.append(title)
+                            
+                            
+//
+                        }
+                        
+                        delegate1.GoToPrint(filesNames)
                     }
                 }
             }
