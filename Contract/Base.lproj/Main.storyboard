@@ -91,6 +91,7 @@
                                         <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                         <textInputTraits key="textInputTraits" keyboardType="emailAddress" returnKeyType="next"/>
                                         <connections>
+                                            <action selector="textChanaged" destination="BYZ-38-t0r" eventType="valueChanged" id="0Jf-gU-H4n"/>
                                             <outlet property="delegate" destination="BYZ-38-t0r" id="Yyg-uu-93a"/>
                                         </connections>
                                     </textField>
@@ -99,6 +100,7 @@
                                         <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                         <textInputTraits key="textInputTraits" returnKeyType="go" secureTextEntry="YES"/>
                                         <connections>
+                                            <action selector="textChanaged" destination="BYZ-38-t0r" eventType="valueChanged" id="tiA-rC-2N3"/>
                                             <outlet property="delegate" destination="BYZ-38-t0r" id="1Ax-T2-E9T"/>
                                         </connections>
                                     </textField>
@@ -335,15 +337,33 @@
                             </connections>
                         </barButtonItem>
                         <rightBarButtonItems>
-                            <barButtonItem image="send" id="80F-GD-5rT"/>
-                            <barButtonItem image="fileswitch" id="Hdi-gQ-8fq"/>
-                            <barButtonItem image="houseswitch" id="0jZ-4J-V9l"/>
+                            <barButtonItem image="send" id="80F-GD-5rT">
+                                <connections>
+                                    <segue destination="Rzu-Cw-vxk" kind="popoverPresentation" identifier="Show Operations" popoverAnchorBarButtonItem="80F-GD-5rT" id="TGh-ew-og1">
+                                        <popoverArrowDirection key="popoverArrowDirection" up="YES" down="YES" left="YES" right="YES"/>
+                                    </segue>
+                                </connections>
+                            </barButtonItem>
+                            <barButtonItem image="fileswitch" id="Hdi-gQ-8fq">
+                                <connections>
+                                    <segue destination="6dt-qR-fh6" kind="popoverPresentation" identifier="Print switch" popoverAnchorBarButtonItem="Hdi-gQ-8fq" id="kTa-tP-qQP">
+                                        <popoverArrowDirection key="popoverArrowDirection" up="YES" down="YES" left="YES" right="YES"/>
+                                    </segue>
+                                </connections>
+                            </barButtonItem>
+                            <barButtonItem image="houseswitch" id="0jZ-4J-V9l">
+                                <connections>
+                                    <segue destination="0JX-MQ-a4E" kind="popoverPresentation" identifier="Address switch" popoverAnchorBarButtonItem="0jZ-4J-V9l" id="Dv1-Rt-7ji">
+                                        <popoverArrowDirection key="popoverArrowDirection" up="YES" down="YES" left="YES" right="YES"/>
+                                    </segue>
+                                </connections>
+                            </barButtonItem>
                         </rightBarButtonItems>
                     </navigationItem>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="cql-0G-MsS" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="5206" y="-1331"/>
+            <point key="canvasLocation" x="4413" y="-1088"/>
         </scene>
         <!--Addendum A-->
         <scene sceneID="9ao-L2-mb9">
@@ -586,7 +606,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="1Tn-rf-83b" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3304" y="-1080"/>
+            <point key="canvasLocation" x="5684" y="-932"/>
         </scene>
         <!--Send Operation View Controller-->
         <scene sceneID="LCD-XA-1Pt">
@@ -1036,8 +1056,8 @@
         <image name="send" width="30" height="30"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="pFv-ON-cOj"/>
-        <segue reference="TgG-gv-jfr"/>
-        <segue reference="YwH-fs-Sun"/>
+        <segue reference="Dv1-Rt-7ji"/>
+        <segue reference="kTa-tP-qQP"/>
+        <segue reference="TGh-ew-og1"/>
     </inferredMetricsTieBreakers>
 </document>

@@ -296,7 +296,7 @@
     }
 }
 
-- (PDFWidgetAnnotationView *)createWidgetAnnotationViewForSuperviewWithWidth:(CGFloat)vwidth xMargin:(CGFloat)xmargin yMargin:(CGFloat)ymargin {
+- (PDFWidgetAnnotationView *)createWidgetAnnotationViewForSuperviewWithWidth:(CGFloat)vwidth xMargin:(CGFloat)xmargin yMargin:(CGFloat)ymargin pageMargin:(CGFloat)pageMargin {
     if ((_annotFlags & PDFAnnotationFlagHidden) > 0) return nil;
     if ((_annotFlags & PDFAnnotationFlagInvisible) > 0) return nil;
     if ((_annotFlags & PDFAnnotationFlagNoView) > 0) return nil;
@@ -341,7 +341,15 @@
         factor2 = factor;
     }
     
-    CGFloat pageOffset = 0;
+    
+      PDFPage *pg = self.parent.document.pages[0];
+    CGFloat ch = [pg cropBox].size.height*factor2+ymargin;
+
+    
+    CGFloat pageOffset = ch * pageMargin;
+    
+//    NSLog(@"$$$$$$$$$$ %f", [pg cropBox].size.height);
+//    NSLog(@"%f", pageMargin);
     for (NSUInteger c = 0; c < self.page-1; c++) {
         PDFPage *pg = self.parent.document.pages[c];
 //        CGFloat iwidth = [pg cropBox].size.width;
@@ -350,7 +358,8 @@
 //        CGFloat irealWidth = vwidth-2*ihmargin;
 //        CGFloat ifactor = irealWidth/iwidth;
         pageOffset+= iheight*factor2+ymargin;
-        [[NSUserDefaults standardUserDefaults] setObject:[NSString stringWithFormat:@"%f", iheight*factor2+ymargin] forKey: @"pageHMargin"];
+
+        
     }
 //    _pageFrame =  CGRectIntegral(CGRectMake(correctedFrame.origin.x*factor+hmargin, correctedFrame.origin.y*factor+ymargin, correctedFrame.size.width*factor, correctedFrame.size.height*factor));
  _pageFrame =  CGRectMake(correctedFrame.origin.x*factor + hmargin, correctedFrame.origin.y*factor2+ymargin, correctedFrame.size.width*factor, correctedFrame.size.height*factor2);

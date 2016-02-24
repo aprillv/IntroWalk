@@ -86,6 +86,8 @@ struct CConstants{
     static let PdfFileNameAddendumC = "AddendumC"
     static let PdfFileNameAddendumC2 = "AddendumC2"
     
+    static let PdfPageHeight : CGFloat = 976.688235
+//    static let PdfPageMarginUserDefault = "pageHMargin"
     static let PdfFileNameContractPageCount = 9
     static let PdfFileNameThirdPartyFinancingAddendumPageCount = 2
     static let PdfFileNameClosingMemoPageCount = 1

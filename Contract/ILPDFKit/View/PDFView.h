@@ -78,7 +78,7 @@
  @param additionViews The views to add.
  */
 - (void)setWidgetAnnotationViews:(NSArray *)additionViews;
-
+-(void)addMoreDots: (NSArray *)na;
 - (instancetype)initWithFrame:(CGRect)frame dataOrPathArray:(NSArray*)dataOrPath additionViews:(NSArray*)widgetAnnotationViews;
 
 @end

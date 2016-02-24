@@ -10,6 +10,7 @@ import Foundation
 
 class ContractRequestItem: NSObject {
     var cInfo : ContractsItem?
+    var isContract : String?
     
     required init(contractInfo : ContractsItem?){
         super.init()
@@ -24,6 +25,7 @@ class ContractRequestItem: NSObject {
             , "idcity" : cInfo?.idcity ?? ""
             , "idcia": cInfo?.idcia ?? ""
             , "code": cInfo?.code ?? ""
+            , "isContract" : isContract ?? "1"
             , "ispdf": "0"]
 //        print(a)
         return a
@@ -34,6 +36,7 @@ class ContractRequestItem: NSObject {
             , "idcity" : model.idcity!
             , "idcia": model.idcia!
             , "code": model.code!
+            , "isContract" : isContract ?? "1"
             , "ispdf": "0"]
         //        print(a)
         return a

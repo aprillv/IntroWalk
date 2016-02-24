@@ -83,7 +83,7 @@ class AddendumCViewController: PDFBaseViewController {
             }
         }
         let margins = getMargins()
-        var additionViews = document?.forms.createWidgetAnnotationViewsForSuperviewWithWidth(view.bounds.size.width, margin: margins.x, hMargin: margins.y) as? [PDFWidgetAnnotationView]
+        var additionViews = document?.forms.createWidgetAnnotationViewsForSuperviewWithWidth(view.bounds.size.width, margin: margins.x, hMargin: margins.y, pageMargin:0.0) as? [PDFWidgetAnnotationView]
         var aPrice : PDFFormTextField?
         var aPrice2 : PDFFormTextField?
         var aPrice3 : PDFFormTextField?

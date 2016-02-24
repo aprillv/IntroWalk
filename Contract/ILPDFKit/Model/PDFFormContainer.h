@@ -98,9 +98,9 @@
  @param hmargin The top margin of the superview with respect to the PDF canvas portion of the UIWebView.
  @return An NSArray containing the resulting views. You are responsible for releasing the array.
  */
-- (NSArray *)createWidgetAnnotationViewsForSuperviewWithWidth:(CGFloat)width margin:(CGFloat)margin hMargin:(CGFloat)hmargin;
+//- (NSArray *)createWidgetAnnotationViewsForSuperviewWithWidth:(CGFloat)width margin:(CGFloat)margin hMargin:(CGFloat)hmargin;
 
-
+- (NSArray *)createWidgetAnnotationViewsForSuperviewWithWidth:(CGFloat)width margin:(CGFloat)margin hMargin:(CGFloat)hmargin  pageMargin:(CGFloat)pageMargin ;
 /**---------------------------------------------------------------------------------------
  * @name Setting Values
  *  ---------------------------------------------------------------------------------------

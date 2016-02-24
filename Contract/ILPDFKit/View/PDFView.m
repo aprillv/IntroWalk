@@ -177,7 +177,6 @@
         element.alpha = 0;
         element.parentView = self;
         [_pdfView.scrollView addSubview: element];
-//        NSLog(@"%@", element);
         if ([element isKindOfClass:[PDFFormButtonField class]]) {
             [(PDFFormButtonField*)element setButtonSuperview];
         }
@@ -185,14 +184,33 @@
             [(PDFFormTextField*)element setValue:element.value];
         }
     }
-    
     _canvasLoaded = YES;
     if (_pdfWidgetAnnotationViews) {
         [self fadeInWidgetAnnotations];
     }
-    
-//    NSLog(@"%f == %f == %f", webView.scrollView.contentSize.width, webView.scrollView.contentSize.height, (webView.scrollView.contentSize.height - 25)/9/792);
-    
+}
+
+-(void)addMoreDots: (NSArray *)na{
+//    NSLog(@"==%@", na);
+    for (PDFWidgetAnnotationView *element in na) {
+//        element.alpha = 0;
+        element.parentView = self;
+        [_pdfView.scrollView addSubview: element];
+        if ([element isKindOfClass:[PDFFormButtonField class]]) {
+            [(PDFFormButtonField*)element setButtonSuperview];
+        }
+        if ([element isKindOfClass:[PDFFormTextField class]]) {
+            [(PDFFormTextField*)element setValue:element.value];
+//            NSLog(@"%@", element.value);
+        }
+        
+        [_pdfWidgetAnnotationViews addObject:element];
+    }
+    _canvasLoaded = YES;
+    if (_pdfWidgetAnnotationViews) {
+        [self fadeInWidgetAnnotations];
+    }
+
 }
 
 //- (BOOL)webView:(UIWebView *)webView shouldStartLoadWithRequest:(NSURLRequest *)request navigationType:(UIWebViewNavigationType)navigationType;
@@ -236,7 +254,9 @@
 - (void)fadeInWidgetAnnotations {
     [UIView animateWithDuration:0.5 delay:0.2 options:0 animations:^{
         for (UIView *v in _pdfWidgetAnnotationViews) v.alpha = 1;
-    } completion:^(BOOL finished) {}];
+    } completion:^(BOOL finished) {
+        for (UIView *v in _pdfWidgetAnnotationViews) v.alpha = 1;
+    }];
 }
 
 

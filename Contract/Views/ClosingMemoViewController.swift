@@ -71,7 +71,7 @@ class ClosingMemoViewController: PDFBaseViewController {
         
         let pass = document?.documentPath ?? document?.documentData
         let margins = getMargins()
-        if var additionViews = document?.forms.createWidgetAnnotationViewsForSuperviewWithWidth(view.bounds.size.width, margin: margins.x, hMargin: margins.y) as? [PDFWidgetAnnotationView] {
+        if var additionViews = document?.forms.createWidgetAnnotationViewsForSuperviewWithWidth(view.bounds.size.width, margin: margins.x, hMargin: margins.y, pageMargin:0.0) as? [PDFWidgetAnnotationView] {
             
             var bankField : PDFFormTextField?
             var checkField : PDFFormTextField?

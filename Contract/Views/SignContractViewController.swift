@@ -150,7 +150,7 @@ class SignContractViewController: PDFBaseViewController {
     override func loadPDFView(){
         let pass = document?.documentPath ?? document?.documentData
         let margins = getMargins()
-        let additionViews = document?.forms.createWidgetAnnotationViewsForSuperviewWithWidth(view.bounds.size.width, margin: margins.x, hMargin: margins.y) as? [PDFWidgetAnnotationView]
+        let additionViews = document?.forms.createWidgetAnnotationViewsForSuperviewWithWidth(view.bounds.size.width, margin: margins.x, hMargin: margins.y, pageMargin:0.0) as? [PDFWidgetAnnotationView]
         
         if let filedsFromTxt = readContractFieldsFromTxt(getFileName()) {
             

@@ -62,7 +62,7 @@ class DesignCenterViewController: PDFBaseViewController {
     override func loadPDFView(){
         let pass = document?.documentPath ?? document?.documentData
         let margins = getMargins()
-        if let additionViews = document?.forms.createWidgetAnnotationViewsForSuperviewWithWidth(view.bounds.size.width, margin: margins.x, hMargin: margins.y) as? [PDFWidgetAnnotationView] {
+        if let additionViews = document?.forms.createWidgetAnnotationViewsForSuperviewWithWidth(view.bounds.size.width, margin: margins.x, hMargin: margins.y, pageMargin:0.0) as? [PDFWidgetAnnotationView] {
             
             var itemList1 = [String]()
             let textView = UITextView(frame: CGRect(x: 0, y: 0, width: 657.941, height: 13.2353))

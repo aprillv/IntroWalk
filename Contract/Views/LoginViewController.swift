@@ -45,6 +45,15 @@ class LoginViewController: BaseViewController, UITextFieldDelegate {
         }
     }
     
+    func textFieldDidBeginEditing(textField: UITextField) {
+         setSignInBtn()
+//        1298.943376
+    }
+//    func textFieldDidEndEditing(textField: UITextField) {
+//        setSignInBtn()
+//    }
+    
+    
     @IBOutlet weak var rememberMeSwitch: UISwitch!{
         didSet {
             rememberMeSwitch.transform = CGAffineTransformMakeScale(0.9, 0.9)
@@ -93,6 +102,10 @@ class LoginViewController: BaseViewController, UITextFieldDelegate {
     
     @IBAction func textChanaged() {
         setSignInBtn()
+    }
+    func textField(textField: UITextField, shouldChangeCharactersInRange range: NSRange, replacementString string: String) -> Bool {
+        setSignInBtn()
+        return true
     }
     
     private func setSignInBtn(){
@@ -278,13 +291,12 @@ class LoginViewController: BaseViewController, UITextFieldDelegate {
         
     }
     
-    // MARK: Life cycle
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 //        print(view.frame.size)
         setSignInBtn()
     }
-    
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
 //        self.navigationController?.navigationBarHidden = true

@@ -214,18 +214,17 @@
     return [[self allForms] countByEnumeratingWithState:state objects:buffer count:len];
 }
 
-
-- (NSArray *)createWidgetAnnotationViewsForSuperviewWithWidth:(CGFloat)width margin:(CGFloat)margin hMargin:(CGFloat)hmargin {
+- (NSArray *)createWidgetAnnotationViewsForSuperviewWithWidth:(CGFloat)width margin:(CGFloat)margin hMargin:(CGFloat)hmargin  pageMargin:(CGFloat)pageMargin{
     NSMutableArray *ret = [[NSMutableArray alloc] init];
     for (PDFForm *form in self) {
         if (form.formType == PDFFormTypeChoice) continue;
-        id add = [form createWidgetAnnotationViewForSuperviewWithWidth:width xMargin:margin yMargin:hmargin];
+        id add = [form createWidgetAnnotationViewForSuperviewWithWidth:width xMargin:margin yMargin:hmargin pageMargin:pageMargin];
         if (add) [ret addObject:add];
     }
     NSMutableArray *temp = [[NSMutableArray alloc] init];
     //We keep choice fileds on top.
     for (PDFForm *form in [self formsWithType:PDFFormTypeChoice]) {
-        id add = [form createWidgetAnnotationViewForSuperviewWithWidth:width xMargin:margin yMargin:hmargin];
+        id add = [form createWidgetAnnotationViewForSuperviewWithWidth:width xMargin:margin yMargin:hmargin pageMargin:pageMargin];
         if(add) [temp addObject:add];
     }
     [temp sortUsingComparator:^NSComparisonResult(PDFWidgetAnnotationView *obj1, PDFWidgetAnnotationView *obj2) {

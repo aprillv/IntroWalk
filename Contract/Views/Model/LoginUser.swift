@@ -11,6 +11,7 @@ import Foundation
 class LoginUser: NSObject {
     var email: String?
     var password: String?
+    var isContract : String?
     
     required init(email: String, password: String){
         super.init()
@@ -19,6 +20,6 @@ class LoginUser: NSObject {
     }
     
     func DictionaryFromObject() -> [String: String]{
-        return ["email" : email ?? "", "password" : password ?? ""]
+        return ["email" : email ?? "", "password" : password ?? "", "isContract" : isContract ?? "1"]
     }
 }

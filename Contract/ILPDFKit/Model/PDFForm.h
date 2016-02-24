@@ -236,7 +236,7 @@ typedef NS_ENUM(NSUInteger, PDFFormType) {
  @return A new view representing the form. The caller is responsible for releasing the new form view.
  @discussion The superview must be a UIScrollView or a subclass of UIScrollView.
  */
-- (PDFWidgetAnnotationView *)createWidgetAnnotationViewForSuperviewWithWidth:(CGFloat)vwidth xMargin:(CGFloat)xmargin yMargin:(CGFloat)ymargin;
+- (PDFWidgetAnnotationView *)createWidgetAnnotationViewForSuperviewWithWidth:(CGFloat)vwidth xMargin:(CGFloat)xmargin yMargin:(CGFloat)ymargin pageMargin:(CGFloat)pmargin ;
 
 /**---------------------------------------------------------------------------------------
  * @name KVO
