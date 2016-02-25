@@ -17,6 +17,7 @@ class PrintModelTableViewController: UIViewController, UITableViewDataSource, UI
     var delegate : ToDoPrintDelegate?
     
     
+    
     @IBAction func dismissSelf(sender: UITapGestureRecognizer) {
 //        print(sender)
 //        let point = sender.locationInView(view)
@@ -57,17 +58,23 @@ class PrintModelTableViewController: UIViewController, UITableViewDataSource, UI
         , CConstants.ActionTitleThirdPartyFinancingAddendum
         , CConstants.ActionTitleINFORMATION_ABOUT_BROKERAGE_SERVICES
         , CConstants.ActionTitleAddendumA
-        , CConstants.ActionTitleAddendumC
         , CConstants.ActionTitleEXHIBIT_A
         , CConstants.ActionTitleEXHIBIT_B
         , CConstants.ActionTitleEXHIBIT_C
-        , CConstants.ActionTitleClosingMemo
-        , CConstants.ActionTitleDesignCenter
-        , CConstants.ActionTitleGo
         ]
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        let userInfo = NSUserDefaults.standardUserDefaults()
+        if userInfo.boolForKey(CConstants.UserInfoIsContract) {
+            printList.append(CConstants.ActionTitleAddendumC)
+            printList.append(CConstants.ActionTitleClosingMemo)
+            printList.append(CConstants.ActionTitleDesignCenter)
+            printList.append(CConstants.ActionTitleGoContract)
+        }else{
+        printList.append(CConstants.ActionTitleGoDraft)
+        }
+        
         tableHeight.constant = CGFloat(Double(printList.count) * constants.cellHeight)
         tableview.updateConstraintsIfNeeded()
         
@@ -98,6 +105,14 @@ class PrintModelTableViewController: UIViewController, UITableViewDataSource, UI
         }else{
             cell.textLabel?.textAlignment = .Left
         }
+        
+        let userinfo = NSUserDefaults.standardUserDefaults()
+        if let filesNames = userinfo.valueForKey(CConstants.UserInfoPrintModel) as? [String] {
+            if filesNames.contains(printList[indexPath.row]) {
+                cell.accessoryType = UITableViewCellAccessoryType.Checkmark
+            }
+        }
+        
         
 //        if self.modalPresentationStyle != .Popover {
 //            cell.accessoryType = UITableViewCellAccessoryType.DisclosureIndicator
@@ -137,7 +152,8 @@ class PrintModelTableViewController: UIViewController, UITableViewDataSource, UI
                             
 //
                         }
-                        
+                        let userinfo = NSUserDefaults.standardUserDefaults()
+                        userinfo.setValue(filesNames, forKey: CConstants.UserInfoPrintModel)
                         delegate1.GoToPrint(filesNames)
                     }
                 }

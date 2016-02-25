@@ -13,13 +13,15 @@ class LoginUser: NSObject {
     var password: String?
     var isContract : String?
     
-    required init(email: String, password: String){
+    required init(email: String, password: String, iscontract: String){
         super.init()
         self.email = email
         self.password = password
+        self.isContract = iscontract
     }
     
     func DictionaryFromObject() -> [String: String]{
         return ["email" : email ?? "", "password" : password ?? "", "isContract" : isContract ?? "1"]
     }
+    
 }

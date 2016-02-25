@@ -132,10 +132,12 @@ class AddressListModelViewController: UIViewController, UISearchBarDelegate, UIT
                 AddressList = AddressListOrigin
             }else{
                 AddressList = AddressListOrigin?.filter(){
+//                    return $0.cianame!.lowercaseString.containsString(txt)
+//                        || $0.assignsales1name!.lowercaseString.containsString(txt)
+//                        || $0.nproject!.lowercaseString.containsString(txt)
+//                        || $0.client!.lowercaseString.containsString(txt)
                     return $0.cianame!.lowercaseString.containsString(txt)
-                        || $0.assignsales1name!.lowercaseString.containsString(txt)
                         || $0.nproject!.lowercaseString.containsString(txt)
-                        || $0.client!.lowercaseString.containsString(txt)
                 }
             }
         }else{

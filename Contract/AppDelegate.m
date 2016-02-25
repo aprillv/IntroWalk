@@ -19,6 +19,7 @@
 //    [[UITableViewCell appearance] setSeparatorInset: UIEdgeInsetsZero];
 //    [[UITableViewCell appearance] setLayoutMargins:UIEdgeInsetsZero];
 //    [[UITableViewCell appearance] setPreservesSuperviewLayoutMargins: NO];
+    self.window.backgroundColor = [UIColor whiteColor];
     return YES;
 }
 

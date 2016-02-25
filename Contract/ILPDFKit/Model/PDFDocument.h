@@ -138,4 +138,6 @@
  */
 - (NSString *)formXML;
 
++ (NSData *)mergedDataWithDocument:(NSArray *)docs withDots: (NSArray *)addedviewss;
+
 @end

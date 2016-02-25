@@ -288,6 +288,32 @@ static void renderPage1(NSUInteger page, CGContextRef ctx, CGPDFDocumentRef doc,
     
 }
 
++ (NSData *)mergedDataWithDocument:(NSArray *)docs withDots: (NSArray *)addedviewss {
+    NSMutableData *pageData = [NSMutableData data];
+    UIGraphicsBeginPDFContextToData(pageData, CGRectZero , nil);
+    CGContextRef ctx = UIGraphicsGetCurrentContext();
+    for (NSUInteger dcnt = 0; dcnt < docs.count; dcnt++ ) {
+        PDFDocument *doc = docs[dcnt];
+        NSArray *addedviews = addedviewss[dcnt];
+        
+        for (NSUInteger page = 1; page <= [doc numberOfPages]; page++) {
+            if (addedviews.count == 0){
+                renderPage(page, ctx, doc.document, doc.forms);
+            }else{
+//                NSLog(@"%@", addedviews);
+                renderPage1(page, ctx, doc.document, doc.forms, addedviews);
+            }
+            
+        }
+    }
+    UIGraphicsEndPDFContext();
+    return pageData;
+    
+}
+
+
+
+
 - (UIImage *)imageFromPage:(NSUInteger)page width:(NSUInteger)width {
     CGPDFDocumentRef doc = [PDFUtility createPDFDocumentRefFromData:[self savedStaticPDFData]];
     CGPDFPageRef pageref = CGPDFDocumentGetPage(doc, page);

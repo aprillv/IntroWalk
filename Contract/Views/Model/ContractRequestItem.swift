@@ -10,7 +10,6 @@ import Foundation
 
 class ContractRequestItem: NSObject {
     var cInfo : ContractsItem?
-    var isContract : String?
     
     required init(contractInfo : ContractsItem?){
         super.init()
@@ -21,24 +20,48 @@ class ContractRequestItem: NSObject {
     }
     
     func DictionaryFromObject() -> [String: String]{
-        let a = ["idnumber" : cInfo?.idnumber ?? ""
-            , "idcity" : cInfo?.idcity ?? ""
-            , "idcia": cInfo?.idcia ?? ""
-            , "code": cInfo?.code ?? ""
-            , "isContract" : isContract ?? "1"
-            , "ispdf": "0"]
-//        print(a)
-        return a
+        let userinfo = NSUserDefaults.standardUserDefaults()
+        
+        if userinfo.boolForKey(CConstants.UserInfoIsContract){
+            let a = ["idnumber" : cInfo?.idnumber ?? ""
+                , "idcity" : cInfo?.idcity ?? ""
+                , "idcia": cInfo?.idcia ?? ""
+                , "code": cInfo?.code ?? ""
+                , "isContract" : "1"
+                , "ispdf": "0"]
+            return a
+        }else{
+            let a = ["idnumber" : cInfo?.idproject ?? ""
+                , "idcity" : cInfo?.idcity ?? ""
+                , "idcia": cInfo?.idcia ?? ""
+                , "code": cInfo?.code ?? ""
+                , "isContract" : "0"
+                , "ispdf": "0"]
+            return a
+        }
     }
     
     func DictionaryFromBasePdf(model :ContractPDFBaseModel) -> [String: String]{
-        let a = ["idnumber" : model.idnumber!
-            , "idcity" : model.idcity!
-            , "idcia": model.idcia!
-            , "code": model.code!
-            , "isContract" : isContract ?? "1"
-            , "ispdf": "0"]
-        //        print(a)
-        return a
+        let userinfo = NSUserDefaults.standardUserDefaults()
+        if userinfo.boolForKey(CConstants.UserInfoIsContract){
+            let a = ["idnumber" : model.idnumber!
+                , "idcity" : model.idcity!
+                , "idcia": model.idcia!
+                , "code": model.code!
+                , "isContract" : "1"
+                , "ispdf": "0"]
+            //        print(a)
+            return a
+        }else{
+            let a = ["idnumber" : model.idproject!
+                , "idcity" : model.idcity!
+                , "idcia": model.idcia!
+                , "code": model.code!
+                , "isContract" : "0"
+                , "ispdf": "0"]
+            //        print(a)
+            return a
+        }
+        
     }
 }

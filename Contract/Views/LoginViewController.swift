@@ -206,7 +206,7 @@ class LoginViewController: BaseViewController, UITextFieldDelegate {
                 //                self.view.userInteractionEnabled = false
                 
                 
-                let loginUserInfo = LoginUser(email: email!, password: password!)
+                let loginUserInfo = LoginUser(email: email!, password: password!, iscontract:  "1")
                 
                 let a = loginUserInfo.DictionaryFromObject()
                 Alamofire.request(.POST, CConstants.ServerURL + CConstants.LoginServiceURL, parameters: a).responseJSON{ (response) -> Void in
@@ -220,6 +220,8 @@ class LoginViewController: BaseViewController, UITextFieldDelegate {
                                 self.toEablePageControl()
                                 
                                 if rtn.activeyn == 1{
+                                    let userinfo = NSUserDefaults.standardUserDefaults()
+                                    userinfo.setBool(true, forKey: CConstants.UserInfoIsContract)
                                     self.saveEmailAndPwdToDisk(email: email!, password: password!)
                                     self.loginResult = rtn
                                     self.performSegueWithIdentifier(CConstants.SegueToAddressList, sender: self)
@@ -299,11 +301,11 @@ class LoginViewController: BaseViewController, UITextFieldDelegate {
     }
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
-//        self.navigationController?.navigationBarHidden = true
+        self.navigationController?.navigationBarHidden = true
     }
     
     override func viewWillDisappear(animated: Bool) {
         super.viewWillDisappear(animated)
-//        self.navigationController?.navigationBarHidden = false
+        self.navigationController?.navigationBarHidden = false
     }
 }

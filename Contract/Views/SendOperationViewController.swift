@@ -40,7 +40,13 @@ class SendOperationViewController: UIViewController, UITableViewDelegate, UITabl
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        let userinfo = NSUserDefaults.standardUserDefaults()
+        if userinfo.boolForKey(CConstants.UserInfoIsContract) {
         itemList = [constants.operationSavetoServer, constants.operationPrint, constants.operationEmail]
+        }else{
+        itemList = [constants.operationPrint, constants.operationEmail]
+        }
+        
         
     }
     

@@ -349,7 +349,7 @@
     CGFloat pageOffset = ch * pageMargin;
     
 //    NSLog(@"$$$$$$$$$$ %f", [pg cropBox].size.height);
-//    NSLog(@"%f", pageMargin);
+    NSLog(@"$$$$$$$$$$ %f", ch);
     for (NSUInteger c = 0; c < self.page-1; c++) {
         PDFPage *pg = self.parent.document.pages[c];
 //        CGFloat iwidth = [pg cropBox].size.width;
@@ -366,6 +366,9 @@
     if (_formUIElement) {
         _formUIElement = nil;
     }
+    
+    BOOL bl = [[[NSUserDefaults standardUserDefaults] valueForKey:@"is contract"] boolValue];
+    
 //    _uiBaseFrame = CGRectIntegral(CGRectMake(_pageFrame.origin.x, _pageFrame.origin.y+pageOffset, _pageFrame.size.width, _pageFrame.size.height));
     _uiBaseFrame = CGRectMake(_pageFrame.origin.x, _pageFrame.origin.y+pageOffset, _pageFrame.size.width, _pageFrame.size.height);
     switch (_formType) {
@@ -382,9 +385,14 @@
             
             break;
         case PDFFormTypeImageView:{
-            SignatureView *tmp = [[SignatureView alloc]initWithFrame:_uiBaseFrame];
-            tmp.sname = _name;
-            _formUIElement = tmp;
+            if (bl == YES) {
+                SignatureView *tmp = [[SignatureView alloc]initWithFrame:_uiBaseFrame];
+                tmp.sname = _name;
+                _formUIElement = tmp;
+            }else{
+                _formUIElement = nil;
+            }
+            
         }
             break;
         case PDFFormTypeButton: {

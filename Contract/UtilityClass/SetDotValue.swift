@@ -413,7 +413,7 @@ class SetDotValue : NSObject {
         static let Amount = "txtAmount"
     }
     
-    func setCloingMemoDots(pdfInfo: ContractClosingMemo?, additionViews: [PDFWidgetAnnotationView], pdfview: PDFView){
+    func setCloingMemoDots(pdfInfo: ContractClosingMemo?, additionViews: [PDFWidgetAnnotationView], pdfview: PDFView) ->[PDFWidgetAnnotationView]{
         var bankField : PDFFormTextField?
         var checkField : PDFFormTextField?
         var typeField : PDFFormTextField?
@@ -594,6 +594,8 @@ class SetDotValue : NSObject {
          
         }
         pdfview.addMoreDots(addedAnnotationViews)
+        
+        return addedAnnotationViews
     }
     // MARK: Addendum A
     private struct AddendumAPDFFields{
@@ -656,7 +658,7 @@ class SetDotValue : NSObject {
         
     }
     
-    func setAddendumCDots(pdfInfo: ContractAddendumC?, additionViews: [PDFWidgetAnnotationView], pdfview: PDFView, has2Pages0: Bool){
+    func setAddendumCDots(pdfInfo: ContractAddendumC?, additionViews: [PDFWidgetAnnotationView], pdfview: PDFView, has2Pages0: Bool) -> [PDFWidgetAnnotationView]{
         var aPrice : PDFFormTextField?
         var aPrice2 : PDFFormTextField?
         var aPrice3 : PDFFormTextField?
@@ -720,6 +722,9 @@ class SetDotValue : NSObject {
         }
         
         var addedAnnotationViews : [PDFWidgetAnnotationView] = [PDFWidgetAnnotationView]()
+//        var addedAnnotationViews2 : [PDFWidgetAnnotationView] = [PDFWidgetAnnotationView]()
+        var j : CGFloat = 1
+        var hss : CGFloat = 0
         if let price = aPrice {
             var pf : PDFFormTextField?
             var line : PDFWidgetAnnotationView?
@@ -728,7 +733,7 @@ class SetDotValue : NSObject {
             let w : CGFloat = (aStage!.frame.width + aStage!.frame.origin.x - aCiaName!.frame.origin.x)
             var h : CGFloat = price.frame.height
             var yo = y
-            var j : CGFloat = 1
+           
             if has2Pages0 {
                 while yo > aPrice2!.frame.origin.y - aPrice!.frame.origin.y {
                     yo -= aPrice2!.frame.origin.y - aPrice!.frame.origin.y
@@ -746,6 +751,7 @@ class SetDotValue : NSObject {
                     pf?.xname = "april"
                     pf?.value = "\(i)"
                     addedAnnotationViews.append(pf!)
+                    
                     //                    print( "number \(pf?.frame) \(y)")
                     for description in items {
                         //                        print("----" + a.substringWithRange(glyphRange))
@@ -828,6 +834,14 @@ class SetDotValue : NSObject {
             }
         }
         pdfview.addMoreDots(addedAnnotationViews)
+//        for a in addedAnnotationViews{
+//            if let b = a.copy() as? PDFWidgetAnnotationView{
+//            b.frame = CGRect(x: b.frame.origin.x, y: b.frame.origin.y - hss, width: b.frame.size.width, height: b.frame.size.height)
+//                addedAnnotationViews2.append(b)
+//            }
+//            
+//        }
+        return addedAnnotationViews
     }
     
     // MARK: DesignCenter

@@ -23,6 +23,8 @@ struct CConstants{
     static let UserInfoRememberMe :  String = "Login Remember Me"
     static let UserInfoEmail :  String = "Login Email"
     static let UserInfoPwd :  String = "Login Password"
+    static let UserInfoIsContract :  String = "is contract"
+    static let UserInfoPrintModel : String = "last print files"
     
     static let LoginingMsg = "Logining... ..."
     static let RequestMsg = "Requesting from server"
@@ -111,6 +113,7 @@ struct CConstants{
     static let ControllerNameDesignCenter = "DesignCenterViewController"
     static let ControllerNameThirdPartyFinancingAddendum = "ThirdPartyFinacingAddendumViewController"
     static let ControllerNameINFORMATION_ABOUT_BROKERAGE_SERVICES = "InformationAboutBrokerageServicesViewController"
+    static let ControllerNamePrint = "PDFPrintViewController"
     
     
     static let StoryboardName = "Main"
@@ -126,7 +129,8 @@ struct CConstants{
     static let ActionTitleEXHIBIT_C : String = "Exhibit C General"
 //    static let ActionTitleINFORMATION_ABOUT_BROKERAGE_SERVICES = "Information about brokerage services"
     static let ActionTitleINFORMATION_ABOUT_BROKERAGE_SERVICES = "Information about Brokerage Services"
-    static let ActionTitleGo : String = "Print PDF"
+    static let ActionTitleGoContract : String = "Print Contract"
+    static let ActionTitleGoDraft : String = "Print Draft"
 }
 
 

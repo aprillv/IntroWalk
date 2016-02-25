@@ -52,15 +52,16 @@ class PDFPrintViewController: PDFBaseViewController {
         if let info = addendumCpdfInfo {
             if let fDD = fileDotsDic {
                 let tool = SetDotValue()
-                
+                var i = 0
                 for (str, dots) in fDD {
                     switch str{
                     case CConstants.ActionTitleAddendumC:
-                        tool.setAddendumCDots(info, additionViews: dots, pdfview: self.pdfView!, has2Pages0: self.page2!)
+                        self.documentAddedDotArray![i] = tool.setAddendumCDots(info, additionViews: dots, pdfview: self.pdfView!, has2Pages0: self.page2!)
                         return
                     default:
-                        break
+                        i++
                     }
+                    
                 }
             }
         }
@@ -91,14 +92,14 @@ class PDFPrintViewController: PDFBaseViewController {
             if let info = closingMemoPdfInfo {
                 if let fDD = fileDotsDic {
                     let tool = SetDotValue()
-                    
+                    var i = 0
                     for (str, dots) in fDD {
                         switch str{
                         case CConstants.ActionTitleClosingMemo:
-                            tool.setCloingMemoDots(info, additionViews: dots, pdfview: self.pdfView!)
+                            self.documentAddedDotArray![i] = tool.setCloingMemoDots(info, additionViews: dots, pdfview: self.pdfView!)
                             return
                         default:
-                            break
+                            i++
                         }
                     }
                 }
@@ -161,6 +162,7 @@ class PDFPrintViewController: PDFBaseViewController {
 //        }
         
         documents = [PDFDocument]()
+        documentAddedDotArray = [[PDFWidgetAnnotationView]]()
         fileDotsDic = [String : [PDFWidgetAnnotationView]]()
         var allAdditionViews = [PDFWidgetAnnotationView]()
         
@@ -218,7 +220,7 @@ class PDFPrintViewController: PDFBaseViewController {
             
             let document = PDFDocument.init(resource: str)
             documents?.append(document)
-           
+            documentAddedDotArray?.append([PDFWidgetAnnotationView]())
             
             
             if let additionViews = document.forms.createWidgetAnnotationViewsForSuperviewWithWidth(view.bounds.size.width, margin: margins.x, hMargin: margins.y, pageMargin: CGFloat(lastheight)) as? [PDFWidgetAnnotationView]{
@@ -233,17 +235,66 @@ class PDFPrintViewController: PDFBaseViewController {
         
         
         pdfView = PDFView(frame: view.bounds, dataOrPathArray: filesNames, additionViews: allAdditionViews)
+        
+//        print(self.document?.forms)
         setAddendumC()
         view.addSubview(pdfView!)
     }
     
+    override func savePDFToServer(xname: String){
+        
+        var parame : [String : String] = ["idcia" : pdfInfo0!.idcia!
+            , "idproject" : pdfInfo0!.idproject!
+            , "code" : pdfInfo0!.code!
+            ,"filetype" : pdfInfo0?.nproject ?? "" + "_\(xname)_FromApp"]
+        
+        let savedPdfData: NSData? = PDFDocument.mergedDataWithDocument(self.documents, withDots: documentAddedDotArray)
+        
+        
+        
+        let fileBase64String = savedPdfData?.base64EncodedStringWithOptions(NSDataBase64EncodingOptions.EncodingEndLineWithLineFeed)
+        parame["file"] = fileBase64String
+        parame["username"] = NSUserDefaults.standardUserDefaults().valueForKey(CConstants.LoggedUserNameKey) as? String ?? ""
+        
+        self.noticeOnlyText(CConstants.SavedMsg)
+        
+        Alamofire.request(.POST,
+            CConstants.ServerURL + CConstants.ContractUploadPdfURL,
+            parameters: parame).responseJSON{ (response) -> Void in
+                self.clearNotice()
+                if response.result.isSuccess {
+                    if let rtnValue = response.result.value as? [String: String]{
+                        if rtnValue["status"] == "success" {
+                            self.noticeOnlyTextNoSpinner(CConstants.SavedSuccessMsg)
+                        }else{
+                            self.noticeOnlyTextNoSpinner(CConstants.SavedFailMsg)
+                        }
+                    }else{
+                        self.noticeOnlyTextNoSpinner(CConstants.MsgServerError)
+                    }
+                }else{
+                    self.noticeOnlyTextNoSpinner(CConstants.MsgNetworkError)
+                }
+                self.performSelector("dismissProgress", withObject: nil, afterDelay: 0.5)
+        }
+    }
     
     
     
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        let userinfo = NSUserDefaults.standardUserDefaults()
+        if userinfo.boolForKey(CConstants.UserInfoIsContract) {
+            self.navigationItem.title = "Contract"
+        }else{
+        self.navigationItem.title = "Draft"
+        }
+    }
     
     
     // MARK: Request Data
     private func callService(printModelNm: String, param: [String: String]){
+        print(param)
         var serviceUrl: String?
         switch printModelNm{
         case CConstants.ActionTitleDesignCenter:

@@ -387,7 +387,7 @@ class SignContractViewController: PDFBaseViewController {
             }
         }
         
-        
+//        print(self.document?.forms)
         view.addSubview(pdfView!)
         
     }
