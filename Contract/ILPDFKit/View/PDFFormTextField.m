@@ -33,6 +33,7 @@
     UIView *_textFieldOrTextView;
     CGFloat _baseFontSize;
     CGFloat _currentFontSize;
+    NSString *_values;
 }
 
 #pragma mark - NSObject
@@ -116,6 +117,7 @@
         [_textFieldOrTextView performSelector:@selector(setFont:) withObject:font];
         [self addSubview:_textFieldOrTextView];
     }
+    _values = @"";
     return self;
 }
 
@@ -184,7 +186,7 @@
 #pragma mark - PDFWidgetAnnotationView
 
 - (void)setValue:(NSString *)value {
-    
+    _values = value;
     UIFont *font ;
     
     if ([self.xname isEqualToString:@"txtDesignDate"]) {
@@ -212,14 +214,17 @@
         return;
     }
     [self.delegate widgetAnnotationValueChanged:self];
-    if ([_textFieldOrTextView isKindOfClass:[UITextField class]] || [_textFieldOrTextView isKindOfClass:[UITextView class]])
-    [_textFieldOrTextView performSelector:@selector(setText:) withObject:value];
+    if ([_textFieldOrTextView isKindOfClass:[UITextField class]] || [_textFieldOrTextView isKindOfClass:[UITextView class]]){
+        [_textFieldOrTextView performSelector:@selector(setText:) withObject:value];
+    }
+    
     
     
     [self refresh];
 }
 
 - (NSString *)value {
+    return _values;
     NSString *ret = [_textFieldOrTextView performSelector:@selector(text)];
     return [ret length] ? ret:nil;
 }

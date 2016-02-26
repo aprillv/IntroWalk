@@ -8,6 +8,7 @@
 
 import UIKit
 import Alamofire
+import MessageUI
 
 class PDFPrintViewController: PDFBaseViewController {
     
@@ -56,7 +57,11 @@ class PDFPrintViewController: PDFBaseViewController {
                 for (str, dots) in fDD {
                     switch str{
                     case CConstants.ActionTitleAddendumC:
-                        self.documentAddedDotArray![i] = tool.setAddendumCDots(info, additionViews: dots, pdfview: self.pdfView!, has2Pages0: self.page2!)
+                        for doc in documents! {
+                            if doc.pdfName == CConstants.ActionTitleAddendumC {
+                                doc.addedviewss = tool.setAddendumCDots(info, additionViews: dots, pdfview: self.pdfView!, has2Pages0: self.page2!)
+                            }
+                        }
                         return
                     default:
                         i++
@@ -96,7 +101,11 @@ class PDFPrintViewController: PDFBaseViewController {
                     for (str, dots) in fDD {
                         switch str{
                         case CConstants.ActionTitleClosingMemo:
-                            self.documentAddedDotArray![i] = tool.setCloingMemoDots(info, additionViews: dots, pdfview: self.pdfView!)
+                            for doc in documents! {
+                                if doc.pdfName == CConstants.ActionTitleClosingMemo {
+                                    doc.addedviewss = tool.setCloingMemoDots(info, additionViews: dots, pdfview: self.pdfView!)
+                                }
+                            }
                             return
                         default:
                             i++
@@ -162,7 +171,6 @@ class PDFPrintViewController: PDFBaseViewController {
 //        }
         
         documents = [PDFDocument]()
-        documentAddedDotArray = [[PDFWidgetAnnotationView]]()
         fileDotsDic = [String : [PDFWidgetAnnotationView]]()
         var allAdditionViews = [PDFWidgetAnnotationView]()
         
@@ -219,8 +227,8 @@ class PDFPrintViewController: PDFBaseViewController {
             filesNames.append(str)
             
             let document = PDFDocument.init(resource: str)
+            document.pdfName = title
             documents?.append(document)
-            documentAddedDotArray?.append([PDFWidgetAnnotationView]())
             
             
             if let additionViews = document.forms.createWidgetAnnotationViewsForSuperviewWithWidth(view.bounds.size.width, margin: margins.x, hMargin: margins.y, pageMargin: CGFloat(lastheight)) as? [PDFWidgetAnnotationView]{
@@ -240,6 +248,34 @@ class PDFPrintViewController: PDFBaseViewController {
         setAddendumC()
         view.addSubview(pdfView!)
     }
+    override func sendEmail() {
+        let mailComposeViewController = configuredMailComposeViewController()
+        if MFMailComposeViewController.canSendMail() {
+            
+            let savedPdfData: NSData? = self.document?.mergedDataWithDocuments(self.documents)
+            mailComposeViewController.addAttachmentData(savedPdfData!, mimeType: "application/pdf", fileName: getFileName())
+            self.presentViewController(mailComposeViewController, animated: true, completion: nil)
+        }
+    }
+    
+    override func doPrint() {
+        let savedPdfData: NSData? = self.document?.mergedDataWithDocuments(self.documents)
+        
+        if UIPrintInteractionController.canPrintData(savedPdfData!) {
+            let printInfo = UIPrintInfo(dictionary: nil)
+            printInfo.jobName = fileName!
+            printInfo.outputType = .Photo
+            
+            let printController = UIPrintInteractionController.sharedPrintController()
+            printController.printInfo = printInfo
+            printController.showsNumberOfCopies = false
+            
+            printController.printingItem = savedPdfData!
+            
+            printController.presentAnimated(true, completionHandler: nil)
+            printController.delegate = self
+        }
+    }
     
     override func savePDFToServer(xname: String){
         
@@ -248,7 +284,7 @@ class PDFPrintViewController: PDFBaseViewController {
             , "code" : pdfInfo0!.code!
             ,"filetype" : pdfInfo0?.nproject ?? "" + "_\(xname)_FromApp"]
         
-        let savedPdfData: NSData? = PDFDocument.mergedDataWithDocument(self.documents, withDots: documentAddedDotArray)
+        let savedPdfData: NSData? = self.document?.mergedDataWithDocuments(self.documents)
         
         
         

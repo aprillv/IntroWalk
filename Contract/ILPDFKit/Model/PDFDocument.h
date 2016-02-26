@@ -38,6 +38,7 @@
 /** The form container holding the forms for the document.
  */
 @property (nonatomic, retain) PDFFormContainer *forms;
+@property (nonatomic, retain) NSArray * addedviewss;
 
 /** The path for the PDF document if it was loaded from file.
  @discussion If the document was loaded from memory, documentPath is nil.
@@ -138,6 +139,6 @@
  */
 - (NSString *)formXML;
 
-+ (NSData *)mergedDataWithDocument:(NSArray *)docs withDots: (NSArray *)addedviewss;
+- (NSData *)mergedDataWithDocuments:(NSArray *)docs;
 
 @end

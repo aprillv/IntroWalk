@@ -24,6 +24,7 @@
 #import <UIKit/UIKit.h>
 @class PDFWidgetAnnotationView;
 @class PDFView;
+//#import "PDFForm.h"
 
 
 /** The PDFWidgetAnnotationViewDelegate responds to user interaction with a PDFWidgetAnnotationView.
@@ -54,6 +55,9 @@
  */
 @property (nonatomic, strong) NSString *value;
 @property (nonatomic, strong) NSString *xname;
+@property (nonatomic, strong) NSString *pageno;
+@property (assign, nonatomic) CGFloat pagenomargin;
+//@property (retain, nonatomic) PDFForm * myform;
 //@property (nonatomic, strong) UIImage *value1;
 
 /** The options of the element.

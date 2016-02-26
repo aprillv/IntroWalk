@@ -301,11 +301,30 @@ class LoginViewController: BaseViewController, UITextFieldDelegate {
     }
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
-        self.navigationController?.navigationBarHidden = true
+        self.navigationController?.navigationBar.barTintColor = UIColor(red: 0, green: 164/255.0, blue: 236/255.0, alpha: 1)
+        self.navigationController?.navigationBar.barStyle = .Black
+        self.navigationController?.navigationBar.titleTextAttributes = [
+            NSFontAttributeName : UIFont(name: "Futura", size: 25)!
+            
+        ]
+        
+        
+        UIBarButtonItem.appearance().setTitleTextAttributes([NSFontAttributeName : UIFont(name: "Futura", size: 17)!], forState: UIControlState.Normal)
+        UISearchBar.appearance().barTintColor = UIColor(red: 238/255.0, green: 238/255.0, blue: 238/255.0, alpha: 1)
+        UIBarButtonItem.appearance().tintColor = UIColor.whiteColor()
+//        NSMutableDictionary *textAttributes = [[NSMutableDictionary alloc] initWithDictionary:mainNavController.navigationBar.titleTextAttributes];
+//        [textAttributes setValue:[UIColor whiteColor] forKey:UITextAttributeTextColor];
+        
+//        self.navigationBar.translucent = NO;
+//        self.navigationController?.navigationBarHidden = true
     }
     
     override func viewWillDisappear(animated: Bool) {
         super.viewWillDisappear(animated)
-        self.navigationController?.navigationBarHidden = false
+//        self.navigationController?.navigationBar.barTintColor = UIColor.whiteColor()
+//        self.navigationController?.navigationBar.barStyle = .Default
+////        UIBarButtonItem.appearance().setTitleTextAttributes([NSFontAttributeName : UIFont(name: "Futura", size: 17)!], forState: UIControlState.Normal)
+//        //        UISearchBar.appearance().barTintColor = UIColor(red: 0, green: 164/255.0, blue: 236/255.0, alpha: 0.7)
+//        UIBarButtonItem.appearance().tintColor = UIColor(red: 0, green: 164/255.0, blue: 236/255.0, alpha: 1)
     }
 }

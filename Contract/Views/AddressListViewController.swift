@@ -159,8 +159,9 @@ class AddressListViewController: UITableViewController, UISearchBarDelegate, ToD
         return tableView.tag == 2 ? 66 : 30
     }
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
+        var cell: UITableViewCell;
         if tableView.tag == 2{
-            let cell = tableView.dequeueReusableCellWithIdentifier(constants.CellIdentifier, forIndexPath: indexPath)
+             cell = tableView.dequeueReusableCellWithIdentifier(constants.CellIdentifier, forIndexPath: indexPath)
             cell.separatorInset = UIEdgeInsetsZero
             cell.layoutMargins = UIEdgeInsetsZero
             cell.preservesSuperviewLayoutMargins = false
@@ -170,9 +171,11 @@ class AddressListViewController: UITableViewController, UISearchBarDelegate, ToD
                 
             }
             
-            return cell
+            
+            
+            
         }else{
-            let cell = tableView.dequeueReusableCellWithIdentifier(constants.DraftCellIdentifier, forIndexPath: indexPath)
+            cell = tableView.dequeueReusableCellWithIdentifier(constants.DraftCellIdentifier, forIndexPath: indexPath)
             cell.separatorInset = UIEdgeInsetsZero
             cell.layoutMargins = UIEdgeInsetsZero
             cell.preservesSuperviewLayoutMargins = false
@@ -180,9 +183,16 @@ class AddressListViewController: UITableViewController, UISearchBarDelegate, ToD
                 let ddd = CiaNmArray?[CiaNm?[indexPath.section] ?? ""]
                 cellitem.contractInfo = ddd![indexPath.row]
             }
-            
-            return cell
         }
+        if let indexa = tableView.indexPathForSelectedRow{
+            if indexa == indexPath{
+                cell.contentView.backgroundColor = UIColor(red: 248/255.0, green: 248/255.0, blue: 248/255.0, alpha: 1)
+            }else{
+                cell.contentView.backgroundColor = UIColor.whiteColor()
+            }
+        }
+        
+        return cell
         
     }
     
@@ -334,7 +344,45 @@ class AddressListViewController: UITableViewController, UISearchBarDelegate, ToD
         }
     }
     
+    
+    override func tableView(tableView: UITableView, didHighlightRowAtIndexPath indexPath: NSIndexPath) {
+        removebackFromCell()
+        if let cell  = tableView.cellForRowAtIndexPath(indexPath) {
+        cell.contentView.backgroundColor = UIColor(red: 248/255.0, green: 248/255.0, blue: 248/255.0, alpha: 1)
+        }
+        
+    }
+    
+    override func tableView(tableView: UITableView, didUnhighlightRowAtIndexPath indexPath: NSIndexPath) {
+        if let cell  = tableView.cellForRowAtIndexPath(indexPath) {
+            cell.contentView.backgroundColor = .clearColor()
+        }
+        
+    }
+
+    private func removebackFromCell(){
+        for i in 0...tableView.numberOfSections-1 {
+            for j in 0...tableView.numberOfRowsInSection(i)-1 {
+                let indexa = NSIndexPath(forRow: i, inSection: j)
+                if let cell = tableView.cellForRowAtIndexPath(indexa){
+                    cell.contentView.backgroundColor = .clearColor()
+                }
+            }
+            }
+        }
+    
+    override func tableView(tableView: UITableView, didDeselectRowAtIndexPath indexPath: NSIndexPath) {
+        if let selectedCell:UITableViewCell = tableView.cellForRowAtIndexPath(indexPath){
+             selectedCell.contentView.backgroundColor = .clearColor()
+        }
+    }
+   
     override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+        removebackFromCell()
+        if let selectedCell:UITableViewCell = tableView.cellForRowAtIndexPath(indexPath){
+        selectedCell.contentView.backgroundColor = UIColor(red: 248/255.0, green: 248/255.0, blue: 248/255.0, alpha: 1)
+        }
+        
 //        if let myCell = tableView.cellForRowAtIndexPath(indexPath) {
 //            //Make the rect you want the popover to point at.
 //            let  displayFrom = CGRectMake(myCell.frame.origin.x + myCell.frame.size.width, myCell.center.y + self.tableView.frame.origin.y - self.tableView.contentOffset.y, 1, 1)

@@ -259,9 +259,7 @@
 - (void)vectorRenderInPDFContext:(CGContextRef)ctx forRect:(CGRect)rect {
     if (self.formType == PDFFormTypeText || self.formType == PDFFormTypeChoice) {
         NSString *text = self.value;
-//        if (self.formType == PDFFormTypeText) {
-//            NSLog(@"%@ %@", self.name, self.value);
-//        }
+        
         
         UIGraphicsPushContext(ctx);
         NSMutableParagraphStyle *paragraphStyle = [[NSMutableParagraphStyle defaultParagraphStyle] mutableCopy];
@@ -291,7 +289,8 @@
         [sw drawInRect:rect withContext:ctx];
     } else if (self.formType == PDFFormTypeButton) {
          PDFFormButtonField *sw = (PDFFormButtonField *)_formUIElement;
-        [sw drawWithRect:rect context:ctx back:NO selected:[sw.value isEqualToString:self.exportValue] && (_flags & PDFFormFlagButtonPushButton) == 0 radio:(_flags & PDFFormFlagButtonRadio) > 0];
+//        [sw drawWithRect:rect context:ctx back:NO selected:[sw.value isEqualToString:self.exportValue] && (_flags & PDFFormFlagButtonPushButton) == 0 radio:(_flags & PDFFormFlagButtonRadio) > 0];
+        [sw drawWithRect:rect context:ctx back:NO selected:[sw.value isEqualToString:@"1"] radio:(_flags & PDFFormFlagButtonRadio) > 0];
         
     }
 }
@@ -344,12 +343,12 @@
     
       PDFPage *pg = self.parent.document.pages[0];
     CGFloat ch = [pg cropBox].size.height*factor2+ymargin;
-
+    [[NSUserDefaults standardUserDefaults] setValue:[NSString stringWithFormat:@"%f", ch] forKey:@"pageHeight"];
     
     CGFloat pageOffset = ch * pageMargin;
     
 //    NSLog(@"$$$$$$$$$$ %f", [pg cropBox].size.height);
-    NSLog(@"$$$$$$$$$$ %f", ch);
+//    NSLog(@"$$$$$$$$$$ %f", ch);
     for (NSUInteger c = 0; c < self.page-1; c++) {
         PDFPage *pg = self.parent.document.pages[c];
 //        CGFloat iwidth = [pg cropBox].size.width;
@@ -423,7 +422,9 @@
     if (_formUIElement) {
         [_formUIElement setValue:self.value];
         [_formUIElement setXname:_name];
+        _formUIElement.pagenomargin =  ([pg cropBox].size.height*factor2+ymargin) * pageMargin;
         _formUIElement.delegate = self;
+//        _formUIElement.myform = self;
         [self addObserver:_formUIElement forKeyPath:@"value" options:NSKeyValueObservingOptionNew context:NULL];
         [self addObserver:_formUIElement forKeyPath:@"options" options:NSKeyValueObservingOptionNew context:NULL];
     }
@@ -454,6 +455,8 @@
             return;
         }
     } else {
+//        NSLog(sender.xname);
+//        NSLog([v value]);
         [_parent setValue:[v value] forFormWithName:self.name];
     }
 }

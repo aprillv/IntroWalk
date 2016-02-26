@@ -540,12 +540,14 @@ class SetDotValue : NSObject {
                 break
             }
         }
+    
         var addedAnnotationViews : [PDFWidgetAnnotationView] = [PDFWidgetAnnotationView]()
         var originy = bankField!.frame.origin.y
         originy += bankField!.frame.size.height * 1.2
         let line = PDFWidgetAnnotationView(frame: CGRect(x: bankField!.frame.origin.x - 3, y: originy, width: amountField!.frame.size.width + amountField!.frame.origin.x + 6 - bankField!.frame.origin.x, height: 1))
         line.backgroundColor = UIColor.lightGrayColor()
         addedAnnotationViews.append(line)
+        line.pagenomargin = (bankField?.pagenomargin ?? 0.0)!
         
         if pdfInfo?.memoItemlist!.count > 1 {
             var i = true
@@ -582,12 +584,14 @@ class SetDotValue : NSObject {
                         let bank1 = PDFFormTextField(frame: bankFrame, multiline: false, alignment: alignment, secureEntry: false, readOnly: true, withFont: font)
                         bank1.xname = "april"
                         bank1.value = xvalue
+                        bank1.pagenomargin = (bankField?.pagenomargin ?? 0.0)!
                         addedAnnotationViews.append(bank1)
                         y++
                     }
                     originy += bankField!.frame.size.height * 1.2
                     let line = PDFWidgetAnnotationView(frame: CGRect(x: bankField!.frame.origin.x - 3, y: originy, width: amountField!.frame.size.width + amountField!.frame.origin.x + 6 - bankField!.frame.origin.x, height: 1))
                     line.backgroundColor = UIColor.lightGrayColor()
+                    line.pagenomargin = (bankField?.pagenomargin ?? 0.0)!
                     addedAnnotationViews.append(line)
                 }
             }
@@ -724,7 +728,7 @@ class SetDotValue : NSObject {
         var addedAnnotationViews : [PDFWidgetAnnotationView] = [PDFWidgetAnnotationView]()
 //        var addedAnnotationViews2 : [PDFWidgetAnnotationView] = [PDFWidgetAnnotationView]()
         var j : CGFloat = 1
-        var hss : CGFloat = 0
+        
         if let price = aPrice {
             var pf : PDFFormTextField?
             var line : PDFWidgetAnnotationView?
@@ -750,6 +754,8 @@ class SetDotValue : NSObject {
                     pf = PDFFormTextField(frame: CGRect(x: x, y: y, width: 25, height: h), multiline: false, alignment: NSTextAlignment.Left, secureEntry: false, readOnly: true, withFont: font)
                     pf?.xname = "april"
                     pf?.value = "\(i)"
+                    pf?.pageno = has2Pages ? "0" : "1";
+                    pf?.pagenomargin = (aPrice?.pagenomargin ?? 0.0)!
                     addedAnnotationViews.append(pf!)
                     
                     //                    print( "number \(pf?.frame) \(y)")
@@ -758,6 +764,8 @@ class SetDotValue : NSObject {
                         pf = PDFFormTextField(frame: CGRect(x: x+25, y: y, width: w-25, height: h), multiline: false, alignment: NSTextAlignment.Left, secureEntry: false, readOnly: true, withFont: font)
                         pf?.xname = "april"
                         pf?.value = description
+                        pf?.pageno = has2Pages ? "0" : "1";
+                        pf?.pagenomargin = (aPrice?.pagenomargin ?? 0.0)!
                         addedAnnotationViews.append(pf!)
                         //                            pf?.sizeToFit()
                         y = y + pf!.frame.height
@@ -767,6 +775,8 @@ class SetDotValue : NSObject {
                     y = y + 2
                     line = PDFWidgetAnnotationView(frame: CGRect(x: x, y: y, width: w, height: 1))
                     line?.backgroundColor = UIColor.lightGrayColor()
+                    line?.pageno = has2Pages ? "0" : "1";
+                    line?.pagenomargin = (aPrice?.pagenomargin ?? 0.0)!
                     addedAnnotationViews.append(line!)
                     //                    print( "line \(line?.frame) \(y)")
                     y = y + 5.5
@@ -788,6 +798,8 @@ class SetDotValue : NSObject {
             pf?.xname = "april"
             y = y + price.frame.size.height + 2
             pf?.value = pdfInfo?.agree!
+            pf?.pageno = has2Pages ? "0" : "1";
+            pf?.pagenomargin = (aPrice?.pagenomargin ?? 0.0)!
             addedAnnotationViews.append(pf!)
             
             y = y + h
@@ -806,17 +818,22 @@ class SetDotValue : NSObject {
                     sign?.xname = "april" + "\(i)" + "DateSign"
                 }
                 
-                
+                sign?.pageno = has2Pages ? "0" : "1";
+                sign?.pagenomargin = (aPrice?.pagenomargin ?? 0.0)!
                 addedAnnotationViews.append(sign!)
                 
                 
                 line = PDFWidgetAnnotationView(frame: CGRect(x: x, y: y + 2+h, width: w * 0.28, height: 1))
                 line?.backgroundColor = UIColor.lightGrayColor()
+                line?.pageno = has2Pages ? "0" : "1";
+                line?.pagenomargin = (aPrice?.pagenomargin ?? 0.0)!
                 addedAnnotationViews.append(line!)
                 
                 pf = PDFFormTextField(frame: CGRect(x: x, y: y + h + 3 , width: w * 0.28, height: price.frame.height), multiline: false, alignment: NSTextAlignment.Left, secureEntry: false, readOnly: true, withName: nil)
                 pf?.xname = "april"
                 pf?.value = AddendumCPDFFields.SignArray[i]
+                pf?.pageno = has2Pages ? "0" : "1";
+                pf?.pagenomargin = (aPrice?.pagenomargin ?? 0.0)!
                 addedAnnotationViews.append(pf!)
                 x += w * 0.36
                 
@@ -833,6 +850,13 @@ class SetDotValue : NSObject {
                 
             }
         }
+        
+        if !has2Pages0{
+            for a in addedAnnotationViews {
+                a.pageno = "0"
+            }
+        }
+        
         pdfview.addMoreDots(addedAnnotationViews)
 //        for a in addedAnnotationViews{
 //            if let b = a.copy() as? PDFWidgetAnnotationView{

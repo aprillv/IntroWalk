@@ -250,12 +250,7 @@ class AddendumCViewController: PDFBaseViewController {
             
             
             pdfView?.pdfView.scrollView.contentSize = CGSizeMake(100, 900);
-        }
-        
-        
-        
-        
-        
+        }  
         
     }
     

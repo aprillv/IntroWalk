@@ -54,6 +54,7 @@
         _val = @"0";
         _button.selected = NO;
     }
+    self.value = _val;
     [self refresh];
 }
 

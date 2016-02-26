@@ -92,6 +92,10 @@
 }
 
 - (void)setValue:(NSString *)value {
+//    if (self.myform && ![self.myform.value isEqualToString:value]) {
+//        NSLog(@"self.myform.value %@", self.myform.value);
+//        self.myform.value = value;
+//    }
 //    NSLog(@"%@", value);
 }
 
@@ -114,7 +118,6 @@
 }
 
 #pragma mark - KVO
-
 - (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context {
     if ([keyPath isEqualToString:@"value"]) {
         self.value = change[NSKeyValueChangeNewKey];

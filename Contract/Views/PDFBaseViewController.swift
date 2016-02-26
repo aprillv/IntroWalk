@@ -13,7 +13,7 @@ class PDFBaseViewController: BaseViewController, DoOperationDelegate, UIPopoverP
     
     var document : PDFDocument?
     var documents : [PDFDocument]?
-    var documentAddedDotArray : [[PDFWidgetAnnotationView]]?
+//    var documentAddedDotArray : [[PDFWidgetAnnotationView]]?
     var pdfView  : PDFView?
     var AddressList : [ContractsItem]? 
 //    var spinner : UIActivityIndicatorView?
@@ -226,6 +226,7 @@ class PDFBaseViewController: BaseViewController, DoOperationDelegate, UIPopoverP
             savedPdfData = document?.savedStaticPDFData()
         }
         if UIPrintInteractionController.canPrintData(savedPdfData!) {
+            
             let printInfo = UIPrintInfo(dictionary: nil)
             printInfo.jobName = fileName!
             printInfo.outputType = .Photo
@@ -240,8 +241,17 @@ class PDFBaseViewController: BaseViewController, DoOperationDelegate, UIPopoverP
             printController.delegate = self
         }
     }
+    func printInteractionControllerParentViewController(printInteractionController: UIPrintInteractionController) -> UIViewController {
+        return self.navigationController!
+    }
+    func printInteractionControllerWillPresentPrinterOptions(printInteractionController: UIPrintInteractionController) {
+        self.navigationController?.navigationBar.tintColor = UIColor(red: 0, green: 164/255.0, blue: 236/255.0, alpha: 1)
+        self.navigationController?.topViewController?.navigationController?.navigationBar.tintColor = UIColor(red: 0, green: 164/255.0, blue: 236/255.0, alpha: 1)
+    }
     
     private func getFileName() -> String{
+        print(pdfInfo0?.nproject)
+        print(fileName)
         return pdfInfo0!.nproject! + "_\(fileName!)_FromApp"
     }
     func sendEmail() {
@@ -466,7 +476,8 @@ class PDFBaseViewController: BaseViewController, DoOperationDelegate, UIPopoverP
                                     }else{
                                         vc = UIStoryboard(name: CConstants.StoryboardName, bundle: nil).instantiateViewControllerWithIdentifier(CConstants.ControllerNamePrint) as? PDFBaseViewController
                                         if let controller = vc as? PDFPrintViewController{
-                                            controller.pdfInfo0 = self.pdfInfo0
+                                            controller.pdfInfo0 = ContractAddendumC(dicInfo: rtnValue)
+                                            
                                             controller.addendumCpdfInfo = ContractAddendumC(dicInfo: rtnValue)
                                             controller.addendumCpdfInfo!.itemlistStr = itemList
                                             let pass = i > 19 ? CConstants.PdfFileNameAddendumC2 : CConstants.PdfFileNameAddendumC

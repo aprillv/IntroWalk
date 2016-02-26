@@ -19,6 +19,11 @@
 //    [[UITableViewCell appearance] setSeparatorInset: UIEdgeInsetsZero];
 //    [[UITableViewCell appearance] setLayoutMargins:UIEdgeInsetsZero];
 //    [[UITableViewCell appearance] setPreservesSuperviewLayoutMargins: NO];
+//    [[UINavigationBar appearance] setTintColor: [UIColor colorWithRed:0 green:173/255.0 blue:239/255.0 alpha:1]];
+//    [[UINavigationBar appearance] setBackgroundColor: [UIColor colorWithRed:0 green:173/255.0 blue:239/255.0 alpha:1]];
+//     [application setStatusBarStyle:UIStatusBarStyleDefault];
+    
+    
     self.window.backgroundColor = [UIColor whiteColor];
     return YES;
 }

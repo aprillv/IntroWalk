@@ -56,7 +56,7 @@
             </objects>
             <point key="canvasLocation" x="3192" y="-3587"/>
         </scene>
-        <!--Contract-->
+        <!--Welcome to Sign Contracts-->
         <scene sceneID="tne-QT-ifu">
             <objects>
                 <viewController id="BYZ-38-t0r" customClass="LoginViewController" customModule="Contract" customModuleProvider="target" sceneMemberID="viewController">
@@ -75,7 +75,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="nLJ-rK-rHu">
-                                <rect key="frame" x="134" y="346" width="500" height="230"/>
+                                <rect key="frame" x="134" y="243" width="500" height="230"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="k9t-aQ-PdA">
                                         <rect key="frame" x="0.0" y="50" width="500" height="1"/>
@@ -205,26 +205,24 @@
                                     </mask>
                                 </variation>
                             </view>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="logo" translatesAutoresizingMaskIntoConstraints="NO" id="sw4-tu-HZ6">
-                                <rect key="frame" x="324" y="201" width="120" height="120"/>
+                            <imageView hidden="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="logo" translatesAutoresizingMaskIntoConstraints="NO" id="sw4-tu-HZ6">
+                                <rect key="frame" x="324" y="98" width="120" height="120"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="120" id="5lm-Yy-wC1"/>
                                     <constraint firstAttribute="height" constant="120" id="oXq-C2-4Cl"/>
                                 </constraints>
                             </imageView>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hDJ-Rk-PQX">
+                            <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Welcome to Sign Contracts" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hDJ-Rk-PQX">
                                 <rect key="frame" x="0.0" y="64" width="768" height="70"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="70" id="bHV-wf-8Uc"/>
                                 </constraints>
-                                <string key="text">Welcome to
-Sign Contracts</string>
                                 <fontDescription key="fontDescription" style="UICTFontTextStyleTitle2"/>
                                 <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Copyright © 2016 All Rights Reserved" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jHL-0U-Dpr">
-                                <rect key="frame" x="255" y="646" width="259" height="18"/>
+                                <rect key="frame" x="255" y="533" width="259" height="18"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <nil key="highlightedColor"/>
@@ -234,10 +232,12 @@ Sign Contracts</string>
                         <constraints>
                             <constraint firstItem="nLJ-rK-rHu" firstAttribute="top" secondItem="sw4-tu-HZ6" secondAttribute="bottom" constant="25" id="1rA-Vp-a8x"/>
                             <constraint firstItem="hDJ-Rk-PQX" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" constant="-20" id="3bL-rA-N6J"/>
+                            <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="jHL-0U-Dpr" secondAttribute="bottom" constant="20" id="5vh-Gs-OMP"/>
+                            <constraint firstItem="jHL-0U-Dpr" firstAttribute="top" secondItem="nLJ-rK-rHu" secondAttribute="bottom" constant="60" id="9Ml-4a-hD6"/>
                             <constraint firstItem="s1Q-d1-37O" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="9Yd-ii-9dT"/>
                             <constraint firstItem="nLJ-rK-rHu" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" constant="121" id="9wH-2w-3wP"/>
                             <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="s1Q-d1-37O" secondAttribute="bottom" constant="8" id="Ahd-EO-U1E"/>
-                            <constraint firstItem="nLJ-rK-rHu" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" multiplier="0.9" id="Deu-bF-HVc"/>
+                            <constraint firstItem="nLJ-rK-rHu" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" multiplier="0.7" id="Deu-bF-HVc"/>
                             <constraint firstItem="sw4-tu-HZ6" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" constant="15" id="Ezs-lL-kqp"/>
                             <constraint firstItem="hDJ-Rk-PQX" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" constant="-20" id="FOr-zt-qM3"/>
                             <constraint firstAttribute="trailingMargin" secondItem="hDJ-Rk-PQX" secondAttribute="trailing" constant="-20" id="HLq-aT-aUe"/>
@@ -256,10 +256,12 @@ Sign Contracts</string>
                                 <exclude reference="MeL-Li-JLr"/>
                                 <exclude reference="wpv-j6-DQK"/>
                                 <exclude reference="Ezs-lL-kqp"/>
+                                <exclude reference="K7o-1c-TEL"/>
+                                <exclude reference="5vh-Gs-OMP"/>
                             </mask>
                         </variation>
                     </view>
-                    <navigationItem key="navigationItem" title="Contract" id="OmX-XA-cOc"/>
+                    <navigationItem key="navigationItem" title="Welcome to Sign Contracts" id="OmX-XA-cOc"/>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="iPad"/>
                     <connections>
                         <outlet property="backView" destination="nLJ-rK-rHu" id="CXD-fJ-9Xt"/>
@@ -272,7 +274,7 @@ Sign Contracts</string>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1580" y="-1170"/>
+            <point key="canvasLocation" x="1070" y="-1234"/>
         </scene>
         <!--Address List-->
         <scene sceneID="TbO-r3-5Ld">
@@ -291,7 +293,7 @@ Sign Contracts</string>
                             </connections>
                         </searchBar>
                         <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="Address Cell Identifier" id="MWM-YE-Ihm" customClass="AddressListViewCell" customModule="Contract" customModuleProvider="target">
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="Address Cell Identifier" id="MWM-YE-Ihm" customClass="AddressListViewCell" customModule="Contract" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="136" width="768" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="MWM-YE-Ihm" id="Dj7-R1-2es">
@@ -598,9 +600,10 @@ Sign Contracts</string>
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="6N7-GH-wKp" sceneMemberID="viewController">
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="w2L-fO-oKF">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" barStyle="black" id="w2L-fO-oKF">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
+                        <color key="barTintColor" red="0.0" green="0.65098039220000004" blue="0.93333333330000001" alpha="1" colorSpace="calibratedRGB"/>
                     </navigationBar>
                     <nil name="viewControllers"/>
                     <connections>
@@ -843,7 +846,7 @@ Sign Contracts</string>
                                     <constraint firstAttribute="width" constant="420" id="egN-F9-Ufz"/>
                                 </constraints>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="cellIdentifier" id="7OE-yE-b25">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="cellIdentifier" id="7OE-yE-b25">
                                         <rect key="frame" x="0.0" y="28" width="420" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="7OE-yE-b25" id="NCn-Z4-gyK">

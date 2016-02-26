@@ -59,6 +59,7 @@ static void renderPage(NSUInteger page, CGContextRef ctx, CGPDFDocumentRef doc, 
 }
 
 static void renderPage1(NSUInteger page, CGContextRef ctx, CGPDFDocumentRef doc, PDFFormContainer *forms, NSArray *viewarray) {
+     CGFloat xf = 612.0*297.0/210.0;
     CGRect mediaRect = CGPDFPageGetBoxRect(CGPDFDocumentGetPage(doc,page), kCGPDFMediaBox);
     CGRect cropRect = CGPDFPageGetBoxRect(CGPDFDocumentGetPage(doc,page), kCGPDFCropBox);
     CGRect artRect = CGPDFPageGetBoxRect(CGPDFDocumentGetPage(doc,page), kCGPDFArtBox);
@@ -71,9 +72,19 @@ static void renderPage1(NSUInteger page, CGContextRef ctx, CGPDFDocumentRef doc,
     CGContextRestoreGState(ctx);
     for (PDFForm *form in forms) {
         if (form.page == page) {
+           
             CGContextSaveGState(ctx);
             CGRect frame = form.frame;
+//            if (!form.value) {
+//                form.value = @"";
+//            }
+//            if (viewarray && viewarray.count == 1){
+//                frame.origin.y -= 982.788208*2;}
+//            NSLog(@"addedView.pagenomargin %@", form.pagenomargin);
             CGRect correctedFrame = CGRectMake(frame.origin.x-mediaRect.origin.x, mediaRect.size.height-frame.origin.y-frame.size.height-mediaRect.origin.y, frame.size.width, frame.size.height);
+            while (correctedFrame.origin.y > xf) {
+                correctedFrame.origin.y -= xf;
+            }
             CGContextTranslateCTM(ctx, correctedFrame.origin.x, correctedFrame.origin.y);
             [form vectorRenderInPDFContext:ctx forRect:correctedFrame];
             CGContextRestoreGState(ctx);
@@ -102,10 +113,46 @@ static void renderPage1(NSUInteger page, CGContextRef ctx, CGPDFDocumentRef doc,
         }
         
     }
+//    CGFloat xf = 612.0*297.0/210.0;
     
     for (PDFWidgetAnnotationView *addedView in viewarray) {
-        CGRect frame = addedView.frame;
-        CGRect correctedFrame = CGRectMake((frame.origin.x - xmargin)/factor, (frame.origin.y-ymargin)/factor, frame.size.width/factor, frame.size.height/factor);
+//        NSLog(@"addedView.pagenomargin %@", addedView.pagenomargin);
+         CGRect frame = addedView.frame;
+//        NSLog(@"addedView.pageno %@", addedView.pageno);
+        if (addedView.pageno ) {
+            if ( [addedView.pageno integerValue] == 1) {
+                if (page !=2) {
+                   
+                    continue;
+                }else{
+                    CGFloat f = [[[NSUserDefaults standardUserDefaults] valueForKey:@"pageHeight"] doubleValue] ;
+                    frame.origin.y -= f;
+                }
+//                correctedFrame.origin.y += 100;
+            }else{
+                if (page != 1) {
+                    continue;
+                }
+            }
+            
+        }else{
+//            correctedFrame.origin.y += 140;
+        }
+        
+       
+        CGFloat xfa = 0;
+        if (addedView.pagenomargin) {
+            xfa = addedView.pagenomargin;
+        }
+        
+        
+        CGRect correctedFrame = CGRectMake((frame.origin.x - xmargin)/factor, (frame.origin.y-ymargin-xfa)/factor, frame.size.width/factor, frame.size.height/factor);
+        
+        while (correctedFrame.origin.y > xf) {
+            correctedFrame.origin.y -= xf;
+        }
+        
+        
         if ([addedView isKindOfClass:[PDFFormTextField class]]) {
             CGContextSaveGState(ctx);
             
@@ -288,21 +335,22 @@ static void renderPage1(NSUInteger page, CGContextRef ctx, CGPDFDocumentRef doc,
     
 }
 
-+ (NSData *)mergedDataWithDocument:(NSArray *)docs withDots: (NSArray *)addedviewss {
+- (NSData *)mergedDataWithDocuments:(NSArray *)docs{
     NSMutableData *pageData = [NSMutableData data];
     UIGraphicsBeginPDFContextToData(pageData, CGRectZero , nil);
     CGContextRef ctx = UIGraphicsGetCurrentContext();
     for (NSUInteger dcnt = 0; dcnt < docs.count; dcnt++ ) {
         PDFDocument *doc = docs[dcnt];
-        NSArray *addedviews = addedviewss[dcnt];
+       
+        NSArray *addedviews = doc.addedviewss;
         
         for (NSUInteger page = 1; page <= [doc numberOfPages]; page++) {
-            if (addedviews.count == 0){
-                renderPage(page, ctx, doc.document, doc.forms);
-            }else{
+//            if (!addedviews || addedviews.count == 0){
+//                renderPage(page, ctx, doc.document, doc.forms);
+//            }else{
 //                NSLog(@"%@", addedviews);
                 renderPage1(page, ctx, doc.document, doc.forms, addedviews);
-            }
+//            }
             
         }
     }

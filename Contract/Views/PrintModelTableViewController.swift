@@ -19,11 +19,11 @@ class PrintModelTableViewController: UIViewController, UITableViewDataSource, UI
     
     
     @IBAction func dismissSelf(sender: UITapGestureRecognizer) {
-//        print(sender)
-//        let point = sender.locationInView(view)
-//        if !CGRectContainsPoint(tableview.frame, point) {
-            self.dismissViewControllerAnimated(true){}
-//        }
+        //        print(sender)
+        //        let point = sender.locationInView(view)
+        //        if !CGRectContainsPoint(tableview.frame, point) {
+        self.dismissViewControllerAnimated(true){}
+        //        }
         
     }
     @IBOutlet var tableHeight: NSLayoutConstraint!
@@ -43,7 +43,7 @@ class PrintModelTableViewController: UIViewController, UITableViewDataSource, UI
         super.viewWillLayoutSubviews()
         self.title = "Print"
         view.superview?.backgroundColor = UIColor(red: 0, green: 0, blue: 0, alpha: 0.2)
-//        view.superview?.bounds = CGRect(x: 0, y: 0, width: tableview.frame.width, height: 44 * CGFloat(5))
+        //        view.superview?.bounds = CGRect(x: 0, y: 0, width: tableview.frame.width, height: 44 * CGFloat(5))
     }
     
     private struct constants{
@@ -61,8 +61,8 @@ class PrintModelTableViewController: UIViewController, UITableViewDataSource, UI
         , CConstants.ActionTitleEXHIBIT_A
         , CConstants.ActionTitleEXHIBIT_B
         , CConstants.ActionTitleEXHIBIT_C
-        ]
-
+    ]
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         let userInfo = NSUserDefaults.standardUserDefaults()
@@ -72,7 +72,7 @@ class PrintModelTableViewController: UIViewController, UITableViewDataSource, UI
             printList.append(CConstants.ActionTitleDesignCenter)
             printList.append(CConstants.ActionTitleGoContract)
         }else{
-        printList.append(CConstants.ActionTitleGoDraft)
+            printList.append(CConstants.ActionTitleGoDraft)
         }
         
         tableHeight.constant = CGFloat(Double(printList.count) * constants.cellHeight)
@@ -80,22 +80,25 @@ class PrintModelTableViewController: UIViewController, UITableViewDataSource, UI
         
     }
     
-     func numberOfSectionsInTableView(tableView: UITableView) -> Int {
-         return 1
+    func numberOfSectionsInTableView(tableView: UITableView) -> Int {
+        return 1
     }
-     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-       
+    func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        
         return printList.count
     }
     
-//    func tableView(tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
-//        return constants.Title
-//    }
-//     func tableView(tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
-//        return 44
-//    }
-     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
+    //    func tableView(tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+    //        return constants.Title
+    //    }
+    //     func tableView(tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+    //        return 44
+    //    }
+    func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCellWithIdentifier(constants.cellReuseIdentifier, forIndexPath: indexPath)
+//        let a = UIView(frame: CGRect(x: 0, y: 0, width: cell.frame.size.width, height:  cell.frame.size.height))
+//        a.backgroundColor = UIColor(red: 246/255.0, green: 246/255.0, blue: 246/255.0, alpha: 1)
+//        cell.selectedBackgroundView = a
         cell.separatorInset = UIEdgeInsetsZero
         cell.layoutMargins = UIEdgeInsetsZero
         cell.preservesSuperviewLayoutMargins = false
@@ -104,29 +107,50 @@ class PrintModelTableViewController: UIViewController, UITableViewDataSource, UI
             cell.textLabel?.textAlignment = .Center
         }else{
             cell.textLabel?.textAlignment = .Left
-        }
-        
-        let userinfo = NSUserDefaults.standardUserDefaults()
-        if let filesNames = userinfo.valueForKey(CConstants.UserInfoPrintModel) as? [String] {
-            if filesNames.contains(printList[indexPath.row]) {
-                cell.accessoryType = UITableViewCellAccessoryType.Checkmark
+            
+            let userinfo = NSUserDefaults.standardUserDefaults()
+            if let filesNames = userinfo.valueForKey(CConstants.UserInfoPrintModel) as? [String] {
+                if filesNames.contains(printList[indexPath.row]) {
+                    cell.accessoryType = UITableViewCellAccessoryType.Checkmark
+                    let iv = UIImageView(image: UIImage(named: "checked"))
+                    iv.frame = CGRect(x: 0, y: 0, width: 30, height: 30)
+                    cell.accessoryView = iv
+                }else{
+                    let iv = UIImageView(image: UIImage(named: "check"))
+                    iv.frame = CGRect(x: 0, y: 0, width: 30, height: 30)
+                    cell.accessoryView = iv
+                }
+            }else{
+                let iv = UIImageView(image: UIImage(named: "check"))
+                iv.frame = CGRect(x: 0, y: 0, width: 30, height: 30)
+                cell.accessoryView = iv
             }
         }
         
         
-//        if self.modalPresentationStyle != .Popover {
-//            cell.accessoryType = UITableViewCellAccessoryType.DisclosureIndicator
-//        }
+        
+        //        if self.modalPresentationStyle != .Popover {
+        //            cell.accessoryType = UITableViewCellAccessoryType.DisclosureIndicator
+        //        }
         
         
         return cell
     }
     
-     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+    func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         
         if indexPath.row < (printList.count - 1) {
             let cell = tableView.cellForRowAtIndexPath(indexPath)
             cell?.accessoryType = cell?.accessoryType == UITableViewCellAccessoryType.None ? UITableViewCellAccessoryType.Checkmark : UITableViewCellAccessoryType.None
+            let iv :UIImageView
+            if cell?.accessoryType == UITableViewCellAccessoryType.Checkmark {
+                iv = UIImageView(image: UIImage(named: "checked"))
+            }else{
+                iv = UIImageView(image: UIImage(named: "check"))
+            }
+            
+            iv.frame = CGRect(x: 0, y: 0, width: 30, height: 30)
+            cell?.accessoryView = iv
             
         }else{
             var selectedCellArray = [NSIndexPath]()
@@ -150,7 +174,7 @@ class PrintModelTableViewController: UIViewController, UITableViewDataSource, UI
                             filesNames.append(title)
                             
                             
-//
+                            //
                         }
                         let userinfo = NSUserDefaults.standardUserDefaults()
                         userinfo.setValue(filesNames, forKey: CConstants.UserInfoPrintModel)
@@ -159,7 +183,7 @@ class PrintModelTableViewController: UIViewController, UITableViewDataSource, UI
                 }
             }
             
-
+            
         }
     }
     
@@ -172,5 +196,5 @@ class PrintModelTableViewController: UIViewController, UITableViewDataSource, UI
     }
     
     
-
+    
 }

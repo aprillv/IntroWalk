@@ -8,6 +8,7 @@
 
 import UIKit
 
+
 class AddressDraftListViewCell: UITableViewCell {
     private var ProjectNmLbl: UILabel!
 //    private var ConsultantLbl: UILabel!
