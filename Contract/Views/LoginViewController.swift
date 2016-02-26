@@ -11,6 +11,7 @@ import Alamofire
 
 class LoginViewController: BaseViewController, UITextFieldDelegate {
 
+    
     // MARK: - Page constants
     private struct constants{
         static let PasswordEmptyMsg : String = "Password Required."
@@ -307,9 +308,20 @@ class LoginViewController: BaseViewController, UITextFieldDelegate {
             NSFontAttributeName : UIFont(name: "Futura", size: 25)!
             
         ]
+        self.navigationController?.toolbar.barTintColor = UIColor(red: 0, green: 164/255.0, blue: 236/255.0, alpha: 1)
+        self.navigationController?.toolbar.barStyle = .Black
+        
+        UINavigationBar.appearance().barTintColor = UIColor(red: 0, green: 164/255.0, blue: 236/255.0, alpha: 1)
+        UINavigationBar.appearance().barStyle = .Black
+        UINavigationBar.appearance().titleTextAttributes = [
+            NSFontAttributeName : UIFont(name: "Futura", size: 25)!
+            
+        ]
+        UIToolbar.appearance().barTintColor = UIColor(red: 0, green: 164/255.0, blue: 236/255.0, alpha: 1)
+        UIToolbar.appearance().barStyle = .Black
         
         
-        UIBarButtonItem.appearance().setTitleTextAttributes([NSFontAttributeName : UIFont(name: "Futura", size: 17)!], forState: UIControlState.Normal)
+        UIBarButtonItem.appearance().setTitleTextAttributes([NSFontAttributeName : UIFont(name: "Futura", size: 17)!, NSForegroundColorAttributeName: UIColor.whiteColor()], forState: UIControlState.Normal)
         UISearchBar.appearance().barTintColor = UIColor(red: 238/255.0, green: 238/255.0, blue: 238/255.0, alpha: 1)
         UIBarButtonItem.appearance().tintColor = UIColor.whiteColor()
 //        NSMutableDictionary *textAttributes = [[NSMutableDictionary alloc] initWithDictionary:mainNavController.navigationBar.titleTextAttributes];

@@ -186,7 +186,7 @@ class AddressListViewController: UITableViewController, UISearchBarDelegate, ToD
         }
         if let indexa = tableView.indexPathForSelectedRow{
             if indexa == indexPath{
-                cell.contentView.backgroundColor = UIColor(red: 248/255.0, green: 248/255.0, blue: 248/255.0, alpha: 1)
+                cell.contentView.backgroundColor = UIColor(red: 238/255.0, green: 238/255.0, blue: 238/255.0, alpha: 1)
             }else{
                 cell.contentView.backgroundColor = UIColor.whiteColor()
             }
@@ -348,7 +348,7 @@ class AddressListViewController: UITableViewController, UISearchBarDelegate, ToD
     override func tableView(tableView: UITableView, didHighlightRowAtIndexPath indexPath: NSIndexPath) {
         removebackFromCell()
         if let cell  = tableView.cellForRowAtIndexPath(indexPath) {
-        cell.contentView.backgroundColor = UIColor(red: 248/255.0, green: 248/255.0, blue: 248/255.0, alpha: 1)
+        cell.contentView.backgroundColor = UIColor(red: 238/255.0, green: 238/255.0, blue: 238/255.0, alpha: 1)
         }
         
     }
@@ -380,7 +380,7 @@ class AddressListViewController: UITableViewController, UISearchBarDelegate, ToD
     override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         removebackFromCell()
         if let selectedCell:UITableViewCell = tableView.cellForRowAtIndexPath(indexPath){
-        selectedCell.contentView.backgroundColor = UIColor(red: 248/255.0, green: 248/255.0, blue: 248/255.0, alpha: 1)
+        selectedCell.contentView.backgroundColor = UIColor(red: 238/255.0, green: 238/255.0, blue: 238/255.0, alpha: 1)
         }
         
 //        if let myCell = tableView.cellForRowAtIndexPath(indexPath) {

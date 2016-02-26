@@ -21,6 +21,11 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
+                    <toolbarItems>
+                        <barButtonItem style="plain" systemItem="flexibleSpace" id="uKe-Ws-8sZ"/>
+                        <barButtonItem enabled="NO" title="Copyright © 2016 All Rights Reserved" id="T5o-xM-nxn"/>
+                        <barButtonItem style="plain" systemItem="flexibleSpace" id="nDf-gJ-6xA"/>
+                    </toolbarItems>
                     <navigationItem key="navigationItem" title="Information about Brokerage Services" id="0cJ-Lb-ogm">
                         <barButtonItem key="leftBarButtonItem" image="back" id="2tt-Mt-Z6s">
                             <connections>
@@ -68,14 +73,8 @@
                         <rect key="frame" x="0.0" y="0.0" width="768" height="1024"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="© LOVETT HOMES" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="s1Q-d1-37O">
-                                <rect key="frame" x="332" y="1002" width="104" height="14"/>
-                                <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="12"/>
-                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                                <nil key="highlightedColor"/>
-                            </label>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="nLJ-rK-rHu">
-                                <rect key="frame" x="134" y="243" width="500" height="230"/>
+                                <rect key="frame" x="134" y="269" width="500" height="230"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="k9t-aQ-PdA">
                                         <rect key="frame" x="0.0" y="50" width="500" height="1"/>
@@ -206,12 +205,18 @@
                                 </variation>
                             </view>
                             <imageView hidden="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="logo" translatesAutoresizingMaskIntoConstraints="NO" id="sw4-tu-HZ6">
-                                <rect key="frame" x="324" y="98" width="120" height="120"/>
+                                <rect key="frame" x="324" y="124" width="120" height="120"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="120" id="5lm-Yy-wC1"/>
                                     <constraint firstAttribute="height" constant="120" id="oXq-C2-4Cl"/>
                                 </constraints>
                             </imageView>
+                            <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Copyright © 2016 All Rights Reserved" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jHL-0U-Dpr">
+                                <rect key="frame" x="255" y="959.5" width="258.5" height="18"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                             <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Welcome to Sign Contracts" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hDJ-Rk-PQX">
                                 <rect key="frame" x="0.0" y="64" width="768" height="70"/>
                                 <constraints>
@@ -221,12 +226,6 @@
                                 <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Copyright © 2016 All Rights Reserved" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jHL-0U-Dpr">
-                                <rect key="frame" x="255" y="533" width="259" height="18"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="15"/>
-                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <constraints>
@@ -234,16 +233,16 @@
                             <constraint firstItem="hDJ-Rk-PQX" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" constant="-20" id="3bL-rA-N6J"/>
                             <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="jHL-0U-Dpr" secondAttribute="bottom" constant="20" id="5vh-Gs-OMP"/>
                             <constraint firstItem="jHL-0U-Dpr" firstAttribute="top" secondItem="nLJ-rK-rHu" secondAttribute="bottom" constant="60" id="9Ml-4a-hD6"/>
-                            <constraint firstItem="s1Q-d1-37O" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="9Yd-ii-9dT"/>
                             <constraint firstItem="nLJ-rK-rHu" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" constant="121" id="9wH-2w-3wP"/>
-                            <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="s1Q-d1-37O" secondAttribute="bottom" constant="8" id="Ahd-EO-U1E"/>
-                            <constraint firstItem="nLJ-rK-rHu" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" multiplier="0.7" id="Deu-bF-HVc"/>
+                            <constraint firstItem="nLJ-rK-rHu" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" multiplier="0.75" id="Deu-bF-HVc"/>
                             <constraint firstItem="sw4-tu-HZ6" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" constant="15" id="Ezs-lL-kqp"/>
                             <constraint firstItem="hDJ-Rk-PQX" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" constant="-20" id="FOr-zt-qM3"/>
                             <constraint firstAttribute="trailingMargin" secondItem="hDJ-Rk-PQX" secondAttribute="trailing" constant="-20" id="HLq-aT-aUe"/>
+                            <constraint firstItem="jHL-0U-Dpr" firstAttribute="leading" secondItem="nLJ-rK-rHu" secondAttribute="trailing" constant="-379" id="J97-SW-4bv"/>
                             <constraint firstItem="jHL-0U-Dpr" firstAttribute="top" secondItem="nLJ-rK-rHu" secondAttribute="bottom" constant="70" id="K7o-1c-TEL"/>
                             <constraint firstItem="hDJ-Rk-PQX" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" id="LMc-Rz-3mD"/>
                             <constraint firstItem="nLJ-rK-rHu" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" id="MeL-Li-JLr"/>
+                            <constraint firstItem="jHL-0U-Dpr" firstAttribute="top" secondItem="nLJ-rK-rHu" secondAttribute="bottom" constant="460" id="dHZ-Cm-8M6"/>
                             <constraint firstItem="jHL-0U-Dpr" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="iFU-EI-FX0"/>
                             <constraint firstItem="nLJ-rK-rHu" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="sEc-Kz-nTr"/>
                             <constraint firstItem="sw4-tu-HZ6" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="ujI-9j-c4a"/>
@@ -256,11 +255,18 @@
                                 <exclude reference="MeL-Li-JLr"/>
                                 <exclude reference="wpv-j6-DQK"/>
                                 <exclude reference="Ezs-lL-kqp"/>
-                                <exclude reference="K7o-1c-TEL"/>
                                 <exclude reference="5vh-Gs-OMP"/>
+                                <exclude reference="9Ml-4a-hD6"/>
+                                <exclude reference="J97-SW-4bv"/>
+                                <exclude reference="K7o-1c-TEL"/>
                             </mask>
                         </variation>
                     </view>
+                    <toolbarItems>
+                        <barButtonItem style="plain" systemItem="flexibleSpace" id="Ua0-f1-eA0"/>
+                        <barButtonItem enabled="NO" title="Copyright © 2016 All Rights Reserved" id="M4S-nN-Aj1"/>
+                        <barButtonItem style="plain" systemItem="flexibleSpace" id="bAX-of-KLn"/>
+                    </toolbarItems>
                     <navigationItem key="navigationItem" title="Welcome to Sign Contracts" id="OmX-XA-cOc"/>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="iPad"/>
                     <connections>
@@ -297,7 +303,7 @@
                                 <rect key="frame" x="0.0" y="136" width="768" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="MWM-YE-Ihm" id="Dj7-R1-2es">
-                                    <rect key="frame" x="0.0" y="0.0" width="768" height="43"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="768" height="43.5"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                 </tableViewCellContentView>
                                 <connections>
@@ -308,7 +314,7 @@
                                 <rect key="frame" x="0.0" y="180" width="768" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="juQ-HB-aKn" id="ZvC-3F-Uk6">
-                                    <rect key="frame" x="0.0" y="0.0" width="768" height="43"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="768" height="43.5"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                 </tableViewCellContentView>
                                 <connections>
@@ -321,7 +327,11 @@
                             <outlet property="delegate" destination="dHY-yp-nIM" id="ww1-VV-Sqh"/>
                         </connections>
                     </tableView>
-                    <toolbarItems/>
+                    <toolbarItems>
+                        <barButtonItem style="plain" systemItem="flexibleSpace" id="Wre-bp-5io"/>
+                        <barButtonItem enabled="NO" title="Copyright © 2016 All Rights Reserved" id="h5N-c0-ueb"/>
+                        <barButtonItem style="plain" systemItem="flexibleSpace" id="IyM-eY-2El"/>
+                    </toolbarItems>
                     <navigationItem key="navigationItem" title="Address List" id="OEj-Gr-2H6">
                         <barButtonItem key="leftBarButtonItem" image="back" id="anD-9t-uD6">
                             <connections>
@@ -375,6 +385,11 @@
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
+                    <toolbarItems>
+                        <barButtonItem style="plain" systemItem="flexibleSpace" id="lJY-Tg-bnd"/>
+                        <barButtonItem enabled="NO" title="Copyright © 2016 All Rights Reserved" id="OR3-b6-PaK"/>
+                        <barButtonItem style="plain" systemItem="flexibleSpace" id="jrx-yM-zrA"/>
+                    </toolbarItems>
                     <navigationItem key="navigationItem" title="Files" id="2JW-Am-K0b">
                         <barButtonItem key="leftBarButtonItem" image="back" id="bw7-Ks-uq5">
                             <connections>
@@ -423,7 +438,11 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
-                    <toolbarItems/>
+                    <toolbarItems>
+                        <barButtonItem style="plain" systemItem="flexibleSpace" id="7v8-bQ-GS2"/>
+                        <barButtonItem enabled="NO" title="Copyright © 2016 All Rights Reserved" id="ZzK-7Y-W9e"/>
+                        <barButtonItem style="plain" systemItem="flexibleSpace" id="e1h-jt-CGH"/>
+                    </toolbarItems>
                     <navigationItem key="navigationItem" title="Addendum A" id="B2r-yS-yNN">
                         <barButtonItem key="leftBarButtonItem" image="back" id="7iI-Cu-CP5">
                             <connections>
@@ -472,6 +491,11 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
+                    <toolbarItems>
+                        <barButtonItem style="plain" systemItem="flexibleSpace" id="hdb-sc-aPm"/>
+                        <barButtonItem enabled="NO" title="Copyright © 2016 All Rights Reserved" id="aNl-Sx-suj"/>
+                        <barButtonItem style="plain" systemItem="flexibleSpace" id="1AM-7d-w0d"/>
+                    </toolbarItems>
                     <navigationItem key="navigationItem" title="Addendum C" id="RpX-ZK-AQq">
                         <leftBarButtonItems>
                             <barButtonItem image="back" id="Ij8-a7-nq4">
@@ -537,7 +561,11 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
-                    <toolbarItems/>
+                    <toolbarItems>
+                        <barButtonItem style="plain" systemItem="flexibleSpace" id="Xjy-z8-1WG"/>
+                        <barButtonItem enabled="NO" title="Copyright © 2016 All Rights Reserved" id="0Im-ij-BxG"/>
+                        <barButtonItem style="plain" systemItem="flexibleSpace" id="Br7-Oj-XHt"/>
+                    </toolbarItems>
                     <navigationItem key="navigationItem" title="Sign Contract" id="5nA-mG-z85">
                         <leftBarButtonItems>
                             <barButtonItem image="back" id="xP6-2w-6GP">
@@ -598,14 +626,18 @@
         <!--Navigation Controller-->
         <scene sceneID="Ugg-Z2-cHQ">
             <objects>
-                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="6N7-GH-wKp" sceneMemberID="viewController">
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" toolbarHidden="NO" id="6N7-GH-wKp" sceneMemberID="viewController">
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" barStyle="black" id="w2L-fO-oKF">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="w2L-fO-oKF">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
-                        <color key="barTintColor" red="0.0" green="0.65098039220000004" blue="0.93333333330000001" alpha="1" colorSpace="calibratedRGB"/>
                     </navigationBar>
                     <nil name="viewControllers"/>
+                    <toolbar key="toolbar" opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="ENm-dI-hSu">
+                        <rect key="frame" x="0.0" y="556" width="600" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                        <color key="backgroundColor" red="0.0" green="0.65098039220000004" blue="0.93333333330000001" alpha="1" colorSpace="calibratedRGB"/>
+                    </toolbar>
                     <connections>
                         <segue destination="BYZ-38-t0r" kind="relationship" relationship="rootViewController" id="Eif-eB-9Gt"/>
                     </connections>
@@ -618,7 +650,11 @@
         <scene sceneID="pIw-Kg-V9P">
             <objects>
                 <viewController storyboardIdentifier="ClosingMemoViewController" id="NGU-fJ-Ify" customClass="ClosingMemoViewController" customModule="Contract" customModuleProvider="target" sceneMemberID="viewController">
-                    <toolbarItems/>
+                    <toolbarItems>
+                        <barButtonItem style="plain" systemItem="flexibleSpace" id="tVw-vb-ZOS"/>
+                        <barButtonItem enabled="NO" title="Copyright © 2016 All Rights Reserved" id="ufS-bd-Xqx"/>
+                        <barButtonItem style="plain" systemItem="flexibleSpace" id="aA9-cD-BT2"/>
+                    </toolbarItems>
                     <navigationItem key="navigationItem" title="Closing Memo" id="niw-lE-gSP">
                         <barButtonItem key="leftBarButtonItem" image="back" id="IaG-Zs-c0C">
                             <connections>
@@ -674,7 +710,7 @@
                                         <rect key="frame" x="0.0" y="28" width="200" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="mPn-0f-gpj" id="MQe-hz-deQ">
-                                            <rect key="frame" x="0.0" y="0.0" width="200" height="43"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="200" height="43.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                         </tableViewCellContentView>
                                     </tableViewCell>
@@ -708,6 +744,11 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
+                    <toolbarItems>
+                        <barButtonItem style="plain" systemItem="flexibleSpace" id="Pgu-0U-bsO"/>
+                        <barButtonItem enabled="NO" title="Copyright © 2016 All Rights Reserved" id="gt1-sx-k5W"/>
+                        <barButtonItem style="plain" systemItem="flexibleSpace" id="RrN-tb-dtS"/>
+                    </toolbarItems>
                     <navigationItem key="navigationItem" title="Design Center" id="9qP-c8-6aQ">
                         <leftBarButtonItems>
                             <barButtonItem image="back" id="BAb-T4-tOY">
@@ -768,7 +809,11 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
-                    <toolbarItems/>
+                    <toolbarItems>
+                        <barButtonItem style="plain" systemItem="flexibleSpace" id="I11-o9-3of"/>
+                        <barButtonItem enabled="NO" title="Copyright © 2016 All Rights Reserved" id="pCd-Pm-dAA"/>
+                        <barButtonItem style="plain" systemItem="flexibleSpace" id="hhp-Xi-soj"/>
+                    </toolbarItems>
                     <navigationItem key="navigationItem" title="Third Party Financing Addendum" id="u1d-Nl-F0R">
                         <leftBarButtonItems>
                             <barButtonItem image="back" id="lE1-G2-4Hj">
@@ -850,7 +895,7 @@
                                         <rect key="frame" x="0.0" y="28" width="420" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="7OE-yE-b25" id="NCn-Z4-gyK">
-                                            <rect key="frame" x="0.0" y="0.0" width="420" height="43"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="420" height="43.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                         </tableViewCellContentView>
                                         <inset key="separatorInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
@@ -921,7 +966,7 @@
                                         <rect key="frame" x="0.0" y="72" width="360" height="44"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="48Q-dK-juq" id="l57-qx-U0f">
-                                            <rect key="frame" x="0.0" y="0.0" width="360" height="43"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="360" height="43.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                         </tableViewCellContentView>
                                         <edgeInsets key="layoutMargins" top="8" left="0.0" bottom="8" right="8"/>
@@ -962,6 +1007,11 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
+                    <toolbarItems>
+                        <barButtonItem style="plain" systemItem="flexibleSpace" id="kP2-TR-MyI"/>
+                        <barButtonItem enabled="NO" title="Copyright © 2016 All Rights Reserved" id="QLW-XK-7up"/>
+                        <barButtonItem style="plain" systemItem="flexibleSpace" id="2j5-QF-bSR"/>
+                    </toolbarItems>
                     <navigationItem key="navigationItem" title="EXHIBIT A" id="guC-Bu-gC1">
                         <barButtonItem key="leftBarButtonItem" image="back" id="yjm-Gf-jJC">
                             <connections>
@@ -1010,6 +1060,11 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
+                    <toolbarItems>
+                        <barButtonItem style="plain" systemItem="flexibleSpace" id="HXl-De-hSd"/>
+                        <barButtonItem enabled="NO" title="Copyright © 2016 All Rights Reserved" id="dee-g1-z3m"/>
+                        <barButtonItem style="plain" systemItem="flexibleSpace" id="IpZ-Bv-Mp3"/>
+                    </toolbarItems>
                     <navigationItem key="navigationItem" title="EXHIBIT B" id="cLX-77-hfj">
                         <barButtonItem key="leftBarButtonItem" image="back" id="EP0-OY-Mfb">
                             <connections>
@@ -1058,6 +1113,11 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
+                    <toolbarItems>
+                        <barButtonItem style="plain" systemItem="flexibleSpace" id="X1m-Vh-t7J"/>
+                        <barButtonItem enabled="NO" title="Copyright © 2016 All Rights Reserved" id="MTb-RU-W4g"/>
+                        <barButtonItem style="plain" systemItem="flexibleSpace" id="lAW-M7-NEp"/>
+                    </toolbarItems>
                     <navigationItem key="navigationItem" title="EXHIBIT C General" id="NbB-T1-gXO">
                         <barButtonItem key="leftBarButtonItem" image="back" id="2JM-ve-L0o">
                             <connections>
@@ -1102,8 +1162,8 @@
         <image name="send" width="30" height="30"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="TGh-ew-og1"/>
-        <segue reference="HW8-IB-Dz2"/>
-        <segue reference="Dv1-Rt-7ji"/>
+        <segue reference="w9N-PP-mnn"/>
+        <segue reference="KMc-yt-S0g"/>
+        <segue reference="JIi-GP-7wH"/>
     </inferredMetricsTieBreakers>
 </document>
