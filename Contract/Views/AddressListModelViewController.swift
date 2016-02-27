@@ -11,8 +11,9 @@ protocol ToSwitchAddressDelegate
 {
     func GoToAddress(item : ContractsItem)
 }
-class AddressListModelViewController: UIViewController, UISearchBarDelegate, UITableViewDelegate, UITableViewDataSource {
+class AddressListModelViewController: BaseViewController, UISearchBarDelegate, UITableViewDelegate, UITableViewDataSource {
 
+    var lastSelectedIndexPath : NSIndexPath?
     @IBOutlet var tableviewHeight: NSLayoutConstraint!
     @IBOutlet var searchBar: UISearchBar!
     @IBOutlet var tableView: UITableView!
@@ -86,11 +87,26 @@ class AddressListModelViewController: UIViewController, UISearchBarDelegate, UIT
         let ddd = CiaNmArray?[CiaNm?[indexPath.section] ?? ""]
         let info = ddd![indexPath.row]
         cell.textLabel?.text = info.nproject
-         
+        
+        if let indexa = tableView.indexPathForSelectedRow{
+            if indexa == indexPath{
+                cell.contentView.backgroundColor = CConstants.SearchBarBackColor
+            }else{
+                cell.contentView.backgroundColor = UIColor.whiteColor()
+            }
+        }
+        
         return cell
     }
     
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+        removebackFromCell()
+        if let selectedCell:UITableViewCell = tableView.cellForRowAtIndexPath(indexPath){
+            lastSelectedIndexPath = indexPath
+            selectedCell.contentView.backgroundColor = CConstants.SearchBarBackColor
+        }
+        
+        
         self.dismissViewControllerAnimated(true, completion: nil)
         if let delegate1 = self.delegate {
             let ddd = self.CiaNmArray?[self.CiaNm?[indexPath.section] ?? ""]
@@ -99,6 +115,35 @@ class AddressListModelViewController: UIViewController, UISearchBarDelegate, UIT
         }
         
     }
+    
+     func tableView(tableView: UITableView, didHighlightRowAtIndexPath indexPath: NSIndexPath) {
+        removebackFromCell()
+        if let cell  = tableView.cellForRowAtIndexPath(indexPath) {
+            cell.contentView.backgroundColor = CConstants.SearchBarBackColor
+        }
+        
+    }
+    
+     func tableView(tableView: UITableView, didUnhighlightRowAtIndexPath indexPath: NSIndexPath) {
+        if let cell  = tableView.cellForRowAtIndexPath(indexPath) {
+            lastSelectedIndexPath = indexPath
+            cell.contentView.backgroundColor = .clearColor()
+        }
+        
+    }
+    
+     func removebackFromCell(){
+        if let _ = lastSelectedIndexPath {
+            if let cell = tableView.cellForRowAtIndexPath(lastSelectedIndexPath!){
+                cell.contentView.backgroundColor = .clearColor()
+            }
+        }
+    }
+    
+     func tableView(tableView: UITableView, didDeselectRowAtIndexPath indexPath: NSIndexPath) {
+        removebackFromCell()
+    }
+    
     
 //    func tableView(tableView: UITableView, willDisplayCell cell: UITableViewCell, forRowAtIndexPath indexPath: NSIndexPath) {
 //        cell.separatorInset = UIEdgeInsetsZero

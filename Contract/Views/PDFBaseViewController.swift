@@ -136,12 +136,17 @@ class PDFBaseViewController: BaseViewController, DoOperationDelegate, UIPopoverP
         
         var savedPdfData: NSData?
         
-        if let added = pdfView?.addedAnnotationViews{
-//            print(added)
-            savedPdfData = document?.savedStaticPDFData(added)
+        if self.documents != nil && self.documents?.count > 0 {
+            savedPdfData = PDFDocument.mergedDataWithDocuments(self.documents)
         }else{
-            savedPdfData = document?.savedStaticPDFData()
+            if let added = pdfView?.addedAnnotationViews{
+                //            print(added)
+                savedPdfData = document?.savedStaticPDFData(added)
+            }else{
+                savedPdfData = document?.savedStaticPDFData()
+            }
         }
+        
         let fileBase64String = savedPdfData?.base64EncodedStringWithOptions(NSDataBase64EncodingOptions.EncodingEndLineWithLineFeed)
         parame["file"] = fileBase64String
         parame["username"] = NSUserDefaults.standardUserDefaults().valueForKey(CConstants.LoggedUserNameKey) as? String ?? ""
@@ -219,11 +224,17 @@ class PDFBaseViewController: BaseViewController, DoOperationDelegate, UIPopoverP
     }
     
     func doPrint() {
-        var savedPdfData : NSData?
-        if let added = pdfView?.addedAnnotationViews{
-            savedPdfData = document?.savedStaticPDFData(added)
+        var savedPdfData: NSData?
+        
+        if self.documents != nil && self.documents?.count > 0 {
+            savedPdfData = PDFDocument.mergedDataWithDocuments(self.documents)
         }else{
-            savedPdfData = document?.savedStaticPDFData()
+            if let added = pdfView?.addedAnnotationViews{
+                //            print(added)
+                savedPdfData = document?.savedStaticPDFData(added)
+            }else{
+                savedPdfData = document?.savedStaticPDFData()
+            }
         }
         if UIPrintInteractionController.canPrintData(savedPdfData!) {
             
@@ -259,10 +270,16 @@ class PDFBaseViewController: BaseViewController, DoOperationDelegate, UIPopoverP
         if MFMailComposeViewController.canSendMail() {
             
             var savedPdfData: NSData?
-            if let added = pdfView?.addedAnnotationViews{
-                savedPdfData = document?.savedStaticPDFData(added)
+            
+            if self.documents != nil && self.documents?.count > 0 {
+                savedPdfData = PDFDocument.mergedDataWithDocuments(self.documents)
             }else{
-                savedPdfData = document?.savedStaticPDFData()
+                if let added = pdfView?.addedAnnotationViews{
+                    //            print(added)
+                    savedPdfData = document?.savedStaticPDFData(added)
+                }else{
+                    savedPdfData = document?.savedStaticPDFData()
+                }
             }
             mailComposeViewController.addAttachmentData(savedPdfData!, mimeType: "application/pdf", fileName: getFileName())
             self.presentViewController(mailComposeViewController, animated: true, completion: nil)
@@ -480,10 +497,10 @@ class PDFBaseViewController: BaseViewController, DoOperationDelegate, UIPopoverP
                                             
                                             controller.addendumCpdfInfo = ContractAddendumC(dicInfo: rtnValue)
                                             controller.addendumCpdfInfo!.itemlistStr = itemList
-                                            let pass = i > 19 ? CConstants.PdfFileNameAddendumC2 : CConstants.PdfFileNameAddendumC
+//                                            let pass = i > 19 ? CConstants.PdfFileNameAddendumC2 : CConstants.PdfFileNameAddendumC
                                             controller.filesArray = printModelNms
                                             controller.page2 = i > 19
-                                            controller.initWithResource(pass)
+//                                            controller.initWithResource(pass)
                                         }
                                     }
                                     
@@ -601,7 +618,7 @@ class PDFBaseViewController: BaseViewController, DoOperationDelegate, UIPopoverP
                         controller.pdfInfo0?.idproject = item.idproject
                         controller.pdfInfo0?.code = item.code
                         controller.filesArray = printViewController.filesArray
-                        controller.initWithResource(CConstants.PdfFileNameAddendumC2)
+//                        controller.initWithResource(CConstants.PdfFileNameAddendumC2)
                         controller.page2 = false
                         controller.AddressList = self.AddressList
                         var na = self.navigationController?.viewControllers

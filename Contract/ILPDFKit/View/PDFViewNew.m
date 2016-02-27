@@ -50,7 +50,7 @@
 - (instancetype)initWithFrame:(CGRect)frame dataOrPath:(id)dataOrPath additionViews:(NSArray*)widgetAnnotationViews {
     self = [super initWithFrame:frame];
     if (self) {
-        CGRect contentFrame = CGRectMake(0, 0, frame.size.width, frame.size.height);
+//        CGRect contentFrame = CGRectMake(0, 0, frame.size.width, frame.size.height);
 //        _pdfView = [[UIWebView alloc] initWithFrame:contentFrame];
 //        //        _pdfView.backgroundColor = [UIColor whiteColor];
 //        [self addSubview: _pdfView];

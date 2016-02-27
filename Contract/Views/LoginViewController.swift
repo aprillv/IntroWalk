@@ -12,6 +12,13 @@ import Alamofire
 class LoginViewController: BaseViewController, UITextFieldDelegate {
 
     
+    @IBOutlet var copyrightLbl: UIBarButtonItem!
+//        {
+//        didSet{
+//            copyrightLbl.setTitleTextAttributes([NSFontAttributeName : UIFont(name: "Futura", size: 9)!, NSForegroundColorAttributeName: UIColor.whiteColor()], forState: UIControlState.Normal)
+//            
+//        }
+//    }
     // MARK: - Page constants
     private struct constants{
         static let PasswordEmptyMsg : String = "Password Required."
@@ -81,11 +88,12 @@ class LoginViewController: BaseViewController, UITextFieldDelegate {
         }
     }
     
-    @IBOutlet weak var signInBtn: UIButton!{
-        didSet{
-            signInBtn.layer.cornerRadius = 5.0
-        }
-    }
+    @IBOutlet weak var signInBtn: UIButton!
+//        {
+//        didSet{
+//            signInBtn.layer.cornerRadius = 5.0
+//        }
+//    }
     
     
     // MARK: UITextField Delegate
@@ -302,41 +310,18 @@ class LoginViewController: BaseViewController, UITextFieldDelegate {
     }
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
-        self.navigationController?.navigationBar.barTintColor = UIColor(red: 0, green: 164/255.0, blue: 236/255.0, alpha: 1)
+        self.navigationController?.navigationBar.barTintColor = CConstants.ApplicationColor
         self.navigationController?.navigationBar.barStyle = .Black
         self.navigationController?.navigationBar.titleTextAttributes = [
-            NSFontAttributeName : UIFont(name: "Futura", size: 25)!
+            NSFontAttributeName : UIFont(name: CConstants.ApplicationBarFontName, size: CConstants.ApplicationBarFontSize)!
             
         ]
-        self.navigationController?.toolbar.barTintColor = UIColor(red: 0, green: 164/255.0, blue: 236/255.0, alpha: 1)
+        self.navigationController?.toolbar.barTintColor = CConstants.ApplicationColor
         self.navigationController?.toolbar.barStyle = .Black
         
-        UINavigationBar.appearance().barTintColor = UIColor(red: 0, green: 164/255.0, blue: 236/255.0, alpha: 1)
-        UINavigationBar.appearance().barStyle = .Black
-        UINavigationBar.appearance().titleTextAttributes = [
-            NSFontAttributeName : UIFont(name: "Futura", size: 25)!
-            
-        ]
-        UIToolbar.appearance().barTintColor = UIColor(red: 0, green: 164/255.0, blue: 236/255.0, alpha: 1)
-        UIToolbar.appearance().barStyle = .Black
-        
-        
-        UIBarButtonItem.appearance().setTitleTextAttributes([NSFontAttributeName : UIFont(name: "Futura", size: 17)!, NSForegroundColorAttributeName: UIColor.whiteColor()], forState: UIControlState.Normal)
-        UISearchBar.appearance().barTintColor = UIColor(red: 238/255.0, green: 238/255.0, blue: 238/255.0, alpha: 1)
-        UIBarButtonItem.appearance().tintColor = UIColor.whiteColor()
-//        NSMutableDictionary *textAttributes = [[NSMutableDictionary alloc] initWithDictionary:mainNavController.navigationBar.titleTextAttributes];
-//        [textAttributes setValue:[UIColor whiteColor] forKey:UITextAttributeTextColor];
-        
-//        self.navigationBar.translucent = NO;
-//        self.navigationController?.navigationBarHidden = true
     }
     
     override func viewWillDisappear(animated: Bool) {
         super.viewWillDisappear(animated)
-//        self.navigationController?.navigationBar.barTintColor = UIColor.whiteColor()
-//        self.navigationController?.navigationBar.barStyle = .Default
-////        UIBarButtonItem.appearance().setTitleTextAttributes([NSFontAttributeName : UIFont(name: "Futura", size: 17)!], forState: UIControlState.Normal)
-//        //        UISearchBar.appearance().barTintColor = UIColor(red: 0, green: 164/255.0, blue: 236/255.0, alpha: 0.7)
-//        UIBarButtonItem.appearance().tintColor = UIColor(red: 0, green: 164/255.0, blue: 236/255.0, alpha: 1)
     }
 }

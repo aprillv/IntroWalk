@@ -11,9 +11,15 @@ protocol ToDoPrintDelegate
 {
     func GoToPrint(modelNm: [String])
 }
-class PrintModelTableViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, UIGestureRecognizerDelegate{
+class PrintModelTableViewController: BaseViewController, UITableViewDataSource, UITableViewDelegate, UIGestureRecognizerDelegate{
     // MARK: - Constanse
     
+    @IBOutlet var printBtn: UIButton!{
+        didSet{
+            printBtn.layer.cornerRadius = 5.0
+            printBtn.hidden = true
+        }
+    }
     var delegate : ToDoPrintDelegate?
     
     
@@ -105,6 +111,9 @@ class PrintModelTableViewController: UIViewController, UITableViewDataSource, UI
         cell.textLabel?.text = printList[indexPath.row]
         if indexPath.row == (printList.count - 1) {
             cell.textLabel?.textAlignment = .Center
+            cell.textLabel?.textColor = UIColor.whiteColor()
+            cell.contentView.backgroundColor = CConstants.ApplicationColor
+            cell.backgroundColor = CConstants.ApplicationColor
         }else{
             cell.textLabel?.textAlignment = .Left
             

@@ -11,6 +11,7 @@ import Alamofire
 
 class AddressListViewController: UITableViewController, UISearchBarDelegate, ToDoPrintDelegate {
     
+    var lastSelectedIndexPath : NSIndexPath?
    
     @IBOutlet var switchItem: UIBarButtonItem!
     @IBOutlet var searchBar: UISearchBar!
@@ -186,7 +187,7 @@ class AddressListViewController: UITableViewController, UISearchBarDelegate, ToD
         }
         if let indexa = tableView.indexPathForSelectedRow{
             if indexa == indexPath{
-                cell.contentView.backgroundColor = UIColor(red: 238/255.0, green: 238/255.0, blue: 238/255.0, alpha: 1)
+                cell.contentView.backgroundColor = CConstants.SearchBarBackColor
             }else{
                 cell.contentView.backgroundColor = UIColor.whiteColor()
             }
@@ -348,68 +349,37 @@ class AddressListViewController: UITableViewController, UISearchBarDelegate, ToD
     override func tableView(tableView: UITableView, didHighlightRowAtIndexPath indexPath: NSIndexPath) {
         removebackFromCell()
         if let cell  = tableView.cellForRowAtIndexPath(indexPath) {
-        cell.contentView.backgroundColor = UIColor(red: 238/255.0, green: 238/255.0, blue: 238/255.0, alpha: 1)
+        cell.contentView.backgroundColor = CConstants.SearchBarBackColor
         }
         
     }
     
     override func tableView(tableView: UITableView, didUnhighlightRowAtIndexPath indexPath: NSIndexPath) {
         if let cell  = tableView.cellForRowAtIndexPath(indexPath) {
+            lastSelectedIndexPath = indexPath
             cell.contentView.backgroundColor = .clearColor()
         }
         
     }
 
     private func removebackFromCell(){
-        for i in 0...tableView.numberOfSections-1 {
-            for j in 0...tableView.numberOfRowsInSection(i)-1 {
-                let indexa = NSIndexPath(forRow: i, inSection: j)
-                if let cell = tableView.cellForRowAtIndexPath(indexa){
-                    cell.contentView.backgroundColor = .clearColor()
-                }
-            }
+        if let _ = lastSelectedIndexPath {
+            if let cell = tableView.cellForRowAtIndexPath(lastSelectedIndexPath!){
+                cell.contentView.backgroundColor = .clearColor()
             }
         }
+    }
     
     override func tableView(tableView: UITableView, didDeselectRowAtIndexPath indexPath: NSIndexPath) {
-        if let selectedCell:UITableViewCell = tableView.cellForRowAtIndexPath(indexPath){
-             selectedCell.contentView.backgroundColor = .clearColor()
-        }
+        removebackFromCell()
     }
    
     override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         removebackFromCell()
         if let selectedCell:UITableViewCell = tableView.cellForRowAtIndexPath(indexPath){
-        selectedCell.contentView.backgroundColor = UIColor(red: 238/255.0, green: 238/255.0, blue: 238/255.0, alpha: 1)
+            lastSelectedIndexPath = indexPath
+            selectedCell.contentView.backgroundColor = CConstants.SearchBarBackColor
         }
-        
-//        if let myCell = tableView.cellForRowAtIndexPath(indexPath) {
-//            //Make the rect you want the popover to point at.
-//            let  displayFrom = CGRectMake(myCell.frame.origin.x + myCell.frame.size.width, myCell.center.y + self.tableView.frame.origin.y - self.tableView.contentOffset.y, 1, 1)
-//            
-//            //Now move your anchor button to this location (again, make sure you made your constraints allow this)
-//            self.popOverAnchorButton.frame = displayFrom;
-//            self.performSegueWithIdentifier(CConstants.SegueToPrintModel, sender: myCell)
-//        }
-        
-        
-        
-//        let alert: UIAlertController = UIAlertController(title: nil, message: nil, preferredStyle: .Alert)
-//        let contractAction: UIAlertAction = UIAlertAction(title: getLongString(constants.ActionTitleContract), style: .Default, handler: doContractAction)
-//        let ThirdPartyFinancingAddendumAction: UIAlertAction = UIAlertAction(title: getLongString(constants.ActionThirdPartyFinancingAddendum), style: .Default, handler: doThirdPartyFinancingAddendumAction)
-//        let addendumCAction: UIAlertAction = UIAlertAction(title: getLongString(constants.ActionTitleAddendumC), style: .Default, handler: doAddendumCAction)
-//        let closingMemoAction: UIAlertAction = UIAlertAction(title: getLongString(constants.ActionTitleClosingMemo), style: .Default, handler: doClosingMemoAction)
-//        let designCenterAction: UIAlertAction = UIAlertAction(title: getLongString(constants.ActionTitleDesignCenter), style: .Default, handler: doDesignCenterAction)
-//        
-//        let cancelAction: UIAlertAction = UIAlertAction(title: "Cancel", style: .Cancel, handler: nil)
-//        
-//        alert.addAction(contractAction)
-//        alert.addAction(ThirdPartyFinancingAddendumAction)
-//        alert.addAction(addendumCAction)
-//        alert.addAction(closingMemoAction)
-//        alert.addAction(designCenterAction)
-//        alert.addAction(cancelAction)
-//        self.presentViewController(alert, animated: true, completion: nil)
        self.searchBar.resignFirstResponder()
         
         self.performSegueWithIdentifier(CConstants.SegueToPrintModel, sender: nil)
@@ -447,7 +417,7 @@ class AddressListViewController: UITableViewController, UISearchBarDelegate, ToD
                         controller.AddressList = self.AddressListOrigin
                         controller.filesArray = self.filesNms
                         controller.page2 = false
-                        controller.initWithResource(CConstants.PdfFileNameContract)
+//                        controller.initWithResource(CConstants.PdfFileNameContract)
                         return
                     }
                     if let info = sender as? ContractAddendumC {
@@ -478,10 +448,10 @@ class AddressListViewController: UITableViewController, UISearchBarDelegate, ToD
                         controller.addendumCpdfInfo!.itemlistStr = itemList
                         controller.AddressList = self.AddressListOrigin
                         controller.filesArray = self.filesNms
-                        let pass = i > 19 ? CConstants.PdfFileNameAddendumC2 : CConstants.PdfFileNameAddendumC
+//                        let pass = i > 19 ? CConstants.PdfFileNameAddendumC2 : CConstants.PdfFileNameAddendumC
                         
                         controller.page2 = i > 19
-                        controller.initWithResource(pass)
+//                        controller.initWithResource(pass)
                         
                     }
                     
@@ -678,8 +648,16 @@ class AddressListViewController: UITableViewController, UISearchBarDelegate, ToD
         
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
+//        self.navigationController?.hidesBarsOnSwipe = true
         let userinfo = NSUserDefaults.standardUserDefaults()
         userinfo.setValue(nil, forKey: CConstants.UserInfoPrintModel)
+        
+//        self.extendedLayoutIncludesOpaqueBars = true
+//        self.edgesForExtendedLayout = .None
+//        self.automaticallyAdjustsScrollViewInsets = true
+        
     }
+    
+    
 
 }

@@ -248,72 +248,7 @@ class PDFPrintViewController: PDFBaseViewController {
         setAddendumC()
         view.addSubview(pdfView!)
     }
-    override func sendEmail() {
-        let mailComposeViewController = configuredMailComposeViewController()
-        if MFMailComposeViewController.canSendMail() {
-            
-            let savedPdfData: NSData? = self.document?.mergedDataWithDocuments(self.documents)
-            mailComposeViewController.addAttachmentData(savedPdfData!, mimeType: "application/pdf", fileName: getFileName())
-            self.presentViewController(mailComposeViewController, animated: true, completion: nil)
-        }
-    }
     
-    override func doPrint() {
-        let savedPdfData: NSData? = self.document?.mergedDataWithDocuments(self.documents)
-        
-        if UIPrintInteractionController.canPrintData(savedPdfData!) {
-            let printInfo = UIPrintInfo(dictionary: nil)
-            printInfo.jobName = fileName!
-            printInfo.outputType = .Photo
-            
-            let printController = UIPrintInteractionController.sharedPrintController()
-            printController.printInfo = printInfo
-            printController.showsNumberOfCopies = false
-            
-            printController.printingItem = savedPdfData!
-            
-            printController.presentAnimated(true, completionHandler: nil)
-            printController.delegate = self
-        }
-    }
-    
-    override func savePDFToServer(xname: String){
-        
-        var parame : [String : String] = ["idcia" : pdfInfo0!.idcia!
-            , "idproject" : pdfInfo0!.idproject!
-            , "code" : pdfInfo0!.code!
-            ,"filetype" : pdfInfo0?.nproject ?? "" + "_\(xname)_FromApp"]
-        
-        let savedPdfData: NSData? = self.document?.mergedDataWithDocuments(self.documents)
-        
-        
-        
-        let fileBase64String = savedPdfData?.base64EncodedStringWithOptions(NSDataBase64EncodingOptions.EncodingEndLineWithLineFeed)
-        parame["file"] = fileBase64String
-        parame["username"] = NSUserDefaults.standardUserDefaults().valueForKey(CConstants.LoggedUserNameKey) as? String ?? ""
-        
-        self.noticeOnlyText(CConstants.SavedMsg)
-        
-        Alamofire.request(.POST,
-            CConstants.ServerURL + CConstants.ContractUploadPdfURL,
-            parameters: parame).responseJSON{ (response) -> Void in
-                self.clearNotice()
-                if response.result.isSuccess {
-                    if let rtnValue = response.result.value as? [String: String]{
-                        if rtnValue["status"] == "success" {
-                            self.noticeOnlyTextNoSpinner(CConstants.SavedSuccessMsg)
-                        }else{
-                            self.noticeOnlyTextNoSpinner(CConstants.SavedFailMsg)
-                        }
-                    }else{
-                        self.noticeOnlyTextNoSpinner(CConstants.MsgServerError)
-                    }
-                }else{
-                    self.noticeOnlyTextNoSpinner(CConstants.MsgNetworkError)
-                }
-                self.performSelector("dismissProgress", withObject: nil, afterDelay: 0.5)
-        }
-    }
     
     
     
@@ -323,7 +258,7 @@ class PDFPrintViewController: PDFBaseViewController {
         if userinfo.boolForKey(CConstants.UserInfoIsContract) {
             self.navigationItem.title = "Contract"
         }else{
-        self.navigationItem.title = "Draft"
+            self.navigationItem.title = "Draft"
         }
     }
     
@@ -337,7 +272,7 @@ class PDFPrintViewController: PDFBaseViewController {
             serviceUrl = CConstants.DesignCenterServiceURL
         case CConstants.ActionTitleAddendumC:
             return
-            serviceUrl = CConstants.AddendumCServiceURL
+//            serviceUrl = CConstants.AddendumCServiceURL
         case CConstants.ActionTitleClosingMemo:
             serviceUrl = CConstants.ClosingMemoServiceURL
         case CConstants.ActionTitleContract:

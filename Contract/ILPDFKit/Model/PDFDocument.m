@@ -335,7 +335,7 @@ static void renderPage1(NSUInteger page, CGContextRef ctx, CGPDFDocumentRef doc,
     
 }
 
-- (NSData *)mergedDataWithDocuments:(NSArray *)docs{
++ (NSData *)mergedDataWithDocuments:(NSArray *)docs{
     NSMutableData *pageData = [NSMutableData data];
     UIGraphicsBeginPDFContextToData(pageData, CGRectZero , nil);
     CGContextRef ctx = UIGraphicsGetCurrentContext();

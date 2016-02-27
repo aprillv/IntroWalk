@@ -139,6 +139,6 @@
  */
 - (NSString *)formXML;
 
-- (NSData *)mergedDataWithDocuments:(NSArray *)docs;
++ (NSData *)mergedDataWithDocuments:(NSArray *)docs;
 
 @end

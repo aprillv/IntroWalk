@@ -131,6 +131,12 @@ struct CConstants{
     static let ActionTitleINFORMATION_ABOUT_BROKERAGE_SERVICES = "Information about Brokerage Services"
     static let ActionTitleGoContract : String = "Print Contract"
     static let ActionTitleGoDraft : String = "Print Draft"
+    
+    static let ApplicationColor  = UIColor(red: 0, green: 164/255.0, blue: 236/255.0, alpha: 1)
+    static let SearchBarBackColor = UIColor(red: 238/255.0, green: 238/255.0, blue: 238/255.0, alpha: 1)
+    static let ApplicationBarFontName  =  "Futura"
+    static let ApplicationBarFontSize : CGFloat = 25.0
+    static let ApplicationBarItemFontSize : CGFloat = 17.0
 }
 
 
