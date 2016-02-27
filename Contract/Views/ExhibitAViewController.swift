@@ -13,6 +13,7 @@ class ExhibitAViewController: PDFBaseViewController {
         super.viewDidLoad()
         self.navigationItem.title = CConstants.ActionTitleEXHIBIT_A
     }
+    @IBOutlet var view2: UIView!
     private struct PDFFields{
         static let To = "1"
 //        static let From = "CompanyName"
@@ -47,8 +48,8 @@ class ExhibitAViewController: PDFBaseViewController {
             }
         }
         let pass = document?.documentPath ?? document?.documentData
-        pdfView = PDFView(frame: view.bounds, dataOrPath: pass, additionViews: additionViews)
-        view.addSubview(pdfView!)
+        pdfView = PDFView(frame: view2.bounds, dataOrPath: pass, additionViews: additionViews)
+        view2.addSubview(pdfView!)
         
     }
     

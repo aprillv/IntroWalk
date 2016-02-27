@@ -80,20 +80,20 @@ static NSMutableArray *colors;
     self.frame = CGRectMake(0, 0, 500, 1000);
 //       self.backgroundColor = [UIColor gr];
     CALayer *layer = self.layer;
-    [layer setCornerRadius:15.0];
-    layer.borderColor = [[UIColor grayColor] CGColor];
-    layer.borderWidth = 1;
-     self.backgroundColor = [UIColor colorWithRed:59./255. green:73./255. blue:82./255. alpha:1];
+    [layer setCornerRadius:5.0];
+//    layer.borderColor = [[UIColor whiteColor] CGColor];
+//    layer.borderWidth = 1;
+//     self.backgroundColor = [UIColor colorWithRed:59./255. green:73./255. blue:82./255. alpha:1];
 //    layer.backgroundColor = [UIColor colorWithRed:59./255. green:73./255. blue:82./255. alpha:1].CGColor;
-
+self.backgroundColor = [UIColor colorWithRed: 35/255.0 green: 174/255.0 blue: 235/255.0 alpha: 1];
 
     //contentLbl
     contentLbl = [[UILabel alloc]init];
     contentLbl.text = @"Please print your initial here";
     contentLbl.textAlignment = NSTextAlignmentLeft;
     contentLbl.textColor = [UIColor whiteColor];
-    contentLbl.frame = CGRectMake(40, 40, 500, 50);
-    contentLbl.font = [UIFont systemFontOfSize:32.0];
+    contentLbl.frame = CGRectMake(10, 15, 500, 40);
+    contentLbl.font = [UIFont fontWithName:@"Futura" size:25];
     contentLbl.backgroundColor = [UIColor clearColor];
     [self addSubview:contentLbl];
 //    [contentLbl release];
@@ -116,6 +116,7 @@ static NSMutableArray *colors;
     //clearBtn
     clearBtn = [[UIButton alloc]init];
     [self renderBtn:clearBtn];
+    
     [clearBtn setTitle:@"Clear" forState:UIControlStateNormal];
     clearBtn.frame = CGRectMake(btn_x, btn_y, btn_w, btn_h);
     [self addSubview:clearBtn];
@@ -158,9 +159,12 @@ static NSMutableArray *colors;
      id<UIApplicationDelegate> appDelegate = [[UIApplication sharedApplication] delegate];
     
     CGRect appFrame = appDelegate.window.rootViewController.view.frame;
-    CGFloat cx = MIN(appFrame.size.width, appFrame.size.height) - btn_w * 3 - 60 - btn_mid * 2;
+    CGFloat cx = MIN(appFrame.size.width, appFrame.size.height) - btn_w * 3 - 60 - btn_mid * 2 +30;
     for (UIButton *btn in btnRArr) {
-        btn.frame = CGRectMake(cx + i * (btn_w+btn_mid), 400, btn_w, btn_h);
+        [btn.titleLabel setFont:[UIFont fontWithName:@"Futura" size:17]];
+        CGRect ct = CGRectMake(cx + i * (btn_w+btn_mid), 400, btn_w, btn_h);
+        ct.origin.y -= 60;
+        btn.frame = ct;
         i++;
     }
 
@@ -180,16 +184,22 @@ static NSMutableArray *colors;
 //    [sliderLbl release];
     
     
-    UISwitch *applyToAll = [[UISwitch alloc]initWithFrame:CGRectMake(40, 400, 60, 20)];
+    UISwitch *applyToAll = [[UISwitch alloc]initWithFrame:CGRectMake(10, okBtn.frame.origin.y+5, 60, 20)];
     [self addSubview:applyToAll];
     toAllSwitch = applyToAll;
+    applyToAll.tintColor = [UIColor whiteColor];
+    applyToAll.onTintColor = [UIColor whiteColor];
+//    applyToAll.onTintColor = [UIColor colorWithRed: 66/255.0 green: 133/255.0 blue: 244/255.0 alpha: 1];
+    [applyToAll.layer setBorderWidth:1.0f];
+    [applyToAll.layer setBorderColor:RGBCOLOR(255, 255, 255).CGColor];
     applyToAll.transform = CGAffineTransformMakeScale(0.9, 0.9);
     
     sliderLbl = [[UILabel alloc]init];
     sliderLbl.text = @"Apply to all pages";
+    [sliderLbl setFont:[UIFont fontWithName:@"Futura" size:17]];
     sliderLbl.textAlignment = NSTextAlignmentLeft;
     sliderLbl.textColor = [UIColor whiteColor];
-    sliderLbl.frame = CGRectMake(100, 405, 220, 20);
+    sliderLbl.frame = CGRectMake(70, okBtn.frame.origin.y+10, 220, 20);
     sliderLbl.font = [UIFont systemFontOfSize:18.0];
     sliderLbl.backgroundColor = [UIColor clearColor];
     [self addSubview:sliderLbl];
@@ -210,7 +220,7 @@ static NSMutableArray *colors;
     colors=[[NSMutableArray alloc]initWithObjects:[UIColor greenColor],[UIColor blueColor],[UIColor redColor],[UIColor blackColor],[UIColor whiteColor], nil];
     self.buttonHidden=YES;
     self.widthHidden=YES;
-    self.drawView=[[MyView alloc]initWithFrame:CGRectMake(40, 100, MIN(appFrame.size.width, appFrame.size.height) - 100, 800/3.0)];
+    self.drawView=[[MyView alloc]initWithFrame:CGRectMake(0, 60, MIN(appFrame.size.width, appFrame.size.height) - 20, 800/3.0)];
     [self.drawView setBackgroundColor:RGBCOLOR(255, 255, 255)];
     [self addSubview: self.drawView];
     [self sendSubviewToBack:self.drawView];
@@ -428,10 +438,10 @@ void ProviderReleaseData (void *info, const void *data, size_t size)
 
 
 -(void)renderBtn:(UIButton *)btn{
-    [btn setBackgroundImage:[self imageFromColor:RGBCOLOR(59,73,82)] forState:UIControlStateNormal];
+    [btn setBackgroundImage:[self imageFromColor:RGBCOLOR(35,174,235)] forState:UIControlStateNormal];
     [btn setBackgroundImage:[self imageFromColor:RGBCOLOR(169,183,192)]
                    forState:UIControlStateHighlighted];
-     double dRadius = 2.0f;
+     double dRadius = 5.0f;
     [btn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
     //CornerRadius/Border
     [btn.layer setCornerRadius:dRadius];

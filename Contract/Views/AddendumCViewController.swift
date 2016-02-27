@@ -11,6 +11,7 @@ import Alamofire
 
 class AddendumCViewController: PDFBaseViewController {
     
+    @IBOutlet var view2: UIView!
     var pdfInfo : ContractAddendumC?{
         didSet{
             pdfInfo0 = pdfInfo;
@@ -244,9 +245,9 @@ class AddendumCViewController: PDFBaseViewController {
             }
             
             additionViews?.appendContentsOf(addedAnnotationViews)
-            pdfView = PDFView(frame: view.bounds, dataOrPath: pass, additionViews: additionViews)
+            pdfView = PDFView(frame: view2.bounds, dataOrPath: pass, additionViews: additionViews)
             pdfView?.addedAnnotationViews = addedAnnotationViews
-            view.addSubview(pdfView!)
+            view2.addSubview(pdfView!)
             
             
             pdfView?.pdfView.scrollView.contentSize = CGSizeMake(100, 900);

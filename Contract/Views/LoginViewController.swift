@@ -89,11 +89,12 @@ class LoginViewController: BaseViewController, UITextFieldDelegate {
     }
     
     @IBOutlet weak var signInBtn: UIButton!
-//        {
-//        didSet{
-//            signInBtn.layer.cornerRadius = 5.0
-//        }
-//    }
+        {
+        didSet{
+            signInBtn.layer.cornerRadius = 5.0
+            signInBtn.titleLabel?.font = UIFont(name: CConstants.ApplicationBarFontName, size: CConstants.ApplicationBarItemFontSize)
+        }
+    }
     
     
     // MARK: UITextField Delegate

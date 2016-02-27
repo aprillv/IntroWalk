@@ -10,6 +10,7 @@ import Alamofire
 
 class SignContractViewController: PDFBaseViewController {
 
+    @IBOutlet var view2: UIView!
   
     var isDownload : Bool?
     var pdfInfo : ContractSignature?{
@@ -220,7 +221,7 @@ class SignContractViewController: PDFBaseViewController {
             , PDFFields.SalePrice : PDFFields.SalePrice1]
         
 //        pdfInfo?.section = "MEADOWS AT TRINITY CROSSING PHASE 2-B-1 AMENDED PL"
-        pdfView = PDFView(frame: view.bounds, dataOrPath: pass, additionViews: additionViews)
+        pdfView = PDFView(frame: view2.bounds, dataOrPath: pass, additionViews: additionViews)
         let na = overrideFields.keys
         for pv : PDFWidgetAnnotationView in additionViews!{
             if na.contains(pv.xname){
@@ -388,7 +389,7 @@ class SignContractViewController: PDFBaseViewController {
         }
         
 //        print(self.document?.forms)
-        view.addSubview(pdfView!)
+        view2.addSubview(pdfView!)
         
     }
     

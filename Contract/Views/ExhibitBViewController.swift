@@ -20,6 +20,7 @@ class ExhibitBViewController: PDFBaseViewController {
         static let Date = "PROPERTY 2"
         static let CompanyName = "CompanyName"
     }
+    @IBOutlet var view2: UIView!
     
     var pdfInfo : AddendumA?{
         didSet{
@@ -47,8 +48,8 @@ class ExhibitBViewController: PDFBaseViewController {
             }
         }
         let pass = document?.documentPath ?? document?.documentData
-        pdfView = PDFView(frame: view.bounds, dataOrPath: pass, additionViews: additionViews)
-        view.addSubview(pdfView!)
+        pdfView = PDFView(frame: view2.bounds, dataOrPath: pass, additionViews: additionViews)
+        view2.addSubview(pdfView!)
         
     }
 }

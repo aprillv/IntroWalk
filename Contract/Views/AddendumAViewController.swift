@@ -10,6 +10,7 @@ import UIKit
 
 class AddendumAViewController: PDFBaseViewController {
     
+    @IBOutlet var view2: UIView!
     var pdfInfo : AddendumA?{
         didSet{
             pdfInfo0 = pdfInfo;
@@ -52,8 +53,8 @@ class AddendumAViewController: PDFBaseViewController {
             }
         }
         let pass = document?.documentPath ?? document?.documentData
-        pdfView = PDFView(frame: view.bounds, dataOrPath: pass, additionViews: additionViews)
-        view.addSubview(pdfView!)
+        pdfView = PDFView(frame: view2.bounds, dataOrPath: pass, additionViews: additionViews)
+        view2.addSubview(pdfView!)
         
     }
     

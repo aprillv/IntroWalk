@@ -17,6 +17,7 @@ class ThirdPartyFinacingAddendumViewController: PDFBaseViewController {
     }
     var sender: UIBarButtonItem?
     
+    @IBOutlet var view2: UIView!
     private struct PDFFields{
         static let AddressCity = "Street Address and City"
         static let PropertyAddress = "Address of Property"
@@ -46,8 +47,8 @@ class ThirdPartyFinacingAddendumViewController: PDFBaseViewController {
             }
         }
         let pass = document?.documentPath ?? document?.documentData
-        pdfView = PDFView(frame: view.bounds, dataOrPath: pass, additionViews: additionViews)
-        view.addSubview(pdfView!)
+        pdfView = PDFView(frame: view2.bounds, dataOrPath: pass, additionViews: additionViews)
+        view2.addSubview(pdfView!)
 
     }
     

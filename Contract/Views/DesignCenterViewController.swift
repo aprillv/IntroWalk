@@ -15,6 +15,7 @@ class DesignCenterViewController: PDFBaseViewController {
         }
     }
     
+    @IBOutlet var view2: UIView!
     var sender: UIBarButtonItem?
     
     private struct PDFFields{
@@ -171,8 +172,8 @@ class DesignCenterViewController: PDFBaseViewController {
             
             
             
-            pdfView = PDFView(frame: view.bounds, dataOrPath: pass, additionViews: additionViews)
-            view.addSubview(pdfView!)
+            pdfView = PDFView(frame: view2.bounds, dataOrPath: pass, additionViews: additionViews)
+            view2.addSubview(pdfView!)
         }
     }
     

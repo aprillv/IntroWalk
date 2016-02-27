@@ -109,7 +109,7 @@ static PopSignUtil *popSignUtil = nil;
 //    }else{
 //        conformView.frame = CGRectMake( (w-h)/2, v_y, h-20,conformView.frame.size.width);
 //    }
-    conformView.frame = CGRectMake( 0, 0, h-20, conformView.frame.size.width);
+    conformView.frame = CGRectMake( 0, 0, h-20, conformView.frame.size.width-110);
     conformView.center = zhezhaoView.center;
     [zhezhaoView addSubview:conformView];
 //    [conformView release];

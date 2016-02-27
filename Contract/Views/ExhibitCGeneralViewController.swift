@@ -25,6 +25,7 @@ class ExhibitCGeneralViewController: PDFBaseViewController {
         static let Date = "SignatureDate"
         static let CompanyName = "CompanyName"
     }
+    @IBOutlet var view2: UIView!
     
     override func loadPDFView(){
         
@@ -44,8 +45,8 @@ class ExhibitCGeneralViewController: PDFBaseViewController {
             }
         }
         let pass = document?.documentPath ?? document?.documentData
-        pdfView = PDFView(frame: view.bounds, dataOrPath: pass, additionViews: additionViews)
-        view.addSubview(pdfView!)
+        pdfView = PDFView(frame: view2.bounds, dataOrPath: pass, additionViews: additionViews)
+        view2.addSubview(pdfView!)
         
     }
     

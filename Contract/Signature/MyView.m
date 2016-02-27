@@ -192,6 +192,7 @@ static NSMutableArray *colors;
         SignatureView *sign = [[SignatureView alloc] initWithFrame:ct];
         sign.lineArray = na;
         sign.originHeight = ct.size.height;
+        sign.originWidth = ct.size.width;
         sign.LineWidth =width;
         CGRect ct2 = sign.frame;
         ct2.origin.x = ct2.origin.y = 0;

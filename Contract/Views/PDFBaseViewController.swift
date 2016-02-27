@@ -10,7 +10,7 @@ import Alamofire
 import MessageUI
 
 class PDFBaseViewController: BaseViewController, DoOperationDelegate, UIPopoverPresentationControllerDelegate, MFMailComposeViewControllerDelegate, UIPrintInteractionControllerDelegate, ToDoPrintDelegate, ToSwitchAddressDelegate {
-    
+//    @IBOutlet var view2: UIView!
     var document : PDFDocument?
     var documents : [PDFDocument]?
 //    var documentAddedDotArray : [[PDFWidgetAnnotationView]]?

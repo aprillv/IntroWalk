@@ -15,6 +15,7 @@ class ClosingMemoViewController: PDFBaseViewController {
         }
     }
     
+    @IBOutlet var view2: UIView!
     private struct PDFFields{
         
         static let CiaNm = "txtCiaNm"
@@ -255,9 +256,9 @@ class ClosingMemoViewController: PDFBaseViewController {
             
 //            print(pdfInfo?.memoItemlist!.count)
             additionViews.appendContentsOf(addedAnnotationViews)
-            pdfView = PDFView(frame: view.bounds, dataOrPath: pass, additionViews: additionViews)
+            pdfView = PDFView(frame: view2.bounds, dataOrPath: pass, additionViews: additionViews)
             pdfView?.addedAnnotationViews = addedAnnotationViews
-            view.addSubview(pdfView!)
+            view2.addSubview(pdfView!)
         }
     }
     

@@ -14,7 +14,7 @@ class PDFPrintViewController: PDFBaseViewController {
     
     
     var isDownload : Bool?
-    
+    @IBOutlet var view2: UIView!
     var addendumApdfInfo : AddendumA?{
         didSet{
             if let info = addendumApdfInfo {
@@ -242,12 +242,13 @@ class PDFPrintViewController: PDFBaseViewController {
         }
         
         
-        pdfView = PDFView(frame: view.bounds, dataOrPathArray: filesNames, additionViews: allAdditionViews)
+        pdfView = PDFView(frame: view2.bounds, dataOrPathArray: filesNames, additionViews: allAdditionViews)
         
 //        print(self.document?.forms)
         setAddendumC()
-        view.addSubview(pdfView!)
+        view2.addSubview(pdfView!)
     }
+    
     
     
     
@@ -388,5 +389,19 @@ class PDFPrintViewController: PDFBaseViewController {
         
         return nil
     }
+    
+    @IBAction func BuyerSign(sender: UIBarButtonItem) {
+        self.dismissViewControllerAnimated(true){
+            
+        }
+        print(self.pdfView?.pdfView.scrollView.contentSize.height)
+    }
+    
+    @IBAction func  SellerSign(sender: UIBarButtonItem) {
+        self.dismissViewControllerAnimated(true){
+            
+        }
+    }
+    
     
 }

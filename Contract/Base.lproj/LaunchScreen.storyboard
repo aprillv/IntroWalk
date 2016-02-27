@@ -18,12 +18,11 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Welcome to Sign Contract" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="f2g-XU-NVU">
-                                <rect key="frame" x="128" y="270" width="344" height="60"/>
+                                <rect key="frame" x="110" y="270" width="380" height="60"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="238" id="qQA-5i-ZUf"/>
                                 </constraints>
-                                <fontDescription key="fontDescription" name="Futura-Medium" family="Futura" pointSize="29"/>
-                                <color key="textColor" red="0.0" green="0.65098039220000004" blue="0.93333333330000001" alpha="1" colorSpace="calibratedRGB"/>
+                                <fontDescription key="fontDescription" name="Futura-Medium" family="Futura" pointSize="32"/>
                                 <nil key="highlightedColor"/>
                                 <variation key="default">
                                     <mask key="constraints">

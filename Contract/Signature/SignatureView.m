@@ -90,6 +90,7 @@
             self.frame = ct;
             self.lineArray = sv.lineArray;
             self.originHeight =sv.originHeight;
+            self.originWidth = sv.originWidth;
             self.LineWidth = sv.LineWidth;
             
             if (isToAll) {
@@ -101,6 +102,7 @@
                         other.frame = ct;
                         other.lineArray = sv.lineArray;
                         other.originHeight =sv.originHeight;
+                        other.originWidth = sv.originWidth;
                         other.LineWidth = sv.LineWidth;
                     }
                 }
@@ -122,6 +124,7 @@
             self.frame = ct;
             self.lineArray = sv.lineArray;
             self.originHeight =sv.originHeight;
+            self.originWidth = sv.originWidth;
             self.LineWidth = sv.LineWidth;
             
             if (isToAll) {
@@ -133,6 +136,7 @@
                         other.frame = ct;
                         other.lineArray = sv.lineArray;
                         other.originHeight =sv.originHeight;
+                        other.originWidth = sv.originWidth;
                         other.LineWidth = sv.LineWidth;
                     }
                 }
@@ -153,7 +157,8 @@
 -(void)drawInRect:(CGRect)rect withContext:(CGContextRef )context{
     if (self.originHeight > 0) {
         //        ratios = MIN(frame.size.width/self.frame.size.width, frame.size.height/self.frame.size.height);
-        ratios = rect.size.height/self.originHeight;
+        ratios = MIN(rect.size.height/self.originHeight, rect.size.width/self.originWidth);
+//        NSLog(@"%f == %f", rect.size.height/self.originHeight, rect.size.width/self.originWidth);
     }else{
         ratios = 1;
     }

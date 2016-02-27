@@ -13,12 +13,13 @@ class InformationAboutBrokerageServicesViewController: PDFBaseViewController {
         super.viewDidLoad()
         self.navigationItem.title = CConstants.ActionTitleINFORMATION_ABOUT_BROKERAGE_SERVICES
     }
+    @IBOutlet var view2: UIView!
     override func loadPDFView(){
         let margins = getMargins()
         let additionViews = document?.forms.createWidgetAnnotationViewsForSuperviewWithWidth(view.bounds.size.width, margin: margins.x, hMargin: margins.y, pageMargin:0.0) as? [PDFWidgetAnnotationView]
         let pass = document?.documentPath ?? document?.documentData
-        pdfView = PDFView(frame: view.bounds, dataOrPath: pass, additionViews: additionViews)
-        view.addSubview(pdfView!)
+        pdfView = PDFView(frame: view2.bounds, dataOrPath: pass, additionViews: additionViews)
+        view2.addSubview(pdfView!)
         
     }
 }

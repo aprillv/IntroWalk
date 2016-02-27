@@ -14,6 +14,7 @@ protocol ToDoPrintDelegate
 class PrintModelTableViewController: BaseViewController, UITableViewDataSource, UITableViewDelegate, UIGestureRecognizerDelegate{
     // MARK: - Constanse
     
+    
     @IBOutlet var printBtn: UIButton!{
         didSet{
             printBtn.layer.cornerRadius = 5.0
@@ -101,38 +102,38 @@ class PrintModelTableViewController: BaseViewController, UITableViewDataSource, 
     //        return 44
     //    }
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCellWithIdentifier(constants.cellReuseIdentifier, forIndexPath: indexPath)
+        let cell = tableView.dequeueReusableCellWithIdentifier(constants.cellReuseIdentifier, forIndexPath: indexPath) as! PrintModelTableViewCell
 //        let a = UIView(frame: CGRect(x: 0, y: 0, width: cell.frame.size.width, height:  cell.frame.size.height))
 //        a.backgroundColor = UIColor(red: 246/255.0, green: 246/255.0, blue: 246/255.0, alpha: 1)
 //        cell.selectedBackgroundView = a
         cell.separatorInset = UIEdgeInsetsZero
         cell.layoutMargins = UIEdgeInsetsZero
         cell.preservesSuperviewLayoutMargins = false
-        cell.textLabel?.text = printList[indexPath.row]
+        cell.contentLbl?.text = printList[indexPath.row]
         if indexPath.row == (printList.count - 1) {
-            cell.textLabel?.textAlignment = .Center
-            cell.textLabel?.textColor = UIColor.whiteColor()
-            cell.contentView.backgroundColor = CConstants.ApplicationColor
-            cell.backgroundColor = CConstants.ApplicationColor
+            cell.contentLbl?.textAlignment = .Center
+            cell.contentLbl?.textColor = UIColor.whiteColor()
+//            cell.contentView.backgroundColor = CConstants.ApplicationColor
+            cell.contentLbl?.backgroundColor = CConstants.ApplicationColor
+            cell.contentLbl?.font = UIFont(name: CConstants.ApplicationBarFontName, size: CConstants.ApplicationBarItemFontSize)
+            cell.imageBtn?.image = UIImage(named: "check")
+            cell.leadingtoLeft.constant = -8
+            cell.updateConstraintsIfNeeded()
         }else{
             cell.textLabel?.textAlignment = .Left
             
             let userinfo = NSUserDefaults.standardUserDefaults()
             if let filesNames = userinfo.valueForKey(CConstants.UserInfoPrintModel) as? [String] {
                 if filesNames.contains(printList[indexPath.row]) {
-                    cell.accessoryType = UITableViewCellAccessoryType.Checkmark
-                    let iv = UIImageView(image: UIImage(named: "checked"))
-                    iv.frame = CGRect(x: 0, y: 0, width: 30, height: 30)
-                    cell.accessoryView = iv
+                    cell.contentView.tag = 1
+                    cell.imageBtn?.image = UIImage(named: "checked")
                 }else{
-                    let iv = UIImageView(image: UIImage(named: "check"))
-                    iv.frame = CGRect(x: 0, y: 0, width: 30, height: 30)
-                    cell.accessoryView = iv
+                    cell.contentView.tag = 0
+                    cell.imageBtn?.image = UIImage(named: "check")
                 }
             }else{
-                let iv = UIImageView(image: UIImage(named: "check"))
-                iv.frame = CGRect(x: 0, y: 0, width: 30, height: 30)
-                cell.accessoryView = iv
+                cell.contentView.tag = 0
+                cell.imageBtn?.image = UIImage(named: "check")
             }
         }
         
@@ -149,29 +150,33 @@ class PrintModelTableViewController: BaseViewController, UITableViewDataSource, 
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         
         if indexPath.row < (printList.count - 1) {
-            let cell = tableView.cellForRowAtIndexPath(indexPath)
-            cell?.accessoryType = cell?.accessoryType == UITableViewCellAccessoryType.None ? UITableViewCellAccessoryType.Checkmark : UITableViewCellAccessoryType.None
-            let iv :UIImageView
-            if cell?.accessoryType == UITableViewCellAccessoryType.Checkmark {
-                iv = UIImageView(image: UIImage(named: "checked"))
+            let cell = tableView.cellForRowAtIndexPath(indexPath) as? PrintModelTableViewCell
+            cell?.contentView.tag = 1 - cell!.contentView.tag
+            let iv :UIImage?
+            if cell?.contentView.tag == 1 {
+                iv = UIImage(named: "checked")
             }else{
-                iv = UIImageView(image: UIImage(named: "check"))
+                iv = UIImage(named: "check")
             }
             
-            iv.frame = CGRect(x: 0, y: 0, width: 30, height: 30)
-            cell?.accessoryView = iv
+            cell?.imageBtn?.image = iv
             
         }else{
+            
             var selectedCellArray = [NSIndexPath]()
             
             for i in 0...printList.count-1 {
                 let index = NSIndexPath(forRow: i, inSection: 0)
                 if let cell = tableView.cellForRowAtIndexPath(index) {
-                    if cell.accessoryType == UITableViewCellAccessoryType.Checkmark {
+                    if cell.contentView.tag == 1 {
                         selectedCellArray.append(index)
                     }
+                    
+                    
                 }
             }
+            
+            
             if selectedCellArray.count == 0 {
                 return
             }else{
@@ -181,9 +186,6 @@ class PrintModelTableViewController: BaseViewController, UITableViewDataSource, 
                         for indexPath0 in selectedCellArray {
                             let title = self.printList[indexPath0.row]
                             filesNames.append(title)
-                            
-                            
-                            //
                         }
                         let userinfo = NSUserDefaults.standardUserDefaults()
                         userinfo.setValue(filesNames, forKey: CConstants.UserInfoPrintModel)
