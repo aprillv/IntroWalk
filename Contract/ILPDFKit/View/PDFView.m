@@ -227,9 +227,23 @@
         [element updateWithZoom:scale];
     }
 }
+//- (void)scrollViewDidEndDragging:(UIScrollView *)scrollView willDecelerate:(BOOL)decelerate{
+//    NSLog(@"%f\n%f", scrollView.contentSize.height, scrollView.frame.size.height);
+//    NSInteger pagenumber = scrollView.contentOffset.y / scrollView.bounds.size.height;
+//    NSLog(@"%d", pagenumber);
+//}
+//- (void)scrollViewDidEndDecelerating:(UIScrollView *)scrollView{
+//    NSInteger pagenumber = scrollView.contentOffset.y / scrollView.bounds.size.height;
+//    NSLog(@"%d", pagenumber);
+//}
+
 
 - (void)scrollViewDidScroll:(UIScrollView *)scrollView {
+//    NSInteger pagenumber = scrollView.contentOffset.y / scrollView.bounds.size.height;
+//    NSLog(@"%d", pagenumber);
 }
+
+
 
 #pragma mark - UIGestureRecognizerDelegate
 

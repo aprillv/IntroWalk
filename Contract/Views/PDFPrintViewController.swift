@@ -10,7 +10,7 @@ import UIKit
 import Alamofire
 import MessageUI
 
-class PDFPrintViewController: PDFBaseViewController {
+class PDFPrintViewController: PDFBaseViewController, UIScrollViewDelegate {
     
     
     var isDownload : Bool?
@@ -484,7 +484,9 @@ class PDFPrintViewController: PDFBaseViewController {
     }
     
 
-    
+    func scrollViewDidEndScrollingAnimation(scrollView: UIScrollView) {
+        print(scrollView.contentOffset.y / scrollView.bounds.size.height)
+    }
     
     
     @IBAction func  SellerSign(sender: UIBarButtonItem) {
