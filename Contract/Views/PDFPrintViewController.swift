@@ -391,16 +391,105 @@ class PDFPrintViewController: PDFBaseViewController {
     }
     
     @IBAction func BuyerSign(sender: UIBarButtonItem) {
-        self.dismissViewControllerAnimated(true){
-            
+        self.dismissViewControllerAnimated(true){}
+//        print(self.pdfView?.pdfView.scrollView.contentSize.height)
+        if fileDotsDic != nil {
+            for (_, v) in fileDotsDic! {
+                for a in v {
+                    if let sign = a as? SignatureView {
+//                        print(b.xname)
+//                        print(b.tag, b.superview)
+                        if sender.tag == 1 && sign.xname.hasSuffix("bottom1")
+                            || sender.tag == 2 && sign.xname.hasSuffix("bottom2")
+                            || sender.tag == 3 && sign.xname.hasSuffix("bottom3")
+                            || sender.tag == 4 && sign.xname.hasSuffix("bottom4"){
+                            //buyer1
+                            if CGRectIntersectsRect(sign.superview!.bounds, sign.frame) {
+                                sign.toSignautre()
+                                return
+                            }
+                        }
+                        if sender.tag == 1 && sign.xname == ("buyer2Sign")
+                        || sender.tag == 2 && sign.xname == ("buyer3Sign")
+                        || sender.tag == 3 && sign.xname == ("seller2Sign")
+                        || sender.tag == 4 && sign.xname == ("seller3Sign"){
+                            if CGRectIntersectsRect(sign.superview!.bounds, sign.frame) {
+                                sign.toSignautre()
+                                return
+                            }
+                        }
+                        
+                        //broker
+                        if addendumApdfInfo != nil{
+                            if let hasrealtor = addendumApdfInfo!.hasbroker {
+                                if hasrealtor == "" {
+                                    if sender.tag == 1 && sign.xname == "broker2buyer2Sign"
+                                        || sender.tag == 2 && sign.xname == "broker2buyer3Sign"
+                                        || sender.tag == 3 && sign.xname==("broker2buyer2DateSign")
+                                        || sender.tag == 4 && sign.xname==("broker2buyer3DateSign"){
+                                            if CGRectIntersectsRect(sign.superview!.bounds, sign.frame) {
+                                                sign.toSignautre()
+                                                return
+                                            }
+                                    }
+                                }else{
+                                    if sender.tag == 1 && sign.xname == "brokerbuyer2Sign"
+                                        || sender.tag == 2 && sign.xname == "brokerbuyer3Sign"
+                                        || sender.tag == 3 && sign.xname==("brokerbuyer2DateSign")
+                                        || sender.tag == 4 && sign.xname==("brokerbuyer3DateSign"){
+                                            if CGRectIntersectsRect(sign.superview!.bounds, sign.frame) {
+                                                sign.toSignautre()
+                                                return
+                                            }
+                                    }
+                                }
+                                
+                            }
+
+                        }
+                        
+                        //broker
+                        if addendumCpdfInfo != nil{
+                           
+                            if sender.tag == 1 && sign.xname == "april1Sign"
+                                || sender.tag == 2 && sign.xname == "april2Sign"
+                                || sender.tag == 3 && sign.xname==("april3Sign"){
+                                    if CGRectIntersectsRect(sign.superview!.bounds, sign.frame) {
+                                        sign.toSignautre()
+                                        return
+                                    }
+                            }
+                            
+                            
+                        }
+                        if designCenterPdfInfo != nil{
+                            
+                            if sender.tag == 1 && sign.xname == "homeBuyer1Sign"
+                                || sender.tag == 2 && sign.xname == "homeBuyer2Sign"
+                                {
+                                    if CGRectIntersectsRect(sign.superview!.bounds, sign.frame) {
+                                        sign.toSignautre()
+                                        return
+                                    }
+                            }
+                            
+                            
+                        }
+                        
+                    }
+                    
+                }
+            }
         }
-        print(self.pdfView?.pdfView.scrollView.contentSize.height)
     }
     
+
+    
+    
+    
     @IBAction func  SellerSign(sender: UIBarButtonItem) {
-        self.dismissViewControllerAnimated(true){
-            
-        }
+        BuyerSign(sender)
+        
     }
     
     

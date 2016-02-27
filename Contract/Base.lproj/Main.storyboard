@@ -458,12 +458,12 @@
                                     </segue>
                                 </connections>
                             </barButtonItem>
-                            <barButtonItem title="Seller2" id="iTV-Vp-Tay">
+                            <barButtonItem tag="4" title="Seller2" id="iTV-Vp-Tay">
                                 <connections>
                                     <action selector="SellerSign:" destination="LV9-aA-wQE" id="Vfa-qB-fcJ"/>
                                 </connections>
                             </barButtonItem>
-                            <barButtonItem title="Seller1" id="omT-o4-zzm">
+                            <barButtonItem tag="3" title="Seller1" id="omT-o4-zzm">
                                 <connections>
                                     <action selector="SellerSign:" destination="LV9-aA-wQE" id="gW2-7R-kNu"/>
                                 </connections>
@@ -1403,8 +1403,8 @@
         <image name="send" width="30" height="30"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="Mkk-cX-3do"/>
-        <segue reference="9H6-xq-lkW"/>
-        <segue reference="ZKx-6K-eOE"/>
+        <segue reference="kTa-tP-qQP"/>
+        <segue reference="TGh-ew-og1"/>
+        <segue reference="Dv1-Rt-7ji"/>
     </inferredMetricsTieBreakers>
 </document>

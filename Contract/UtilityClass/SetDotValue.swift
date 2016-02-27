@@ -1025,10 +1025,10 @@ class SetDotValue : NSObject {
         
         static let checkedField = "This contract is not subject to Buyer obtaining Buyer Approval"
         
-        static let buyer2Sign = "buyer2Sign"
-        static let buyer1Sign = "buyer1Sign"
-        static let seller2Sign = "seller2Sign"
-        static let seller1Sign = "seller1Sign"
+        static let buyer2Sign = "buyer3Sign"
+        static let buyer1Sign = "buyer2Sign"
+        static let seller2Sign = "seller3Sign"
+        static let seller1Sign = "seller2Sign"
     }
     
     func setThirdPartyFinacingAddendumDots(pdfInfo: AddendumA?, additionViews: [PDFWidgetAnnotationView]){

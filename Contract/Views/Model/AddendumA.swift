@@ -14,7 +14,7 @@ class AddendumA: ContractPDFBaseModel {
     var delayfees_amount: String?
     var GeneralPartner: String?
     var ExcutedDay: String?
-    
+    var hasbroker : String?
     var city : String?
     
      var Client: String?
