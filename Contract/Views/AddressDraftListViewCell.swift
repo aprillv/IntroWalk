@@ -12,7 +12,7 @@ import UIKit
 class AddressDraftListViewCell: UITableViewCell {
     private var ProjectNmLbl: UILabel!
 //    private var ConsultantLbl: UILabel!
-//    private var ClientLbl: UILabel!
+//    privates var ClientLbl: UILabel!
     
     
     @IBOutlet weak var cview: UIView!{
