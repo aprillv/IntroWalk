@@ -225,8 +225,8 @@
 
 - (NSString *)value {
     return _values;
-    NSString *ret = [_textFieldOrTextView performSelector:@selector(text)];
-    return [ret length] ? ret:nil;
+//    NSString *ret = [_textFieldOrTextView performSelector:@selector(text)];
+//    return [ret length] ? ret:nil;
 }
 
 - (void)updateWithZoom:(CGFloat)zoom {

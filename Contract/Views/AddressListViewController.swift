@@ -251,21 +251,9 @@ class AddressListViewController: UITableViewController, UISearchBarDelegate, ToD
             printModelNm = constants.ActionTitleAddendumC
         }
         switch printModelNm{
-        case CConstants.ActionTitleDesignCenter:
-            serviceUrl = CConstants.DesignCenterServiceURL
-//        case CConstants.ActionTitleAddendumA:
-//            serviceUrl = CConstants.AddendumAServiceURL
         case CConstants.ActionTitleAddendumC:
             serviceUrl = CConstants.AddendumCServiceURL
-        case CConstants.ActionTitleClosingMemo:
-            serviceUrl = CConstants.ClosingMemoServiceURL
-        case CConstants.ActionTitleContract:
-            serviceUrl = CConstants.ContractServiceURL
-//        case CConstants.ActionTitleThirdPartyFinancingAddendum:
-//            serviceUrl = CConstants.AddendumAServiceURL
-        case CConstants.ActionTitleINFORMATION_ABOUT_BROKERAGE_SERVICES:
-            self.performSegueWithIdentifier(CConstants.SegueToInformationAboutBrokerageServices, sender: nil)
-            return
+       
         default:
             serviceUrl = CConstants.AddendumAServiceURL
         }
@@ -295,32 +283,6 @@ class AddressListViewController: UITableViewController, UISearchBarDelegate, ToD
                                                 let rtn = ContractAddendumC(dicInfo: rtnValue)
                                                 self.performSegueWithIdentifier("tofile", sender: rtn)
 //                                            }
-                                            
-                                        case CConstants.ActionTitleAddendumA:
-                                            let rtn = AddendumA(dicInfo: rtnValue)
-                                            self.performSegueWithIdentifier(CConstants.SegueToAddendumA, sender: rtn)
-                                        case CConstants.ActionTitleClosingMemo:
-                                            let rtn = ContractClosingMemo(dicInfo: rtnValue)
-                                            self.performSegueWithIdentifier(CConstants.SegueToClosingMemo, sender: rtn)
-                                        case CConstants.ActionTitleDesignCenter:
-                                            let rtn = ContractDesignCenter(dicInfo: rtnValue)
-                                            self.performSegueWithIdentifier(CConstants.SegueToDesignCenter, sender: rtn)
-                                        case CConstants.ActionTitleContract:
-                                            let rtn = ContractSignature(dicInfo: rtnValue)
-                                            self.performSegueWithIdentifier(CConstants.SegueToSignaturePdf, sender: rtn)
-//                                             self.performSegueWithIdentifier("tofile", sender: rtn)
-                                        case CConstants.ActionTitleThirdPartyFinancingAddendum:
-                                            let rtn = AddendumA(dicInfo: rtnValue)
-                                            self.performSegueWithIdentifier(CConstants.SegueToThridPartyFinacingAddendumPdf, sender: rtn)
-                                        case CConstants.ActionTitleEXHIBIT_A:
-                                            let rtn = AddendumA(dicInfo: rtnValue)
-                                            self.performSegueWithIdentifier(CConstants.SegueToExhibitA, sender: rtn)
-                                        case CConstants.ActionTitleEXHIBIT_B:
-                                            let rtn = AddendumA(dicInfo: rtnValue)
-                                            self.performSegueWithIdentifier(CConstants.SegueToExhibitB, sender: rtn)
-                                        case CConstants.ActionTitleEXHIBIT_C:
-                                            let rtn = AddendumA(dicInfo: rtnValue)
-                                            self.performSegueWithIdentifier(CConstants.SegueToExhibitC, sender: rtn)
                                         default:
                                             break;
                                         }

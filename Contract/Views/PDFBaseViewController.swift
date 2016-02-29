@@ -427,17 +427,8 @@ class PDFBaseViewController: BaseViewController, DoOperationDelegate, UIPopoverP
             printModelNm = CConstants.ActionTitleAddendumC
         }
         switch printModelNm{
-        case CConstants.ActionTitleDesignCenter:
-            serviceUrl = CConstants.DesignCenterServiceURL
         case CConstants.ActionTitleAddendumC:
             serviceUrl = CConstants.AddendumCServiceURL
-        case CConstants.ActionTitleClosingMemo:
-            serviceUrl = CConstants.ClosingMemoServiceURL
-        case CConstants.ActionTitleContract:
-            serviceUrl = CConstants.ContractServiceURL
-        case CConstants.ActionTitleINFORMATION_ABOUT_BROKERAGE_SERVICES:
-            self.performSegueWithIdentifier(CConstants.SegueToInformationAboutBrokerageServices, sender: nil)
-            return
         default:
             serviceUrl = CConstants.AddendumAServiceURL
         }
