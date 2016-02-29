@@ -69,7 +69,10 @@
     UIMenuItem *menuItem = [[UIMenuItem alloc] initWithTitle:xtitle  action:@selector(popSignature:)];
     UIMenuController *menuCont = [UIMenuController sharedMenuController];
     
-    [menuCont setTargetRect:self.frame inView:self.superview];
+    CGRect ct = self.frame;
+    ct.origin.y += ct.size.height/2.0;
+    
+    [menuCont setTargetRect:ct inView:self.superview];
     menuCont.arrowDirection = UIMenuControllerArrowDown;
     menuCont.menuItems = [NSArray arrayWithObject:menuItem];
     [menuCont setMenuVisible:YES animated:YES];

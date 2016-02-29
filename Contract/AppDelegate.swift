@@ -71,33 +71,33 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 //        UIApplication.sharedApplication().registerForRemoteNotifications()
 //    }
     
-    func application(application: UIApplication, didReceiveRemoteNotification userInfo: [NSObject : AnyObject], fetchCompletionHandler completionHandler: (UIBackgroundFetchResult) -> Void) {
-        //        print("fort tessssssss")
-        // display the userInfo
-        if let _ = userInfo["aps"] as? NSDictionary {
-            //            let alert = notification["alert"] as? String {
-            //                let alertCtrl = UIAlertController(title: "BA Clock", message: alert as String, preferredStyle: UIAlertControllerStyle.Alert)
-            //                alertCtrl.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.Default){
-            //                    (_) -> Void in
-            //                    UIApplication.sharedApplication().applicationIconBadgeNumber = 0
-            //
-            ////                    let localNotification = UILocalNotification()
-            ////                    localNotification.applicationIconBadgeNumber = 0
-            //                    })
-            //                // Find the presented VC...
-            //                var presentedVC = self.window?.rootViewController
-            //                while (presentedVC!.presentedViewController != nil)  {
-            //                    presentedVC = presentedVC!.presentedViewController
-            //                }
-            //                presentedVC!.presentViewController(alertCtrl, animated: true, completion: nil)
-            
-            UIApplication.sharedApplication().applicationIconBadgeNumber = 0
-            
-            // call the completion handler
-            // -- pass in NoData, since no new data was fetched from the server.
-            completionHandler(UIBackgroundFetchResult.NoData)
-        }
-    }
+//    func application(application: UIApplication, didReceiveRemoteNotification userInfo: [NSObject : AnyObject], fetchCompletionHandler completionHandler: (UIBackgroundFetchResult) -> Void) {
+//        //        print("fort tessssssss")
+//        // display the userInfo
+//        if let _ = userInfo["aps"] as? NSDictionary {
+//            //            let alert = notification["alert"] as? String {
+//            //                let alertCtrl = UIAlertController(title: "BA Clock", message: alert as String, preferredStyle: UIAlertControllerStyle.Alert)
+//            //                alertCtrl.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.Default){
+//            //                    (_) -> Void in
+//            //                    UIApplication.sharedApplication().applicationIconBadgeNumber = 0
+//            //
+//            ////                    let localNotification = UILocalNotification()
+//            ////                    localNotification.applicationIconBadgeNumber = 0
+//            //                    })
+//            //                // Find the presented VC...
+//            //                var presentedVC = self.window?.rootViewController
+//            //                while (presentedVC!.presentedViewController != nil)  {
+//            //                    presentedVC = presentedVC!.presentedViewController
+//            //                }
+//            //                presentedVC!.presentViewController(alertCtrl, animated: true, completion: nil)
+//            
+//            UIApplication.sharedApplication().applicationIconBadgeNumber = 0
+//            
+//            // call the completion handler
+//            // -- pass in NoData, since no new data was fetched from the server.
+//            completionHandler(UIBackgroundFetchResult.NoData)
+//        }
+//    }
     
     func applicationWillResignActive(application: UIApplication) {
         // Sent when the application is about to move from active to inactive state. This can occur for certain types of temporary interruptions (such as an incoming phone call or SMS message) or when the user quits the application and it begins the transition to the background state.

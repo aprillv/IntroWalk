@@ -39,6 +39,7 @@
     NSArray *nwidgetAnnotationViews;
     
     NSString *outpatha;
+    NSInteger pageNo;
 }
 
 #pragma mark - PDFView
@@ -55,7 +56,7 @@
         _pdfView = [[UIWebView alloc] initWithFrame:contentFrame];
 //        _pdfView.backgroundColor = [UIColor whiteColor];
          [self addSubview: _pdfView];
-        
+        pageNo = 0;
         _pdfView.scalesPageToFit = YES;
         _pdfView.scrollView.delegate = self;
         _pdfView.scrollView.bouncesZoom = NO;
@@ -203,8 +204,8 @@
             [(PDFFormTextField*)element setValue:element.value];
 //            NSLog(@"%@", element.value);
         }
-        
-        [_pdfWidgetAnnotationViews addObject:element];
+        [self addPDFWidgetAnnotationView: element];
+//        [_pdfWidgetAnnotationViews addObject:element];
     }
     _canvasLoaded = YES;
     if (_pdfWidgetAnnotationViews) {
@@ -227,15 +228,55 @@
         [element updateWithZoom:scale];
     }
 }
-//- (void)scrollViewDidEndDragging:(UIScrollView *)scrollView willDecelerate:(BOOL)decelerate{
+- (void)scrollViewDidEndDragging:(UIScrollView *)scrollView willDecelerate:(BOOL)decelerate{
 //    NSLog(@"%f\n%f", scrollView.contentSize.height, scrollView.frame.size.height);
 //    NSInteger pagenumber = scrollView.contentOffset.y / scrollView.bounds.size.height;
 //    NSLog(@"%d", pagenumber);
-//}
-//- (void)scrollViewDidEndDecelerating:(UIScrollView *)scrollView{
+//    if (self.delegate) {
+//        [self.delegate pageChanged];
+//    }
+    [self getVisableDots];
+}
+- (void)scrollViewDidEndDecelerating:(UIScrollView *)scrollView{
 //    NSInteger pagenumber = scrollView.contentOffset.y / scrollView.bounds.size.height;
 //    NSLog(@"%d", pagenumber);
-//}
+//    if (self.delegate) {
+//        [self.delegate pageChanged];
+//    }
+    [self getVisableDots];
+}
+
+- (void)getVisableDots{
+    for (PDFWidgetAnnotationView *pv in _pdfView.scrollView.subviews) {
+//        NSLog(@"pv.xname %@", pv.xname);
+        if ([pv isKindOfClass:[SignatureView class]]) {
+//            NSLog(@"pv.xname %@", pv.xname);
+            if (CGRectIntersectsRect(pv.frame, pv.superview.bounds)) {
+                NSInteger no = 0;
+                if([pv.xname containsString:@"broker"]) {
+                    no = 1;
+                }else if ([pv.xname containsString:@"AddendumA"]) {
+                    no = 2;
+                }else if ([pv.xname containsString:@"Exhibitbp1seller3Sign"]){
+                    no = 3;
+                }else if ([pv.xname containsString:@"BYSign"] || [pv.xname containsString:@"NameSign"] || [pv.xname containsString:@"TitleSign"]){
+                    no = 4;
+                }else if ([pv.xname containsString:@"home"]){
+                    //design Center
+                    no = 5;
+                }else if ([pv.xname containsString:@"april"]){
+                    //addendum c
+                    no = 6;
+                }
+                if (self.delegate) {
+                    [self.delegate pageChanged: no];
+                }
+            }
+        }
+        
+        
+    }
+}
 
 
 - (void)scrollViewDidScroll:(UIScrollView *)scrollView {

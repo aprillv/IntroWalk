@@ -22,12 +22,17 @@
 
 #import <UIKit/UIKit.h>
 
+@protocol PDFViewDelegate <NSObject>
+@required
+- (void) pageChanged : (NSInteger)no;
+@end
+
 @class PDFWidgetAnnotationView;
 
 /** The PDFView class allows for viewing a PDF file. The controller PDFViewController uses PDFView as its view and PDFDocument as its model.
  PDFView is typically not directly instantiated, but instead is used as the instance that comes with PDFViewController.
  */
-@interface PDFView : UIView 
+@interface PDFView : UIView
 
 /** The array contains the PDFWidgetAnnotationView instances that are subviews of the pdfView's scrollView.
  */
@@ -36,7 +41,7 @@
 /** The view in pdfWidgetAnnotationViews has holds the input focus.
  */
 @property (nonatomic, weak) PDFWidgetAnnotationView *activeWidgetAnnotationView;
-
+@property (nonatomic, retain) id<PDFViewDelegate> delegate;
 
 @property (nonatomic, retain) NSArray *addedAnnotationViews;
 

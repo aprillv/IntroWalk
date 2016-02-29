@@ -208,15 +208,15 @@ class AddressListViewController: UITableViewController, UISearchBarDelegate, ToD
     
     func GoToPrint(modelNm: [String]) {
          self.filesNms = modelNm
-        if modelNm.count == 1 {
-            callService(modelNm)
-        }else{
+//        if modelNm.count == 1 {
+//            callService(modelNm)
+//        }else{
             if modelNm.contains(CConstants.ActionTitleAddendumC){
                 callService(modelNm)
             }else{
                 self.performSegueWithIdentifier("tofile", sender: modelNm)
             }
-        }
+//        }
         
         
 
@@ -288,13 +288,13 @@ class AddressListViewController: UITableViewController, UISearchBarDelegate, ToD
                                     if msg.isEmpty{
                                         switch printModelNm {
                                         case CConstants.ActionTitleAddendumC:
-                                            if printModelNms.count == 1 {
-                                                let rtn = ContractAddendumC(dicInfo: rtnValue)
-                                                self.performSegueWithIdentifier(CConstants.SegueToAddendumC, sender: rtn)
-                                            }else{
+//                                            if printModelNms.count == 1 {
+//                                                let rtn = ContractAddendumC(dicInfo: rtnValue)
+//                                                self.performSegueWithIdentifier(CConstants.SegueToAddendumC, sender: rtn)
+//                                            }else{
                                                 let rtn = ContractAddendumC(dicInfo: rtnValue)
                                                 self.performSegueWithIdentifier("tofile", sender: rtn)
-                                            }
+//                                            }
                                             
                                         case CConstants.ActionTitleAddendumA:
                                             let rtn = AddendumA(dicInfo: rtnValue)

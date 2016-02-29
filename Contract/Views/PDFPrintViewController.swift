@@ -10,7 +10,7 @@ import UIKit
 import Alamofire
 import MessageUI
 
-class PDFPrintViewController: PDFBaseViewController, UIScrollViewDelegate {
+class PDFPrintViewController: PDFBaseViewController, UIScrollViewDelegate, PDFViewDelegate{
     
     
     var isDownload : Bool?
@@ -243,6 +243,7 @@ class PDFPrintViewController: PDFBaseViewController, UIScrollViewDelegate {
         
         
         pdfView = PDFView(frame: view2.bounds, dataOrPathArray: filesNames, additionViews: allAdditionViews)
+        pdfView?.delegate = self
         
 //        print(self.document?.forms)
         setAddendumC()
@@ -255,12 +256,23 @@ class PDFPrintViewController: PDFBaseViewController, UIScrollViewDelegate {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
         let userinfo = NSUserDefaults.standardUserDefaults()
         if userinfo.boolForKey(CConstants.UserInfoIsContract) {
             self.navigationItem.title = "Contract"
         }else{
             self.navigationItem.title = "Draft"
         }
+        if filesArray != nil {
+            if filesArray![0] == CConstants.ActionTitleAddendumC{
+                self.pageChanged( 6)
+            }
+        }
+        
+        if filesArray?.count == 1 {
+            self.title = filesArray![0]
+        }
+       
     }
     
     
@@ -393,30 +405,59 @@ class PDFPrintViewController: PDFBaseViewController, UIScrollViewDelegate {
     @IBAction func BuyerSign(sender: UIBarButtonItem) {
         self.dismissViewControllerAnimated(true){}
 //        print(self.pdfView?.pdfView.scrollView.contentSize.height)
+        if addendumCpdfInfo != nil {
+            for doc in documents! {
+                if doc.pdfName == CConstants.ActionTitleAddendumC {
+                    for a in doc.addedviewss {
+                        if let sign = a as? SignatureView {
+                            print(sign.xname)
+                            if !CGRectIntersectsRect(sign.superview!.bounds, sign.frame) {
+                                continue
+                            }
+                            
+                            if sender.tag == 1 && sign.xname == "april0Sign"
+                                || sender.tag == 5 && sign.xname == "april1Sign"
+                                || sender.tag == 3 && sign.xname==("april2Sign")
+                                || sender.tag == 2 && sign.xname == "april3DateSign"
+                                || sender.tag == 6 && sign.xname == "april4DateSign"
+                                || sender.tag == 4 && sign.xname==("april5DateSign"){
+                                    sign.toSignautre()
+                                    return
+                            }
+                                
+                                
+                            
+                        }
+                    }
+                    break
+                }
+            }
+        }
         if fileDotsDic != nil {
             for (_, v) in fileDotsDic! {
                 for a in v {
                     if let sign = a as? SignatureView {
-//                        print(b.xname)
+                      
 //                        print(b.tag, b.superview)
+                        if !CGRectIntersectsRect(sign.superview!.bounds, sign.frame) {
+                            continue
+                        }
+//                          print(sign.xname)
                         if sender.tag == 1 && sign.xname.hasSuffix("bottom1")
                             || sender.tag == 2 && sign.xname.hasSuffix("bottom2")
                             || sender.tag == 3 && sign.xname.hasSuffix("bottom3")
                             || sender.tag == 4 && sign.xname.hasSuffix("bottom4"){
                             //buyer1
-                            if CGRectIntersectsRect(sign.superview!.bounds, sign.frame) {
-                                sign.toSignautre()
+                            sign.toSignautre()
                                 return
-                            }
                         }
                         if sender.tag == 1 && sign.xname == ("buyer2Sign")
                         || sender.tag == 2 && sign.xname == ("buyer3Sign")
                         || sender.tag == 3 && sign.xname == ("seller2Sign")
-                        || sender.tag == 4 && sign.xname == ("seller3Sign"){
-                            if CGRectIntersectsRect(sign.superview!.bounds, sign.frame) {
-                                sign.toSignautre()
+                        || sender.tag == 4 && sign.xname == ("seller3Sign")
+                        || sender.tag == 4 && sign.xname == ("Exhibitbp1seller3Sign"){
+                             sign.toSignautre()
                                 return
-                            }
                         }
                         
                         //broker
@@ -424,53 +465,49 @@ class PDFPrintViewController: PDFBaseViewController, UIScrollViewDelegate {
                             if let hasrealtor = addendumApdfInfo!.hasbroker {
                                 if hasrealtor == "" {
                                     if sender.tag == 1 && sign.xname == "broker2buyer2Sign"
-                                        || sender.tag == 2 && sign.xname == "broker2buyer3Sign"
-                                        || sender.tag == 3 && sign.xname==("broker2buyer2DateSign")
+                                        || sender.tag == 2 && sign.xname == "broker2buyer2DateSign"
+                                        || sender.tag == 3 && sign.xname==("broker2buyer3Sign")
                                         || sender.tag == 4 && sign.xname==("broker2buyer3DateSign"){
-                                            if CGRectIntersectsRect(sign.superview!.bounds, sign.frame) {
-                                                sign.toSignautre()
+                                            sign.toSignautre()
                                                 return
-                                            }
                                     }
                                 }else{
                                     if sender.tag == 1 && sign.xname == "brokerbuyer2Sign"
-                                        || sender.tag == 2 && sign.xname == "brokerbuyer3Sign"
-                                        || sender.tag == 3 && sign.xname==("brokerbuyer2DateSign")
+                                        || sender.tag == 2 && sign.xname == "broker2buyer2DateSign"
+                                        || sender.tag == 3 && sign.xname==("brokerbuyer3Sign")
                                         || sender.tag == 4 && sign.xname==("brokerbuyer3DateSign"){
-                                            if CGRectIntersectsRect(sign.superview!.bounds, sign.frame) {
-                                                sign.toSignautre()
+                                            sign.toSignautre()
                                                 return
-                                            }
                                     }
                                 }
-                                
                             }
-
-                        }
-                        
-                        //broker
-                        if addendumCpdfInfo != nil{
-                           
-                            if sender.tag == 1 && sign.xname == "april1Sign"
-                                || sender.tag == 2 && sign.xname == "april2Sign"
-                                || sender.tag == 3 && sign.xname==("april3Sign"){
-                                    if CGRectIntersectsRect(sign.superview!.bounds, sign.frame) {
+                            //exhibit c
+                            if sender.tag == 1 && sign.xname == "BYSign"
+                                    || sender.tag == 2 && sign.xname == "NameSign"
+                                    || sender.tag == 4 && sign.xname==("TitleSign"){
                                         sign.toSignautre()
                                         return
-                                    }
+                                }
+                            
+                            //Addendum A
+                            if sender.tag == 4 && sign.xname==("AddendumASeller3Sign"){
+                                sign.toSignautre()
+                                return
                             }
-                            
-                            
                         }
+                        
+                        
+                        
+                        
                         if designCenterPdfInfo != nil{
                             
                             if sender.tag == 1 && sign.xname == "homeBuyer1Sign"
-                                || sender.tag == 2 && sign.xname == "homeBuyer2Sign"
+                                || sender.tag == 2 && sign.xname == "homeBuyer1DateSign"
+                                || sender.tag == 3 && sign.xname == "homeBuyer2Sign"
+                                || sender.tag == 4 && sign.xname == "homeBuyer2DateSign"
                                 {
-                                    if CGRectIntersectsRect(sign.superview!.bounds, sign.frame) {
-                                        sign.toSignautre()
+                                    sign.toSignautre()
                                         return
-                                    }
                             }
                             
                             
@@ -493,6 +530,73 @@ class PDFPrintViewController: PDFBaseViewController, UIScrollViewDelegate {
         BuyerSign(sender)
         
     }
+    
+    @IBOutlet var buyer1Date: UIBarButtonItem!
+    @IBOutlet var buyer2Date: UIBarButtonItem!
+    @IBOutlet var buyer1Item: UIBarButtonItem!
+    @IBOutlet var buyer2Item: UIBarButtonItem!
+    @IBOutlet var seller2Item: UIBarButtonItem!
+    @IBOutlet var seller1Item: UIBarButtonItem!
+    func pageChanged(no: Int) {
+        if no == 0 {
+            buyer1Date.title = ""
+            buyer2Date.title = ""
+            buyer1Item.title = "Buyer1"
+            buyer2Item.title = "Buyer2"
+            seller1Item.title = "Seller1"
+            seller2Item.title = "Seller2"
+        } else if no == 1 {
+            // broker
+            buyer1Date.title = ""
+            buyer2Date.title = ""
+            buyer1Item.title = "Buyer1"
+            buyer2Item.title = "Date1"
+            seller1Item.title = "Buyer2"
+            seller2Item.title = "Date2"
+        } else if no == 2 {
+            // addendum a
+            buyer1Date.title = ""
+            buyer2Date.title = ""
+            buyer1Item.title = "Buyer1"
+            buyer2Item.title = "Buyer2"
+            seller1Item.title = "Seller"
+            seller2Item.title = "Day"
+        } else if no == 3 {
+            // exhibit b
+            buyer1Date.title = ""
+            buyer2Date.title = ""
+            buyer1Item.title = "Buyer1"
+            buyer2Item.title = "Buyer2"
+            seller1Item.title = ""
+            seller2Item.title = "Initial"
+        } else if no == 4 {
+            // exhibit c
+            buyer1Date.title = ""
+            buyer2Date.title = ""
+            buyer1Item.title = "BY"
+            buyer2Item.title = "Name"
+            seller1Item.title = ""
+            seller2Item.title = "Title"
+        } else if no == 5 {
+            // Design center
+            buyer1Date.title = ""
+            buyer2Date.title = ""
+            buyer1Item.title = "Buyer1"
+            buyer2Item.title = "Date1"
+            seller1Item.title = "Buyer2"
+            seller2Item.title = "Date2"
+        } else if no == 6 {
+            // Addendum c
+            buyer1Item.title = "Buyer1"
+            buyer2Item.title = "Date1"
+            buyer1Date.title = "Buyer2"
+            buyer2Date.title = "Date2"
+            seller1Item.title = "Seller"
+            seller2Item.title = "Date"
+        }
+    }
+        
+    
     
     
 }

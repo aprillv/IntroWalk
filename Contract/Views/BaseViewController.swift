@@ -14,6 +14,7 @@ class BaseViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 //        self.navigationController?.navigationBar.barTintColor = UIColor.whiteColor()
+        self.clearNotice()
         navigationItem.hidesBackButton = true
 //        UIApplication.sharedApplication().statusBarStyle = .LightContent
 //        edgesForExtendedLayout = .None

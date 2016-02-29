@@ -317,85 +317,85 @@ class PDFBaseViewController: BaseViewController, DoOperationDelegate, UIPopoverP
     }
     
     func GoToPrint(modelNmA: [String]) {
-        if modelNmA.count == 1 {
-            let modelNm = modelNmA[0]
-            if modelNm == CConstants.ActionTitleINFORMATION_ABOUT_BROKERAGE_SERVICES {
-                if let vc = UIStoryboard(name: CConstants.StoryboardName, bundle: nil).instantiateViewControllerWithIdentifier(CConstants.ControllerNameINFORMATION_ABOUT_BROKERAGE_SERVICES) as? PDFBaseViewController{
-                    
-                    vc.pdfInfo0 = self.pdfInfo0
-                    vc.initWithResource(CConstants.PdfFileNameINFORMATION_ABOUT_BROKERAGE_SERVICES)
-                    
-                    vc.AddressList = self.AddressList
-                    var na = self.navigationController?.viewControllers
-                    na?.removeLast()
-                    na?.append(vc)
-                    self.navigationController?.viewControllers = na!
-                }
-                
-                return
-            }
-            
-            let addendumAAll = [CConstants.ActionTitleAddendumA, CConstants.ActionTitleEXHIBIT_A, CConstants.ActionTitleEXHIBIT_B, CConstants.ActionTitleEXHIBIT_C, CConstants.ActionTitleThirdPartyFinancingAddendum]
-            //        print(self.navigationItem.title)
-            if addendumAAll.contains(self.navigationItem.title!)
-                && addendumAAll.contains(modelNm){
-                    var vc : UIViewController?
-                    switch modelNm {
-                    case CConstants.ActionTitleAddendumA:
-                        vc = UIStoryboard(name: CConstants.StoryboardName, bundle: nil).instantiateViewControllerWithIdentifier(CConstants.ControllerNameAddendumA)
-                        //                print(self.pdfInfo0)
-                        
-                        if let ad = vc as? AddendumAViewController{
-                            ad.pdfInfo = self.pdfInfo0 as? AddendumA
-                            ad.AddressList = self.AddressList
-                            ad.initWithResource(CConstants.PdfFileNameAddendumA)
-                            
-                        }
-                    case CConstants.ActionTitleEXHIBIT_A:
-                        vc = UIStoryboard(name: CConstants.StoryboardName, bundle: nil).instantiateViewControllerWithIdentifier(CConstants.ControllerNameExhibitA)
-                        if let ad = vc as? ExhibitAViewController{
-                            ad.pdfInfo = self.pdfInfo0 as? AddendumA
-                            ad.AddressList = self.AddressList
-                            ad.initWithResource(CConstants.PdfFileNameEXHIBIT_A)
-                            
-                        }
-                    case CConstants.ActionTitleEXHIBIT_B:
-                        vc = UIStoryboard(name: CConstants.StoryboardName, bundle: nil).instantiateViewControllerWithIdentifier(CConstants.ControllerNameExhibitB)
-                        if let ad = vc as? ExhibitBViewController{
-                            ad.pdfInfo = self.pdfInfo0 as? AddendumA
-                            ad.AddressList = self.AddressList
-                            ad.initWithResource(CConstants.PdfFileNameEXHIBIT_B)
-                            
-                        }
-                    case CConstants.ActionTitleEXHIBIT_C:
-                        vc = UIStoryboard(name: CConstants.StoryboardName, bundle: nil).instantiateViewControllerWithIdentifier(CConstants.ControllerNameExhibitC)
-                        if let ad = vc as? ExhibitCGeneralViewController{
-                            ad.pdfInfo = self.pdfInfo0 as? AddendumA
-                            ad.AddressList = self.AddressList
-                            ad.initWithResource(CConstants.PdfFileNameEXHIBIT_C)
-                            
-                        }
-                    case CConstants.ActionTitleThirdPartyFinancingAddendum:
-                        vc = UIStoryboard(name: CConstants.StoryboardName, bundle: nil).instantiateViewControllerWithIdentifier(CConstants.ControllerNameThirdPartyFinancingAddendum)
-                        if let ad = vc as? ThirdPartyFinacingAddendumViewController{
-                            ad.pdfInfo = self.pdfInfo0 as? AddendumA
-                            ad.AddressList = self.AddressList
-                            ad.initWithResource(CConstants.PdfFileNameThirdPartyFinancingAddendum)
-                            
-                        }
-                    default:
-                        break
-                    }
-                    if let vcc = vc {
-                        var na = self.navigationController?.viewControllers
-                        na?.removeLast()
-                        na?.append(vcc)
-                        self.navigationController?.viewControllers = na!
-                    }
-            }else{
-                callService(modelNmA, param: ContractRequestItem(contractInfo: nil).DictionaryFromBasePdf(self.pdfInfo0!))
-            }
-        }else{
+//        if modelNmA.count == 1 {
+//            let modelNm = modelNmA[0]
+//            if modelNm == CConstants.ActionTitleINFORMATION_ABOUT_BROKERAGE_SERVICES {
+//                if let vc = UIStoryboard(name: CConstants.StoryboardName, bundle: nil).instantiateViewControllerWithIdentifier(CConstants.ControllerNameINFORMATION_ABOUT_BROKERAGE_SERVICES) as? PDFBaseViewController{
+//                    
+//                    vc.pdfInfo0 = self.pdfInfo0
+//                    vc.initWithResource(CConstants.PdfFileNameINFORMATION_ABOUT_BROKERAGE_SERVICES)
+//                    
+//                    vc.AddressList = self.AddressList
+//                    var na = self.navigationController?.viewControllers
+//                    na?.removeLast()
+//                    na?.append(vc)
+//                    self.navigationController?.viewControllers = na!
+//                }
+//                
+//                return
+//            }
+//            
+//            let addendumAAll = [CConstants.ActionTitleAddendumA, CConstants.ActionTitleEXHIBIT_A, CConstants.ActionTitleEXHIBIT_B, CConstants.ActionTitleEXHIBIT_C, CConstants.ActionTitleThirdPartyFinancingAddendum]
+//            //        print(self.navigationItem.title)
+//            if addendumAAll.contains(self.navigationItem.title!)
+//                && addendumAAll.contains(modelNm){
+//                    var vc : UIViewController?
+//                    switch modelNm {
+//                    case CConstants.ActionTitleAddendumA:
+//                        vc = UIStoryboard(name: CConstants.StoryboardName, bundle: nil).instantiateViewControllerWithIdentifier(CConstants.ControllerNameAddendumA)
+//                        //                print(self.pdfInfo0)
+//                        
+//                        if let ad = vc as? AddendumAViewController{
+//                            ad.pdfInfo = self.pdfInfo0 as? AddendumA
+//                            ad.AddressList = self.AddressList
+//                            ad.initWithResource(CConstants.PdfFileNameAddendumA)
+//                            
+//                        }
+//                    case CConstants.ActionTitleEXHIBIT_A:
+//                        vc = UIStoryboard(name: CConstants.StoryboardName, bundle: nil).instantiateViewControllerWithIdentifier(CConstants.ControllerNameExhibitA)
+//                        if let ad = vc as? ExhibitAViewController{
+//                            ad.pdfInfo = self.pdfInfo0 as? AddendumA
+//                            ad.AddressList = self.AddressList
+//                            ad.initWithResource(CConstants.PdfFileNameEXHIBIT_A)
+//                            
+//                        }
+//                    case CConstants.ActionTitleEXHIBIT_B:
+//                        vc = UIStoryboard(name: CConstants.StoryboardName, bundle: nil).instantiateViewControllerWithIdentifier(CConstants.ControllerNameExhibitB)
+//                        if let ad = vc as? ExhibitBViewController{
+//                            ad.pdfInfo = self.pdfInfo0 as? AddendumA
+//                            ad.AddressList = self.AddressList
+//                            ad.initWithResource(CConstants.PdfFileNameEXHIBIT_B)
+//                            
+//                        }
+//                    case CConstants.ActionTitleEXHIBIT_C:
+//                        vc = UIStoryboard(name: CConstants.StoryboardName, bundle: nil).instantiateViewControllerWithIdentifier(CConstants.ControllerNameExhibitC)
+//                        if let ad = vc as? ExhibitCGeneralViewController{
+//                            ad.pdfInfo = self.pdfInfo0 as? AddendumA
+//                            ad.AddressList = self.AddressList
+//                            ad.initWithResource(CConstants.PdfFileNameEXHIBIT_C)
+//                            
+//                        }
+//                    case CConstants.ActionTitleThirdPartyFinancingAddendum:
+//                        vc = UIStoryboard(name: CConstants.StoryboardName, bundle: nil).instantiateViewControllerWithIdentifier(CConstants.ControllerNameThirdPartyFinancingAddendum)
+//                        if let ad = vc as? ThirdPartyFinacingAddendumViewController{
+//                            ad.pdfInfo = self.pdfInfo0 as? AddendumA
+//                            ad.AddressList = self.AddressList
+//                            ad.initWithResource(CConstants.PdfFileNameThirdPartyFinancingAddendum)
+//                            
+//                        }
+//                    default:
+//                        break
+//                    }
+//                    if let vcc = vc {
+//                        var na = self.navigationController?.viewControllers
+//                        na?.removeLast()
+//                        na?.append(vcc)
+//                        self.navigationController?.viewControllers = na!
+//                    }
+//            }else{
+//                callService(modelNmA, param: ContractRequestItem(contractInfo: nil).DictionaryFromBasePdf(self.pdfInfo0!))
+//            }
+//        }else{
             if modelNmA.contains(CConstants.ActionTitleAddendumC) {
                 callService(modelNmA, param: ContractRequestItem(contractInfo: nil).DictionaryFromBasePdf(self.pdfInfo0!))
             }else{
@@ -412,7 +412,7 @@ class PDFBaseViewController: BaseViewController, DoOperationDelegate, UIPopoverP
                     self.navigationController?.viewControllers = na!
                 }
             }
-        }
+//        }
         
         
         
@@ -477,20 +477,20 @@ class PDFBaseViewController: BaseViewController, DoOperationDelegate, UIPopoverP
                                         }
                                     }
                                     
-                                    if printModelNms.count == 1 {
-                                        vc = UIStoryboard(name: CConstants.StoryboardName, bundle: nil).instantiateViewControllerWithIdentifier(CConstants.ControllerNameAddendumC) as? PDFBaseViewController
-                                        if let controller = vc as? AddendumCViewController{
-                                            controller.pdfInfo = ContractAddendumC(dicInfo: rtnValue)
-                                            
-                                            
-                                            controller.pdfInfo!.itemlistStr = itemList
-                                            
-                                            
-                                            let pass = i > 19 ? CConstants.PdfFileNameAddendumC2 : CConstants.PdfFileNameAddendumC
-                                            
-                                            controller.initWithResource(pass)
-                                        }
-                                    }else{
+//                                    if printModelNms.count == 1 {
+//                                        vc = UIStoryboard(name: CConstants.StoryboardName, bundle: nil).instantiateViewControllerWithIdentifier(CConstants.ControllerNameAddendumC) as? PDFBaseViewController
+//                                        if let controller = vc as? AddendumCViewController{
+//                                            controller.pdfInfo = ContractAddendumC(dicInfo: rtnValue)
+//                                            
+//                                            
+//                                            controller.pdfInfo!.itemlistStr = itemList
+//                                            
+//                                            
+//                                            let pass = i > 19 ? CConstants.PdfFileNameAddendumC2 : CConstants.PdfFileNameAddendumC
+//                                            
+//                                            controller.initWithResource(pass)
+//                                        }
+//                                    }else{
                                         vc = UIStoryboard(name: CConstants.StoryboardName, bundle: nil).instantiateViewControllerWithIdentifier(CConstants.ControllerNamePrint) as? PDFBaseViewController
                                         if let controller = vc as? PDFPrintViewController{
                                             controller.pdfInfo0 = ContractAddendumC(dicInfo: rtnValue)
@@ -502,7 +502,7 @@ class PDFBaseViewController: BaseViewController, DoOperationDelegate, UIPopoverP
                                             controller.page2 = i > 19
 //                                            controller.initWithResource(pass)
                                         }
-                                    }
+//                                    }
                                     
                                 case CConstants.ActionTitleAddendumA:
                                     vc = UIStoryboard(name: CConstants.StoryboardName, bundle: nil).instantiateViewControllerWithIdentifier(CConstants.ControllerNameAddendumA)  as? PDFBaseViewController

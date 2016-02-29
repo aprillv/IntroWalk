@@ -435,6 +435,16 @@
                                     <action selector="BuyerSign:" destination="LV9-aA-wQE" id="2FD-Oq-yrS"/>
                                 </connections>
                             </barButtonItem>
+                            <barButtonItem tag="5" id="5eJ-BA-TTm">
+                                <connections>
+                                    <action selector="BuyerSign:" destination="LV9-aA-wQE" id="L5L-k9-LMr"/>
+                                </connections>
+                            </barButtonItem>
+                            <barButtonItem tag="6" id="RHl-Cc-oAn">
+                                <connections>
+                                    <action selector="BuyerSign:" destination="LV9-aA-wQE" id="M2W-2f-8ga"/>
+                                </connections>
+                            </barButtonItem>
                         </leftBarButtonItems>
                         <rightBarButtonItems>
                             <barButtonItem image="send" id="80F-GD-5rT">
@@ -473,12 +483,18 @@
                     <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
                     <size key="freeformSize" width="768" height="1024"/>
                     <connections>
+                        <outlet property="buyer1Date" destination="5eJ-BA-TTm" id="Dfl-CV-3RY"/>
+                        <outlet property="buyer1Item" destination="cg6-zN-qzH" id="Kbq-7L-811"/>
+                        <outlet property="buyer2Date" destination="RHl-Cc-oAn" id="Q9M-R7-44m"/>
+                        <outlet property="buyer2Item" destination="UiR-Tu-et7" id="ffP-rW-c3A"/>
+                        <outlet property="seller1Item" destination="omT-o4-zzm" id="8AI-HV-gK3"/>
+                        <outlet property="seller2Item" destination="iTV-Vp-Tay" id="9a2-BJ-HOD"/>
                         <outlet property="view2" destination="TVO-Xr-fgd" id="pUp-uT-HHa"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="cql-0G-MsS" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="4413" y="-1088"/>
+            <point key="canvasLocation" x="4211" y="-1257"/>
         </scene>
         <!--Addendum A-->
         <scene sceneID="9ao-L2-mb9">
