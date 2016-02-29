@@ -11,7 +11,7 @@ import Alamofire
 
 class AddressListViewController: UITableViewController, UISearchBarDelegate, ToDoPrintDelegate {
     
-    var lastSelectedIndexPath : NSIndexPath?
+//    var lastSelectedIndexPath : NSIndexPath?
    
     @IBOutlet var switchItem: UIBarButtonItem!
     @IBOutlet var searchBar: UISearchBar!
@@ -185,13 +185,13 @@ class AddressListViewController: UITableViewController, UISearchBarDelegate, ToD
                 cellitem.contractInfo = ddd![indexPath.row]
             }
         }
-        if let indexa = tableView.indexPathForSelectedRow{
-            if indexa == indexPath{
-                cell.contentView.backgroundColor = CConstants.SearchBarBackColor
-            }else{
-                cell.contentView.backgroundColor = UIColor.whiteColor()
-            }
-        }
+//        if let indexa = tableView.indexPathForSelectedRow{
+//            if indexa == indexPath{
+//                cell.contentView.backgroundColor = CConstants.SearchBarBackColor
+//            }else{
+//                cell.contentView.backgroundColor = UIColor.whiteColor()
+//            }
+//        }
         
         return cell
         
@@ -308,40 +308,40 @@ class AddressListViewController: UITableViewController, UISearchBarDelegate, ToD
     }
     
     
-    override func tableView(tableView: UITableView, didHighlightRowAtIndexPath indexPath: NSIndexPath) {
-        removebackFromCell()
-        if let cell  = tableView.cellForRowAtIndexPath(indexPath) {
-        cell.contentView.backgroundColor = CConstants.SearchBarBackColor
-        }
-        
-    }
-    
-    override func tableView(tableView: UITableView, didUnhighlightRowAtIndexPath indexPath: NSIndexPath) {
-        if let cell  = tableView.cellForRowAtIndexPath(indexPath) {
-            lastSelectedIndexPath = indexPath
-            cell.contentView.backgroundColor = .clearColor()
-        }
-        
-    }
+//    override func tableView(tableView: UITableView, didHighlightRowAtIndexPath indexPath: NSIndexPath) {
+//        removebackFromCell()
+//        if let cell  = tableView.cellForRowAtIndexPath(indexPath) {
+//        cell.contentView.backgroundColor = CConstants.SearchBarBackColor
+//        }
+//        
+//    }
+//    
+//    override func tableView(tableView: UITableView, didUnhighlightRowAtIndexPath indexPath: NSIndexPath) {
+//        if let cell  = tableView.cellForRowAtIndexPath(indexPath) {
+//            lastSelectedIndexPath = indexPath
+//            cell.contentView.backgroundColor = .clearColor()
+//        }
+//        
+//    }
 
-    private func removebackFromCell(){
-        if let _ = lastSelectedIndexPath {
-            if let cell = tableView.cellForRowAtIndexPath(lastSelectedIndexPath!){
-                cell.contentView.backgroundColor = .clearColor()
-            }
-        }
-    }
+//    private func removebackFromCell(){
+//        if let _ = lastSelectedIndexPath {
+//            if let cell = tableView.cellForRowAtIndexPath(lastSelectedIndexPath!){
+//                cell.contentView.backgroundColor = .clearColor()
+//            }
+//        }
+//    }
     
-    override func tableView(tableView: UITableView, didDeselectRowAtIndexPath indexPath: NSIndexPath) {
-        removebackFromCell()
-    }
+//    override func tableView(tableView: UITableView, didDeselectRowAtIndexPath indexPath: NSIndexPath) {
+//        removebackFromCell()
+//    }
    
     override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-        removebackFromCell()
-        if let selectedCell:UITableViewCell = tableView.cellForRowAtIndexPath(indexPath){
-            lastSelectedIndexPath = indexPath
-            selectedCell.contentView.backgroundColor = CConstants.SearchBarBackColor
-        }
+//        removebackFromCell()
+//        if let selectedCell:UITableViewCell = tableView.cellForRowAtIndexPath(indexPath){
+//            lastSelectedIndexPath = indexPath
+//            selectedCell.contentView.backgroundColor = CConstants.SearchBarBackColor
+//        }
        self.searchBar.resignFirstResponder()
         
         self.performSegueWithIdentifier(CConstants.SegueToPrintModel, sender: nil)
@@ -493,7 +493,7 @@ class AddressListViewController: UITableViewController, UISearchBarDelegate, ToD
         AddressListOrigin = tmp
         self.refreshControl?.endRefreshing()
         NSUserDefaults.standardUserDefaults().setBool(self.tableView.tag == 2, forKey: CConstants.UserInfoIsContract)
-        UIView.transitionFromView(tableView, toView: tableView, duration: 0.8, options: [.TransitionFlipFromRight, .ShowHideTransitionViews], completion: { (_) -> Void in
+        UIView.transitionFromView(tableView, toView: tableView, duration: 0.8, options: [self.tableView.tag == 2 ? .TransitionFlipFromRight : .TransitionFlipFromLeft, .ShowHideTransitionViews], completion: { (_) -> Void in
             //                self.getTrackList()
             
             self.tableView.reloadData()

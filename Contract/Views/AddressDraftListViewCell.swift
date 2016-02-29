@@ -31,6 +31,22 @@ class AddressDraftListViewCell: UITableViewCell {
         }
     }
     
+    override func setHighlighted(highlighted: Bool, animated: Bool) {
+        if highlighted {
+            self.contentView.backgroundColor = CConstants.SearchBarBackColor
+        }else{
+            self.contentView.backgroundColor = UIColor.whiteColor()
+        }
+    }
+    
+    override func setSelected(selected: Bool, animated: Bool) {
+        super.setSelected(selected, animated: animated)
+        if selected {
+            self.contentView.backgroundColor = CConstants.SearchBarBackColor
+        }else{
+            self.contentView.backgroundColor = UIColor.whiteColor()
+        }
+    }
     
     override func layoutSubviews() {
         super.layoutSubviews()

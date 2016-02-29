@@ -92,6 +92,7 @@
 		11A50B421C783BFC0017AA53 /* AddressListModelViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11A50B411C783BFC0017AA53 /* AddressListModelViewController.swift */; };
 		11B18F0C1C83DEFA00D39019 /* EXHIBIT_B.pdf in Resources */ = {isa = PBXBuildFile; fileRef = 11B18F0B1C83DEFA00D39019 /* EXHIBIT_B.pdf */; };
 		11B18F0E1C842A3700D39019 /* AddendumA.pdf in Resources */ = {isa = PBXBuildFile; fileRef = 11B18F0D1C842A3700D39019 /* AddendumA.pdf */; };
+		11B18F101C8435C100D39019 /* AddressListModelCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11B18F0F1C8435C100D39019 /* AddressListModelCell.swift */; };
 		11D911001C1AB33D00CD018A /* ContractAddendumC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11D910FF1C1AB33D00CD018A /* ContractAddendumC.swift */; };
 		11D911021C1AB36000CD018A /* ContractAddendumCItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11D911011C1AB36000CD018A /* ContractAddendumCItem.swift */; };
 /* End PBXBuildFile section */
@@ -286,6 +287,7 @@
 		11A50B411C783BFC0017AA53 /* AddressListModelViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddressListModelViewController.swift; sourceTree = "<group>"; };
 		11B18F0B1C83DEFA00D39019 /* EXHIBIT_B.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; path = EXHIBIT_B.pdf; sourceTree = "<group>"; };
 		11B18F0D1C842A3700D39019 /* AddendumA.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; path = AddendumA.pdf; sourceTree = "<group>"; };
+		11B18F0F1C8435C100D39019 /* AddressListModelCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddressListModelCell.swift; sourceTree = "<group>"; };
 		11D910FF1C1AB33D00CD018A /* ContractAddendumC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContractAddendumC.swift; sourceTree = "<group>"; };
 		11D911011C1AB36000CD018A /* ContractAddendumCItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContractAddendumCItem.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -473,21 +475,22 @@
 		1108B2721BFC55A2004B5D48 /* Views */ = {
 			isa = PBXGroup;
 			children = (
-				1114C7A41C8137EA00924A21 /* AddressDraftListViewCell.swift */,
 				117F9B731C75B8D3008B26D5 /* extensionViewController.swift */,
+				112118E21C056EC1000F85CE /* AddressListViewHeadView.swift */,
+				1114C7A41C8137EA00924A21 /* AddressDraftListViewCell.swift */,
+				113CB5E11BFF06E90081FDE7 /* AddressListViewCell.swift */,
+				1114C7AA1C816F2D00924A21 /* PrintModelTableViewCell.swift */,
+				11B18F0F1C8435C100D39019 /* AddressListModelCell.swift */,
 				11643C151C030B8E000E2C0A /* CConstants.swift */,
 				1108B2731BFC55CF004B5D48 /* Contract-Bridging-Header.h */,
 				1108B2781BFC6133004B5D48 /* BaseViewController.swift */,
-				1108B2741BFC55CF004B5D48 /* LoginViewController.swift */,
-				112118E21C056EC1000F85CE /* AddressListViewHeadView.swift */,
-				113CB5E11BFF06E90081FDE7 /* AddressListViewCell.swift */,
-				1176D20E1BFDC67C001C1C3E /* AddressListViewController.swift */,
 				115338C11C27DE5900E1B65A /* PDFBaseViewController.swift */,
-				1107507A1C29222600B68141 /* SendOperationViewController.swift */,
-				117F9B6A1C756706008B26D5 /* PrintModelTableViewController.swift */,
-				11A50B411C783BFC0017AA53 /* AddressListModelViewController.swift */,
+				1108B2741BFC55CF004B5D48 /* LoginViewController.swift */,
+				1176D20E1BFDC67C001C1C3E /* AddressListViewController.swift */,
 				111E20371C7BF275004D43D8 /* PDFPrintViewController.swift */,
-				1114C7AA1C816F2D00924A21 /* PrintModelTableViewCell.swift */,
+				117F9B6A1C756706008B26D5 /* PrintModelTableViewController.swift */,
+				1107507A1C29222600B68141 /* SendOperationViewController.swift */,
+				11A50B411C783BFC0017AA53 /* AddressListModelViewController.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -730,6 +733,7 @@
 				115338C21C27DE5900E1B65A /* PDFBaseViewController.swift in Sources */,
 				1108B2691BFC4047004B5D48 /* PDFUtility.m in Sources */,
 				113CB5E41BFF0CBF0081FDE7 /* ContractRequestItem.swift in Sources */,
+				11B18F101C8435C100D39019 /* AddressListModelCell.swift in Sources */,
 				1108B2791BFC6133004B5D48 /* BaseViewController.swift in Sources */,
 				1108B25B1BFC4047004B5D48 /* PDFSerializer.m in Sources */,
 				1108B2641BFC4047004B5D48 /* PDFDocument.m in Sources */,
