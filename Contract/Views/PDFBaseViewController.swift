@@ -525,27 +525,27 @@ class PDFBaseViewController: BaseViewController, DoOperationDelegate, UIPopoverP
     }
     
     func GoToAddress(item : ContractsItem) {
-        if self.navigationItem.title! == CConstants.ActionTitleINFORMATION_ABOUT_BROKERAGE_SERVICES {
-            if let vc = UIStoryboard(name: CConstants.StoryboardName, bundle: nil).instantiateViewControllerWithIdentifier(CConstants.ControllerNameINFORMATION_ABOUT_BROKERAGE_SERVICES) as? PDFBaseViewController{
-                
-                vc.pdfInfo0 = self.pdfInfo0
-                vc.pdfInfo0?.nproject = item.nproject
-                vc.pdfInfo0?.idcia = item.idcia
-                vc.pdfInfo0?.idcity = item.idcity
-                vc.pdfInfo0?.idnumber = item.idnumber
-                vc.pdfInfo0?.idproject = item.idproject
-                vc.pdfInfo0?.code = item.code
-                vc.initWithResource(CConstants.PdfFileNameINFORMATION_ABOUT_BROKERAGE_SERVICES)
-                
-                vc.AddressList = self.AddressList
-                var na = self.navigationController?.viewControllers
-                na?.removeLast()
-                na?.append(vc)
-                self.navigationController?.viewControllers = na!
-            }
-            
-            return
-        }
+//        if self.navigationItem.title! == CConstants.ActionTitleINFORMATION_ABOUT_BROKERAGE_SERVICES {
+//            if let vc = UIStoryboard(name: CConstants.StoryboardName, bundle: nil).instantiateViewControllerWithIdentifier(CConstants.ControllerNameINFORMATION_ABOUT_BROKERAGE_SERVICES) as? PDFBaseViewController{
+//                
+//                vc.pdfInfo0 = self.pdfInfo0
+//                vc.pdfInfo0?.nproject = item.nproject
+//                vc.pdfInfo0?.idcia = item.idcia
+//                vc.pdfInfo0?.idcity = item.idcity
+//                vc.pdfInfo0?.idnumber = item.idnumber
+//                vc.pdfInfo0?.idproject = item.idproject
+//                vc.pdfInfo0?.code = item.code
+//                vc.initWithResource(CConstants.PdfFileNameINFORMATION_ABOUT_BROKERAGE_SERVICES)
+//                
+//                vc.AddressList = self.AddressList
+//                var na = self.navigationController?.viewControllers
+//                na?.removeLast()
+//                na?.append(vc)
+//                self.navigationController?.viewControllers = na!
+//            }
+//            
+//            return
+//        }
         if self.isKindOfClass(PDFPrintViewController) {
             if let printViewController = self as? PDFPrintViewController {
                 if printViewController.filesArray!.contains(CConstants.ActionTitleAddendumC) {

@@ -64,7 +64,14 @@
     if ([self.xname hasSuffix:@"DateSign"]) {
         xtitle = @"Sign Date";
     }else{
+        if ([self.xname isEqualToString:@"Exhibitbp1seller3Sign"]) {
+            xtitle = @"Initial";
+        }else if([self.xname isEqualToString:@"BYSign"] || [self.xname isEqualToString:@"NameSign"] || [self.xname isEqualToString:@"TitleSign"]) {
+        xtitle = @"Sign";
+        }else {
         xtitle = [self.xname hasSuffix:@"Sign"]? @"Signature" : @"Initial";
+        }
+        
     }
     UIMenuItem *menuItem = [[UIMenuItem alloc] initWithTitle:xtitle  action:@selector(popSignature:)];
     UIMenuController *menuCont = [UIMenuController sharedMenuController];

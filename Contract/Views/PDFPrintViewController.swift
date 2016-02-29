@@ -263,6 +263,8 @@ class PDFPrintViewController: PDFBaseViewController, UIScrollViewDelegate, PDFVi
             if filesArray != nil {
                 if filesArray![0] == CConstants.ActionTitleAddendumC{
                     self.pageChanged( 6)
+                }else if filesArray![0] == CConstants.ActionTitleEXHIBIT_B{
+                self.pageChanged( 3)
                 }
             }
         }else{
@@ -297,9 +299,7 @@ class PDFPrintViewController: PDFBaseViewController, UIScrollViewDelegate, PDFVi
             serviceUrl = CConstants.ClosingMemoServiceURL
         case CConstants.ActionTitleContract:
             serviceUrl = CConstants.ContractServiceURL
-        case CConstants.ActionTitleINFORMATION_ABOUT_BROKERAGE_SERVICES:
-//            self.performSegueWithIdentifier(CConstants.SegueToInformationAboutBrokerageServices, sender: nil)
-            return
+      
         default:
             serviceUrl = CConstants.AddendumAServiceURL
         }
@@ -416,8 +416,6 @@ class PDFPrintViewController: PDFBaseViewController, UIScrollViewDelegate, PDFVi
                         }
                         if sender.tag == 1 && sign.xname == ("buyer2Sign")
                         || sender.tag == 2 && sign.xname == ("buyer3Sign")
-                        || sender.tag == 3 && sign.xname == ("seller2Sign")
-                        || sender.tag == 4 && sign.xname == ("seller3Sign")
                         || sender.tag == 4 && sign.xname == ("Exhibitbp1seller3Sign"){
                              sign.toSignautre()
                                 return
@@ -436,7 +434,7 @@ class PDFPrintViewController: PDFBaseViewController, UIScrollViewDelegate, PDFVi
                                     }
                                 }else{
                                     if sender.tag == 1 && sign.xname == "brokerbuyer2Sign"
-                                        || sender.tag == 2 && sign.xname == "broker2buyer2DateSign"
+                                        || sender.tag == 2 && sign.xname == "brokerbuyer2DateSign"
                                         || sender.tag == 3 && sign.xname==("brokerbuyer3Sign")
                                         || sender.tag == 4 && sign.xname==("brokerbuyer3DateSign"){
                                             sign.toSignautre()
