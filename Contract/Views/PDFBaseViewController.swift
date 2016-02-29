@@ -165,7 +165,10 @@ class PDFBaseViewController: BaseViewController, DoOperationDelegate, UIPopoverP
                 if response.result.isSuccess {
                     if let rtnValue = response.result.value as? [String: String]{
                         if rtnValue["status"] == "success" {
-                            self.hud?.mode = .Text
+                            self.hud?.mode = .CustomView
+                            let image = UIImage(named: CConstants.SuccessImageNm)
+                            self.hud?.customView = UIImageView(image: image)
+                            
                             self.hud?.labelText = CConstants.SavedSuccessMsg
                         }else{
                             self.hud?.mode = .Text
@@ -318,8 +321,12 @@ class PDFBaseViewController: BaseViewController, DoOperationDelegate, UIPopoverP
             controller.dismissViewControllerAnimated(true){
                 if self.hud == nil {
                     self.hud = MBProgressHUD.showHUDAddedTo(self.view, animated: true)
-                    self.hud?.mode = .Text
+                    
                 }
+                self.hud?.mode = .CustomView
+                let image = UIImage(named: CConstants.SuccessImageNm)
+                self.hud?.customView = UIImageView(image: image)
+                
                 self.hud?.labelText = CConstants.SendEmailSuccessfullMsg
                 self.performSelector("dismissProgress", withObject: nil, afterDelay: 0.5)
             }

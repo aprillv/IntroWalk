@@ -190,8 +190,8 @@ self.backgroundColor = [UIColor colorWithRed: 35/255.0 green: 174/255.0 blue: 23
     applyToAll.tintColor = [UIColor whiteColor];
     applyToAll.onTintColor = [UIColor whiteColor];
 //    applyToAll.onTintColor = [UIColor colorWithRed: 66/255.0 green: 133/255.0 blue: 244/255.0 alpha: 1];
-    [applyToAll.layer setBorderWidth:1.0f];
-    [applyToAll.layer setBorderColor:RGBCOLOR(255, 255, 255).CGColor];
+//    [applyToAll.layer setBorderWidth:1.0f];
+//    [applyToAll.layer setBorderColor:RGBCOLOR(255, 255, 255).CGColor];
     applyToAll.transform = CGAffineTransformMakeScale(0.9, 0.9);
     
     sliderLbl = [[UILabel alloc]init];

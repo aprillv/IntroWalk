@@ -26,7 +26,7 @@ struct CConstants{
     static let UserInfoIsContract :  String = "is contract"
     static let UserInfoPrintModel : String = "last print files"
     
-    static let LoginingMsg = "Logining ......"
+    static let LoginingMsg = "   Logining...   "
     static let RequestMsg = "Requesting from server"
     static let SavedMsg = "Saving to the BA Server"
     static let SavedSuccessMsg = "Saved successfully."
@@ -36,6 +36,7 @@ struct CConstants{
     
     static let CheckedImgNm = "checked"
     static let CheckImgNm = "check"
+    static let SuccessImageNm = "checkmark"
     
     static let SegueToAddressList :  String = "adressList"
     static let SegueToPrintPdf : String = "tofile"
