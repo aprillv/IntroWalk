@@ -504,55 +504,7 @@ class PDFBaseViewController: BaseViewController, DoOperationDelegate, UIPopoverP
                                         }
 //                                    }
                                     
-                                case CConstants.ActionTitleAddendumA:
-                                    vc = UIStoryboard(name: CConstants.StoryboardName, bundle: nil).instantiateViewControllerWithIdentifier(CConstants.ControllerNameAddendumA)  as? PDFBaseViewController
-                                    if let controller = vc as? AddendumAViewController{
-                                        controller.pdfInfo = AddendumA(dicInfo: rtnValue)
-                                        controller.initWithResource(CConstants.PdfFileNameAddendumA)
-                                    }
-                                    
-                                case CConstants.ActionTitleClosingMemo:
-                                    vc = UIStoryboard(name: CConstants.StoryboardName, bundle: nil).instantiateViewControllerWithIdentifier(CConstants.ControllerNameClosingMemo) as? PDFBaseViewController
-                                    if let controller = vc as? ClosingMemoViewController{
-                                        controller.pdfInfo = ContractClosingMemo(dicInfo: rtnValue)
-                                        controller.initWithResource(CConstants.PdfFileNameClosingMemo)
-                                    }
-                                case CConstants.ActionTitleDesignCenter:
-                                    vc = UIStoryboard(name: CConstants.StoryboardName, bundle: nil).instantiateViewControllerWithIdentifier(CConstants.ControllerNameDesignCenter) as? PDFBaseViewController
-                                    if let controller = vc as? DesignCenterViewController{
-                                        controller.pdfInfo = ContractDesignCenter(dicInfo: rtnValue)
-                                        controller.initWithResource(CConstants.PdfFileNameDesignCenter)
-                                    }
-                                case CConstants.ActionTitleContract:
-                                    vc = UIStoryboard(name: CConstants.StoryboardName, bundle: nil).instantiateViewControllerWithIdentifier(CConstants.ControllerNameContract) as? PDFBaseViewController
-                                    if let controller = vc as? SignContractViewController{
-                                        controller.pdfInfo = ContractSignature(dicInfo: rtnValue)
-                                        controller.initWithResource(CConstants.PdfFileNameContract)
-                                    }
-                                case CConstants.ActionTitleThirdPartyFinancingAddendum:
-                                    vc = UIStoryboard(name: CConstants.StoryboardName, bundle: nil).instantiateViewControllerWithIdentifier(CConstants.ControllerNameThirdPartyFinancingAddendum) as? PDFBaseViewController
-                                    if let controller = vc as? ThirdPartyFinacingAddendumViewController{
-                                        controller.pdfInfo = AddendumA(dicInfo: rtnValue)
-                                        controller.initWithResource(CConstants.PdfFileNameThirdPartyFinancingAddendum)
-                                    }
-                                case CConstants.ActionTitleEXHIBIT_A:
-                                    vc = UIStoryboard(name: CConstants.StoryboardName, bundle: nil).instantiateViewControllerWithIdentifier(CConstants.ControllerNameExhibitA) as? PDFBaseViewController
-                                    if let controller = vc as? ExhibitAViewController{
-                                        controller.pdfInfo = AddendumA(dicInfo: rtnValue)
-                                        controller.initWithResource(CConstants.PdfFileNameEXHIBIT_A)
-                                    }
-                                case CConstants.ActionTitleEXHIBIT_B:
-                                    vc = UIStoryboard(name: CConstants.StoryboardName, bundle: nil).instantiateViewControllerWithIdentifier(CConstants.ControllerNameExhibitB) as? PDFBaseViewController
-                                    if let controller = vc as? ExhibitBViewController{
-                                        controller.pdfInfo = AddendumA(dicInfo: rtnValue)
-                                        controller.initWithResource(CConstants.PdfFileNameEXHIBIT_B)
-                                    }
-                                case CConstants.ActionTitleEXHIBIT_C:
-                                    vc = UIStoryboard(name: CConstants.StoryboardName, bundle: nil).instantiateViewControllerWithIdentifier(CConstants.ControllerNameExhibitC) as? PDFBaseViewController
-                                    if let controller = vc as? ExhibitCGeneralViewController{
-                                        controller.pdfInfo = AddendumA(dicInfo: rtnValue)
-                                        controller.initWithResource(CConstants.PdfFileNameEXHIBIT_C)
-                                    }
+                                
                                 default:
                                     break;
                                 }

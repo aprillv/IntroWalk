@@ -7,7 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		1104A8411C76B54100B59E60 /* AddendumAViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1104A8401C76B54100B59E60 /* AddendumAViewController.swift */; };
 		1104A8491C76B66800B59E60 /* AddendumA.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1104A8481C76B66800B59E60 /* AddendumA.swift */; };
 		110750791C28E91600B68141 /* ClosingMemo.pdf in Resources */ = {isa = PBXBuildFile; fileRef = 110750781C28E91600B68141 /* ClosingMemo.pdf */; };
 		1107507B1C29222600B68141 /* SendOperationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1107507A1C29222600B68141 /* SendOperationViewController.swift */; };
@@ -58,14 +57,9 @@
 		1114C7B11C8192BE00924A21 /* INFORMATION_ABOUT_BROKERAGE_SERVICES.pdf in Resources */ = {isa = PBXBuildFile; fileRef = 1114C7B01C8192BE00924A21 /* INFORMATION_ABOUT_BROKERAGE_SERVICES.pdf */; };
 		1114C7B71C81963100924A21 /* EXHIBIT_A.pdf in Resources */ = {isa = PBXBuildFile; fileRef = 1114C7B51C81963100924A21 /* EXHIBIT_A.pdf */; };
 		1114C7BB1C8197B000924A21 /* EXHIBIT_C_General.pdf in Resources */ = {isa = PBXBuildFile; fileRef = 1114C7BA1C8197B000924A21 /* EXHIBIT_C_General.pdf */; };
-		111B69511C191E9200970927 /* AddendumCViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 111B69501C191E9200970927 /* AddendumCViewController.swift */; };
 		111E20381C7BF275004D43D8 /* PDFPrintViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 111E20371C7BF275004D43D8 /* PDFPrintViewController.swift */; };
 		111E20401C7C5F3D004D43D8 /* SetDotValue.swift in Sources */ = {isa = PBXBuildFile; fileRef = 111E203F1C7C5F3D004D43D8 /* SetDotValue.swift */; };
-		111ED0481C77ED5F00E2CD4C /* ExhibitAViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 111ED0471C77ED5F00E2CD4C /* ExhibitAViewController.swift */; };
-		111ED04A1C77ED8600E2CD4C /* ExhibitBViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 111ED0491C77ED8600E2CD4C /* ExhibitBViewController.swift */; };
-		111ED04C1C77EDA000E2CD4C /* ExhibitCGeneralViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 111ED04B1C77EDA000E2CD4C /* ExhibitCGeneralViewController.swift */; };
 		112118E31C056EC1000F85CE /* AddressListViewHeadView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 112118E21C056EC1000F85CE /* AddressListViewHeadView.swift */; };
-		113BF5631C0D706500175B22 /* SignContractViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 113BF5621C0D706500175B22 /* SignContractViewController.swift */; };
 		113CB5961BFEC8D60081FDE7 /* ContractObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = 113CB5951BFEC8D60081FDE7 /* ContractObject.swift */; };
 		113CB5BA1BFEE27A0081FDE7 /* ContractsItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 113CB5B91BFEE27A0081FDE7 /* ContractsItem.swift */; };
 		113CB5BC1BFEE2D80081FDE7 /* Contract.swift in Sources */ = {isa = PBXBuildFile; fileRef = 113CB5BB1BFEE2D80081FDE7 /* Contract.swift */; };
@@ -89,21 +83,17 @@
 		115338C21C27DE5900E1B65A /* PDFBaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 115338C11C27DE5900E1B65A /* PDFBaseViewController.swift */; };
 		115338CA1C27F59E00E1B65A /* ContractPDFBaseModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 115338C91C27F59E00E1B65A /* ContractPDFBaseModel.swift */; };
 		1157B3C41C34C68D008ED758 /* ContractDesignCenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1157B3C31C34C68D008ED758 /* ContractDesignCenter.swift */; };
-		11633B911C279B3700C11A20 /* ClosingMemoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11633B901C279B3700C11A20 /* ClosingMemoViewController.swift */; };
-		11633B931C279E2900C11A20 /* DesignCenterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11633B921C279E2900C11A20 /* DesignCenterViewController.swift */; };
 		11633BA01C27DA0000C11A20 /* ContractClosingMemoItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11633B9F1C27DA0000C11A20 /* ContractClosingMemoItem.swift */; };
 		11633BA21C27DA8E00C11A20 /* ContractClosingMemo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11633BA11C27DA8E00C11A20 /* ContractClosingMemo.swift */; };
 		11643C161C030B8E000E2C0A /* CConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11643C151C030B8E000E2C0A /* CConstants.swift */; };
 		1176D20F1BFDC67C001C1C3E /* AddressListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1176D20E1BFDC67C001C1C3E /* AddressListViewController.swift */; };
 		117F9B6B1C756706008B26D5 /* PrintModelTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 117F9B6A1C756706008B26D5 /* PrintModelTableViewController.swift */; };
 		117F9B741C75B8D3008B26D5 /* extensionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 117F9B731C75B8D3008B26D5 /* extensionViewController.swift */; };
-		1195336D1C744CDE007AA5CD /* ThirdPartyFinacingAddendumViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1195336C1C744CDE007AA5CD /* ThirdPartyFinacingAddendumViewController.swift */; };
 		11A50B421C783BFC0017AA53 /* AddressListModelViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11A50B411C783BFC0017AA53 /* AddressListModelViewController.swift */; };
 		11B18F0A1C83DCDD00D39019 /* AddendumA.pdf in Resources */ = {isa = PBXBuildFile; fileRef = 11B18F091C83DCDD00D39019 /* AddendumA.pdf */; };
 		11B18F0C1C83DEFA00D39019 /* EXHIBIT_B.pdf in Resources */ = {isa = PBXBuildFile; fileRef = 11B18F0B1C83DEFA00D39019 /* EXHIBIT_B.pdf */; };
 		11D911001C1AB33D00CD018A /* ContractAddendumC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11D910FF1C1AB33D00CD018A /* ContractAddendumC.swift */; };
 		11D911021C1AB36000CD018A /* ContractAddendumCItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11D911011C1AB36000CD018A /* ContractAddendumCItem.swift */; };
-		11F085D01C76F0DC0056AE62 /* InformationAboutBrokerageServicesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11F085CF1C76F0DC0056AE62 /* InformationAboutBrokerageServicesViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -180,7 +170,6 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
-		1104A8401C76B54100B59E60 /* AddendumAViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddendumAViewController.swift; sourceTree = "<group>"; };
 		1104A8481C76B66800B59E60 /* AddendumA.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddendumA.swift; sourceTree = "<group>"; };
 		110750781C28E91600B68141 /* ClosingMemo.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; path = ClosingMemo.pdf; sourceTree = "<group>"; };
 		1107507A1C29222600B68141 /* SendOperationViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SendOperationViewController.swift; sourceTree = "<group>"; };
@@ -262,14 +251,9 @@
 		1114C7B01C8192BE00924A21 /* INFORMATION_ABOUT_BROKERAGE_SERVICES.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; path = INFORMATION_ABOUT_BROKERAGE_SERVICES.pdf; sourceTree = "<group>"; };
 		1114C7B51C81963100924A21 /* EXHIBIT_A.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; path = EXHIBIT_A.pdf; sourceTree = "<group>"; };
 		1114C7BA1C8197B000924A21 /* EXHIBIT_C_General.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; path = EXHIBIT_C_General.pdf; sourceTree = "<group>"; };
-		111B69501C191E9200970927 /* AddendumCViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddendumCViewController.swift; sourceTree = "<group>"; };
 		111E20371C7BF275004D43D8 /* PDFPrintViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PDFPrintViewController.swift; sourceTree = "<group>"; };
 		111E203F1C7C5F3D004D43D8 /* SetDotValue.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SetDotValue.swift; sourceTree = "<group>"; };
-		111ED0471C77ED5F00E2CD4C /* ExhibitAViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ExhibitAViewController.swift; sourceTree = "<group>"; };
-		111ED0491C77ED8600E2CD4C /* ExhibitBViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ExhibitBViewController.swift; sourceTree = "<group>"; };
-		111ED04B1C77EDA000E2CD4C /* ExhibitCGeneralViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ExhibitCGeneralViewController.swift; sourceTree = "<group>"; };
 		112118E21C056EC1000F85CE /* AddressListViewHeadView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddressListViewHeadView.swift; sourceTree = "<group>"; };
-		113BF5621C0D706500175B22 /* SignContractViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SignContractViewController.swift; sourceTree = "<group>"; };
 		113CB5951BFEC8D60081FDE7 /* ContractObject.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContractObject.swift; sourceTree = "<group>"; };
 		113CB5B91BFEE27A0081FDE7 /* ContractsItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContractsItem.swift; sourceTree = "<group>"; };
 		113CB5BB1BFEE2D80081FDE7 /* Contract.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Contract.swift; sourceTree = "<group>"; };
@@ -293,21 +277,17 @@
 		115338C11C27DE5900E1B65A /* PDFBaseViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PDFBaseViewController.swift; sourceTree = "<group>"; };
 		115338C91C27F59E00E1B65A /* ContractPDFBaseModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContractPDFBaseModel.swift; sourceTree = "<group>"; };
 		1157B3C31C34C68D008ED758 /* ContractDesignCenter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContractDesignCenter.swift; sourceTree = "<group>"; };
-		11633B901C279B3700C11A20 /* ClosingMemoViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ClosingMemoViewController.swift; sourceTree = "<group>"; };
-		11633B921C279E2900C11A20 /* DesignCenterViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DesignCenterViewController.swift; sourceTree = "<group>"; };
 		11633B9F1C27DA0000C11A20 /* ContractClosingMemoItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContractClosingMemoItem.swift; sourceTree = "<group>"; };
 		11633BA11C27DA8E00C11A20 /* ContractClosingMemo.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContractClosingMemo.swift; sourceTree = "<group>"; };
 		11643C151C030B8E000E2C0A /* CConstants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CConstants.swift; sourceTree = "<group>"; };
 		1176D20E1BFDC67C001C1C3E /* AddressListViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddressListViewController.swift; sourceTree = "<group>"; };
 		117F9B6A1C756706008B26D5 /* PrintModelTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PrintModelTableViewController.swift; sourceTree = "<group>"; };
 		117F9B731C75B8D3008B26D5 /* extensionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = extensionViewController.swift; sourceTree = "<group>"; };
-		1195336C1C744CDE007AA5CD /* ThirdPartyFinacingAddendumViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ThirdPartyFinacingAddendumViewController.swift; sourceTree = "<group>"; };
 		11A50B411C783BFC0017AA53 /* AddressListModelViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddressListModelViewController.swift; sourceTree = "<group>"; };
 		11B18F091C83DCDD00D39019 /* AddendumA.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; path = AddendumA.pdf; sourceTree = "<group>"; };
 		11B18F0B1C83DEFA00D39019 /* EXHIBIT_B.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; path = EXHIBIT_B.pdf; sourceTree = "<group>"; };
 		11D910FF1C1AB33D00CD018A /* ContractAddendumC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContractAddendumC.swift; sourceTree = "<group>"; };
 		11D911011C1AB36000CD018A /* ContractAddendumCItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContractAddendumCItem.swift; sourceTree = "<group>"; };
-		11F085CF1C76F0DC0056AE62 /* InformationAboutBrokerageServicesViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InformationAboutBrokerageServicesViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -503,18 +483,8 @@
 				113CB5E11BFF06E90081FDE7 /* AddressListViewCell.swift */,
 				1176D20E1BFDC67C001C1C3E /* AddressListViewController.swift */,
 				115338C11C27DE5900E1B65A /* PDFBaseViewController.swift */,
-				113BF5621C0D706500175B22 /* SignContractViewController.swift */,
-				1104A8401C76B54100B59E60 /* AddendumAViewController.swift */,
-				111B69501C191E9200970927 /* AddendumCViewController.swift */,
-				11633B901C279B3700C11A20 /* ClosingMemoViewController.swift */,
-				11633B921C279E2900C11A20 /* DesignCenterViewController.swift */,
 				1107507A1C29222600B68141 /* SendOperationViewController.swift */,
-				1195336C1C744CDE007AA5CD /* ThirdPartyFinacingAddendumViewController.swift */,
 				117F9B6A1C756706008B26D5 /* PrintModelTableViewController.swift */,
-				11F085CF1C76F0DC0056AE62 /* InformationAboutBrokerageServicesViewController.swift */,
-				111ED0471C77ED5F00E2CD4C /* ExhibitAViewController.swift */,
-				111ED0491C77ED8600E2CD4C /* ExhibitBViewController.swift */,
-				111ED04B1C77EDA000E2CD4C /* ExhibitCGeneralViewController.swift */,
 				11A50B411C783BFC0017AA53 /* AddressListModelViewController.swift */,
 				111E20371C7BF275004D43D8 /* PDFPrintViewController.swift */,
 				1114C7AA1C816F2D00924A21 /* PrintModelTableViewCell.swift */,
@@ -755,7 +725,6 @@
 				11633BA21C27DA8E00C11A20 /* ContractClosingMemo.swift in Sources */,
 				11D911001C1AB33D00CD018A /* ContractAddendumC.swift in Sources */,
 				1108B2651BFC4047004B5D48 /* PDFForm.m in Sources */,
-				113BF5631C0D706500175B22 /* SignContractViewController.swift in Sources */,
 				111E20401C7C5F3D004D43D8 /* SetDotValue.swift in Sources */,
 				1108B2671BFC4047004B5D48 /* PDFPage.m in Sources */,
 				115338C21C27DE5900E1B65A /* PDFBaseViewController.swift in Sources */,
@@ -764,20 +733,17 @@
 				1108B2791BFC6133004B5D48 /* BaseViewController.swift in Sources */,
 				1108B25B1BFC4047004B5D48 /* PDFSerializer.m in Sources */,
 				1108B2641BFC4047004B5D48 /* PDFDocument.m in Sources */,
-				11633B931C279E2900C11A20 /* DesignCenterViewController.swift in Sources */,
 				1108B26A1BFC4047004B5D48 /* PDFFormButtonField.m in Sources */,
 				11643C161C030B8E000E2C0A /* CConstants.swift in Sources */,
 				1108B2681BFC4047004B5D48 /* PDFObjectParser.m in Sources */,
 				111E20381C7BF275004D43D8 /* PDFPrintViewController.swift in Sources */,
 				1108B25D1BFC4047004B5D48 /* PDFArray.m in Sources */,
 				1108B26C1BFC4047004B5D48 /* PDFFormImageView.m in Sources */,
-				1195336D1C744CDE007AA5CD /* ThirdPartyFinacingAddendumViewController.swift in Sources */,
 				112118E31C056EC1000F85CE /* AddressListViewHeadView.swift in Sources */,
 				1108B2751BFC55CF004B5D48 /* LoginViewController.swift in Sources */,
 				113CB5961BFEC8D60081FDE7 /* ContractObject.swift in Sources */,
 				1108B2611BFC4047004B5D48 /* PDFNumber.m in Sources */,
 				113CB5BA1BFEE27A0081FDE7 /* ContractsItem.swift in Sources */,
-				111ED04A1C77ED8600E2CD4C /* ExhibitBViewController.swift in Sources */,
 				1107507B1C29222600B68141 /* SendOperationViewController.swift in Sources */,
 				117F9B6B1C756706008B26D5 /* PrintModelTableViewController.swift in Sources */,
 				117F9B741C75B8D3008B26D5 /* extensionViewController.swift in Sources */,
@@ -786,14 +752,11 @@
 				11A50B421C783BFC0017AA53 /* AddressListModelViewController.swift in Sources */,
 				113CB5BC1BFEE2D80081FDE7 /* Contract.swift in Sources */,
 				1114C79C1C812AE900924A21 /* AppDelegate.swift in Sources */,
-				111ED04C1C77EDA000E2CD4C /* ExhibitCGeneralViewController.swift in Sources */,
 				1108B26B1BFC4047004B5D48 /* PDFFormChoiceField.m in Sources */,
 				1108B26E1BFC4047004B5D48 /* PDFFormTextField.m in Sources */,
-				111ED0481C77ED5F00E2CD4C /* ExhibitAViewController.swift in Sources */,
 				11D911021C1AB36000CD018A /* ContractAddendumCItem.swift in Sources */,
 				1104A8491C76B66800B59E60 /* AddendumA.swift in Sources */,
 				1108B21E1BFC290F004B5D48 /* SignatureView.m in Sources */,
-				1104A8411C76B54100B59E60 /* AddendumAViewController.swift in Sources */,
 				1108B26F1BFC4047004B5D48 /* PDFView.m in Sources */,
 				1176D20F1BFDC67C001C1C3E /* AddressListViewController.swift in Sources */,
 				1108B21B1BFC290F004B5D48 /* DrawSignView.m in Sources */,
@@ -801,12 +764,9 @@
 				1108B21C1BFC290F004B5D48 /* MyView.m in Sources */,
 				1108B21D1BFC290F004B5D48 /* PopSignUtil.m in Sources */,
 				1108B2661BFC4047004B5D48 /* PDFFormContainer.m in Sources */,
-				11633B911C279B3700C11A20 /* ClosingMemoViewController.swift in Sources */,
 				113CB5DE1BFEE5A80081FDE7 /* LoginUser.swift in Sources */,
 				1108B2621BFC4047004B5D48 /* PDFStream.m in Sources */,
 				1108B25E1BFC4047004B5D48 /* PDFDictionary.m in Sources */,
-				111B69511C191E9200970927 /* AddendumCViewController.swift in Sources */,
-				11F085D01C76F0DC0056AE62 /* InformationAboutBrokerageServicesViewController.swift in Sources */,
 				110CE6A61C03F3370096E630 /* ContractSignatureError.swift in Sources */,
 				1108B2631BFC4047004B5D48 /* PDFString.m in Sources */,
 				1108B1BA1BFC2691004B5D48 /* Contract.xcdatamodeld in Sources */,

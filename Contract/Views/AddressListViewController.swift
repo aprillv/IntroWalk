@@ -395,12 +395,7 @@ class AddressListViewController: UITableViewController, UISearchBarDelegate, ToD
                    controller.delegate = self
                 }
                 break
-            case CConstants.SegueToSignaturePdf:
-                    if let controller = segue.destinationViewController as? SignContractViewController {
-                        controller.pdfInfo = sender as? ContractSignature
-                        controller.AddressList = self.AddressListOrigin
-                        controller.initWithResource(CConstants.PdfFileNameContract)
-                    }
+           
             case "tofile":
                 if let controller = segue.destinationViewController as? PDFPrintViewController {
                     if let indexPath = tableView.indexPathForSelectedRow {
@@ -456,101 +451,7 @@ class AddressListViewController: UITableViewController, UISearchBarDelegate, ToD
                     }
                     
                 }
-            case CConstants.SegueToClosingMemo:
-                if let controller = segue.destinationViewController as? ClosingMemoViewController {
-                    controller.AddressList = self.AddressListOrigin
-                    controller.pdfInfo = sender as? ContractClosingMemo
-                    controller.initWithResource(CConstants.PdfFileNameClosingMemo)
-                }
-            case CConstants.SegueToDesignCenter:
-                if let controller = segue.destinationViewController as? DesignCenterViewController {
-                    controller.AddressList = self.AddressListOrigin
-                    controller.pdfInfo = sender as? ContractDesignCenter
-                    controller.initWithResource(CConstants.PdfFileNameDesignCenter)
-                }
-            case CConstants.SegueToThridPartyFinacingAddendumPdf:
-                if let controller = segue.destinationViewController as? ThirdPartyFinacingAddendumViewController {
-                    controller.pdfInfo = sender as? AddendumA
-                    controller.AddressList = self.AddressListOrigin
-                    controller.initWithResource(CConstants.PdfFileNameThirdPartyFinancingAddendum)
-                }
-            case CConstants.SegueToAddendumA:
-                if let controller = segue.destinationViewController as? AddendumAViewController {
-                    controller.pdfInfo = sender as? AddendumA
-                    controller.AddressList = self.AddressListOrigin
-                    controller.initWithResource(CConstants.PdfFileNameAddendumA)
-                }
-            case CConstants.SegueToExhibitA:
-                if let controller = segue.destinationViewController as? ExhibitAViewController {
-                    controller.pdfInfo = sender as? AddendumA
-                    controller.AddressList = self.AddressListOrigin
-                    controller.initWithResource(CConstants.PdfFileNameEXHIBIT_A)
-                }
-            case CConstants.SegueToExhibitB:
-                if let controller = segue.destinationViewController as? ExhibitBViewController {
-                    controller.pdfInfo = sender as? AddendumA
-                    controller.AddressList = self.AddressListOrigin
-                    controller.initWithResource(CConstants.PdfFileNameEXHIBIT_B)
-                }
-            case CConstants.SegueToExhibitC:
-                if let controller = segue.destinationViewController as? ExhibitCGeneralViewController {
-//                    print(sender as? AddendumA)
-//                    print(controller)
-                    controller.AddressList = self.AddressListOrigin
-                    controller.pdfInfo = sender as? AddendumA
-                    controller.initWithResource(CConstants.PdfFileNameEXHIBIT_C)
-                }
-            case CConstants.SegueToInformationAboutBrokerageServices:
-                if let controller = segue.destinationViewController as? InformationAboutBrokerageServicesViewController {
-//                    controller.pdfInfo = sender as? AddendumA
-                    if let indexPath = tableView.indexPathForSelectedRow {
-                        let ddd = self.CiaNmArray?[self.CiaNm?[indexPath.section] ?? ""]
-                        let item: ContractsItem = ddd![indexPath.row]
-                        let info = ContractPDFBaseModel(dicInfo: nil)
-                        info.code = item.code
-                        info.idcia = item.idcia
-                        info.idproject = item.idproject
-                        info.idnumber = item.idnumber
-                        info.idcity = item.idcity
-                        info.nproject = item.nproject
-                        controller.pdfInfo0 = info
-                        controller.AddressList = self.AddressListOrigin
-                        controller.initWithResource(CConstants.PdfFileNameINFORMATION_ABOUT_BROKERAGE_SERVICES)
-                    }
-                    
-                }
-            case CConstants.SegueToAddendumC:
-                if let controller = segue.destinationViewController as? AddendumCViewController {
-                    controller.pdfInfo = sender as? ContractAddendumC
-                    var itemList = [[String]]()
-                    var i = 0
-                    if let list = controller.pdfInfo?.itemlist {
-                        for items in list {
-                            
-                            var itemList1 = [String]()
-                            let textView = UITextView(frame: CGRect(x: 0, y: 0, width: 657.941, height: 13.2353))
-                            textView.scrollEnabled = false
-                            textView.font = UIFont(name: "Verdana", size: 11.0)
-                            textView.text = items.xdescription!
-                            textView.sizeToFit()
-                            textView.layoutManager.enumerateLineFragmentsForGlyphRange(NSMakeRange(0, items.xdescription!.characters.count), usingBlock: { (rect, usedRect, textContainer, glyphRange, _) -> Void in
-                                if  let a : NSString = items.xdescription! as NSString {
-                                    
-                                    i++
-                                    itemList1.append(a.substringWithRange(glyphRange))
-                                }
-                            })
-//                            itemList1.append("april test")
-                            itemList.append(itemList1)
-                        }
-                    }
-                    controller.pdfInfo!.itemlistStr = itemList
-                    controller.AddressList = self.AddressListOrigin
-                    
-                    let pass = i > 19 ? CConstants.PdfFileNameAddendumC2 : CConstants.PdfFileNameAddendumC
-                    
-                    controller.initWithResource(pass)
-                }
+            
             default:
                 break;
             }

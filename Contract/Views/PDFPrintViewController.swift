@@ -260,14 +260,21 @@ class PDFPrintViewController: PDFBaseViewController, UIScrollViewDelegate, PDFVi
         let userinfo = NSUserDefaults.standardUserDefaults()
         if userinfo.boolForKey(CConstants.UserInfoIsContract) {
             self.navigationItem.title = "Contract"
+            if filesArray != nil {
+                if filesArray![0] == CConstants.ActionTitleAddendumC{
+                    self.pageChanged( 6)
+                }
+            }
         }else{
             self.navigationItem.title = "Draft"
+            buyer1Date.title = ""
+            buyer2Date.title = ""
+            buyer1Item.title = ""
+            buyer2Item.title = ""
+            seller1Item.title = ""
+            seller2Item.title = ""
         }
-        if filesArray != nil {
-            if filesArray![0] == CConstants.ActionTitleAddendumC{
-                self.pageChanged( 6)
-            }
-        }
+        
         
         if filesArray?.count == 1 {
             self.title = filesArray![0]
@@ -306,43 +313,9 @@ class PDFPrintViewController: PDFBaseViewController, UIScrollViewDelegate, PDFVi
                     if let rtnValue = response.result.value as? [String: AnyObject]{
                         if let msg = rtnValue["message"] as? String{
                             if msg.isEmpty{
-                                var vc : PDFBaseViewController?
+//                                var vc : PDFBaseViewController?
                                 switch printModelNm {
-                                case CConstants.ActionTitleAddendumC:
-                                    vc = UIStoryboard(name: CConstants.StoryboardName, bundle: nil).instantiateViewControllerWithIdentifier(CConstants.ControllerNameAddendumC) as? PDFBaseViewController
-                                    if let controller = vc as? AddendumCViewController{
-                                        controller.pdfInfo = ContractAddendumC(dicInfo: rtnValue)
-                                        
-                                        var itemList = [[String]]()
-                                        var i = 0
-                                        if let list = controller.pdfInfo?.itemlist {
-                                            for items in list {
-                                                
-                                                var itemList1 = [String]()
-                                                let textView = UITextView(frame: CGRect(x: 0, y: 0, width: 657.941, height: 13.2353))
-                                                textView.scrollEnabled = false
-                                                textView.font = UIFont(name: "Verdana", size: 11.0)
-                                                textView.text = items.xdescription!
-                                                textView.sizeToFit()
-                                                textView.layoutManager.enumerateLineFragmentsForGlyphRange(NSMakeRange(0, items.xdescription!.characters.count), usingBlock: { (rect, usedRect, textContainer, glyphRange, _) -> Void in
-                                                    if  let a : NSString = items.xdescription! as NSString {
-                                                        
-                                                        i++
-                                                        itemList1.append(a.substringWithRange(glyphRange))
-                                                    }
-                                                })
-                                                //                            itemList1.append("april test")
-                                                itemList.append(itemList1)
-                                            }
-                                        }
-                                        controller.pdfInfo!.itemlistStr = itemList
-                                        
-                                        
-                                        let pass = i > 19 ? CConstants.PdfFileNameAddendumC2 : CConstants.PdfFileNameAddendumC
-                                        
-                                        controller.initWithResource(pass)
-                                        
-                                    }
+                                
                                 case CConstants.ActionTitleClosingMemo:
                                     self.closingMemoPdfInfo = ContractClosingMemo(dicInfo: rtnValue)
                                 case CConstants.ActionTitleDesignCenter:
@@ -353,13 +326,6 @@ class PDFPrintViewController: PDFBaseViewController, UIScrollViewDelegate, PDFVi
                                 default:
 //                                    print(rtnValue)
                                     self.addendumApdfInfo = AddendumA(dicInfo: rtnValue)
-                                }
-                                if let vcc = vc {
-                                    vcc.AddressList = self.AddressList
-                                    var na = self.navigationController?.viewControllers
-                                    na?.removeLast()
-                                    na?.append(vcc)
-                                    self.navigationController?.viewControllers = na!
                                 }
                                 
                             }else{
@@ -410,7 +376,7 @@ class PDFPrintViewController: PDFBaseViewController, UIScrollViewDelegate, PDFVi
                 if doc.pdfName == CConstants.ActionTitleAddendumC {
                     for a in doc.addedviewss {
                         if let sign = a as? SignatureView {
-                            print(sign.xname)
+//                            print(sign.xname)
                             if !CGRectIntersectsRect(sign.superview!.bounds, sign.frame) {
                                 continue
                             }
@@ -424,9 +390,6 @@ class PDFPrintViewController: PDFBaseViewController, UIScrollViewDelegate, PDFVi
                                     sign.toSignautre()
                                     return
                             }
-                                
-                                
-                            
                         }
                     }
                     break
