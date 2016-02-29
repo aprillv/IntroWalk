@@ -75,8 +75,8 @@ class PrintModelTableViewController: BaseViewController, UITableViewDataSource, 
         let userInfo = NSUserDefaults.standardUserDefaults()
         if userInfo.boolForKey(CConstants.UserInfoIsContract) {
             printList.append(CConstants.ActionTitleAddendumC)
-            printList.append(CConstants.ActionTitleClosingMemo)
             printList.append(CConstants.ActionTitleDesignCenter)
+            printList.append(CConstants.ActionTitleClosingMemo)
             printList.append(CConstants.ActionTitleGoContract)
         }else{
             printList.append(CConstants.ActionTitleGoDraft)
@@ -101,6 +101,90 @@ class PrintModelTableViewController: BaseViewController, UITableViewDataSource, 
     //     func tableView(tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
     //        return 44
     //    }
+    
+    private func isAllCellSelected(){
+        var cnt = 0
+        for i in 0...printList.count-2 {
+            let indexa = NSIndexPath(forRow: i, inSection: 0)
+            if let cell = tableview.cellForRowAtIndexPath(indexa) as? PrintModelTableViewCell {
+                
+                if cell.contentView.tag == 1 {
+                    cnt+=1
+                }
+            }
+        }
+        if cnt == printList.count-1 {
+            let indexa = NSIndexPath(forRow: printList.count-1, inSection: 0)
+            if let cell = tableview.cellForRowAtIndexPath(indexa) as? PrintModelTableViewCell {
+                cell.imageBtn.image =  UIImage(named: CConstants.CheckedImgNm)
+                cell.tag = 1
+            }
+        }else {
+            let indexa = NSIndexPath(forRow: printList.count-1, inSection: 0)
+            if let cell = tableview.cellForRowAtIndexPath(indexa) as? PrintModelTableViewCell {
+                cell.imageBtn.image =  UIImage(named: CConstants.CheckImgNm)
+                cell.tag = 0
+            }
+
+        }
+        
+    }
+    
+    func touched(tap : UITapGestureRecognizer){
+         let indexa = NSIndexPath(forRow: printList.count-1, inSection: 0)
+        if let cell = tableview.cellForRowAtIndexPath(indexa) as? PrintModelTableViewCell {
+            let point = tap.locationInView(tap.view)
+            if (cell.contentLbl.frame.contains(point)){
+                var selectedCellArray = [NSIndexPath]()
+                
+                for i in 0...printList.count-1 {
+                    let index = NSIndexPath(forRow: i, inSection: 0)
+                    if let cell = tableview.cellForRowAtIndexPath(index) {
+                        if cell.contentView.tag == 1 {
+                            selectedCellArray.append(index)
+                        }
+                        
+                        
+                    }
+                }
+                
+                
+                if selectedCellArray.count == 0 {
+                    return
+                }else{
+                    self.dismissViewControllerAnimated(true){
+                        if let delegate1 = self.delegate {
+                            var filesNames = [String]()
+                            for indexPath0 in selectedCellArray {
+                                let title = self.printList[indexPath0.row]
+                                filesNames.append(title)
+                            }
+                            let userinfo = NSUserDefaults.standardUserDefaults()
+                            userinfo.setValue(filesNames, forKey: CConstants.UserInfoPrintModel)
+                            delegate1.GoToPrint(filesNames)
+                        }
+                    }
+                }
+            }else if cell.imageBtn.frame.contains(point) {
+                tap.view!.tag = 1 - tap.view!.tag
+                for cell in tableview.visibleCells {
+                    if let cell3 = cell as? PrintModelTableViewCell {
+                        if tap.view?.tag == 0 {
+                            cell3.contentView.tag = 0
+                            cell3.imageBtn?.image = UIImage(named: CConstants.CheckImgNm)
+                        }else{
+                            cell3.contentView.tag = 1
+                            cell3.imageBtn?.image = UIImage(named: CConstants.CheckedImgNm)
+                        }
+                    }
+                }
+            }
+        }
+        
+//        tap.view!.tag = 1 - tap.view!.tag
+
+        
+    }
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCellWithIdentifier(constants.cellReuseIdentifier, forIndexPath: indexPath) as! PrintModelTableViewCell
 //        let a = UIView(frame: CGRect(x: 0, y: 0, width: cell.frame.size.width, height:  cell.frame.size.height))
@@ -116,7 +200,21 @@ class PrintModelTableViewController: BaseViewController, UITableViewDataSource, 
 //            cell.contentView.backgroundColor = CConstants.ApplicationColor
             cell.contentLbl?.backgroundColor = CConstants.ApplicationColor
             cell.contentLbl?.font = UIFont(name: CConstants.ApplicationBarFontName, size: CConstants.ApplicationBarItemFontSize)
-            cell.imageBtn?.image = UIImage(named: "check")
+            cell.imageBtn?.image = UIImage(named: CConstants.CheckImgNm)
+            
+            let tab = UITapGestureRecognizer(target: self, action: "touched:")
+            tab.numberOfTapsRequired = 1
+//            tab.delegate = self
+            cell.tag = 0
+            cell.addGestureRecognizer(tab)
+            let userinfo = NSUserDefaults.standardUserDefaults()
+            if let filesNames = userinfo.valueForKey(CConstants.UserInfoPrintModel) as? [String] {
+                if filesNames.count == printList.count{
+                    cell.imageBtn?.image = UIImage(named: CConstants.CheckedImgNm)
+                    cell.tag = 1
+                }
+            }
+            
             cell.leadingtoLeft.constant = -8
             cell.updateConstraintsIfNeeded()
         }else{
@@ -126,15 +224,17 @@ class PrintModelTableViewController: BaseViewController, UITableViewDataSource, 
             if let filesNames = userinfo.valueForKey(CConstants.UserInfoPrintModel) as? [String] {
                 if filesNames.contains(printList[indexPath.row]) {
                     cell.contentView.tag = 1
-                    cell.imageBtn?.image = UIImage(named: "checked")
+                    cell.imageBtn?.image = UIImage(named: CConstants.CheckedImgNm)
                 }else{
                     cell.contentView.tag = 0
-                    cell.imageBtn?.image = UIImage(named: "check")
+                    cell.imageBtn?.image = UIImage(named: CConstants.CheckImgNm)
                 }
             }else{
                 cell.contentView.tag = 0
-                cell.imageBtn?.image = UIImage(named: "check")
+                cell.imageBtn?.image = UIImage(named: CConstants.CheckImgNm)
             }
+           
+
         }
         
         
@@ -154,12 +254,13 @@ class PrintModelTableViewController: BaseViewController, UITableViewDataSource, 
             cell?.contentView.tag = 1 - cell!.contentView.tag
             let iv :UIImage?
             if cell?.contentView.tag == 1 {
-                iv = UIImage(named: "checked")
+                iv = UIImage(named: CConstants.CheckedImgNm)
             }else{
-                iv = UIImage(named: "check")
+                iv = UIImage(named: CConstants.CheckImgNm)
             }
             
             cell?.imageBtn?.image = iv
+            isAllCellSelected()
             
         }else{
             

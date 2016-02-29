@@ -308,7 +308,7 @@ class SetDotValue : NSObject {
                     }
                 case SignContractPDFFields.chk6e2:
                     if let radio = pv as? PDFFormButtonField {
-                        if radio.exportValue == "6e2" {
+                        if radio.exportValue == "6e22" {
                             radio.setValue2("1")
                         }
                     }
@@ -624,7 +624,7 @@ class SetDotValue : NSObject {
             case AddendumAPDFFields.delayfees_amount:
                 pv.value = pdfInfo?.delayfees_amount!
             case AddendumAPDFFields.GeneralPartner:
-                pv.value = pdfInfo?.GeneralPartner!
+                pv.value = "By \(pdfInfo!.GeneralPartner!), General Partner"
             case AddendumAPDFFields.ExcutedDay:
                 pv.value = pdfInfo?.ExcutedDay!
             default:
@@ -983,37 +983,83 @@ class SetDotValue : NSObject {
                 }
             case DesignCenterPDFFields.dcChkMaster:
                 pv.value = String(pdfInfo!.dcChkMaster!)
+                if let radio = pv as? PDFFormButtonField {
+                    radio.setValue2(String(pdfInfo!.dcChkMaster!))
+                }
             case DesignCenterPDFFields.dcChkMasterCountertop:
                 pv.value = String(pdfInfo!.dcChkMasterCountertop!)
+                if let radio = pv as? PDFFormButtonField {
+                    radio.setValue2(String(pdfInfo!.dcChkMasterCountertop!))
+                }
             case DesignCenterPDFFields.dcChkSecond:
                 pv.value = String(pdfInfo!.dcChkSecond!)
+                if let radio = pv as? PDFFormButtonField {
+                    radio.setValue2(String(pdfInfo!.dcChkSecond!))
+                }
             case DesignCenterPDFFields.dcChkPowder:
                 pv.value = String(pdfInfo!.dcChkPowder!)
+                if let radio = pv as? PDFFormButtonField {
+                    radio.setValue2(String(pdfInfo!.dcChkPowder!))
+                }
             case DesignCenterPDFFields.dcChkWood:
                 pv.value = String(pdfInfo!.dcChkWood!)
+                if let radio = pv as? PDFFormButtonField {
+                    radio.setValue2(String(pdfInfo!.dcChkWood!))
+                }
             case DesignCenterPDFFields.dcChkKitchenCountertop:
                 pv.value = String(pdfInfo!.dcChkKitchenCountertop!)
+                if let radio = pv as? PDFFormButtonField {
+                    radio.setValue2(String(pdfInfo!.dcChkKitchenCountertop!))
+                }
             case DesignCenterPDFFields.dcChkMasterBath:
                 pv.value = String(pdfInfo!.dcChkMasterBath!)
+                if let radio = pv as? PDFFormButtonField {
+                    radio.setValue2(String(pdfInfo!.dcChkMasterBath!))
+                }
             case DesignCenterPDFFields.dcChk2ndBath:
                 pv.value = String(pdfInfo!.dcChk2ndBath!)
+                if let radio = pv as? PDFFormButtonField {
+                    radio.setValue2(String(pdfInfo!.dcChk2ndBath!))
+                }
             case DesignCenterPDFFields.dcChkEntryFloor:
                 pv.value = String(pdfInfo!.dcChkEntryFloor!)
+                if let radio = pv as? PDFFormButtonField {
+                    radio.setValue2(String(pdfInfo!.dcChkEntryFloor!))
+                }
             case DesignCenterPDFFields.dcChkCarpet:
                 pv.value = String(pdfInfo!.dcChkCarpet!)
+                if let radio = pv as? PDFFormButtonField {
+                    radio.setValue2(String(pdfInfo!.dcChkCarpet!))
+                }
             case DesignCenterPDFFields.dcChkKitchenBacksplash:
                 pv.value = String(pdfInfo!.dcChkKitchenBacksplash!)
+                if let radio = pv as? PDFFormButtonField {
+                    radio.setValue2(String(pdfInfo!.dcChkKitchenBacksplash!))
+                }
             case DesignCenterPDFFields.dcChkUtility:
                 pv.value = String(pdfInfo!.dcChkUtility!)
+                if let radio = pv as? PDFFormButtonField {
+                    radio.setValue2(String(pdfInfo!.dcChkUtility!))
+                }
             case DesignCenterPDFFields.dcChkInterior:
                 pv.value = String(pdfInfo!.dcChkInterior!)
+                if let radio = pv as? PDFFormButtonField {
+                    radio.setValue2(String(pdfInfo!.dcChkInterior!))
+                }
             case DesignCenterPDFFields.dcChkPlumbing:
                 pv.value = String(pdfInfo!.dcChkPlumbing!)
+                if let radio = pv as? PDFFormButtonField {
+                    radio.setValue2(String(pdfInfo!.dcChkPlumbing!))
+                }
             case DesignCenterPDFFields.dcChkHandware:
                 pv.value = String(pdfInfo!.dcChkHandware!)
+                if let radio = pv as? PDFFormButtonField {
+                    radio.setValue2(String(pdfInfo!.dcChkHandware!))
+                }
             default:
                 break
             }
+            
         }
     }
     
@@ -1111,7 +1157,7 @@ class SetDotValue : NSObject {
         for pv : PDFWidgetAnnotationView in additionViews{
             switch pv.xname {
             case ExhibitCPDFFields.GeneralPartner:
-                pv.value = pdfInfo?.GeneralPartner!
+                pv.value = "\(pdfInfo!.GeneralPartner!),"
             case ExhibitCPDFFields.CompanyName:
                 pv.value = pdfInfo?.CompanyName!
             case ExhibitCPDFFields.Date:

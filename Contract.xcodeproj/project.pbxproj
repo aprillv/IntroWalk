@@ -90,8 +90,8 @@
 		117F9B6B1C756706008B26D5 /* PrintModelTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 117F9B6A1C756706008B26D5 /* PrintModelTableViewController.swift */; };
 		117F9B741C75B8D3008B26D5 /* extensionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 117F9B731C75B8D3008B26D5 /* extensionViewController.swift */; };
 		11A50B421C783BFC0017AA53 /* AddressListModelViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11A50B411C783BFC0017AA53 /* AddressListModelViewController.swift */; };
-		11B18F0A1C83DCDD00D39019 /* AddendumA.pdf in Resources */ = {isa = PBXBuildFile; fileRef = 11B18F091C83DCDD00D39019 /* AddendumA.pdf */; };
 		11B18F0C1C83DEFA00D39019 /* EXHIBIT_B.pdf in Resources */ = {isa = PBXBuildFile; fileRef = 11B18F0B1C83DEFA00D39019 /* EXHIBIT_B.pdf */; };
+		11B18F0E1C842A3700D39019 /* AddendumA.pdf in Resources */ = {isa = PBXBuildFile; fileRef = 11B18F0D1C842A3700D39019 /* AddendumA.pdf */; };
 		11D911001C1AB33D00CD018A /* ContractAddendumC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11D910FF1C1AB33D00CD018A /* ContractAddendumC.swift */; };
 		11D911021C1AB36000CD018A /* ContractAddendumCItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11D911011C1AB36000CD018A /* ContractAddendumCItem.swift */; };
 /* End PBXBuildFile section */
@@ -284,8 +284,8 @@
 		117F9B6A1C756706008B26D5 /* PrintModelTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PrintModelTableViewController.swift; sourceTree = "<group>"; };
 		117F9B731C75B8D3008B26D5 /* extensionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = extensionViewController.swift; sourceTree = "<group>"; };
 		11A50B411C783BFC0017AA53 /* AddressListModelViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddressListModelViewController.swift; sourceTree = "<group>"; };
-		11B18F091C83DCDD00D39019 /* AddendumA.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; path = AddendumA.pdf; sourceTree = "<group>"; };
 		11B18F0B1C83DEFA00D39019 /* EXHIBIT_B.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; path = EXHIBIT_B.pdf; sourceTree = "<group>"; };
+		11B18F0D1C842A3700D39019 /* AddendumA.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; path = AddendumA.pdf; sourceTree = "<group>"; };
 		11D910FF1C1AB33D00CD018A /* ContractAddendumC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContractAddendumC.swift; sourceTree = "<group>"; };
 		11D911011C1AB36000CD018A /* ContractAddendumCItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContractAddendumCItem.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -509,8 +509,8 @@
 		110CE6AD1C0439A70096E630 /* pdf */ = {
 			isa = PBXGroup;
 			children = (
+				11B18F0D1C842A3700D39019 /* AddendumA.pdf */,
 				11B18F0B1C83DEFA00D39019 /* EXHIBIT_B.pdf */,
-				11B18F091C83DCDD00D39019 /* AddendumA.pdf */,
 				1114C7BA1C8197B000924A21 /* EXHIBIT_C_General.pdf */,
 				1114C7B51C81963100924A21 /* EXHIBIT_A.pdf */,
 				1114C7B01C8192BE00924A21 /* INFORMATION_ABOUT_BROKERAGE_SERVICES.pdf */,
@@ -694,13 +694,13 @@
 				11475E691C23F1270034A801 /* AddendumC.pdf in Resources */,
 				114733F71C103053000FC8D6 /* contract1pdf_2_100.txt in Resources */,
 				1108B1BC1BFC2691004B5D48 /* Assets.xcassets in Resources */,
+				11B18F0E1C842A3700D39019 /* AddendumA.pdf in Resources */,
 				110750791C28E91600B68141 /* ClosingMemo.pdf in Resources */,
 				1114C7BB1C8197B000924A21 /* EXHIBIT_C_General.pdf in Resources */,
 				11B18F0C1C83DEFA00D39019 /* EXHIBIT_B.pdf in Resources */,
 				114733F51C103053000FC8D6 /* contract1pdf_2_306.txt in Resources */,
 				114733F31C103053000FC8D6 /* contract1pdf_3_306.txt in Resources */,
 				1108B1B71BFC2691004B5D48 /* Main.storyboard in Resources */,
-				11B18F0A1C83DCDD00D39019 /* AddendumA.pdf in Resources */,
 				1114C7A91C814BB000924A21 /* BaseContract.pdf in Resources */,
 				114733F81C103053000FC8D6 /* contract1pdf_1_9999.txt in Resources */,
 				114733FA1C103053000FC8D6 /* contract1pdf_1_265.txt in Resources */,

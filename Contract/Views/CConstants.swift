@@ -34,7 +34,11 @@ struct CConstants{
     static let SendEmailSuccessfullMsg = "Sent email successfully."
     static let PrintSuccessfullMsg = "Print successfully."
     
+    static let CheckedImgNm = "checked"
+    static let CheckImgNm = "check"
+    
     static let SegueToAddressList :  String = "adressList"
+    static let SegueToPrintPdf : String = "tofile"
 //    static let SegueToSignaturePdf : String = "pdfSignature"
 //    static let SegueToThridPartyFinacingAddendumPdf : String = "pdfThridPartyFinacingAddendum"
 //    static let SegueToClosingMemo : String = "closingmemo"

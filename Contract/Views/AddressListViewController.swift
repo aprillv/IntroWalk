@@ -214,7 +214,7 @@ class AddressListViewController: UITableViewController, UISearchBarDelegate, ToD
             if modelNm.contains(CConstants.ActionTitleAddendumC){
                 callService(modelNm)
             }else{
-                self.performSegueWithIdentifier("tofile", sender: modelNm)
+                self.performSegueWithIdentifier(CConstants.SegueToPrintPdf, sender: modelNm)
             }
 //        }
         
@@ -281,7 +281,7 @@ class AddressListViewController: UITableViewController, UISearchBarDelegate, ToD
 //                                                self.performSegueWithIdentifier(CConstants.SegueToAddendumC, sender: rtn)
 //                                            }else{
                                                 let rtn = ContractAddendumC(dicInfo: rtnValue)
-                                                self.performSegueWithIdentifier("tofile", sender: rtn)
+                                                self.performSegueWithIdentifier(CConstants.SegueToPrintPdf, sender: rtn)
 //                                            }
                                         default:
                                             break;
@@ -358,7 +358,7 @@ class AddressListViewController: UITableViewController, UISearchBarDelegate, ToD
                 }
                 break
            
-            case "tofile":
+            case CConstants.SegueToPrintPdf:
                 if let controller = segue.destinationViewController as? PDFPrintViewController {
                     if let indexPath = tableView.indexPathForSelectedRow {
                         let ddd = self.CiaNmArray?[self.CiaNm?[indexPath.section] ?? ""]
