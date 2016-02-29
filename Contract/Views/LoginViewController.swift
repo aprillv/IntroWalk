@@ -146,20 +146,20 @@ class LoginViewController: BaseViewController, UITextFieldDelegate {
             if response.result.isSuccess {
                 if let rtnValue = response.result.value{
                     if rtnValue.integerValue == 1 {
-                         self.doLogin()
+//                         self.doLogin()
                     }else{
                         if let url = NSURL(string: CConstants.InstallAppLink){
                             self.toEablePageControl()
                             UIApplication.sharedApplication().openURL(url)
                         }else{
-                             self.doLogin()
+//                             self.doLogin()
                         }
                     }
                 }else{
-                    self.doLogin()
+//                    self.doLogin()
                 }
             }else{
-                self.doLogin()
+//                self.doLogin()
             }
         }
         //     NSString*   version = [[[NSBundle mainBundle] infoDictionary] objectForKey:@"CFBundleVersion"];
@@ -168,7 +168,7 @@ class LoginViewController: BaseViewController, UITextFieldDelegate {
     @IBAction func Login(sender: UIButton) {
         
         disAblePageControl()
-        checkUpate()
+        self.doLogin()
     }
     
     private func disAblePageControl(){
@@ -193,7 +193,7 @@ class LoginViewController: BaseViewController, UITextFieldDelegate {
 //        progressBar?.view.addSubview(spinner!)
 //        spinner?.startAnimating()
 //        self.presentViewController(progressBar!, animated: true, completion: nil)
-    self.noticeOnlyText(CConstants.LoginingMsg)
+//    self.noticeOnlyText(CConstants.LoginingMsg)
         
     }
     private func doLogin(){
@@ -215,12 +215,26 @@ class LoginViewController: BaseViewController, UITextFieldDelegate {
                 
                 //                self.view.userInteractionEnabled = false
                 
+//                MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+//                hud.mode = MBProgressHUDModeAnnularDeterminate;
+//                hud.labelText = @"Loading";
+//                [self doSomethingInBackgroundWithProgressCallback:^(float progress) {
+//                    hud.progress = progress;
+//                    } completionCallback:^{
+//                    [hud hide:YES];
+//                    }];
+                
+                let hud = MBProgressHUD.showHUDAddedTo(self.view, animated: true)
+//                hud.mode = .AnnularDeterminate
+                hud.labelText = CConstants.LoginingMsg
+                
                 
                 let loginUserInfo = LoginUser(email: email!, password: password!, iscontract:  "1")
                 
                 let a = loginUserInfo.DictionaryFromObject()
                 Alamofire.request(.POST, CConstants.ServerURL + CConstants.LoginServiceURL, parameters: a).responseJSON{ (response) -> Void in
-                    self.clearNotice()
+//                    self.clearNotice()
+                    hud.hide(true)
 //                    self.progressBar?.dismissViewControllerAnimated(true){ () -> Void in
 //                        self.spinner?.stopAnimating()
                         if response.result.isSuccess {
@@ -307,6 +321,7 @@ class LoginViewController: BaseViewController, UITextFieldDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
 //        print(view.frame.size)
+        checkUpate()
         setSignInBtn()
     }
     override func viewWillAppear(animated: Bool) {

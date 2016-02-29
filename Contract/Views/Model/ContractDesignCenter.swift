@@ -22,7 +22,6 @@ class ContractDesignCenter : ContractPDFBaseModel{
     var stage: String?
     var buyer1: String?
     var buyer2: String?
-    var jobAddress: String?
     var subdivision: String?
     var consultant: String?
     var dcChkMaster: NSNumber?

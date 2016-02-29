@@ -40,7 +40,6 @@ class ContractClosingMemo : ContractPDFBaseModel{
     var brokerMobile: String?
     var projectManager: String?
     var salesConsultant: String?
-    var jobAddress: String?
     var subdivision: String?
     var cdescription: String?
     var floorplan: String?

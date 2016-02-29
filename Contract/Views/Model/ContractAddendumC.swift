@@ -19,7 +19,6 @@ class ContractAddendumC : ContractPDFBaseModel {
     var estimatedcompletion: String?
     var estimatedclosing: String?
     var stage: String?
-    var jobaddress: String?
     var buyer: String?
     var consultant: String?
     var subdivision: String?

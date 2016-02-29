@@ -46,10 +46,10 @@ class PDFBaseViewController: BaseViewController, DoOperationDelegate, UIPopoverP
         
     }
     func dismissProgress(){
-        self.clearNotice()
+        self.hud?.hide(true)
     }
     func dismissProgress(controller : UIViewController){
-        self.clearNotice()
+        self.hud?.hide(true)
 //        self.progressBar?.dismissViewControllerAnimated(true){
             if controller.isKindOfClass(UIPrintInteractionController){
                 //            if let c = controller as? UIPrintInteractionController {
@@ -127,6 +127,7 @@ class PDFBaseViewController: BaseViewController, DoOperationDelegate, UIPopoverP
         }
     }
     
+    var hud : MBProgressHUD?
     func savePDFToServer(xname: String){
         
         var parame : [String : String] = ["idcia" : pdfInfo0!.idcia!
@@ -150,25 +151,33 @@ class PDFBaseViewController: BaseViewController, DoOperationDelegate, UIPopoverP
         let fileBase64String = savedPdfData?.base64EncodedStringWithOptions(NSDataBase64EncodingOptions.EncodingEndLineWithLineFeed)
         parame["file"] = fileBase64String
         parame["username"] = NSUserDefaults.standardUserDefaults().valueForKey(CConstants.LoggedUserNameKey) as? String ?? ""
+       
+        hud = MBProgressHUD.showHUDAddedTo(self.view, animated: true)
+        //                hud.mode = .AnnularDeterminate
+        hud?.labelText = CConstants.SavedMsg
         
-      self.noticeOnlyText(CConstants.SavedMsg)
+      
         
         Alamofire.request(.POST,
             CConstants.ServerURL + CConstants.ContractUploadPdfURL,
             parameters: parame).responseJSON{ (response) -> Void in
-                self.clearNotice()
+//                self.hud?.hide(true)
                 if response.result.isSuccess {
                     if let rtnValue = response.result.value as? [String: String]{
                         if rtnValue["status"] == "success" {
-                            self.noticeOnlyTextNoSpinner(CConstants.SavedSuccessMsg)
+                            self.hud?.mode = .Text
+                            self.hud?.labelText = CConstants.SavedSuccessMsg
                         }else{
-                            self.noticeOnlyTextNoSpinner(CConstants.SavedFailMsg)
+                            self.hud?.mode = .Text
+                            self.hud?.labelText = CConstants.SavedFailMsg
                         }
                     }else{
-                        self.noticeOnlyTextNoSpinner(CConstants.MsgServerError)
+                        self.hud?.mode = .Text
+                        self.hud?.labelText = CConstants.MsgServerError
                     }
                 }else{
-                    self.noticeOnlyTextNoSpinner(CConstants.MsgNetworkError)
+                    self.hud?.mode = .Text
+                    self.hud?.labelText = CConstants.MsgNetworkError
                 }
                 self.performSelector("dismissProgress", withObject: nil, afterDelay: 0.5)
         }
@@ -261,8 +270,8 @@ class PDFBaseViewController: BaseViewController, DoOperationDelegate, UIPopoverP
     }
     
     private func getFileName() -> String{
-        print(pdfInfo0?.nproject)
-        print(fileName)
+//        print(pdfInfo0?.nproject)
+//        print(fileName)
         return pdfInfo0!.nproject! + "_\(fileName!)_FromApp"
     }
     func sendEmail() {
@@ -307,7 +316,11 @@ class PDFBaseViewController: BaseViewController, DoOperationDelegate, UIPopoverP
             }
         }else if result.rawValue == 2 {
             controller.dismissViewControllerAnimated(true){
-                self.noticeOnlyText(CConstants.SendEmailSuccessfullMsg)
+                if self.hud == nil {
+                    self.hud = MBProgressHUD.showHUDAddedTo(self.view, animated: true)
+                    self.hud?.mode = .Text
+                }
+                self.hud?.labelText = CConstants.SendEmailSuccessfullMsg
                 self.performSelector("dismissProgress", withObject: nil, afterDelay: 0.5)
             }
         }else {
@@ -432,11 +445,17 @@ class PDFBaseViewController: BaseViewController, DoOperationDelegate, UIPopoverP
         default:
             serviceUrl = CConstants.AddendumAServiceURL
         }
-        self.noticeOnlyText(CConstants.RequestMsg)
+        if self.hud == nil {
+            self.hud = MBProgressHUD.showHUDAddedTo(self.view, animated: true)
+        }
+        self.hud?.mode = .Indeterminate
+        self.hud?.labelText = CConstants.RequestMsg
+        
+       
         Alamofire.request(.POST,
             CConstants.ServerURL + serviceUrl!,
             parameters: param).responseJSON{ (response) -> Void in
-                self.clearNotice()
+                self.hud?.hide(true)
                 if response.result.isSuccess {
                     
                     if let rtnValue = response.result.value as? [String: AnyObject]{

@@ -303,11 +303,13 @@ class PDFPrintViewController: PDFBaseViewController, UIScrollViewDelegate, PDFVi
         default:
             serviceUrl = CConstants.AddendumAServiceURL
         }
-        self.noticeOnlyText(CConstants.RequestMsg)
+        let hud = MBProgressHUD.showHUDAddedTo(self.view, animated: true)
+        //                hud.mode = .AnnularDeterminate
+        hud.labelText = CConstants.RequestMsg
         Alamofire.request(.POST,
             CConstants.ServerURL + serviceUrl!,
             parameters: param).responseJSON{ (response) -> Void in
-                self.clearNotice()
+                hud.hide(true)
                 if response.result.isSuccess {
                     
                     if let rtnValue = response.result.value as? [String: AnyObject]{

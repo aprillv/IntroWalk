@@ -493,7 +493,7 @@ class SetDotValue : NSObject {
             case ClosingMemoPDFFields.Consultant:
                 pv.value = pdfInfo?.salesConsultant!
             case ClosingMemoPDFFields.BuilderAddress:
-                pv.value = pdfInfo?.jobAddress!
+                pv.value = pdfInfo?.nproject!
             case ClosingMemoPDFFields.BuilderSubdivision:
                 pv.value = pdfInfo?.subdivision!
             case ClosingMemoPDFFields.LegalDescription:
@@ -693,7 +693,7 @@ class SetDotValue : NSObject {
                 pv.value = pdfInfo?.stage!
                 aStage = pv
             case AddendumCPDFFields.JobAddress:
-                pv.value = pdfInfo?.jobaddress!
+                pv.value = pdfInfo?.nproject!
             case AddendumCPDFFields.Buyer:
                 pv.value = pdfInfo?.buyer!
             case AddendumCPDFFields.Consultant:
@@ -962,7 +962,7 @@ class SetDotValue : NSObject {
             case DesignCenterPDFFields.txtConsultant:
                 pv.value = pdfInfo?.consultant!
             case DesignCenterPDFFields.txtBuilderAddress:
-                pv.value = pdfInfo?.jobAddress!
+                pv.value = pdfInfo?.nproject!
             case DesignCenterPDFFields.txtBuilderSubdivision:
                 pv.value = pdfInfo?.subdivision!
             case DesignCenterPDFFields.txtNotes1:

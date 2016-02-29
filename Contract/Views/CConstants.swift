@@ -26,7 +26,7 @@ struct CConstants{
     static let UserInfoIsContract :  String = "is contract"
     static let UserInfoPrintModel : String = "last print files"
     
-    static let LoginingMsg = "Logining... ..."
+    static let LoginingMsg = "Logining ......"
     static let RequestMsg = "Requesting from server"
     static let SavedMsg = "Saving to the BA Server"
     static let SavedSuccessMsg = "Saved successfully."

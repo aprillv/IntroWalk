@@ -264,11 +264,13 @@ class AddressListViewController: UITableViewController, UISearchBarDelegate, ToD
             let item: ContractsItem = ddd![indexPath.row]
             
 //            print(ContractRequestItem(contractInfo: item).DictionaryFromObject())
-           self.noticeOnlyText(CConstants.RequestMsg)
+            let hud = MBProgressHUD.showHUDAddedTo(self.view, animated: true)
+            //                hud.mode = .AnnularDeterminate
+            hud.labelText = CConstants.RequestMsg
             Alamofire.request(.POST,
                 CConstants.ServerURL + serviceUrl!,
                 parameters: ContractRequestItem(contractInfo: item).DictionaryFromObject()).responseJSON{ (response) -> Void in
-                    self.clearNotice()
+                    hud.hide(true)
                         if response.result.isSuccess {
                             
                             if let rtnValue = response.result.value as? [String: AnyObject]{
@@ -380,6 +382,8 @@ class AddressListViewController: UITableViewController, UISearchBarDelegate, ToD
                     if let info = sender as? ContractAddendumC {
                         controller.pdfInfo0 = info
                         controller.addendumCpdfInfo = info
+                        controller.AddressList = self.AddressListOrigin
+                        controller.filesArray = self.filesNms!
                         var itemList = [[String]]()
                         var i = 0
                         if let list = info.itemlist {
@@ -403,8 +407,7 @@ class AddressListViewController: UITableViewController, UISearchBarDelegate, ToD
                             }
                         }
                         controller.addendumCpdfInfo!.itemlistStr = itemList
-                        controller.AddressList = self.AddressListOrigin
-                        controller.filesArray = self.filesNms
+                       
 //                        let pass = i > 19 ? CConstants.PdfFileNameAddendumC2 : CConstants.PdfFileNameAddendumC
                         
                         controller.page2 = i > 19
