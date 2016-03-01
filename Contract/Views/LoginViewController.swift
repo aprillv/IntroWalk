@@ -323,6 +323,7 @@ class LoginViewController: BaseViewController, UITextFieldDelegate {
         super.viewDidLoad()
 //        print(view.frame.size)
         checkUpate()
+        
         setSignInBtn()
     }
     override func viewWillAppear(animated: Bool) {

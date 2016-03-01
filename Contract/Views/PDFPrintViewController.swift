@@ -408,6 +408,12 @@ class PDFPrintViewController: PDFBaseViewController, UIScrollViewDelegate, PDFVi
                         if !CGRectIntersectsRect(sign.superview!.bounds, sign.frame) {
                             continue
                         }
+                        
+                        if sender.tag==3 && sign.xname == "seller2Sign"
+                            || sender.tag==4 && sign.xname == "seller3Sign" {
+                                sign.toSignautre()
+                                return
+                        }
 //                          print(sign.xname)
                         if sender.tag == 1 && sign.xname.hasSuffix("bottom1")
                             || sender.tag == 2 && sign.xname.hasSuffix("bottom2")

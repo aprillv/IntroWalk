@@ -93,7 +93,7 @@ class AddressListModelViewController: BaseViewController, UISearchBarDelegate, U
     }
     
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-        
+        searchBar.resignFirstResponder()
         
         self.dismissViewControllerAnimated(true, completion: nil)
         if let delegate1 = self.delegate {

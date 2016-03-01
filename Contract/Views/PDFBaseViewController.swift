@@ -295,6 +295,7 @@ class PDFBaseViewController: BaseViewController, DoOperationDelegate, UIPopoverP
                 }
             }
             mailComposeViewController.addAttachmentData(savedPdfData!, mimeType: "application/pdf", fileName: getFileName())
+            mailComposeViewController.navigationBar.barStyle = .Black
             self.presentViewController(mailComposeViewController, animated: true, completion: nil)
         }
     }
