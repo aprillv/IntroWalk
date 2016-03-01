@@ -9,6 +9,7 @@
 import UIKit
 import Alamofire
 import MessageUI
+import MBProgressHUD
 
 class PDFPrintViewController: PDFBaseViewController, UIScrollViewDelegate, PDFViewDelegate{
     
