@@ -79,6 +79,7 @@ class PrintModelTableViewController: BaseViewController, UITableViewDataSource, 
             printList.append(CConstants.ActionTitleClosingMemo)
             printList.append(CConstants.ActionTitleGoContract)
         }else{
+            printList[0] = "Contract"
             printList.append(CConstants.ActionTitleGoDraft)
         }
         
@@ -132,9 +133,9 @@ class PrintModelTableViewController: BaseViewController, UITableViewDataSource, 
     
     func touched(tap : UITapGestureRecognizer){
          let indexa = NSIndexPath(forRow: printList.count-1, inSection: 0)
-        if let cell = tableview.cellForRowAtIndexPath(indexa) as? PrintModelTableViewCell {
+        if let cell = tableview.cellForRowAtIndexPath(indexa) as? lastcell {
             let point = tap.locationInView(tap.view)
-            if (cell.contentLbl.frame.contains(point)){
+            if (cell.print.frame.contains(point)){
                 var selectedCellArray = [NSIndexPath]()
                 
                 for i in 0...printList.count-1 {
@@ -165,19 +166,22 @@ class PrintModelTableViewController: BaseViewController, UITableViewDataSource, 
                         }
                     }
                 }
-            }else if cell.imageBtn.frame.contains(point) {
-                tap.view!.tag = 1 - tap.view!.tag
-                for cell in tableview.visibleCells {
-                    if let cell3 = cell as? PrintModelTableViewCell {
-                        if tap.view?.tag == 0 {
-                            cell3.contentView.tag = 0
-                            cell3.imageBtn?.image = UIImage(named: CConstants.CheckImgNm)
-                        }else{
-                            cell3.contentView.tag = 1
-                            cell3.imageBtn?.image = UIImage(named: CConstants.CheckedImgNm)
-                        }
-                    }
-                }
+            }else if cell.cancel.frame.contains(point){
+                self.dismissViewControllerAnimated(true){}
+            
+//            }else if cell.imageBtn.frame.contains(point) {
+//                tap.view!.tag = 1 - tap.view!.tag
+//                for cell in tableview.visibleCells {
+//                    if let cell3 = cell as? PrintModelTableViewCell {
+//                        if tap.view?.tag == 0 {
+//                            cell3.contentView.tag = 0
+//                            cell3.imageBtn?.image = UIImage(named: CConstants.CheckImgNm)
+//                        }else{
+//                            cell3.contentView.tag = 1
+//                            cell3.imageBtn?.image = UIImage(named: CConstants.CheckedImgNm)
+//                        }
+//                    }
+//                }
             }
         }
         
@@ -186,21 +190,31 @@ class PrintModelTableViewController: BaseViewController, UITableViewDataSource, 
         
     }
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCellWithIdentifier(constants.cellReuseIdentifier, forIndexPath: indexPath) as! PrintModelTableViewCell
-//        let a = UIView(frame: CGRect(x: 0, y: 0, width: cell.frame.size.width, height:  cell.frame.size.height))
-//        a.backgroundColor = UIColor(red: 246/255.0, green: 246/255.0, blue: 246/255.0, alpha: 1)
-//        cell.selectedBackgroundView = a
-        cell.separatorInset = UIEdgeInsetsZero
-        cell.layoutMargins = UIEdgeInsetsZero
-        cell.preservesSuperviewLayoutMargins = false
-        cell.contentLbl?.text = printList[indexPath.row]
+       
+        var cella : UITableViewCell;
         if indexPath.row == (printList.count - 1) {
-            cell.contentLbl?.textAlignment = .Center
-            cell.contentLbl?.textColor = UIColor.whiteColor()
+            let cell = tableView.dequeueReusableCellWithIdentifier("a", forIndexPath: indexPath) as! lastcell
+            //        let a = UIView(frame: CGRect(x: 0, y: 0, width: cell.frame.size.width, height:  cell.frame.size.height))
+            //        a.backgroundColor = UIColor(red: 246/255.0, green: 246/255.0, blue: 246/255.0, alpha: 1)
+            //        cell.selectedBackgroundView = a
+            cell.separatorInset = UIEdgeInsetsZero
+            cell.layoutMargins = UIEdgeInsetsZero
+            cell.preservesSuperviewLayoutMargins = false
+            cell.print?.text = "Print"
+            
+            cell.print?.textAlignment = .Center
+            cell.print?.textColor = UIColor.whiteColor()
 //            cell.contentView.backgroundColor = CConstants.ApplicationColor
-            cell.contentLbl?.backgroundColor = CConstants.ApplicationColor
-            cell.contentLbl?.font = UIFont(name: CConstants.ApplicationBarFontName, size: CConstants.ApplicationBarItemFontSize)
-            cell.imageBtn?.image = UIImage(named: CConstants.CheckImgNm)
+            cell.print?.backgroundColor = CConstants.ApplicationColor
+            cell.print?.font = UIFont(name: CConstants.ApplicationBarFontName, size: CConstants.ApplicationBarItemFontSize)
+            cell.cancel?.text = "Cancel"
+            
+            cell.cancel?.textAlignment = .Center
+            cell.cancel?.textColor = UIColor.whiteColor()
+            //            cell.contentView.backgroundColor = CConstants.ApplicationColor
+            cell.cancel?.backgroundColor = CConstants.ApplicationColor
+            cell.cancel?.font = UIFont(name: CConstants.ApplicationBarFontName, size: CConstants.ApplicationBarItemFontSize)
+//            cell.imageBtn?.image = UIImage(named: CConstants.CheckImgNm)
             
             let tab = UITapGestureRecognizer(target: self, action: "touched:")
             tab.numberOfTapsRequired = 1
@@ -210,14 +224,26 @@ class PrintModelTableViewController: BaseViewController, UITableViewDataSource, 
             let userinfo = NSUserDefaults.standardUserDefaults()
             if let filesNames = userinfo.valueForKey(CConstants.UserInfoPrintModel) as? [String] {
                 if filesNames.count == printList.count{
-                    cell.imageBtn?.image = UIImage(named: CConstants.CheckedImgNm)
+//                    cell.imageBtn?.image = UIImage(named: CConstants.CheckedImgNm)
                     cell.tag = 1
                 }
             }
-            
-            cell.leadingtoLeft.constant = -8
-            cell.updateConstraintsIfNeeded()
+//            cell.cancelBtn.hidden = false
+//            cell.cancelBtn.textColor = UIColor.whiteColor()
+////            let width = NSLayoutConstraint.c
+//            cell.trailingToRight.constant = cell.contentView.frame.size.width/2.0;
+//            cell.leadingtoLeft.constant = -8
+//            cell.updateConstraintsIfNeeded()
+            cella = cell;
         }else{
+            let cell = tableView.dequeueReusableCellWithIdentifier(constants.cellReuseIdentifier, forIndexPath: indexPath) as! PrintModelTableViewCell
+            //        let a = UIView(frame: CGRect(x: 0, y: 0, width: cell.frame.size.width, height:  cell.frame.size.height))
+            //        a.backgroundColor = UIColor(red: 246/255.0, green: 246/255.0, blue: 246/255.0, alpha: 1)
+            //        cell.selectedBackgroundView = a
+            cell.separatorInset = UIEdgeInsetsZero
+            cell.layoutMargins = UIEdgeInsetsZero
+            cell.preservesSuperviewLayoutMargins = false
+            cell.contentLbl?.text = printList[indexPath.row]
             cell.textLabel?.textAlignment = .Left
             
             let userinfo = NSUserDefaults.standardUserDefaults()
@@ -233,7 +259,7 @@ class PrintModelTableViewController: BaseViewController, UITableViewDataSource, 
                 cell.contentView.tag = 0
                 cell.imageBtn?.image = UIImage(named: CConstants.CheckImgNm)
             }
-           
+           cella = cell
 
         }
         
@@ -244,7 +270,7 @@ class PrintModelTableViewController: BaseViewController, UITableViewDataSource, 
         //        }
         
         
-        return cell
+        return cella
     }
     
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {

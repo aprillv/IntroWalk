@@ -10,7 +10,10 @@ import UIKit
 
 class PrintModelTableViewCell: UITableViewCell {
 
+    @IBOutlet var cancelBtn: UILabel!
     @IBOutlet var imageBtn: UIImageView!
     @IBOutlet var contentLbl: UILabel!
     @IBOutlet var leadingtoLeft: NSLayoutConstraint!
+   
+    @IBOutlet var trailingToRight: NSLayoutConstraint!
 }
