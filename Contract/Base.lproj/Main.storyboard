@@ -300,6 +300,7 @@
                         </connections>
                     </refreshControl>
                     <connections>
+                        <outlet property="backItem" destination="anD-9t-uD6" id="sOf-UC-QrE"/>
                         <outlet property="searchBar" destination="jta-fD-i8W" id="rJv-fv-ovz"/>
                         <outlet property="switchItem" destination="JAY-bP-1MV" id="b3x-GY-IVq"/>
                         <segue destination="6dt-qR-fh6" kind="presentation" identifier="printModel" modalTransitionStyle="coverVertical" id="HW8-IB-Dz2"/>
@@ -372,20 +373,6 @@
                             <barButtonItem image="send" id="80F-GD-5rT">
                                 <connections>
                                     <segue destination="Rzu-Cw-vxk" kind="popoverPresentation" identifier="Show Operations" popoverAnchorBarButtonItem="80F-GD-5rT" id="TGh-ew-og1">
-                                        <popoverArrowDirection key="popoverArrowDirection" up="YES" down="YES" left="YES" right="YES"/>
-                                    </segue>
-                                </connections>
-                            </barButtonItem>
-                            <barButtonItem image="fileswitch" id="Hdi-gQ-8fq">
-                                <connections>
-                                    <segue destination="6dt-qR-fh6" kind="popoverPresentation" identifier="Print switch" popoverAnchorBarButtonItem="Hdi-gQ-8fq" id="kTa-tP-qQP">
-                                        <popoverArrowDirection key="popoverArrowDirection" up="YES" down="YES" left="YES" right="YES"/>
-                                    </segue>
-                                </connections>
-                            </barButtonItem>
-                            <barButtonItem image="houseswitch" id="0jZ-4J-V9l">
-                                <connections>
-                                    <segue destination="0JX-MQ-a4E" kind="popoverPresentation" identifier="Address switch" popoverAnchorBarButtonItem="0jZ-4J-V9l" id="Dv1-Rt-7ji">
                                         <popoverArrowDirection key="popoverArrowDirection" up="YES" down="YES" left="YES" right="YES"/>
                                     </segue>
                                 </connections>
@@ -687,12 +674,7 @@
     </scenes>
     <resources>
         <image name="back" width="30" height="30"/>
-        <image name="fileswitch" width="28" height="31"/>
-        <image name="houseswitch" width="31" height="32"/>
         <image name="logo" width="60" height="60"/>
         <image name="send" width="30" height="30"/>
     </resources>
-    <inferredMetricsTieBreakers>
-        <segue reference="HW8-IB-Dz2"/>
-    </inferredMetricsTieBreakers>
 </document>

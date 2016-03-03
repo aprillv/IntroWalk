@@ -14,6 +14,7 @@ class AddressListViewController: UITableViewController, UISearchBarDelegate, ToD
     
 //    var lastSelectedIndexPath : NSIndexPath?
    
+    @IBOutlet var backItem: UIBarButtonItem!
     @IBOutlet var switchItem: UIBarButtonItem!
     @IBOutlet var searchBar: UISearchBar!
     @IBAction func doLogout(sender: AnyObject) {
@@ -287,26 +288,30 @@ class AddressListViewController: UITableViewController, UISearchBarDelegate, ToD
                                                 self.performSegueWithIdentifier(CConstants.SegueToPrintPdf, sender: rtn)
 //                                            }
                                         default:
-                                            break;
+                                            self.tableView.deselectRowAtIndexPath(indexPath, animated: true)
                                         }
                                         
                                         
                                     }else{
+                                        self.tableView.deselectRowAtIndexPath(indexPath, animated: true)
                                         self.PopMsgWithJustOK(msg: msg)
                                     }
                                 }else{
+                                    self.tableView.deselectRowAtIndexPath(indexPath, animated: true)
                                     self.PopMsgWithJustOK(msg: CConstants.MsgServerError)
                                 }
                             }else{
+                                self.tableView.deselectRowAtIndexPath(indexPath, animated: true)
                                 self.PopMsgWithJustOK(msg: CConstants.MsgServerError)
                             }
                         }else{
+                            self.tableView.deselectRowAtIndexPath(indexPath, animated: true)
 //                            self.spinner?.stopAnimating()
                             self.PopMsgWithJustOK(msg: CConstants.MsgNetworkError)
                         }
                     }
             
-            tableView.deselectRowAtIndexPath(indexPath, animated: true)
+            
         }
     }
     
@@ -366,54 +371,59 @@ class AddressListViewController: UITableViewController, UISearchBarDelegate, ToD
                     if let indexPath = tableView.indexPathForSelectedRow {
                         let ddd = self.CiaNmArray?[self.CiaNm?[indexPath.section] ?? ""]
                         let item: ContractsItem = ddd![indexPath.row]
-                        let info = ContractPDFBaseModel(dicInfo: nil)
-                        info.code = item.code
-                        info.idcia = item.idcia
-                        info.idproject = item.idproject
-                        info.idnumber = item.idnumber
-                        info.idcity = item.idcity
-                        info.nproject = item.nproject
-                        controller.pdfInfo0 = info
-                        controller.AddressList = self.AddressListOrigin
-                        controller.filesArray = self.filesNms
-                        controller.page2 = false
-//                        controller.initWithResource(CConstants.PdfFileNameContract)
-                        return
-                    }
-                    if let info = sender as? ContractAddendumC {
-                        controller.pdfInfo0 = info
-                        controller.addendumCpdfInfo = info
-                        controller.AddressList = self.AddressListOrigin
-                        controller.filesArray = self.filesNms!
-                        var itemList = [[String]]()
-                        var i = 0
-                        if let list = info.itemlist {
-                            for items in list {
-                                
-                                var itemList1 = [String]()
-                                let textView = UITextView(frame: CGRect(x: 0, y: 0, width: 657.941, height: 13.2353))
-                                textView.scrollEnabled = false
-                                textView.font = UIFont(name: "Verdana", size: 11.0)
-                                textView.text = items.xdescription!
-                                textView.sizeToFit()
-                                textView.layoutManager.enumerateLineFragmentsForGlyphRange(NSMakeRange(0, items.xdescription!.characters.count), usingBlock: { (rect, usedRect, textContainer, glyphRange, _) -> Void in
-                                    if  let a : NSString = items.xdescription! as NSString {
-                                        
-                                        i++
-                                        itemList1.append(a.substringWithRange(glyphRange))
-                                    }
-                                })
-                                //                            itemList1.append("april test")
-                                itemList.append(itemList1)
+                        
+                        if let info = sender as? ContractAddendumC {
+                            controller.pdfInfo0 = info
+                            controller.addendumCpdfInfo = info
+                            controller.AddressList = self.AddressListOrigin
+                            controller.filesArray = self.filesNms!
+                            controller.contractInfo = item
+                            var itemList = [[String]]()
+                            var i = 0
+                            if let list = info.itemlist {
+                                for items in list {
+                                    
+                                    var itemList1 = [String]()
+                                    let textView = UITextView(frame: CGRect(x: 0, y: 0, width: 657.941, height: 13.2353))
+                                    textView.scrollEnabled = false
+                                    textView.font = UIFont(name: "Verdana", size: 11.0)
+                                    textView.text = items.xdescription!
+                                    textView.sizeToFit()
+                                    textView.layoutManager.enumerateLineFragmentsForGlyphRange(NSMakeRange(0, items.xdescription!.characters.count), usingBlock: { (rect, usedRect, textContainer, glyphRange, _) -> Void in
+                                        if  let a : NSString = items.xdescription! as NSString {
+                                            
+                                            i++
+                                            itemList1.append(a.substringWithRange(glyphRange))
+                                        }
+                                    })
+                                    //                            itemList1.append("april test")
+                                    itemList.append(itemList1)
+                                }
                             }
+                            controller.addendumCpdfInfo!.itemlistStr = itemList
+                            
+                            //                        let pass = i > 19 ? CConstants.PdfFileNameAddendumC2 : CConstants.PdfFileNameAddendumC
+                            
+                            controller.page2 = i > 19
+                            //                        controller.initWithResource(pass)
+                            
+                        }else{
+                            
+                            
+                            let info = ContractPDFBaseModel(dicInfo: nil)
+                            info.code = item.code
+                            info.idcia = item.idcia
+                            info.idproject = item.idproject
+                            info.idnumber = item.idnumber
+                            info.idcity = item.idcity
+                            info.nproject = item.nproject
+                            controller.contractInfo = item
+                            controller.pdfInfo0 = info
+                            controller.AddressList = self.AddressListOrigin
+                            controller.filesArray = self.filesNms
+                            controller.page2 = false
                         }
-                        controller.addendumCpdfInfo!.itemlistStr = itemList
-                       
-//                        let pass = i > 19 ? CConstants.PdfFileNameAddendumC2 : CConstants.PdfFileNameAddendumC
-                        
-                        controller.page2 = i > 19
-//                        controller.initWithResource(pass)
-                        
+                        self.tableView.deselectRowAtIndexPath(indexPath, animated: true)
                     }
                     
                 }
@@ -425,6 +435,11 @@ class AddressListViewController: UITableViewController, UISearchBarDelegate, ToD
     }
 
     @IBAction func refreshAddressList(sender: UIRefreshControl) {
+        
+        self.getAddressListFromServer(sender)
+    }
+    
+    private func getAddressListFromServer(sender: UIRefreshControl?){
         let userInfo = NSUserDefaults.standardUserDefaults()
         let email = userInfo.valueForKey(CConstants.UserInfoEmail) as? String
         let password = userInfo.valueForKey(CConstants.UserInfoPwd) as? String
@@ -433,6 +448,13 @@ class AddressListViewController: UITableViewController, UISearchBarDelegate, ToD
         let loginUserInfo = LoginUser(email: email!, password: password!, iscontract:  (self.tableView.tag == 2 ? "1" : "0"))
         
         let a = loginUserInfo.DictionaryFromObject()
+        var hud : MBProgressHUD?
+        if sender == nil {
+            hud = MBProgressHUD.showHUDAddedTo(self.view, animated: true)
+            //                hud.mode = .AnnularDeterminate
+            hud?.labelText = CConstants.RequestMsg
+        }
+       
         Alamofire.request(.POST, CConstants.ServerURL + CConstants.LoginServiceURL, parameters: a).responseJSON{ (response) -> Void in
             if response.result.isSuccess {
                 if let rtnValue = response.result.value as? [String: AnyObject]{
@@ -442,17 +464,11 @@ class AddressListViewController: UITableViewController, UISearchBarDelegate, ToD
                         if (self.tableView.tag == 2 && userInfo.boolForKey(CConstants.UserInfoIsContract)) || (self.tableView.tag == 1 && !userInfo.boolForKey(CConstants.UserInfoIsContract) ){
                             self.AddressListOrigin = rtn.contracts
                         }
-                        
-                        sender.endRefreshing()
-                    }else{
-                        sender.endRefreshing()
                     }
-                }else{
-                    sender.endRefreshing()
                 }
-            }else{
-                sender.endRefreshing()
             }
+            hud?.hide(true)
+            sender?.endRefreshing()
             self.switchItem.enabled = true
         }
         
@@ -486,11 +502,16 @@ class AddressListViewController: UITableViewController, UISearchBarDelegate, ToD
             sender.tag = 1
             self.tableView.tag = 1
             sender.title = "Print Contract"
-            
+            self.backItem.image =  nil
+//            self.backItem.title = "s"
+//                        self.backItem.width = 0.01
         }else{
             sender.tag = 2
             self.tableView.tag = 2
             sender.title = "Print Draft"
+            self.backItem.image = UIImage(named: "back")
+            self.backItem.width = 0
+//            self.backItem.title = "s"
         }
         let tmp = AddressListOrigin2
         AddressListOrigin2 = AddressListOrigin
@@ -502,8 +523,9 @@ class AddressListViewController: UITableViewController, UISearchBarDelegate, ToD
             
             self.tableView.reloadData()
             if tmp == nil {
-                self.tableView.setContentOffset(CGPoint(x: 0, y: -self.refreshControl!.frame.height*2), animated: true)
-                self.refreshAddressList(self.refreshControl!)
+//                self.tableView.setContentOffset(CGPoint(x: 0, y: -self.refreshControl!.frame.height*2), animated: true)
+            
+                self.getAddressListFromServer(nil)
             }else{
                 sender.enabled = true
             }
@@ -511,7 +533,8 @@ class AddressListViewController: UITableViewController, UISearchBarDelegate, ToD
         })
         
     }
-        
+    
+    
         
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
@@ -525,6 +548,7 @@ class AddressListViewController: UITableViewController, UISearchBarDelegate, ToD
         
     }
     
+   
     
-
+    
 }

@@ -20,7 +20,7 @@ class SendOperationViewController: UIViewController, UITableViewDelegate, UITabl
 
     @IBOutlet weak var tableView: UITableView!
     var delegate1 : DoOperationDelegate?
-    
+    var showSave : Bool?
     var itemList : [String]?{
         didSet{
             if let _ = itemList{
@@ -33,7 +33,7 @@ class SendOperationViewController: UIViewController, UITableViewDelegate, UITabl
     private struct constants{
         static let cellReuseIdentifier = "operationCellIdentifier"
         static let rowHeight : CGFloat = 44
-        static let operationSavetoServer = "Save to Server"
+        static let operationSavetoServer = "Save to Contract"
         static let operationPrint = "Print"
         static let operationEmail = "Email"
     }
@@ -41,10 +41,10 @@ class SendOperationViewController: UIViewController, UITableViewDelegate, UITabl
     override func viewDidLoad() {
         super.viewDidLoad()
         let userinfo = NSUserDefaults.standardUserDefaults()
-        if userinfo.boolForKey(CConstants.UserInfoIsContract) {
-        itemList = [constants.operationSavetoServer, constants.operationPrint, constants.operationEmail]
+        if userinfo.boolForKey(CConstants.UserInfoIsContract) && showSave!{
+            itemList = [constants.operationPrint, constants.operationEmail, constants.operationSavetoServer]
         }else{
-        itemList = [constants.operationPrint, constants.operationEmail]
+            itemList = [constants.operationPrint, constants.operationEmail]
         }
         
         

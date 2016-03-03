@@ -114,9 +114,7 @@ class PDFPrintViewController: PDFBaseViewController, UIScrollViewDelegate, PDFVi
                     }
                 }
             }
-            
         }
-        
     }
     var designCenterPdfInfo : ContractDesignCenter?{
         didSet{
@@ -261,11 +259,23 @@ class PDFPrintViewController: PDFBaseViewController, UIScrollViewDelegate, PDFVi
         let userinfo = NSUserDefaults.standardUserDefaults()
         if userinfo.boolForKey(CConstants.UserInfoIsContract) {
             self.navigationItem.title = "Contract"
+            
             if filesArray != nil {
-                if filesArray![0] == CConstants.ActionTitleAddendumC{
+                switch filesArray![0]{
+                case CConstants.ActionTitleAddendumC:
                     self.pageChanged( 6)
-                }else if filesArray![0] == CConstants.ActionTitleEXHIBIT_B{
-                self.pageChanged( 3)
+                case CConstants.ActionTitleEXHIBIT_B:
+                    self.pageChanged( 3)
+                case CConstants.ActionTitleINFORMATION_ABOUT_BROKERAGE_SERVICES:
+                    self.pageChanged( 1)
+                case CConstants.ActionTitleAddendumA:
+                    self.pageChanged( 2)
+                case CConstants.ActionTitleEXHIBIT_C:
+                    self.pageChanged( 4)
+                case CConstants.ActionTitleDesignCenter:
+                    self.pageChanged( 5)
+                default:
+                    break
                 }
             }
         }else{
@@ -371,123 +381,178 @@ class PDFPrintViewController: PDFBaseViewController, UIScrollViewDelegate, PDFVi
         return nil
     }
     
+    var senderItem : UIBarButtonItem?
+    
     @IBAction func BuyerSign(sender: UIBarButtonItem) {
         self.dismissViewControllerAnimated(true){}
 //        print(self.pdfView?.pdfView.scrollView.contentSize.height)
-        if addendumCpdfInfo != nil {
-            for doc in documents! {
-                if doc.pdfName == CConstants.ActionTitleAddendumC {
-                    for a in doc.addedviewss {
+        senderItem = sender
+        
+        getAllSignature()
+        if selfSignatureViews != nil && selfSignatureViews?.count > 0 {
+        
+            let currentPoint = self.pdfView?.pdfView.scrollView.contentOffset
+            for sign in selfSignatureViews! {
+                if sender.tag == 3 || sender.tag == 4 {
+                    
+                    if currentPoint?.y < sign.frame.origin.y {
+                        if sign.xname.containsString("bottom")
+                            || sign.xname.containsString("eller")
+                            || sign.xname.containsString("TitleSign")
+                            || sign.xname.containsString("april2Sign"){
+                            var frame = sign.frame
+                            frame.size.height += 150
+                            self.pdfView?.pdfView.scrollView.scrollRectToVisible(frame, animated: false)
+                            break;
+                        }
+                        
+                    }
+                }else{
+                    if currentPoint?.y < sign.frame.origin.y {
+                        var frame = sign.frame
+                        frame.size.height += 150
+                        self.pdfView?.pdfView.scrollView.scrollRectToVisible(frame, animated: false)
+                        break;
+                    }
+                }
+                
+                
+//                if sign.xname.containsString("bottom") {
+//                    if currentPoint?.y < sign.frame.origin.y {
+//                        var frame = sign.frame
+//                        frame.size.height += 40
+//                        self.pdfView?.pdfView.scrollView.scrollRectToVisible(frame, animated: false)
+//                        break;
+//                    }
+//                }else if sign.xname.containsString("buyer2") {
+//                    
+//                }
+                
+            }
+            
+            self.performSelector("afterGotofield", withObject: sender, afterDelay: 0.3)
+        }
+        
+    }
+    
+    func afterGotofield(){
+        if let sender = senderItem {
+            if addendumCpdfInfo != nil {
+                for doc in documents! {
+                    if doc.pdfName == CConstants.ActionTitleAddendumC {
+                        for a in doc.addedviewss {
+                            if let sign = a as? SignatureView {
+                                //                            print(sign.xname)
+                                if !CGRectIntersectsRect(sign.superview!.bounds, sign.frame) {
+                                    continue
+                                }
+                                
+                                if sender.tag == 1 && sign.xname == "april0Sign"
+                                    || sender.tag == 5 && sign.xname == "april1Sign"
+                                    || sender.tag == 3 && sign.xname==("april2Sign")
+                                    || sender.tag == 2 && sign.xname == "april3DateSign"
+                                    || sender.tag == 6 && sign.xname == "april4DateSign"
+                                    || sender.tag == 4 && sign.xname==("april5DateSign"){
+                                        sign.toSignautre()
+                                        return
+                                }
+                            }
+                        }
+                        break
+                    }
+                }
+            }
+            if fileDotsDic != nil {
+                for (_, v) in fileDotsDic! {
+                    for a in v {
                         if let sign = a as? SignatureView {
-//                            print(sign.xname)
+                            
+                            //                        print(b.tag, b.superview)
                             if !CGRectIntersectsRect(sign.superview!.bounds, sign.frame) {
                                 continue
                             }
                             
-                            if sender.tag == 1 && sign.xname == "april0Sign"
-                                || sender.tag == 5 && sign.xname == "april1Sign"
-                                || sender.tag == 3 && sign.xname==("april2Sign")
-                                || sender.tag == 2 && sign.xname == "april3DateSign"
-                                || sender.tag == 6 && sign.xname == "april4DateSign"
-                                || sender.tag == 4 && sign.xname==("april5DateSign"){
+                            if sender.tag==3 && sign.xname == "seller2Sign"
+                                || sender.tag==4 && sign.xname == "seller3Sign" {
                                     sign.toSignautre()
                                     return
                             }
-                        }
-                    }
-                    break
-                }
-            }
-        }
-        if fileDotsDic != nil {
-            for (_, v) in fileDotsDic! {
-                for a in v {
-                    if let sign = a as? SignatureView {
-                      
-//                        print(b.tag, b.superview)
-                        if !CGRectIntersectsRect(sign.superview!.bounds, sign.frame) {
-                            continue
-                        }
-                        
-                        if sender.tag==3 && sign.xname == "seller2Sign"
-                            || sender.tag==4 && sign.xname == "seller3Sign" {
-                                sign.toSignautre()
-                                return
-                        }
-//                          print(sign.xname)
-                        if sender.tag == 1 && sign.xname.hasSuffix("bottom1")
-                            || sender.tag == 2 && sign.xname.hasSuffix("bottom2")
-                            || sender.tag == 3 && sign.xname.hasSuffix("bottom3")
-                            || sender.tag == 4 && sign.xname.hasSuffix("bottom4"){
-                            //buyer1
-                            sign.toSignautre()
-                                return
-                        }
-                        if sender.tag == 1 && sign.xname == ("buyer2Sign")
-                        || sender.tag == 2 && sign.xname == ("buyer3Sign")
-                        || sender.tag == 4 && sign.xname == ("Exhibitbp1seller3Sign"){
-                             sign.toSignautre()
-                                return
-                        }
-                        
-                        //broker
-                        if addendumApdfInfo != nil{
-                            if let hasrealtor = addendumApdfInfo!.hasbroker {
-                                if hasrealtor == "" {
-                                    if sender.tag == 1 && sign.xname == "broker2buyer2Sign"
-                                        || sender.tag == 2 && sign.xname == "broker2buyer2DateSign"
-                                        || sender.tag == 3 && sign.xname==("broker2buyer3Sign")
-                                        || sender.tag == 4 && sign.xname==("broker2buyer3DateSign"){
-                                            sign.toSignautre()
+                            //                          print(sign.xname)
+                            if sender.tag == 1 && sign.xname.hasSuffix("bottom1")
+                                || sender.tag == 2 && sign.xname.hasSuffix("bottom2")
+                                || sender.tag == 3 && sign.xname.hasSuffix("bottom3")
+                                || sender.tag == 4 && sign.xname.hasSuffix("bottom4"){
+                                    //buyer1
+                                    sign.toSignautre()
+                                    return
+                            }
+                            if sender.tag == 1 && sign.xname == ("buyer2Sign")
+                                || sender.tag == 2 && sign.xname == ("buyer3Sign")
+                                || sender.tag == 4 && sign.xname == ("Exhibitbp1seller3Sign"){
+                                    sign.toSignautre()
+                                    return
+                            }
+                            
+                            //broker
+                            if addendumApdfInfo != nil{
+                                if let hasrealtor = addendumApdfInfo!.hasbroker {
+                                    if hasrealtor == "" {
+                                        if sender.tag == 1 && sign.xname == "broker2buyer2Sign"
+                                            || sender.tag == 2 && sign.xname == "broker2buyer2DateSign"
+                                            || sender.tag == 3 && sign.xname==("broker2buyer3Sign")
+                                            || sender.tag == 4 && sign.xname==("broker2buyer3DateSign"){
+                                                sign.toSignautre()
                                                 return
-                                    }
-                                }else{
-                                    if sender.tag == 1 && sign.xname == "brokerbuyer2Sign"
-                                        || sender.tag == 2 && sign.xname == "brokerbuyer2DateSign"
-                                        || sender.tag == 3 && sign.xname==("brokerbuyer3Sign")
-                                        || sender.tag == 4 && sign.xname==("brokerbuyer3DateSign"){
-                                            sign.toSignautre()
+                                        }
+                                    }else{
+                                        if sender.tag == 1 && sign.xname == "brokerbuyer2Sign"
+                                            || sender.tag == 2 && sign.xname == "brokerbuyer2DateSign"
+                                            || sender.tag == 3 && sign.xname==("brokerbuyer3Sign")
+                                            || sender.tag == 4 && sign.xname==("brokerbuyer3DateSign"){
+                                                sign.toSignautre()
                                                 return
+                                        }
                                     }
                                 }
-                            }
-                            //exhibit c
-                            if sender.tag == 1 && sign.xname == "BYSign"
+                                //exhibit c
+                                if sender.tag == 1 && sign.xname == "BYSign"
                                     || sender.tag == 2 && sign.xname == "NameSign"
                                     || sender.tag == 4 && sign.xname==("TitleSign"){
                                         sign.toSignautre()
                                         return
                                 }
-                            
-                            //Addendum A
-                            if sender.tag == 4 && sign.xname==("AddendumASeller3Sign"){
-                                sign.toSignautre()
-                                return
+                                
+                                //Addendum A
+                                if sender.tag == 4 && sign.xname==("AddendumASeller3Sign"){
+                                    sign.toSignautre()
+                                    return
+                                }
                             }
-                        }
-                        
-                        
-                        
-                        
-                        if designCenterPdfInfo != nil{
                             
-                            if sender.tag == 1 && sign.xname == "homeBuyer1Sign"
-                                || sender.tag == 2 && sign.xname == "homeBuyer1DateSign"
-                                || sender.tag == 3 && sign.xname == "homeBuyer2Sign"
-                                || sender.tag == 4 && sign.xname == "homeBuyer2DateSign"
+                            
+                            
+                            
+                            if designCenterPdfInfo != nil{
+                                
+                                if sender.tag == 1 && sign.xname == "homeBuyer1Sign"
+                                    || sender.tag == 2 && sign.xname == "homeBuyer1DateSign"
+                                    || sender.tag == 3 && sign.xname == "homeBuyer2Sign"
+                                    || sender.tag == 4 && sign.xname == "homeBuyer2DateSign"
                                 {
                                     sign.toSignautre()
-                                        return
+                                    return
+                                }
+                                
+                                
                             }
-                            
                             
                         }
                         
                     }
-                    
                 }
             }
         }
+        
     }
     
 
@@ -566,7 +631,50 @@ class PDFPrintViewController: PDFBaseViewController, UIScrollViewDelegate, PDFVi
         }
     }
         
-    
+    var selfSignatureViews: [SignatureView]?
+    func getAllSignature(){
+        if selfSignatureViews == nil {
+            selfSignatureViews = [SignatureView]()
+        }else {
+            return
+        }
+        if let dots = pdfView?.pdfWidgetAnnotationViews {
+            for d in dots{
+                if let sign = d as? SignatureView {
+                    if let addendumaInfo = self.addendumApdfInfo {
+                        if addendumaInfo.hasbroker == "" {
+                            if sign.xname.containsString("brokerb") {
+                                continue
+                            }
+                        }else {
+                            if sign.xname.containsString("broker2") {
+                                continue
+                            }
+                        }
+                    }
+                    selfSignatureViews?.append(sign)
+                }
+            }
+        }
+        for doc in documents! {
+            if let dd = doc.addedviewss {
+                for d in dd{
+                    if let sign = d as? SignatureView {
+                        selfSignatureViews?.append(sign)
+                    }
+                }
+            }
+        }
+        if selfSignatureViews?.count > 0 {
+            selfSignatureViews?.sortInPlace(){
+                if $1.frame.origin.y != $0.frame.origin.y {
+                    return $1.frame.origin.y > $0.frame.origin.y
+                }else{
+                    return $1.frame.origin.x > $0.frame.origin.x
+                }
+            }
+        }
+    }
     
     
 }

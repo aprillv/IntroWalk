@@ -27,6 +27,7 @@ class PDFBaseViewController: BaseViewController, DoOperationDelegate, UIPopoverP
 //    }
   
     
+    var contractInfo: ContractsItem?
     
     var pdfInfo0 : ContractPDFBaseModel?
     
@@ -187,6 +188,7 @@ class PDFBaseViewController: BaseViewController, DoOperationDelegate, UIPopoverP
         }
     }
     
+    
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
 //        print(segue.identifier)
         if let identifier = segue.identifier {
@@ -195,6 +197,24 @@ class PDFBaseViewController: BaseViewController, DoOperationDelegate, UIPopoverP
                 self.dismissViewControllerAnimated(true, completion: nil)
                 if let tvc = segue.destinationViewController as? SendOperationViewController {
                     if let ppc = tvc.popoverPresentationController {
+                        var showSave = false
+                        if let dots = pdfView?.pdfWidgetAnnotationViews {
+                            let ddd = dots
+                            for doc in documents! {
+                                if let dd = doc.addedviewss {
+                                    ddd.addObjectsFromArray(dd)
+                                }
+                            }
+                            for v in ddd {
+                                if let sign = v as? SignatureView {
+                                    if sign.lineArray?.count > 0 {
+                                        showSave = true
+                                        break
+                                    }
+                                }
+                            }
+                        }
+                        tvc.showSave = showSave
                         ppc.delegate = self
                         tvc.delegate1 = self
                     }
@@ -276,7 +296,8 @@ class PDFBaseViewController: BaseViewController, DoOperationDelegate, UIPopoverP
     private func getFileName() -> String{
 //        print(pdfInfo0?.nproject)
 //        print(fileName)
-        return pdfInfo0!.nproject! + "_\(fileName!)_FromApp"
+//        return pdfInfo0!.nproject! + "_\(fileName!)_FromApp"
+        return "Online Contract"
     }
     func sendEmail() {
         let mailComposeViewController = configuredMailComposeViewController()
@@ -305,9 +326,11 @@ class PDFBaseViewController: BaseViewController, DoOperationDelegate, UIPopoverP
         mailComposerVC.mailComposeDelegate = self // Extremely important to set the --mailComposeDelegate-- property, NOT the --delegate-- property
         let userInfo = NSUserDefaults.standardUserDefaults()
         let userEmail = userInfo.objectForKey(CConstants.UserInfoEmail) as? String
-        mailComposerVC.setToRecipients([userEmail ?? ""])
+        mailComposerVC.setToRecipients([contractInfo?.buyer1email ?? ""])
+       mailComposerVC.setCcRecipients([userEmail ?? ""])
+        
         mailComposerVC.setSubject(getFileName())
-        mailComposerVC.setMessageBody("This is the \(pdfInfo0!.nproject!)'s contract document of \(fileName!)", isHTML: false)
+        mailComposerVC.setMessageBody("This is the \(pdfInfo0!.nproject!)'s contract document", isHTML: false)
         
         return mailComposerVC
     }

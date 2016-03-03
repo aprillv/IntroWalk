@@ -20,4 +20,7 @@ class ContractsItem: ContractObject {
     var client: String?
     var code: String?
     var idcity: String?
+    var buyer1email: String?
+    var buyer2email: String?
+    
 }

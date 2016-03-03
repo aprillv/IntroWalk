@@ -171,11 +171,6 @@ static NSMutableArray *colors;
             }
         }
         
-//        minx -= width;
-//        miny -= width;
-//        maxx += width;
-//        maxy += width;
-        
         NSMutableArray *na = [[NSMutableArray alloc] init];
        
         CGRect ct = CGRectMake(0, 0, maxx - minx + width*2, maxy - miny + width*2);
