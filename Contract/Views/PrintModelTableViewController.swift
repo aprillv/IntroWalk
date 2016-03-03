@@ -58,7 +58,11 @@ class PrintModelTableViewController: BaseViewController, UITableViewDataSource, 
         static let CellIdentifier : String = "Address Cell Identifier"
         
         static let cellReuseIdentifier = "cellIdentifier"
+        static let cellLastReuseIndentifier = "lastCell"
         static let cellHeight = 44.0
+        
+        static let printBtnTitle = "Print"
+        static let cancelBtnTitle = "Cancel"
     }
     var printList: [String] = [
         CConstants.ActionTitleContract
@@ -133,7 +137,7 @@ class PrintModelTableViewController: BaseViewController, UITableViewDataSource, 
     
     func touched(tap : UITapGestureRecognizer){
          let indexa = NSIndexPath(forRow: printList.count-1, inSection: 0)
-        if let cell = tableview.cellForRowAtIndexPath(indexa) as? lastcell {
+        if let cell = tableview.cellForRowAtIndexPath(indexa) as? AddressListModelLastCell {
             let point = tap.locationInView(tap.view)
             if (cell.print.frame.contains(point)){
                 var selectedCellArray = [NSIndexPath]()
@@ -193,53 +197,37 @@ class PrintModelTableViewController: BaseViewController, UITableViewDataSource, 
        
         var cella : UITableViewCell;
         if indexPath.row == (printList.count - 1) {
-            let cell = tableView.dequeueReusableCellWithIdentifier("a", forIndexPath: indexPath) as! lastcell
-            //        let a = UIView(frame: CGRect(x: 0, y: 0, width: cell.frame.size.width, height:  cell.frame.size.height))
-            //        a.backgroundColor = UIColor(red: 246/255.0, green: 246/255.0, blue: 246/255.0, alpha: 1)
-            //        cell.selectedBackgroundView = a
+            let cell = tableView.dequeueReusableCellWithIdentifier(constants.cellLastReuseIndentifier, forIndexPath: indexPath) as! AddressListModelLastCell
+            
             cell.separatorInset = UIEdgeInsetsZero
             cell.layoutMargins = UIEdgeInsetsZero
             cell.preservesSuperviewLayoutMargins = false
-            cell.print?.text = "Print"
+            cell.print?.text = constants.printBtnTitle
             
             cell.print?.textAlignment = .Center
             cell.print?.textColor = UIColor.whiteColor()
-//            cell.contentView.backgroundColor = CConstants.ApplicationColor
             cell.print?.backgroundColor = CConstants.ApplicationColor
             cell.print?.font = UIFont(name: CConstants.ApplicationBarFontName, size: CConstants.ApplicationBarItemFontSize)
-            cell.cancel?.text = "Cancel"
+            cell.cancel?.text = constants.cancelBtnTitle
             
             cell.cancel?.textAlignment = .Center
             cell.cancel?.textColor = UIColor.whiteColor()
-            //            cell.contentView.backgroundColor = CConstants.ApplicationColor
             cell.cancel?.backgroundColor = CConstants.ApplicationColor
             cell.cancel?.font = UIFont(name: CConstants.ApplicationBarFontName, size: CConstants.ApplicationBarItemFontSize)
-//            cell.imageBtn?.image = UIImage(named: CConstants.CheckImgNm)
             
             let tab = UITapGestureRecognizer(target: self, action: "touched:")
             tab.numberOfTapsRequired = 1
-//            tab.delegate = self
             cell.tag = 0
             cell.addGestureRecognizer(tab)
             let userinfo = NSUserDefaults.standardUserDefaults()
             if let filesNames = userinfo.valueForKey(CConstants.UserInfoPrintModel) as? [String] {
                 if filesNames.count == printList.count{
-//                    cell.imageBtn?.image = UIImage(named: CConstants.CheckedImgNm)
                     cell.tag = 1
                 }
             }
-//            cell.cancelBtn.hidden = false
-//            cell.cancelBtn.textColor = UIColor.whiteColor()
-////            let width = NSLayoutConstraint.c
-//            cell.trailingToRight.constant = cell.contentView.frame.size.width/2.0;
-//            cell.leadingtoLeft.constant = -8
-//            cell.updateConstraintsIfNeeded()
             cella = cell;
         }else{
             let cell = tableView.dequeueReusableCellWithIdentifier(constants.cellReuseIdentifier, forIndexPath: indexPath) as! PrintModelTableViewCell
-            //        let a = UIView(frame: CGRect(x: 0, y: 0, width: cell.frame.size.width, height:  cell.frame.size.height))
-            //        a.backgroundColor = UIColor(red: 246/255.0, green: 246/255.0, blue: 246/255.0, alpha: 1)
-            //        cell.selectedBackgroundView = a
             cell.separatorInset = UIEdgeInsetsZero
             cell.layoutMargins = UIEdgeInsetsZero
             cell.preservesSuperviewLayoutMargins = false
@@ -262,12 +250,6 @@ class PrintModelTableViewController: BaseViewController, UITableViewDataSource, 
            cella = cell
 
         }
-        
-        
-        
-        //        if self.modalPresentationStyle != .Popover {
-        //            cell.accessoryType = UITableViewCellAccessoryType.DisclosureIndicator
-        //        }
         
         
         return cella

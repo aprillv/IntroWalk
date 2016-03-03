@@ -9,7 +9,7 @@
 
 import UIKit
 
-class lastcell: UITableViewCell {
+class AddressListModelLastCell: UITableViewCell {
 
     @IBOutlet var cancel: UILabel!
     @IBOutlet var print: UILabel!
