@@ -308,9 +308,16 @@ class SetDotValue : NSObject {
                     }
                 case SignContractPDFFields.chk6e2:
                     if let radio = pv as? PDFFormButtonField {
-                        if radio.exportValue == "6e22" {
-                            radio.setValue2("1")
+                        if pdfInfo!.hoa == "0" {
+                            if radio.exportValue == "6e22" {
+                                radio.setValue2("1")
+                            }
+                        }else{
+                            if radio.exportValue == "6e21" {
+                                radio.setValue2("1")
+                            }
                         }
+                        
                     }
                 case SignContractPDFFields.chk6a83:
                     if let radio = pv as? PDFFormButtonField {
