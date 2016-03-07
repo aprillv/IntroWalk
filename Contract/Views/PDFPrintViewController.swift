@@ -80,7 +80,8 @@ class PDFPrintViewController: PDFBaseViewController, UIScrollViewDelegate, PDFVi
                     
                     for (str, dots) in fDD {
                         switch str{
-                        case CConstants.ActionTitleContract:
+                        case CConstants.ActionTitleContract,
+                         CConstants.ActionTitleDraftContract:
                             tool.setSignContractDots(info, additionViews: dots, pdfview: self.pdfView!)
                             return
                         default:
@@ -182,7 +183,8 @@ class PDFPrintViewController: PDFBaseViewController, UIScrollViewDelegate, PDFVi
             lastheight = filePageCnt
             
             switch title {
-            case CConstants.ActionTitleContract:
+            case CConstants.ActionTitleContract,
+            CConstants.ActionTitleDraftContract:
                 str = CConstants.PdfFileNameContract
                 filePageCnt += CConstants.PdfFileNameContractPageCount
             case CConstants.ActionTitleThirdPartyFinancingAddendum:
@@ -308,7 +310,8 @@ class PDFPrintViewController: PDFBaseViewController, UIScrollViewDelegate, PDFVi
 //            serviceUrl = CConstants.AddendumCServiceURL
         case CConstants.ActionTitleClosingMemo:
             serviceUrl = CConstants.ClosingMemoServiceURL
-        case CConstants.ActionTitleContract:
+        case CConstants.ActionTitleContract,
+        CConstants.ActionTitleDraftContract:
             serviceUrl = CConstants.ContractServiceURL
       
         default:
@@ -333,7 +336,8 @@ class PDFPrintViewController: PDFBaseViewController, UIScrollViewDelegate, PDFVi
                                     self.closingMemoPdfInfo = ContractClosingMemo(dicInfo: rtnValue)
                                 case CConstants.ActionTitleDesignCenter:
                                     self.designCenterPdfInfo = ContractDesignCenter(dicInfo: rtnValue)
-                                case CConstants.ActionTitleContract:
+                                case CConstants.ActionTitleContract,
+                                CConstants.ActionTitleDraftContract:
                                     self.contractPdfInfo = ContractSignature(dicInfo: rtnValue)
                                 
                                 default:

@@ -83,7 +83,7 @@ class PrintModelTableViewController: BaseViewController, UITableViewDataSource, 
             printList.append(CConstants.ActionTitleClosingMemo)
             printList.append(CConstants.ActionTitleGoContract)
         }else{
-            printList[0] = "Contract"
+            printList[0] = CConstants.ActionTitleDraftContract
             printList.append(CConstants.ActionTitleGoDraft)
         }
         

@@ -127,6 +127,7 @@ struct CConstants{
     static let ActionTitleClosingMemo : String = "Closing Memo"
     static let ActionTitleDesignCenter : String = "Design Center"
     static let ActionTitleContract : String = "Sign Contract"
+    static let ActionTitleDraftContract : String = "Contract"
     static let ActionTitleThirdPartyFinancingAddendum : String = "Third Party Financing Addendum"
     static let ActionTitleEXHIBIT_A : String = "Exhibit A"
     static let ActionTitleEXHIBIT_B : String = "Exhibit B"

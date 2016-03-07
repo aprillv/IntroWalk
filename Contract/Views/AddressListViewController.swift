@@ -81,11 +81,7 @@ class AddressListViewController: UITableViewController, UISearchBarDelegate, ToD
         static let Title : String = "Address List"
         static let CellIdentifier : String = "Address Cell Identifier"
         static let DraftCellIdentifier : String = "AddressDraft Cell Identifier"
-        static let ActionTitleAddendumC : String = "Addendum C"
-        static let ActionTitleClosingMemo : String = "Closing Memo"
-        static let ActionTitleDesignCenter : String = "Design Center"
-        static let ActionTitleContract : String = "Contract"
-        static let ActionThirdPartyFinancingAddendum : String = "Third Party Financing Addendum"
+       
     }
     
     
@@ -250,7 +246,7 @@ class AddressListViewController: UITableViewController, UISearchBarDelegate, ToD
         if printModelNms.count == 1 {
             printModelNm = printModelNms[0]
         }else{
-            printModelNm = constants.ActionTitleAddendumC
+            printModelNm = CConstants.ActionTitleAddendumC
         }
         switch printModelNm{
         case CConstants.ActionTitleAddendumC:
