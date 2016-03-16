@@ -11,12 +11,51 @@ import Alamofire
 import MBProgressHUD
 
 class AddressListViewController: UITableViewController, UISearchBarDelegate, ToDoPrintDelegate {
+    @IBOutlet var viewHeight: NSLayoutConstraint!{
+        didSet{
+            viewHeight.constant = 1.0 / UIScreen.mainScreen().scale
+        }
+    }
     
+    @IBOutlet var txtField: UITextField!{
+        didSet{
+            txtField.layer.cornerRadius = 5.0
+            txtField.placeholder = "Search"
+            txtField.clearButtonMode = .WhileEditing
+            txtField.leftViewMode = .Always
+            txtField.leftView = UIImageView(image: UIImage(named: "search"))
+            NSNotificationCenter.defaultCenter().addObserver(self, selector: "textFieldDidChange:", name: UITextFieldTextDidChangeNotification, object: txtField)
+        }
+        
+    }
+    
+    func textFieldDidChange(notifications : NSNotification){
+        if let txt = txtField.text?.lowercaseString{
+            if txt.isEmpty{
+                AddressList = AddressListOrigin
+            }else{
+                AddressList = AddressListOrigin?.filter(){
+                    if tableView.tag == 2 {
+                        return $0.cianame!.lowercaseString.containsString(txt)
+                            || $0.assignsales1name!.lowercaseString.containsString(txt)
+                            || $0.nproject!.lowercaseString.containsString(txt)
+                            || $0.client!.lowercaseString.containsString(txt)
+                    }else{
+                        return $0.cianame!.lowercaseString.containsString(txt)
+                            || $0.nproject!.lowercaseString.containsString(txt)
+                    }
+                    
+                }
+            }
+        }else{
+            AddressList = AddressListOrigin
+        }
+    }
 //    var lastSelectedIndexPath : NSIndexPath?
    
     @IBOutlet var backItem: UIBarButtonItem!
     @IBOutlet var switchItem: UIBarButtonItem!
-    @IBOutlet var searchBar: UISearchBar!
+//    @IBOutlet var searchBar: UISearchBar!
     @IBAction func doLogout(sender: AnyObject) {
         self.navigationController?.popViewControllerAnimated(true)
     }
@@ -103,26 +142,7 @@ class AddressListViewController: UITableViewController, UISearchBarDelegate, ToD
     
     // MARK: - Search Bar Deleagte
     func searchBar(searchBar: UISearchBar, textDidChange searchText: String) {
-        if let txt = searchBar.text?.lowercaseString{
-            if txt.isEmpty{
-                AddressList = AddressListOrigin
-            }else{
-                AddressList = AddressListOrigin?.filter(){
-                    if tableView.tag == 2 {
-                        return $0.cianame!.lowercaseString.containsString(txt)
-                            || $0.assignsales1name!.lowercaseString.containsString(txt)
-                            || $0.nproject!.lowercaseString.containsString(txt)
-                            || $0.client!.lowercaseString.containsString(txt)
-                    }else{
-                        return $0.cianame!.lowercaseString.containsString(txt)
-                            || $0.nproject!.lowercaseString.containsString(txt)
-                    }
-                    
-                }
-            }
-        }else{
-            AddressList = AddressListOrigin
-        }
+       
         
     }
 
@@ -346,7 +366,7 @@ class AddressListViewController: UITableViewController, UISearchBarDelegate, ToD
 //            lastSelectedIndexPath = indexPath
 //            selectedCell.contentView.backgroundColor = CConstants.SearchBarBackColor
 //        }
-       self.searchBar.resignFirstResponder()
+       self.txtField.resignFirstResponder()
         
         self.performSegueWithIdentifier(CConstants.SegueToPrintModel, sender: nil)
         
@@ -488,7 +508,7 @@ class AddressListViewController: UITableViewController, UISearchBarDelegate, ToD
     }
     
     override func scrollViewWillBeginDragging(scrollView: UIScrollView) {
-        self.searchBar.resignFirstResponder()
+        self.txtField.resignFirstResponder()
     }
     @IBAction func toSwitch(sender: UIBarButtonItem){
 //        self.view.backgroundColor = UIColor.whiteColor()

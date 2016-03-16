@@ -58,6 +58,7 @@
 		111E20381C7BF275004D43D8 /* PDFPrintViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 111E20371C7BF275004D43D8 /* PDFPrintViewController.swift */; };
 		111E20401C7C5F3D004D43D8 /* SetDotValue.swift in Sources */ = {isa = PBXBuildFile; fileRef = 111E203F1C7C5F3D004D43D8 /* SetDotValue.swift */; };
 		112118E31C056EC1000F85CE /* AddressListViewHeadView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 112118E21C056EC1000F85CE /* AddressListViewHeadView.swift */; };
+		1123B5F31C99541C00F4D781 /* CustomSearchBar.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1123B5F21C99541C00F4D781 /* CustomSearchBar.xib */; };
 		113CB5961BFEC8D60081FDE7 /* ContractObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = 113CB5951BFEC8D60081FDE7 /* ContractObject.swift */; };
 		113CB5BA1BFEE27A0081FDE7 /* ContractsItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 113CB5B91BFEE27A0081FDE7 /* ContractsItem.swift */; };
 		113CB5BC1BFEE2D80081FDE7 /* Contract.swift in Sources */ = {isa = PBXBuildFile; fileRef = 113CB5BB1BFEE2D80081FDE7 /* Contract.swift */; };
@@ -193,6 +194,7 @@
 		111E20371C7BF275004D43D8 /* PDFPrintViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PDFPrintViewController.swift; sourceTree = "<group>"; };
 		111E203F1C7C5F3D004D43D8 /* SetDotValue.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SetDotValue.swift; sourceTree = "<group>"; };
 		112118E21C056EC1000F85CE /* AddressListViewHeadView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddressListViewHeadView.swift; sourceTree = "<group>"; };
+		1123B5F21C99541C00F4D781 /* CustomSearchBar.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CustomSearchBar.xib; sourceTree = "<group>"; };
 		113CB5951BFEC8D60081FDE7 /* ContractObject.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContractObject.swift; sourceTree = "<group>"; };
 		113CB5B91BFEE27A0081FDE7 /* ContractsItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContractsItem.swift; sourceTree = "<group>"; };
 		113CB5BB1BFEE2D80081FDE7 /* Contract.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Contract.swift; sourceTree = "<group>"; };
@@ -294,6 +296,7 @@
 				1108B1C01BFC2691004B5D48 /* Info.plist */,
 				1108B1AC1BFC2691004B5D48 /* Supporting Files */,
 				1114C79B1C812AE900924A21 /* AppDelegate.swift */,
+				1123B5F21C99541C00F4D781 /* CustomSearchBar.xib */,
 			);
 			path = Contract;
 			sourceTree = "<group>";
@@ -579,6 +582,7 @@
 			files = (
 				1113F91A1C3A3660000FA22A /* DesignCenter.pdf in Resources */,
 				114733F21C103053000FC8D6 /* contract1pdf_3_265.txt in Resources */,
+				1123B5F31C99541C00F4D781 /* CustomSearchBar.xib in Resources */,
 				1108B1BF1BFC2691004B5D48 /* LaunchScreen.storyboard in Resources */,
 				114733F41C103053000FC8D6 /* contract1pdf_1_100.txt in Resources */,
 				114733F91C103053000FC8D6 /* contract1pdf_1_306.txt in Resources */,
