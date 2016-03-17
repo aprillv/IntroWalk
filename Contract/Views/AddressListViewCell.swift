@@ -14,6 +14,46 @@ class AddressListViewCell: UITableViewCell {
     private var ClientLbl: UILabel!
     
     
+    required init?(coder aDecoder: NSCoder) {
+        super.init(coder: aDecoder)
+        
+        let v = UIView()
+        self.contentView.addSubview(v)
+        v.backgroundColor = CConstants.BorderColor
+        let leadingConstraint = NSLayoutConstraint(item:v,
+            attribute: .LeadingMargin,
+            relatedBy: .Equal,
+            toItem: self.contentView,
+            attribute: .LeadingMargin,
+            multiplier: 1.0,
+            constant: 0);
+        let trailingConstraint = NSLayoutConstraint(item:v,
+            attribute: .TrailingMargin,
+            relatedBy: .Equal,
+            toItem: self.contentView,
+            attribute: .TrailingMargin,
+            multiplier: 1.0,
+            constant: 0);
+        
+        let bottomConstraint = NSLayoutConstraint(item: v,
+            attribute: .BottomMargin,
+            relatedBy: .Equal,
+            toItem: self.contentView,
+            attribute: .BottomMargin,
+            multiplier: 1.0,
+            constant: 0);
+        
+        let heightContraint = NSLayoutConstraint(item: v,
+            attribute: .Height,
+            relatedBy: .Equal,
+            toItem: nil,
+            attribute: .NotAnAttribute,
+            multiplier: 1.0,
+            constant: 1.0 / (UIScreen.mainScreen().scale));
+        v.translatesAutoresizingMaskIntoConstraints = false
+        NSLayoutConstraint.activateConstraints([leadingConstraint, trailingConstraint, bottomConstraint, heightContraint])
+    }
+    
     @IBOutlet weak var cview: UIView!{
         didSet{
             
