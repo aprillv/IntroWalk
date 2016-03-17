@@ -27,7 +27,7 @@ class AddressDraftListViewCell: UITableViewCell {
 //            
 //            ClientLbl = UILabel()
 //            cview.addSubview(ClientLbl)
-//            setDisplaySubViews()1
+//            setDisplaySubViews()
         }
     }
     
