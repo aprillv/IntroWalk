@@ -46,6 +46,12 @@
 		1108B2751BFC55CF004B5D48 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1108B2741BFC55CF004B5D48 /* LoginViewController.swift */; };
 		1108B2791BFC6133004B5D48 /* BaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1108B2781BFC6133004B5D48 /* BaseViewController.swift */; };
 		110CE6A61C03F3370096E630 /* ContractSignatureError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 110CE6A51C03F3370096E630 /* ContractSignatureError.swift */; };
+		11116CD41CA3B0D10021B680 /* AddendumD.pdf in Resources */ = {isa = PBXBuildFile; fileRef = 11116CD21CA3B0D10021B680 /* AddendumD.pdf */; };
+		11116CD51CA3B0D10021B680 /* AddendumE.pdf in Resources */ = {isa = PBXBuildFile; fileRef = 11116CD31CA3B0D10021B680 /* AddendumE.pdf */; };
+		11116CDD1CA3CA4C0021B680 /* Hoa_Checklist.pdf in Resources */ = {isa = PBXBuildFile; fileRef = 11116CDB1CA3CA4C0021B680 /* Hoa_Checklist.pdf */; };
+		11116CE11CA3D45F0021B680 /* FloodaplainAcknowledement.pdf in Resources */ = {isa = PBXBuildFile; fileRef = 11116CE01CA3D45F0021B680 /* FloodaplainAcknowledement.pdf */; };
+		11116CE51CA3D8DC0021B680 /* BuyersExpect.pdf in Resources */ = {isa = PBXBuildFile; fileRef = 11116CE41CA3D8DC0021B680 /* BuyersExpect.pdf */; };
+		11116CE71CA3E0D50021B680 /* Warranty_Builder_s.pdf in Resources */ = {isa = PBXBuildFile; fileRef = 11116CE61CA3E0D50021B680 /* Warranty_Builder_s.pdf */; };
 		1113F91A1C3A3660000FA22A /* DesignCenter.pdf in Resources */ = {isa = PBXBuildFile; fileRef = 1113F9191C3A3660000FA22A /* DesignCenter.pdf */; };
 		1114C79C1C812AE900924A21 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1114C79B1C812AE900924A21 /* AppDelegate.swift */; };
 		1114C7A51C8137EA00924A21 /* AddressDraftListViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1114C7A41C8137EA00924A21 /* AddressDraftListViewCell.swift */; };
@@ -181,6 +187,12 @@
 		1108B2741BFC55CF004B5D48 /* LoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		1108B2781BFC6133004B5D48 /* BaseViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BaseViewController.swift; sourceTree = "<group>"; };
 		110CE6A51C03F3370096E630 /* ContractSignatureError.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContractSignatureError.swift; sourceTree = "<group>"; };
+		11116CD21CA3B0D10021B680 /* AddendumD.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; path = AddendumD.pdf; sourceTree = "<group>"; };
+		11116CD31CA3B0D10021B680 /* AddendumE.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; path = AddendumE.pdf; sourceTree = "<group>"; };
+		11116CDB1CA3CA4C0021B680 /* Hoa_Checklist.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; path = Hoa_Checklist.pdf; sourceTree = "<group>"; };
+		11116CE01CA3D45F0021B680 /* FloodaplainAcknowledement.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; path = FloodaplainAcknowledement.pdf; sourceTree = "<group>"; };
+		11116CE41CA3D8DC0021B680 /* BuyersExpect.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; path = BuyersExpect.pdf; sourceTree = "<group>"; };
+		11116CE61CA3E0D50021B680 /* Warranty_Builder_s.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; path = Warranty_Builder_s.pdf; sourceTree = "<group>"; };
 		1113F9191C3A3660000FA22A /* DesignCenter.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; path = DesignCenter.pdf; sourceTree = "<group>"; };
 		1114C79B1C812AE900924A21 /* AppDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		1114C7A41C8137EA00924A21 /* AddressDraftListViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddressDraftListViewCell.swift; sourceTree = "<group>"; };
@@ -441,6 +453,12 @@
 		110CE6AD1C0439A70096E630 /* pdf */ = {
 			isa = PBXGroup;
 			children = (
+				11116CE61CA3E0D50021B680 /* Warranty_Builder_s.pdf */,
+				11116CE41CA3D8DC0021B680 /* BuyersExpect.pdf */,
+				11116CDB1CA3CA4C0021B680 /* Hoa_Checklist.pdf */,
+				11116CE01CA3D45F0021B680 /* FloodaplainAcknowledement.pdf */,
+				11116CD21CA3B0D10021B680 /* AddendumD.pdf */,
+				11116CD31CA3B0D10021B680 /* AddendumE.pdf */,
 				11B18F0D1C842A3700D39019 /* AddendumA.pdf */,
 				11B18F0B1C83DEFA00D39019 /* EXHIBIT_B.pdf */,
 				1114C7BA1C8197B000924A21 /* EXHIBIT_C_General.pdf */,
@@ -580,8 +598,10 @@
 				1113F91A1C3A3660000FA22A /* DesignCenter.pdf in Resources */,
 				114733F21C103053000FC8D6 /* contract1pdf_3_265.txt in Resources */,
 				1108B1BF1BFC2691004B5D48 /* LaunchScreen.storyboard in Resources */,
+				11116CE71CA3E0D50021B680 /* Warranty_Builder_s.pdf in Resources */,
 				114733F41C103053000FC8D6 /* contract1pdf_1_100.txt in Resources */,
 				114733F91C103053000FC8D6 /* contract1pdf_1_306.txt in Resources */,
+				11116CE51CA3D8DC0021B680 /* BuyersExpect.pdf in Resources */,
 				1114C7B71C81963100924A21 /* EXHIBIT_A.pdf in Resources */,
 				11475E6B1C23F8250034A801 /* AddendumC2.pdf in Resources */,
 				114733F61C103053000FC8D6 /* contract1pdf_2_265.txt in Resources */,
@@ -589,11 +609,15 @@
 				114733F71C103053000FC8D6 /* contract1pdf_2_100.txt in Resources */,
 				1108B1BC1BFC2691004B5D48 /* Assets.xcassets in Resources */,
 				11B18F0E1C842A3700D39019 /* AddendumA.pdf in Resources */,
+				11116CD41CA3B0D10021B680 /* AddendumD.pdf in Resources */,
 				110750791C28E91600B68141 /* ClosingMemo.pdf in Resources */,
+				11116CE11CA3D45F0021B680 /* FloodaplainAcknowledement.pdf in Resources */,
 				1114C7BB1C8197B000924A21 /* EXHIBIT_C_General.pdf in Resources */,
 				11B18F0C1C83DEFA00D39019 /* EXHIBIT_B.pdf in Resources */,
+				11116CDD1CA3CA4C0021B680 /* Hoa_Checklist.pdf in Resources */,
 				114733F51C103053000FC8D6 /* contract1pdf_2_306.txt in Resources */,
 				114733F31C103053000FC8D6 /* contract1pdf_3_306.txt in Resources */,
+				11116CD51CA3B0D10021B680 /* AddendumE.pdf in Resources */,
 				1108B1B71BFC2691004B5D48 /* Main.storyboard in Resources */,
 				1114C7A91C814BB000924A21 /* BaseContract.pdf in Resources */,
 				114733F81C103053000FC8D6 /* contract1pdf_1_9999.txt in Resources */,

@@ -91,6 +91,12 @@ struct CConstants{
     static let PdfFileNameAddendumA = "AddendumA"
     static let PdfFileNameAddendumC = "AddendumC"
     static let PdfFileNameAddendumC2 = "AddendumC2"
+    static let PdfFileNameAddendumD = "AddendumD"
+    static let PdfFileNameAddendumE = "AddendumE"
+    static let PdfFileNameBuyersExpect = "BuyersExpect"
+    static let PdfFileNameFloodPlainAck = "FloodaplainAcknowledement"
+    static let PdfFileNameHoaChecklist = "Hoa_Checklist"
+    static let PdfFileNameWarrantyAcknowledgement = "Warranty_Builder_s"
     
     static let PdfPageHeight : CGFloat = 976.688235
 //    static let PdfPageMarginUserDefault = "pageHMargin"
@@ -105,7 +111,13 @@ struct CConstants{
     static let PdfFileNameAddendumAPageCount = 6
     static let PdfFileNameAddendumCPageCount = 1
     static let PdfFileNameAddendumC2PageCount = 2
+    static let PdfFileNameAddendumDPageCount = 2
+    static let PdfFileNameAddendumEPageCount = 2
     
+    static let PdfFileNameBuyersExpectPageCount = 5
+    static let PdfFileNameFloodPlainAckPageCount = 1
+    static let PdfFileNameHoaChecklistPageCount = 2
+    static let PdfFileNameWarrantyAcknowledgementPageCount = 2
     
     static let ControllerNameContract = "SignContractViewController"
     static let ControllerNameExhibitA = "ExhibitAViewController"
@@ -123,6 +135,8 @@ struct CConstants{
     static let StoryboardName = "Main"
     
     static let ActionTitleAddendumC : String = "Addendum C"
+    static let ActionTitleAddendumD : String = "Addendum D"
+    static let ActionTitleAddendumE : String = "Addendum E"
     static let ActionTitleAddendumA : String = "Addendum A"
     static let ActionTitleClosingMemo : String = "Closing Memo"
     static let ActionTitleDesignCenter : String = "Design Center"
@@ -136,6 +150,10 @@ struct CConstants{
     static let ActionTitleINFORMATION_ABOUT_BROKERAGE_SERVICES = "Information about Brokerage Services"
     static let ActionTitleGoContract : String = "Print Contract"
     static let ActionTitleGoDraft : String = "Print Draft"
+    static let ActionTitleBuyersExpect : String = "Buyers Expept"
+    static let ActionTitleFloodPlainAck : String = "Floodplain Acknowledgement"
+    static let ActionTitleHoaChecklist : String = "HOA Checklist"
+    static let ActionTitleWarrantyAcknowledgement : String = "Warranty Acknowledgement"
     
     static let ApplicationColor  = UIColor(red: 0, green: 164/255.0, blue: 236/255.0, alpha: 1)
     static let SearchBarBackColor = UIColor(red: 238/255.0, green: 238/255.0, blue: 238/255.0, alpha: 1)

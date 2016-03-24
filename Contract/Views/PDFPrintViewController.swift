@@ -36,6 +36,14 @@ class PDFPrintViewController: PDFBaseViewController, UIScrollViewDelegate, PDFVi
                         case CConstants.ActionTitleEXHIBIT_C:
 //                            print(dots)
                             tool.setExhibitCDots(info, additionViews: dots)
+                        case CConstants.ActionTitleBuyersExpect:
+                            tool.setBuyersExpectDots(info, additionViews: dots)
+                        case CConstants.ActionTitleWarrantyAcknowledgement:
+                            tool.setWarrantyAcknowledegeDots(info, additionViews: dots)
+                        case CConstants.ActionTitleHoaChecklist:
+                            tool.setHoaChecklistDots(info, additionViews: dots)
+                        case CConstants.ActionTitleFloodPlainAck:
+                            tool.setFloodPlainAcknowledgementDots(info, additionViews: dots)
                         default:
                             break
                         }
@@ -204,7 +212,27 @@ class PDFPrintViewController: PDFBaseViewController, UIScrollViewDelegate, PDFVi
                     str = CConstants.PdfFileNameAddendumC
                     filePageCnt += CConstants.PdfFileNameAddendumCPageCount
                 }
+             
+            case CConstants.ActionTitleBuyersExpect:
+                str = CConstants.PdfFileNameBuyersExpect
+                filePageCnt += CConstants.PdfFileNameBuyersExpectPageCount
+            case CConstants.ActionTitleFloodPlainAck:
+                str = CConstants.PdfFileNameFloodPlainAck
+                filePageCnt += CConstants.PdfFileNameFloodPlainAckPageCount
                 
+            case CConstants.ActionTitleHoaChecklist:
+                str = CConstants.PdfFileNameHoaChecklist
+                filePageCnt += CConstants.PdfFileNameHoaChecklistPageCount
+            case CConstants.ActionTitleWarrantyAcknowledgement:
+                str = CConstants.PdfFileNameWarrantyAcknowledgement
+                filePageCnt += CConstants.PdfFileNameWarrantyAcknowledgementPageCount
+                
+            case CConstants.ActionTitleAddendumD:
+                str = CConstants.PdfFileNameAddendumD
+                filePageCnt += CConstants.PdfFileNameAddendumDPageCount
+            case CConstants.ActionTitleAddendumE:
+                str = CConstants.PdfFileNameAddendumE
+                filePageCnt += CConstants.PdfFileNameAddendumEPageCount
             case CConstants.ActionTitleEXHIBIT_A:
                 str = CConstants.PdfFileNameEXHIBIT_A
                 filePageCnt += CConstants.PdfFileNameEXHIBIT_APageCount
@@ -248,12 +276,14 @@ class PDFPrintViewController: PDFBaseViewController, UIScrollViewDelegate, PDFVi
         
 //        print(self.document?.forms)
         setAddendumC()
+        
+        
         view2.addSubview(pdfView!)
     }
     
     
     
-    
+  
     
     override func viewDidLoad() {
         super.viewDidLoad()

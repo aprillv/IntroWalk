@@ -78,12 +78,24 @@ class PrintModelTableViewController: BaseViewController, UITableViewDataSource, 
         super.viewDidLoad()
         let userInfo = NSUserDefaults.standardUserDefaults()
         if userInfo.boolForKey(CConstants.UserInfoIsContract) {
+            printList.append(CConstants.ActionTitleBuyersExpect)
             printList.append(CConstants.ActionTitleAddendumC)
+            printList.append(CConstants.ActionTitleAddendumD)
+            printList.append(CConstants.ActionTitleAddendumE)
+            printList.append(CConstants.ActionTitleFloodPlainAck)
+            printList.append(CConstants.ActionTitleHoaChecklist)
+            printList.append(CConstants.ActionTitleWarrantyAcknowledgement)
             printList.append(CConstants.ActionTitleDesignCenter)
             printList.append(CConstants.ActionTitleClosingMemo)
             printList.append(CConstants.ActionTitleGoContract)
         }else{
             printList[0] = CConstants.ActionTitleDraftContract
+            printList.append(CConstants.ActionTitleBuyersExpect)
+            printList.append(CConstants.ActionTitleAddendumD)
+            printList.append(CConstants.ActionTitleAddendumE)
+            printList.append(CConstants.ActionTitleFloodPlainAck)
+            printList.append(CConstants.ActionTitleHoaChecklist)
+            printList.append(CConstants.ActionTitleWarrantyAcknowledgement)
             printList.append(CConstants.ActionTitleGoDraft)
         }
         

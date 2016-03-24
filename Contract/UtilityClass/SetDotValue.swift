@@ -1174,4 +1174,83 @@ class SetDotValue : NSObject {
             }
         }
     }
+    // MARK: Buyers Expect
+    private struct BuyersExpectPDFFields{
+        static let CompanyName = "CompanyName"
+        static let Version = "version"
+    }
+    
+    func setBuyersExpectDots(pdfInfo: AddendumA?, additionViews: [PDFWidgetAnnotationView]){
+        for pv : PDFWidgetAnnotationView in additionViews{
+            switch pv.xname {
+            case BuyersExpectPDFFields.CompanyName:
+                pv.value = pdfInfo?.CompanyName!
+            default:
+                break
+            }
+        }
+    }
+    
+    // MARK: Warranty Acknowledege
+    private struct WarrantyAcknowledegePDFFields{
+        static let CompanyName = "CompanyName"
+        static let GeneralPartner = "GeneralPartner"
+    }
+    
+    func setWarrantyAcknowledegeDots(pdfInfo: AddendumA?, additionViews: [PDFWidgetAnnotationView]){
+        for pv : PDFWidgetAnnotationView in additionViews{
+            switch pv.xname {
+            case WarrantyAcknowledegePDFFields.GeneralPartner:
+                pv.value = "\(pdfInfo!.GeneralPartner!),"
+            case WarrantyAcknowledegePDFFields.CompanyName:
+                pv.value = pdfInfo?.CompanyName!
+            default:
+                break
+            }
+        }
+    }
+    // MARK: HOA Checklist
+    private struct HoaChecklistPDFFields{
+        static let PropertyName = "Address of Property"
+        static let PropertyName2 = "Address of Property_2"
+    }
+    
+    func setHoaChecklistDots(pdfInfo: AddendumA?, additionViews: [PDFWidgetAnnotationView]){
+        for pv : PDFWidgetAnnotationView in additionViews{
+            switch pv.xname {
+            case HoaChecklistPDFFields.PropertyName,HoaChecklistPDFFields.PropertyName2:
+                pv.value = pdfInfo?.nproject!
+            default:
+                break
+            }
+        }
+    }
+    
+    // MARK: FloodPlain Acknowledgement
+    private struct FloodPlainAcknowledgementPDFFields{
+        static let Year = "year"
+        static let PropertyName = "Property Address 1"
+        static let PropertyName2 = "Property Address 2"
+    }
+    
+    func setFloodPlainAcknowledgementDots(pdfInfo: AddendumA?, additionViews: [PDFWidgetAnnotationView]){
+        for pv : PDFWidgetAnnotationView in additionViews{
+            switch pv.xname {
+            case FloodPlainAcknowledgementPDFFields.PropertyName:
+                pv.value = pdfInfo?.nproject!
+            case FloodPlainAcknowledgementPDFFields.Year:
+                pv.value = "\(getCurrentYear())"
+            default:
+                break
+            }
+        }
+    }
+    
+    private func getCurrentYear() -> Int{
+        
+        let format = NSCalendar.currentCalendar().components(.Year, fromDate: NSDate()) 
+        return format.year
+    }
+    
+    
 }
