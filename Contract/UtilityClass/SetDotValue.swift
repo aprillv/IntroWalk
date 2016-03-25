@@ -1180,13 +1180,16 @@ class SetDotValue : NSObject {
         static let Version = "version"
     }
     
-    func setBuyersExpectDots(pdfInfo: AddendumA?, additionViews: [PDFWidgetAnnotationView]){
+    func setBuyersExpectDots(pdfInfo: AddendumA?, additionViews: [PDFWidgetAnnotationView], pdfview: PDFView){
         for pv : PDFWidgetAnnotationView in additionViews{
             switch pv.xname {
             case BuyersExpectPDFFields.CompanyName:
                 pv.value = pdfInfo?.CompanyName!
             default:
                 break
+            }
+            if let sign = pv as? SignatureView{
+                sign.pdfViewsssss = pdfview
             }
         }
     }

@@ -138,7 +138,9 @@
             self.LineWidth = sv.LineWidth;
             
             if (isToAll) {
+                
                 for (SignatureView *other in self.pdfViewsssss.pdfWidgetAnnotationViews) {
+                    
                     if ([other isKindOfClass:[SignatureView class]]
                         && [other.sname hasSuffix: [self.sname substringFromIndex:2] ]){
                         CGRect ct = other.frame;

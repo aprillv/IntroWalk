@@ -8,6 +8,9 @@
 
 /* Begin PBXBuildFile section */
 		1104A8491C76B66800B59E60 /* AddendumA.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1104A8481C76B66800B59E60 /* AddendumA.swift */; };
+		1104E97C1CA50441006F15FE /* AddendumD.pdf in Resources */ = {isa = PBXBuildFile; fileRef = 1104E97B1CA50441006F15FE /* AddendumD.pdf */; };
+		1104E9801CA508E1006F15FE /* AddendumE.pdf in Resources */ = {isa = PBXBuildFile; fileRef = 1104E97F1CA508E1006F15FE /* AddendumE.pdf */; };
+		1104E9821CA51450006F15FE /* Hoa_Checklist.pdf in Resources */ = {isa = PBXBuildFile; fileRef = 1104E9811CA51450006F15FE /* Hoa_Checklist.pdf */; };
 		110750791C28E91600B68141 /* ClosingMemo.pdf in Resources */ = {isa = PBXBuildFile; fileRef = 110750781C28E91600B68141 /* ClosingMemo.pdf */; };
 		1107507B1C29222600B68141 /* SendOperationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1107507A1C29222600B68141 /* SendOperationViewController.swift */; };
 		1107C09C1C0C3B530041D8D7 /* cl_pdf.m in Sources */ = {isa = PBXBuildFile; fileRef = 1107C09B1C0C3B530041D8D7 /* cl_pdf.m */; };
@@ -46,9 +49,6 @@
 		1108B2751BFC55CF004B5D48 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1108B2741BFC55CF004B5D48 /* LoginViewController.swift */; };
 		1108B2791BFC6133004B5D48 /* BaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1108B2781BFC6133004B5D48 /* BaseViewController.swift */; };
 		110CE6A61C03F3370096E630 /* ContractSignatureError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 110CE6A51C03F3370096E630 /* ContractSignatureError.swift */; };
-		11116CD41CA3B0D10021B680 /* AddendumD.pdf in Resources */ = {isa = PBXBuildFile; fileRef = 11116CD21CA3B0D10021B680 /* AddendumD.pdf */; };
-		11116CD51CA3B0D10021B680 /* AddendumE.pdf in Resources */ = {isa = PBXBuildFile; fileRef = 11116CD31CA3B0D10021B680 /* AddendumE.pdf */; };
-		11116CDD1CA3CA4C0021B680 /* Hoa_Checklist.pdf in Resources */ = {isa = PBXBuildFile; fileRef = 11116CDB1CA3CA4C0021B680 /* Hoa_Checklist.pdf */; };
 		11116CE11CA3D45F0021B680 /* FloodaplainAcknowledement.pdf in Resources */ = {isa = PBXBuildFile; fileRef = 11116CE01CA3D45F0021B680 /* FloodaplainAcknowledement.pdf */; };
 		11116CE51CA3D8DC0021B680 /* BuyersExpect.pdf in Resources */ = {isa = PBXBuildFile; fileRef = 11116CE41CA3D8DC0021B680 /* BuyersExpect.pdf */; };
 		11116CE71CA3E0D50021B680 /* Warranty_Builder_s.pdf in Resources */ = {isa = PBXBuildFile; fileRef = 11116CE61CA3E0D50021B680 /* Warranty_Builder_s.pdf */; };
@@ -117,6 +117,9 @@
 
 /* Begin PBXFileReference section */
 		1104A8481C76B66800B59E60 /* AddendumA.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddendumA.swift; sourceTree = "<group>"; };
+		1104E97B1CA50441006F15FE /* AddendumD.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; path = AddendumD.pdf; sourceTree = "<group>"; };
+		1104E97F1CA508E1006F15FE /* AddendumE.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; path = AddendumE.pdf; sourceTree = "<group>"; };
+		1104E9811CA51450006F15FE /* Hoa_Checklist.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; path = Hoa_Checklist.pdf; sourceTree = "<group>"; };
 		110750781C28E91600B68141 /* ClosingMemo.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; path = ClosingMemo.pdf; sourceTree = "<group>"; };
 		1107507A1C29222600B68141 /* SendOperationViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SendOperationViewController.swift; sourceTree = "<group>"; };
 		1107C09A1C0C3B530041D8D7 /* cl_pdf.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = cl_pdf.h; sourceTree = "<group>"; };
@@ -187,9 +190,6 @@
 		1108B2741BFC55CF004B5D48 /* LoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		1108B2781BFC6133004B5D48 /* BaseViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BaseViewController.swift; sourceTree = "<group>"; };
 		110CE6A51C03F3370096E630 /* ContractSignatureError.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContractSignatureError.swift; sourceTree = "<group>"; };
-		11116CD21CA3B0D10021B680 /* AddendumD.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; path = AddendumD.pdf; sourceTree = "<group>"; };
-		11116CD31CA3B0D10021B680 /* AddendumE.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; path = AddendumE.pdf; sourceTree = "<group>"; };
-		11116CDB1CA3CA4C0021B680 /* Hoa_Checklist.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; path = Hoa_Checklist.pdf; sourceTree = "<group>"; };
 		11116CE01CA3D45F0021B680 /* FloodaplainAcknowledement.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; path = FloodaplainAcknowledement.pdf; sourceTree = "<group>"; };
 		11116CE41CA3D8DC0021B680 /* BuyersExpect.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; path = BuyersExpect.pdf; sourceTree = "<group>"; };
 		11116CE61CA3E0D50021B680 /* Warranty_Builder_s.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; path = Warranty_Builder_s.pdf; sourceTree = "<group>"; };
@@ -453,12 +453,12 @@
 		110CE6AD1C0439A70096E630 /* pdf */ = {
 			isa = PBXGroup;
 			children = (
+				1104E9811CA51450006F15FE /* Hoa_Checklist.pdf */,
+				1104E97F1CA508E1006F15FE /* AddendumE.pdf */,
+				1104E97B1CA50441006F15FE /* AddendumD.pdf */,
 				11116CE61CA3E0D50021B680 /* Warranty_Builder_s.pdf */,
 				11116CE41CA3D8DC0021B680 /* BuyersExpect.pdf */,
-				11116CDB1CA3CA4C0021B680 /* Hoa_Checklist.pdf */,
 				11116CE01CA3D45F0021B680 /* FloodaplainAcknowledement.pdf */,
-				11116CD21CA3B0D10021B680 /* AddendumD.pdf */,
-				11116CD31CA3B0D10021B680 /* AddendumE.pdf */,
 				11B18F0D1C842A3700D39019 /* AddendumA.pdf */,
 				11B18F0B1C83DEFA00D39019 /* EXHIBIT_B.pdf */,
 				1114C7BA1C8197B000924A21 /* EXHIBIT_C_General.pdf */,
@@ -595,6 +595,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1104E9801CA508E1006F15FE /* AddendumE.pdf in Resources */,
 				1113F91A1C3A3660000FA22A /* DesignCenter.pdf in Resources */,
 				114733F21C103053000FC8D6 /* contract1pdf_3_265.txt in Resources */,
 				1108B1BF1BFC2691004B5D48 /* LaunchScreen.storyboard in Resources */,
@@ -609,19 +610,18 @@
 				114733F71C103053000FC8D6 /* contract1pdf_2_100.txt in Resources */,
 				1108B1BC1BFC2691004B5D48 /* Assets.xcassets in Resources */,
 				11B18F0E1C842A3700D39019 /* AddendumA.pdf in Resources */,
-				11116CD41CA3B0D10021B680 /* AddendumD.pdf in Resources */,
+				1104E97C1CA50441006F15FE /* AddendumD.pdf in Resources */,
 				110750791C28E91600B68141 /* ClosingMemo.pdf in Resources */,
 				11116CE11CA3D45F0021B680 /* FloodaplainAcknowledement.pdf in Resources */,
 				1114C7BB1C8197B000924A21 /* EXHIBIT_C_General.pdf in Resources */,
 				11B18F0C1C83DEFA00D39019 /* EXHIBIT_B.pdf in Resources */,
-				11116CDD1CA3CA4C0021B680 /* Hoa_Checklist.pdf in Resources */,
 				114733F51C103053000FC8D6 /* contract1pdf_2_306.txt in Resources */,
 				114733F31C103053000FC8D6 /* contract1pdf_3_306.txt in Resources */,
-				11116CD51CA3B0D10021B680 /* AddendumE.pdf in Resources */,
 				1108B1B71BFC2691004B5D48 /* Main.storyboard in Resources */,
 				1114C7A91C814BB000924A21 /* BaseContract.pdf in Resources */,
 				114733F81C103053000FC8D6 /* contract1pdf_1_9999.txt in Resources */,
 				114733FA1C103053000FC8D6 /* contract1pdf_1_265.txt in Resources */,
+				1104E9821CA51450006F15FE /* Hoa_Checklist.pdf in Resources */,
 				1114C7AD1C81876300924A21 /* Third_Party_Financing_Addendum_TREC.pdf in Resources */,
 				114733FB1C103053000FC8D6 /* contract1pdf_1_101.txt in Resources */,
 				1114C7B11C8192BE00924A21 /* INFORMATION_ABOUT_BROKERAGE_SERVICES.pdf in Resources */,

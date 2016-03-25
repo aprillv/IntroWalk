@@ -37,7 +37,7 @@ class PDFPrintViewController: PDFBaseViewController, UIScrollViewDelegate, PDFVi
 //                            print(dots)
                             tool.setExhibitCDots(info, additionViews: dots)
                         case CConstants.ActionTitleBuyersExpect:
-                            tool.setBuyersExpectDots(info, additionViews: dots)
+                            tool.setBuyersExpectDots(info, additionViews: dots, pdfview: self.pdfView!)
                         case CConstants.ActionTitleWarrantyAcknowledgement:
                             tool.setWarrantyAcknowledegeDots(info, additionViews: dots)
                         case CConstants.ActionTitleHoaChecklist:
@@ -298,7 +298,10 @@ class PDFPrintViewController: PDFBaseViewController, UIScrollViewDelegate, PDFVi
                     self.pageChanged( 6)
                 case CConstants.ActionTitleEXHIBIT_B:
                     self.pageChanged( 3)
-                case CConstants.ActionTitleINFORMATION_ABOUT_BROKERAGE_SERVICES:
+                case CConstants.ActionTitleINFORMATION_ABOUT_BROKERAGE_SERVICES,
+                    CConstants.ActionTitleAddendumD,
+                    CConstants.ActionTitleAddendumE,
+                    CConstants.ActionTitleHoaChecklist:
                     self.pageChanged( 1)
                 case CConstants.ActionTitleAddendumA:
                     self.pageChanged( 2)
@@ -447,20 +450,11 @@ class PDFPrintViewController: PDFBaseViewController, UIScrollViewDelegate, PDFVi
                         frame.size.height += 150
                         self.pdfView?.pdfView.scrollView.scrollRectToVisible(frame, animated: false)
                         break;
+//                    }else if {
+                    
                     }
                 }
                 
-                
-//                if sign.xname.containsString("bottom") {
-//                    if currentPoint?.y < sign.frame.origin.y {
-//                        var frame = sign.frame
-//                        frame.size.height += 40
-//                        self.pdfView?.pdfView.scrollView.scrollRectToVisible(frame, animated: false)
-//                        break;
-//                    }
-//                }else if sign.xname.containsString("buyer2") {
-//                    
-//                }
                 
             }
             
@@ -521,7 +515,8 @@ class PDFPrintViewController: PDFBaseViewController, UIScrollViewDelegate, PDFVi
                                     return
                             }
                             if sender.tag == 1 && sign.xname == ("buyer2Sign")
-                                || sender.tag == 2 && sign.xname == ("buyer3Sign")
+                                || sender.tag == 2  && sender.title != "Date1" && sign.xname == ("buyer3Sign")
+                                || sender.tag == 2  && sender.title == "Date1" && sign.xname.hasSuffix("buyer2DateSign")
                                 || sender.tag == 4 && sign.xname == ("Exhibitbp1seller3Sign"){
                                     sign.toSignautre()
                                     return
@@ -531,18 +526,18 @@ class PDFPrintViewController: PDFBaseViewController, UIScrollViewDelegate, PDFVi
                             if addendumApdfInfo != nil{
                                 if let hasrealtor = addendumApdfInfo!.hasbroker {
                                     if hasrealtor == "" {
-                                        if sender.tag == 1 && sign.xname == "broker2buyer2Sign"
-                                            || sender.tag == 2 && sign.xname == "broker2buyer2DateSign"
-                                            || sender.tag == 3 && sign.xname==("broker2buyer3Sign")
-                                            || sender.tag == 4 && sign.xname==("broker2buyer3DateSign"){
+                                        if sender.tag == 1 && sign.xname.hasSuffix("buyer2Sign")
+                                            || sender.tag == 2 && sign.xname.hasSuffix("buyer2DateSign")
+                                            || sender.tag == 3 && sign.xname.hasSuffix("buyer3Sign")
+                                            || sender.tag == 4 && sign.xname.hasSuffix("buyer3DateSign"){
                                                 sign.toSignautre()
                                                 return
                                         }
                                     }else{
-                                        if sender.tag == 1 && sign.xname == "brokerbuyer2Sign"
-                                            || sender.tag == 2 && sign.xname == "brokerbuyer2DateSign"
-                                            || sender.tag == 3 && sign.xname==("brokerbuyer3Sign")
-                                            || sender.tag == 4 && sign.xname==("brokerbuyer3DateSign"){
+                                        if sender.tag == 1 && sign.xname.hasSuffix("buyer2Sign")
+                                            || sender.tag == 2 && sign.xname.hasSuffix("buyer2DateSign")
+                                            || sender.tag == 3 && sign.xname.hasSuffix("buyer3Sign")
+                                            || sender.tag == 4 && sign.xname.hasSuffix("buyer3DateSign"){
                                                 sign.toSignautre()
                                                 return
                                         }

@@ -255,6 +255,8 @@
                 NSInteger no = 0;
                 if([pv.xname containsString:@"broker"]) {
                     no = 1;
+                }else if ([pv.xname containsString:@"DateSign"]) {
+                    no = 1;
                 }else if ([pv.xname containsString:@"AddendumA"]) {
                     no = 2;
                 }else if ([pv.xname containsString:@"Exhibitbp1seller3Sign"]){
