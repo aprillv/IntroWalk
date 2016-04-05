@@ -227,7 +227,7 @@ class PrintModelTableViewController: BaseViewController, UITableViewDataSource, 
             cell.cancel?.backgroundColor = CConstants.ApplicationColor
             cell.cancel?.font = UIFont(name: CConstants.ApplicationBarFontName, size: CConstants.ApplicationBarItemFontSize)
             
-            let tab = UITapGestureRecognizer(target: self, action: "touched:")
+            let tab = UITapGestureRecognizer(target: self, action: #selector(PrintModelTableViewController.touched(_:)))
             tab.numberOfTapsRequired = 1
             cell.tag = 0
             cell.addGestureRecognizer(tab)

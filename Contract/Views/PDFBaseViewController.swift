@@ -184,7 +184,7 @@ class PDFBaseViewController: BaseViewController, DoOperationDelegate, UIPopoverP
                     self.hud?.mode = .Text
                     self.hud?.labelText = CConstants.MsgNetworkError
                 }
-                self.performSelector("dismissProgress", withObject: nil, afterDelay: 0.5)
+                self.performSelector(#selector(PDFBaseViewController.dismissProgress as (PDFBaseViewController) -> () -> ()), withObject: nil, afterDelay: 0.5)
         }
     }
     
@@ -353,7 +353,7 @@ class PDFBaseViewController: BaseViewController, DoOperationDelegate, UIPopoverP
                 self.hud?.customView = UIImageView(image: image)
                 
                 self.hud?.labelText = CConstants.SendEmailSuccessfullMsg
-                self.performSelector("dismissProgress", withObject: nil, afterDelay: 0.5)
+                self.performSelector(#selector(PDFBaseViewController.dismissProgress as (PDFBaseViewController) -> () -> ()), withObject: nil, afterDelay: 0.5)
             }
         }else {
             controller.dismissViewControllerAnimated(true, completion: nil)
@@ -510,7 +510,7 @@ class PDFBaseViewController: BaseViewController, DoOperationDelegate, UIPopoverP
                                             textView.layoutManager.enumerateLineFragmentsForGlyphRange(NSMakeRange(0, items.xdescription!.characters.count), usingBlock: { (rect, usedRect, textContainer, glyphRange, _) -> Void in
                                                 if  let a : NSString = items.xdescription! as NSString {
                                                     
-                                                    i++
+                                                    i += 1
                                                     itemList1.append(a.substringWithRange(glyphRange))
                                                 }
                                             })

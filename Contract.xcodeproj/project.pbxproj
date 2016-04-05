@@ -228,6 +228,7 @@
 		115338C11C27DE5900E1B65A /* PDFBaseViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PDFBaseViewController.swift; sourceTree = "<group>"; };
 		115338C91C27F59E00E1B65A /* ContractPDFBaseModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContractPDFBaseModel.swift; sourceTree = "<group>"; };
 		1157B3C31C34C68D008ED758 /* ContractDesignCenter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContractDesignCenter.swift; sourceTree = "<group>"; };
+		1158E57A1CB34FD0004C2A47 /* Alamofire.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Alamofire.framework; path = "../../../Library/Developer/Xcode/DerivedData/Contract-dcqjjoxvaaolymaiaqvwpxclpghp/Build/Products/Debug-iphonesimulator/Alamofire/Alamofire.framework"; sourceTree = "<group>"; };
 		11609E5E1C86FA6600596281 /* AddressListModelLastCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddressListModelLastCell.swift; sourceTree = "<group>"; };
 		11633B9F1C27DA0000C11A20 /* ContractClosingMemoItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContractClosingMemoItem.swift; sourceTree = "<group>"; };
 		11633BA11C27DA8E00C11A20 /* ContractClosingMemo.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContractClosingMemo.swift; sourceTree = "<group>"; };
@@ -518,6 +519,7 @@
 		1EF557691D4D81ABA6AB3018 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				1158E57A1CB34FD0004C2A47 /* Alamofire.framework */,
 				AB0FE999F8EB22254D6D15D8 /* Pods.framework */,
 				22F18C19584528B1717CD718 /* Pods_Contract.framework */,
 			);
@@ -540,13 +542,13 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 1108B1C31BFC2691004B5D48 /* Build configuration list for PBXNativeTarget "Contract" */;
 			buildPhases = (
-				E13C99A7898A777581128094 /* Check Pods Manifest.lock */,
+				E13C99A7898A777581128094 /* 📦 Check Pods Manifest.lock */,
 				1108B1A51BFC2690004B5D48 /* Sources */,
 				1108B1A61BFC2690004B5D48 /* Frameworks */,
 				1108B1A71BFC2690004B5D48 /* Resources */,
 				113CB5DB1BFEE4990081FDE7 /* Embed Frameworks */,
-				7FCF7F64E137686B930EE05B /* Embed Pods Frameworks */,
-				957C77327E1C8714CB724CA2 /* Copy Pods Resources */,
+				7FCF7F64E137686B930EE05B /* 📦 Embed Pods Frameworks */,
+				957C77327E1C8714CB724CA2 /* 📦 Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -632,14 +634,14 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		7FCF7F64E137686B930EE05B /* Embed Pods Frameworks */ = {
+		7FCF7F64E137686B930EE05B /* 📦 Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputPaths = (
 			);
-			name = "Embed Pods Frameworks";
+			name = "📦 Embed Pods Frameworks";
 			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -647,14 +649,14 @@
 			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Contract/Pods-Contract-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
-		957C77327E1C8714CB724CA2 /* Copy Pods Resources */ = {
+		957C77327E1C8714CB724CA2 /* 📦 Copy Pods Resources */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputPaths = (
 			);
-			name = "Copy Pods Resources";
+			name = "📦 Copy Pods Resources";
 			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -662,14 +664,14 @@
 			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Contract/Pods-Contract-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
-		E13C99A7898A777581128094 /* Check Pods Manifest.lock */ = {
+		E13C99A7898A777581128094 /* 📦 Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputPaths = (
 			);
-			name = "Check Pods Manifest.lock";
+			name = "📦 Check Pods Manifest.lock";
 			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -862,7 +864,9 @@
 				GCC_PREFIX_HEADER = "Contract/ILPDFKitSample-Prefix.pch";
 				INFOPLIST_FILE = Contract/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				LD_QUOTE_LINKER_ARGUMENTS_FOR_COMPILER_DRIVER = YES;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				OTHER_LDFLAGS = "$(inherited)";
 				PRODUCT_BUNDLE_IDENTIFIER = com.ba.Contract;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OBJC_BRIDGING_HEADER = "Contract/Views/Contract-Bridging-Header.h";
@@ -884,7 +888,9 @@
 				GCC_PREFIX_HEADER = "Contract/ILPDFKitSample-Prefix.pch";
 				INFOPLIST_FILE = Contract/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				LD_QUOTE_LINKER_ARGUMENTS_FOR_COMPILER_DRIVER = YES;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				OTHER_LDFLAGS = "$(inherited)";
 				PRODUCT_BUNDLE_IDENTIFIER = com.ba.Contract;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OBJC_BRIDGING_HEADER = "Contract/Views/Contract-Bridging-Header.h";

@@ -73,7 +73,7 @@ class PDFPrintViewController: PDFBaseViewController, UIScrollViewDelegate, PDFVi
                         }
                         return
                     default:
-                        i++
+                        i += 1
                     }
                     
                 }
@@ -118,7 +118,7 @@ class PDFPrintViewController: PDFBaseViewController, UIScrollViewDelegate, PDFVi
                             }
                             return
                         default:
-                            i++
+                            i += 1
                         }
                     }
                 }
@@ -458,7 +458,7 @@ class PDFPrintViewController: PDFBaseViewController, UIScrollViewDelegate, PDFVi
                 
             }
             
-            self.performSelector("afterGotofield", withObject: sender, afterDelay: 0.3)
+            self.performSelector(#selector(PDFPrintViewController.afterGotofield), withObject: sender, afterDelay: 0.3)
         }
         
     }

@@ -593,7 +593,7 @@ class SetDotValue : NSObject {
                         bank1.value = xvalue
                         bank1.pagenomargin = (bankField?.pagenomargin ?? 0.0)!
                         addedAnnotationViews.append(bank1)
-                        y++
+                        y += 1
                     }
                     originy += bankField!.frame.size.height * 1.2
                     let line = PDFWidgetAnnotationView(frame: CGRect(x: bankField!.frame.origin.x - 3, y: originy, width: amountField!.frame.size.width + amountField!.frame.origin.x + 6 - bankField!.frame.origin.x, height: 1))

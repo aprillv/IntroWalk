@@ -24,7 +24,7 @@ class AddressListViewController: UITableViewController, UISearchBarDelegate, ToD
             txtField.clearButtonMode = .WhileEditing
             txtField.leftViewMode = .Always
             txtField.leftView = UIImageView(image: UIImage(named: "search"))
-            NSNotificationCenter.defaultCenter().addObserver(self, selector: "textFieldDidChange:", name: UITextFieldTextDidChangeNotification, object: txtField)
+            NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(AddressListViewController.textFieldDidChange(_:)), name: UITextFieldTextDidChangeNotification, object: txtField)
         }
         
     }
@@ -408,7 +408,7 @@ class AddressListViewController: UITableViewController, UISearchBarDelegate, ToD
                                     textView.layoutManager.enumerateLineFragmentsForGlyphRange(NSMakeRange(0, items.xdescription!.characters.count), usingBlock: { (rect, usedRect, textContainer, glyphRange, _) -> Void in
                                         if  let a : NSString = items.xdescription! as NSString {
                                             
-                                            i++
+                                            i += 1
                                             itemList1.append(a.substringWithRange(glyphRange))
                                         }
                                     })
