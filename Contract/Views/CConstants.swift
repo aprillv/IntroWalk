@@ -97,6 +97,7 @@ struct CConstants{
     static let PdfFileNameFloodPlainAck = "FloodaplainAcknowledement"
     static let PdfFileNameHoaChecklist = "Hoa_Checklist"
     static let PdfFileNameWarrantyAcknowledgement = "Warranty_Builder_s"
+    static let PdfFileNameAddendumHOA = "trec_36-8"
     
     static let PdfPageHeight : CGFloat = 976.688235
 //    static let PdfPageMarginUserDefault = "pageHMargin"
@@ -118,6 +119,7 @@ struct CConstants{
     static let PdfFileNameFloodPlainAckPageCount = 1
     static let PdfFileNameHoaChecklistPageCount = 2
     static let PdfFileNameWarrantyAcknowledgementPageCount = 2
+    static let PdfFileNameAddendumHoaPageCount = 1
     
     static let ControllerNameContract = "SignContractViewController"
     static let ControllerNameExhibitA = "ExhibitAViewController"
@@ -148,6 +150,7 @@ struct CConstants{
     static let ActionTitleEXHIBIT_C : String = "Exhibit C General"
 //    static let ActionTitleINFORMATION_ABOUT_BROKERAGE_SERVICES = "Information about brokerage services"
     static let ActionTitleINFORMATION_ABOUT_BROKERAGE_SERVICES = "Information about Brokerage Services"
+    static let ActionTitleAddendumHOA : String = "Addendum for Property Subject to HOA"
     static let ActionTitleGoContract : String = "Print Contract"
     static let ActionTitleGoDraft : String = "Print Draft"
     static let ActionTitleBuyersExpect : String = "Buyers Expept"

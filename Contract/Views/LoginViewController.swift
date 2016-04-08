@@ -239,8 +239,10 @@ class LoginViewController: BaseViewController, UITextFieldDelegate {
 //                    self.progressBar?.dismissViewControllerAnimated(true){ () -> Void in
 //                        self.spinner?.stopAnimating()
                         if response.result.isSuccess {
+//                            print(response.result.value)
                             if let rtnValue = response.result.value as? [String: AnyObject]{
                                 let rtn = Contract(dicInfo: rtnValue)
+                                
                                 
                                 self.toEablePageControl()
                                 

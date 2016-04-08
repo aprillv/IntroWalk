@@ -1229,6 +1229,24 @@ class SetDotValue : NSObject {
         }
     }
     
+    // MARK: Addendum Hoa
+    private struct AddendumHoaPDFFields{
+        static let AddressName = "Street Address and City"
+        static let PropertyName = "Name of Property Owners Association Association and Phone Number"
+    }
+    
+    func setAddendumHoaDots(pdfInfo: AddendumA?, additionViews: [PDFWidgetAnnotationView]){
+        for pv : PDFWidgetAnnotationView in additionViews{
+            switch pv.xname {
+            case AddendumHoaPDFFields.AddressName:
+                pv.value = "\(pdfInfo!.nproject!), \(pdfInfo!.city!)"
+//            case AddendumHoaPDFFields.PropertyName:
+//                pv.value = "\(getCurrentYear())"
+            default:
+                break
+            }
+        }
+    }
     // MARK: FloodPlain Acknowledgement
     private struct FloodPlainAcknowledgementPDFFields{
         static let Year = "year"

@@ -44,6 +44,8 @@ class PDFPrintViewController: PDFBaseViewController, UIScrollViewDelegate, PDFVi
                             tool.setHoaChecklistDots(info, additionViews: dots)
                         case CConstants.ActionTitleFloodPlainAck:
                             tool.setFloodPlainAcknowledgementDots(info, additionViews: dots)
+                        case CConstants.ActionTitleAddendumHOA:
+                            tool.setAddendumHoaDots(info, additionViews: dots)
                         default:
                             break
                         }
@@ -204,6 +206,9 @@ class PDFPrintViewController: PDFBaseViewController, UIScrollViewDelegate, PDFVi
             case CConstants.ActionTitleAddendumA:
                 str = CConstants.PdfFileNameAddendumA
                 filePageCnt += CConstants.PdfFileNameAddendumAPageCount
+            case CConstants.ActionTitleAddendumHOA:
+                str = CConstants.PdfFileNameAddendumHOA
+                filePageCnt += CConstants.PdfFileNameAddendumHoaPageCount
             case CConstants.ActionTitleAddendumC:
                 if self.page2! {
                     str = CConstants.PdfFileNameAddendumC2
@@ -333,7 +338,7 @@ class PDFPrintViewController: PDFBaseViewController, UIScrollViewDelegate, PDFVi
     
     // MARK: Request Data
     private func callService(printModelNm: String, param: [String: String]){
-        print(param)
+//        print(param)
         var serviceUrl: String?
         switch printModelNm{
         case CConstants.ActionTitleDesignCenter:
@@ -343,6 +348,8 @@ class PDFPrintViewController: PDFBaseViewController, UIScrollViewDelegate, PDFVi
 //            serviceUrl = CConstants.AddendumCServiceURL
         case CConstants.ActionTitleClosingMemo:
             serviceUrl = CConstants.ClosingMemoServiceURL
+//        case CConstants.ActionTitleAddendumHOA:
+//            return
         case CConstants.ActionTitleContract,
         CConstants.ActionTitleDraftContract:
             serviceUrl = CConstants.ContractServiceURL
@@ -490,6 +497,7 @@ class PDFPrintViewController: PDFBaseViewController, UIScrollViewDelegate, PDFVi
                     }
                 }
             }
+            
             if fileDotsDic != nil {
                 for (_, v) in fileDotsDic! {
                     for a in v {
@@ -520,6 +528,10 @@ class PDFPrintViewController: PDFBaseViewController, UIScrollViewDelegate, PDFVi
                                 || sender.tag == 4 && sign.xname == ("Exhibitbp1seller3Sign"){
                                     sign.toSignautre()
                                     return
+                            }
+                            
+                            if self.title == CConstants.ActionTitleAddendumHOA {
+                            continue
                             }
                             
                             //broker

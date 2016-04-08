@@ -22,5 +22,6 @@ class ContractsItem: ContractObject {
     var idcity: String?
     var buyer1email: String?
     var buyer2email: String?
+    var hoa: NSNumber?
     
 }

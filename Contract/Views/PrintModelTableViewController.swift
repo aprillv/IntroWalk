@@ -14,6 +14,7 @@ protocol ToDoPrintDelegate
 class PrintModelTableViewController: BaseViewController, UITableViewDataSource, UITableViewDelegate, UIGestureRecognizerDelegate{
     // MARK: - Constanse
     
+    var projectInfo: ContractsItem?
     
     @IBOutlet var printBtn: UIButton!{
         didSet{
@@ -87,6 +88,11 @@ class PrintModelTableViewController: BaseViewController, UITableViewDataSource, 
             printList.append(CConstants.ActionTitleWarrantyAcknowledgement)
             printList.append(CConstants.ActionTitleDesignCenter)
             printList.append(CConstants.ActionTitleClosingMemo)
+            if let tmp = self.projectInfo?.hoa {
+                if tmp == 1 {
+                    printList.append(CConstants.ActionTitleAddendumHOA)
+                }
+            }
             printList.append(CConstants.ActionTitleGoContract)
         }else{
             printList[0] = CConstants.ActionTitleDraftContract
@@ -96,10 +102,17 @@ class PrintModelTableViewController: BaseViewController, UITableViewDataSource, 
             printList.append(CConstants.ActionTitleFloodPlainAck)
             printList.append(CConstants.ActionTitleHoaChecklist)
             printList.append(CConstants.ActionTitleWarrantyAcknowledgement)
+            if let tmp = self.projectInfo?.hoa {
+                if tmp == 1 {
+                    printList.append(CConstants.ActionTitleAddendumHOA)
+                }
+            }
             printList.append(CConstants.ActionTitleGoDraft)
         }
         
-        tableHeight.constant = CGFloat(Double(printList.count) * constants.cellHeight)
+        
+        
+        tableHeight.constant = min(CGFloat(constants.cellHeight * Double(printList.count)), 680, min(view.frame.height, view.frame.width) - 40)
         tableview.updateConstraintsIfNeeded()
         
     }
@@ -107,9 +120,43 @@ class PrintModelTableViewController: BaseViewController, UITableViewDataSource, 
     func numberOfSectionsInTableView(tableView: UITableView) -> Int {
         return 1
     }
+    
+    func tableView(tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
+        return 44.0
+    }
+    func tableView(tableView: UITableView, viewForFooterInSection section: Int) -> UIView? {
+        let cell = tableView.dequeueReusableCellWithIdentifier(constants.cellLastReuseIndentifier) as! AddressListModelLastCell
+        cell.separatorInset = UIEdgeInsetsZero
+        cell.layoutMargins = UIEdgeInsetsZero
+        cell.preservesSuperviewLayoutMargins = false
+        cell.print?.text = constants.printBtnTitle
+        
+        cell.print?.textAlignment = .Center
+        cell.print?.textColor = UIColor.whiteColor()
+        cell.print?.backgroundColor = CConstants.ApplicationColor
+        cell.print?.font = UIFont(name: CConstants.ApplicationBarFontName, size: CConstants.ApplicationBarItemFontSize)
+        cell.cancel?.text = constants.cancelBtnTitle
+        
+        cell.cancel?.textAlignment = .Center
+        cell.cancel?.textColor = UIColor.whiteColor()
+        cell.cancel?.backgroundColor = CConstants.ApplicationColor
+        cell.cancel?.font = UIFont(name: CConstants.ApplicationBarFontName, size: CConstants.ApplicationBarItemFontSize)
+        
+        let tab = UITapGestureRecognizer(target: self, action: #selector(PrintModelTableViewController.touched(_:)))
+        tab.numberOfTapsRequired = 1
+        cell.tag = 0
+        cell.addGestureRecognizer(tab)
+        let userinfo = NSUserDefaults.standardUserDefaults()
+        if let filesNames = userinfo.valueForKey(CConstants.UserInfoPrintModel) as? [String] {
+            if filesNames.count == printList.count{
+                cell.tag = 1
+            }
+        }
+        return cell
+    }
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         
-        return printList.count
+        return printList.count - 1
     }
     
     //    func tableView(tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
@@ -148,8 +195,8 @@ class PrintModelTableViewController: BaseViewController, UITableViewDataSource, 
     }
     
     func touched(tap : UITapGestureRecognizer){
-         let indexa = NSIndexPath(forRow: printList.count-1, inSection: 0)
-        if let cell = tableview.cellForRowAtIndexPath(indexa) as? AddressListModelLastCell {
+
+        if let cell = tap.view as? AddressListModelLastCell {
             let point = tap.locationInView(tap.view)
             if (cell.print.frame.contains(point)){
                 var selectedCellArray = [NSIndexPath]()
@@ -207,39 +254,7 @@ class PrintModelTableViewController: BaseViewController, UITableViewDataSource, 
     }
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
        
-        var cella : UITableViewCell;
-        if indexPath.row == (printList.count - 1) {
-            let cell = tableView.dequeueReusableCellWithIdentifier(constants.cellLastReuseIndentifier, forIndexPath: indexPath) as! AddressListModelLastCell
-            
-            cell.separatorInset = UIEdgeInsetsZero
-            cell.layoutMargins = UIEdgeInsetsZero
-            cell.preservesSuperviewLayoutMargins = false
-            cell.print?.text = constants.printBtnTitle
-            
-            cell.print?.textAlignment = .Center
-            cell.print?.textColor = UIColor.whiteColor()
-            cell.print?.backgroundColor = CConstants.ApplicationColor
-            cell.print?.font = UIFont(name: CConstants.ApplicationBarFontName, size: CConstants.ApplicationBarItemFontSize)
-            cell.cancel?.text = constants.cancelBtnTitle
-            
-            cell.cancel?.textAlignment = .Center
-            cell.cancel?.textColor = UIColor.whiteColor()
-            cell.cancel?.backgroundColor = CConstants.ApplicationColor
-            cell.cancel?.font = UIFont(name: CConstants.ApplicationBarFontName, size: CConstants.ApplicationBarItemFontSize)
-            
-            let tab = UITapGestureRecognizer(target: self, action: #selector(PrintModelTableViewController.touched(_:)))
-            tab.numberOfTapsRequired = 1
-            cell.tag = 0
-            cell.addGestureRecognizer(tab)
-            let userinfo = NSUserDefaults.standardUserDefaults()
-            if let filesNames = userinfo.valueForKey(CConstants.UserInfoPrintModel) as? [String] {
-                if filesNames.count == printList.count{
-                    cell.tag = 1
-                }
-            }
-            cella = cell;
-        }else{
-            let cell = tableView.dequeueReusableCellWithIdentifier(constants.cellReuseIdentifier, forIndexPath: indexPath) as! PrintModelTableViewCell
+        let cell = tableView.dequeueReusableCellWithIdentifier(constants.cellReuseIdentifier, forIndexPath: indexPath) as! PrintModelTableViewCell
             cell.separatorInset = UIEdgeInsetsZero
             cell.layoutMargins = UIEdgeInsetsZero
             cell.preservesSuperviewLayoutMargins = false
@@ -259,12 +274,11 @@ class PrintModelTableViewController: BaseViewController, UITableViewDataSource, 
                 cell.contentView.tag = 0
                 cell.imageBtn?.image = UIImage(named: CConstants.CheckImgNm)
             }
-           cella = cell
 
-        }
         
         
-        return cella
+        
+        return cell
     }
     
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
@@ -322,7 +336,7 @@ class PrintModelTableViewController: BaseViewController, UITableViewDataSource, 
     override var preferredContentSize: CGSize {
         
         get {
-            return CGSize(width: tableview.frame.width, height: CGFloat(constants.cellHeight * Double(printList.count)))
+            return CGSize(width: tableview.frame.width, height: min(CGFloat(constants.cellHeight * Double(printList.count)), 680, min(view.frame.height, view.frame.width) - 40))
         }
         set { super.preferredContentSize = newValue }
     }

@@ -250,7 +250,7 @@
     for (PDFWidgetAnnotationView *pv in _pdfView.scrollView.subviews) {
 //        NSLog(@"pv.xname %@", pv.xname);
         if ([pv isKindOfClass:[SignatureView class]]) {
-            NSLog(@"pv.xname %@", pv.xname);
+//            NSLog(@"pv.xname %@", pv.xname);
             if (CGRectIntersectsRect(pv.frame, pv.superview.bounds)) {
                 NSInteger no = 0;
                 if([pv.xname containsString:@"broker"]) {

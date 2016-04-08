@@ -367,8 +367,17 @@ class AddressListViewController: UITableViewController, UISearchBarDelegate, ToD
 //            selectedCell.contentView.backgroundColor = CConstants.SearchBarBackColor
 //        }
        self.txtField.resignFirstResponder()
-        
-        self.performSegueWithIdentifier(CConstants.SegueToPrintModel, sender: nil)
+        var contract : ContractsItem?
+        if tableView.tag == 2{
+            if let cell = tableView.cellForRowAtIndexPath(indexPath) as? AddressListViewCell {
+                contract = cell.contractInfo
+            }
+        }else{
+            if let cell = tableView.cellForRowAtIndexPath(indexPath) as? AddressDraftListViewCell {
+                contract = cell.contractInfo
+            }
+        }
+        self.performSegueWithIdentifier(CConstants.SegueToPrintModel, sender: contract)
         
     }
     
@@ -379,6 +388,7 @@ class AddressListViewController: UITableViewController, UISearchBarDelegate, ToD
                 
                 if let controller = segue.destinationViewController as? PrintModelTableViewController {
                    controller.delegate = self
+                    controller.projectInfo = sender as? ContractsItem
                 }
                 break
            
@@ -473,6 +483,7 @@ class AddressListViewController: UITableViewController, UISearchBarDelegate, ToD
        
         Alamofire.request(.POST, CConstants.ServerURL + CConstants.LoginServiceURL, parameters: a).responseJSON{ (response) -> Void in
             if response.result.isSuccess {
+//                print(response.result.value)
                 if let rtnValue = response.result.value as? [String: AnyObject]{
                     let rtn = Contract(dicInfo: rtnValue)
                     

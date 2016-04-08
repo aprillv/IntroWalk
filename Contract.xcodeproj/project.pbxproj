@@ -93,6 +93,7 @@
 		11643C161C030B8E000E2C0A /* CConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11643C151C030B8E000E2C0A /* CConstants.swift */; };
 		1176D20F1BFDC67C001C1C3E /* AddressListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1176D20E1BFDC67C001C1C3E /* AddressListViewController.swift */; };
 		117F9B6B1C756706008B26D5 /* PrintModelTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 117F9B6A1C756706008B26D5 /* PrintModelTableViewController.swift */; };
+		118A54771CB737A500DD4F6A /* trec_36-8.pdf in Resources */ = {isa = PBXBuildFile; fileRef = 118A54761CB737A500DD4F6A /* trec_36-8.pdf */; };
 		11A50B421C783BFC0017AA53 /* AddressListModelViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11A50B411C783BFC0017AA53 /* AddressListModelViewController.swift */; };
 		11B18F0C1C83DEFA00D39019 /* EXHIBIT_B.pdf in Resources */ = {isa = PBXBuildFile; fileRef = 11B18F0B1C83DEFA00D39019 /* EXHIBIT_B.pdf */; };
 		11B18F0E1C842A3700D39019 /* AddendumA.pdf in Resources */ = {isa = PBXBuildFile; fileRef = 11B18F0D1C842A3700D39019 /* AddendumA.pdf */; };
@@ -235,6 +236,7 @@
 		11643C151C030B8E000E2C0A /* CConstants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CConstants.swift; sourceTree = "<group>"; };
 		1176D20E1BFDC67C001C1C3E /* AddressListViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddressListViewController.swift; sourceTree = "<group>"; };
 		117F9B6A1C756706008B26D5 /* PrintModelTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PrintModelTableViewController.swift; sourceTree = "<group>"; };
+		118A54761CB737A500DD4F6A /* trec_36-8.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; name = "trec_36-8.pdf"; path = "../../../../../Downloads/trec_36-8.pdf"; sourceTree = "<group>"; };
 		11A50B411C783BFC0017AA53 /* AddressListModelViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddressListModelViewController.swift; sourceTree = "<group>"; };
 		11B18F0B1C83DEFA00D39019 /* EXHIBIT_B.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; path = EXHIBIT_B.pdf; sourceTree = "<group>"; };
 		11B18F0D1C842A3700D39019 /* AddendumA.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; path = AddendumA.pdf; sourceTree = "<group>"; };
@@ -454,6 +456,7 @@
 		110CE6AD1C0439A70096E630 /* pdf */ = {
 			isa = PBXGroup;
 			children = (
+				118A54761CB737A500DD4F6A /* trec_36-8.pdf */,
 				1104E9811CA51450006F15FE /* Hoa_Checklist.pdf */,
 				1104E97F1CA508E1006F15FE /* AddendumE.pdf */,
 				1104E97B1CA50441006F15FE /* AddendumD.pdf */,
@@ -613,6 +616,7 @@
 				1108B1BC1BFC2691004B5D48 /* Assets.xcassets in Resources */,
 				11B18F0E1C842A3700D39019 /* AddendumA.pdf in Resources */,
 				1104E97C1CA50441006F15FE /* AddendumD.pdf in Resources */,
+				118A54771CB737A500DD4F6A /* trec_36-8.pdf in Resources */,
 				110750791C28E91600B68141 /* ClosingMemo.pdf in Resources */,
 				11116CE11CA3D45F0021B680 /* FloodaplainAcknowledement.pdf in Resources */,
 				1114C7BB1C8197B000924A21 /* EXHIBIT_C_General.pdf in Resources */,
