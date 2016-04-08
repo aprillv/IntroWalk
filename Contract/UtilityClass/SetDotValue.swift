@@ -1239,7 +1239,7 @@ class SetDotValue : NSObject {
         for pv : PDFWidgetAnnotationView in additionViews{
             switch pv.xname {
             case AddendumHoaPDFFields.AddressName:
-                pv.value = "\(pdfInfo!.nproject!), \(pdfInfo!.city!)"
+                pv.value = "\(pdfInfo!.nproject!) / \(pdfInfo!.city!)"
 //            case AddendumHoaPDFFields.PropertyName:
 //                pv.value = "\(getCurrentYear())"
             default:
