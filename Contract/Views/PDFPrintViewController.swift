@@ -186,8 +186,22 @@ class PDFPrintViewController: PDFBaseViewController, UIScrollViewDelegate, PDFVi
         
         var lastheight : Int
         var filePageCnt : Int = 0
+        var called = true
         for title in filesArray! {
-             self.callService(title, param: param)
+            if title !=  CConstants.ActionTitleDesignCenter
+            && title != CConstants.ActionTitleClosingMemo
+            && title != CConstants.ActionTitleAddendumC
+                && title != CConstants.ActionTitleContract
+                && title != "Contract" {
+                if called{
+                    self.callService(title, param: param)
+                    called = false;
+                }
+                
+            }else{
+                self.callService(title, param: param)
+            }
+            
             var str : String
             
             lastheight = filePageCnt
@@ -294,6 +308,7 @@ class PDFPrintViewController: PDFBaseViewController, UIScrollViewDelegate, PDFVi
         super.viewDidLoad()
         
         let userinfo = NSUserDefaults.standardUserDefaults()
+        userinfo.setInteger(0, forKey: "ClearDraftInfo")
         if userinfo.boolForKey(CConstants.UserInfoIsContract) {
             self.navigationItem.title = "Contract"
             
@@ -357,6 +372,7 @@ class PDFPrintViewController: PDFBaseViewController, UIScrollViewDelegate, PDFVi
         default:
             serviceUrl = CConstants.AddendumAServiceURL
         }
+        print(serviceUrl)
         let hud = MBProgressHUD.showHUDAddedTo(self.view, animated: true)
         //                hud.mode = .AnnularDeterminate
         hud.labelText = CConstants.RequestMsg
@@ -367,6 +383,7 @@ class PDFPrintViewController: PDFBaseViewController, UIScrollViewDelegate, PDFVi
                 if response.result.isSuccess {
                     
                     if let rtnValue = response.result.value as? [String: AnyObject]{
+                        print(rtnValue);
                         if let msg = rtnValue["message"] as? String{
                             if msg.isEmpty{
 //                                var vc : PDFBaseViewController?
@@ -716,6 +733,55 @@ class PDFPrintViewController: PDFBaseViewController, UIScrollViewDelegate, PDFVi
             }
         }
     }
+    
+   
+    
+    override func clearDraftInfo() {
+        let userInfo = NSUserDefaults.standardUserDefaults()
+        userInfo.setInteger(1, forKey: "ClearDraftInfo")
+        if self.addendumApdfInfo != nil{
+            let a = self.addendumApdfInfo?.Client
+            self.addendumApdfInfo?.Client = ""
+            self.addendumApdfInfo = self.addendumApdfInfo!
+            self.addendumApdfInfo?.Client = a
+        }
+        
+        if self.contractPdfInfo != nil {
+            let bmobile = self.contractPdfInfo?.bmobile1!
+            let bemail = self.contractPdfInfo?.bemail1
+            let client = self.contractPdfInfo?.client
+            let client2 = self.contractPdfInfo?.client2
+            let tobuyer2 = self.contractPdfInfo?.tobuyer2
+            
+            self.contractPdfInfo?.bmobile1 = ""
+            self.contractPdfInfo?.bemail1 = ""
+            self.contractPdfInfo?.client2 = ""
+            self.contractPdfInfo?.client = ""
+            self.contractPdfInfo?.tobuyer2 = ""
+            self.contractPdfInfo = self.contractPdfInfo!
+            self.contractPdfInfo?.bmobile1 = bmobile
+            self.contractPdfInfo?.bemail1 = bemail
+            self.contractPdfInfo?.client2 = client2
+            self.contractPdfInfo?.client = client
+            self.contractPdfInfo?.tobuyer2 = tobuyer2
+        }
+        
+    }
+    
+    override func fillDraftInfo() {
+        let userInfo = NSUserDefaults.standardUserDefaults()
+        userInfo.setInteger(0, forKey: "ClearDraftInfo")
+        
+        if self.addendumApdfInfo != nil{
+            self.addendumApdfInfo = self.addendumApdfInfo!
+        }
+        
+        if self.contractPdfInfo != nil {
+            self.contractPdfInfo = self.contractPdfInfo!
+        }
+        
+    }
+    
     
     
 }

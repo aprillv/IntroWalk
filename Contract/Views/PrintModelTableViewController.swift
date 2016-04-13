@@ -77,6 +77,7 @@ class PrintModelTableViewController: BaseViewController, UITableViewDataSource, 
     
     override func viewDidLoad() {
         super.viewDidLoad()
+//        filesNames = [String]()
         let userInfo = NSUserDefaults.standardUserDefaults()
         if userInfo.boolForKey(CConstants.UserInfoIsContract) {
             printList.append(CConstants.ActionTitleBuyersExpect)
@@ -252,6 +253,8 @@ class PrintModelTableViewController: BaseViewController, UITableViewDataSource, 
 
         
     }
+    
+//    var filesNames : [String]?
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
        
         let cell = tableView.dequeueReusableCellWithIdentifier(constants.cellReuseIdentifier, forIndexPath: indexPath) as! PrintModelTableViewCell
@@ -261,19 +264,25 @@ class PrintModelTableViewController: BaseViewController, UITableViewDataSource, 
             cell.contentLbl?.text = printList[indexPath.row]
             cell.textLabel?.textAlignment = .Left
             
-            let userinfo = NSUserDefaults.standardUserDefaults()
-            if let filesNames = userinfo.valueForKey(CConstants.UserInfoPrintModel) as? [String] {
-                if filesNames.contains(printList[indexPath.row]) {
-                    cell.contentView.tag = 1
-                    cell.imageBtn?.image = UIImage(named: CConstants.CheckedImgNm)
-                }else{
-                    cell.contentView.tag = 0
-                    cell.imageBtn?.image = UIImage(named: CConstants.CheckImgNm)
-                }
-            }else{
-                cell.contentView.tag = 0
-                cell.imageBtn?.image = UIImage(named: CConstants.CheckImgNm)
-            }
+//            let userinfo = NSUserDefaults.standardUserDefaults()
+//            if let filesNames = userinfo.valueForKey(CConstants.UserInfoPrintModel) as? [String] {
+//                if filesNames!.contains(printList[indexPath.row]) {
+//                    cell.contentView.tag = 1
+//                    cell.imageBtn?.image = UIImage(named: CConstants.CheckedImgNm)
+//                }else{
+//                    cell.contentView.tag = 0
+//                    cell.imageBtn?.image = UIImage(named: CConstants.CheckImgNm)
+//                }
+        
+        if cell.contentView.tag == 1 {
+            cell.imageBtn?.image = UIImage(named: CConstants.CheckedImgNm)
+        }else{
+            cell.imageBtn?.image = UIImage(named: CConstants.CheckImgNm)
+        }
+//            }else{
+//                cell.contentView.tag = 0
+//                cell.imageBtn?.image = UIImage(named: CConstants.CheckImgNm)
+//            }
 
         
         

@@ -181,8 +181,8 @@ class AddressListViewController: UITableViewController, UISearchBarDelegate, ToD
         var cell: UITableViewCell;
         if tableView.tag == 2{
              cell = tableView.dequeueReusableCellWithIdentifier(constants.CellIdentifier, forIndexPath: indexPath)
-            cell.separatorInset = UIEdgeInsetsZero
-            cell.layoutMargins = UIEdgeInsetsZero
+//            cell.separatorInset = UIEdgeInsetsZero
+//            cell.layoutMargins = UIEdgeInsetsZero
             cell.preservesSuperviewLayoutMargins = false
             if let cellitem = cell as? AddressListViewCell {
                 let ddd = CiaNmArray?[CiaNm?[indexPath.section] ?? ""]
@@ -195,8 +195,8 @@ class AddressListViewController: UITableViewController, UISearchBarDelegate, ToD
             
         }else{
             cell = tableView.dequeueReusableCellWithIdentifier(constants.DraftCellIdentifier, forIndexPath: indexPath)
-            cell.separatorInset = UIEdgeInsetsZero
-            cell.layoutMargins = UIEdgeInsetsZero
+//            cell.separatorInset = UIEdgeInsetsZero
+//            cell.layoutMargins = UIEdgeInsetsZero
             cell.preservesSuperviewLayoutMargins = false
             if let cellitem = cell as? AddressDraftListViewCell {
                 let ddd = CiaNmArray?[CiaNm?[indexPath.section] ?? ""]

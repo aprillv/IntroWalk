@@ -13,6 +13,8 @@ protocol DoOperationDelegate
     func saveToServer()
     func doPrint()
     func sendEmail()
+    func clearDraftInfo()
+    func fillDraftInfo()
 }
 
 class SendOperationViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
@@ -36,6 +38,8 @@ class SendOperationViewController: UIViewController, UITableViewDelegate, UITabl
         static let operationSavetoServer = "Save to Contract"
         static let operationPrint = "Print"
         static let operationEmail = "Email"
+        static let operationClearDraftInfo = "Clear Buyer's Fields"
+        static let operationFillDraftInfo = "Fill Buyer's Fields"
     }
     
     override func viewDidLoad() {
@@ -44,7 +48,11 @@ class SendOperationViewController: UIViewController, UITableViewDelegate, UITabl
         if userinfo.boolForKey(CConstants.UserInfoIsContract) && showSave!{
             itemList = [constants.operationPrint, constants.operationEmail, constants.operationSavetoServer]
         }else{
-            itemList = [constants.operationPrint, constants.operationEmail]
+            if userinfo.integerForKey("ClearDraftInfo") == 0 {
+                itemList = [constants.operationPrint, constants.operationEmail, constants.operationClearDraftInfo]
+            }else {
+                itemList = [constants.operationPrint, constants.operationEmail, constants.operationFillDraftInfo]
+            }
         }
         
         
@@ -77,6 +85,10 @@ class SendOperationViewController: UIViewController, UITableViewDelegate, UITabl
                         delegate0.doPrint()
                     case constants.operationEmail:
                         delegate0.sendEmail()
+                case constants.operationFillDraftInfo:
+                    delegate0.fillDraftInfo()
+                case constants.operationClearDraftInfo:
+                    delegate0.clearDraftInfo()
                     default:
                         break
                 }

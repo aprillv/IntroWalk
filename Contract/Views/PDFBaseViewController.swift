@@ -628,5 +628,13 @@ class PDFBaseViewController: BaseViewController, DoOperationDelegate, UIPopoverP
         
     }
     
+    func fillDraftInfo() {
+       
+    }
+    
+    func clearDraftInfo() {
+        
+    }
+    
     
 }
