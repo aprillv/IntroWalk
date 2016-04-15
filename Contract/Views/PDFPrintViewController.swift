@@ -11,13 +11,61 @@ import Alamofire
 import MessageUI
 import MBProgressHUD
 
-class PDFPrintViewController: PDFBaseViewController, UIScrollViewDelegate, PDFViewDelegate{
+class PDFPrintViewController: PDFBaseViewController, UIScrollViewDelegate, PDFViewDelegate, SPUserResizableViewDelegate, UIGestureRecognizerDelegate{
     
+    var currentlyEditingView : SPUserResizableView?
+    var lastEditedView : SPUserResizableView?
+    
+    func userResizableViewDidBeginEditing(userResizableView: SPUserResizableView!) {
+        currentlyEditingView?.hideEditingHandles()
+        currentlyEditingView = userResizableView;
+    }
+    func userResizableViewDidEndEditing(userResizableView: SPUserResizableView!) {
+         lastEditedView = userResizableView;
+    }
+    @IBAction func draw(sender: AnyObject) {
+//        let b = MyView()
+//        b.frame = CGRect(x: 0, y: 64, width: view.frame.size.width, height: view.frame.size.height - 113)
+//        b.backgroundColor = UIColor.clearColor()
+//        self.view.addSubview(b)
+        
+        let gripFrame = CGRectMake(50, 50, 200, 150)
+        let userResizableView = SPUserResizableView(frame: gripFrame)
+        let contentView = UIView(frame: gripFrame)
+        contentView.backgroundColor = UIColor.blackColor()
+        userResizableView.contentView = contentView
+        userResizableView.delegate = self
+        currentlyEditingView = userResizableView
+        lastEditedView = userResizableView
+        userResizableView.showEditingHandles()
+        self.pdfView?.pdfView.scrollView.addSubview(userResizableView)
+        
+        
+        let gestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(hideEditingHandles))
+        gestureRecognizer.delegate = self
+        self.pdfView?.pdfView.scrollView.addGestureRecognizer(gestureRecognizer)
+        
+        
+    }
+    
+    func hideEditingHandles()  {
+        lastEditedView?.hideEditingHandles()
+    }
+    
+    func gestureRecognizer(gestureRecognizer: UIGestureRecognizer, shouldReceiveTouch touch: UITouch) -> Bool {
+        
+        if let c = currentlyEditingView {
+        return c.hitTest(touch.locationInView(currentlyEditingView), withEvent: nil) == nil
+        }
+        return true
+        
+    }
     
     var isDownload : Bool?
     @IBOutlet var view2: UIView!
     var addendumApdfInfo : AddendumA?{
         didSet{
+            self.setBuyer2()
             if let info = addendumApdfInfo {
                 if let fDD = fileDotsDic {
                     let tool = SetDotValue()
@@ -59,7 +107,11 @@ class PDFPrintViewController: PDFBaseViewController, UIScrollViewDelegate, PDFVi
     }
     
     
-    var addendumCpdfInfo : ContractAddendumC?
+    var addendumCpdfInfo : ContractAddendumC?{
+        didSet{
+            self.setBuyer2()
+        }
+    }
     private func setAddendumC(){
         if let info = addendumCpdfInfo {
             if let fDD = fileDotsDic {
@@ -84,6 +136,7 @@ class PDFPrintViewController: PDFBaseViewController, UIScrollViewDelegate, PDFVi
     }
     var contractPdfInfo : ContractSignature?{
         didSet{
+            self.setBuyer2()
             if let info = contractPdfInfo {
                 if let fDD = fileDotsDic {
                     let tool = SetDotValue()
@@ -106,6 +159,7 @@ class PDFPrintViewController: PDFBaseViewController, UIScrollViewDelegate, PDFVi
     }
     var closingMemoPdfInfo: ContractClosingMemo?{
         didSet{
+            self.setBuyer2()
             if let info = closingMemoPdfInfo {
                 if let fDD = fileDotsDic {
                     let tool = SetDotValue()
@@ -129,6 +183,7 @@ class PDFPrintViewController: PDFBaseViewController, UIScrollViewDelegate, PDFVi
     }
     var designCenterPdfInfo : ContractDesignCenter?{
         didSet{
+            self.setBuyer2()
             if let info = designCenterPdfInfo {
                 if let fDD = fileDotsDic {
                     let tool = SetDotValue()
@@ -445,6 +500,9 @@ class PDFPrintViewController: PDFBaseViewController, UIScrollViewDelegate, PDFVi
     var senderItem : UIBarButtonItem?
     
     @IBAction func BuyerSign(sender: UIBarButtonItem) {
+        if sender.title == "" {
+            return;
+        }
         self.dismissViewControllerAnimated(true){}
 //        print(self.pdfView?.pdfView.scrollView.contentSize.height)
         senderItem = sender
@@ -548,16 +606,18 @@ class PDFPrintViewController: PDFBaseViewController, UIScrollViewDelegate, PDFVi
                             }
                             
                             if self.title == CConstants.ActionTitleAddendumHOA {
-                            continue
+                                continue
                             }
                             
                             //broker
                             if addendumApdfInfo != nil{
                                 if let hasrealtor = addendumApdfInfo!.hasbroker {
                                     if hasrealtor == "" {
+//                                        print(sender.title)
                                         if sender.tag == 1 && sign.xname.hasSuffix("buyer2Sign")
                                             || sender.tag == 2 && sign.xname.hasSuffix("buyer2DateSign")
-                                            || sender.tag == 3 && sign.xname.hasSuffix("buyer3Sign")
+                                            
+                                            || sender.tag == 3 && sign.xname.hasSuffix("buyer3Sign") && !sender.title!.hasPrefix("Seller")
                                             || sender.tag == 4 && sign.xname.hasSuffix("buyer3DateSign"){
                                                 sign.toSignautre()
                                                 return
@@ -686,6 +746,40 @@ class PDFPrintViewController: PDFBaseViewController, UIScrollViewDelegate, PDFVi
             buyer2Date.title = "Date2"
             seller1Item.title = "Seller"
             seller2Item.title = "Date"
+        }
+        
+        setBuyer2()
+    }
+    func setBuyer21() {
+        
+        let a = [buyer1Item, buyer2Item,buyer1Date,buyer2Date,seller1Item,seller2Item]
+        for item in a {
+            if item.title == "Buyer2" || item.title == "Date2" {
+                item.title = ""
+            }
+        }
+    }
+    func setBuyer2(){
+        if let contract = self.contractPdfInfo {
+            if contract.client2! == "" {
+                setBuyer21()
+            }
+        }else if let a = self.addendumApdfInfo {
+            if !a.Client!.containsString(" & ") {
+                setBuyer21()
+            }
+        }else if let c = self.addendumCpdfInfo {
+            if !c.buyer!.containsString(" & ") {
+                setBuyer21()
+            }
+        }else if let c = self.closingMemoPdfInfo {
+            if c.buyer2! == "" {
+               setBuyer21()
+            }
+        }else if let c = self.designCenterPdfInfo {
+            if c.buyer2! == "" {
+                setBuyer21()
+            }
         }
     }
         

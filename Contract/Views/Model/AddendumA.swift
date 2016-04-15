@@ -18,6 +18,7 @@ class AddendumA: ContractPDFBaseModel {
     var city : String?
     
      var Client: String?
+//    var buyer2: String?
      var exhibitABDate: String?
      var exhibitCSignatureDate: String?
 //     var Incorporation: String?

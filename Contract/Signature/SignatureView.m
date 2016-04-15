@@ -109,11 +109,12 @@
                         && [other.sname hasSuffix: [self.sname substringFromIndex:2] ]){
                         CGRect ct = other.frame;
                         other.frame = sv.frame;
-                        other.frame = ct;
+//                        other.frame = ct;
                         other.lineArray = sv.lineArray;
                         other.originHeight =sv.originHeight;
                         other.originWidth = sv.originWidth;
                         other.LineWidth = sv.LineWidth;
+                        other.frame = ct;
                     }
                 }
             }
@@ -145,11 +146,12 @@
                         && [other.sname hasSuffix: [self.sname substringFromIndex:2] ]){
                         CGRect ct = other.frame;
                         other.frame = sv.frame;
-                        other.frame = ct;
+//                        other.frame = ct;
                         other.lineArray = sv.lineArray;
                         other.originHeight =sv.originHeight;
                         other.originWidth = sv.originWidth;
                         other.LineWidth = sv.LineWidth;
+                        other.frame = ct;
                     }
                 }
             }

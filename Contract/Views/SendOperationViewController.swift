@@ -15,6 +15,7 @@ protocol DoOperationDelegate
     func sendEmail()
     func clearDraftInfo()
     func fillDraftInfo()
+    func save_Email()
 }
 
 class SendOperationViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
@@ -38,6 +39,7 @@ class SendOperationViewController: UIViewController, UITableViewDelegate, UITabl
         static let operationSavetoServer = "Save to Contract"
         static let operationPrint = "Print"
         static let operationEmail = "Email"
+        static let operationSaveEmail = "Save & Email"
         static let operationClearDraftInfo = "Clear Buyer's Fields"
         static let operationFillDraftInfo = "Fill Buyer's Fields"
     }
@@ -45,8 +47,13 @@ class SendOperationViewController: UIViewController, UITableViewDelegate, UITabl
     override func viewDidLoad() {
         super.viewDidLoad()
         let userinfo = NSUserDefaults.standardUserDefaults()
-        if userinfo.boolForKey(CConstants.UserInfoIsContract) && showSave!{
-            itemList = [constants.operationPrint, constants.operationEmail, constants.operationSavetoServer]
+        if userinfo.boolForKey(CConstants.UserInfoIsContract){
+            if showSave! {
+                itemList = [constants.operationPrint, constants.operationEmail, constants.operationSavetoServer, constants.operationSaveEmail]
+            }else{
+                itemList = [constants.operationPrint, constants.operationEmail]
+            }
+           
         }else{
             if userinfo.integerForKey("ClearDraftInfo") == 0 {
                 itemList = [constants.operationPrint, constants.operationEmail, constants.operationClearDraftInfo]
@@ -89,6 +96,8 @@ class SendOperationViewController: UIViewController, UITableViewDelegate, UITabl
                     delegate0.fillDraftInfo()
                 case constants.operationClearDraftInfo:
                     delegate0.clearDraftInfo()
+                case constants.operationSaveEmail:
+                    delegate0.save_Email()
                     default:
                         break
                 }

@@ -8,7 +8,7 @@ cer9:Kirby Title
 cer15:77007
 7g2d3:6 1/2
 cer17:668-2337
-7g2e1:fiberglass (sloped ceilin
+7g2e1:fiberglass
 deposit:None
 cer13:Houston
 cer16:713

@@ -52,6 +52,7 @@
 		11116CE11CA3D45F0021B680 /* FloodaplainAcknowledement.pdf in Resources */ = {isa = PBXBuildFile; fileRef = 11116CE01CA3D45F0021B680 /* FloodaplainAcknowledement.pdf */; };
 		11116CE51CA3D8DC0021B680 /* BuyersExpect.pdf in Resources */ = {isa = PBXBuildFile; fileRef = 11116CE41CA3D8DC0021B680 /* BuyersExpect.pdf */; };
 		11116CE71CA3E0D50021B680 /* Warranty_Builder_s.pdf in Resources */ = {isa = PBXBuildFile; fileRef = 11116CE61CA3E0D50021B680 /* Warranty_Builder_s.pdf */; };
+		1112E34C1CBF826000AC9123 /* SPUserResizableView.m in Sources */ = {isa = PBXBuildFile; fileRef = 1112E34A1CBF826000AC9123 /* SPUserResizableView.m */; };
 		1113F91A1C3A3660000FA22A /* DesignCenter.pdf in Resources */ = {isa = PBXBuildFile; fileRef = 1113F9191C3A3660000FA22A /* DesignCenter.pdf */; };
 		1114C79C1C812AE900924A21 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1114C79B1C812AE900924A21 /* AppDelegate.swift */; };
 		1114C7A51C8137EA00924A21 /* AddressDraftListViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1114C7A41C8137EA00924A21 /* AddressDraftListViewCell.swift */; };
@@ -194,6 +195,8 @@
 		11116CE01CA3D45F0021B680 /* FloodaplainAcknowledement.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; path = FloodaplainAcknowledement.pdf; sourceTree = "<group>"; };
 		11116CE41CA3D8DC0021B680 /* BuyersExpect.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; path = BuyersExpect.pdf; sourceTree = "<group>"; };
 		11116CE61CA3E0D50021B680 /* Warranty_Builder_s.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; path = Warranty_Builder_s.pdf; sourceTree = "<group>"; };
+		1112E34A1CBF826000AC9123 /* SPUserResizableView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SPUserResizableView.m; sourceTree = "<group>"; };
+		1112E34B1CBF826000AC9123 /* SPUserResizableView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SPUserResizableView.h; sourceTree = "<group>"; };
 		1113F9191C3A3660000FA22A /* DesignCenter.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; path = DesignCenter.pdf; sourceTree = "<group>"; };
 		1114C79B1C812AE900924A21 /* AppDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		1114C7A41C8137EA00924A21 /* AddressDraftListViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddressDraftListViewCell.swift; sourceTree = "<group>"; };
@@ -327,6 +330,8 @@
 		1108B2121BFC290F004B5D48 /* Signature */ = {
 			isa = PBXGroup;
 			children = (
+				1112E34A1CBF826000AC9123 /* SPUserResizableView.m */,
+				1112E34B1CBF826000AC9123 /* SPUserResizableView.h */,
 				1108B2131BFC290F004B5D48 /* DrawSignView.h */,
 				1108B2141BFC290F004B5D48 /* DrawSignView.m */,
 				1108B2151BFC290F004B5D48 /* MyView.h */,
@@ -745,6 +750,7 @@
 				1108B1BA1BFC2691004B5D48 /* Contract.xcdatamodeld in Sources */,
 				1114C7A51C8137EA00924A21 /* AddressDraftListViewCell.swift in Sources */,
 				1107C09C1C0C3B530041D8D7 /* cl_pdf.m in Sources */,
+				1112E34C1CBF826000AC9123 /* SPUserResizableView.m in Sources */,
 				11633BA01C27DA0000C11A20 /* ContractClosingMemoItem.swift in Sources */,
 				1108B2601BFC4047004B5D48 /* PDFNull.m in Sources */,
 				113CB5E61BFF11EC0081FDE7 /* ContractSignature.swift in Sources */,

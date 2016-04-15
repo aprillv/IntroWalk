@@ -8,7 +8,7 @@ cer9:Gracy Title
 cer15:78701
 7g2d3:6 1/2
 cer17:472-3101
-7g2e1:fiberglass (sloped ceilin
+7g2e1:fiberglass
 deposit:None
 cer13:Austin
 cer16:512

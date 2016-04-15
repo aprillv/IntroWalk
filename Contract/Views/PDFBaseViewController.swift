@@ -50,6 +50,10 @@ class PDFBaseViewController: BaseViewController, DoOperationDelegate, UIPopoverP
     func dismissProgress(){
         self.hud?.hide(true)
     }
+    func dismissProgressThenEmail(){
+        self.hud?.hide(true)
+        self.sendEmail()
+    }
     func dismissProgress(controller : UIViewController){
         self.hud?.hide(true)
 //        self.progressBar?.dismissViewControllerAnimated(true){
@@ -130,7 +134,7 @@ class PDFBaseViewController: BaseViewController, DoOperationDelegate, UIPopoverP
     }
     
     var hud : MBProgressHUD?
-    func savePDFToServer(xname: String){
+    func savePDFToServer(xname: String, nextFunc: String?){
         
         var parame : [String : String] = ["idcia" : pdfInfo0!.idcia!
             , "idproject" : pdfInfo0!.idproject!
@@ -159,7 +163,7 @@ class PDFBaseViewController: BaseViewController, DoOperationDelegate, UIPopoverP
         hud?.labelText = CConstants.SavedMsg
         
       
-        
+//        print(parame)
         Alamofire.request(.POST,
             CConstants.ServerURL + CConstants.ContractUploadPdfURL,
             parameters: parame).responseJSON{ (response) -> Void in
@@ -184,7 +188,12 @@ class PDFBaseViewController: BaseViewController, DoOperationDelegate, UIPopoverP
                     self.hud?.mode = .Text
                     self.hud?.labelText = CConstants.MsgNetworkError
                 }
-                self.performSelector(#selector(PDFBaseViewController.dismissProgress as (PDFBaseViewController) -> () -> ()), withObject: nil, afterDelay: 0.5)
+                if let _ = nextFunc {
+                    self.performSelector(#selector(PDFBaseViewController.dismissProgressThenEmail as (PDFBaseViewController) -> () -> ()), withObject: nextFunc, afterDelay: 0.5)
+                    
+                }else{
+                    self.performSelector(#selector(PDFBaseViewController.dismissProgress as (PDFBaseViewController) -> () -> ()), withObject: nil, afterDelay: 0.5)
+                }
         }
     }
     
@@ -253,7 +262,7 @@ class PDFBaseViewController: BaseViewController, DoOperationDelegate, UIPopoverP
     
     func saveToServer() {
 //        IQKeyboardManager.sharedManager().enable = true
-        savePDFToServer(fileName!)
+        savePDFToServer(fileName!, nextFunc: nil)
     }
     
     func doPrint() {
@@ -634,6 +643,10 @@ class PDFBaseViewController: BaseViewController, DoOperationDelegate, UIPopoverP
     
     func clearDraftInfo() {
         
+    }
+    
+    func save_Email() {
+        savePDFToServer(fileName!, nextFunc: "sendemail")
     }
     
     

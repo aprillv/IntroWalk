@@ -377,6 +377,7 @@ class AddressListViewController: UITableViewController, UISearchBarDelegate, ToD
                 contract = cell.contractInfo
             }
         }
+        NSUserDefaults.standardUserDefaults().setBool(self.tableView.tag == 2, forKey: CConstants.UserInfoIsContract)
         self.performSegueWithIdentifier(CConstants.SegueToPrintModel, sender: contract)
         
     }

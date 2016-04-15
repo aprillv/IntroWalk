@@ -11,3 +11,5 @@
 #import "SignatureView.h"
 #import "PDFFormButtonField.h"
 #import "PDFFormTextField.h"
+#import "MyView.h"
+#import "SPUserResizableView.h"

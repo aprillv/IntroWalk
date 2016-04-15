@@ -28,4 +28,5 @@ class ContractAddendumC : ContractPDFBaseModel {
     var itemlistStr:[[String]]?
     var found: String?
     var message: String?
+//    var buyer2: String?
 }
