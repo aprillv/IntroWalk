@@ -175,6 +175,12 @@ class SetDotValue : NSObject {
         
         let na = overrideFields.keys
         for pv : PDFWidgetAnnotationView in additionViews{
+//            if pv.isKindOfClass(SignatureView) {
+//                if let a = pv as? SignatureView {
+//                    a.addSignautre()
+//                }
+//                continue
+//            }
             if na.contains(pv.xname){
                 if SignContractPDFFields.Address_zip == pv.xname{
                     
@@ -225,11 +231,17 @@ class SetDotValue : NSObject {
                 case SignContractPDFFields.tobuyer7:
                     pv.value = pdfInfo!.bemail1!
                 case SignContractPDFFields.executeddd:
-                    pv.value = pdfInfo!.executeddd!
+                    if let dd = pdfInfo?.executeddd {
+                    pv.value = dd
+                    }
                 case SignContractPDFFields.executedmm:
-                    pv.value = pdfInfo!.executedmm!
+                    if let dd = pdfInfo?.executedmm {
+                        pv.value = dd
+                    }
                 case SignContractPDFFields.executedyy:
-                    pv.value = pdfInfo!.executedyy!
+                    if let dd = pdfInfo?.executedyy {
+                        pv.value = dd
+                    }
                 case SignContractPDFFields.buyer_2:
                     pv.value = pdfInfo!.client!
                 case SignContractPDFFields.buyer_3:

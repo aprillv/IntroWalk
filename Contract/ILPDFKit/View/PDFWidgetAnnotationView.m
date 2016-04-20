@@ -69,6 +69,8 @@
                             , _baseFrame.origin.y*zoom
                             , _baseFrame.size.width*zoom
                             , _baseFrame.size.height*zoom);
+    
+   
 //    NSLog(@"fasdfsdfdfafasdf");
 }
 

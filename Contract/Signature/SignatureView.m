@@ -33,6 +33,11 @@
 
 -(void)updateWithZoom:(CGFloat)zoom{
     [super updateWithZoom:zoom];
+    if (self.menubtn && self.menubtn.superview) {
+        [self.menubtn removeFromSuperview];
+        self.menubtn = nil;
+        [self addSignautre:self.superview];
+    }
     [self setNeedsDisplay];
 }
 -(void)setLineWidth:(float)LineWidth1{
@@ -55,11 +60,71 @@
     UITouch *theTouch = [touches anyObject];
     if ([theTouch tapCount] == 2) {
         [self toSignautre];
+        [self addSignautre:nil];
     }
 }
 
+-(void)addSignautre: (UIView *)view{
+    if (!self.menubtn) {
+        
+   
+//    return;
+    CGRect ct = self.frame;
+//    ct.origin.y += ct.size.height/2.0;
+    ct.origin.x += ct.size.width/2.0;
+    
+    UIButton *btn = [[UIButton alloc]init];
+        self.menubtn =btn;
+   
+   
+    
+        NSString * xtitle;
+    if ([self.xname hasSuffix:@"DateSign"]) {
+        xtitle = @"signdate";
+    }else{
+        if ([self.xname isEqualToString:@"Exhibitbp1seller3Sign"]) {
+            xtitle = @"initial";
+        }else if([self.xname isEqualToString:@"BYSign"] || [self.xname isEqualToString:@"NameSign"] || [self.xname isEqualToString:@"TitleSign"] || [self.xname isEqualToString:@"AddendumASeller3Sign"]) {
+            xtitle = @"sign1";
+        }else {
+            xtitle = [self.xname hasSuffix:@"Sign"]? @"signBlack" : @"initial";
+        }
+        
+    }
+        if ([xtitle isEqualToString:@"initial"] || [xtitle isEqualToString:@"sign1"]) {
+            btn.frame = CGRectMake(0, 0, 64, 44);
+        }else{
+         btn.frame = CGRectMake(0, 0, 94, 44);
+        }
+ btn.center = ct.origin;
+        
+    
+    [btn setImage:[UIImage imageNamed:xtitle] forState:UIControlStateNormal];
+    [btn addTarget:self action:@selector(popSignature:) forControlEvents:UIControlEventTouchUpInside];
+//    [btn setTitle:@"Signature" forState:UIControlStateNormal];
+//    [btn.titleLabel setTextColor:[UIColor whiteColor]];
+//    btn.imageView.image = [UIImage imageNamed:@"sign"];
+//    NSLog(@"%@ %@", self, self.superview);
+    [view addSubview:btn];
+         }
+    
+}
+
+-(void)sssss{
+    if (self.lineArray || self.lineArray.count > 0) {
+        [self.menubtn removeFromSuperview];
+    }
+    
+}
 -(void)toSignautre{
-    [self becomeFirstResponder];
+//    NSLog(@"%@ -- %@", self.superview, self);
+    if (self.menubtn != nil && self.menubtn.superview == nil) {
+//        [self becomeFirstResponder];
+        [self.superview addSubview:self.menubtn];
+        [self performSelector:@selector(sssss) withObject:nil afterDelay:6];
+    }
+    return;
+    
     NSString *xtitle;
     if ([self.xname hasSuffix:@"DateSign"]) {
         xtitle = @"Sign Date";
@@ -73,6 +138,9 @@
         }
         
     }
+    
+//    xtitle = @"Sign Date";
+    
     UIMenuItem *menuItem = [[UIMenuItem alloc] initWithTitle:xtitle  action:@selector(popSignature:)];
     UIMenuController *menuCont = [UIMenuController sharedMenuController];
     
@@ -81,6 +149,7 @@
     
     [menuCont setTargetRect:ct inView:self.superview];
     menuCont.arrowDirection = UIMenuControllerArrowDown;
+    
     menuCont.menuItems = [NSArray arrayWithObject:menuItem];
     [menuCont setMenuVisible:YES animated:YES];
 }
@@ -96,6 +165,11 @@
         [PopSignUtil getSignWithVC:nil withOk:^(UIView *image, BOOL isToAll) {
             CGRect ct = self.frame;
             SignatureView *sv = (SignatureView *)image;
+            if (sv.lineArray.count!=0) {
+                [self.menubtn removeFromSuperview];
+            }
+            
+            
             self.frame = sv.frame;
             self.frame = ct;
             self.lineArray = sv.lineArray;
@@ -115,6 +189,9 @@
                         other.originWidth = sv.originWidth;
                         other.LineWidth = sv.LineWidth;
                         other.frame = ct;
+                        if (sv.lineArray.count!=0) {
+                            [other.menubtn removeFromSuperview];
+                        }
                     }
                 }
             }
@@ -129,8 +206,15 @@
             xtitle = @"Please print your initial here";
         }
         [PopSignUtil getSignWithVC:nil withOk:^(UIView *image, BOOL isToAll) {
-            CGRect ct = self.frame;
+            
             SignatureView *sv = (SignatureView *)image;
+            
+            if (sv.lineArray.count!=0) {
+               [self.menubtn removeFromSuperview];
+            }
+            
+            
+            CGRect ct = self.frame;
             self.frame = sv.frame;
             self.frame = ct;
             self.lineArray = sv.lineArray;
@@ -152,6 +236,9 @@
                         other.originWidth = sv.originWidth;
                         other.LineWidth = sv.LineWidth;
                         other.frame = ct;
+                        if (sv.lineArray.count!=0) {
+                            [other.menubtn removeFromSuperview];
+                        }
                     }
                 }
             }

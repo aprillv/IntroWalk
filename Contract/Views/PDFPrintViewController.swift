@@ -223,7 +223,7 @@ class PDFPrintViewController: PDFBaseViewController, UIScrollViewDelegate, PDFVi
         
         var filesNames = [String]()
         let param = ContractRequestItem(contractInfo: nil).DictionaryFromBasePdf(self.pdfInfo0!)
-
+//print(param)
         
         let margins = getMargins()
         
@@ -348,11 +348,14 @@ class PDFPrintViewController: PDFBaseViewController, UIScrollViewDelegate, PDFVi
         pdfView = PDFView(frame: view2.bounds, dataOrPathArray: filesNames, additionViews: allAdditionViews)
         pdfView?.delegate = self
         
-//        print(self.document?.forms)
+        //        print(self.document?.forms)
         setAddendumC()
         
         
         view2.addSubview(pdfView!)
+        
+        
+
     }
     
     
@@ -500,6 +503,7 @@ class PDFPrintViewController: PDFBaseViewController, UIScrollViewDelegate, PDFVi
     var senderItem : UIBarButtonItem?
     
     @IBAction func BuyerSign(sender: UIBarButtonItem) {
+        return
         if sender.title == "" {
             return;
         }
@@ -675,7 +679,7 @@ class PDFPrintViewController: PDFBaseViewController, UIScrollViewDelegate, PDFVi
     
 
     func scrollViewDidEndScrollingAnimation(scrollView: UIScrollView) {
-        print(scrollView.contentOffset.y / scrollView.bounds.size.height)
+//        print(scrollView.contentOffset.y / scrollView.bounds.size.height)
     }
     
     
@@ -691,6 +695,7 @@ class PDFPrintViewController: PDFBaseViewController, UIScrollViewDelegate, PDFVi
     @IBOutlet var seller2Item: UIBarButtonItem!
     @IBOutlet var seller1Item: UIBarButtonItem!
     func pageChanged(no: Int) {
+        return;
         if no == 0 {
             buyer1Date.title = ""
             buyer2Date.title = ""
@@ -760,27 +765,84 @@ class PDFPrintViewController: PDFBaseViewController, UIScrollViewDelegate, PDFVi
         }
     }
     func setBuyer2(){
+        buyer1Date.title = ""
+        buyer2Date.title = ""
+        buyer1Item.title = ""
+        buyer2Item.title = ""
+        seller1Item.title = ""
+        seller2Item.title = ""
+        var showBuyer2 = false;
         if let contract = self.contractPdfInfo {
-            if contract.client2! == "" {
-                setBuyer21()
+            if contract.client2! != "" {
+                showBuyer2 = true;
             }
         }else if let a = self.addendumApdfInfo {
-            if !a.Client!.containsString(" & ") {
-                setBuyer21()
+            if a.Client!.containsString(" & ") {
+                showBuyer2 = true;
             }
         }else if let c = self.addendumCpdfInfo {
-            if !c.buyer!.containsString(" & ") {
-                setBuyer21()
+            if c.buyer!.containsString(" & ") {
+                showBuyer2 = true;
             }
         }else if let c = self.closingMemoPdfInfo {
-            if c.buyer2! == "" {
-               setBuyer21()
+            if c.buyer2! != "" {
+                showBuyer2 = true;
             }
         }else if let c = self.designCenterPdfInfo {
-            if c.buyer2! == "" {
-                setBuyer21()
+            if c.buyer2! != "" {
+                 showBuyer2 = true;
             }
         }
+        
+        
+        if let fileDotsDic1 = fileDotsDic{
+            for (_,allAdditionViews) in fileDotsDic1 {
+                for sign in allAdditionViews {
+                    if sign.isKindOfClass(SignatureView) {
+                        if let si = sign as? SignatureView {
+                            
+                            if !showBuyer2{
+                                if let addendumaInfo = self.addendumApdfInfo {
+                                    if addendumaInfo.hasbroker == "" {
+                                        if si.xname.containsString("brokerb") {
+                                            if si.menubtn != nil {
+                                                si.menubtn.removeFromSuperview()
+                                            }
+                                            continue
+                                        }
+                                    }else {
+                                        if si.xname.containsString("broker2") {
+                                            if si.menubtn != nil {
+                                                si.menubtn.removeFromSuperview()
+                                            }
+                                            continue
+                                        }
+                                    }
+                                }
+
+                                if si.xname.hasSuffix("bottom2")
+                                    || si.xname.hasSuffix("buyer3Sign")
+                                || si.xname.hasSuffix("buyer3DateSign")
+                                || si.xname.hasSuffix("homeBuyer2Sign")
+                                || si.xname.hasSuffix("homeBuyer2DateSign")
+                                {
+                                    if si.menubtn != nil {
+                                        si.menubtn.removeFromSuperview()
+                                    }
+                                    continue
+                                }
+                                
+                                
+                                
+                            }
+                            si.addSignautre(pdfView!.pdfView!.scrollView)
+                            
+                        }
+                    }
+                }
+            }
+        }
+        
     }
         
     var selfSignatureViews: [SignatureView]?

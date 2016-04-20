@@ -16,7 +16,6 @@
 		1107C09C1C0C3B530041D8D7 /* cl_pdf.m in Sources */ = {isa = PBXBuildFile; fileRef = 1107C09B1C0C3B530041D8D7 /* cl_pdf.m */; };
 		1108B1B71BFC2691004B5D48 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1108B1B51BFC2691004B5D48 /* Main.storyboard */; };
 		1108B1BA1BFC2691004B5D48 /* Contract.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 1108B1B81BFC2691004B5D48 /* Contract.xcdatamodeld */; };
-		1108B1BC1BFC2691004B5D48 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1108B1BB1BFC2691004B5D48 /* Assets.xcassets */; };
 		1108B1BF1BFC2691004B5D48 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1108B1BD1BFC2691004B5D48 /* LaunchScreen.storyboard */; };
 		1108B21B1BFC290F004B5D48 /* DrawSignView.m in Sources */ = {isa = PBXBuildFile; fileRef = 1108B2141BFC290F004B5D48 /* DrawSignView.m */; };
 		1108B21C1BFC290F004B5D48 /* MyView.m in Sources */ = {isa = PBXBuildFile; fileRef = 1108B2161BFC290F004B5D48 /* MyView.m */; };
@@ -92,9 +91,10 @@
 		11633BA01C27DA0000C11A20 /* ContractClosingMemoItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11633B9F1C27DA0000C11A20 /* ContractClosingMemoItem.swift */; };
 		11633BA21C27DA8E00C11A20 /* ContractClosingMemo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11633BA11C27DA8E00C11A20 /* ContractClosingMemo.swift */; };
 		11643C161C030B8E000E2C0A /* CConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11643C151C030B8E000E2C0A /* CConstants.swift */; };
+		11661D5F1CC76B7400C974A0 /* trec_36-8.pdf in Resources */ = {isa = PBXBuildFile; fileRef = 11661D5E1CC76B7400C974A0 /* trec_36-8.pdf */; };
+		11661D611CC7750A00C974A0 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 11661D601CC7750A00C974A0 /* Assets.xcassets */; };
 		1176D20F1BFDC67C001C1C3E /* AddressListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1176D20E1BFDC67C001C1C3E /* AddressListViewController.swift */; };
 		117F9B6B1C756706008B26D5 /* PrintModelTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 117F9B6A1C756706008B26D5 /* PrintModelTableViewController.swift */; };
-		118A54771CB737A500DD4F6A /* trec_36-8.pdf in Resources */ = {isa = PBXBuildFile; fileRef = 118A54761CB737A500DD4F6A /* trec_36-8.pdf */; };
 		11A50B421C783BFC0017AA53 /* AddressListModelViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11A50B411C783BFC0017AA53 /* AddressListModelViewController.swift */; };
 		11B18F0C1C83DEFA00D39019 /* EXHIBIT_B.pdf in Resources */ = {isa = PBXBuildFile; fileRef = 11B18F0B1C83DEFA00D39019 /* EXHIBIT_B.pdf */; };
 		11B18F0E1C842A3700D39019 /* AddendumA.pdf in Resources */ = {isa = PBXBuildFile; fileRef = 11B18F0D1C842A3700D39019 /* AddendumA.pdf */; };
@@ -129,7 +129,6 @@
 		1108B1A91BFC2690004B5D48 /* Contract.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Contract.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		1108B1B61BFC2691004B5D48 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		1108B1B91BFC2691004B5D48 /* Contract.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Contract.xcdatamodel; sourceTree = "<group>"; };
-		1108B1BB1BFC2691004B5D48 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		1108B1BE1BFC2691004B5D48 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		1108B1C01BFC2691004B5D48 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		1108B2131BFC290F004B5D48 /* DrawSignView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DrawSignView.h; sourceTree = "<group>"; };
@@ -237,9 +236,10 @@
 		11633B9F1C27DA0000C11A20 /* ContractClosingMemoItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContractClosingMemoItem.swift; sourceTree = "<group>"; };
 		11633BA11C27DA8E00C11A20 /* ContractClosingMemo.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContractClosingMemo.swift; sourceTree = "<group>"; };
 		11643C151C030B8E000E2C0A /* CConstants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CConstants.swift; sourceTree = "<group>"; };
+		11661D5E1CC76B7400C974A0 /* trec_36-8.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; path = "trec_36-8.pdf"; sourceTree = "<group>"; };
+		11661D601CC7750A00C974A0 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		1176D20E1BFDC67C001C1C3E /* AddressListViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddressListViewController.swift; sourceTree = "<group>"; };
 		117F9B6A1C756706008B26D5 /* PrintModelTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PrintModelTableViewController.swift; sourceTree = "<group>"; };
-		118A54761CB737A500DD4F6A /* trec_36-8.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; name = "trec_36-8.pdf"; path = "../../../../../Downloads/trec_36-8.pdf"; sourceTree = "<group>"; };
 		11A50B411C783BFC0017AA53 /* AddressListModelViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddressListModelViewController.swift; sourceTree = "<group>"; };
 		11B18F0B1C83DEFA00D39019 /* EXHIBIT_B.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; path = EXHIBIT_B.pdf; sourceTree = "<group>"; };
 		11B18F0D1C842A3700D39019 /* AddendumA.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; path = AddendumA.pdf; sourceTree = "<group>"; };
@@ -307,8 +307,8 @@
 				1108B2261BFC4047004B5D48 /* ILPDFKit */,
 				1108B2121BFC290F004B5D48 /* Signature */,
 				1108B1B51BFC2691004B5D48 /* Main.storyboard */,
-				1108B1BB1BFC2691004B5D48 /* Assets.xcassets */,
 				1108B1BD1BFC2691004B5D48 /* LaunchScreen.storyboard */,
+				11661D601CC7750A00C974A0 /* Assets.xcassets */,
 				1108B1C01BFC2691004B5D48 /* Info.plist */,
 				1108B1AC1BFC2691004B5D48 /* Supporting Files */,
 				1114C79B1C812AE900924A21 /* AppDelegate.swift */,
@@ -461,7 +461,7 @@
 		110CE6AD1C0439A70096E630 /* pdf */ = {
 			isa = PBXGroup;
 			children = (
-				118A54761CB737A500DD4F6A /* trec_36-8.pdf */,
+				11661D5E1CC76B7400C974A0 /* trec_36-8.pdf */,
 				1104E9811CA51450006F15FE /* Hoa_Checklist.pdf */,
 				1104E97F1CA508E1006F15FE /* AddendumE.pdf */,
 				1104E97B1CA50441006F15FE /* AddendumD.pdf */,
@@ -618,10 +618,9 @@
 				114733F61C103053000FC8D6 /* contract1pdf_2_265.txt in Resources */,
 				11475E691C23F1270034A801 /* AddendumC.pdf in Resources */,
 				114733F71C103053000FC8D6 /* contract1pdf_2_100.txt in Resources */,
-				1108B1BC1BFC2691004B5D48 /* Assets.xcassets in Resources */,
 				11B18F0E1C842A3700D39019 /* AddendumA.pdf in Resources */,
 				1104E97C1CA50441006F15FE /* AddendumD.pdf in Resources */,
-				118A54771CB737A500DD4F6A /* trec_36-8.pdf in Resources */,
+				11661D5F1CC76B7400C974A0 /* trec_36-8.pdf in Resources */,
 				110750791C28E91600B68141 /* ClosingMemo.pdf in Resources */,
 				11116CE11CA3D45F0021B680 /* FloodaplainAcknowledement.pdf in Resources */,
 				1114C7BB1C8197B000924A21 /* EXHIBIT_C_General.pdf in Resources */,
@@ -636,6 +635,7 @@
 				1114C7AD1C81876300924A21 /* Third_Party_Financing_Addendum_TREC.pdf in Resources */,
 				114733FB1C103053000FC8D6 /* contract1pdf_1_101.txt in Resources */,
 				1114C7B11C8192BE00924A21 /* INFORMATION_ABOUT_BROKERAGE_SERVICES.pdf in Resources */,
+				11661D611CC7750A00C974A0 /* Assets.xcassets in Resources */,
 				114733F11C103053000FC8D6 /* contract1pdf_3_100.txt in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

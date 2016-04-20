@@ -89,6 +89,13 @@ class LoginViewController: BaseViewController, UITextFieldDelegate {
         }
     }
     
+    
+    @IBOutlet var printDraft: UIButton!{
+        didSet{
+            printDraft.layer.cornerRadius = 5.0
+            printDraft.titleLabel?.font = UIFont(name: CConstants.ApplicationBarFontName, size: CConstants.ApplicationBarItemFontSize)
+        }
+    }
     @IBOutlet weak var signInBtn: UIButton!
         {
         didSet{
@@ -147,13 +154,11 @@ class LoginViewController: BaseViewController, UITextFieldDelegate {
             if response.result.isSuccess {
                 if let rtnValue = response.result.value{
                     if rtnValue.integerValue == 1 {
-//                         self.doLogin()
                     }else{
                         if let url = NSURL(string: CConstants.InstallAppLink){
                             self.toEablePageControl()
                             UIApplication.sharedApplication().openURL(url)
                         }else{
-//                             self.doLogin()
                         }
                     }
                 }else{
@@ -166,10 +171,15 @@ class LoginViewController: BaseViewController, UITextFieldDelegate {
         //     NSString*   version = [[[NSBundle mainBundle] infoDictionary] objectForKey:@"CFBundleVersion"];
     }
     
+    @IBAction func PrintDraft(sender: UIButton) {
+        disAblePageControl()
+        self.doLogin(sender)
+    }
+    
     @IBAction func Login(sender: UIButton) {
         
         disAblePageControl()
-        self.doLogin()
+        self.doLogin(sender)
     }
     
     private func disAblePageControl(){
@@ -197,7 +207,7 @@ class LoginViewController: BaseViewController, UITextFieldDelegate {
 //    self.noticeOnlyText(CConstants.LoginingMsg)
         
     }
-    private func doLogin(){
+    private func doLogin(sender: UIButton){
         emailTxt.resignFirstResponder()
         passwordTxt.resignFirstResponder()
         
@@ -230,7 +240,7 @@ class LoginViewController: BaseViewController, UITextFieldDelegate {
                 hud.labelText = CConstants.LoginingMsg
                 
                 
-                let loginUserInfo = LoginUser(email: email!, password: password!, iscontract:  "1")
+                let loginUserInfo = LoginUser(email: email!, password: password!, iscontract:  sender.currentTitle!.hasPrefix("Sign") ? "1" : "0")
                 
                 let a = loginUserInfo.DictionaryFromObject()
                 Alamofire.request(.POST, CConstants.ServerURL + CConstants.LoginServiceURL, parameters: a).responseJSON{ (response) -> Void in
@@ -251,7 +261,7 @@ class LoginViewController: BaseViewController, UITextFieldDelegate {
                                     userinfo.setBool(true, forKey: CConstants.UserInfoIsContract)
                                     self.saveEmailAndPwdToDisk(email: email!, password: password!)
                                     self.loginResult = rtn
-                                    self.performSegueWithIdentifier(CConstants.SegueToAddressList, sender: self)
+                                    self.performSegueWithIdentifier(CConstants.SegueToAddressList, sender: sender)
                                 }else{
                                     self.PopMsgValidationWithJustOK(msg: constants.WrongEmailOrPwdMsg, txtField: nil)
                                 }
@@ -310,6 +320,9 @@ class LoginViewController: BaseViewController, UITextFieldDelegate {
             switch identifier {
                 case CConstants.SegueToAddressList:
                     if let addressListView = segue.destinationViewController as? AddressListViewController{
+                        if let a = sender as? UIButton {
+                            addressListView.tableTag = a.currentTitle!.hasPrefix("Sign") ? 2 : 1
+                        }
                         addressListView.AddressListOrigin = loginResult?.contracts
                     }
                 break

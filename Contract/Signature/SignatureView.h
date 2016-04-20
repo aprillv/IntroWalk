@@ -15,6 +15,7 @@
 @property (nonatomic, retain) NSString *sname;
 @property (nonatomic, assign) float LineWidth;
 @property (nonatomic,retain)   PDFView* pdfViewsssss;
+@property (nonatomic,retain)   UIButton* menubtn;
 @property (nonatomic, assign) float originHeight;
 @property (nonatomic, assign) float originWidth;
 -(void)drawInRect:(CGRect)rect withContext:(CGContextRef )context;
@@ -23,5 +24,6 @@
 //static NSMutableArray *WidthArray;
 //static int widthCount;
 -(void)toSignautre;
+-(void)addSignautre:(UIView *)view;
 -(void)drawInRect2:(CGRect)rect withContext:(CGContextRef )context;
 @end

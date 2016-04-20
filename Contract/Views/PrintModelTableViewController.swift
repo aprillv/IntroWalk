@@ -60,7 +60,8 @@ class PrintModelTableViewController: BaseViewController, UITableViewDataSource, 
         
         static let cellReuseIdentifier = "cellIdentifier"
         static let cellLastReuseIndentifier = "lastCell"
-        static let cellHeight = 44.0
+        static let cellFirstReuseIndentifier = "firstCell"
+        static let cellHeight: CGFloat = 44.0
         
         static let printBtnTitle = "Print"
         static let cancelBtnTitle = "Cancel"
@@ -113,17 +114,32 @@ class PrintModelTableViewController: BaseViewController, UITableViewDataSource, 
         
         
         
-        tableHeight.constant = min(CGFloat(constants.cellHeight * Double(printList.count)), 680, min(view.frame.height, view.frame.width) - 40)
+        tableHeight.constant = getTableHight()
         tableview.updateConstraintsIfNeeded()
         
     }
+    
+   
     
     func numberOfSectionsInTableView(tableView: UITableView) -> Int {
         return 1
     }
     
     func tableView(tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
-        return 44.0
+        return constants.cellHeight
+    }
+    func tableView(tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+        return constants.cellHeight
+    }
+    
+    func tableView(tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+        let cell = tableView.dequeueReusableCellWithIdentifier(constants.cellFirstReuseIndentifier)
+        cell!.textLabel!.text = "Select Form"
+        cell?.textLabel?.font = UIFont(name: CConstants.ApplicationBarFontName, size: CConstants.ApplicationBarItemFontSize)
+        cell?.textLabel?.textColor =  UIColor.whiteColor()
+        cell?.textLabel?.backgroundColor = CConstants.ApplicationColor
+        cell!.textLabel!.textAlignment = NSTextAlignment.Center
+        return cell
     }
     func tableView(tableView: UITableView, viewForFooterInSection section: Int) -> UIView? {
         let cell = tableView.dequeueReusableCellWithIdentifier(constants.cellLastReuseIndentifier) as! AddressListModelLastCell
@@ -345,11 +361,16 @@ class PrintModelTableViewController: BaseViewController, UITableViewDataSource, 
     override var preferredContentSize: CGSize {
         
         get {
-            return CGSize(width: tableview.frame.width, height: min(CGFloat(constants.cellHeight * Double(printList.count)), 680, min(view.frame.height, view.frame.width) - 40))
+            return CGSize(width: tableview.frame.width, height:getTableHight())
         }
         set { super.preferredContentSize = newValue }
     }
     
+    private func getTableHight() -> CGFloat{
+//        print(constants.cellHeight * CGFloat(printList.count + 1), 680, (min(view.frame.height, view.frame.width) - 40))
+//        print(min(CGFloat(constants.cellHeight * CGFloat(printList.count + 1)), 680, (min(view.frame.height, view.frame.width) - 40)))
+       return min(CGFloat(constants.cellHeight * CGFloat(printList.count + 1)), 680, (min(view.frame.height, view.frame.width) - 40))
+    }
     
     
 }

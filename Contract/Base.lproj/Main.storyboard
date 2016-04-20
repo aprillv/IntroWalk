@@ -79,23 +79,45 @@
                                         </connections>
                                     </switch>
                                     <button opaque="NO" tag="1" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="CHL-FU-tQd">
-                                        <rect key="frame" x="16" y="172" width="468" height="40"/>
+                                        <rect key="frame" x="16" y="172" width="222" height="40"/>
                                         <color key="backgroundColor" red="0.0" green="0.67843137254901964" blue="0.93725490196078431" alpha="1" colorSpace="calibratedRGB"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="40" id="m0y-AU-Nnu"/>
                                         </constraints>
                                         <fontDescription key="fontDescription" type="system" pointSize="18"/>
-                                        <state key="normal" title="Login">
+                                        <state key="normal" title="Sign Contract">
                                             <color key="titleColor" white="0.98999999999999999" alpha="1" colorSpace="calibratedWhite"/>
                                         </state>
                                         <connections>
                                             <action selector="Login:" destination="BYZ-38-t0r" eventType="touchUpInside" id="W5a-29-TtU"/>
                                         </connections>
                                     </button>
+                                    <button opaque="NO" tag="1" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="UlD-k9-duw">
+                                        <rect key="frame" x="263" y="172" width="221" height="40"/>
+                                        <color key="backgroundColor" red="0.0" green="0.67843137249999996" blue="0.93725490199999995" alpha="1" colorSpace="calibratedRGB"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="40" id="HfC-Rz-ft9"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" type="system" pointSize="18"/>
+                                        <state key="normal" title="Print Draft">
+                                            <color key="titleColor" white="0.98999999999999999" alpha="1" colorSpace="calibratedWhite"/>
+                                        </state>
+                                        <variation key="default">
+                                            <mask key="constraints">
+                                                <exclude reference="HfC-Rz-ft9"/>
+                                            </mask>
+                                        </variation>
+                                        <connections>
+                                            <action selector="PrintDraft:" destination="BYZ-38-t0r" eventType="touchUpInside" id="3bs-Fg-d7B"/>
+                                        </connections>
+                                    </button>
                                 </subviews>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <constraints>
+                                    <constraint firstItem="UlD-k9-duw" firstAttribute="centerY" secondItem="CHL-FU-tQd" secondAttribute="centerY" id="3g7-Lp-jc3"/>
                                     <constraint firstItem="N81-hY-e3v" firstAttribute="width" secondItem="nLJ-rK-rHu" secondAttribute="width" id="4Rp-vb-rnx"/>
+                                    <constraint firstItem="UlD-k9-duw" firstAttribute="leading" secondItem="CHL-FU-tQd" secondAttribute="trailing" constant="25" id="6DZ-4o-2pZ"/>
+                                    <constraint firstItem="UlD-k9-duw" firstAttribute="height" secondItem="CHL-FU-tQd" secondAttribute="height" id="6jn-Gt-D76"/>
                                     <constraint firstItem="CHL-FU-tQd" firstAttribute="leading" secondItem="FJ9-EI-Xns" secondAttribute="trailing" constant="-343" id="8G0-gv-OwO"/>
                                     <constraint firstItem="c2g-Ma-Mv8" firstAttribute="leading" secondItem="bnV-RD-OVP" secondAttribute="leading" id="9Dg-N3-afz"/>
                                     <constraint firstItem="7wk-au-yeB" firstAttribute="leading" secondItem="TLh-AU-UBM" secondAttribute="trailing" constant="11" id="AZ6-lx-1dm"/>
@@ -109,6 +131,7 @@
                                     <constraint firstItem="c2g-Ma-Mv8" firstAttribute="leading" secondItem="nLJ-rK-rHu" secondAttribute="leading" constant="16" id="K9x-z3-Vn2"/>
                                     <constraint firstItem="c2g-Ma-Mv8" firstAttribute="width" secondItem="bnV-RD-OVP" secondAttribute="width" id="LBa-Y8-lKA"/>
                                     <constraint firstItem="k9t-aQ-PdA" firstAttribute="top" secondItem="nLJ-rK-rHu" secondAttribute="top" constant="50" id="MNj-8q-Bhl"/>
+                                    <constraint firstItem="UlD-k9-duw" firstAttribute="width" secondItem="CHL-FU-tQd" secondAttribute="width" id="OIg-0f-rZR"/>
                                     <constraint firstItem="CHL-FU-tQd" firstAttribute="trailing" secondItem="7wk-au-yeB" secondAttribute="trailing" id="PEV-LY-lOb"/>
                                     <constraint firstItem="TLh-AU-UBM" firstAttribute="leading" secondItem="nLJ-rK-rHu" secondAttribute="leading" constant="20" symbolic="YES" id="R08-O1-9vY"/>
                                     <constraint firstItem="c2g-Ma-Mv8" firstAttribute="top" secondItem="nLJ-rK-rHu" secondAttribute="top" constant="10" id="Rdd-A3-bsY"/>
@@ -119,6 +142,7 @@
                                     <constraint firstItem="FJ9-EI-Xns" firstAttribute="leading" secondItem="N81-hY-e3v" secondAttribute="leading" id="X2y-Z4-4r9"/>
                                     <constraint firstItem="FJ9-EI-Xns" firstAttribute="top" secondItem="N81-hY-e3v" secondAttribute="bottom" constant="50" id="XSk-Rq-jEH"/>
                                     <constraint firstAttribute="width" constant="500" id="Yhp-80-hCk"/>
+                                    <constraint firstItem="UlD-k9-duw" firstAttribute="trailing" secondItem="7wk-au-yeB" secondAttribute="trailing" id="cGM-qY-Osg"/>
                                     <constraint firstItem="CHL-FU-tQd" firstAttribute="top" secondItem="FJ9-EI-Xns" secondAttribute="bottom" constant="20" id="cZX-Ez-l4v"/>
                                     <constraint firstItem="k9t-aQ-PdA" firstAttribute="width" secondItem="nLJ-rK-rHu" secondAttribute="width" id="dGf-5g-dzE"/>
                                     <constraint firstAttribute="trailing" secondItem="7wk-au-yeB" secondAttribute="trailing" constant="16" id="hrP-AE-CO8"/>
@@ -145,6 +169,7 @@
                                         <exclude reference="R08-O1-9vY"/>
                                         <exclude reference="8G0-gv-OwO"/>
                                         <exclude reference="PEV-LY-lOb"/>
+                                        <exclude reference="W5E-TE-7nP"/>
                                         <exclude reference="AZ6-lx-1dm"/>
                                         <exclude reference="SCA-wA-buL"/>
                                         <exclude reference="sOJ-py-CHz"/>
@@ -221,6 +246,7 @@
                         <outlet property="copyrightLbl" destination="M4S-nN-Aj1" id="cXX-eQ-SiW"/>
                         <outlet property="emailTxt" destination="c2g-Ma-Mv8" id="ju0-fF-X34"/>
                         <outlet property="passwordTxt" destination="bnV-RD-OVP" id="QSc-uO-Iye"/>
+                        <outlet property="printDraft" destination="UlD-k9-duw" id="TGt-88-qIn"/>
                         <outlet property="rememberMeSwitch" destination="7wk-au-yeB" id="4ex-RG-45g"/>
                         <outlet property="signInBtn" destination="CHL-FU-tQd" id="dcz-Ul-1Hs"/>
                         <segue destination="dHY-yp-nIM" kind="show" identifier="adressList" id="483-ya-sV7"/>
@@ -324,12 +350,7 @@
                         <barButtonItem style="plain" systemItem="flexibleSpace" id="IyM-eY-2El"/>
                     </toolbarItems>
                     <navigationItem key="navigationItem" title="Address List" id="OEj-Gr-2H6">
-                        <barButtonItem key="leftBarButtonItem" image="back" id="anD-9t-uD6">
-                            <connections>
-                                <action selector="doLogout:" destination="dHY-yp-nIM" id="eD5-ml-0R6"/>
-                            </connections>
-                        </barButtonItem>
-                        <barButtonItem key="rightBarButtonItem" tag="2" title="Print Draft" id="JAY-bP-1MV">
+                        <barButtonItem key="rightBarButtonItem" tag="2" title="Logout" id="JAY-bP-1MV">
                             <connections>
                                 <action selector="toSwitch:" destination="dHY-yp-nIM" id="I8c-1s-7EW"/>
                             </connections>
@@ -343,7 +364,6 @@
                         </connections>
                     </refreshControl>
                     <connections>
-                        <outlet property="backItem" destination="anD-9t-uD6" id="sOf-UC-QrE"/>
                         <outlet property="switchItem" destination="JAY-bP-1MV" id="b3x-GY-IVq"/>
                         <outlet property="txtField" destination="ISs-UI-CZe" id="zZe-TU-jGz"/>
                         <outlet property="viewHeight" destination="BSK-TX-2y7" id="F2s-QA-cGy"/>
@@ -620,6 +640,16 @@
                                             <outlet property="cancel" destination="PR3-CS-U8J" id="YQG-iO-v4h"/>
                                             <outlet property="print" destination="hL7-mt-70T" id="jms-sS-sD3"/>
                                         </connections>
+                                    </tableViewCell>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="firstCell" id="YbJ-qW-JOT">
+                                        <rect key="frame" x="0.0" y="116" width="420" height="44"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="YbJ-qW-JOT" id="pTJ-xI-Cta">
+                                            <rect key="frame" x="0.0" y="0.0" width="420" height="43"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <color key="backgroundColor" red="0.0" green="0.65098039220000004" blue="0.93333333330000001" alpha="1" colorSpace="calibratedRGB"/>
+                                        </tableViewCellContentView>
+                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                     </tableViewCell>
                                 </prototypes>
                                 <connections>

@@ -17,6 +17,9 @@ class AddressListViewController: UITableViewController, UISearchBarDelegate, ToD
         }
     }
     
+    var tableTag: NSInteger?
+    
+    
     @IBOutlet var txtField: UITextField!{
         didSet{
             txtField.layer.cornerRadius = 5.0
@@ -129,7 +132,7 @@ class AddressListViewController: UITableViewController, UISearchBarDelegate, ToD
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        self.tableView.tag = 2
+        self.tableView.tag = tableTag ?? 2
         self.navigationItem.hidesBackButton = true
         self.title = constants.Title
         
@@ -523,6 +526,8 @@ class AddressListViewController: UITableViewController, UISearchBarDelegate, ToD
         self.txtField.resignFirstResponder()
     }
     @IBAction func toSwitch(sender: UIBarButtonItem){
+        self.navigationController?.popToRootViewControllerAnimated(true)
+        return
 //        self.view.backgroundColor = UIColor.whiteColor()
         //to print draft
         sender.enabled = false
