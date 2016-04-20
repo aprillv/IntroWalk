@@ -67,46 +67,46 @@
 -(void)addSignautre: (UIView *)view{
     if (!self.menubtn) {
         
-   
-//    return;
-    CGRect ct = self.frame;
-//    ct.origin.y += ct.size.height/2.0;
-    ct.origin.x += ct.size.width/2.0;
-    
-    UIButton *btn = [[UIButton alloc]init];
-        self.menubtn =btn;
-   
-   
-    
-        NSString * xtitle;
-    if ([self.xname hasSuffix:@"DateSign"]) {
-        xtitle = @"signdate";
-    }else{
-        if ([self.xname isEqualToString:@"Exhibitbp1seller3Sign"]) {
-            xtitle = @"initial";
-        }else if([self.xname isEqualToString:@"BYSign"] || [self.xname isEqualToString:@"NameSign"] || [self.xname isEqualToString:@"TitleSign"] || [self.xname isEqualToString:@"AddendumASeller3Sign"]) {
-            xtitle = @"sign1";
-        }else {
-            xtitle = [self.xname hasSuffix:@"Sign"]? @"signBlack" : @"initial";
-        }
         
-    }
+        //    return;
+        CGRect ct = self.frame;
+        //    ct.origin.y += ct.size.height/2.0;
+        ct.origin.x += ct.size.width/2.0;
+        
+        UIButton *btn = [[UIButton alloc]init];
+        self.menubtn =btn;
+        
+        
+        
+        NSString * xtitle;
+        if ([self.xname hasSuffix:@"DateSign"]) {
+            xtitle = @"signdate";
+        }else{
+            if ([self.xname isEqualToString:@"Exhibitbp1seller3Sign"]) {
+                xtitle = @"initial";
+            }else if([self.xname isEqualToString:@"BYSign"] || [self.xname isEqualToString:@"NameSign"] || [self.xname isEqualToString:@"TitleSign"] || [self.xname isEqualToString:@"AddendumASeller3Sign"]) {
+                xtitle = @"sign1";
+            }else {
+                xtitle = [self.xname hasSuffix:@"Sign"]? @"signBlack" : @"initial";
+            }
+            
+        }
         if ([xtitle isEqualToString:@"initial"] || [xtitle isEqualToString:@"sign1"]) {
             btn.frame = CGRectMake(0, 0, 64, 44);
         }else{
-         btn.frame = CGRectMake(0, 0, 94, 44);
+            btn.frame = CGRectMake(0, 0, 94, 44);
         }
- btn.center = ct.origin;
+        btn.center = ct.origin;
         
-    
-    [btn setImage:[UIImage imageNamed:xtitle] forState:UIControlStateNormal];
-    [btn addTarget:self action:@selector(popSignature:) forControlEvents:UIControlEventTouchUpInside];
-//    [btn setTitle:@"Signature" forState:UIControlStateNormal];
-//    [btn.titleLabel setTextColor:[UIColor whiteColor]];
-//    btn.imageView.image = [UIImage imageNamed:@"sign"];
-//    NSLog(@"%@ %@", self, self.superview);
-    [view addSubview:btn];
-         }
+        
+        [btn setImage:[UIImage imageNamed:xtitle] forState:UIControlStateNormal];
+        [btn addTarget:self action:@selector(popSignature:) forControlEvents:UIControlEventTouchUpInside];
+        //    [btn setTitle:@"Signature" forState:UIControlStateNormal];
+        //    [btn.titleLabel setTextColor:[UIColor whiteColor]];
+        //    btn.imageView.image = [UIImage imageNamed:@"sign"];
+        //    NSLog(@"%@ %@", self, self.superview);
+        [view insertSubview:btn aboveSubview:self];
+    }
     
 }
 
@@ -117,11 +117,15 @@
     
 }
 -(void)toSignautre{
-//    NSLog(@"%@ -- %@", self.superview, self);
-    if (self.menubtn != nil && self.menubtn.superview == nil) {
-//        [self becomeFirstResponder];
-        [self.superview addSubview:self.menubtn];
-        [self performSelector:@selector(sssss) withObject:nil afterDelay:6];
+    NSLog(@"%@ -- %@", self.superview, self);
+    if (self.menubtn){
+        if (self.menubtn.superview == nil) {
+            //        [self becomeFirstResponder];
+            [self.superview addSubview:self.menubtn];
+            [self performSelector:@selector(sssss) withObject:nil afterDelay:6];
+        }else{
+            [self popSignature:nil];
+        }
     }
     return;
     

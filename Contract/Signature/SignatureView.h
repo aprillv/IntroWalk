@@ -15,7 +15,7 @@
 @property (nonatomic, retain) NSString *sname;
 @property (nonatomic, assign) float LineWidth;
 @property (nonatomic,retain)   PDFView* pdfViewsssss;
-@property (nonatomic,retain)   UIButton* menubtn;
+@property (nonatomic,strong)   UIButton* menubtn;
 @property (nonatomic, assign) float originHeight;
 @property (nonatomic, assign) float originWidth;
 -(void)drawInRect:(CGRect)rect withContext:(CGContextRef )context;

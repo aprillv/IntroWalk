@@ -11,55 +11,55 @@ import Alamofire
 import MessageUI
 import MBProgressHUD
 
-class PDFPrintViewController: PDFBaseViewController, UIScrollViewDelegate, PDFViewDelegate, SPUserResizableViewDelegate, UIGestureRecognizerDelegate{
+class PDFPrintViewController: PDFBaseViewController, UIScrollViewDelegate, PDFViewDelegate{
     
-    var currentlyEditingView : SPUserResizableView?
-    var lastEditedView : SPUserResizableView?
-    
-    func userResizableViewDidBeginEditing(userResizableView: SPUserResizableView!) {
-        currentlyEditingView?.hideEditingHandles()
-        currentlyEditingView = userResizableView;
-    }
-    func userResizableViewDidEndEditing(userResizableView: SPUserResizableView!) {
-         lastEditedView = userResizableView;
-    }
-    @IBAction func draw(sender: AnyObject) {
-//        let b = MyView()
-//        b.frame = CGRect(x: 0, y: 64, width: view.frame.size.width, height: view.frame.size.height - 113)
-//        b.backgroundColor = UIColor.clearColor()
-//        self.view.addSubview(b)
-        
-        let gripFrame = CGRectMake(50, 50, 200, 150)
-        let userResizableView = SPUserResizableView(frame: gripFrame)
-        let contentView = UIView(frame: gripFrame)
-        contentView.backgroundColor = UIColor.blackColor()
-        userResizableView.contentView = contentView
-        userResizableView.delegate = self
-        currentlyEditingView = userResizableView
-        lastEditedView = userResizableView
-        userResizableView.showEditingHandles()
-        self.pdfView?.pdfView.scrollView.addSubview(userResizableView)
-        
-        
-        let gestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(hideEditingHandles))
-        gestureRecognizer.delegate = self
-        self.pdfView?.pdfView.scrollView.addGestureRecognizer(gestureRecognizer)
-        
-        
-    }
-    
-    func hideEditingHandles()  {
-        lastEditedView?.hideEditingHandles()
-    }
-    
-    func gestureRecognizer(gestureRecognizer: UIGestureRecognizer, shouldReceiveTouch touch: UITouch) -> Bool {
-        
-        if let c = currentlyEditingView {
-        return c.hitTest(touch.locationInView(currentlyEditingView), withEvent: nil) == nil
-        }
-        return true
-        
-    }
+//    var currentlyEditingView : SPUserResizableView?
+//    var lastEditedView : SPUserResizableView?
+//    
+//    func userResizableViewDidBeginEditing(userResizableView: SPUserResizableView!) {
+//        currentlyEditingView?.hideEditingHandles()
+//        currentlyEditingView = userResizableView;
+//    }
+//    func userResizableViewDidEndEditing(userResizableView: SPUserResizableView!) {
+//         lastEditedView = userResizableView;
+//    }
+//    @IBAction func draw(sender: AnyObject) {
+////        let b = MyView()
+////        b.frame = CGRect(x: 0, y: 64, width: view.frame.size.width, height: view.frame.size.height - 113)
+////        b.backgroundColor = UIColor.clearColor()
+////        self.view.addSubview(b)
+//        
+//        let gripFrame = CGRectMake(50, 50, 200, 150)
+//        let userResizableView = SPUserResizableView(frame: gripFrame)
+//        let contentView = UIView(frame: gripFrame)
+//        contentView.backgroundColor = UIColor.blackColor()
+//        userResizableView.contentView = contentView
+//        userResizableView.delegate = self
+//        currentlyEditingView = userResizableView
+//        lastEditedView = userResizableView
+//        userResizableView.showEditingHandles()
+//        self.pdfView?.pdfView.scrollView.addSubview(userResizableView)
+//        
+//        
+//        let gestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(hideEditingHandles))
+//        gestureRecognizer.delegate = self
+//        self.pdfView?.pdfView.scrollView.addGestureRecognizer(gestureRecognizer)
+//        
+//        
+//    }
+//    
+//    func hideEditingHandles()  {
+//        lastEditedView?.hideEditingHandles()
+//    }
+//    
+//    func gestureRecognizer(gestureRecognizer: UIGestureRecognizer, shouldReceiveTouch touch: UITouch) -> Bool {
+//        
+//        if let c = currentlyEditingView {
+//        return c.hitTest(touch.locationInView(currentlyEditingView), withEvent: nil) == nil
+//        }
+//        return true
+//        
+//    }
     
     var isDownload : Bool?
     @IBOutlet var view2: UIView!
