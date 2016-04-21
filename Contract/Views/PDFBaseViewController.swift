@@ -309,6 +309,7 @@ class PDFBaseViewController: BaseViewController, DoOperationDelegate, UIPopoverP
         return "Online Contract"
     }
     func sendEmail() {
+//        print(contractInfo?.buyer1email ?? "")
         let mailComposeViewController = configuredMailComposeViewController()
         if MFMailComposeViewController.canSendMail() {
             
@@ -331,10 +332,12 @@ class PDFBaseViewController: BaseViewController, DoOperationDelegate, UIPopoverP
     }
     
     func configuredMailComposeViewController() -> MFMailComposeViewController {
+//        print(contractInfo?.buyer1email ?? "")
         let mailComposerVC = MFMailComposeViewController()
         mailComposerVC.mailComposeDelegate = self // Extremely important to set the --mailComposeDelegate-- property, NOT the --delegate-- property
         let userInfo = NSUserDefaults.standardUserDefaults()
         let userEmail = userInfo.objectForKey(CConstants.UserInfoEmail) as? String
+        
         mailComposerVC.setToRecipients([contractInfo?.buyer1email ?? ""])
        mailComposerVC.setCcRecipients([userEmail ?? ""])
         

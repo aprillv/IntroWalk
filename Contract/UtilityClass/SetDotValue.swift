@@ -837,10 +837,10 @@ class SetDotValue : NSObject {
                     sign?.xname = "april" + "\(i)" + "DateSign"
                 }
                 
+                
                 sign?.pageno = has2Pages ? "0" : "1";
                 sign?.pagenomargin = (aPrice?.pagenomargin ?? 0.0)!
                 addedAnnotationViews.append(sign!)
-                
                 
                 line = PDFWidgetAnnotationView(frame: CGRect(x: x, y: y + 2+h, width: w * 0.28, height: 1))
                 line?.backgroundColor = UIColor.lightGrayColor()

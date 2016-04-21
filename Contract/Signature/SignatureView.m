@@ -96,6 +96,11 @@
         }else{
             btn.frame = CGRectMake(0, 0, 94, 44);
         }
+        
+        if ([self.xname isEqualToString:@"Exhibitbp1seller3Sign"]){
+        ct.origin.x -= ct.size.width/2.0;
+            ct.origin.y -= ct.size.height/2.0;
+        }
         btn.center = ct.origin;
         
         

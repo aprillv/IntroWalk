@@ -123,6 +123,24 @@ class PDFPrintViewController: PDFBaseViewController, UIScrollViewDelegate, PDFVi
                         for doc in documents! {
                             if doc.pdfName == CConstants.ActionTitleAddendumC {
                                 doc.addedviewss = tool.setAddendumCDots(info, additionViews: dots, pdfview: self.pdfView!, has2Pages0: self.page2!)
+                                for sign in doc.addedviewss {
+                                    if sign.isKindOfClass(SignatureView) {
+                                        if let si = sign as? SignatureView {
+                                            
+                                            if si.xname == "april1Sign"
+                                                || si.xname == "april4DateSign"
+                                            {
+                                                if si.menubtn != nil {
+                                                    si.menubtn.removeFromSuperview()
+                                                }
+                                                continue
+                                            }
+                                            print(si.xname)
+                                            si.addSignautre(pdfView!.pdfView!.scrollView)
+                                            
+                                        }
+                                    }
+                                }
                             }
                         }
                         return
@@ -799,8 +817,23 @@ class PDFPrintViewController: PDFBaseViewController, UIScrollViewDelegate, PDFVi
             for (_,allAdditionViews) in fileDotsDic1 {
                 for sign in allAdditionViews {
                     if sign.isKindOfClass(SignatureView) {
+                        
                         if let si = sign as? SignatureView {
-                            
+                            if si.xname == "Exhibitbp1seller3Sign" {
+                                 si.addSignautre(pdfView!.pdfView!.scrollView)
+                            continue
+                            }
+                            if si.xname.hasSuffix("bottom4")
+                                || si.xname.hasSuffix("seller3Sign")
+                                || si.xname.hasSuffix("seller3DateSign")
+                                || si.xname.hasSuffix("homeSeller3Sign")
+                                || si.xname.hasSuffix("homeSeller3DateSign")
+                            {
+                                if si.menubtn != nil {
+                                    si.menubtn.removeFromSuperview()
+                                }
+                                continue
+                            }
                             if !showBuyer2{
                                 if let addendumaInfo = self.addendumApdfInfo {
                                     if addendumaInfo.hasbroker == "" {
@@ -825,6 +858,8 @@ class PDFPrintViewController: PDFBaseViewController, UIScrollViewDelegate, PDFVi
                                 || si.xname.hasSuffix("buyer3DateSign")
                                 || si.xname.hasSuffix("homeBuyer2Sign")
                                 || si.xname.hasSuffix("homeBuyer2DateSign")
+                                || si.xname == "april1Sign"
+                                || si.xname == "april1DateSign"
                                 {
                                     if si.menubtn != nil {
                                         si.menubtn.removeFromSuperview()
@@ -834,7 +869,10 @@ class PDFPrintViewController: PDFBaseViewController, UIScrollViewDelegate, PDFVi
                                 
                                 
                                 
+                                
+                                
                             }
+                           
                             si.addSignautre(pdfView!.pdfView!.scrollView)
                             
                         }
