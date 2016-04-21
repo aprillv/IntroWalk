@@ -338,7 +338,14 @@ class PDFBaseViewController: BaseViewController, DoOperationDelegate, UIPopoverP
         let userInfo = NSUserDefaults.standardUserDefaults()
         let userEmail = userInfo.objectForKey(CConstants.UserInfoEmail) as? String
         
-        mailComposerVC.setToRecipients([contractInfo?.buyer1email ?? ""])
+        var mails : [String] = [String]()
+        if let bemail1 = contractInfo?.buyer1email{
+        mails.append(bemail1)
+        }
+        if let bemail2 = contractInfo?.buyer2email{
+            mails.append(bemail2)
+        }
+        mailComposerVC.setToRecipients(mails)
        mailComposerVC.setCcRecipients([userEmail ?? ""])
         
         mailComposerVC.setSubject(getFileName())
@@ -367,7 +374,20 @@ class PDFBaseViewController: BaseViewController, DoOperationDelegate, UIPopoverP
                 self.hud?.labelText = CConstants.SendEmailSuccessfullMsg
                 self.performSelector(#selector(PDFBaseViewController.dismissProgress as (PDFBaseViewController) -> () -> ()), withObject: nil, afterDelay: 0.5)
             }
+//         }else if result.rawValue == 0 {
+//            
+//            controller.dismissViewControllerAnimated(true, completion: {
+////                self.PopMsgWithJustOK(msg: "dfasdfasdf")
+//            })
+            
+//            controller.dismissViewControllerAnimated(true, completion: nil)
         }else {
+//            self.dismissViewControllerAnimated(true, completion: {
+//                
+//            })
+//            controller.dismissViewControllerAnimated(true, completion: {
+//                self.PopMsgWithJustOK(msg: "\(result.rawValue)")
+//            })
             controller.dismissViewControllerAnimated(true, completion: nil)
         }
         

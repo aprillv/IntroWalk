@@ -36,8 +36,8 @@ class SendOperationViewController: UIViewController, UITableViewDelegate, UITabl
     private struct constants{
         static let cellReuseIdentifier = "operationCellIdentifier"
         static let rowHeight : CGFloat = 44
-        static let operationSavetoServer = "Save to Contract"
-        static let operationPrint = "Print"
+        static let operationSavetoServer = "Save Contract"
+//        static let operationPrint = "Print"
         static let operationEmail = "Email"
         static let operationSaveEmail = "Save & Email"
         static let operationClearDraftInfo = "Clear Buyer's Fields"
@@ -49,16 +49,16 @@ class SendOperationViewController: UIViewController, UITableViewDelegate, UITabl
         let userinfo = NSUserDefaults.standardUserDefaults()
         if userinfo.boolForKey(CConstants.UserInfoIsContract){
             if showSave! {
-                itemList = [constants.operationPrint, constants.operationEmail, constants.operationSavetoServer, constants.operationSaveEmail]
+                itemList = [constants.operationSavetoServer, constants.operationSaveEmail]
             }else{
-                itemList = [constants.operationPrint, constants.operationEmail]
+                itemList = [constants.operationEmail]
             }
            
         }else{
             if userinfo.integerForKey("ClearDraftInfo") == 0 {
-                itemList = [constants.operationPrint, constants.operationEmail, constants.operationClearDraftInfo]
+                itemList = [constants.operationEmail, constants.operationClearDraftInfo]
             }else {
-                itemList = [constants.operationPrint, constants.operationEmail, constants.operationFillDraftInfo]
+                itemList = [constants.operationEmail, constants.operationFillDraftInfo]
             }
         }
         
@@ -88,8 +88,8 @@ class SendOperationViewController: UIViewController, UITableViewDelegate, UITabl
                 switch self.itemList![indexPath.row]{
                     case constants.operationSavetoServer:
                         delegate0.saveToServer()
-                    case constants.operationPrint:
-                        delegate0.doPrint()
+//                    case constants.operationPrint:
+//                        delegate0.doPrint()
                     case constants.operationEmail:
                         delegate0.sendEmail()
                 case constants.operationFillDraftInfo:

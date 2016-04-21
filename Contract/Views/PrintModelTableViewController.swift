@@ -63,7 +63,7 @@ class PrintModelTableViewController: BaseViewController, UITableViewDataSource, 
         static let cellFirstReuseIndentifier = "firstCell"
         static let cellHeight: CGFloat = 44.0
         
-        static let printBtnTitle = "Print"
+        static let printBtnTitle = "Continue"
         static let cancelBtnTitle = "Cancel"
     }
     var printList: [String] = [
