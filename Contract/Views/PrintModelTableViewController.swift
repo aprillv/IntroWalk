@@ -76,6 +76,8 @@ class PrintModelTableViewController: BaseViewController, UITableViewDataSource, 
         , CConstants.ActionTitleEXHIBIT_C
     ]
     
+    var selected : [Bool]?
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 //        filesNames = [String]()
@@ -110,6 +112,11 @@ class PrintModelTableViewController: BaseViewController, UITableViewDataSource, 
                 }
             }
             printList.append(CConstants.ActionTitleGoDraft)
+        }
+        
+        selected = [Bool]()
+        for _ in printList {
+            selected?.append(false)
         }
         
         
@@ -220,12 +227,16 @@ class PrintModelTableViewController: BaseViewController, UITableViewDataSource, 
                 
                 for i in 0...printList.count-1 {
                     let index = NSIndexPath(forRow: i, inSection: 0)
-                    if let cell = tableview.cellForRowAtIndexPath(index) {
-                        if cell.contentView.tag == 1 {
-                            selectedCellArray.append(index)
-                        }
-                        
-                        
+//                    if let cell = tableview.cellForRowAtIndexPath(index) {
+//                        if cell.contentView.tag == 1 {
+//                            selectedCellArray.append(index)
+//                        }
+//                        
+//                        
+//                    }
+                    let c = selected![i]
+                    if c {
+                        selectedCellArray.append(index)
                     }
                 }
                 
@@ -290,11 +301,21 @@ class PrintModelTableViewController: BaseViewController, UITableViewDataSource, 
 //                    cell.imageBtn?.image = UIImage(named: CConstants.CheckImgNm)
 //                }
         
-        if cell.contentView.tag == 1 {
+        if let a = selected {
+        let c = a[indexPath.row]
+            if c {
             cell.imageBtn?.image = UIImage(named: CConstants.CheckedImgNm)
+            }else{
+            cell.imageBtn?.image = UIImage(named: CConstants.CheckImgNm)
+            }
         }else{
             cell.imageBtn?.image = UIImage(named: CConstants.CheckImgNm)
         }
+//        if cell.contentView.tag == 1 {
+//            cell.imageBtn?.image = UIImage(named: CConstants.CheckedImgNm)
+//        }else{
+//            cell.imageBtn?.image = UIImage(named: CConstants.CheckImgNm)
+//        }
 //            }else{
 //                cell.contentView.tag = 0
 //                cell.imageBtn?.image = UIImage(named: CConstants.CheckImgNm)
@@ -310,13 +331,15 @@ class PrintModelTableViewController: BaseViewController, UITableViewDataSource, 
         
         if indexPath.row < (printList.count - 1) {
             let cell = tableView.cellForRowAtIndexPath(indexPath) as? PrintModelTableViewCell
-            cell?.contentView.tag = 1 - cell!.contentView.tag
+//            cell?.contentView.tag = 1 - cell!.contentView.tag
             let iv :UIImage?
-            if cell?.contentView.tag == 1 {
+            let c = selected![indexPath.row]
+            if !c {
                 iv = UIImage(named: CConstants.CheckedImgNm)
             }else{
                 iv = UIImage(named: CConstants.CheckImgNm)
             }
+            selected![indexPath.row] = !c
             
             cell?.imageBtn?.image = iv
             isAllCellSelected()
@@ -326,13 +349,18 @@ class PrintModelTableViewController: BaseViewController, UITableViewDataSource, 
             var selectedCellArray = [NSIndexPath]()
             
             for i in 0...printList.count-1 {
+//                let index = NSIndexPath(forRow: i, inSection: 0)
+//                if let cell = tableView.cellForRowAtIndexPath(index) {
+//                    if cell.contentView.tag == 1 {
+//                        selectedCellArray.append(index)
+//                    }
+//                    
+//                    
+//                }
+                let c = selected![i]
                 let index = NSIndexPath(forRow: i, inSection: 0)
-                if let cell = tableView.cellForRowAtIndexPath(index) {
-                    if cell.contentView.tag == 1 {
-                        selectedCellArray.append(index)
-                    }
-                    
-                    
+                if c {
+                    selectedCellArray.append(index)
                 }
             }
             
