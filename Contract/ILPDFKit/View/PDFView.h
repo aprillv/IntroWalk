@@ -44,6 +44,7 @@
 @property (nonatomic, retain) id<PDFViewDelegate> delegate;
 
 @property (nonatomic, retain) NSArray *addedAnnotationViews;
+@property (nonatomic, retain) NSArray *addedCCCCAnnotationViews;
 
 /** The webview used to render the PDF.
  */

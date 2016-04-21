@@ -184,11 +184,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Contract/Signature/SignatureView.m"
-            timestampString = "482852186.355325"
+            timestampString = "482920127.338565"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "278"
-            endingLineNumber = "278"
+            startingLineNumber = "341"
+            endingLineNumber = "341"
             landmarkName = "-drawInRect:withContext:"
             landmarkType = "5">
          </BreakpointContent>
@@ -200,11 +200,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Contract/Signature/SignatureView.m"
-            timestampString = "482852186.355325"
+            timestampString = "482920127.338565"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "286"
-            endingLineNumber = "286"
+            startingLineNumber = "349"
+            endingLineNumber = "349"
             landmarkName = "-drawInRect:withContext:"
             landmarkType = "5">
          </BreakpointContent>
@@ -216,11 +216,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Contract/Signature/SignatureView.m"
-            timestampString = "482852186.355325"
+            timestampString = "482920127.338565"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "296"
-            endingLineNumber = "296"
+            startingLineNumber = "359"
+            endingLineNumber = "359"
             landmarkName = "-drawInRect:withContext:"
             landmarkType = "5">
          </BreakpointContent>
@@ -232,11 +232,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Contract/Signature/SignatureView.m"
-            timestampString = "482852186.355325"
+            timestampString = "482920127.338565"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "344"
-            endingLineNumber = "344"
+            startingLineNumber = "407"
+            endingLineNumber = "407"
             landmarkName = "-drawInRect2:withContext:"
             landmarkType = "5">
          </BreakpointContent>
@@ -349,7 +349,7 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "145"
             endingLineNumber = "145"
-            landmarkName = "checkUpate()"
+            landmarkName = "checkUpate(_:)"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
@@ -598,11 +598,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Contract/Views/PDFPrintViewController.swift"
-            timestampString = "482851389.115723"
+            timestampString = "482920415.374671"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "166"
-            endingLineNumber = "166"
+            startingLineNumber = "169"
+            endingLineNumber = "169"
             landmarkName = "PDFPrintViewController"
             landmarkType = "3">
          </BreakpointContent>
@@ -614,11 +614,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Contract/Views/PDFBaseViewController.swift"
-            timestampString = "482892715.685051"
+            timestampString = "482899641.839335"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "407"
-            endingLineNumber = "407"
+            startingLineNumber = "420"
+            endingLineNumber = "420"
             landmarkName = "GoToPrint(_:)"
             landmarkType = "5">
          </BreakpointContent>
@@ -934,11 +934,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Contract/Signature/SignatureView.m"
-            timestampString = "482852186.355325"
+            timestampString = "482920127.338565"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "269"
-            endingLineNumber = "269"
+            startingLineNumber = "332"
+            endingLineNumber = "332"
             landmarkName = "-drawInRect:withContext:"
             landmarkType = "5">
          </BreakpointContent>
@@ -950,11 +950,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Contract/Views/PDFPrintViewController.swift"
-            timestampString = "482851389.115723"
+            timestampString = "482920415.374671"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "730"
-            endingLineNumber = "730"
+            startingLineNumber = "734"
+            endingLineNumber = "734"
             landmarkName = "pageChanged(_:)"
             landmarkType = "5">
          </BreakpointContent>
@@ -982,11 +982,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Contract/UtilityClass/SetDotValue.swift"
-            timestampString = "482814918.889729"
+            timestampString = "482912478.64435"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "977"
-            endingLineNumber = "977"
+            startingLineNumber = "992"
+            endingLineNumber = "992"
             landmarkName = "setDesignCenterDots(_:additionViews:)"
             landmarkType = "5">
          </BreakpointContent>
@@ -1014,11 +1014,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Contract/Views/PDFPrintViewController.swift"
-            timestampString = "482852036.599268"
+            timestampString = "482920415.374671"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "994"
-            endingLineNumber = "994">
+            startingLineNumber = "1075"
+            endingLineNumber = "1075">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -1028,11 +1028,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Contract/Signature/SignatureView.m"
-            timestampString = "482852186.355325"
+            timestampString = "482914255.721348"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "142"
-            endingLineNumber = "142"
+            startingLineNumber = "149"
+            endingLineNumber = "149"
             landmarkName = "-toSignautre"
             landmarkType = "5">
          </BreakpointContent>

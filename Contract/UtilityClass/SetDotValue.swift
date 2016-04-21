@@ -676,7 +676,7 @@ class SetDotValue : NSObject {
             , "Homebuyer # 2 - Sign"
             , "Consultant - Sign"
             , "Homebuyer # 1 - Date"
-            , "Homebuyer # 1 - Date"
+            , "Homebuyer # 2 - Date"
             , "Consultant - Date"]
         
     }
@@ -831,10 +831,25 @@ class SetDotValue : NSObject {
             for i: Int in 0...5 {
                 
                 sign = SignatureView(frame: CGRect(x: x, y: y, width: w * 0.28, height: h))
-                if i < 3 {
-                    sign?.xname = "april" + "\(i)" + "Sign"
-                }else{
-                    sign?.xname = "april" + "\(i)" + "DateSign"
+//                if i < 3 {
+//                    sign?.xname = "april" + "\(i)" + "Sign"
+//                }else{
+//                    sign?.xname = "april" + "\(i)" + "DateSign"
+//                }
+                switch i{
+                case 0:
+                    sign?.xname = "buyer1Sign"
+                case 1:
+                    sign?.xname = "buyer2Sign"
+                case 2:
+                    sign?.xname = "seller1Sign"
+                case 3:
+                    sign?.xname = "buyer1DateSign"
+                case 4:
+                    sign?.xname = "buyer2DateSign"
+                default:
+                    sign?.xname = "seller1DateSign"
+                    
                 }
                 
                 
@@ -1210,6 +1225,8 @@ class SetDotValue : NSObject {
     private struct WarrantyAcknowledegePDFFields{
         static let CompanyName = "CompanyName"
         static let GeneralPartner = "GeneralPartner"
+        static let property1 = "Address for Notice Purposes 1_2"
+        static let propertyline2 = "Address for Notice Purposes 2_2"
     }
     
     func setWarrantyAcknowledegeDots(pdfInfo: AddendumA?, additionViews: [PDFWidgetAnnotationView]){
@@ -1219,6 +1236,10 @@ class SetDotValue : NSObject {
                 pv.value = "\(pdfInfo!.GeneralPartner!),"
             case WarrantyAcknowledegePDFFields.CompanyName:
                 pv.value = pdfInfo?.CompanyName!
+            case WarrantyAcknowledegePDFFields.property1:
+                pv.value = "1520 Oliver St."
+            case WarrantyAcknowledegePDFFields.propertyline2:
+                pv.value = "Houston, TX 77007"
             default:
                 break
             }

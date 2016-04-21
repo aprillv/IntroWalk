@@ -127,15 +127,19 @@ class PDFPrintViewController: PDFBaseViewController, UIScrollViewDelegate, PDFVi
                                     if sign.isKindOfClass(SignatureView) {
                                         if let si = sign as? SignatureView {
                                             
-                                            if si.xname == "april1Sign"
-                                                || si.xname == "april4DateSign"
+                                            if  !info.buyer!.containsString(" / ")
+                                                 && ( si.xname == "buyer2Sign"
+                                                || si.xname == "buyer2DateSign")
                                             {
                                                 if si.menubtn != nil {
                                                     si.menubtn.removeFromSuperview()
+                                                    si.menubtn = nil
                                                 }
                                                 continue
                                             }
-                                            print(si.xname)
+//                                            print(si.xname)
+                                            si.pdfViewsssss = pdfView!
+                                            pdfView!.addedCCCCAnnotationViews = doc.addedviewss
                                             si.addSignautre(pdfView!.pdfView!.scrollView)
                                             
                                         }
@@ -260,6 +264,7 @@ class PDFPrintViewController: PDFBaseViewController, UIScrollViewDelegate, PDFVi
         var lastheight : Int
         var filePageCnt : Int = 0
         var called = true
+//        print(filesArray)
         for title in filesArray! {
             if title !=  CConstants.ActionTitleDesignCenter
             && title != CConstants.ActionTitleClosingMemo
@@ -372,7 +377,7 @@ class PDFPrintViewController: PDFBaseViewController, UIScrollViewDelegate, PDFVi
         
         view2.addSubview(pdfView!)
         
-        
+        getAllSignature()
 
     }
     
@@ -448,7 +453,7 @@ class PDFPrintViewController: PDFBaseViewController, UIScrollViewDelegate, PDFVi
         default:
             serviceUrl = CConstants.AddendumAServiceURL
         }
-        print(serviceUrl)
+//        print(serviceUrl)
         let hud = MBProgressHUD.showHUDAddedTo(self.view, animated: true)
         //                hud.mode = .AnnularDeterminate
         hud.labelText = CConstants.RequestMsg
@@ -459,7 +464,7 @@ class PDFPrintViewController: PDFBaseViewController, UIScrollViewDelegate, PDFVi
                 if response.result.isSuccess {
                     
                     if let rtnValue = response.result.value as? [String: AnyObject]{
-                        print(rtnValue);
+//                        print(rtnValue);
                         if let msg = rtnValue["message"] as? String{
                             if msg.isEmpty{
 //                                var vc : PDFBaseViewController?
@@ -505,7 +510,7 @@ class PDFPrintViewController: PDFBaseViewController, UIScrollViewDelegate, PDFVi
                 for one in n{
                     let s = one.componentsSeparatedByString(":")
                     if s.count != 2 {
-                        print(one)
+//                        print(one)
                     }else{
                         fieldsDic[s.first!] = s.last!
                     }
@@ -799,7 +804,7 @@ class PDFPrintViewController: PDFBaseViewController, UIScrollViewDelegate, PDFVi
                 showBuyer2 = true;
             }
         }else if let c = self.addendumCpdfInfo {
-            if c.buyer!.containsString(" & ") {
+            if c.buyer!.containsString(" / ") {
                 showBuyer2 = true;
             }
         }else if let c = self.closingMemoPdfInfo {
@@ -819,60 +824,61 @@ class PDFPrintViewController: PDFBaseViewController, UIScrollViewDelegate, PDFVi
                     if sign.isKindOfClass(SignatureView) {
                         
                         if let si = sign as? SignatureView {
-                            if si.xname == "Exhibitbp1seller3Sign" {
-                                 si.addSignautre(pdfView!.pdfView!.scrollView)
-                            continue
-                            }
+//                            for a in selfSignatureViews! {
+//                                print(si.xname ?? "")
+//                            }
+//                            if si.xname == "Exhibitbp1sellerInitialSign" {
+//                                 si.addSignautre(pdfView!.pdfView!.scrollView)
+//                            continue
+//                            }
+//                            
+                            // remove seller2's signature
                             if si.xname.hasSuffix("bottom4")
-                                || si.xname.hasSuffix("seller3Sign")
-                                || si.xname.hasSuffix("seller3DateSign")
-                                || si.xname.hasSuffix("homeSeller3Sign")
-                                || si.xname.hasSuffix("homeSeller3DateSign")
+                                || si.xname.hasSuffix("seller2Sign")
+                                || si.xname.hasSuffix("seller2DateSign")
                             {
                                 if si.menubtn != nil {
                                     si.menubtn.removeFromSuperview()
+                                    si.menubtn = nil
                                 }
                                 continue
                             }
-                            if !showBuyer2{
-                                if let addendumaInfo = self.addendumApdfInfo {
-                                    if addendumaInfo.hasbroker == "" {
-                                        if si.xname.containsString("brokerb") {
-                                            if si.menubtn != nil {
-                                                si.menubtn.removeFromSuperview()
-                                            }
-                                            continue
+                            
+                            if let addendumaInfo = self.addendumApdfInfo {
+                                if addendumaInfo.hasbroker == "" {
+                                    if si.xname.containsString("brokerb") {
+                                        if si.menubtn != nil {
+                                            si.menubtn.removeFromSuperview()
+                                            si.menubtn = nil
                                         }
-                                    }else {
-                                        if si.xname.containsString("broker2") {
-                                            if si.menubtn != nil {
-                                                si.menubtn.removeFromSuperview()
-                                            }
-                                            continue
+                                        continue
+                                    }
+                                }else {
+                                    if si.xname.containsString("broker2") {
+                                        if si.menubtn != nil {
+                                            si.menubtn.removeFromSuperview()
+                                            si.menubtn = nil
                                         }
+                                        continue
                                     }
                                 }
-
+                            }
+                            
+                            if !showBuyer2{
                                 if si.xname.hasSuffix("bottom2")
-                                    || si.xname.hasSuffix("buyer3Sign")
-                                || si.xname.hasSuffix("buyer3DateSign")
-                                || si.xname.hasSuffix("homeBuyer2Sign")
-                                || si.xname.hasSuffix("homeBuyer2DateSign")
-                                || si.xname == "april1Sign"
-                                || si.xname == "april1DateSign"
+                                    || si.xname.hasSuffix("buyer2Sign")
+                                || si.xname.hasSuffix("buyer2DateSign")
+                                    || si.xname == "WPrintedName2Sign"
                                 {
                                     if si.menubtn != nil {
                                         si.menubtn.removeFromSuperview()
+                                        si.menubtn = nil
                                     }
                                     continue
                                 }
-                                
-                                
-                                
-                                
-                                
                             }
                            
+                            si.pdfViewsssss = pdfView!
                             si.addSignautre(pdfView!.pdfView!.scrollView)
                             
                         }
@@ -926,6 +932,8 @@ class PDFPrintViewController: PDFBaseViewController, UIScrollViewDelegate, PDFVi
                 }
             }
         }
+        
+        
     }
     
    
@@ -979,3 +987,77 @@ class PDFPrintViewController: PDFBaseViewController, UIScrollViewDelegate, PDFVi
     
     
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+//buyer2Sign
+//buyer3Sign
+//Exhibitbp1seller3Sign
+//buyer2Sign
+//buyer2Sign
+//buyer3Sign
+//buyer3Sign
+//seller2Sign
+//AddendumASeller3Sign
+//BYSign
+//NameSign
+//TitleSign
+//buyer2Sign
+//buyer3Sign
+//buyer2Sign
+//buyer3Sign
+//buyer2Sign
+//buyer3Sign
+//buyer3Sign
+//buyer2Sign
+//buyer2DateSign
+//buyer3DateSign
+//homeBuyer1Sign
+//homeBuyer1DateSign
+//homeBuyer2Sign
+//homeBuyer2DateSign
+//buyer2Sign
+//buyer3Sign
+//p1bottom2
+//p1bottom2
+//p1bottom2
+//p1bottom2
+//p1bottom1
+//p1bottom1
+//p1bottom1
+//p1bottom1
+//seller2Sign
+//buyer2Sign
+//buyer3Sign
+//seller2Sign
+//buyer2Sign
+//buyer3Sign
+//buyer3DateSign
+//buyer2DateSign
+//brokerbuyer2Sign
+//brokerbuyer3Sign
+//brokerbuyer2DateSign
+//brokerbuyer3DateSign
+//broker2buyer2Sign
+//broker2buyer3Sign
+//broker2buyer2DateSign
+//broker2buyer3DateSign
+//buyer2Sign
+//buyer3Sign
+//seller3Sign
+//seller2Sign
+//buyer2Sign
+//buyer3Sign
+//buyer2DateSign
+//buyer3DateSign

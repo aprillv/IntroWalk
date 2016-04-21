@@ -142,7 +142,7 @@ class LoginViewController: BaseViewController, UITextFieldDelegate {
     }
     
     
-    func checkUpate(){
+    func checkUpate(sender: UIButton){
         let version = NSBundle.mainBundle().infoDictionary?["CFBundleVersion"]
         let parameter = ["version": (version == nil ?  "" : version!)]
         
@@ -154,6 +154,8 @@ class LoginViewController: BaseViewController, UITextFieldDelegate {
             if response.result.isSuccess {
                 if let rtnValue = response.result.value{
                     if rtnValue.integerValue == 1 {
+                        self.disAblePageControl()
+                        self.doLogin(sender)
                     }else{
                         if let url = NSURL(string: CConstants.InstallAppLink){
                             self.toEablePageControl()
@@ -172,14 +174,12 @@ class LoginViewController: BaseViewController, UITextFieldDelegate {
     }
     
     @IBAction func PrintDraft(sender: UIButton) {
-        disAblePageControl()
-        self.doLogin(sender)
+        checkUpate(sender)
     }
     
     @IBAction func Login(sender: UIButton) {
+        checkUpate(sender)
         
-        disAblePageControl()
-        self.doLogin(sender)
     }
     
     private func disAblePageControl(){
@@ -337,7 +337,7 @@ class LoginViewController: BaseViewController, UITextFieldDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
 //        print(view.frame.size)
-        checkUpate()
+//        checkUpate()
         
         setSignInBtn()
     }
