@@ -1296,7 +1296,7 @@ class SetDotValue : NSObject {
         }
     }
     
-    // MARK: Addendum Hoa
+    // MARK: Addendum 1Hoa
     private struct AddendumHoaPDFFields{
         static let AddressName = "Street Address and City"
         static let PropertyName = "Name of Property Owners Association Association and Phone Number"
