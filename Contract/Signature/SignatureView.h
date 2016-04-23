@@ -14,6 +14,7 @@
 //@property (nonatomic, retain) PDFView* pdfView;
 @property (nonatomic, retain) NSString *sname;
 @property (nonatomic, assign) float LineWidth;
+@property (nonatomic, assign)  BOOL showornot;
 @property (nonatomic,retain)   PDFView* pdfViewsssss;
 @property (nonatomic,strong)   UIButton* menubtn;
 @property (nonatomic, assign) float originHeight;

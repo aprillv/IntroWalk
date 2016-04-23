@@ -936,6 +936,58 @@ class PDFPrintViewController: PDFBaseViewController, UIScrollViewDelegate, PDFVi
         
     }
     
+    override func startover() {
+        for doc in documents! {
+            if let dd = doc.addedviewss {
+                for d in dd{
+                    if let sign = d as? SignatureView {
+                        if (sign.lineArray != nil){
+                            sign.lineArray = nil
+                            //                sign.originWidth = 0.0
+                            //                sign.originHeight = 0.0
+                            sign.LineWidth = 0.0
+                            sign.showornot = true
+                            if sign.menubtn != nil {
+                                sign.superview?.addSubview(sign.menubtn)
+                            }else{
+                                sign.addSignautre(pdfView!.pdfView!.scrollView)
+                            }
+                            
+                        }
+                    }
+                }
+            }
+            
+            
+        }
+        if let fDD = fileDotsDic {
+           
+            
+            for (_, dots) in fDD {
+                
+                for si in dots {
+                    if let sign = si as? SignatureView{
+                        if (sign.lineArray != nil){
+                            sign.lineArray = nil
+                            //                sign.originWidth = 0.0
+                            //                sign.originHeight = 0.0
+                            sign.LineWidth = 0.0
+                            sign.showornot = true
+                            if sign.menubtn != nil {
+                                sign.superview?.addSubview(sign.menubtn)
+                            }else{
+                                sign.addSignautre(pdfView!.pdfView!.scrollView)
+                            }
+                            
+                        }
+                    }
+                }
+            }
+        }
+        
+       
+    }
+    
    
     
     override func clearDraftInfo() {

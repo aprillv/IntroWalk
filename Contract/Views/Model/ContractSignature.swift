@@ -52,4 +52,15 @@ class ContractSignature: ContractPDFBaseModel {
     var page9AssociatesName: String?
     var page9AssociatesEmailAddress: String?
     
+    var page9OtherBrokerFirmNo : String?
+    var page9AssociateNameNo : String?
+    var page9LicensedSupervisor : String?
+    var page9LicensedSupervisorNo: String?
+    var page9OtherBrokerAddress: String?
+    var page9OtherBrokerAddressFax: String?
+    var page9CityState: String?
+    var page9CityZip: String?
+    
+    
+    
 }

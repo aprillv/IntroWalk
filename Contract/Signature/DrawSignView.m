@@ -227,6 +227,14 @@ self.backgroundColor = [UIColor colorWithRed: 35/255.0 green: 174/255.0 blue: 23
 	// Do any additional setup after loading the view, typically from a nib.
 }
 
+-(void)setLineArray:(NSArray *)lineArray{
+    if (lineArray && lineArray > 0) {
+        clearBtn.hidden = YES;
+    }
+    [self.drawView setLineArray1:lineArray];
+}
+
+
 -(void)setShowSwitch:(BOOL)showSwitch{
     toAllSwitch.hidden = !showSwitch;
     sliderLbl.hidden = !showSwitch;

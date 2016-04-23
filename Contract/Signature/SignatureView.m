@@ -12,6 +12,7 @@
 @implementation SignatureView{
 //    CGRect cts;
     CGFloat ratios;
+   
     
     
 }
@@ -24,9 +25,10 @@
     if (self) {
         ratios = 1;
         self.backgroundColor = [UIColor clearColor];
-        UILongPressGestureRecognizer *gesture = [[UILongPressGestureRecognizer alloc]initWithTarget:self action:@selector(toSignautre)];
-        
-        [self addGestureRecognizer:gesture];
+        self.showornot = false;
+//        UILongPressGestureRecognizer *gesture = [[UILongPressGestureRecognizer alloc]initWithTarget:self action:@selector(toSignautre)];
+//        
+//        [self addGestureRecognizer:gesture];
     }
     return self;
 }
@@ -41,6 +43,7 @@
     [self setNeedsDisplay];
 }
 -(void)setLineWidth:(float)LineWidth1{
+//    NSLog(@"LineWidth1 %f", LineWidth1);
     LineWidth = LineWidth1;
     [self setNeedsDisplay];
 }
@@ -79,44 +82,36 @@
         
         
         NSString * xtitle;
-        if ([self.xname hasSuffix:@"DateSign"]) {
-            xtitle = @"signdate";
-        }else{
-             NSArray *initialNa = @[@"Exhibitbp1sellerInitialSign"];
-            NSArray *signNa = @[@"FloodDaySign", @"FloodDayofSign", @"AddendumAExecutedDaySign", @"NameSign", @"TitleSign", @"WExecutedSign", @"WDayofSign", @"WYearSign", @"WPrintedNameSign", @"WPrintedName2Sign"];
-            if ([initialNa indexOfObject:self.xname] != NSNotFound) {
-                xtitle = @"initial";
-            }else if([signNa indexOfObject:self.xname] != NSNotFound) {
-                xtitle = @"sign1";
-            }else {
-                xtitle = [self.xname hasSuffix:@"Sign"]? @"signBlack" : @"initial";
-            }
-            
-        }
-        if ([xtitle isEqualToString:@"initial"] || [xtitle isEqualToString:@"sign1"]) {
+        if ([self.xname hasSuffix:@"bottom1"]) {
+            xtitle = @"initialB1";
+            btn.frame = CGRectMake(0, 0, 64, 56);
+//            ct.origin.x -= ct.size.width/2.0;
+            ct.origin.y -= 12;
+        }else if([self.xname hasSuffix:@"bottom2"]){
+            xtitle = @"initialB2";
+            btn.frame = CGRectMake(0, 0, 64, 56);
+//            ct.origin.x -= ct.size.width/2.0;
+            ct.origin.y -= 12;
+        }else if([self.xname hasSuffix:@"bottom3"]){
+            xtitle = @"initial";
             btn.frame = CGRectMake(0, 0, 64, 44);
+        }else if([self.xname hasSuffix:@"buyer1Sign"]) {
+            xtitle = @"signB1";
+            btn.frame = CGRectMake(0, 0, 94, 56);
+            ct.origin.y -= 12;
+        }else if([self.xname hasSuffix:@"buyer2Sign"]) {
+            xtitle = @"signB2";
+            btn.frame = CGRectMake(0, 0, 94, 56);
+            ct.origin.y -= 12;
         }else{
+             xtitle = @"signBlack" ;
             btn.frame = CGRectMake(0, 0, 94, 44);
-        }
-        
-        if ([self.xname isEqualToString: @"Exhibitbp1sellerInitialSign"]){
-            ct.origin.x -= ct.size.width/2.0;
-            ct.origin.y -= ct.size.height/2.0;
-        }else if ([self.xname isEqualToString: @"WPrintedNameSign"] || [self.xname isEqualToString: @"WPrintedName2Sign"]) {
-            ct.origin.x += ct.size.width/4.0;
-            ct.origin.y -= ct.size.height/2.0;
-        }else if ([xtitle isEqualToString:@"initial"] || [xtitle isEqualToString:@"sign1"]) {
-            ct.origin.y -= ct.size.height/4.0;
         }
         btn.center = ct.origin;
         
         
         [btn setImage:[UIImage imageNamed:xtitle] forState:UIControlStateNormal];
         [btn addTarget:self action:@selector(popSignature:) forControlEvents:UIControlEventTouchUpInside];
-        //    [btn setTitle:@"Signature" forState:UIControlStateNormal];
-        //    [btn.titleLabel setTextColor:[UIColor whiteColor]];
-        //    btn.imageView.image = [UIImage imageNamed:@"sign"];
-        //    NSLog(@"%@ %@", self, self.superview);
         [view insertSubview:btn aboveSubview:self];
     }
     
@@ -130,15 +125,15 @@
 }
 -(void)toSignautre{
 //    NSLog(@"%@ -- %@", self.superview, self);
-    if (self.menubtn){
-        if (self.menubtn.superview == nil) {
-            //        [self becomeFirstResponder];
-            [self.superview addSubview:self.menubtn];
-            [self performSelector:@selector(sssss) withObject:nil afterDelay:6];
-        }else{
-            [self popSignature:nil];
-        }
-    }
+//    if (self.menubtn){
+//        if (self.menubtn.superview == nil) {
+//            //        [self becomeFirstResponder];
+//            [self.superview addSubview:self.menubtn];
+//            [self performSelector:@selector(sssss) withObject:nil afterDelay:6];
+//        }else{
+//            [self popSignature:nil];
+//        }
+//    }
     return;
     
     NSString *xtitle;
@@ -176,57 +171,15 @@
 - (BOOL)canBecomeFirstResponder { return YES; }
 
 - (void)popSignature:(id)sender {
-//    NSArray *initialNa = @[@"Exhibitbp1sellerInitialSign"];
-//    NSArray *signNa = @[@"FloodDaySign", @"FloodDayofSign", @"AddendumAExecutedDaySign", @"NameSign", @"TitleSign", @"WExecutedSign", @"WDayofSign", @"WYearSign", @"WPrintedNameSign", @"WPrintedName2Sign"];
-    
-//    if ([self.xname hasSuffix:@"DateSign"]) {
-//        [PopSignUtil getSignWithVC:nil withOk:^(UIView *image, BOOL isToAll) {
-//            CGRect ct = self.frame;
-//            SignatureView *sv = (SignatureView *)image;
-//            if (sv.lineArray.count!=0) {
-//                [self.menubtn removeFromSuperview];
-//            }
-//            
-//            
-//            self.frame = sv.frame;
-//            self.frame = ct;
-//            self.lineArray = sv.lineArray;
-//            self.originHeight =sv.originHeight;
-//            self.originWidth = sv.originWidth;
-//            self.LineWidth = sv.LineWidth;
-//            
-//            if (isToAll) {
-//                for (SignatureView *other in self.pdfViewsssss.pdfWidgetAnnotationViews) {
-//                    if ([other isKindOfClass:[SignatureView class]]
-//                        && [other.sname hasSuffix: [self.sname substringFromIndex:2] ]){
-//                        CGRect ct = other.frame;
-//                        other.frame = sv.frame;
-////                        other.frame = ct;
-//                        other.lineArray = sv.lineArray;
-//                        other.originHeight =sv.originHeight;
-//                        other.originWidth = sv.originWidth;
-//                        other.LineWidth = sv.LineWidth;
-//                        other.frame = ct;
-//                        if (sv.lineArray.count!=0) {
-//                            [other.menubtn removeFromSuperview];
-//                        }
-//                    }
-//                }
-//            }
-//            
-//            [PopSignUtil closePop];
-//        } withCancel:^{
-//            [PopSignUtil closePop];
-//        } title: @"Please sign date here"];
-//    }else{
+
         NSString *xtitle = @"";
-        NSArray *signNa = @[@"FloodDaySign", @"FloodDayofSign", @"AddendumAExecutedDaySign", @"NameSign", @"TitleSign", @"WExecutedSign", @"WDayofSign", @"WYearSign", @"WPrintedNameSign", @"WPrintedName2Sign"];
+//        NSArray *signNa = @[@"FloodDaySign", @"FloodDayofSign", @"AddendumAExecutedDaySign", @"NameSign", @"TitleSign", @"WExecutedSign", @"WDayofSign", @"WYearSign", @"WPrintedNameSign", @"WPrintedName2Sign"];
         if ([self.xname containsString:@"bottom"] || [self.xname isEqualToString:@"Exhibitbp1sellerInitialSign"]) {
             xtitle = @"Please print your initial here";
-        }else if([signNa indexOfObject:self.xname] != NSNotFound) {
-            xtitle = @"Please sign here";
-        }else if([self.xname hasSuffix:@"DateSign"]){
-            xtitle =  @"Please sign date here";
+//        }else if([signNa indexOfObject:self.xname] != NSNotFound) {
+//            xtitle = @"Please sign here";
+//        }else if([self.xname hasSuffix:@"DateSign"]){
+//            xtitle =  @"Please sign date here";
         }else{
             xtitle = @"Please signature here";
         }
@@ -250,76 +203,104 @@
             self.originWidth = sv.originWidth;
             self.LineWidth = sv.LineWidth;
             
-            if (isToAll) {
+//            if (isToAll) {
 //                NSLog(@"%@", self.xname);
-                if ([self.xname hasSuffix:@"buyer1Sign"] || [self.xname hasSuffix:@"buyer2Sign"] || [self.xname hasSuffix:@"seller1Sign"] || [self.xname hasSuffix:@"buyer1DateSign"] || [self.xname hasSuffix:@"buyer2DateSign"]|| [self.xname hasSuffix:@"seller1DateSign"] ) {
-                    int len = 10;
-                    if ([self.xname containsString:@"DateSign"]) {
-                        len = 14;
+            if ([self.xname hasSuffix:@"buyer1Sign"] || [self.xname hasSuffix:@"buyer2Sign"] || [self.xname hasSuffix:@"seller1Sign"] || [self.xname hasSuffix:@"buyer1DateSign"] || [self.xname hasSuffix:@"buyer2DateSign"]|| [self.xname hasSuffix:@"seller1DateSign"] ) {
+                int len = 10;
+                if ([self.xname containsString:@"DateSign"]) {
+                    len = 14;
+                }
+                //                    NSLog(@"%@ %@",self.xname, [self.xname substringFromIndex:(self.xname.length - len)]);
+                for (SignatureView *other in self.pdfViewsssss.pdfWidgetAnnotationViews) {
+                    if (other == self) {
+                        continue;
                     }
-//                    NSLog(@"%@ %@",self.xname, [self.xname substringFromIndex:(self.xname.length - len)]);
-                    for (SignatureView *other in self.pdfViewsssss.pdfWidgetAnnotationViews) {
-                        
-                        if ([other isKindOfClass:[SignatureView class]]
-                            && [other.xname hasSuffix: [self.xname substringFromIndex:(self.xname.length - len)] ] && other.menubtn){
-                            CGRect ct = other.frame;
-                            other.frame = sv.frame;
-                            //                        other.frame = ct;
-                            other.lineArray = sv.lineArray;
-                            other.originHeight =sv.originHeight;
-                            other.originWidth = sv.originWidth;
-                            other.LineWidth = sv.LineWidth;
-                            other.frame = ct;
+                    if ([other isKindOfClass:[SignatureView class]]
+                        && [other.xname hasSuffix: [self.xname substringFromIndex:(self.xname.length - len)] ] && other.menubtn){
+                        CGRect ct = other.frame;
+                        other.frame = sv.frame;
+                        //                        other.frame = ct;
+                        other.lineArray = sv.lineArray;
+                        other.originHeight =sv.originHeight;
+                        other.originWidth = sv.originWidth;
+                        if (isToAll) {
+                            
+                             other.LineWidth = sv.LineWidth;
                             if (sv.lineArray.count!=0) {
                                 [other.menubtn removeFromSuperview];
                             }
+                        }else{
+//                            other.originWidth = 0;
+                             other.LineWidth = 0;
                         }
-                    }
-                    for (SignatureView *other in self.pdfViewsssss.addedCCCCAnnotationViews) {
                         
-                        if ([other isKindOfClass:[SignatureView class]]
-                            && [other.xname hasSuffix: [self.xname substringFromIndex:(self.xname.length - len)] ] && other.menubtn){
-                            CGRect ct = other.frame;
-                            other.frame = sv.frame;
-                            //                        other.frame = ct;
-                            other.lineArray = sv.lineArray;
-                            other.originHeight =sv.originHeight;
-                            other.originWidth = sv.originWidth;
+                        
+//                        other.LineWidth = sv.LineWidth;
+                        other.frame = ct;
+                        
+                        
+                    }
+                }
+                for (SignatureView *other in self.pdfViewsssss.addedCCCCAnnotationViews) {
+                    if (other == self) {
+                        continue;
+                    }
+                    if ([other isKindOfClass:[SignatureView class]]
+                        && [other.xname hasSuffix: [self.xname substringFromIndex:(self.xname.length - len)] ] && other.menubtn){
+                        CGRect ct = other.frame;
+                        other.frame = sv.frame;
+                        //                        other.frame = ct;
+                        other.lineArray = sv.lineArray;
+                        other.originHeight =sv.originHeight;
+                        other.originWidth = sv.originWidth;
+                        if (isToAll) {
                             other.LineWidth = sv.LineWidth;
-                            other.frame = ct;
                             if (sv.lineArray.count!=0) {
                                 [other.menubtn removeFromSuperview];
                             }
+                        }else{
+                            other.LineWidth = 0;
                         }
-                    }
-                    
-                }else{
-                    for (SignatureView *other in self.pdfViewsssss.pdfWidgetAnnotationViews) {
-                        
-                        if ([other isKindOfClass:[SignatureView class]]
-                            && [other.xname hasSuffix: [self.xname substringFromIndex:2] ]){
-                            CGRect ct = other.frame;
-                            other.frame = sv.frame;
-                            //                        other.frame = ct;
-                            other.lineArray = sv.lineArray;
-                            other.originHeight =sv.originHeight;
-                            other.originWidth = sv.originWidth;
-                            other.LineWidth = sv.LineWidth;
-                            other.frame = ct;
-                            if (sv.lineArray.count!=0) {
-                                [other.menubtn removeFromSuperview];
-                            }
-                        }
+                        other.frame = ct;
+//                        if (sv.lineArray.count!=0) {
+//                            [other.menubtn removeFromSuperview];
+//                        }
                     }
                 }
                 
+            }else{
+                for (SignatureView *other in self.pdfViewsssss.pdfWidgetAnnotationViews) {
+                    if (other == self) {
+                        continue;
+                    }
+                    if ([other isKindOfClass:[SignatureView class]]
+                        && [other.xname hasSuffix: [self.xname substringFromIndex:2] ]){
+                        CGRect ct = other.frame;
+                        other.frame = sv.frame;
+                        //                        other.frame = ct;
+                        other.lineArray = sv.lineArray;
+                        other.originHeight =sv.originHeight;
+                        other.originWidth = sv.originWidth;
+                        if (isToAll) {
+                            other.LineWidth = sv.LineWidth;
+                            if (sv.lineArray.count!=0) {
+                                [other.menubtn removeFromSuperview];
+                            }
+
+                        }else{
+                            other.LineWidth = 0;
+                        }
+                        other.frame = ct;
+                                            }
+                }
             }
             
+//            }
             
             [PopSignUtil closePop];
         } withCancel:^{
             [PopSignUtil closePop];
-        } showAll:((![self.xname hasSuffix:@"Sign"] && self.xname.length == 9) || ([self.xname hasSuffix:@"buyer1Sign"] || [self.xname hasSuffix:@"buyer2Sign"] || [self.xname hasSuffix:@"seller1Sign"] || [self.xname hasSuffix:@"buyer1DateSign"] || [self.xname hasSuffix:@"buyer2DateSign"])) withTitle:xtitle];
+        } showAll:((![self.xname hasSuffix:@"Sign"] && self.xname.length == 9) || ([self.xname hasSuffix:@"buyer1Sign"] || [self.xname hasSuffix:@"buyer2Sign"] || [self.xname hasSuffix:@"seller1Sign"] || [self.xname hasSuffix:@"buyer1DateSign"] || [self.xname hasSuffix:@"buyer2DateSign"])) withTitle:xtitle withLineArray:self.lineArray];
 //    }
     
     

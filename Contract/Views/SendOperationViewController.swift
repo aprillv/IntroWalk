@@ -16,6 +16,7 @@ protocol DoOperationDelegate
     func clearDraftInfo()
     func fillDraftInfo()
     func save_Email()
+    func startover()
 }
 
 class SendOperationViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
@@ -24,6 +25,7 @@ class SendOperationViewController: UIViewController, UITableViewDelegate, UITabl
     @IBOutlet weak var tableView: UITableView!
     var delegate1 : DoOperationDelegate?
     var showSave : Bool?
+    var showSubmit : Bool?
     var itemList : [String]?{
         didSet{
             if let _ = itemList{
@@ -37,9 +39,11 @@ class SendOperationViewController: UIViewController, UITableViewDelegate, UITabl
         static let cellReuseIdentifier = "operationCellIdentifier"
         static let rowHeight : CGFloat = 44
         static let operationSavetoServer = "Save Contract"
+        static let operationSubmit = "Submit for Approve"
+        static let operationStartOver = "Start Over"
 //        static let operationPrint = "Print"
         static let operationEmail = "Email"
-        static let operationSaveEmail = "Save & Email"
+//        static let operationSaveEmail = "Save & Email"
         static let operationClearDraftInfo = "Clear Buyer's Fields"
         static let operationFillDraftInfo = "Fill Buyer's Fields"
     }
@@ -48,12 +52,8 @@ class SendOperationViewController: UIViewController, UITableViewDelegate, UITabl
         super.viewDidLoad()
         let userinfo = NSUserDefaults.standardUserDefaults()
         if userinfo.boolForKey(CConstants.UserInfoIsContract){
-            if showSave! {
-                itemList = [constants.operationSavetoServer, constants.operationSaveEmail]
-            }else{
-                itemList = [constants.operationEmail]
-            }
-           
+            itemList = [constants.operationSavetoServer, constants.operationSubmit, constants.operationStartOver]
+            
         }else{
             if userinfo.integerForKey("ClearDraftInfo") == 0 {
                 itemList = [constants.operationEmail, constants.operationClearDraftInfo]
@@ -78,6 +78,21 @@ class SendOperationViewController: UIViewController, UITableViewDelegate, UITabl
         cell.layoutMargins = UIEdgeInsetsZero
         cell.preservesSuperviewLayoutMargins = false
         cell.textLabel?.text = itemList![indexPath.row]
+        if (cell.textLabel?.text == constants.operationStartOver) {
+            if (!showSave!){
+                cell.textLabel?.textColor = UIColor.darkGrayColor()
+            }else{
+                cell.textLabel?.textColor = UIColor.blackColor()
+            }
+        }
+        
+        if (cell.textLabel?.text == constants.operationSubmit) {
+            if (!showSubmit!) {
+                cell.textLabel?.textColor = UIColor.darkGrayColor()
+            }else{
+                cell.textLabel?.textColor = UIColor.blackColor()
+            }
+        }
         cell.textLabel?.textAlignment = .Center
         return cell
     }
@@ -96,8 +111,10 @@ class SendOperationViewController: UIViewController, UITableViewDelegate, UITabl
                     delegate0.fillDraftInfo()
                 case constants.operationClearDraftInfo:
                     delegate0.clearDraftInfo()
-                case constants.operationSaveEmail:
-                    delegate0.save_Email()
+                case constants.operationStartOver:
+                    delegate0.startover()
+//                case constants.operationSaveEmail:
+//                    delegate0.save_Email()
                     default:
                         break
                 }

@@ -42,16 +42,23 @@ static PopSignUtil *popSignUtil = nil;
 }
 
 //定制弹出框。模态对话框。
+//+(void)getSignWithVC:(UIViewController *)VC withOk:(SignCallBackBlock)signCallBackBlock
+//          withCancel:(CallBackBlock)callBackBlock showAll:(BOOL) show withTitle: (NSString *)title{
+//    PopSignUtil *p = [PopSignUtil shareRestance];
+//    [p setPopWithVC:VC withOk:signCallBackBlock withCancel:callBackBlock showAll:show title:title];
+//}
+
 +(void)getSignWithVC:(UIViewController *)VC withOk:(SignCallBackBlock)signCallBackBlock
-          withCancel:(CallBackBlock)callBackBlock showAll:(BOOL) show withTitle: (NSString *)title{
+          withCancel:(CallBackBlock)callBackBlock showAll:(BOOL) show withTitle: (NSString *)title withLineArray:(NSArray*)na{
     PopSignUtil *p = [PopSignUtil shareRestance];
-    [p setPopWithVC:VC withOk:signCallBackBlock withCancel:callBackBlock showAll:show title:title];
+    [p setPopWithVC:VC withOk:signCallBackBlock withCancel:callBackBlock showAll:show title:title withLineArray: na];
 }
+
 
 +(void)getSignWithVC:(UIViewController *)VC withOk:(SignCallBackBlock)signCallBackBlock
           withCancel:(CallBackBlock)callBackBlock title:(NSString *) title{
     PopSignUtil *p = [PopSignUtil shareRestance];
-    [p setPopWithVC:VC withOk:signCallBackBlock withCancel:callBackBlock showAll:NO title:title];
+    [p setPopWithVC:VC withOk:signCallBackBlock withCancel:callBackBlock showAll:NO title:title withLineArray: nil];
 }
 
 
@@ -59,10 +66,10 @@ static PopSignUtil *popSignUtil = nil;
 /** 设定 */
 -(void)setPopWithVC:(UIViewController *)VCrrr withOk:(SignCallBackBlock)signCallBackBlock
          withCancel:(CallBackBlock)cancelBlock showAll:(BOOL) show{
-    [self setPopWithVC:VCrrr withOk:signCallBackBlock withCancel:cancelBlock showAll:show title:@""];
+    [self setPopWithVC:VCrrr withOk:signCallBackBlock withCancel:cancelBlock showAll:show title:@"" withLineArray: nil];
 }
 -(void)setPopWithVC:(UIViewController *)VCrrr withOk:(SignCallBackBlock)signCallBackBlock
-         withCancel:(CallBackBlock)cancelBlock showAll:(BOOL) show title:(NSString *) title{
+         withCancel:(CallBackBlock)cancelBlock showAll:(BOOL) show title:(NSString *) title withLineArray:(NSArray*)na{
 
     if (!zhezhaoView) {
         zhezhaoView = [[UIView alloc]init];
@@ -81,6 +88,7 @@ static PopSignUtil *popSignUtil = nil;
 
     DrawSignView *conformView = [[DrawSignView alloc]init];
      conformView.showSwitch = show;
+    [conformView setLineArray:na];
     if (show) {
         if ([title hasPrefix:@"p1T"]) {
             [conformView setShowSwitch2:show];

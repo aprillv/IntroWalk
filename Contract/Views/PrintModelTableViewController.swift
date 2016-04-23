@@ -63,11 +63,13 @@ class PrintModelTableViewController: BaseViewController, UITableViewDataSource, 
         static let cellFirstReuseIndentifier = "firstCell"
         static let cellHeight: CGFloat = 44.0
         
+         static let selectAllTitle = "Select All"
         static let printBtnTitle = "Continue"
         static let cancelBtnTitle = "Cancel"
     }
     var printList: [String] = [
-        CConstants.ActionTitleContract
+        constants.selectAllTitle
+        , CConstants.ActionTitleContract
         , CConstants.ActionTitleThirdPartyFinancingAddendum
         , CConstants.ActionTitleINFORMATION_ABOUT_BROKERAGE_SERVICES
         , CConstants.ActionTitleAddendumA
@@ -88,12 +90,13 @@ class PrintModelTableViewController: BaseViewController, UITableViewDataSource, 
             printList.append(CConstants.ActionTitleAddendumD)
             printList.append(CConstants.ActionTitleAddendumE)
             printList.append(CConstants.ActionTitleFloodPlainAck)
-            printList.append(CConstants.ActionTitleHoaChecklist)
+            
             printList.append(CConstants.ActionTitleWarrantyAcknowledgement)
             printList.append(CConstants.ActionTitleDesignCenter)
-            printList.append(CConstants.ActionTitleClosingMemo)
+//            printList.append(CConstants.ActionTitleClosingMemo)
             if let tmp = self.projectInfo?.hoa {
                 if tmp == 1 {
+                    printList.append(CConstants.ActionTitleHoaChecklist)
                     printList.append(CConstants.ActionTitleAddendumHOA)
                 }
             }
@@ -104,10 +107,11 @@ class PrintModelTableViewController: BaseViewController, UITableViewDataSource, 
             printList.append(CConstants.ActionTitleAddendumD)
             printList.append(CConstants.ActionTitleAddendumE)
             printList.append(CConstants.ActionTitleFloodPlainAck)
-            printList.append(CConstants.ActionTitleHoaChecklist)
+            
             printList.append(CConstants.ActionTitleWarrantyAcknowledgement)
             if let tmp = self.projectInfo?.hoa {
                 if tmp == 1 {
+                    printList.append(CConstants.ActionTitleHoaChecklist)
                     printList.append(CConstants.ActionTitleAddendumHOA)
                 }
             }
@@ -189,34 +193,55 @@ class PrintModelTableViewController: BaseViewController, UITableViewDataSource, 
     //     func tableView(tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
     //        return 44
     //    }
-    
     private func isAllCellSelected(){
-        var cnt = 0
-        for i in 0...printList.count-2 {
-            let indexa = NSIndexPath(forRow: i, inSection: 0)
-            if let cell = tableview.cellForRowAtIndexPath(indexa) as? PrintModelTableViewCell {
-                
-                if cell.contentView.tag == 1 {
-                    cnt+=1
-                }
+        var selectedh = 0;
+        for i in 1...selected!.count-1 {
+//            let index1 = NSIndexPath(forRow: i, inSection: 0)
+            if selected![i] {
+                selectedh+=1
             }
-        }
-        if cnt == printList.count-1 {
-            let indexa = NSIndexPath(forRow: printList.count-1, inSection: 0)
-            if let cell = tableview.cellForRowAtIndexPath(indexa) as? PrintModelTableViewCell {
-                cell.imageBtn.image =  UIImage(named: CConstants.CheckedImgNm)
-                cell.tag = 1
-            }
-        }else {
-            let indexa = NSIndexPath(forRow: printList.count-1, inSection: 0)
-            if let cell = tableview.cellForRowAtIndexPath(indexa) as? PrintModelTableViewCell {
-                cell.imageBtn.image =  UIImage(named: CConstants.CheckImgNm)
-                cell.tag = 0
-            }
-
         }
         
+            let index1 = NSIndexPath(forRow: 0, inSection: 0)
+            if let cell = tableview.cellForRowAtIndexPath(index1) as? PrintModelTableViewCell{
+                if selectedh == selected!.count-1 {
+                    selected![0] = true
+                    cell.imageBtn.image = UIImage(named: CConstants.CheckedImgNm)
+                }else{
+                    selected![0] = false
+                    cell.imageBtn.image = UIImage(named: CConstants.CheckImgNm)
+                }
+            }
+            
+        
     }
+//    private func isAllCellSelected(){
+//        var cnt = 0
+//        for i in 0...printList.count-2 {
+//            let indexa = NSIndexPath(forRow: i, inSection: 0)
+//            if let cell = tableview.cellForRowAtIndexPath(indexa) as? PrintModelTableViewCell {
+//                
+//                if cell.contentView.tag == 1 {
+//                    cnt+=1
+//                }
+//            }
+//        }
+//        if cnt == printList.count-1 {
+//            let indexa = NSIndexPath(forRow: printList.count-1, inSection: 0)
+//            if let cell = tableview.cellForRowAtIndexPath(indexa) as? PrintModelTableViewCell {
+//                cell.imageBtn.image =  UIImage(named: CConstants.CheckedImgNm)
+//                cell.tag = 1
+//            }
+//        }else {
+//            let indexa = NSIndexPath(forRow: printList.count-1, inSection: 0)
+//            if let cell = tableview.cellForRowAtIndexPath(indexa) as? PrintModelTableViewCell {
+//                cell.imageBtn.image =  UIImage(named: CConstants.CheckImgNm)
+//                cell.tag = 0
+//            }
+//
+//        }
+//        
+//    }
     
     func touched(tap : UITapGestureRecognizer){
 
@@ -225,7 +250,7 @@ class PrintModelTableViewController: BaseViewController, UITableViewDataSource, 
             if (cell.print.frame.contains(point)){
                 var selectedCellArray = [NSIndexPath]()
                 
-                for i in 0...printList.count-1 {
+                for i in 1...printList.count-2 {
                     let index = NSIndexPath(forRow: i, inSection: 0)
 //                    if let cell = tableview.cellForRowAtIndexPath(index) {
 //                        if cell.contentView.tag == 1 {
@@ -328,8 +353,30 @@ class PrintModelTableViewController: BaseViewController, UITableViewDataSource, 
     }
     
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-        
-        if indexPath.row < (printList.count - 1) {
+        if indexPath.row == 0 {
+            let cell = tableView.cellForRowAtIndexPath(indexPath) as? PrintModelTableViewCell
+            //            cell?.contentView.tag = 1 - cell!.contentView.tag
+            let iv :UIImage?
+            let c = selected![indexPath.row]
+            if !c {
+                iv = UIImage(named: CConstants.CheckedImgNm)
+            }else{
+                iv = UIImage(named: CConstants.CheckImgNm)
+            }
+            selected![indexPath.row] = !c
+//
+            cell?.imageBtn?.image = iv
+            
+            
+                for i in 1...(selected!.count-1) {
+                    selected![i] = !c
+                    let indexother = NSIndexPath(forRow: i, inSection: 0)
+                    if let cell = tableView.cellForRowAtIndexPath(indexother) as? PrintModelTableViewCell {
+                        cell.imageBtn?.image =  iv
+                    }
+                }
+            
+        }else if indexPath.row < (printList.count - 1) {
             let cell = tableView.cellForRowAtIndexPath(indexPath) as? PrintModelTableViewCell
 //            cell?.contentView.tag = 1 - cell!.contentView.tag
             let iv :UIImage?

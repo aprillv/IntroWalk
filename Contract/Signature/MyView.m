@@ -9,7 +9,9 @@
 #import "MyView.h"
 #import "SignatureView.h"
 
-@implementation MyView
+@implementation MyView{
+    BOOL editabless;
+}
 //保存线条颜色
 static NSMutableArray *colorArray;
 //保存被移除的线条颜色
@@ -55,6 +57,7 @@ static NSMutableArray *colors;
         deleColorArray=[[NSMutableArray alloc]init];
         //颜色和宽度默认都取当前数组第0位为默认值
         colorCount=0;
+        editabless = YES;
         widthCount=0;
         // Initialization code
     }
@@ -66,6 +69,14 @@ static NSMutableArray *colors;
 }
 -(void)setLineColor:(NSInteger)color{
     colorCount=color;
+}
+
+-(void)setLineArray1:(NSArray *)lineArray1{
+    if ( lineArray1 != nil) {
+        lineArray = lineArray1;
+        [self setNeedsDisplay];
+    }
+    
 }
 // Only override drawRect: if you perform custom drawing.
 // An empty implementation adversely affects performance during animation.
@@ -83,6 +94,44 @@ static NSMutableArray *colors;
 //    CGContextSetLineCap(context, kCGLineJoinRound);
     //查看lineArray数组里是否有线条，有就将之前画的重绘，没有只画当前线条
     if ([lineArray count]>0) {
+        
+       
+        
+        //            CGPoint cp = CGPointZero;
+        CGFloat cw = 0;
+        CGFloat ch = 0;
+        if (colorArray == nil || colorArray.count == 0) {
+            editabless = NO;
+            CGFloat minx = 0;
+            CGFloat miny = 0;
+            CGFloat maxx = 0;
+            CGFloat maxy = 0;
+            for (int i=0; i<[lineArray count]; i++) {
+                NSArray * array=[NSArray
+                                 arrayWithArray:[lineArray objectAtIndex:i]];
+                
+                if ([array count]>0)
+                {
+                    
+                    for (int j=0; j<[array count]; j++)
+                    {
+                        CGPoint myEndPoint=CGPointFromString([array objectAtIndex:j]);
+                        minx = MIN(minx, myEndPoint.x);
+                        miny = MIN(miny, myEndPoint.y);
+                        maxx = MAX(maxx, myEndPoint.x);
+                        maxy = MAX(maxy, myEndPoint.y);
+                    }
+                    
+                    
+                    
+                }
+                
+            }
+            cw = (rect.size.width - (maxx - minx)-20)/2;
+            ch = (rect.size.height - (maxy - miny)-20)/2;
+        }
+        
+        
         for (int i=0; i<[lineArray count]; i++) {
             NSArray * array=[NSArray
                              arrayWithArray:[lineArray objectAtIndex:i]];
@@ -90,28 +139,35 @@ static NSMutableArray *colors;
         if ([array count]>0)
         {
             CGContextBeginPath(context);
+            
+            
+           
+            
             CGPoint myStartPoint=CGPointFromString([array objectAtIndex:0]);
-            CGContextMoveToPoint(context, myStartPoint.x, myStartPoint.y);
+            CGContextMoveToPoint(context, myStartPoint.x + cw, myStartPoint.y + ch);
             
             for (int j=0; j<[array count]-1; j++)
             {
                 CGPoint myEndPoint=CGPointFromString([array objectAtIndex:j+1]);
+//                NSLog(@"%f -- %f", myEndPoint.x, myEndPoint.y);
                 //--------------------------------------------------------
-                CGContextAddLineToPoint(context, myEndPoint.x,myEndPoint.y);
+                CGContextAddLineToPoint(context, myEndPoint.x+cw,myEndPoint.y+ch);
             }
-            //获取colorArray数组里的要绘制线条的颜色
-            NSNumber *num=[colorArray objectAtIndex:i];
-            int count=[num intValue];
-            UIColor *lineColor=[colors objectAtIndex:count];
-            //获取WidthArray数组里的要绘制线条的宽度
-            NSNumber *wid=[WidthArray objectAtIndex:i];
-            int widthc=[wid intValue];
-            float width=lineWidthArray[widthc];
+//            //获取colorArray数组里的要绘制线条的颜色
+//            NSNumber *num=[colorArray objectAtIndex:i];
+//            int count=[num intValue];
+//            UIColor *lineColor=[colors objectAtIndex:count];
+//            //获取WidthArray数组里的要绘制线条的宽度
+//            NSNumber *wid=[WidthArray objectAtIndex:i];
+//            int widthc=[wid intValue];
+//            float width=lineWidthArray[widthc];
             //设置线条的颜色，要取uicolor的CGColor
-            CGContextSetStrokeColorWithColor(context,[lineColor CGColor]);
+//            CGContextSetStrokeColorWithColor(context,[lineColor CGColor]);
+            CGContextSetStrokeColorWithColor(context,[[UIColor blackColor] CGColor]);
             //-------------------------------------------------------
             //设置线条宽度
-            CGContextSetLineWidth(context, width);
+//            CGContextSetLineWidth(context, width);
+             CGContextSetLineWidth(context, 5.0);
             //保存自己画的
             CGContextStrokePath(context);
         }
@@ -153,9 +209,9 @@ static NSMutableArray *colors;
 
 -(UIView *)Signature{
     if (lineArray.count > 0){
-        NSNumber *wid=[WidthArray objectAtIndex:lineArray.count-1];
-        int widthc=[wid intValue];
-        float width=lineWidthArray[widthc];
+//        NSNumber *wid=[WidthArray objectAtIndex:lineArray.count-1];
+//        int widthc=[wid intValue];
+        float width=5;
         
         CGFloat maxx = 0;
         CGFloat maxy = 0;
@@ -173,7 +229,7 @@ static NSMutableArray *colors;
         
         NSMutableArray *na = [[NSMutableArray alloc] init];
        
-        CGRect ct = CGRectMake(0, 0, maxx - minx + width*2, maxy - miny + width*2);
+        CGRect ct = CGRectMake(0, 0, maxx - minx + width*4, maxy - miny + width*4);
         for (NSArray* lineArray1 in lineArray) {
              NSMutableArray *na1 = [[NSMutableArray alloc] init];
             for (NSString* cpline in lineArray1) {
@@ -219,6 +275,9 @@ static NSMutableArray *colors;
 static CGPoint MyBeganpoint;
 -(void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event
 {
+    if (!editabless) {
+        return;
+    }
     UITouch* touch=[touches anyObject];
     MyBeganpoint=[touch locationInView:self];
     NSString *sPoint=NSStringFromCGPoint(MyBeganpoint);
@@ -228,6 +287,10 @@ static CGPoint MyBeganpoint;
 //手指移动时候发出
 -(void)touchesMoved:(NSSet *)touches withEvent:(UIEvent *)event
 {
+    if (!editabless) {
+        return;
+    }
+    
     UITouch* touch=[touches anyObject];
 	MyBeganpoint=[touch locationInView:self];
     NSString *sPoint=NSStringFromCGPoint(MyBeganpoint);
@@ -237,6 +300,9 @@ static CGPoint MyBeganpoint;
 //当手指离开屏幕时候
 -(void)touchesEnded:(NSSet *)touches withEvent:(UIEvent *)event
 {
+    if (!editabless) {
+        return;
+    }
      [self addLA];
 //    NSArray *array=[NSArray arrayWithArray:pointArray];
 //    [lineArray addObject:array];

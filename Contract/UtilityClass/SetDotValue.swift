@@ -95,6 +95,16 @@ class SetDotValue : NSObject {
         static let chk6a8 = "6a8"
         static let chk6a = "6a"
         
+        //04/23/2016
+//        static let OtherBrokerFirm = "Other Broker Firm"
+        static let OtherBrokerFirmNo = "License No"
+        static let LicensedSupervisor = "Name of Associates Licensed Supervisor"
+        static let AssociateNameNo = "Telephone"
+        static let LicensedSupervisorNo = "Telephone_2"
+        static let OtherBrokerAddress = "Other Brokers Address"
+        static let OtherBrokerAddressFax = "Facsimile"
+        static let CityState = "CityState"
+        static let CityStateZip = "Zip"
         
         
     }
@@ -281,6 +291,23 @@ class SetDotValue : NSObject {
                     }
                 case SignContractPDFFields.p9AssociatesName:
                     pv.value = pdfInfo!.page9AssociatesName
+                    
+                case SignContractPDFFields.OtherBrokerFirmNo:
+                    pv.value = pdfInfo!.page9OtherBrokerFirmNo
+                case SignContractPDFFields.AssociateNameNo:
+                    pv.value = pdfInfo!.page9AssociateNameNo
+                case SignContractPDFFields.LicensedSupervisor:
+                    pv.value = pdfInfo!.page9LicensedSupervisor
+                case SignContractPDFFields.LicensedSupervisorNo:
+                    pv.value = pdfInfo!.page9LicensedSupervisorNo
+                case SignContractPDFFields.OtherBrokerAddress:
+                    pv.value = pdfInfo!.page9OtherBrokerAddress
+                case SignContractPDFFields.OtherBrokerAddressFax:
+                    pv.value = pdfInfo!.page9OtherBrokerAddressFax
+                case SignContractPDFFields.CityState:
+                    pv.value = pdfInfo!.page9CityState
+                case SignContractPDFFields.CityStateZip:
+                    pv.value = pdfInfo!.page9CityZip
                 case SignContractPDFFields.p9AssociatesEmailAddress:
                     pv.value = pdfInfo!.page9AssociatesEmailAddress
                     //                    static let chkfinancing = "financing"
@@ -830,32 +857,39 @@ class SetDotValue : NSObject {
             var sign : SignatureView?
             for i: Int in 0...5 {
                 
-                sign = SignatureView(frame: CGRect(x: x, y: y, width: w * 0.28, height: h))
-//                if i < 3 {
-//                    sign?.xname = "april" + "\(i)" + "Sign"
-//                }else{
-//                    sign?.xname = "april" + "\(i)" + "DateSign"
-//                }
-                switch i{
-                case 0:
-                    sign?.xname = "buyer1Sign"
-                case 1:
-                    sign?.xname = "buyer2Sign"
-                case 2:
-                    sign?.xname = "seller1Sign"
-                case 3:
-                    sign?.xname = "buyer1DateSign"
-                case 4:
-                    sign?.xname = "buyer2DateSign"
-                default:
-                    sign?.xname = "seller1DateSign"
+                if i < 3 {
+                    sign = SignatureView(frame: CGRect(x: x, y: y, width: w * 0.28, height: h))
+                    switch i{
+                    case 0:
+                        sign?.xname = "buyer1Sign"
+                    case 1:
+                        sign?.xname = "buyer2Sign"
+                    default:
+                        sign?.xname = "seller1Sign"
                     
+                    }
+                    sign?.pageno = has2Pages ? "0" : "1";
+                    sign?.pagenomargin = (aPrice?.pagenomargin ?? 0.0)!
+                    addedAnnotationViews.append(sign!)
+                }else{
+                    
+                    pf = PDFFormTextField(frame: CGRect(x: x, y: y + h + 3 , width: w * 0.28, height: price.frame.height), multiline: false, alignment: NSTextAlignment.Left, secureEntry: false, readOnly: true, withName: nil)
+//                    pf?.xname = "april"
+                    switch i{
+                        
+                    case 3:
+                        pf?.xname = "buyer1DateSign1"
+                    case 4:
+                        pf?.xname = "buyer2DateSign1"
+                    default:
+                        pf?.xname = "seller1DateSign1"
+                    }
+//                    pf?.value = AddendumCPDFFields.SignArray[i]
+                    pf?.pageno = has2Pages ? "0" : "1";
+                    pf?.pagenomargin = (aPrice?.pagenomargin ?? 0.0)!
+                    addedAnnotationViews.append(pf!)
                 }
-                
-                
-                sign?.pageno = has2Pages ? "0" : "1";
-                sign?.pagenomargin = (aPrice?.pagenomargin ?? 0.0)!
-                addedAnnotationViews.append(sign!)
+               
                 
                 line = PDFWidgetAnnotationView(frame: CGRect(x: x, y: y + 2+h, width: w * 0.28, height: 1))
                 line?.backgroundColor = UIColor.lightGrayColor()
@@ -1266,6 +1300,7 @@ class SetDotValue : NSObject {
     private struct AddendumHoaPDFFields{
         static let AddressName = "Street Address and City"
         static let PropertyName = "Name of Property Owners Association Association and Phone Number"
+        static let fee = "D DEPOSITS FOR RESERVES Buyer shall pay any deposits for reserves required at closing by the Association"
     }
     
     func setAddendumHoaDots(pdfInfo: AddendumA?, additionViews: [PDFWidgetAnnotationView]){
@@ -1273,8 +1308,10 @@ class SetDotValue : NSObject {
             switch pv.xname {
             case AddendumHoaPDFFields.AddressName:
                 pv.value = "\(pdfInfo!.nproject!) / \(pdfInfo!.city!)"
-//            case AddendumHoaPDFFields.PropertyName:
-//                pv.value = "\(getCurrentYear())"
+            case AddendumHoaPDFFields.PropertyName:
+                pv.value = "\(pdfInfo!.hoaname!) \(pdfInfo!.hoaphone!)"
+            case AddendumHoaPDFFields.fee:
+                pv.value = pdfInfo!.hoafee!
             default:
                 break
             }

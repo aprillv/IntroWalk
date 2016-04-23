@@ -207,6 +207,7 @@ class PDFBaseViewController: BaseViewController, DoOperationDelegate, UIPopoverP
                 if let tvc = segue.destinationViewController as? SendOperationViewController {
                     if let ppc = tvc.popoverPresentationController {
                         var showSave = false
+                        var showSubmit = true
                         if let dots = pdfView?.pdfWidgetAnnotationViews {
                             let ddd = dots
                             for doc in documents! {
@@ -218,12 +219,21 @@ class PDFBaseViewController: BaseViewController, DoOperationDelegate, UIPopoverP
                                 if let sign = v as? SignatureView {
                                     if sign.lineArray?.count > 0 {
                                         showSave = true
-                                        break
+                                        if sign.LineWidth == 0.0 {
+                                           showSubmit = false
+                                        }
+                                    }else{
+                                        if sign.menubtn != nil && sign.menubtn.superview != nil{
+                                            showSubmit = false
+                                        }
+                                        
                                     }
                                 }
                             }
                         }
+                        
                         tvc.showSave = showSave
+                        tvc.showSubmit = showSubmit
                         ppc.delegate = self
                         tvc.delegate1 = self
                     }
@@ -670,6 +680,10 @@ class PDFBaseViewController: BaseViewController, DoOperationDelegate, UIPopoverP
     
     func save_Email() {
         savePDFToServer(fileName!, nextFunc: "sendemail")
+    }
+    
+    func startover(){
+   
     }
     
     

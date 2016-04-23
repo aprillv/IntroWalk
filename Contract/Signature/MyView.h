@@ -16,5 +16,6 @@
 -(void)refrom;
 -(void)clear;
 -(void)setLineColor:(NSInteger)color;
+-(void)setLineArray1:(NSArray *)lineArray;
 -(void)setlineWidth:(NSInteger)width;
 @end

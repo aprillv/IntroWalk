@@ -23,6 +23,12 @@ class AddendumA: ContractPDFBaseModel {
      var exhibitCSignatureDate: String?
 //     var Incorporation: String?
     
+    
+    var hoaname: String?
+    var hoaphone: String?
+    var hoafee: String?
+    var soldA : String?
+    
     var found: String?
     var message: String?
 }
