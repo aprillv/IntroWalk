@@ -88,6 +88,7 @@ struct CConstants{
     static let PdfFileNameEXHIBIT_B = "EXHIBIT_B"
     static let PdfFileNameEXHIBIT_C = "EXHIBIT_C_General"
     static let PdfFileNameINFORMATION_ABOUT_BROKERAGE_SERVICES = "INFORMATION_ABOUT_BROKERAGE_SERVICES"
+    static let PdfFileNameINFORMATION_ABOUT_BROKERAGE_SERVICES2 = "INFORMATION_ABOUT_BROKERAGE_SERVICES2"
     static let PdfFileNameAddendumA = "AddendumA"
     static let PdfFileNameAddendumC = "AddendumC"
     static let PdfFileNameAddendumC2 = "AddendumC2"
@@ -96,6 +97,7 @@ struct CConstants{
     static let PdfFileNameBuyersExpect = "BuyersExpect"
     static let PdfFileNameFloodPlainAck = "FloodaplainAcknowledement"
     static let PdfFileNameHoaChecklist = "Hoa_Checklist"
+    static let PdfFileNameHoaChecklist2 = "Hoa_Checklist2"
     static let PdfFileNameWarrantyAcknowledgement = "Warranty_Builder_s"
     static let PdfFileNameAddendumHOA = "trec_36-8"
     
@@ -163,6 +165,9 @@ struct CConstants{
     static let ApplicationBarFontName  =  "Futura"
     static let ApplicationBarFontSize : CGFloat = 25.0
     static let ApplicationBarItemFontSize : CGFloat = 17.0
+    
+    static let ApprovedStatus : String = "Approved"
+    
 }
 
 

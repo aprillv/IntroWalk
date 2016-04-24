@@ -18,10 +18,15 @@ class ContractsItem: ContractObject {
     var assignsales1: String?
     var assignsales1name: String?
     var client: String?
+    var client2: String?
     var code: String?
     var idcity: String?
     var buyer1email: String?
     var buyer2email: String?
-    var hoa: NSNumber?
     
+    var hoa: NSNumber?
+    var status : String?
+    var approvedate : String?
+    var approveMonthdate : String?
+    var broker : String?
 }

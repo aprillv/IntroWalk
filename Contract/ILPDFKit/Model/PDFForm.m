@@ -94,7 +94,7 @@
 //                || (_name.length > 9 && [_name hasSuffix:@"Sign"])){
             if ((_name.length == 9 &&  [[_name substringWithRange:NSMakeRange(2, 6)] isEqualToString: @"bottom"])
                 || (_name.length ==10 && [_name hasPrefix:@"p1Tbottom"])
-                || ([_name hasSuffix:@"Sign"])){
+                || ([_name hasSuffix:@"Sign"])|| ([_name hasSuffix:@"Sign3"])){
                 _formType = PDFFormTypeImageView;
             }else{
                 isReadOnly = NO;

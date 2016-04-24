@@ -16,7 +16,16 @@ class PDFBaseViewController: BaseViewController, DoOperationDelegate, UIPopoverP
     var documents : [PDFDocument]?
 //    var documentAddedDotArray : [[PDFWidgetAnnotationView]]?
     var pdfView  : PDFView?
-    var AddressList : [ContractsItem]? 
+    var AddressList : [ContractsItem]?
+    
+    
+//    var hoa: NSNumber?
+//    var status : String?
+//    var approvedate : String?
+//    var approveMonthdate : String?
+//    var broker : String?
+    
+    
 //    var spinner : UIActivityIndicatorView?
 //    var spinner : UIActivityIndicatorView? = UIActivityIndicatorView(frame: CGRect(x: 0, y: 4, width: 50, height: 50)){
 //        didSet{
@@ -223,7 +232,7 @@ class PDFBaseViewController: BaseViewController, DoOperationDelegate, UIPopoverP
                                            showSubmit = false
                                         }
                                     }else{
-                                        if sign.menubtn != nil && sign.menubtn.superview != nil{
+                                        if sign.menubtn != nil && sign.menubtn.superview != nil && sign.xname != "Exhibitbp1sellerInitialSign"{
                                             showSubmit = false
                                         }
                                         
@@ -686,5 +695,8 @@ class PDFBaseViewController: BaseViewController, DoOperationDelegate, UIPopoverP
    
     }
     
+    func submit() {
+        
+    }
     
 }

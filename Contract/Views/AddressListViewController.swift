@@ -484,7 +484,7 @@ class AddressListViewController: UITableViewController, UISearchBarDelegate, ToD
             //                hud.mode = .AnnularDeterminate
             hud?.labelText = CConstants.RequestMsg
         }
-       
+//       print(a)
         Alamofire.request(.POST, CConstants.ServerURL + CConstants.LoginServiceURL, parameters: a).responseJSON{ (response) -> Void in
             if response.result.isSuccess {
 //                print(response.result.value)

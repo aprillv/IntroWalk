@@ -113,7 +113,7 @@ class SetDotValue : NSObject {
         return "contract1pdf_" + pdfInfo!.idcity! + "_" + pdfInfo!.idcia!
     }
     
-    func setSignContractDots(pdfInfo:ContractSignature?, additionViews: [PDFWidgetAnnotationView], pdfview: PDFView){
+    func setSignContractDots(pdfInfo:ContractSignature?, additionViews: [PDFWidgetAnnotationView], pdfview: PDFView, item: ContractsItem?){
         if let filedsFromTxt = readContractFieldsFromTxt(getFileName(pdfInfo)) {
             
             
@@ -139,8 +139,6 @@ class SetDotValue : NSObject {
                     let index1 = b.startIndex.advancedBy(4)
                     tobuyer4 = b.substringFromIndex(index1)
                 }
-                
-                
             }else{
                 tobuyer3 = ""
                 tobuyer4 = ""
@@ -241,17 +239,48 @@ class SetDotValue : NSObject {
                 case SignContractPDFFields.tobuyer7:
                     pv.value = pdfInfo!.bemail1!
                 case SignContractPDFFields.executeddd:
-                    if let dd = pdfInfo?.executeddd {
-                    pv.value = dd
+                    if let item1 = item {
+                        if item1.status == CConstants.ApprovedStatus {
+                            pv.value = item1.approveMonthdate!.componentsSeparatedByString(" ")[0]
+                        }else{
+                            pv.value = ""
+                        }
+                    }else{
+                        pv.value = ""
                     }
+                    
+                    
+//                    if let dd = pdfInfo?.executeddd {
+//                    pv.value = dd
+//                    }
                 case SignContractPDFFields.executedmm:
-                    if let dd = pdfInfo?.executedmm {
-                        pv.value = dd
+                    if let item1 = item {
+                        if item1.status == CConstants.ApprovedStatus {
+                            pv.value = item1.approveMonthdate!.componentsSeparatedByString(" ")[1]
+                        }else{
+                            pv.value = ""
+                        }
+                    }else{
+                        pv.value = ""
                     }
+//                    if let dd = pdfInfo?.executedmm {
+//                        pv.value = dd
+//                    }
                 case SignContractPDFFields.executedyy:
-                    if let dd = pdfInfo?.executedyy {
-                        pv.value = dd
+                    if let item1 = item {
+                        if item1.status == CConstants.ApprovedStatus {
+                            pv.value = item1.approveMonthdate!.componentsSeparatedByString(" ")[2]
+                            let a = pv.value.startIndex
+                            pv.value = pv.value.substringFromIndex(a.advancedBy(2))
+                        }else{
+                            pv.value = ""
+                        }
+                    }else{
+                        pv.value = ""
                     }
+//                    if let dd = pdfInfo?.executedyy {
+//                        pv.value = dd
+//                    }
                 case SignContractPDFFields.buyer_2:
                     pv.value = pdfInfo!.client!
                 case SignContractPDFFields.buyer_3:
@@ -656,11 +685,15 @@ class SetDotValue : NSObject {
         static let ExcutedDay = "ExcutedDay"
         static let GeneralPartner = "GeneralPartner"
         static let Signature = "SignatureSign"
+        static let adate = "AddendumAExecutedDaySign1"
+        
     }
     
     func setAddendumADots(pdfInfo: AddendumA?, additionViews: [PDFWidgetAnnotationView]){
         for pv : PDFWidgetAnnotationView in additionViews{
             switch pv.xname {
+            case AddendumAPDFFields.adate:
+                pv.value = pdfInfo?.approvedDate ?? ""
             case AddendumAPDFFields.Nonrefundable:
                 pv.value = pdfInfo?.Nonrefundable!
             case AddendumAPDFFields.CompanyName:
@@ -873,16 +906,21 @@ class SetDotValue : NSObject {
                     addedAnnotationViews.append(sign!)
                 }else{
                     
-                    pf = PDFFormTextField(frame: CGRect(x: x, y: y + h + 3 , width: w * 0.28, height: price.frame.height), multiline: false, alignment: NSTextAlignment.Left, secureEntry: false, readOnly: true, withName: nil)
+                    pf = PDFFormTextField(frame: CGRect(x: x, y: y+h/2 , width: w * 0.28, height: price.frame.height), multiline: false, alignment: NSTextAlignment.Left, secureEntry: false, readOnly: true, withName: nil)
 //                    pf?.xname = "april"
                     switch i{
                         
                     case 3:
                         pf?.xname = "buyer1DateSign1"
+                        pf?.value = pdfInfo?.addendumDate
                     case 4:
                         pf?.xname = "buyer2DateSign1"
+                        if  (pdfInfo?.buyer ?? "").containsString(" / ") {
+                            pf?.value = pdfInfo?.addendumDate
+                        }
                     default:
                         pf?.xname = "seller1DateSign1"
+                        pf?.value = pdfInfo?.addendumDate
                     }
 //                    pf?.value = AddendumCPDFFields.SignArray[i]
                     pf?.pageno = has2Pages ? "0" : "1";
@@ -942,7 +980,11 @@ class SetDotValue : NSObject {
         static let txtAddress = "txtAddress"
         static let txtCityStateZip = "txtCityStateZip"
         static let txtTelFax = "txtTelFax"
-        static let txtDate = "txtDate"
+        
+        static let txtDate = "txtDateSign1"
+        static let buyer1Date = "buyer1DateSign1"
+        static let buyer2Date = "buyer2DateSign1"
+        
         static let txtIdNumber = "txtIdNumber"
         static let txtContractDate = "txtContractDate"
         static let txtEstimatedCompletion = "txtEstimatedCompletion"
@@ -1010,6 +1052,19 @@ class SetDotValue : NSObject {
                 pv.value = pdfInfo?.designDate!
             case DesignCenterPDFFields.txtDate:
                 pv.value = pdfInfo?.txtDate!
+            case DesignCenterPDFFields.buyer1Date:
+                pv.value = pdfInfo?.txtDate!
+            case DesignCenterPDFFields.buyer1Date:
+                if let c = pdfInfo?.buyer2 {
+                    if c != ""{
+                    pv.value = pdfInfo?.txtDate!
+                    }else{
+                    pv.value = ""
+                    }
+                }else{
+                    pv.value = ""
+                }
+                
                 //pending sele
             case DesignCenterPDFFields.txtContractDate:
                 pv.value = pdfInfo?.contractDate!
@@ -1165,8 +1220,8 @@ class SetDotValue : NSObject {
     private struct ExhibitAPDFFields{
         static let To = "1"
         static let Property = "PROPERTY 1"
-        static let Date = "PROPERTY 2"
         static let CompanyName = "CompanyName"
+        static let adate = "PROPERTY 2Sign1"
     }
     
     func setExhibitADots(pdfInfo: AddendumA?, additionViews: [PDFWidgetAnnotationView]){
@@ -1179,8 +1234,8 @@ class SetDotValue : NSObject {
                 pv.value = pdfInfo?.nproject!
             case ExhibitAPDFFields.CompanyName:
                 pv.value = pdfInfo?.CompanyName!
-            case ExhibitAPDFFields.Date:
-                pv.value = pdfInfo?.exhibitABDate!
+            case ExhibitAPDFFields.adate:
+                pv.value = pdfInfo?.approvedDate ?? ""
             default:
                 break
             }
@@ -1193,8 +1248,8 @@ class SetDotValue : NSObject {
         static let To = "1"
         //        static let From = "CompanyName"
         static let Property = "PROPERTY 1"
-        static let Date = "PROPERTY 2"
         static let CompanyName = "CompanyName"
+          static let adate = "PROPERTY 2Sign1"
     }
     
     func setExhibitBDots(pdfInfo: AddendumA?, additionViews: [PDFWidgetAnnotationView]){
@@ -1206,8 +1261,8 @@ class SetDotValue : NSObject {
                 pv.value = pdfInfo?.nproject!
             case ExhibitBPDFFields.CompanyName:
                 pv.value = pdfInfo?.CompanyName!
-            case ExhibitBPDFFields.Date:
-                pv.value = pdfInfo?.exhibitABDate!
+            case ExhibitBPDFFields.adate:
+                pv.value = pdfInfo?.approvedDate ?? ""
             default:
                 break
             }
@@ -1217,8 +1272,8 @@ class SetDotValue : NSObject {
     // MARK: Exhibit C
     private struct ExhibitCPDFFields{
         static let GeneralPartner = "GeneralPartner"
-        static let Date = "SignatureDate"
         static let CompanyName = "CompanyName"
+         static let adate = "SignatureDate"
     }
     
     func setExhibitCDots(pdfInfo: AddendumA?, additionViews: [PDFWidgetAnnotationView]){
@@ -1228,8 +1283,8 @@ class SetDotValue : NSObject {
                 pv.value = "\(pdfInfo!.GeneralPartner!),"
             case ExhibitCPDFFields.CompanyName:
                 pv.value = pdfInfo?.CompanyName!
-            case ExhibitCPDFFields.Date:
-                pv.value = pdfInfo?.exhibitCSignatureDate!
+            case ExhibitCPDFFields.adate:
+                pv.value = pdfInfo?.approvedDate ?? ""
             default:
                 break
             }
@@ -1265,6 +1320,8 @@ class SetDotValue : NSObject {
         static let printedName2 = "WPrintedName2"
         static let homeOwnerNoticeAddress = "Address for Notice Purposes 1"
         static let homeOwnerNoticeAddressline2 = "Address for Notice Purposes 2"
+        
+        
     }
     
     func setWarrantyAcknowledegeDots(pdfInfo: AddendumA?, additionViews: [PDFWidgetAnnotationView]){
@@ -1329,6 +1386,9 @@ class SetDotValue : NSObject {
         static let AddressName = "Street Address and City"
         static let PropertyName = "Name of Property Owners Association Association and Phone Number"
         static let fee = "D DEPOSITS FOR RESERVES Buyer shall pay any deposits for reserves required at closing by the Association"
+        
+        static let A4 = "4Buyer does not require delivery of the Subdivision Information"
+        static let E = "Buyer"
     }
     
     func setAddendumHoaDots(pdfInfo: AddendumA?, additionViews: [PDFWidgetAnnotationView]){
@@ -1340,6 +1400,10 @@ class SetDotValue : NSObject {
                 pv.value = "\(pdfInfo!.hoaname!) \(pdfInfo!.hoaphone!)"
             case AddendumHoaPDFFields.fee:
                 pv.value = pdfInfo!.hoafee!
+            case AddendumHoaPDFFields.A4, AddendumHoaPDFFields.E:
+                if let radio = pv as? PDFFormButtonField {
+                    radio .setValue2("1")
+                }
             default:
                 break
             }
@@ -1347,18 +1411,32 @@ class SetDotValue : NSObject {
     }
     // MARK: FloodPlain Acknowledgement
     private struct FloodPlainAcknowledgementPDFFields{
-        static let Year = "year"
         static let PropertyName = "Property Address 1"
         static let PropertyName2 = "Property Address 2"
     }
     
     func setFloodPlainAcknowledgementDots(pdfInfo: AddendumA?, additionViews: [PDFWidgetAnnotationView]){
+        var h : String?
+        var h2 : String?
+        if let c = pdfInfo?.nproject {
+            if c.containsString("(") {
+                let d = c.componentsSeparatedByString("(")
+                h = d[0]
+                h2 = "(\(d[1])"
+            }else{
+                h = c
+//                h2 = ""
+            }
+        }else{
+            h = ""
+//            h2 = ""
+        }
         for pv : PDFWidgetAnnotationView in additionViews{
             switch pv.xname {
             case FloodPlainAcknowledgementPDFFields.PropertyName:
-                pv.value = pdfInfo?.nproject!
-            case FloodPlainAcknowledgementPDFFields.Year:
-                pv.value = "\(getCurrentYear())"
+                pv.value = h
+            case FloodPlainAcknowledgementPDFFields.PropertyName2:
+                pv.value = h2 ?? ""
             default:
                 break
             }

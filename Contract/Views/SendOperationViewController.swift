@@ -17,6 +17,8 @@ protocol DoOperationDelegate
     func fillDraftInfo()
     func save_Email()
     func startover()
+    func submit()
+    
 }
 
 class SendOperationViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
@@ -112,7 +114,14 @@ class SendOperationViewController: UIViewController, UITableViewDelegate, UITabl
                 case constants.operationClearDraftInfo:
                     delegate0.clearDraftInfo()
                 case constants.operationStartOver:
-                    delegate0.startover()
+                    if self.showSave! {
+                        delegate0.startover()
+                    }
+                case constants.operationSubmit:
+                    if self.showSubmit! {
+                        delegate0.submit()
+                    }
+                    
 //                case constants.operationSaveEmail:
 //                    delegate0.save_Email()
                     default:

@@ -92,7 +92,9 @@
             btn.frame = CGRectMake(0, 0, 64, 56);
 //            ct.origin.x -= ct.size.width/2.0;
             ct.origin.y -= 12;
-        }else if([self.xname hasSuffix:@"bottom3"]){
+        }else if([self.xname hasSuffix:@"bottom3"]
+                 || [self.xname isEqualToString:@"Exhibitbp1sellerInitialSign"]
+                 || [self.xname hasSuffix:@"Sign3"]){
             xtitle = @"initial";
             btn.frame = CGRectMake(0, 0, 64, 44);
         }else if([self.xname hasSuffix:@"buyer1Sign"]) {
@@ -106,6 +108,10 @@
         }else{
              xtitle = @"signBlack" ;
             btn.frame = CGRectMake(0, 0, 94, 44);
+        }
+        
+        if ([self.xname isEqualToString:@"Exhibitbp1sellerInitialSign"]){
+            ct.origin.x -= 40;
         }
         btn.center = ct.origin;
         
@@ -140,7 +146,7 @@
     if ([self.xname hasSuffix:@"DateSign"]) {
         xtitle = @"Sign Date";
     }else{
-        if ([self.xname isEqualToString:@"Exhibitbp1seller3Sign"]) {
+        if ([self.xname isEqualToString:@"Exhibitbp1sellerInitialSign"]) {
             xtitle = @"Initial";
         }else if([self.xname isEqualToString:@"BYSign"] || [self.xname isEqualToString:@"NameSign"] || [self.xname isEqualToString:@"TitleSign"] || [self.xname isEqualToString:@"AddendumASeller3Sign"]) {
             xtitle = @"Sign";

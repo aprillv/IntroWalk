@@ -66,6 +66,11 @@ class PDFPrintViewController: PDFBaseViewController, UIScrollViewDelegate, PDFVi
     var addendumApdfInfo : AddendumA?{
         didSet{
             self.setBuyer2()
+            if let c = contractInfo?.status {
+                if c == CConstants.ApprovedStatus {
+                    addendumApdfInfo?.approvedDate = contractInfo?.approvedate
+                }
+            }
             if let info = addendumApdfInfo {
                 if let fDD = fileDotsDic {
                     let tool = SetDotValue()
@@ -122,10 +127,32 @@ class PDFPrintViewController: PDFBaseViewController, UIScrollViewDelegate, PDFVi
                     case CConstants.ActionTitleAddendumC:
                         for doc in documents! {
                             if doc.pdfName == CConstants.ActionTitleAddendumC {
+                                if let c = contractInfo?.status {
+                                    if c == CConstants.ApprovedStatus {
+                                        info.addendumDate = contractInfo?.approvedate
+                                    }else{
+                                        info.addendumDate = ""
+                                    }
+                                }else{
+                                    info.addendumDate = ""
+                                }
+
+                                
                                 doc.addedviewss = tool.setAddendumCDots(info, additionViews: dots, pdfview: self.pdfView!, has2Pages0: self.page2!)
                                 for sign in doc.addedviewss {
                                     if sign.isKindOfClass(SignatureView) {
                                         if let si = sign as? SignatureView {
+                                            if contractInfo?.status != CConstants.ApprovedStatus {
+                                                if si.xname.containsString("seller") || si.xname.containsString("bottom3"){
+                                                    continue
+                                                }
+                                            }else{
+                                                if si.xname.containsString("buyer")
+                                                    || si.xname.containsString("bottom1")
+                                                    || si.xname.containsString("bottom2"){
+                                                    continue
+                                                }
+                                            }
                                             
                                             if  !info.buyer!.containsString(" / ")
                                                  && ( si.xname == "buyer2Sign"
@@ -167,7 +194,7 @@ class PDFPrintViewController: PDFBaseViewController, UIScrollViewDelegate, PDFVi
                         switch str{
                         case CConstants.ActionTitleContract,
                          CConstants.ActionTitleDraftContract:
-                            tool.setSignContractDots(info, additionViews: dots, pdfview: self.pdfView!)
+                            tool.setSignContractDots(info, additionViews: dots, pdfview: self.pdfView!, item: contractInfo)
                             return
                         default:
                             break
@@ -213,6 +240,16 @@ class PDFPrintViewController: PDFBaseViewController, UIScrollViewDelegate, PDFVi
                     for (str, dots) in fDD {
                         switch str{
                         case CConstants.ActionTitleDesignCenter:
+                            if let c = contractInfo?.status {
+                                if c == CConstants.ApprovedStatus {
+                                    info.txtDate = contractInfo?.approvedate
+                                }else{
+                                    info.txtDate = ""
+                                }
+                            }else{
+                                info.txtDate = ""
+                            }
+                            
                             tool.setDesignCenterDots(info, additionViews: dots)
                             return
                         default:
@@ -293,7 +330,12 @@ class PDFPrintViewController: PDFBaseViewController, UIScrollViewDelegate, PDFVi
                 str = CConstants.PdfFileNameThirdPartyFinancingAddendum
                 filePageCnt += CConstants.PdfFileNameThirdPartyFinancingAddendumPageCount
             case CConstants.ActionTitleINFORMATION_ABOUT_BROKERAGE_SERVICES:
-                str = CConstants.PdfFileNameINFORMATION_ABOUT_BROKERAGE_SERVICES
+                if contractInfo?.broker == "" {
+                    str = CConstants.PdfFileNameINFORMATION_ABOUT_BROKERAGE_SERVICES
+                }else{
+                    str = CConstants.PdfFileNameINFORMATION_ABOUT_BROKERAGE_SERVICES2
+                }
+                
                 filePageCnt += CConstants.PdfFileNameINFORMATION_ABOUT_BROKERAGE_SERVICESPageCount
             case CConstants.ActionTitleAddendumA:
                 str = CConstants.PdfFileNameAddendumA
@@ -318,7 +360,16 @@ class PDFPrintViewController: PDFBaseViewController, UIScrollViewDelegate, PDFVi
                 filePageCnt += CConstants.PdfFileNameFloodPlainAckPageCount
                 
             case CConstants.ActionTitleHoaChecklist:
-                str = CConstants.PdfFileNameHoaChecklist
+                if let c = contractInfo?.hoa {
+                    if c == 1{
+                        str = CConstants.PdfFileNameHoaChecklist
+                    }else{
+                        str = CConstants.PdfFileNameHoaChecklist2
+                    }
+                }else{
+                 str = CConstants.PdfFileNameHoaChecklist
+                }
+                
                 filePageCnt += CConstants.PdfFileNameHoaChecklistPageCount
             case CConstants.ActionTitleWarrantyAcknowledgement:
                 str = CConstants.PdfFileNameWarrantyAcknowledgement
@@ -373,6 +424,30 @@ class PDFPrintViewController: PDFBaseViewController, UIScrollViewDelegate, PDFVi
         
         //        print(self.document?.forms)
         setAddendumC()
+        if let c = contractInfo?.status {
+            if c ==  CConstants.ApprovedStatus {
+                if filesArray!.contains(CConstants.ActionTitleINFORMATION_ABOUT_BROKERAGE_SERVICES){
+                    setBrokerDate()
+                }
+                if filesArray!.contains(CConstants.ActionTitleAddendumD){
+                    setAddendumDDate()
+                }
+                if filesArray!.contains(CConstants.ActionTitleAddendumE){
+                    setAddendumEDate()
+                }
+                if filesArray!.contains(CConstants.ActionTitleFloodPlainAck){
+                    setFloodPlainAckDate()
+                }
+                if filesArray!.contains(CConstants.ActionTitleWarrantyAcknowledgement){
+                    setWarrantyAcknowledgement()
+                }
+                if filesArray!.contains(CConstants.ActionTitleHoaChecklist){
+                    setHoaChecklist()
+                }
+            }
+        }
+        
+    
         
         
         view2.addSubview(pdfView!)
@@ -380,9 +455,246 @@ class PDFPrintViewController: PDFBaseViewController, UIScrollViewDelegate, PDFVi
         getAllSignature()
 
     }
+//    static let dd = "WExecutedSign1"
+//    static let yyyy = "WYearSign1"
+//    static let mmm = "WDayofSign1"
+    
+    private func setHoaChecklist(){
+        if let fDD = fileDotsDic {
+            //            let tool = SetDotValue()
+            //            var i = 0
+            for (str, dots) in fDD {
+                switch str{
+                case CConstants.ActionTitleHoaChecklist:
+                    for sign in dots {
+                        if sign.isKindOfClass(PDFFormTextField) {
+                            if let si = sign as? PDFFormTextField {
+                                
+                                if si.xname == "buyer1DateSign1"{
+                                    si.value = contractInfo?.approvedate
+                                }
+                                
+                                if let s = contractInfo?.client2 {
+                                    if s != "" {
+                                        if si.xname == "buyer2DateSign1"{
+                                            si.value = contractInfo?.approvedate
+                                        }
+                                    }
+                                }
+                                
+                            }
+                        }
+                    }
+                    
+                    return
+                default:
+                    break;
+                    //                    i += 1
+                }
+                
+            }
+        }
+    }
+    private func setWarrantyAcknowledgement(){
+        if let fDD = fileDotsDic {
+            //            let tool = SetDotValue()
+            //            var i = 0
+            for (str, dots) in fDD {
+                switch str{
+                case CConstants.ActionTitleWarrantyAcknowledgement:
+                    var dd  = ""
+                    var mmm  = ""
+                    var yyyy  = ""
+                    if let c = contractInfo?.approveMonthdate {
+                        let a = c.componentsSeparatedByString(" ")
+                        dd = a[0]
+                        mmm = a[1]
+                        yyyy = a[2]
+                    }
+                    for sign in dots {
+                        if sign.isKindOfClass(PDFFormTextField) {
+                            if let si = sign as? PDFFormTextField {
+                                
+                                if si.xname == "WExecutedSign1"{
+                                    si.value = dd
+                                }
+                                
+                                if si.xname == "WDayofSign1"{
+                                    si.value = mmm
+                                }
+                                if si.xname == "WYearSign1"{
+                                    si.value = yyyy.substringFromIndex(yyyy.startIndex.advancedBy(2))
+                                }
+                                
+                            }
+                        }
+                    }
+                    
+                    return
+                default:
+                    break;
+                    //                    i += 1
+                }
+                
+            }
+        }
+    }
     
     
+    private func setFloodPlainAckDate(){
+        if let fDD = fileDotsDic {
+            //            let tool = SetDotValue()
+            //            var i = 0
+            for (str, dots) in fDD {
+                switch str{
+                case CConstants.ActionTitleFloodPlainAck:
+                    var dd  = ""
+                    var mmm  = ""
+                    var yyyy  = ""
+                    if let c = contractInfo?.approveMonthdate {
+                        let a = c.componentsSeparatedByString(" ")
+                        dd = a[0]
+                        mmm = a[1]
+                        yyyy = a[2]
+                    }
+                    for sign in dots {
+                        if sign.isKindOfClass(PDFFormTextField) {
+                            if let si = sign as? PDFFormTextField {
+                                
+                                if si.xname == "FloodDaySign2"{
+                                    si.value = dd
+                                }
+                                
+                                if si.xname == "FloodDayofSign2"{
+                                    si.value = mmm
+                                }
+                                if si.xname == "year"{
+                                    si.value = yyyy
+                                }
+                                
+                            }
+                        }
+                    }
+                    
+                    return
+                default:
+                    break;
+                    //                    i += 1
+                }
+                
+            }
+        }
+    }
+    private func setAddendumEDate(){
+        if let fDD = fileDotsDic {
+            //            let tool = SetDotValue()
+            //            var i = 0
+            for (str, dots) in fDD {
+                switch str{
+                case CConstants.ActionTitleAddendumE:
+                    for sign in dots {
+                        if sign.isKindOfClass(PDFFormTextField) {
+                            if let si = sign as? PDFFormTextField {
+                                
+                                if si.xname == "buyer1DateSign1"{
+                                    si.value = contractInfo?.approvedate
+                                }
+                                
+                                if let s = contractInfo?.client2 {
+                                    if s != "" {
+                                        if si.xname == "buyer2DateSign1"{
+                                            si.value = contractInfo?.approvedate
+                                        }
+                                    }
+                                }
+                                
+                            }
+                        }
+                    }
+                    
+                    return
+                default:
+                    break;
+                    //                    i += 1
+                }
+                
+            }
+        }
+    }
+    private func setAddendumDDate(){
+        if let fDD = fileDotsDic {
+            //            let tool = SetDotValue()
+            //            var i = 0
+            for (str, dots) in fDD {
+                switch str{
+                case CConstants.ActionTitleAddendumD:
+                    for sign in dots {
+                        if sign.isKindOfClass(PDFFormTextField) {
+                            if let si = sign as? PDFFormTextField {
+                                
+                                if si.xname == "buyer1DateSign1"{
+                                    si.value = contractInfo?.approvedate
+                                }
+                                
+                                if let s = contractInfo?.client2 {
+                                    if s != "" {
+                                        if si.xname == "buyer2DateSign1"{
+                                            si.value = contractInfo?.approvedate
+                                        }
+                                    }
+                                }
+                                
+                            }
+                        }
+                    }
+                    
+                    return
+                default:
+                    break;
+                    //                    i += 1
+                }
+                
+            }
+        }
+    }
     
+    
+    private func setBrokerDate(){
+        if let fDD = fileDotsDic {
+//            let tool = SetDotValue()
+//            var i = 0
+            for (str, dots) in fDD {
+                switch str{
+                case CConstants.ActionTitleINFORMATION_ABOUT_BROKERAGE_SERVICES:
+                    for sign in dots {
+                        if sign.isKindOfClass(PDFFormTextField) {
+                            if let si = sign as? PDFFormTextField {
+                                
+                                if si.xname == "brokerbuyer1DateSign1" || si.xname == "broker2buyer1DateSign1"{
+                                    si.value = contractInfo?.approvedate
+                                }
+                                
+                                if let s = contractInfo?.client2 {
+                                    if s != ""{
+                                        if si.xname == "brokerbuyer2DateSign1" || si.xname == "broker2buyer1DateSign2"{
+                                            si.value = contractInfo?.approvedate
+                                        }
+                                    }
+                                }
+                                
+                            }
+                        }
+                    }
+                            
+                    return
+                default:
+                    break;
+//                    i += 1
+                }
+                
+            }
+        }
+    }
   
     
     override func viewDidLoad() {
@@ -824,6 +1136,24 @@ class PDFPrintViewController: PDFBaseViewController, UIScrollViewDelegate, PDFVi
                     if sign.isKindOfClass(SignatureView) {
                         
                         if let si = sign as? SignatureView {
+                            if contractInfo?.status != CConstants.ApprovedStatus {
+                                if si.xname != "Exhibitbp1sellerInitialSign" {
+                                    if si.xname.containsString("seller")
+                                        || si.xname.containsString("bottom3"){
+                                        continue
+                                    }
+                                }
+                                
+                            }else{
+                                if si.xname == "Exhibitbp1sellerInitialSign" {
+                                    continue
+                                }else if (si.xname.containsString("buyer")
+                                    || si.xname.containsString("bottom1")
+                                    || si.xname.containsString("bottom2")){
+                                    continue
+                                }
+                            }
+                            
 //                            for a in selfSignatureViews! {
 //                                print(si.xname ?? "")
 //                            }
@@ -844,31 +1174,23 @@ class PDFPrintViewController: PDFBaseViewController, UIScrollViewDelegate, PDFVi
                                 continue
                             }
                             
-                            if let addendumaInfo = self.addendumApdfInfo {
-                                if addendumaInfo.hasbroker == "" {
-                                    if si.xname.containsString("brokerb") {
-                                        if si.menubtn != nil {
-                                            si.menubtn.removeFromSuperview()
-                                            si.menubtn = nil
-                                        }
-                                        continue
-                                    }
-                                }else {
-                                    if si.xname.containsString("broker2") {
-                                        if si.menubtn != nil {
-                                            si.menubtn.removeFromSuperview()
-                                            si.menubtn = nil
-                                        }
-                                        continue
-                                    }
-                                }
-                            }
+//                            if let addendumaInfo = self.contractInfo {
+//                                if addendumaInfo.broker == "" {
+//                                    if si.xname.containsString("broker2") {
+//                                        if si.menubtn != nil {
+//                                            si.menubtn.removeFromSuperview()
+//                                            si.menubtn = nil
+//                                        }
+//                                        continue
+//                                    }
+//                                }
+//                            }
                             
                             if !showBuyer2{
                                 if si.xname.hasSuffix("bottom2")
                                     || si.xname.hasSuffix("buyer2Sign")
                                 || si.xname.hasSuffix("buyer2DateSign")
-                                    || si.xname == "WPrintedName2Sign"
+                                    
                                 {
                                     if si.menubtn != nil {
                                         si.menubtn.removeFromSuperview()
@@ -899,17 +1221,17 @@ class PDFPrintViewController: PDFBaseViewController, UIScrollViewDelegate, PDFVi
         if let dots = pdfView?.pdfWidgetAnnotationViews {
             for d in dots{
                 if let sign = d as? SignatureView {
-                    if let addendumaInfo = self.addendumApdfInfo {
-                        if addendumaInfo.hasbroker == "" {
-                            if sign.xname.containsString("brokerb") {
-                                continue
-                            }
-                        }else {
-                            if sign.xname.containsString("broker2") {
-                                continue
-                            }
-                        }
-                    }
+//                    if let addendumaInfo = self.addendumApdfInfo {
+//                        if addendumaInfo.hasbroker == "" {
+////                            if sign.xname.containsString("brokerb") {
+////                                continue
+////                            }
+//                        }else {
+//                            if sign.xname.containsString("broker2") {
+//                                continue
+//                            }
+//                        }
+//                    }
                     selfSignatureViews?.append(sign)
                 }
             }
@@ -937,53 +1259,67 @@ class PDFPrintViewController: PDFBaseViewController, UIScrollViewDelegate, PDFVi
     }
     
     override func startover() {
-        for doc in documents! {
-            if let dd = doc.addedviewss {
-                for d in dd{
-                    if let sign = d as? SignatureView {
-                        if (sign.lineArray != nil){
-                            sign.lineArray = nil
-                            //                sign.originWidth = 0.0
-                            //                sign.originHeight = 0.0
-                            sign.LineWidth = 0.0
-                            sign.showornot = true
-                            if sign.menubtn != nil {
-                                sign.superview?.addSubview(sign.menubtn)
-                            }else{
-                                sign.addSignautre(pdfView!.pdfView!.scrollView)
+        let alert: UIAlertController = UIAlertController(title: CConstants.MsgTitle, message: "Are you sure you want to Start Over", preferredStyle: .Alert)
+        
+        //Create and add the OK action
+        let oKAction: UIAlertAction = UIAlertAction(title: "YES", style: .Default) { action -> Void in
+            //Do some stuff
+            for doc in self.documents! {
+                if let dd = doc.addedviewss {
+                    for d in dd{
+                        if let sign = d as? SignatureView {
+                            if (sign.lineArray != nil){
+                                sign.lineArray = nil
+                                //                sign.originWidth = 0.0
+                                //                sign.originHeight = 0.0
+                                sign.LineWidth = 0.0
+                                sign.showornot = true
+                                if sign.menubtn != nil {
+                                    sign.superview?.addSubview(sign.menubtn)
+                                }else{
+                                    sign.addSignautre(self.pdfView!.pdfView!.scrollView)
+                                }
+                                
                             }
-                            
                         }
                     }
                 }
-            }
-            
-            
-        }
-        if let fDD = fileDotsDic {
-           
-            
-            for (_, dots) in fDD {
                 
-                for si in dots {
-                    if let sign = si as? SignatureView{
-                        if (sign.lineArray != nil){
-                            sign.lineArray = nil
-                            //                sign.originWidth = 0.0
-                            //                sign.originHeight = 0.0
-                            sign.LineWidth = 0.0
-                            sign.showornot = true
-                            if sign.menubtn != nil {
-                                sign.superview?.addSubview(sign.menubtn)
-                            }else{
-                                sign.addSignautre(pdfView!.pdfView!.scrollView)
+                
+            }
+            if let fDD = self.fileDotsDic {
+                
+                
+                for (_, dots) in fDD {
+                    
+                    for si in dots {
+                        if let sign = si as? SignatureView{
+                            if (sign.lineArray != nil){
+                                sign.lineArray = nil
+                                //                sign.originWidth = 0.0
+                                //                sign.originHeight = 0.0
+                                sign.LineWidth = 0.0
+                                sign.showornot = true
+                                if sign.menubtn != nil {
+                                    sign.superview?.addSubview(sign.menubtn)
+                                }else{
+                                    sign.addSignautre(self.pdfView!.pdfView!.scrollView)
+                                }
+                                
                             }
-                            
                         }
                     }
                 }
             }
         }
+        alert.addAction(oKAction)
+        
+        let cancelAction: UIAlertAction = UIAlertAction(title: "Cancel", style: .Cancel, handler: nil)
+         alert.addAction(cancelAction)
+        
+        //Present the AlertController
+        self.presentViewController(alert, animated: true, completion: nil)
+        
         
        
     }
