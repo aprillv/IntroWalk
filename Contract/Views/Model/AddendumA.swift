@@ -27,7 +27,10 @@ class AddendumA: ContractPDFBaseModel {
     var hoaname: String?
     var hoaphone: String?
     var hoafee: String?
-    var soldA : String?
+    
+    var noticeAddress1: String?
+    var noticeAddressLine2: String?
+//    var soldA : String?
     
     var found: String?
     var message: String?

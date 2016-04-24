@@ -1261,6 +1261,10 @@ class SetDotValue : NSObject {
         static let GeneralPartner = "GeneralPartner"
         static let property1 = "Address for Notice Purposes 1_2"
         static let propertyline2 = "Address for Notice Purposes 2_2"
+        static let printedName1 = "WPrintedName1"
+        static let printedName2 = "WPrintedName2"
+        static let homeOwnerNoticeAddress = "Address for Notice Purposes 1"
+        static let homeOwnerNoticeAddressline2 = "Address for Notice Purposes 2"
     }
     
     func setWarrantyAcknowledegeDots(pdfInfo: AddendumA?, additionViews: [PDFWidgetAnnotationView]){
@@ -1274,6 +1278,30 @@ class SetDotValue : NSObject {
                 pv.value = "1520 Oliver St."
             case WarrantyAcknowledegePDFFields.propertyline2:
                 pv.value = "Houston, TX 77007"
+            case WarrantyAcknowledegePDFFields.printedName1:
+                if let c = pdfInfo?.Client {
+                    if c.containsString(" / ") {
+                        pv.value = c.componentsSeparatedByString(" / ")[0]
+                    }else{
+                        pv.value = c
+                    }
+                }else{
+                    pv.value = ""
+                }
+            case WarrantyAcknowledegePDFFields.printedName2:
+                if let c = pdfInfo?.Client {
+                    if c.containsString(" / ") {
+                        pv.value = c.componentsSeparatedByString(" / ")[1]
+                    }else{
+                        pv.value = ""
+                    }
+                }else{
+                    pv.value = ""
+                }
+            case WarrantyAcknowledegePDFFields.homeOwnerNoticeAddress:
+                pv.value = pdfInfo!.noticeAddress1!
+            case WarrantyAcknowledegePDFFields.homeOwnerNoticeAddressline2:
+                pv.value = pdfInfo!.noticeAddressLine2!
             default:
                 break
             }

@@ -296,11 +296,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Contract/UtilityClass/SetDotValue.swift"
-            timestampString = "483096608.641531"
+            timestampString = "483158774.658379"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "1348"
-            endingLineNumber = "1348">
+            startingLineNumber = "1376"
+            endingLineNumber = "1376">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -310,11 +310,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Contract/UtilityClass/SetDotValue.swift"
-            timestampString = "483094929.154364"
+            timestampString = "483158774.658379"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "1292"
-            endingLineNumber = "1292"
+            startingLineNumber = "1320"
+            endingLineNumber = "1320"
             landmarkName = "setHoaChecklistDots(_:additionViews:)"
             landmarkType = "5">
          </BreakpointContent>
@@ -604,22 +604,6 @@
             startingLineNumber = "370"
             endingLineNumber = "370"
             landmarkName = "loadPDFView()"
-            landmarkType = "5">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "Contract/UtilityClass/SetDotValue.swift"
-            timestampString = "483096608.641531"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "1307"
-            endingLineNumber = "1307"
-            landmarkName = "setAddendumHoaDots(_:additionViews:)"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
