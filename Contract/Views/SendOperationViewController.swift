@@ -28,6 +28,7 @@ class SendOperationViewController: UIViewController, UITableViewDelegate, UITabl
     var delegate1 : DoOperationDelegate?
     var showSave : Bool?
     var showSubmit : Bool?
+    var isapproved : Bool?
     var itemList : [String]?{
         didSet{
             if let _ = itemList{
@@ -43,7 +44,7 @@ class SendOperationViewController: UIViewController, UITableViewDelegate, UITabl
         static let operationSavetoServer = "Save Contract"
         static let operationSubmit = "Submit for Approve"
         static let operationStartOver = "Start Over"
-//        static let operationPrint = "Print"
+        static let operationSaveFinish = "Save & Finish"
         static let operationEmail = "Email"
 //        static let operationSaveEmail = "Save & Email"
         static let operationClearDraftInfo = "Clear Buyer's Fields"
@@ -54,7 +55,11 @@ class SendOperationViewController: UIViewController, UITableViewDelegate, UITabl
         super.viewDidLoad()
         let userinfo = NSUserDefaults.standardUserDefaults()
         if userinfo.boolForKey(CConstants.UserInfoIsContract){
-            itemList = [constants.operationSavetoServer, constants.operationSubmit, constants.operationStartOver]
+            if isapproved! {
+                itemList = [constants.operationSaveFinish, constants.operationStartOver]
+            }else{
+                itemList = [constants.operationSavetoServer, constants.operationSubmit, constants.operationStartOver]
+            }
             
         }else{
             if userinfo.integerForKey("ClearDraftInfo") == 0 {
@@ -80,7 +85,7 @@ class SendOperationViewController: UIViewController, UITableViewDelegate, UITabl
         cell.layoutMargins = UIEdgeInsetsZero
         cell.preservesSuperviewLayoutMargins = false
         cell.textLabel?.text = itemList![indexPath.row]
-        if (cell.textLabel?.text == constants.operationStartOver) {
+        if (cell.textLabel?.text == constants.operationStartOver || cell.textLabel?.text == constants.operationSavetoServer) {
             if (!showSave!){
                 cell.textLabel?.textColor = UIColor.darkGrayColor()
             }else{
@@ -88,7 +93,7 @@ class SendOperationViewController: UIViewController, UITableViewDelegate, UITabl
             }
         }
         
-        if (cell.textLabel?.text == constants.operationSubmit) {
+        if (cell.textLabel?.text == constants.operationSubmit || cell.textLabel?.text == constants.operationSaveFinish) {
             if (!showSubmit!) {
                 cell.textLabel?.textColor = UIColor.darkGrayColor()
             }else{
@@ -104,7 +109,9 @@ class SendOperationViewController: UIViewController, UITableViewDelegate, UITabl
             if let delegate0 = self.delegate1{
                 switch self.itemList![indexPath.row]{
                     case constants.operationSavetoServer:
-                        delegate0.saveToServer()
+                        if self.showSave! {
+                            delegate0.saveToServer()
+                        }
 //                    case constants.operationPrint:
 //                        delegate0.doPrint()
                     case constants.operationEmail:

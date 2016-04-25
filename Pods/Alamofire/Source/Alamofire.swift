@@ -118,7 +118,7 @@ func URLRequest(
 public func request(
     method: Method,
     _ URLString: URLStringConvertible,
-    parameters: [String: AnyObject]? = nil,
+    parameters: [String: String]? = nil,
     encoding: ParameterEncoding = .URL,
     headers: [String: String]? = nil)
     -> Request

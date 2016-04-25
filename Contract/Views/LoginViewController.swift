@@ -144,7 +144,7 @@ class LoginViewController: BaseViewController, UITextFieldDelegate {
     
     func checkUpate(sender: UIButton){
         let version = NSBundle.mainBundle().infoDictionary?["CFBundleVersion"]
-        let parameter = ["version": (version == nil ?  "" : version!)]
+        let parameter = ["version": "\((version == nil ?  "" : version!))"]
         
         
         

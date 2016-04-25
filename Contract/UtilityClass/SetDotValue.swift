@@ -902,6 +902,11 @@ class SetDotValue : NSObject {
                     
                     }
                     sign?.pageno = has2Pages ? "0" : "1";
+                    if has2Pages {
+                        sign?.xname = "p2AC\(sign?.xname)"
+                    }else{
+                        sign?.xname = "p1AC\(sign?.xname)"
+                    }
                     sign?.pagenomargin = (aPrice?.pagenomargin ?? 0.0)!
                     addedAnnotationViews.append(sign!)
                 }else{

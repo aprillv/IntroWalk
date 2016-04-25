@@ -217,6 +217,13 @@ class PDFBaseViewController: BaseViewController, DoOperationDelegate, UIPopoverP
                     if let ppc = tvc.popoverPresentationController {
                         var showSave = false
                         var showSubmit = true
+                        var isapproved = false
+                        if let c = contractInfo?.status {
+                            if c == CConstants.ApprovedStatus {
+                                isapproved = true
+                            }
+                        }
+                        tvc.isapproved = isapproved
                         if let dots = pdfView?.pdfWidgetAnnotationViews {
                             let ddd = dots
                             for doc in documents! {
@@ -232,7 +239,7 @@ class PDFBaseViewController: BaseViewController, DoOperationDelegate, UIPopoverP
                                            showSubmit = false
                                         }
                                     }else{
-                                        if sign.menubtn != nil && sign.menubtn.superview != nil && sign.xname != "Exhibitbp1sellerInitialSign"{
+                                        if sign.menubtn != nil && sign.menubtn.superview != nil && sign.xname != "p1EBExhibitbp1sellerInitialSign"{
                                             showSubmit = false
                                         }
                                         
@@ -281,7 +288,10 @@ class PDFBaseViewController: BaseViewController, DoOperationDelegate, UIPopoverP
     
     func saveToServer() {
 //        IQKeyboardManager.sharedManager().enable = true
-        savePDFToServer(fileName!, nextFunc: nil)
+        
+       
+        
+//        savePDFToServer(fileName!, nextFunc: nil)
     }
     
     func doPrint() {
