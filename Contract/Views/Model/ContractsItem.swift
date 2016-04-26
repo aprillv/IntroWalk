@@ -25,6 +25,9 @@ class ContractsItem: ContractObject {
     var buyer2email: String?
     
     var hoa: NSNumber?
+    var flood: NSNumber?
+    var environment: NSNumber?
+    
     var status : String?
     var approvedate : String?
     var approveMonthdate : String?

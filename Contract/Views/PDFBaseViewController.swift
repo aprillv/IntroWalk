@@ -233,17 +233,21 @@ class PDFBaseViewController: BaseViewController, DoOperationDelegate, UIPopoverP
                             }
                             for v in ddd {
                                 if let sign = v as? SignatureView {
-                                    if sign.lineArray?.count > 0 {
-                                        showSave = true
-                                        if sign.LineWidth == 0.0 {
-                                           showSubmit = false
+                                    if (isapproved && (sign.xname.hasSuffix("bottom3") || sign.xname.hasSuffix("seller1Sign"))) || (!isapproved){
+                                        if sign.lineArray?.count > 0 {
+                                            
+                                            showSave = true
+                                            if sign.LineWidth == 0.0 {
+                                                showSubmit = false
+                                            }
+                                        }else{
+                                            if sign.menubtn != nil && sign.menubtn.superview != nil && sign.xname != "p1EBExhibitbp1sellerInitialSign"{
+                                                showSubmit = false
+                                            }
+                                            
                                         }
-                                    }else{
-                                        if sign.menubtn != nil && sign.menubtn.superview != nil && sign.xname != "p1EBExhibitbp1sellerInitialSign"{
-                                            showSubmit = false
-                                        }
-                                        
                                     }
+                                    
                                 }
                             }
                         }

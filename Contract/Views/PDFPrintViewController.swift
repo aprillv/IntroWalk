@@ -151,8 +151,8 @@ class PDFPrintViewController: PDFBaseViewController, UIScrollViewDelegate, PDFVi
                                             }
                                             
                                             if  !info.buyer!.containsString(" / ")
-                                                 && ( si.xname == "buyer2Sign"
-                                                || si.xname == "buyer2DateSign")
+                                                 && ( si.xname == "p1ACbuyer2Sign"
+                                                || si.xname == "p1ACbuyer2DateSign")
                                             {
                                                 if si.menubtn != nil {
                                                     si.menubtn.removeFromSuperview()
@@ -447,9 +447,12 @@ class PDFPrintViewController: PDFBaseViewController, UIScrollViewDelegate, PDFVi
         
         
         view2.addSubview(pdfView!)
+        getSignature()
         setBuyer2()
         getAllSignature()
-
+        
+        
+        
     }
 //    static let dd = "WExecutedSign1"
 //    static let yyyy = "WYearSign1"
@@ -736,6 +739,7 @@ class PDFPrintViewController: PDFBaseViewController, UIScrollViewDelegate, PDFVi
         if filesArray?.count == 1 {
             self.title = filesArray![0]
         }
+        
        
     }
     
@@ -1118,6 +1122,10 @@ class PDFPrintViewController: PDFBaseViewController, UIScrollViewDelegate, PDFVi
                     if sign.isKindOfClass(SignatureView) {
 //                        print(sign.xname!)
                         if let si = sign as? SignatureView {
+//                            if si.xname.hasSuffix("Sign3"){
+//                                print("\"\(si.xname)\",")
+//                            }
+                            
                             if contractInfo?.status != CConstants.ApprovedStatus {
                                 if si.xname != "p1EBExhibitbp1sellerInitialSign" {
                                     if si.xname.containsString("seller")
@@ -1164,6 +1172,7 @@ class PDFPrintViewController: PDFBaseViewController, UIScrollViewDelegate, PDFVi
                             }
                            
                             si.pdfViewsssss = pdfView!
+                            
                             si.addSignautre(pdfView!.pdfView!.scrollView)
                             
                         }
@@ -1172,24 +1181,6 @@ class PDFPrintViewController: PDFBaseViewController, UIScrollViewDelegate, PDFVi
             }
         }
         
-        let sss = "(\n        (\n        \"{5, 150}\",\n        \"{5, 150}\",\n        \"{5, 149}\",\n        \"{6.5, 143}\",\n        \"{13, 134}\",\n        \"{32, 109}\",\n        \"{80.5, 77}\",\n        \"{154.5, 49}\",\n        \"{251.5, 21.5}\",\n        \"{299, 18.5}\",\n        \"{475, 5}\"\n    )\n)"
-        
-        if let aaa = sss as? [[Int8]]{
-            print("ss")
-        }
-        
-//        if let fileDotsDic1 = fileDotsDic{
-//            for (_,allAdditionViews) in fileDotsDic1 {
-//                for sign in allAdditionViews {
-//                    if sign.isKindOfClass(SignatureView) {
-//                        //                        print(sign.xname!)
-//                        if let si = sign as? SignatureView {
-//                            si.lineArray
-//                        }
-//                    }
-//                }
-//            }
-//        }
         
     }
         
@@ -1203,17 +1194,6 @@ class PDFPrintViewController: PDFBaseViewController, UIScrollViewDelegate, PDFVi
         if let dots = pdfView?.pdfWidgetAnnotationViews {
             for d in dots{
                 if let sign = d as? SignatureView {
-//                    if let addendumaInfo = self.addendumApdfInfo {
-//                        if addendumaInfo.hasbroker == "" {
-////                            if sign.xname.containsString("brokerb") {
-////                                continue
-////                            }
-//                        }else {
-//                            if sign.xname.containsString("broker2") {
-//                                continue
-//                            }
-//                        }
-//                    }
                     selfSignatureViews?.append(sign)
                 }
             }
@@ -1250,19 +1230,8 @@ class PDFPrintViewController: PDFBaseViewController, UIScrollViewDelegate, PDFVi
                 if let dd = doc.addedviewss {
                     for d in dd{
                         if let sign = d as? SignatureView {
-                            if (sign.lineArray != nil){
-                                sign.lineArray = nil
-                                //                sign.originWidth = 0.0
-                                //                sign.originHeight = 0.0
-                                sign.LineWidth = 0.0
-                                sign.showornot = true
-                                if sign.menubtn != nil {
-                                    sign.superview?.addSubview(sign.menubtn)
-                                }else{
-                                    sign.addSignautre(self.pdfView!.pdfView!.scrollView)
-                                }
-                                
-                            }
+                            
+                            self.clearSignature(sign)
                         }
                     }
                 }
@@ -1276,19 +1245,8 @@ class PDFPrintViewController: PDFBaseViewController, UIScrollViewDelegate, PDFVi
                     
                     for si in dots {
                         if let sign = si as? SignatureView{
-                            if (sign.lineArray != nil){
-                                sign.lineArray = nil
-                                //                sign.originWidth = 0.0
-                                //                sign.originHeight = 0.0
-                                sign.LineWidth = 0.0
-                                sign.showornot = true
-                                if sign.menubtn != nil {
-                                    sign.superview?.addSubview(sign.menubtn)
-                                }else{
-                                    sign.addSignautre(self.pdfView!.pdfView!.scrollView)
-                                }
-                                
-                            }
+                            self.clearSignature(sign)
+                            
                         }
                     }
                 }
@@ -1304,6 +1262,36 @@ class PDFPrintViewController: PDFBaseViewController, UIScrollViewDelegate, PDFVi
         
         
        
+    }
+    
+    private func clearSignature(sign : SignatureView){
+        if self.contractInfo!.status! == CConstants.ApprovedStatus {
+            if sign.xname.hasSuffix("bottom3") || sign.xname.hasSuffix("seller1Sign") {
+                if (sign.lineArray != nil){
+                    sign.lineArray = nil
+                    sign.LineWidth = 0.0
+                    sign.showornot = true
+                    if sign.menubtn != nil {
+                        sign.superview?.addSubview(sign.menubtn)
+                    }else{
+                        sign.addSignautre(self.pdfView!.pdfView!.scrollView)
+                    }
+                    
+                }
+            }
+        }else{
+            if (sign.lineArray != nil){
+                sign.lineArray = nil
+                sign.LineWidth = 0.0
+                sign.showornot = true
+                if sign.menubtn != nil {
+                    sign.superview?.addSubview(sign.menubtn)
+                }else{
+                    sign.addSignautre(self.pdfView!.pdfView!.scrollView)
+                }
+                
+            }
+        }
     }
     
    
@@ -1354,16 +1342,42 @@ class PDFPrintViewController: PDFBaseViewController, UIScrollViewDelegate, PDFVi
         
     }
     
-
+    let hoapage1fields = ["p1Hhoa1Sign3",
+                          "p1Hhoa2Sign3",
+                          "p1Hhoa3Sign3",
+                          "p1Hhoa3aSign3",
+                          "p1Hhoa3bSign3",
+                          "p1Hhoa4Sign3",
+                          "p1Hhoa4aSign3",
+                          "p1Hhoa4bSign3",
+                          "p1Hhoa4cSign3",
+                          "p1Hhoa4dSign3",
+                          "p1Hhoa4eSign3",
+                          "p1Hhoa5Sign3",
+                          "p1Hhoa6Sign3",
+                          "p1Hhoa6aSign3"]
+    let hoapage2fields = ["p2Hhoa6bSign3",
+                          "p2Hhoa6cSign3",
+                          "p2Hhoa6dSign3",
+                          "p2Hhoa6eSign3",
+                          "p2Hhoa6fSign3",
+                          "p2Hhoa6gSign3",
+                          "p2Hhoa6hSign3",
+                          "p2Hhoa6iSign3",
+                          "p2Hhoa7Sign3",
+                          "p2Hhoa8Sign3",
+                          "p2Hhoa9Sign3",
+                          "p2Hhoa10Sign3",
+                          "p2Hhoa11Sign3"]
+    let hoapage3fields = ["p3Hhoa12Sign3",
+                          "p3Hhoa12aSign3",
+                          "p3Hhoa12bSign3",
+                          "p3Hhoa13Sign3",
+                          "p3Hhoa14Sign3",
+                          "p3Hhoa15Sign3",
+                          "p3Hhoa16Sign3"]
     
-    override func saveToServer() {
-        
-        var b1i : [[String]]?
-        var b2i : [[String]]?
-        var b1s : [[String]]?
-        var b2s : [[String]]?
-//        var si : String?
-//        var ss : String?
+    private func getPDFSignaturePrefix() -> [[String]]{
         let contractP = ["p1", "p2", "p3", "p4", "p5", "p6", "p7", "p8", "p9"]
         let thirdParty = ["p1T3", "p2T3"]
         let InforBroker = ["p1I", "p2I"]
@@ -1404,6 +1418,19 @@ class PDFPrintViewController: PDFBaseViewController, UIScrollViewDelegate, PDFVi
         nameArray.append(Desgin)
         nameArray.append(HOAC)
         nameArray.append(AH)
+        return nameArray
+    }
+    override func saveToServer() {
+        
+        var b1i : [[String]]?
+        var b2i : [[String]]?
+        var b1s : [[String]]?
+        var b2s : [[String]]?
+        var s1i : [[String]]?
+        var s1s : [[String]]?
+//        var si : String?
+//        var ss : String?
+        
         
         var pdfname = [String]()
         pdfname.append(CConstants.ActionTitleDraftContract)
@@ -1423,24 +1450,81 @@ class PDFPrintViewController: PDFBaseViewController, UIScrollViewDelegate, PDFVi
         pdfname.append(CConstants.ActionTitleHoaChecklist)
         pdfname.append(CConstants.ActionTitleAddendumHOA)
         
-        let cntArray = [9, 2, 2, 6, 1, 1, 3, 5, 2, 2, 2, 1, 2, 1, 2, 1]
-        var b1iynArray : [[String]] = [[String]]()
-        var b2iynArray : [[String]] = [[String]]()
-        var b1isnArray : [[String]] = [[String]]()
-        var b2isnArray : [[String]] = [[String]]()
-        for i in 0...(cntArray.count-1){
-           
-            b1iynArray.append([String]())
-            b2iynArray.append([String]())
-            b1isnArray.append([String]())
-            b2isnArray.append([String]())
-            for _ in 0...cntArray[i]-1 {
-                b1iynArray[i].append("0")
-                b2iynArray[i].append("0")
-                b1isnArray[i].append("0")
-                b2isnArray[i].append("0")
+        let cntArray = [9, 2, 2, 6, 1, 1, 3, 5, 2, 2, 2, 1, 2, 1, 3, 1]
+        
+        var b1iynArray : [[String]]
+        var b2iynArray : [[String]]
+        var b1isnArray : [[String]]
+        var b2isnArray : [[String]]
+        
+        var s1iynArray : [[String]]
+        var s1isnArray : [[String]]
+        
+        var exhibitB : [String]
+        var hoapage1 : [String]
+        var hoapage2 : [String]
+        var hoapage3 : [String]
+        
+        
+        if self.initial_b1yn != nil{
+            b1iynArray = self.initial_b1yn!
+            b2iynArray = self.initial_b2yn!
+            b1isnArray = self.signature_b1yn!
+            b2isnArray = self.signature_b2yn!
+            
+            s1iynArray = self.initial_s1yn!
+            s1isnArray = self.signature_s1yn!
+            
+            exhibitB = self.initial_index![0]
+            hoapage1 = self.initial_index![1]
+            hoapage2 = self.initial_index![2]
+            hoapage3 = self.initial_index![3]
+            
+            
+        }else{
+             b1iynArray = [[String]]()
+             b2iynArray = [[String]]()
+             b1isnArray = [[String]]()
+             b2isnArray = [[String]]()
+            
+            s1iynArray = [[String]]()
+            s1isnArray = [[String]]()
+            
+            for i in 0...(cntArray.count-1){
+                b1iynArray.append([String]())
+                b2iynArray.append([String]())
+                b1isnArray.append([String]())
+                b2isnArray.append([String]())
+                for _ in 0...cntArray[i]-1 {
+                    b1iynArray[i].append("0")
+                    b2iynArray[i].append("0")
+                    b1isnArray[i].append("0")
+                    b2isnArray[i].append("0")
+                }
+            }
+            
+            exhibitB = ["0"]
+            hoapage1 = [String]()
+            for _ in 0...13{
+                hoapage1.append("0")
+            }
+            hoapage2 = [String]()
+            for _ in 0...12{
+                hoapage2.append("0")
+            }
+            hoapage3 = [String]()
+            for _ in 0...6{
+                hoapage3.append("0")
             }
         }
+        
+        
+        
+        
+        
+       
+        
+        let nameArray = getPDFSignaturePrefix()
         
         var alldots = [PDFWidgetAnnotationView]()
         if let a = self.pdfView?.pdfWidgetAnnotationViews as? [PDFWidgetAnnotationView]{
@@ -1453,37 +1537,66 @@ class PDFPrintViewController: PDFBaseViewController, UIScrollViewDelegate, PDFVi
             }
         }
         
-       
-            for d in alldots{
-                if let sign = d as? SignatureView {
+        
+        for d in alldots{
+            if let sign = d as? SignatureView {
+                print("\"\(sign.xname!)\",")
+                if contractInfo!.status! != CConstants.ApprovedStatus {
                     if sign.lineArray != nil && sign.xname.hasSuffix("bottom1") || sign.xname.hasSuffix("Sign3") || sign.xname == "p1EBExhibitbp1sellerInitialSign" {
                         if sign.lineArray != nil && sign.lineArray.count > 0 && sign.LineWidth > 0{
                             if b1i == nil {
-//                                b1i = "\(sign.lineArray)"
+                                //                                b1i = "\(sign.lineArray)"
                                 b1i = sign.lineArray as? [[String]]
                             }
-                        
-                            var cont = sign.xname.hasSuffix("bottom1")
-                            for j in 0...nameArray.count-1 {
-                                if cont {
-                                    let names = nameArray[nameArray.count-1-j]
-                                    for k in 0...names.count-1 {
-                                        let name = names[k]
-                                        if sign.xname.hasPrefix(name) {
-                                            b1iynArray[nameArray.count-1-j][k] = "1"
-                                            cont = false
+                            
+                            if sign.xname == "p1EBExhibitbp1sellerInitialSign"{
+                                exhibitB[0] = "1"
+                            }else if sign.xname.hasSuffix("Sign3") {
+                                if sign.xname.hasPrefix("p1H") {
+                                    for l in hoapage1fields {
+                                        if l == sign.xname {
+                                            hoapage1[hoapage1fields.indexOf(l) ?? 0] = "1"
                                         }
                                     }
                                 }
-                                
+                                if sign.xname.hasPrefix("p2H") {
+                                    for l in hoapage2fields {
+                                        if l == sign.xname {
+                                            hoapage2[hoapage2fields.indexOf(l) ?? 0] = "1"
+                                        }
+                                    }
+                                }
+                                if sign.xname.hasPrefix("p3H") {
+                                    for l in hoapage3fields {
+                                        if l == sign.xname {
+                                            hoapage3[hoapage3fields.indexOf(l) ?? 0] = "1"
+                                        }
+                                    }
+                                }
+                            }else{
+                                var cont = sign.xname.hasSuffix("bottom1")
+                                for j in 0...nameArray.count-1 {
+                                    if cont {
+                                        let names = nameArray[nameArray.count-1-j]
+                                        for k in 0...names.count-1 {
+                                            let name = names[k]
+                                            if sign.xname.hasPrefix(name) {
+                                                b1iynArray[nameArray.count-1-j][k] = "1"
+                                                cont = false
+                                            }
+                                        }
+                                    }
+                                    
+                                }
                             }
+                            
                         }
                         
                     }
                     if sign.xname.hasSuffix("bottom2") {
                         if sign.lineArray != nil && sign.lineArray.count > 0 && sign.LineWidth > 0{
                             if b2i == nil {
-//                                b2i = "\(sign.lineArray)"
+                                //                                b2i = "\(sign.lineArray)"
                                 b2i = sign.lineArray as? [[String]]
                             }
                             var cont = true
@@ -1502,15 +1615,10 @@ class PDFPrintViewController: PDFBaseViewController, UIScrollViewDelegate, PDFVi
                             }
                         }
                     }
-//                    if sign.xname.hasSuffix("bottom3") {
-//                        if sign.lineArray.count > 0 && sign.LineWidth > 0  && sign == nil{
-//                            si = "\(sign.lineArray)"
-//                        }
-//                    }
                     if sign.xname.hasSuffix("buyer1Sign") {
                         if sign.lineArray != nil && sign.lineArray.count > 0 && sign.LineWidth > 0 {
                             if b1s == nil {
-//                                b1s = "\(sign.lineArray)"
+                                //                                b1s = "\(sign.lineArray)"
                                 b1s = sign.lineArray as? [[String]]
                             }
                             var cont = true
@@ -1532,8 +1640,8 @@ class PDFPrintViewController: PDFBaseViewController, UIScrollViewDelegate, PDFVi
                     if sign.xname.hasSuffix("buyer2Sign") {
                         if sign.lineArray != nil && sign.lineArray.count > 0 && sign.LineWidth > 0{
                             if b2s == nil {
-//                                b2s = "\(sign.lineArray)"
-                                 b2s = sign.lineArray as? [[String]]
+                                //                                b2s = "\(sign.lineArray)"
+                                b2s = sign.lineArray as? [[String]]
                             }
                             
                             var cont = true
@@ -1553,13 +1661,61 @@ class PDFPrintViewController: PDFBaseViewController, UIScrollViewDelegate, PDFVi
                             
                         }
                     }
+                }else{
+                    if sign.xname.hasSuffix("seller1Sign") {
+                        if sign.lineArray != nil && sign.lineArray.count > 0 && sign.LineWidth > 0 {
+                            if s1s == nil {
+                                //                                b1s = "\(sign.lineArray)"
+                                s1s = sign.lineArray as? [[String]]
+                            }
+                            var cont = true
+                            for j in 0...nameArray.count-1 {
+                                if cont {
+                                    let names = nameArray[nameArray.count-1-j]
+                                    for k in 0...names.count-1 {
+                                        let name = names[k]
+                                        if sign.xname.hasPrefix(name) {
+                                            s1isnArray[nameArray.count-1-j][k] = "1"
+                                            cont = false
+                                        }
+                                    }
+                                }
+                                
+                            }
+                        }
+                    }else if sign.xname.hasSuffix("bottom3") {
+                        if sign.lineArray != nil && sign.lineArray.count > 0 && sign.LineWidth > 0 {
+                            if s1i == nil {
+                                //                                b1s = "\(sign.lineArray)"
+                                s1i = sign.lineArray as? [[String]]
+                            }
+                            var cont = true
+                            for j in 0...nameArray.count-1 {
+                                if cont {
+                                    let names = nameArray[nameArray.count-1-j]
+                                    for k in 0...names.count-1 {
+                                        let name = names[k]
+                                        if sign.xname.hasPrefix(name) {
+                                            s1iynArray[nameArray.count-1-j][k] = "1"
+                                            cont = false
+                                        }
+                                    }
+                                }
+                                
+                            }
+                        }
+                    }
                 }
+                
             }
+        }
+        
+//        return
         
         var param = [String: String]()
         param["idcontract1"] = contractInfo?.idnumber
         param["doc"] = "1;2;3;4;5;6;7;8;9;10;11;12;13;14;15;16"
-        param["page"] = "9;2;2;6;1;1;3;5;2;2;2;1;2;1;2;1"
+        param["page"] = "9;2;2;6;1;1;3;5;2;2;2;1;2;1;3;1"
 //        param["doc"] = "\([1 23;4;5;6;7;8;9;10;11;12;13;14;15;16])"
 //        param["page"] = "\(cntArray)"
 //        try{
@@ -1572,34 +1728,56 @@ class PDFPrintViewController: PDFBaseViewController, UIScrollViewDelegate, PDFVi
 //        print(getStr(b1iynArray))
 //        return
         
-        param["initial_b1yn"] = getStr(b1iynArray)
+        var initial_index : [[String]] =  [[String]]()
+        initial_index.append(exhibitB)
+        initial_index.append(hoapage1)
+        initial_index.append(hoapage2)
+        initial_index.append(hoapage3)
         
-        param["initial_b2yn"] = getStr(b2iynArray)
-        param["signature_b1yn"] = getStr(b1isnArray)
-        param["signature_b2yn"] = getStr(b2isnArray)
-        param["initial_s1yn"] = "0 0 0 0 0 0 0 0 0;0 0;0 0;0 0 0 0 0 0;0;0;0 0 0;0 0 0 0 0;0 0;0 0;0 0;0;0 0;0;0 0;0"
-        param["signature_s1yn"] = "0 0 0 0 0 0 0 0 0;0 0;0 0;0 0 0 0 0 0;0;0;0 0 0;0 0 0 0 0;0 0;0 0;0 0;0;0 0;0;0 0;0"
-//        param["initial_b1"] = "\(b1i ?? "")"
-//        param["initial_b2"] = "\(b2i ?? "")"
-//        param["signature_b1"] = "\(b1s ?? "")"
-//        param["signature_b2"] = "\(b2s ?? "")"
-        param["initial_b1"] = getStr(b1i)
-        print(getStr(b1i))
-        param["initial_b2"] = getStr(b2i)
-        param["signature_b1"] = getStr(b1s)
-        param["signature_b2"] = getStr(b2s)
-        param["initial_s1"] = " "
-        param["signature_s1"] = " "
-        
-      
+        if contractInfo!.status! == CConstants.ApprovedStatus {
+            param["initial_index"] = " "
+            //        print(getStr(initial_index))
+            param["initial_b1yn"] = " "
+            //        print(getStr(b1iynArray))
+            
+            param["initial_b2yn"] = " "
+            param["signature_b1yn"] = " "
+            param["signature_b2yn"] = " "
+            param["initial_s1yn"] = getStr(s1iynArray)
+            param["signature_s1yn"] = getStr(s1isnArray)
+            param["initial_b1"] = " "
+            //        print(getStr(b1i))
+            param["initial_b2"] = " "
+            param["signature_b1"] = " "
+            param["signature_b2"] = " "
+            param["initial_s1"] = getStr(s1i)
+            param["signature_s1"] = getStr(s1s)
+        }else{
+            param["initial_index"] = getStr(initial_index)
+            //        print(getStr(initial_index))
+            param["initial_b1yn"] = getStr(b1iynArray)
+            //        print(getStr(b1iynArray))
+            
+            param["initial_b2yn"] = getStr(b2iynArray)
+            param["signature_b1yn"] = getStr(b1isnArray)
+            param["signature_b2yn"] = getStr(b2isnArray)
+            
+            param["initial_s1yn"] = "0|0|0|0|0|0|0|0|0;0|0;0|0;0|0|0|0|0|0;0;0;0|0|0;0|0|0|0|0;0|0;0|0;0|0;0;0|0;0;0|0|0;0"
+            param["signature_s1yn"] = "0|0|0|0|0|0|0|0|0;0|0;0|0;0|0|0|0|0|0;0;0;0|0|0;0|0|0|0|0;0|0;0|0;0|0;0;0|0;0;0|0|0;0"
+            param["initial_b1"] = getStr(b1i)
+            //        print(getStr(b1i))
+            param["initial_b2"] = getStr(b2i)
+            param["signature_b1"] = getStr(b1s)
+            param["signature_b2"] = getStr(b2s)
+            param["initial_s1"] = " "
+            param["signature_s1"] = " "
+        }
         
         hud = MBProgressHUD.showHUDAddedTo(self.view, animated: true)
-        //                hud.mode = .AnnularDeterminate
         hud?.labelText = CConstants.SavedMsg
         
+        print(param)
         
-        
-//                print(param)
         Alamofire.request(.POST,
             CConstants.ServerURL + "bacontract_save_sign.json",
             parameters: param).responseJSON{ (response) -> Void in
@@ -1631,90 +1809,213 @@ class PDFPrintViewController: PDFBaseViewController, UIScrollViewDelegate, PDFVi
     }
     
 }
+    
+    private func isCanSignature(nameArray: [[String]], sign: SignatureView
+        , ynarr: [[String]]?, inarr: String?) {
+        for j in 0...nameArray.count-1 {
+            let ji = nameArray.count-1-j
+            let na = nameArray[ji]
+            for k in 0...na.count-1 {
+                let t = na[k]
+                if sign.xname.hasPrefix(t) {
+                    
+                    if ynarr![ji][k] == "1" {
+                        self.setShowSignature(sign, signs: inarr!)
+                    }
+                }
+            }
+        }
+    }
 
 private func getStr(h : [[String]]?) -> String {
     if let a = h {
         var s : [String] = [String]()
         for n in a {
-            s.append(n.joinWithSeparator(" "))
+            s.append(n.joinWithSeparator("|"))
         }
         return s.joinWithSeparator(";")
     }else{
         return " "
     }
-//    return "\(a)"
-    
-    
 }
-
-func submitLocaiton(a: AnyObject){
     
-//    NSURLSessionDataTask postDataTask;
-    
-//    NSError *error;
-//    NSData *data1;
-//    NSMutableDictionary *dic = [[NSMutableDictionary alloc]init];
-//    [dic setValue:[NSString stringWithFormat:@"%f", self.myLastLocation.latitude] forKey:@"Latitude"];
-//    [dic setValue:[NSString stringWithFormat:@"%f", self.myLastLocation.longitude] forKey:@"Longitude"];
-//    [dic setValue:[[NSUserDefaults standardUserDefaults] valueForKey:@"Token"] forKey:@"Token"];
-//    [dic setValue:[[NSUserDefaults standardUserDefaults] valueForKey:@"TokenScret"] forKey:@"TokenSecret"];
-//    
-//    if (dic) {
-//        data1 =[NSJSONSerialization dataWithJSONObject:dic options:kNilOptions error:&error];
-//    }else{
-//        data1=nil;
-//    }
-    
-    
-    
-    let configuration : NSURLSessionConfiguration = NSURLSessionConfiguration.defaultSessionConfiguration();
-    let session = NSURLSession(configuration: configuration)
-    if let url = NSURL(string: CConstants.ServerURL + "bacontract_save_sign.json"){
-        let request : NSMutableURLRequest = NSMutableURLRequest(URL: url)
-        request.addValue("application/json", forHTTPHeaderField: "Content-Type")
-        request.addValue("application/json", forHTTPHeaderField: "Accept")
-        request.HTTPMethod = "POST"
-        request.timeoutInterval = 15
-        let p =  try! NSJSONSerialization.dataWithJSONObject(a, options: [])
-        let s =  NSString(data: p, encoding: NSUTF8StringEncoding)
-        print("\(s!)")
-        request.HTTPBody =  p
-        
-        session.dataTaskWithURL(url, completionHandler: { (data, response, error) in
-//            if error
-            if data != nil {
-//               x let d = String(data: data!)
-                let s =  NSString(data: data!, encoding: NSUTF8StringEncoding)
-                print("\(s!)")
-//                print(String(data: data))
-            }
-        }).resume()
+    private func getArr(str: String) -> [[String]] {
+        return str.componentsSeparatedByString(";").map(){$0.componentsSeparatedByString("|")}
     }
-  
+
+    var initial_b1yn : [[String]]?
+    var initial_b2yn : [[String]]?
+    var signature_b1yn : [[String]]?
+    var signature_b2yn : [[String]]?
+    
+    var initial_s1yn : [[String]]?
+    var signature_s1yn : [[String]]?
+    
+    var initial_index : [[String]]?
+    
+    var initial_b1 : String?
+    var initial_b2 : String?
+    var signature_b1 : String?
+    var signature_b2 : String?
+    
+    var initial_s1 : String?
+    var signature_s1 : String?
     
     
+    func getSignature(){
         
-//        [NSMutableURLRequest requestWithURL:url
-//    cachePolicy:NSURLRequestUseProtocolCachePolicy
-//    timeoutInterval:20];
-//    [request addValue:@"application/json" forHTTPHeaderField:@"Content-Type"];
-//    [request addValue:@"application/json" forHTTPHeaderField:@"Accept"];
-//    [request setHTTPMethod:@"POST"];
-//    [request setTimeoutInterval: 15];
-//    [request setHTTPBody:data1];
-//    //        NSLog(@"application %@", [[NSString alloc]initWithData:request.HTTPBody encoding:NSUTF8StringEncoding]);
-//    //    NSLog(@"Latitude(%f) Longitude(%f) Accuracy(%f)", self.myLocation.latitude, self.myLocation.longitude,self.myLocationAccuracy);
-//    
-//    postDataTask = [session dataTaskWithRequest:request completionHandler:^(NSData * _Nullable data, NSURLResponse * _Nullable response, NSError * _Nullable error) {
-//    NSString *str = [[NSString alloc]initWithData:data encoding:NSUTF8StringEncoding];
-//    //        NSLog(@"%@", str);
-//    
-//    }];
-//    [postDataTask resume];
-    //    return postDataTask;
+        Alamofire.request(.POST,
+            CConstants.ServerURL + "bacontract_GetSignedContract.json",
+            parameters: ["idcontract1" : self.contractInfo!.idnumber!]).responseJSON{ (response) -> Void in
+//                hud.hide(true)
+                if response.result.isSuccess {
+                    
+                    if let rtnValue = response.result.value as? [String: AnyObject]{
+                        let rtn = SignatrureFields(dicInfo: rtnValue)
+                        if rtn.initial_b1yn! != "" {
+                            self.initial_b1yn = self.getArr(rtn.initial_b1yn!)
+                            self.initial_b2yn = self.getArr(rtn.initial_b2yn!)
+                             self.initial_s1yn = self.getArr(rtn.initial_s1yn!)
+                            self.signature_b1yn = self.getArr(rtn.signature_b1yn!)
+                            self.signature_b2yn = self.getArr(rtn.signature_b2yn!)
+                            self.signature_s1yn = self.getArr(rtn.signature_s1yn!)
+                            
+                            self.initial_b1 = rtn.initial_b1
+                            self.initial_b2 = rtn.initial_b2
+                            self.signature_b1 = rtn.signature_b1
+                            self.signature_b2 = rtn.signature_b2
+                            
+                            self.initial_index = self.getArr(rtn.initial_index!)
+                            
+                            let nameArray = self.getPDFSignaturePrefix()
+                            
+                            var alldots = [PDFWidgetAnnotationView]()
+                            if let a = self.pdfView?.pdfWidgetAnnotationViews as? [PDFWidgetAnnotationView]{
+                                alldots.appendContentsOf(a)
+                            }
+                            
+                            for doc in self.documents!{
+                                if let a = doc.addedviewss as? [PDFWidgetAnnotationView]{
+                                    alldots.appendContentsOf(a)
+                                }
+                            }
+                            
+                            
+                            for d in alldots{
+                                if let sign = d as? SignatureView {
+                                    if sign.xname.hasSuffix("bottom1") {
+                                        self.isCanSignature(nameArray, sign: sign, ynarr: self.initial_b1yn, inarr: self.initial_b1)
+                                    }else if sign.xname.hasSuffix("bottom2") {
+                                        self.isCanSignature(nameArray, sign: sign, ynarr: self.initial_b2yn, inarr: self.initial_b2)
+                                    }else if sign.xname.hasSuffix("buyer1Sign") {
+                                        self.isCanSignature(nameArray, sign: sign, ynarr: self.signature_b1yn, inarr: self.signature_b1)
+                                    }else if sign.xname.hasSuffix("buyer2Sign") {
+                                        self.isCanSignature(nameArray, sign: sign, ynarr: self.signature_b2yn, inarr: self.signature_b2)
+                                    }else if sign.xname == "p1EBExhibitbp1sellerInitialSign" {
+                                        if self.initial_index![0][0] == "1" {
+                                            self.setShowSignature(sign, signs: self.initial_b1!)
+                                        }
+                                    }else if sign.xname.hasSuffix("Sign3") {
+                                        if sign.xname.hasPrefix("p1H") {
+                                            for l in self.hoapage1fields {
+                                                if l == sign.xname {
+                                                    self.setShowSignature(sign, signs: self.initial_b1!)
+                                                }
+                                            }
+                                        }
+                                        if sign.xname.hasPrefix("p2H") {
+                                            for l in self.hoapage2fields {
+                                                if l == sign.xname {
+                                                    self.setShowSignature(sign, signs: self.initial_b1!)
+                                                }
+                                            }
+                                        }
+                                        if sign.xname.hasPrefix("p3H") {
+                                            for l in self.hoapage3fields {
+                                                if l == sign.xname {
+                                                    self.setShowSignature(sign, signs: self.initial_b1!)
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                        
+//                        }
+                    }else{
+                       self.PopMsgWithJustOK(msg: CConstants.MsgServerError)
+                    }
+                }else{
+                    self.PopMsgWithJustOK(msg: CConstants.MsgNetworkError)
+                }
+        }
+        
+    }
     
+    private func setShowSignature(si: SignatureView, signs: String) {
+       
+//            let signs = "{86, 14.5}|{86, 14.5}|{86, 17.5}|{86, 22}|{80.5, 31}|{70.5, 44}|{56.5, 65.5}|{22, 128.5}|{12, 157}|{10.5, 165.5}|{9, 168.5}|{7.5, 176}|{6, 179}|{5, 177.5}|{5, 163}|{6, 143}|{16.5, 117.5}|{29.5, 93}|{44.5, 69.5}|{55.5, 54}|{70.5, 34.5}|{75, 28}|{80.5, 17.5}|{84.5, 11}|{86, 8}|{87.5, 5.5}|{87.5, 5}|{89, 5}|{90.5, 5}|{96.5, 10}|{117, 35.5}|{125, 46.5}|{137, 68.5}|{143, 80.5}|{146, 92.5}|{147.5, 97.5}|{149, 102}|{149, 107}|{140, 108.5}|{132.5, 109.5}|{120, 111.5}|{108, 113}|{101.5, 114}|{92.5, 114}|{88, 114}|{85, 114}|{83.5, 114}|{82, 114}|{81.5, 113}|{81.5, 112.5}|{81.5, 111}|{86, 108.5}|{98, 107}|{113.5, 105}|{122, 103.5}|{129.5, 102}|{135.5, 102}|{140, 100.5}|{141.5, 100.5}|{142, 100}|{142, 99}|{142, 98}|{144, 96}|{154.5, 91.5}|{164, 88}|{180.5, 80.5}|{193, 75.5}|{197.5, 74}|{205.5, 72.5}|{208.5, 72.5}|{214.5, 72.5}|{214.5, 74}|{214.5, 81}|{214, 92.5}|{211, 108.5}|{208.5, 119}|{205.5, 131}|{205, 139}|{203.5, 143.5}|{202.5, 145}|{202, 145}|{202, 137.5}|{202, 121}|{205, 108}|{212.5, 90}|{217, 81}|{220, 78.5}|{225, 71}|{234, 69.5}|{241.5, 69.5}|{246.5, 69.5}|{252.5, 74}|{254.5, 77.5}|{256, 85}|{256, 94.5}|{256, 97.5}|{254.5, 100}|{251.5, 102.5}|{250, 104}|{247, 104}|{244, 102.5}|{244, 98.5}|{244, 85.5}|{249.5, 80}|{261.5, 71}|{268.5, 71}|{280.5, 68.5}|{290, 68.5}|{297.5, 68.5}|{300.5, 68.5}|{306.5, 68.5}|{308, 71.5}|{309.5, 74.5}|{310, 78.5}|{310, 82.5}|{310, 89.5}|{310, 91.5}|{314, 88.5}|{320, 82.5}|{325.5, 79.5}|{340, 71}|{348, 67}|{351, 67}|{357, 64}|{360, 62.5}|{361.5, 62.5}|{363, 62.5}"
+        let signa = signs.componentsSeparatedByString(";").map(){$0.componentsSeparatedByString("|")}
+        print(signa)
+        si.frame = si.frame
+        
+        let ct = si.frame
+        var ct2 = ct
+        ct2.origin.x = 0.0
+        ct2.origin.y = 0.0
+        si.frame = ct2
+        si.frame = ct
+        
+        si.lineArray = signa as! NSMutableArray
+        si.originWidth = Float(si.getOriginFrame().width)
+        si.originHeight = Float(si.getOriginFrame().height)
+        si.LineWidth = 5.0
+       
+        
+    }
     
-    }}
+    override func submit() {
+        let alert: UIAlertController = UIAlertController(title: CConstants.MsgTitle, message: "Do you want to submit for approval?", preferredStyle: .Alert)
+        
+        //Create and add the OK action
+        let oKAction: UIAlertAction = UIAlertAction(title: "YES", style: .Default) { action -> Void in
+            //Do some stuff
+            
+            if self.contractInfo!.flood! == 1 {
+                self.PopMsgWithJustOK(msg: "This requires flood acknowledgement signed.") { action -> Void in
+                    self.submitStep2()
+                }
+            }else{
+                self.submitStep2()
+            }
+            
+            
+        }
+        alert.addAction(oKAction)
+        
+        let cancelAction: UIAlertAction = UIAlertAction(title: "Cancel", style: .Cancel, handler: nil)
+        alert.addAction(cancelAction)
+        
+        //Present the AlertController
+        self.presentViewController(alert, animated: true, completion: nil)
+    }
+    
+    func submitStep2() {
+        if self.contractInfo!.environment! == 1 {
+            self.PopMsgWithJustOK(msg: "This requires environment acknowledgement signed.") { action -> Void in
+                self.submitStep3()
+            }
+        }else{
+            self.submitStep3()
+        }
+    }
+    func submitStep3() {
+        self.saveToServer()
+        // do submit for approve
+        
+    }
+}
 
 
 

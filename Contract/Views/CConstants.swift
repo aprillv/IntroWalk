@@ -119,7 +119,7 @@ struct CConstants{
     
     static let PdfFileNameBuyersExpectPageCount = 5
     static let PdfFileNameFloodPlainAckPageCount = 1
-    static let PdfFileNameHoaChecklistPageCount = 2
+    static let PdfFileNameHoaChecklistPageCount = 3
     static let PdfFileNameWarrantyAcknowledgementPageCount = 2
     static let PdfFileNameAddendumHoaPageCount = 1
     
