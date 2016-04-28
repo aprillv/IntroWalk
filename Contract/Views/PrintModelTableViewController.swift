@@ -89,7 +89,13 @@ class PrintModelTableViewController: BaseViewController, UITableViewDataSource, 
             printList.append(CConstants.ActionTitleAddendumC)
             printList.append(CConstants.ActionTitleAddendumD)
             printList.append(CConstants.ActionTitleAddendumE)
-            printList.append(CConstants.ActionTitleFloodPlainAck)
+            if let tmp = self.projectInfo?.floodplainyn {
+                if tmp == 1 {
+                    printList.append(CConstants.ActionTitleFloodPlainAck)
+                }
+            }
+            
+            
             
             printList.append(CConstants.ActionTitleWarrantyAcknowledgement)
             printList.append(CConstants.ActionTitleDesignCenter)
@@ -106,7 +112,11 @@ class PrintModelTableViewController: BaseViewController, UITableViewDataSource, 
             printList.append(CConstants.ActionTitleBuyersExpect)
             printList.append(CConstants.ActionTitleAddendumD)
             printList.append(CConstants.ActionTitleAddendumE)
-            printList.append(CConstants.ActionTitleFloodPlainAck)
+            if let tmp = self.projectInfo?.floodplainyn {
+                if tmp == 1 {
+                    printList.append(CConstants.ActionTitleFloodPlainAck)
+                }
+            }
             
             printList.append(CConstants.ActionTitleWarrantyAcknowledgement)
             if let tmp = self.projectInfo?.hoa {
@@ -120,7 +130,7 @@ class PrintModelTableViewController: BaseViewController, UITableViewDataSource, 
         
         selected = [Bool]()
         for _ in printList {
-            selected?.append(false)
+            selected?.append(true)
         }
         
         
@@ -182,17 +192,12 @@ class PrintModelTableViewController: BaseViewController, UITableViewDataSource, 
         }
         return cell
     }
+    
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         
         return printList.count - 1
     }
     
-    //    func tableView(tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
-    //        return constants.Title
-    //    }
-    //     func tableView(tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
-    //        return 44
-    //    }
     private func isAllCellSelected(){
         var selectedh = 0;
         for i in 1...selected!.count-1 {
@@ -201,7 +206,6 @@ class PrintModelTableViewController: BaseViewController, UITableViewDataSource, 
                 selectedh+=1
             }
         }
-        
             let index1 = NSIndexPath(forRow: 0, inSection: 0)
             if let cell = tableview.cellForRowAtIndexPath(index1) as? PrintModelTableViewCell{
                 if selectedh == selected!.count-1 {
@@ -252,32 +256,27 @@ class PrintModelTableViewController: BaseViewController, UITableViewDataSource, 
                 
                 for i in 1...printList.count-2 {
                     let index = NSIndexPath(forRow: i, inSection: 0)
-//                    if let cell = tableview.cellForRowAtIndexPath(index) {
-//                        if cell.contentView.tag == 1 {
-//                            selectedCellArray.append(index)
-//                        }
-//                        
-//                        
-//                    }
                     let c = selected![i]
                     if c {
                         selectedCellArray.append(index)
                     }
                 }
                 
-                
                 if selectedCellArray.count == 0 {
                     return
                 }else{
-                    self.dismissViewControllerAnimated(true){
+//                    print(NSDate)
+                    self.dismissViewControllerAnimated(false){
+                        var filesNames = [String]()
+                        for indexPath0 in selectedCellArray {
+                            let title = self.printList[indexPath0.row]
+                            filesNames.append(title)
+                        }
+//                        let userinfo = NSUserDefaults.standardUserDefaults()
+//                        userinfo.setValue(filesNames, forKey: CConstants.UserInfoPrintModel)
+                        
                         if let delegate1 = self.delegate {
-                            var filesNames = [String]()
-                            for indexPath0 in selectedCellArray {
-                                let title = self.printList[indexPath0.row]
-                                filesNames.append(title)
-                            }
-                            let userinfo = NSUserDefaults.standardUserDefaults()
-                            userinfo.setValue(filesNames, forKey: CConstants.UserInfoPrintModel)
+                            
                             delegate1.GoToPrint(filesNames)
                         }
                     }
@@ -285,19 +284,6 @@ class PrintModelTableViewController: BaseViewController, UITableViewDataSource, 
             }else if cell.cancel.frame.contains(point){
                 self.dismissViewControllerAnimated(true){}
             
-//            }else if cell.imageBtn.frame.contains(point) {
-//                tap.view!.tag = 1 - tap.view!.tag
-//                for cell in tableview.visibleCells {
-//                    if let cell3 = cell as? PrintModelTableViewCell {
-//                        if tap.view?.tag == 0 {
-//                            cell3.contentView.tag = 0
-//                            cell3.imageBtn?.image = UIImage(named: CConstants.CheckImgNm)
-//                        }else{
-//                            cell3.contentView.tag = 1
-//                            cell3.imageBtn?.image = UIImage(named: CConstants.CheckedImgNm)
-//                        }
-//                    }
-//                }
             }
         }
         
@@ -358,18 +344,25 @@ class PrintModelTableViewController: BaseViewController, UITableViewDataSource, 
             //            cell?.contentView.tag = 1 - cell!.contentView.tag
             let iv :UIImage?
             let c = selected![indexPath.row]
-            if !c {
-                iv = UIImage(named: CConstants.CheckedImgNm)
-            }else{
-                iv = UIImage(named: CConstants.CheckImgNm)
-            }
-            selected![indexPath.row] = !c
+//            if !c {
+//                iv = UIImage(named: CConstants.CheckedImgNm)
+//            }else{
+//                iv = UIImage(named: CConstants.CheckImgNm)
+//            }
+//            selected![indexPath.row] = !c
+            
+            
+            
+            iv = UIImage(named: CConstants.CheckedImgNm)
+            selected![indexPath.row] = true
+            
 //
             cell?.imageBtn?.image = iv
             
             
                 for i in 1...(selected!.count-1) {
-                    selected![i] = !c
+//                    selected![i] = !c
+                    selected![i] = true
                     let indexother = NSIndexPath(forRow: i, inSection: 0)
                     if let cell = tableView.cellForRowAtIndexPath(indexother) as? PrintModelTableViewCell {
                         cell.imageBtn?.image =  iv
@@ -380,14 +373,14 @@ class PrintModelTableViewController: BaseViewController, UITableViewDataSource, 
             let cell = tableView.cellForRowAtIndexPath(indexPath) as? PrintModelTableViewCell
 //            cell?.contentView.tag = 1 - cell!.contentView.tag
             let iv :UIImage?
-            let c = selected![indexPath.row]
-            if !c {
-                iv = UIImage(named: CConstants.CheckedImgNm)
-            }else{
-                iv = UIImage(named: CConstants.CheckImgNm)
-            }
-            selected![indexPath.row] = !c
-            
+//            let c = selected![indexPath.row]
+//            if !c {
+//                iv = UIImage(named: CConstants.CheckedImgNm)
+//            }else{
+//                iv = UIImage(named: CConstants.CheckImgNm)
+//            }
+//            selected![indexPath.row] = !c
+            iv = UIImage(named: CConstants.CheckedImgNm)
             cell?.imageBtn?.image = iv
             isAllCellSelected()
             

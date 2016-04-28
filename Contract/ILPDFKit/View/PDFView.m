@@ -130,7 +130,7 @@
         
         outpatha = [PDFView joinPDF:filesArray];
 //        NSLog(@"sfasdf   %@", t);
-        [_pdfView loadRequest:[NSURLRequest requestWithURL:[NSURL fileURLWithPath:outpatha]]];
+        [_pdfView loadRequest: [NSURLRequest requestWithURL:[NSURL fileURLWithPath:outpatha]]];
         
         
         UITapGestureRecognizer *tapGestureRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:nil action:NULL];
@@ -318,49 +318,67 @@
 
 
 + (NSString *)joinPDF:(NSArray *)listOfPaths {
-    // File paths
+//    let qos = Int(QOS_CLASS_USER_INITIATED.rawValue)
+//    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0)) {
+//        let imageData = NSData(contentsOfURL: url)
+//        dispatch_async(dispatch_get_main_queue()){
+//            if url == self.imageURL{
+//                if imageData != nil{
+//                    self.image = UIImage(data: imageData!)
+//                }else{
+//                    self.image = nil
+//                }
+//            }
+//            
+//        }
+//    }
     NSString *fileName = @"ALL.pdf";
     NSString *pdfPathOutput = [[NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) objectAtIndex:0] stringByAppendingPathComponent:fileName];
+//    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
     
-    CFURLRef pdfURLOutput = (  CFURLRef)CFBridgingRetain([NSURL fileURLWithPath:pdfPathOutput]);
-    
-    NSInteger numberOfPages = 0;
-    // Create the output context
-    CGContextRef writeContext = CGPDFContextCreateWithURL(pdfURLOutput, NULL, NULL);
-    
-    for (NSString *source1 in listOfPaths) {
-        NSString *source = [[NSBundle mainBundle] pathForResource:source1 ofType:@"pdf"];
         
-        CFURLRef pdfURL = (  CFURLRef)CFBridgingRetain([[NSURL alloc] initFileURLWithPath:source]);
+        CFURLRef pdfURLOutput = (  CFURLRef)CFBridgingRetain([NSURL fileURLWithPath:pdfPathOutput]);
         
-        //file ref
-        CGPDFDocumentRef pdfRef = CGPDFDocumentCreateWithURL((CFURLRef) pdfURL);
-        numberOfPages = CGPDFDocumentGetNumberOfPages(pdfRef);
+        NSInteger numberOfPages = 0;
+        // Create the output context
+        CGContextRef writeContext = CGPDFContextCreateWithURL(pdfURLOutput, NULL, NULL);
         
-        // Loop variables
-        CGPDFPageRef page;
-        CGRect mediaBox;
-        
-        // Read the first PDF and generate the output pages
-        //        DLog(@"GENERATING PAGES FROM PDF 1 (%@)...", source);
-        for (int i=1; i<=numberOfPages; i++) {
-            page = CGPDFDocumentGetPage(pdfRef, i);
-            mediaBox = CGPDFPageGetBoxRect(page, kCGPDFMediaBox);
-            CGContextBeginPage(writeContext, &mediaBox);
-            CGContextDrawPDFPage(writeContext, page);
-            CGContextEndPage(writeContext);
+        for (NSString *source1 in listOfPaths) {
+            NSString *source = [[NSBundle mainBundle] pathForResource:source1 ofType:@"pdf"];
+            
+            CFURLRef pdfURL = (  CFURLRef)CFBridgingRetain([[NSURL alloc] initFileURLWithPath:source]);
+            
+            //file ref
+            CGPDFDocumentRef pdfRef = CGPDFDocumentCreateWithURL((CFURLRef) pdfURL);
+            numberOfPages = CGPDFDocumentGetNumberOfPages(pdfRef);
+            
+            // Loop variables
+            CGPDFPageRef page;
+            CGRect mediaBox;
+            
+            // Read the first PDF and generate the output pages
+            //        DLog(@"GENERATING PAGES FROM PDF 1 (%@)...", source);
+            for (int i=1; i<=numberOfPages; i++) {
+                page = CGPDFDocumentGetPage(pdfRef, i);
+                mediaBox = CGPDFPageGetBoxRect(page, kCGPDFMediaBox);
+                CGContextBeginPage(writeContext, &mediaBox);
+                CGContextDrawPDFPage(writeContext, page);
+                CGContextEndPage(writeContext);
+            }
+            
+            CGPDFDocumentRelease(pdfRef);
+            CFRelease(pdfURL);
         }
+        CFRelease(pdfURLOutput);
         
-        CGPDFDocumentRelease(pdfRef);
-        CFRelease(pdfURL);
-    }
-    CFRelease(pdfURLOutput);
-    
-    // Finalize the output file
-    CGPDFContextClose(writeContext);
-    CGContextRelease(writeContext);
-    
+        // Finalize the output file
+        CGPDFContextClose(writeContext);
+        CGContextRelease(writeContext);
+//    });
+    // File paths
     return pdfPathOutput;
+    
+    
 }
 
 

@@ -18,6 +18,8 @@ class PDFBaseViewController: BaseViewController, DoOperationDelegate, UIPopoverP
     var pdfView  : PDFView?
     var AddressList : [ContractsItem]?
     
+//    var locked: Bool?
+    
     
 //    var hoa: NSNumber?
 //    var status : String?
@@ -99,7 +101,7 @@ class PDFBaseViewController: BaseViewController, DoOperationDelegate, UIPopoverP
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+//        locked = false
         fileName = self.navigationItem.title!
         loadPDFView()
     }
@@ -145,65 +147,74 @@ class PDFBaseViewController: BaseViewController, DoOperationDelegate, UIPopoverP
     var hud : MBProgressHUD?
     func savePDFToServer(xname: String, nextFunc: String?){
         
-        var parame : [String : String] = ["idcia" : pdfInfo0!.idcia!
-            , "idproject" : pdfInfo0!.idproject!
-            , "code" : pdfInfo0!.code!
-            ,"filetype" : pdfInfo0?.nproject ?? "" + "_\(xname)_FromApp"]
-        
-        var savedPdfData: NSData?
-        
-        if self.documents != nil && self.documents?.count > 0 {
-            savedPdfData = PDFDocument.mergedDataWithDocuments(self.documents)
-        }else{
-            if let added = pdfView?.addedAnnotationViews{
-                //            print(added)
-                savedPdfData = document?.savedStaticPDFData(added)
-            }else{
-                savedPdfData = document?.savedStaticPDFData()
-            }
-        }
-        
-        let fileBase64String = savedPdfData?.base64EncodedStringWithOptions(NSDataBase64EncodingOptions.EncodingEndLineWithLineFeed)
-        parame["file"] = fileBase64String
-        parame["username"] = NSUserDefaults.standardUserDefaults().valueForKey(CConstants.LoggedUserNameKey) as? String ?? ""
-       
-        hud = MBProgressHUD.showHUDAddedTo(self.view, animated: true)
-        //                hud.mode = .AnnularDeterminate
-        hud?.labelText = CConstants.SavedMsg
-        
-      
-//        print(parame)
-        Alamofire.request(.POST,
-            CConstants.ServerURL + CConstants.ContractUploadPdfURL,
-            parameters: parame).responseJSON{ (response) -> Void in
-//                self.hud?.hide(true)
-                if response.result.isSuccess {
-                    if let rtnValue = response.result.value as? [String: String]{
-                        if rtnValue["status"] == "success" {
-                            self.hud?.mode = .CustomView
-                            let image = UIImage(named: CConstants.SuccessImageNm)
-                            self.hud?.customView = UIImageView(image: image)
-                            
-                            self.hud?.labelText = CConstants.SavedSuccessMsg
-                        }else{
-                            self.hud?.mode = .Text
-                            self.hud?.labelText = CConstants.SavedFailMsg
-                        }
-                    }else{
-                        self.hud?.mode = .Text
-                        self.hud?.labelText = CConstants.MsgServerError
-                    }
-                }else{
-                    self.hud?.mode = .Text
-                    self.hud?.labelText = CConstants.MsgNetworkError
-                }
-                if let _ = nextFunc {
-                    self.performSelector(#selector(PDFBaseViewController.dismissProgressThenEmail as (PDFBaseViewController) -> () -> ()), withObject: nextFunc, afterDelay: 0.5)
-                    
-                }else{
-                    self.performSelector(#selector(PDFBaseViewController.dismissProgress as (PDFBaseViewController) -> () -> ()), withObject: nil, afterDelay: 0.5)
-                }
-        }
+//        var parame : [String : String] = ["idcia" : pdfInfo0!.idcia!
+//            , "idproject" : pdfInfo0!.idproject!
+//            , "code" : pdfInfo0!.code!
+//            , "idcontract" : pdfInfo0!.idnumber ?? ""
+//            ,"filetype" : pdfInfo0?.nproject ?? "" + "_\(xname)_FromApp"]
+//        
+//        var savedPdfData: NSData?
+//        
+//        if self.documents != nil && self.documents?.count > 0 {
+//            savedPdfData = PDFDocument.mergedDataWithDocuments(self.documents)
+//        }else{
+//            if let added = pdfView?.addedAnnotationViews{
+//                //            print(added)
+//                savedPdfData = document?.savedStaticPDFData(added)
+//            }else{
+//                savedPdfData = document?.savedStaticPDFData()
+//            }
+//        }
+//        
+//        let fileBase64String = savedPdfData?.base64EncodedStringWithOptions(NSDataBase64EncodingOptions.EncodingEndLineWithLineFeed)
+//        parame["file"] = fileBase64String
+//        parame["username"] = NSUserDefaults.standardUserDefaults().valueForKey(CConstants.LoggedUserNameKey) as? String ?? ""
+//       
+////        let t = self.hud
+////        if hud != nil {
+////            self.hud?.hide(false)
+////        }
+//        if hud == nil {
+//            hud = MBProgressHUD.showHUDAddedTo(self.view, animated: true)
+//        }
+//        
+//        //                hud.mode = .AnnularDeterminate
+//        hud?.labelText = CConstants.SavedMsg
+//        
+//      
+////        print(parame)
+//        Alamofire.request(.POST,
+//            CConstants.ServerURL + CConstants.ContractUploadPdfURL,
+//            parameters: parame).responseJSON{ (response) -> Void in
+////                self.hud?.hide(true)
+////                print(response.result.value)
+//                if response.result.isSuccess {
+//                    if let rtnValue = response.result.value as? [String: String]{
+//                        if rtnValue["status"] == "success" {
+//                            self.hud?.mode = .CustomView
+//                            let image = UIImage(named: CConstants.SuccessImageNm)
+//                            self.hud?.customView = UIImageView(image: image)
+//                            
+//                            self.hud?.labelText = CConstants.SavedSuccessMsg
+//                        }else{
+//                            self.hud?.mode = .Text
+//                            self.hud?.labelText = CConstants.SavedFailMsg
+//                        }
+//                    }else{
+//                        self.hud?.mode = .Text
+//                        self.hud?.labelText = CConstants.MsgServerError
+//                    }
+//                }else{
+//                    self.hud?.mode = .Text
+//                    self.hud?.labelText = CConstants.MsgNetworkError
+//                }
+//                if let _ = nextFunc {
+//                    self.performSelector(#selector(PDFBaseViewController.dismissProgressThenEmail as (PDFBaseViewController) -> () -> ()), withObject: nextFunc, afterDelay: 0.5)
+//                    
+//                }else{
+//                    self.performSelector(#selector(PDFBaseViewController.dismissProgress as (PDFBaseViewController) -> () -> ()), withObject: nil, afterDelay: 0.5)
+//                }
+//        }
     }
     
     
@@ -212,6 +223,7 @@ class PDFBaseViewController: BaseViewController, DoOperationDelegate, UIPopoverP
         if let identifier = segue.identifier {
             switch identifier {
             case CConstants.SegueToOperationsPopover:
+                
                 self.dismissViewControllerAnimated(true, completion: nil)
                 if let tvc = segue.destinationViewController as? SendOperationViewController {
                     if let ppc = tvc.popoverPresentationController {
@@ -235,9 +247,12 @@ class PDFBaseViewController: BaseViewController, DoOperationDelegate, UIPopoverP
                                 if let sign = v as? SignatureView {
                                     if (isapproved && (sign.xname.hasSuffix("bottom3") || sign.xname.hasSuffix("seller1Sign"))) || (!isapproved){
                                         if sign.lineArray?.count > 0 {
-                                            
+//                                            if sign.xname == "p1EBbuyer1Sign" {
+//                                                
+//                                            }
                                             showSave = true
-                                            if sign.LineWidth == 0.0 {
+                                            if sign.LineWidth == 0.0 && sign.xname != "p1EBExhibitbp1sellerInitialSign"{
+//                                                print(sign.xname, sign.LineWidth, sign.lineArray)
                                                 showSubmit = false
                                             }
                                         }else{
@@ -710,6 +725,10 @@ class PDFBaseViewController: BaseViewController, DoOperationDelegate, UIPopoverP
     }
     
     func submit() {
+        
+    }
+    
+    func saveFinish() {
         
     }
     

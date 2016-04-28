@@ -27,8 +27,8 @@ struct CConstants{
     static let UserInfoPrintModel : String = "last print files"
     
     static let LoginingMsg = "   Logining...   "
-    static let RequestMsg = "Requesting from server"
-    static let SavedMsg = "Saving to the BA Server"
+    static let RequestMsg = "Requesting from server..."
+    static let SavedMsg = "Saving to the BA Server..."
     static let SavedSuccessMsg = "Saved successfully."
     static let SavedFailMsg = "Saved fail."
     static let SendEmailSuccessfullMsg = "Sent email successfully."
@@ -167,6 +167,8 @@ struct CConstants{
     static let ApplicationBarItemFontSize : CGFloat = 17.0
     
     static let ApprovedStatus : String = "Approved"
+    static let ForApproveStatus : String = "For Approve"
+    static let DraftStatus : String = "Draft"
     
 }
 

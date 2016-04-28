@@ -342,7 +342,7 @@
             [PopSignUtil closePop];
         } withCancel:^{
             [PopSignUtil closePop];
-        } showAll:((![self.xname hasSuffix:@"Sign"] && self.xname.length == 9) || ([self.xname hasSuffix:@"buyer1Sign"] || [self.xname hasSuffix:@"buyer2Sign"] || [self.xname hasSuffix:@"seller1Sign"] || [self.xname hasSuffix:@"buyer1DateSign"] || [self.xname hasSuffix:@"buyer2DateSign"])) withTitle:xtitle withLineArray:self.lineArray];
+        } showAll:(![self.xname isEqualToString:@"p1EBExhibitbp1sellerInitialSign"]) withTitle:xtitle withLineArray:self.lineArray];
 //    }
     
     

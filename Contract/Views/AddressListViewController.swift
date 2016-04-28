@@ -406,7 +406,9 @@ class AddressListViewController: UITableViewController, UISearchBarDelegate, ToD
                             controller.pdfInfo0 = info
                             controller.addendumCpdfInfo = info
                             controller.AddressList = self.AddressListOrigin
+                            print(self.filesNms!)
                             controller.filesArray = self.filesNms!
+                            print(controller.filesArray)
                             controller.contractInfo = item
                             var itemList = [[String]]()
                             var i = 0

@@ -243,6 +243,7 @@ class LoginViewController: BaseViewController, UITextFieldDelegate {
                 let loginUserInfo = LoginUser(email: email!, password: password!, iscontract:  sender.currentTitle!.hasPrefix("Sign") ? "1" : "0")
                 
                 let a = loginUserInfo.DictionaryFromObject()
+                print(a)
                 Alamofire.request(.POST, CConstants.ServerURL + CConstants.LoginServiceURL, parameters: a).responseJSON{ (response) -> Void in
 //                    self.clearNotice()
                     hud.hide(true)

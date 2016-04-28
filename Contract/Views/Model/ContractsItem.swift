@@ -9,6 +9,7 @@
 import Foundation
 
 class ContractsItem: ContractObject {
+    
     var idnumber: String?
     var idcia: String?
     var cianame: String?
@@ -23,10 +24,12 @@ class ContractsItem: ContractObject {
     var idcity: String?
     var buyer1email: String?
     var buyer2email: String?
-    
+        var signfinishdate: String?
     var hoa: NSNumber?
     var flood: NSNumber?
     var environment: NSNumber?
+    
+    var floodplainyn : NSNumber?
     
     var status : String?
     var approvedate : String?

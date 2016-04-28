@@ -18,6 +18,7 @@ protocol DoOperationDelegate
     func save_Email()
     func startover()
     func submit()
+    func saveFinish()
     
 }
 
@@ -127,6 +128,10 @@ class SendOperationViewController: UIViewController, UITableViewDelegate, UITabl
                 case constants.operationSubmit:
                     if self.showSubmit! {
                         delegate0.submit()
+                    }
+                case constants.operationSaveFinish:
+                    if self.showSubmit! {
+                        delegate0.saveFinish()
                     }
                     
 //                case constants.operationSaveEmail:

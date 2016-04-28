@@ -167,16 +167,16 @@
         
         
         
-        _textFieldOrTextView.opaque = NO;
-        _textFieldOrTextView.backgroundColor = [UIColor clearColor];
-        _baseFontSize = [PDFWidgetAnnotationView fontSizeForRect:frame value:nil multiline:multiline choice:NO  font:@"Verdana"];
+//        _textFieldOrTextView.opaque = NO;
+//        _textFieldOrTextView.backgroundColor = [UIColor clearColor];
+//        _baseFontSize = [PDFWidgetAnnotationView fontSizeForRect:frame value:nil multiline:multiline choice:NO  font:@"Verdana"];
+//        
+//        _currentFontSize = _baseFontSize = fontsize;
+//        
+//        UIFont *font = [UIFont fontWithName:@"Verdana" size: _baseFontSize];
         
-        _currentFontSize = _baseFontSize = fontsize;
         
-        UIFont *font = [UIFont fontWithName:@"Verdana" size: _baseFontSize];
-        
-        
-        [_textFieldOrTextView performSelector:@selector(setFont:) withObject:font];
+//        [_textFieldOrTextView performSelector:@selector(setFont:) withObject:font];
         [self addSubview:_textFieldOrTextView];
     }
     return self;

@@ -26,11 +26,12 @@ class ContractSignature: ContractPDFBaseModel {
     var message: String?
     var zipcode: String?
     var county: String?
-    
+
     var boffice1 : String?
     var cashportion : String?
     var financing : String?
-    
+     var signfinishdate: String?
+    var status : String?
     var estimatedclosing_MMdd : String?
     var estimatedclosing_yy : String?
     var tobuyer2 : String?
