@@ -2246,16 +2246,22 @@ private func getStr(h : [[String]]?) -> String {
 //        self.hud?.show(true)
 //        print(["idcontract1" : self.contractInfo!.idnumber!, "idcia": self.contractInfo!.idcia!, "email": userInfo.stringForKey(CConstants.UserInfoEmail) ?? "", "emailto" : email, "emailcc": emailcc, "msg": msg])
         
-//        ["idcontract1" : self.contractInfo!.idnumber!, "idcia": self.contractInfo!.idcia!, "email": userInfo.stringForKey(CConstants.UserInfoEmail) ?? "", "emailto" : "xiujun_85@163.com", "emailcc": "jack@buildersaccess.com", "msg": msg]
+//
         
 //        ["idcontract1" : self.contractInfo!.idnumber!, "idcia": self.contractInfo!.idcia!, "email": userInfo.stringForKey(CConstants.UserInfoEmail) ?? "", "emailto" : email, "emailcc": emailcc, "msg": msg]
 //        if hud == nil {
             hud = MBProgressHUD.showHUDAddedTo(self.view, animated: true)
 //        }
         hud?.labelText = "Submitting..."
+        
+//        let a =  ["idcontract1" : self.contractInfo!.idnumber!, "idcia": self.contractInfo!.idcia!, "email": userInfo.stringForKey(CConstants.UserInfoEmail) ?? "", "emailto" : email, "emailcc": emailcc, "msg": msg]
+        
+        let a = ["idcontract1" : self.contractInfo!.idnumber!, "idcia": self.contractInfo!.idcia!, "email": userInfo.stringForKey(CConstants.UserInfoEmail) ?? "", "emailto" : "Kevin Zhao (kevin@buildersaccess.com)", "emailcc": "April Lv (april@buildersaccess.com)", "msg": msg]
+        
+//        return;
         Alamofire.request(.POST,
             CConstants.ServerURL + "bacontract_submitForApprove.json",
-            parameters: ["idcontract1" : self.contractInfo!.idnumber!, "idcia": self.contractInfo!.idcia!, "email": userInfo.stringForKey(CConstants.UserInfoEmail) ?? "", "emailto" : email, "emailcc": emailcc, "msg": msg]).responseJSON{ (response) -> Void in
+            parameters:a).responseJSON{ (response) -> Void in
                 //                hud.hide(true)
                 
                 if response.result.isSuccess {

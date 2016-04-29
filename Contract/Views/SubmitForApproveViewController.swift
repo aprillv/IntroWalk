@@ -131,7 +131,10 @@ class SubmitForApproveViewController: BaseViewController, UITableViewDelegate, U
     @IBAction func doSubmit(sender: UIButton) {
         self.dismissViewControllerAnimated(true) {
             if self.delegate != nil {
-                self.delegate?.GoToSubmit(self.toEmail.text ?? "", emailcc: self.emailccs!, msg: self.desView.text ?? "")
+                if let x = self.btnEmail.currentTitle {
+                 self.delegate?.GoToSubmit(x.substringFromIndex(x.startIndex.advancedBy(3)), emailcc: self.emailccs!, msg: self.desView.text ?? "")
+                }
+                
             }
         }
         

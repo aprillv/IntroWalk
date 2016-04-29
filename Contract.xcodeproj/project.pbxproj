@@ -74,6 +74,7 @@
 		115338CA1C27F59E00E1B65A /* ContractPDFBaseModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 115338C91C27F59E00E1B65A /* ContractPDFBaseModel.swift */; };
 		1157B3C41C34C68D008ED758 /* ContractDesignCenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1157B3C31C34C68D008ED758 /* ContractDesignCenter.swift */; };
 		11609E5F1C86FA6600596281 /* AddressListModelLastCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11609E5E1C86FA6600596281 /* AddressListModelLastCell.swift */; };
+		11632BF61CD2DF2F00B70C44 /* INFORMATION_ABOUT_BROKERAGE_SERVICES2.pdf in Resources */ = {isa = PBXBuildFile; fileRef = 11632BF51CD2DF2F00B70C44 /* INFORMATION_ABOUT_BROKERAGE_SERVICES2.pdf */; };
 		11633BA01C27DA0000C11A20 /* ContractClosingMemoItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11633B9F1C27DA0000C11A20 /* ContractClosingMemoItem.swift */; };
 		11633BA21C27DA8E00C11A20 /* ContractClosingMemo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11633BA11C27DA8E00C11A20 /* ContractClosingMemo.swift */; };
 		11643C161C030B8E000E2C0A /* CConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11643C151C030B8E000E2C0A /* CConstants.swift */; };
@@ -222,6 +223,7 @@
 		1157B3C31C34C68D008ED758 /* ContractDesignCenter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContractDesignCenter.swift; sourceTree = "<group>"; };
 		1158E57A1CB34FD0004C2A47 /* Alamofire.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Alamofire.framework; path = "../../../Library/Developer/Xcode/DerivedData/Contract-dcqjjoxvaaolymaiaqvwpxclpghp/Build/Products/Debug-iphonesimulator/Alamofire/Alamofire.framework"; sourceTree = "<group>"; };
 		11609E5E1C86FA6600596281 /* AddressListModelLastCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddressListModelLastCell.swift; sourceTree = "<group>"; };
+		11632BF51CD2DF2F00B70C44 /* INFORMATION_ABOUT_BROKERAGE_SERVICES2.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; path = INFORMATION_ABOUT_BROKERAGE_SERVICES2.pdf; sourceTree = "<group>"; };
 		11633B9F1C27DA0000C11A20 /* ContractClosingMemoItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContractClosingMemoItem.swift; sourceTree = "<group>"; };
 		11633BA11C27DA8E00C11A20 /* ContractClosingMemo.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContractClosingMemo.swift; sourceTree = "<group>"; };
 		11643C151C030B8E000E2C0A /* CConstants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CConstants.swift; sourceTree = "<group>"; };
@@ -468,6 +470,7 @@
 		110CE6AD1C0439A70096E630 /* pdf */ = {
 			isa = PBXGroup;
 			children = (
+				11632BF51CD2DF2F00B70C44 /* INFORMATION_ABOUT_BROKERAGE_SERVICES2.pdf */,
 				1170C8D51CD1F42500E81BCC /* AddendumA.pdf */,
 				1170C8D61CD1F42500E81BCC /* Hoa_Checklist.pdf */,
 				1170C8C11CD1F26300E81BCC /* EXHIBIT_C_General.pdf */,
@@ -631,6 +634,7 @@
 				1108B1B71BFC2691004B5D48 /* Main.storyboard in Resources */,
 				114733F81C103053000FC8D6 /* contract1pdf_1_9999.txt in Resources */,
 				114733FA1C103053000FC8D6 /* contract1pdf_1_265.txt in Resources */,
+				11632BF61CD2DF2F00B70C44 /* INFORMATION_ABOUT_BROKERAGE_SERVICES2.pdf in Resources */,
 				1164A18A1CCDDF7E005A2A69 /* AddendumC2.pdf in Resources */,
 				114733FB1C103053000FC8D6 /* contract1pdf_1_101.txt in Resources */,
 				116C2C891CCCB72400B07865 /* trec_36-8.pdf in Resources */,
