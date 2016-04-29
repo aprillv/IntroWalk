@@ -280,11 +280,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Contract/UtilityClass/SetDotValue.swift"
-            timestampString = "483257263.815273"
+            timestampString = "483616535.086938"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "1459"
-            endingLineNumber = "1459">
+            startingLineNumber = "1455"
+            endingLineNumber = "1455">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -294,11 +294,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Contract/UtilityClass/SetDotValue.swift"
-            timestampString = "483257263.815273"
+            timestampString = "483616535.086938"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "1382"
-            endingLineNumber = "1382"
+            startingLineNumber = "1378"
+            endingLineNumber = "1378"
             landmarkName = "setHoaChecklistDots(_:additionViews:)"
             landmarkType = "5">
          </BreakpointContent>
