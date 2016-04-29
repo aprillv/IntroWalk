@@ -163,9 +163,9 @@ class PDFPrintViewController: PDFBaseViewController, UIScrollViewDelegate, PDFVi
 //                                            print(si.xname)
                                             si.pdfViewsssss = pdfView!
                                             pdfView!.addedCCCCAnnotationViews = doc.addedviewss
-                                            if contractInfo?.status ?? "" == CConstants.DraftStatus || (contractInfo?.status ?? "" == CConstants.ApprovedStatus && contractInfo?.signfinishdate ?? "" == "01/01/1980") {
-                                                si.addSignautre(pdfView!.pdfView!.scrollView)
-                                            }
+//                                            if contractInfo?.status ?? "" == CConstants.DraftStatus || (contractInfo?.status ?? "" == CConstants.ApprovedStatus && contractInfo?.signfinishdate ?? "" == "01/01/1980") {
+//                                                si.addSignautre(pdfView!.pdfView!.scrollView)
+//                                            }
                                             
                                             
                                         }
@@ -717,6 +717,9 @@ class PDFPrintViewController: PDFBaseViewController, UIScrollViewDelegate, PDFVi
             sendItem.title = nil
             sendItem.image = UIImage(named: "send.png")
         }
+        
+        setBuyer2()
+        
     }
     
     override func viewDidLoad() {
@@ -1138,11 +1141,24 @@ class PDFPrintViewController: PDFBaseViewController, UIScrollViewDelegate, PDFVi
             }
         }
         
-        
-        
+        var alldots = [PDFWidgetAnnotationView]()
         if let fileDotsDic1 = fileDotsDic{
             for (_,allAdditionViews) in fileDotsDic1 {
-                for sign in allAdditionViews {
+                alldots.appendContentsOf(allAdditionViews)
+            }
+        }
+        
+       
+        
+        for doc in documents!{
+            if let a = doc.addedviewss as? [PDFWidgetAnnotationView]{
+                alldots.appendContentsOf(a)
+            }
+        }
+        
+//        if let fileDotsDic1 = fileDotsDic{
+//            for (_,allAdditionViews) in fileDotsDic1 {
+                for sign in alldots {
                     if sign.isKindOfClass(SignatureView) {
 //                        print(sign.xname!)
                         if let si = sign as? SignatureView {
@@ -1204,8 +1220,8 @@ class PDFPrintViewController: PDFBaseViewController, UIScrollViewDelegate, PDFVi
                         }
                     }
                 }
-            }
-        }
+//            }
+//        }
         
 //        getSignature()
     }
@@ -1610,10 +1626,8 @@ class PDFPrintViewController: PDFBaseViewController, UIScrollViewDelegate, PDFVi
                     if sign.lineArray != nil && sign.xname.hasSuffix("bottom1") || sign.xname.hasSuffix("Sign3") || sign.xname == "p1EBExhibitbp1sellerInitialSign" {
                         if sign.lineArray != nil && sign.lineArray.count > 0 && sign.LineWidth > 0{
                             if b1i == nil {
-                                //                                b1i = "\(sign.lineArray)"
                                 b1i = sign.lineArray as? [[String]]
                             }
-                            
                             if sign.xname == "p1EBExhibitbp1sellerInitialSign"{
                                 exhibitB[0] = "1"
                             }else if sign.xname.hasSuffix("Sign3") {
@@ -1731,7 +1745,6 @@ class PDFPrintViewController: PDFBaseViewController, UIScrollViewDelegate, PDFVi
                     if sign.xname.hasSuffix("seller1Sign") {
                         if sign.lineArray != nil && sign.lineArray.count > 0 && sign.LineWidth > 0 {
                             if s1s == nil {
-                                //                                b1s = "\(sign.lineArray)"
                                 s1s = sign.lineArray as? [[String]]
                             }
                             var cont = true
@@ -1752,7 +1765,6 @@ class PDFPrintViewController: PDFBaseViewController, UIScrollViewDelegate, PDFVi
                     }else if sign.xname.hasSuffix("bottom3") {
                         if sign.lineArray != nil && sign.lineArray.count > 0 && sign.LineWidth > 0 {
                             if s1i == nil {
-                                //                                b1s = "\(sign.lineArray)"
                                 s1i = sign.lineArray as? [[String]]
                             }
                             var cont = true
@@ -1767,12 +1779,10 @@ class PDFPrintViewController: PDFBaseViewController, UIScrollViewDelegate, PDFVi
                                         }
                                     }
                                 }
-                                
                             }
                         }
                     }
                 }
-                
             }
         }
         
@@ -1822,8 +1832,6 @@ class PDFPrintViewController: PDFBaseViewController, UIScrollViewDelegate, PDFVi
             param["initial_index"] = getStr(initial_index)
             //        print(getStr(initial_index))
             param["initial_b1yn"] = getStr(b1iynArray)
-            //        print(getStr(b1iynArray))
-            
             param["initial_b2yn"] = getStr(b2iynArray)
             param["signature_b1yn"] = getStr(b1isnArray)
             param["signature_b2yn"] = getStr(b2isnArray)
@@ -1831,7 +1839,6 @@ class PDFPrintViewController: PDFBaseViewController, UIScrollViewDelegate, PDFVi
             param["initial_s1yn"] = "0|0|0|0|0|0|0|0|0;0|0;0|0;0|0|0|0|0|0;0;0;0|0|0;0|0|0|0|0;0|0;0|0;0|0;0;0|0;0;0|0|0;0"
             param["signature_s1yn"] = "0|0|0|0|0|0|0|0|0;0|0;0|0;0|0|0|0|0|0;0;0;0|0|0;0|0|0|0|0;0|0;0|0;0|0;0;0|0;0;0|0|0;0"
             param["initial_b1"] = getStr(b1i)
-            //        print(getStr(b1i))
             param["initial_b2"] = getStr(b2i)
             param["signature_b1"] = getStr(b1s)
             param["signature_b2"] = getStr(b2s)
@@ -1842,7 +1849,7 @@ class PDFPrintViewController: PDFBaseViewController, UIScrollViewDelegate, PDFVi
         self.hud = MBProgressHUD.showHUDAddedTo(self.view, animated: true)
         self.hud?.labelText = CConstants.SavedMsg
         
-//        print(param)
+        print(param)
         
         Alamofire.request(.POST,
             CConstants.ServerURL + "bacontract_save_sign.json",
@@ -2256,7 +2263,9 @@ private func getStr(h : [[String]]?) -> String {
         
 //        let a =  ["idcontract1" : self.contractInfo!.idnumber!, "idcia": self.contractInfo!.idcia!, "email": userInfo.stringForKey(CConstants.UserInfoEmail) ?? "", "emailto" : email, "emailcc": emailcc, "msg": msg]
         
-        let a = ["idcontract1" : self.contractInfo!.idnumber!, "idcia": self.contractInfo!.idcia!, "email": userInfo.stringForKey(CConstants.UserInfoEmail) ?? "", "emailto" : "Kevin Zhao (kevin@buildersaccess.com)", "emailcc": "April Lv (april@buildersaccess.com)", "msg": msg]
+        let a = ["idcontract1" : self.contractInfo!.idnumber!, "idcia": self.contractInfo!.idcia!, "email": userInfo.stringForKey(CConstants.UserInfoEmail) ?? "", "emailto" : "Roberto Reletez (roberto@buildersaccess.com)", "emailcc": "Kevin Zhao (kevin@buildersaccess.com)", "msg": msg]
+        
+//         let a = ["idcontract1" : self.contractInfo!.idnumber!, "idcia": self.contractInfo!.idcia!, "email": userInfo.stringForKey(CConstants.UserInfoEmail) ?? "", "emailto" : "April Lv (April@buildersaccess.com)", "emailcc": " ", "msg": msg]
         
 //        return;
         Alamofire.request(.POST,

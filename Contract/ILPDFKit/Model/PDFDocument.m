@@ -214,7 +214,7 @@ static void renderPage1(NSUInteger page, CGContextRef ctx, CGPDFDocumentRef doc,
 }
 
 - (instancetype)initWithResource:(NSString *)name {
-    NSLog(@"%@", name);
+//    NSLog(@"%@", name);
     self = [super init];
     if (self != nil) {
         if ([[[name componentsSeparatedByString:@"."] lastObject] isEqualToString:@"pdf"])
