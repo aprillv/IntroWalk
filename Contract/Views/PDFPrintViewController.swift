@@ -1462,7 +1462,7 @@ class PDFPrintViewController: PDFBaseViewController, UIScrollViewDelegate, PDFVi
         let Flood = ["p1F", "p2F"]
         let Warraty = ["p1W", "p2W"]
         let Desgin = ["p1D"]
-        let HOAC = ["p1H", "p2H"]
+        let HOAC = ["p1H", "p2H", "p3H"]
         let AH = ["p1AH", "p2AH"]
         
         var nameArray = [[String]]()
@@ -1954,7 +1954,7 @@ private func getStr(h : [[String]]?) -> String {
                 if response.result.isSuccess {
                     
                     if let rtnValue = response.result.value as? [String: AnyObject]{
-//                       print(rtnValue)
+                       print(rtnValue)
                         let rtn = SignatrureFields(dicInfo: rtnValue)
                         if rtn.initial_b1yn! != "" {
 //                             print(rtn.initial_b1yn)
@@ -2002,7 +2002,11 @@ private func getStr(h : [[String]]?) -> String {
 //                                    }
                                     
                                     if sign.xname.hasSuffix("bottom1") {
-                                        self.isCanSignature(nameArray, sign: sign, ynarr: self.initial_b1yn, inarr: self.initial_b1)
+                                        if sign.xname == "p3Hbottom1" {
+                                         self.isCanSignature(nameArray, sign: sign, ynarr: self.initial_b1yn, inarr: self.initial_b1)
+                                        }else{
+                                            self.isCanSignature(nameArray, sign: sign, ynarr: self.initial_b1yn, inarr: self.initial_b1)
+                                        }
                                     }else if sign.xname.hasSuffix("bottom2") {
                                         if self.contractInfo!.client2! != "" {
                                             self.isCanSignature(nameArray, sign: sign, ynarr: self.initial_b2yn, inarr: self.initial_b2)
@@ -2263,9 +2267,9 @@ private func getStr(h : [[String]]?) -> String {
         
 //        let a =  ["idcontract1" : self.contractInfo!.idnumber!, "idcia": self.contractInfo!.idcia!, "email": userInfo.stringForKey(CConstants.UserInfoEmail) ?? "", "emailto" : email, "emailcc": emailcc, "msg": msg]
         
-       // let a = ["idcontract1" : self.contractInfo!.idnumber!, "idcia": self.contractInfo!.idcia!, "email": userInfo.stringForKey(CConstants.UserInfoEmail) ?? "", "emailto" : "Roberto Reletez (roberto@buildersaccess.com)", "emailcc": "Kevin Zhao (kevin@buildersaccess.com)", "msg": msg]
+        let a = ["idcontract1" : self.contractInfo!.idnumber!, "idcia": self.contractInfo!.idcia!, "email": userInfo.stringForKey(CConstants.UserInfoEmail) ?? "", "emailto" : "Roberto Reletez (roberto@buildersaccess.com)", "emailcc": "Kevin Zhao (kevin@buildersaccess.com)", "msg": msg]
         
-         let a = ["idcontract1" : self.contractInfo!.idnumber!, "idcia": self.contractInfo!.idcia!, "email": userInfo.stringForKey(CConstants.UserInfoEmail) ?? "", "emailto" : "April Lv (April@buildersaccess.com)", "emailcc": " ", "msg": msg]
+//         let a = ["idcontract1" : self.contractInfo!.idnumber!, "idcia": self.contractInfo!.idcia!, "email": userInfo.stringForKey(CConstants.UserInfoEmail) ?? "", "emailto" : "April Lv (April@buildersaccess.com)", "emailcc": " ", "msg": msg]
         
 //        return;
         Alamofire.request(.POST,

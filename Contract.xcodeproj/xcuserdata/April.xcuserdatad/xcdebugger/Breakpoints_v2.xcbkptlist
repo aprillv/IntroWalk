@@ -136,11 +136,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Contract/Views/Model/ContractObject.swift"
-            timestampString = "478678484.915752"
+            timestampString = "483952277.291624"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "61"
-            endingLineNumber = "61"
+            startingLineNumber = "62"
+            endingLineNumber = "62"
             landmarkName = "GetCapitalFirstWord(_:)"
             landmarkType = "5">
          </BreakpointContent>
