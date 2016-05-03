@@ -13,11 +13,6 @@ class SetDotValue : NSObject {
     // MARK: Sign Contract
     private struct SignContractPDFFields{
         
-        static let Buyer1Signature = "bottom1"
-        static let Buyer2Signature = "bottom2"
-        static let Seller1Signature = "bottom3"
-        static let Seller2Signature = "bottom4"
-        
         static let CompanyName = "sellercompany"
         static let Buyer = "buyer"
         static let Lot = "lot"
@@ -106,6 +101,17 @@ class SetDotValue : NSObject {
         static let CityState = "CityState"
         static let CityStateZip = "Zip"
         
+        //05032016
+        static let escrow_agent = "escrowagent"
+        static let agent_address = "titlecompany"
+        static let insurance_company = "address2"
+        static let seller_name = "toseller1"
+        static let seller_address = "toseller2"
+        static let seller_tel1 = "toseller3"
+        static let seller_tel2 = "toseller4"
+        static let seller_fax1 = "toseller5"
+        static let seller_fax2 = "toseller6"
+
         
     }
     
@@ -114,17 +120,17 @@ class SetDotValue : NSObject {
     }
     
     func setSignContractDots(pdfInfo:ContractSignature?, additionViews: [PDFWidgetAnnotationView], pdfview: PDFView, item: ContractsItem?){
-        if let filedsFromTxt = readContractFieldsFromTxt(getFileName(pdfInfo)) {
-            
-            
-            let na = filedsFromTxt.keys
-            for pv : PDFWidgetAnnotationView in additionViews{
-                if na.contains(pv.xname){
-                    pv.value = filedsFromTxt[pv.xname]
-                }
-            }
-            
-        }
+//        if let filedsFromTxt = readContractFieldsFromTxt(getFileName(pdfInfo)) {
+//            
+//            
+//            let na = filedsFromTxt.keys
+//            for pv : PDFWidgetAnnotationView in additionViews{
+//                if na.contains(pv.xname){
+//                    pv.value = filedsFromTxt[pv.xname]
+//                }
+//            }
+//
+//        }
         
         var tobuyer3 : String
         var tobuyer4 : String
@@ -215,11 +221,53 @@ class SetDotValue : NSObject {
             }else {
                 
                 switch pv.xname {
+                case SignContractPDFFields.seller_name:
+                    pv.value = pdfInfo!.cianame!
+                case SignContractPDFFields.seller_address:
+                    pv.value = pdfInfo!.seller_address!
+                case SignContractPDFFields.seller_tel1:
+                    if let tel = pdfInfo?.seller_tel {
+                    let d = tel.componentsSeparatedByString(".")
+                        if d.count > 1 {
+                        pv.value = d[0]
+                        }
+                    }
+                    
+                case SignContractPDFFields.seller_tel2:
+                    if let tel = pdfInfo?.seller_tel {
+                        let d = tel.componentsSeparatedByString(".")
+                        if d.count > 2 {
+                            pv.value = "\(d[1])-\(d[2])"
+                        }
+                    }
+                case SignContractPDFFields.seller_fax1:
+                    if let tel = pdfInfo?.seller_fax {
+                        let d = tel.componentsSeparatedByString(".")
+                        if d.count > 1 {
+                            pv.value = d[0]
+                        }
+                    }
+                    
+                case SignContractPDFFields.seller_fax2:
+                    if let tel = pdfInfo?.seller_fax {
+                        let d = tel.componentsSeparatedByString(".")
+                        if d.count > 2 {
+                            pv.value = "\(d[1])-\(d[2])"
+                        }
+                    }
+                case SignContractPDFFields.tobuyer6:
+                    pv.value = tobuyer6
                 case SignContractPDFFields.cashportion:
                     //                    pv.value = pdfInfo!.cashportion! == "" ? "0.00" : pdfInfo!.cashportion!
                     pv.value = pdfInfo!.cashportion!
                 case SignContractPDFFields.financing:
                     pv.value = pdfInfo!.financing!
+                case SignContractPDFFields.escrow_agent:
+                    pv.value = pdfInfo!.escrow_agent!
+                case SignContractPDFFields.agent_address:
+                    pv.value = pdfInfo!.agent_address!
+                case SignContractPDFFields.insurance_company:
+                    pv.value = pdfInfo!.insurance_company!
                 case SignContractPDFFields.estimatedclosing_MMdd:
                     pv.value = pdfInfo!.estimatedclosing_MMdd!
                 case SignContractPDFFields.estimatedclosing_yy:
@@ -281,6 +329,8 @@ class SetDotValue : NSObject {
 //                    if let dd = pdfInfo?.executedyy {
 //                        pv.value = dd
 //                    }
+                    
+                    
                 case SignContractPDFFields.buyer_2:
                     pv.value = pdfInfo!.client!
                 case SignContractPDFFields.buyer_3:

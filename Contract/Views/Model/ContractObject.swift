@@ -47,6 +47,7 @@ class ContractObject : NSObject{
                 }
                 super.setValue(tmpArray, forKey: skey)
             }else{
+                
                 super.setValue(value, forKey: skey as String)
             }
         }

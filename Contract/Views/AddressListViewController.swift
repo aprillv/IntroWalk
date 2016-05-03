@@ -285,7 +285,7 @@ class AddressListViewController: UITableViewController, UISearchBarDelegate, ToD
             let item: ContractsItem = ddd![indexPath.row]
             
 //            print(ContractRequestItem(contractInfo: item).DictionaryFromObject())
-            let hud = MBProgressHUD.showHUDAddedTo(self.view, animated: true)
+            let hud = MBProgressHUD.showHUDAddedTo(UIApplication.sharedApplication().keyWindow, animated: true)
             //                hud.mode = .AnnularDeterminate
             hud.labelText = CConstants.RequestMsg
             Alamofire.request(.POST,

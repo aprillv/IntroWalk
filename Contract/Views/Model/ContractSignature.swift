@@ -62,6 +62,12 @@ class ContractSignature: ContractPDFBaseModel {
     var page9CityState: String?
     var page9CityZip: String?
     
+    var escrow_agent: String?
+    var agent_address: String?
+    var insurance_company: String?
     
+    var seller_address: String?
+    var seller_tel: String?
+    var seller_fax: String?
     
 }
