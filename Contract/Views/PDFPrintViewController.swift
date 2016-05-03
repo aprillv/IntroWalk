@@ -2293,7 +2293,7 @@ private func getStr(h : [[String]]?) -> String {
                             let image = UIImage(named: CConstants.SuccessImageNm)
                             self.hud?.customView = UIImageView(image: image)
                             
-                            self.hud?.labelText = CConstants.SavedSuccessMsg
+                            self.hud?.labelText = "Submit successfully."
                             self.performSelector(#selector(PDFBaseViewController.dismissProgress as (PDFBaseViewController) -> () -> ()), withObject: nil, afterDelay: 0.5)
                         }
                     }else{
