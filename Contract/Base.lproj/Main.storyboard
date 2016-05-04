@@ -350,10 +350,24 @@
                         <barButtonItem style="plain" systemItem="flexibleSpace" id="IyM-eY-2El"/>
                     </toolbarItems>
                     <navigationItem key="navigationItem" title="Address List" id="OEj-Gr-2H6">
-                        <barButtonItem key="rightBarButtonItem" tag="2" title="Logout" id="JAY-bP-1MV">
+                        <barButtonItem key="leftBarButtonItem" tag="2" title="Logout" id="JAY-bP-1MV">
                             <connections>
                                 <action selector="toSwitch:" destination="dHY-yp-nIM" id="I8c-1s-7EW"/>
                             </connections>
+                        </barButtonItem>
+                        <barButtonItem key="rightBarButtonItem" style="plain" id="G6Y-Fx-tgY">
+                            <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="4Ai-UW-nI1">
+                                <rect key="frame" x="583" y="8" width="165" height="28"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Homeowner Sign" image="filter">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <segue destination="SHz-fX-zSf" kind="popoverPresentation" identifier="showFilter" popoverAnchorBarButtonItem="G6Y-Fx-tgY" id="59V-Q5-GAJ">
+                                        <popoverArrowDirection key="popoverArrowDirection" up="YES" down="YES" left="YES" right="YES"/>
+                                    </segue>
+                                </connections>
+                            </button>
                         </barButtonItem>
                     </navigationItem>
                     <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
@@ -364,6 +378,7 @@
                         </connections>
                     </refreshControl>
                     <connections>
+                        <outlet property="salesBtn" destination="4Ai-UW-nI1" id="Kz6-Lt-6GK"/>
                         <outlet property="switchItem" destination="JAY-bP-1MV" id="b3x-GY-IVq"/>
                         <outlet property="txtField" destination="ISs-UI-CZe" id="zZe-TU-jGz"/>
                         <outlet property="viewHeight" destination="BSK-TX-2y7" id="F2s-QA-cGy"/>
@@ -373,7 +388,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="akO-Zu-3HL" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2399" y="-1053"/>
+            <point key="canvasLocation" x="2621" y="-1119"/>
         </scene>
         <!--Files-->
         <scene sceneID="22G-ff-vdT">
@@ -745,7 +760,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="BXk-AE-uFq" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="4530" y="-1458"/>
+            <point key="canvasLocation" x="4633" y="-1157"/>
         </scene>
         <!--Submit For Approve View Controller-->
         <scene sceneID="IEs-dK-uHh">
@@ -950,9 +965,76 @@
             </objects>
             <point key="canvasLocation" x="4216" y="-1469"/>
         </scene>
+        <!--Filter View Controller-->
+        <scene sceneID="i2m-oc-Tee">
+            <objects>
+                <viewController storyboardIdentifier="FilterViewController" id="SHz-fX-zSf" customClass="FilterViewController" customModule="Contract" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="7Il-O0-fL8"/>
+                        <viewControllerLayoutGuide type="bottom" id="gbk-Qp-wij"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="Y4P-GC-XoO">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="qwW-KU-gdb">
+                                <rect key="frame" x="0.0" y="0.0" width="200" height="226"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <prototypes>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="filterCell" id="vlw-FN-52H" customClass="filterCell" customModule="Contract" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="28" width="200" height="44"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="vlw-FN-52H" id="AZk-RY-wox">
+                                            <rect key="frame" x="0.0" y="0.0" width="200" height="43"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="SEt-X9-edU">
+                                                    <rect key="frame" x="8" y="9" width="25" height="25"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" constant="25" id="UUK-q7-OIE"/>
+                                                        <constraint firstAttribute="width" constant="25" id="cnL-7r-WtK"/>
+                                                    </constraints>
+                                                </imageView>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1Jd-gf-Y7Q">
+                                                    <rect key="frame" x="41" y="11" width="42" height="21"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstItem="1Jd-gf-Y7Q" firstAttribute="leading" secondItem="SEt-X9-edU" secondAttribute="trailing" constant="8" id="Bob-bu-UTP"/>
+                                                <constraint firstItem="1Jd-gf-Y7Q" firstAttribute="centerY" secondItem="SEt-X9-edU" secondAttribute="centerY" id="b1J-cU-BGn"/>
+                                                <constraint firstAttribute="leadingMargin" secondItem="SEt-X9-edU" secondAttribute="leading" id="v18-FY-AqZ"/>
+                                                <constraint firstItem="SEt-X9-edU" firstAttribute="centerY" secondItem="AZk-RY-wox" secondAttribute="centerY" id="yc3-cV-mvP"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                        <connections>
+                                            <outlet property="checkImg" destination="SEt-X9-edU" id="5pL-Tr-E07"/>
+                                            <outlet property="textlbl" destination="1Jd-gf-Y7Q" id="dpa-yO-xii"/>
+                                        </connections>
+                                    </tableViewCell>
+                                </prototypes>
+                                <connections>
+                                    <outlet property="dataSource" destination="SHz-fX-zSf" id="mvd-ce-JTY"/>
+                                    <outlet property="delegate" destination="SHz-fX-zSf" id="HHf-kA-3kl"/>
+                                </connections>
+                            </tableView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                    <connections>
+                        <outlet property="tableView" destination="qwW-KU-gdb" id="5ZY-U1-z7V"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="cDp-Gp-rCe" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="4564" y="-2577"/>
+        </scene>
     </scenes>
     <resources>
         <image name="back" width="30" height="30"/>
+        <image name="filter" width="26" height="26"/>
         <image name="logo" width="60" height="60"/>
         <image name="send" width="30" height="30"/>
     </resources>

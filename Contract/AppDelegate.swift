@@ -35,6 +35,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         UISearchBar.appearance().barTintColor = CConstants.SearchBarBackColor
         UIBarButtonItem.appearance().tintColor = UIColor.whiteColor()
         
+         let userinfo = NSUserDefaults.standardUserDefaults()
+        userinfo.setInteger(1, forKey: CConstants.ShowFilter)
+        
         return true
         
         

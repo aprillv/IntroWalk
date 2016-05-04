@@ -14,6 +14,8 @@ struct CConstants{
     static let BorderColor : UIColor = UIColor(red: 204/255.0, green: 204/255.0, blue: 204/255.0, alpha: 1)
     static let BackColor : UIColor = UIColor(red: 246/255.0, green: 246/255.0, blue: 246/255.0, alpha: 1)
     
+    static let ShowFilter : String = "ShowFilter"
+    
     static let MsgTitle : String = "BA Contract"
     static let MsgOKTitle : String = "OK"
     static let MsgValidationTitle : String = "Validation Failed"
@@ -168,7 +170,7 @@ struct CConstants{
     
     static let ApprovedStatus : String = "Approved"
     static let ForApproveStatus : String = "For Approve"
-    static let DraftStatus : String = "Draft"
+    static let DraftStatus : String = "iPad Sign"
     
 }
 

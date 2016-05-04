@@ -2149,6 +2149,7 @@ private func getStr(h : [[String]]?) -> String {
                 self.hud!.hide(true)
                 if response.result.isSuccess {
                     if let rtnValue = response.result.value as? [String: AnyObject]{
+//                        print(rtnValue)
                         if rtnValue["result"] as? String ?? "-1" == "-1" {
                             self.PopErrorMsgWithJustOK(msg: rtnValue["message"] as? String ?? "Server Error"){ action -> Void in
                                 

@@ -12,6 +12,7 @@ class AddressListViewCell: UITableViewCell {
     private var ProjectNmLbl: UILabel!
     private var ConsultantLbl: UILabel!
     private var ClientLbl: UILabel!
+    private var StatusLbl: UILabel!
     
     
     required init?(coder aDecoder: NSCoder) {
@@ -66,6 +67,10 @@ class AddressListViewCell: UITableViewCell {
             
             ClientLbl = UILabel()
             cview.addSubview(ClientLbl)
+            
+            StatusLbl = UILabel()
+            cview.addSubview(StatusLbl)
+
             setDisplaySubViews()
         }
     }
@@ -81,14 +86,16 @@ class AddressListViewCell: UITableViewCell {
         let space : CGFloat = 10.0
         
         let xheight = frame.height
-        let xwidth = frame.width - space * 2 - 16
-        ProjectNmLbl.frame  = CGRect(x: 8, y: 0, width: xwidth * 0.34, height: xheight)
+        let xwidth = frame.width - space * 3 - 16
+        ProjectNmLbl.frame  = CGRect(x: 8, y: 0, width: xwidth * 0.36, height: xheight)
         
         
         
-        ClientLbl.frame  = CGRect(x: ProjectNmLbl.frame.origin.x + ProjectNmLbl.frame.width + space, y: 0, width: xwidth * 0.33, height: xheight)
+        ClientLbl.frame  = CGRect(x: ProjectNmLbl.frame.origin.x + ProjectNmLbl.frame.width + space, y: 0, width: xwidth * 0.34, height: xheight)
         
-        ConsultantLbl.frame  = CGRect(x: ClientLbl.frame.origin.x + ClientLbl.frame.width + space, y: 0, width: xwidth * 0.23, height: xheight)
+        ConsultantLbl.frame  = CGRect(x: ClientLbl.frame.origin.x + ClientLbl.frame.width + space, y: 0, width: xwidth * 0.18, height: xheight)
+        
+        StatusLbl.frame  = CGRect(x: ConsultantLbl.frame.origin.x + ConsultantLbl.frame.width + space, y: 0, width: xwidth * 0.12, height: xheight)
         
         
     }
@@ -120,6 +127,7 @@ class AddressListViewCell: UITableViewCell {
                 ProjectNmLbl.text = item.nproject
                 ConsultantLbl.text = item.assignsales1name
                 ClientLbl.text = item.client
+                StatusLbl.text = item.status
             }
         }
     }

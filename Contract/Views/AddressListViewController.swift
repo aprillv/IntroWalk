@@ -10,7 +10,7 @@ import UIKit
 import Alamofire
 import MBProgressHUD
 
-class AddressListViewController: UITableViewController, UISearchBarDelegate, ToDoPrintDelegate {
+class AddressListViewController: UITableViewController, UISearchBarDelegate, ToDoPrintDelegate, FilterViewDelegate{
     @IBOutlet var viewHeight: NSLayoutConstraint!{
         didSet{
             viewHeight.constant = 1.0 / UIScreen.mainScreen().scale
@@ -65,7 +65,18 @@ class AddressListViewController: UITableViewController, UISearchBarDelegate, ToD
     var head : AddressListViewHeadView?
     var AddressListOrigin : [ContractsItem]?{
         didSet{
-            AddressList = AddressListOrigin
+            let userinfo = NSUserDefaults.standardUserDefaults()
+            let a = userinfo.integerForKey(CConstants.ShowFilter)
+            if a == 1 {
+                self.AddressList = self.AddressListOrigin?.filter(){
+                    return $0.status!.containsString("iPad Sign")}
+            }else if a == 2 {
+                self.AddressList = self.AddressListOrigin?.filter(){
+                    return !$0.status!.containsString("iPad Sign")}
+            }else{
+                self.AddressList = self.AddressListOrigin
+            }
+            
         }
     }
     
@@ -135,6 +146,10 @@ class AddressListViewController: UITableViewController, UISearchBarDelegate, ToD
         self.tableView.tag = tableTag ?? 2
         self.navigationItem.hidesBackButton = true
         self.title = constants.Title
+        if tableTag != 2 {
+            filterItem.image = nil
+        }
+        
         
         self.tableView.reloadData()
         self.tableView.separatorInset = UIEdgeInsets(top: 0, left: 8, bottom: 0, right: 8)
@@ -262,6 +277,8 @@ class AddressListViewController: UITableViewController, UISearchBarDelegate, ToD
 //    private func doThirdPartyFinancingAddendumAction(_: UIAlertAction) -> Void{
 //        callService(CConstants.AddendumAServiceURL)
 //    }
+    
+    @IBOutlet var filterItem: UIBarButtonItem!
     
     private func callService(printModelNms: [String]){
         var serviceUrl: String?
@@ -395,7 +412,30 @@ class AddressListViewController: UITableViewController, UISearchBarDelegate, ToD
                     controller.projectInfo = sender as? ContractsItem
                 }
                 break
-           
+            case "showFilter":
+//                self.detailsPopover = [[self storyboard] instantiateViewControllerWithIdentifier:@"identifierName"];
+//                
+//                //... config code for the popover
+//                
+//                UIPopoverController *pc = [[UIPopoverController alloc] initWithContentViewController:detailsPopover];
+//                
+//                //... store popover view controller in an ivar
+//                
+//                [self.annotationPopoverController presentPopoverFromRect:selectedAnnotationView.bounds inView:selectedAnnotationView permittedArrowDirections:UIPopoverArrowDirectionAny animated:YES];
+                
+                
+//                let p = UIStoryboard(name: "Main").instantiateViewControllerWithIdentifier(identifier: "FilterViewController")
+//                
+//                let pc = UIPopoverController(contentViewController: p)
+//                self.navigationController?.presentViewController(<#T##viewControllerToPresent: UIViewController##UIViewController#>, animated: <#T##Bool#>, completion: <#T##(() -> Void)?##(() -> Void)?##() -> Void#>)
+                
+                if let controller = segue.destinationViewController as? FilterViewController {
+                    controller.delegate1 = self
+//                    self.popoverPresentationController?.sourceView = salesBtn;
+//                    self.popoverPresentationController?.sourceRect = salesBtn.bounds;
+                    
+                }
+                break
             case CConstants.SegueToPrintPdf:
                 if let controller = segue.destinationViewController as? PDFPrintViewController {
                     if let indexPath = tableView.indexPathForSelectedRow {
@@ -472,6 +512,7 @@ class AddressListViewController: UITableViewController, UISearchBarDelegate, ToD
     }
     
     private func getAddressListFromServer(sender: UIRefreshControl?){
+        print("getAddressListFromServer......")
         let userInfo = NSUserDefaults.standardUserDefaults()
         let email = userInfo.valueForKey(CConstants.UserInfoEmail) as? String
         let password = userInfo.valueForKey(CConstants.UserInfoPwd) as? String
@@ -483,7 +524,6 @@ class AddressListViewController: UITableViewController, UISearchBarDelegate, ToD
         var hud : MBProgressHUD?
         if sender == nil {
             hud = MBProgressHUD.showHUDAddedTo(self.view, animated: true)
-            //                hud.mode = .AnnularDeterminate
             hud?.labelText = CConstants.RequestMsg
         }
 //       print(a)
@@ -576,6 +616,10 @@ class AddressListViewController: UITableViewController, UISearchBarDelegate, ToD
 //        self.navigationController?.hidesBarsOnSwipe = true
         let userinfo = NSUserDefaults.standardUserDefaults()
         userinfo.setValue(nil, forKey: CConstants.UserInfoPrintModel)
+        kCFDateFormatterDoesRelativeDateFormattingKey
+        
+        self.refreshControl?.beginRefreshing()
+        self.getAddressListFromServer(self.refreshControl)
         
 //        self.extendedLayoutIncludesOpaqueBars = true
 //        self.edgesForExtendedLayout = .None
@@ -583,7 +627,24 @@ class AddressListViewController: UITableViewController, UISearchBarDelegate, ToD
         
     }
     
-   
+    func showAll() {
+        AddressList = AddressListOrigin
+        salesBtn.setTitle("Filter", forState: .Normal)
+    }
+    func showHomeOwnerSign() {
+        AddressList = AddressListOrigin?.filter(){
+             return $0.status!.containsString("iPad Sign")
+        }
+        salesBtn.setTitle("Homeowner Sign", forState: .Normal)
+    }
+    
+    @IBOutlet var salesBtn: UIButton!
+    func showSalesSign() {
+        AddressList = AddressListOrigin?.filter(){
+            return !$0.status!.containsString("iPad Sign")
+        }
+        salesBtn.setTitle("Sales Sign", forState: .Normal)
+    }
     
     
 }
