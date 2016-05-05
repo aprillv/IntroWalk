@@ -230,12 +230,16 @@ class PDFBaseViewController: BaseViewController, DoOperationDelegate, UIPopoverP
                         var showSave = false
                         var showSubmit = true
                         var isapproved = false
+                        var fromWeb = false
                         if let c = contractInfo?.status {
                             if c == CConstants.ApprovedStatus {
                                 isapproved = true
+                            }else if c == CConstants.EmailSignedStatus{
+                                fromWeb = true
                             }
                         }
                         tvc.isapproved = isapproved
+                        tvc.FromWebSide = fromWeb
                         if let dots = pdfView?.pdfWidgetAnnotationViews {
                             let ddd = dots
                             for doc in documents! {
@@ -731,5 +735,11 @@ class PDFBaseViewController: BaseViewController, DoOperationDelegate, UIPopoverP
     func saveFinish() {
         
     }
+    
+    func saveEmail() {
+        
+    }
+    
+    
     
 }

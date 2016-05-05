@@ -313,7 +313,7 @@
                         if (other.LineWidth > 0) {
                             continue;
                         }
-                        if ([other.xname hasSuffix: [self.xname substringFromIndex:2] ] || (isBuyer1Initial && ([other.xname hasSuffix:@"Sign3"] || [other.xname hasSuffix:@"bottom1"] ))){
+                        if ([other.xname hasSuffix: [self.xname substringFromIndex:2] ] || (isBuyer1Initial && ([other.xname hasSuffix:@"Sign3"] || [other.xname hasSuffix:@"bottom1"] || [other.xname isEqualToString:@"p1EBExhibitbp1sellerInitialSign"]))){
                             
                             CGRect ct = other.frame;
                             other.frame = sv.frame;
@@ -321,7 +321,7 @@
                             other.lineArray = sv.lineArray;
                             other.originHeight =sv.originHeight;
                             other.originWidth = sv.originWidth;
-                            if (isToAll) {
+                            if (isToAll && ![other.xname isEqualToString:@"p1EBExhibitbp1sellerInitialSign"]) {
                                 other.LineWidth = sv.LineWidth;
                                 if (sv.lineArray.count!=0) {
                                     [other.menubtn removeFromSuperview];

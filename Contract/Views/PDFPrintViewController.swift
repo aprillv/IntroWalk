@@ -11,7 +11,7 @@ import Alamofire
 import MessageUI
 import MBProgressHUD
 
-class PDFPrintViewController: PDFBaseViewController, UIScrollViewDelegate, PDFViewDelegate, SubmitForApproveViewControllerDelegate{
+class PDFPrintViewController: PDFBaseViewController, UIScrollViewDelegate, PDFViewDelegate, SubmitForApproveViewControllerDelegate, SaveAndEmailViewControllerDelegate{
     
 //    var currentlyEditingView : SPUserResizableView?
 //    var lastEditedView : SPUserResizableView?
@@ -1865,8 +1865,8 @@ class PDFPrintViewController: PDFBaseViewController, UIScrollViewDelegate, PDFVi
                                 self.hud?.mode = .Text
                                 self.hud?.labelText = "Submitting for approve..."
                                  return
-                            }else if xtype == 2 {
-                                self.saveAndFinish2()
+                            }else if xtype == 2 || xtype == 3{
+                                self.saveAndFinish2(xtype)
                             return
                             }else{
                                 self.hud?.mode = .CustomView
@@ -2235,7 +2235,7 @@ private func getStr(h : [[String]]?) -> String {
         }
     }
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        super.prepareForSegue(segue, sender: sender)
+       
         if let identifier = segue.identifier {
             if identifier == "showSubmit" {
                 if let controller = segue.destinationViewController as? SubmitForApproveViewController {
@@ -2248,6 +2248,30 @@ private func getStr(h : [[String]]?) -> String {
                         controller.xdes = "Please approve the following Contract."
                     }
                 }
+            }else if identifier == "showEmail" {
+                if let controller = segue.destinationViewController as? SaveAndEmailViewController {
+                    if let contrat = self.contractInfo {
+                        controller.delegate = self
+                        controller.xtitle = "Send Email"
+                        controller.xtitle2 = "Project # \(contrat.idproject ?? "") ~ \(contrat.nproject ?? "" )"
+                        var emailList : [String] = [String]()
+                        if let email1 = contrat.buyer1email {
+                            emailList.append(email1)
+                        }
+                        if let email1 = contrat.buyer2email {
+                            emailList.append(email1)
+                        }
+                        
+                        controller.xemailList = emailList
+                        let userInfo = NSUserDefaults.standardUserDefaults()
+                        let email = userInfo.valueForKey(CConstants.UserInfoEmail) as? String
+                        
+                        controller.xemailcc = email ?? ""
+                        controller.xdes = "This is the contract of your new house."
+                    }
+                }
+            }else{
+             super.prepareForSegue(segue, sender: sender)
             }
         }
     }
@@ -2268,9 +2292,9 @@ private func getStr(h : [[String]]?) -> String {
         
 //        let a =  ["idcontract1" : self.contractInfo!.idnumber!, "idcia": self.contractInfo!.idcia!, "email": userInfo.stringForKey(CConstants.UserInfoEmail) ?? "", "emailto" : email, "emailcc": emailcc, "msg": msg]
         
-        let a = ["idcontract1" : self.contractInfo!.idnumber!, "idcia": self.contractInfo!.idcia!, "email": userInfo.stringForKey(CConstants.UserInfoEmail) ?? "", "emailto" : "Roberto Reletez (roberto@buildersaccess.com)", "emailcc": "Kevin Zhao (kevin@buildersaccess.com)", "msg": msg]
+//        let a = ["idcontract1" : self.contractInfo!.idnumber!, "idcia": self.contractInfo!.idcia!, "email": userInfo.stringForKey(CConstants.UserInfoEmail) ?? "", "emailto" : "Roberto Reletez (roberto@buildersaccess.com)", "emailcc": "Kevin Zhao (kevin@buildersaccess.com)", "msg": msg]
         
-//         let a = ["idcontract1" : self.contractInfo!.idnumber!, "idcia": self.contractInfo!.idcia!, "email": userInfo.stringForKey(CConstants.UserInfoEmail) ?? "", "emailto" : "April Lv (April@buildersaccess.com)", "emailcc": " ", "msg": msg]
+         let a = ["idcontract1" : self.contractInfo!.idnumber!, "idcia": self.contractInfo!.idcia!, "email": userInfo.stringForKey(CConstants.UserInfoEmail) ?? "", "emailto" : "April Lv (April@buildersaccess.com)", "emailcc": " ", "msg": msg]
         
 //        return;
         Alamofire.request(.POST,
@@ -2313,7 +2337,7 @@ private func getStr(h : [[String]]?) -> String {
         self.saveToServer1(2)
     }
     
-    func saveAndFinish2(){
+    func saveAndFinish2(xtype: Int8){
 //        self.savePDFToServer(fileName!, nextFunc: nil)
         
 //        func savePDFToServer(xname: String, nextFunc: String?){
@@ -2359,6 +2383,10 @@ private func getStr(h : [[String]]?) -> String {
                                 self.hud?.customView = UIImageView(image: image)
                                 
                                 self.hud?.labelText = CConstants.SavedSuccessMsg
+                                
+                                if xtype == 3 {
+                                    self.saveEmail2(fileBase64String!)
+                                }
                             }else{
                                 self.hud?.mode = .Text
                                 self.hud?.labelText = CConstants.SavedFailMsg
@@ -2380,6 +2408,61 @@ private func getStr(h : [[String]]?) -> String {
             }
 //        }
         
+    }
+    
+  override  func saveEmail() {
+        saveToServer1(3)
+    }
+    
+    func saveEmail2(savedPdfData: String) {
+        self.performSegueWithIdentifier("showEmail", sender: savedPdfData)
+    }
+    
+    func GoToEmailSubmit(email: String, emailcc: String, msg: String) {
+        let userInfo = NSUserDefaults.standardUserDefaults()
+        hud = MBProgressHUD.showHUDAddedTo(self.view, animated: true)
+        hud?.labelText = "Submitting..."
+        
+        //        let a =  ["idcontract1" : self.contractInfo!.idnumber!, "idcia": self.contractInfo!.idcia!, "email": userInfo.stringForKey(CConstants.UserInfoEmail) ?? "", "emailto" : email, "emailcc": emailcc, "msg": msg]
+        
+        //        let a = ["idcontract1" : self.contractInfo!.idnumber!, "idcia": self.contractInfo!.idcia!, "email": userInfo.stringForKey(CConstants.UserInfoEmail) ?? "", "emailto" : "Roberto Reletez (roberto@buildersaccess.com)", "emailcc": "Kevin Zhao (kevin@buildersaccess.com)", "msg": msg]
+        
+        let a = ["idcontract1" : self.contractInfo!.idnumber!, "idcia": self.contractInfo!.idcia!, "email": userInfo.stringForKey(CConstants.UserInfoEmail) ?? "", "emailto" : "April Lv (April@buildersaccess.com)", "emailcc": " ", "msg": msg]
+        
+        //        return;
+        Alamofire.request(.POST,
+            CConstants.ServerURL + "bacontract_submitForApprove.json",
+            parameters:a).responseJSON{ (response) -> Void in
+                
+                if response.result.isSuccess {
+                    if let rtnValue = response.result.value as? [String: AnyObject]{
+                        //                        print(rtnValue)
+                        if rtnValue["result"] as? String ?? "-1" == "-1" {
+                            self.hud?.hide(true)
+                            self.PopErrorMsgWithJustOK(msg: rtnValue["message"] as? String ?? "Sever Error") {
+                                (action : UIAlertAction) -> Void in
+                                
+                            }
+                        }else{
+                            self.contractInfo?.status = CConstants.ForApproveStatus
+                            self.setSendItema()
+                            self.hud?.mode = .CustomView
+                            let image = UIImage(named: CConstants.SuccessImageNm)
+                            self.hud?.customView = UIImageView(image: image)
+                            
+                            self.hud?.labelText = "Submit successfully."
+                            self.performSelector(#selector(PDFBaseViewController.dismissProgress as (PDFBaseViewController) -> () -> ()), withObject: nil, afterDelay: 0.5)
+                        }
+                    }else{
+                        self.hud?.mode = .Text
+                        self.hud?.labelText = CConstants.SavedFailMsg
+                    }
+                }else{
+                    self.hud?.mode = .Text
+                    self.hud?.labelText = CConstants.MsgServerError
+                }
+                self.performSelector(#selector(PDFBaseViewController.dismissProgress as (PDFBaseViewController) -> () -> ()), withObject: nil, afterDelay: 0.5)
+        }
     }
 }
 

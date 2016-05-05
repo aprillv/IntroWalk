@@ -45,6 +45,7 @@
 		1108B2791BFC6133004B5D48 /* BaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1108B2781BFC6133004B5D48 /* BaseViewController.swift */; };
 		110CE6A61C03F3370096E630 /* ContractSignatureError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 110CE6A51C03F3370096E630 /* ContractSignatureError.swift */; };
 		11116CE51CA3D8DC0021B680 /* BuyersExpect.pdf in Resources */ = {isa = PBXBuildFile; fileRef = 11116CE41CA3D8DC0021B680 /* BuyersExpect.pdf */; };
+		111293D91CDAE00300B0DAFC /* SaveAndEmailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 111293D81CDAE00300B0DAFC /* SaveAndEmailViewController.swift */; };
 		1112E34C1CBF826000AC9123 /* SPUserResizableView.m in Sources */ = {isa = PBXBuildFile; fileRef = 1112E34A1CBF826000AC9123 /* SPUserResizableView.m */; };
 		1114C79C1C812AE900924A21 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1114C79B1C812AE900924A21 /* AppDelegate.swift */; };
 		1114C7A51C8137EA00924A21 /* AddressDraftListViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1114C7A41C8137EA00924A21 /* AddressDraftListViewCell.swift */; };
@@ -183,6 +184,7 @@
 		1108B2781BFC6133004B5D48 /* BaseViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BaseViewController.swift; sourceTree = "<group>"; };
 		110CE6A51C03F3370096E630 /* ContractSignatureError.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContractSignatureError.swift; sourceTree = "<group>"; };
 		11116CE41CA3D8DC0021B680 /* BuyersExpect.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; path = BuyersExpect.pdf; sourceTree = "<group>"; };
+		111293D81CDAE00300B0DAFC /* SaveAndEmailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SaveAndEmailViewController.swift; sourceTree = "<group>"; };
 		1112E34A1CBF826000AC9123 /* SPUserResizableView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SPUserResizableView.m; sourceTree = "<group>"; };
 		1112E34B1CBF826000AC9123 /* SPUserResizableView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SPUserResizableView.h; sourceTree = "<group>"; };
 		1114C79B1C812AE900924A21 /* AppDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -447,6 +449,7 @@
 				118D54341CD09E9500F6359A /* SubmitForApproveViewController.swift */,
 				11A626341CD989F500B91EBE /* FilterViewController.swift */,
 				11A626361CD98C9D00B91EBE /* filterCell.swift */,
+				111293D81CDAE00300B0DAFC /* SaveAndEmailViewController.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -676,6 +679,7 @@
 				115338CA1C27F59E00E1B65A /* ContractPDFBaseModel.swift in Sources */,
 				11EEF03B1CCF5679006422ED /* SignatrureFields.swift in Sources */,
 				11633BA21C27DA8E00C11A20 /* ContractClosingMemo.swift in Sources */,
+				111293D91CDAE00300B0DAFC /* SaveAndEmailViewController.swift in Sources */,
 				11D911001C1AB33D00CD018A /* ContractAddendumC.swift in Sources */,
 				1108B2651BFC4047004B5D48 /* PDFForm.m in Sources */,
 				111E20401C7C5F3D004D43D8 /* SetDotValue.swift in Sources */,

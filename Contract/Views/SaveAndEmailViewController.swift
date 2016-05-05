@@ -1,25 +1,26 @@
 //
-//  SubmitForApproveViewController.swift
+//  SaveAndEmailViewController.swift
 //  Contract
 //
-//  Created by April on 4/27/16.
+//  Created by April on 5/5/16.
 //  Copyright © 2016 HapApp. All rights reserved.
 //
 
 import UIKit
-protocol SubmitForApproveViewControllerDelegate
+protocol SaveAndEmailViewControllerDelegate
 {
-    func GoToSubmit(email: String, emailcc: String, msg: String)
+    func GoToEmailSubmit(email: String, emailcc: String, msg: String)
 }
-class SubmitForApproveViewController: BaseViewController, UITableViewDelegate, UITableViewDataSource, UITextViewDelegate{
+class SaveAndEmailViewController: BaseViewController, UITableViewDelegate, UITableViewDataSource, UITextViewDelegate{
     
-    var delegate : SubmitForApproveViewControllerDelegate?
+    @IBOutlet var txtEmailcc: UITextField!
+    var delegate : SaveAndEmailViewControllerDelegate?
     
     var xtitle: String?
     var xtitle2: String?
     var xto: String?
     var xemailList: [String]?
-    
+    var xemailcc: String?
     var emailccs: String?
     var xdes : String?
     
@@ -33,8 +34,8 @@ class SubmitForApproveViewController: BaseViewController, UITableViewDelegate, U
     @IBOutlet var bview: UIView!{
         didSet{
             bview.layer.cornerRadius = 5.0
-//            bview.layer.borderWidth = 1.0
-//            bview.layer.borderColor = UIColor.lightGrayColor().CGColor
+            //            bview.layer.borderWidth = 1.0
+            //            bview.layer.borderColor = UIColor.lightGrayColor().CGColor
         }
     }
     override func viewWillLayoutSubviews() {
@@ -49,6 +50,7 @@ class SubmitForApproveViewController: BaseViewController, UITableViewDelegate, U
         }
     }
     @IBOutlet var xtitlelbl2: UILabel!
+    @IBOutlet var toCC: UITextField!
     @IBOutlet var toEmail: UITextField!
     @IBOutlet var desView: UITextView!{
         didSet{
@@ -61,10 +63,11 @@ class SubmitForApproveViewController: BaseViewController, UITableViewDelegate, U
     @IBOutlet var submitBtn: UIButton!{
         didSet{
             submitBtn.layer.cornerRadius = 5.0
-//            submitBtn.layer.borderWidth = 1.0
-//            desView.layer.borderColor = UIColor.lightGrayColor().CGColor
+            //            submitBtn.layer.borderWidth = 1.0
+            //            desView.layer.borderColor = UIColor.lightGrayColor().CGColor
         }
     }
+    @IBOutlet var lineHeight: NSLayoutConstraint!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -74,43 +77,27 @@ class SubmitForApproveViewController: BaseViewController, UITableViewDelegate, U
         desView.text = xdes ?? ""
         
         var h: String = ""
-        if let x = xemailList?.first {
-            if x.containsString(";") {
-                let a = x.componentsSeparatedByString(";")
-//                toEmail.text = a[0]
-                h = a[0]
-//                btnEmail.setTitle(a[0], forState: UIControlState.Normal)
-                emailccs = a[1]
-            }else{
-//                toEmail.text = xemailList![0]
-                h = x
-                
-                emailccs = ""
-            }
+        if xemailList!.count > 0 {
+            h = xemailList!.joinWithSeparator(", ")
         }
-        btnEmail.setTitle("   \(h)", forState: UIControlState.Normal)
+        toEmail.text = h
+        txtEmailcc.text = xemailcc ?? ""
+        
+        
+//        btnEmail.setTitle("   \(h)", forState: UIControlState.Normal)
         xemailList![0] = h
-//        xemailList?.append("April(xiujun_85@163.com)")
-        emailListTbView.reloadData()
+        //        xemailList?.append("April(xiujun_85@163.com)")
+//        emailListTbView.reloadData()
         
+        
+        lineHeight.constant = 1.0 / (UIScreen().scale)
+    view.updateConstraintsIfNeeded()
         
     }
     
-    @IBOutlet var btnEmail: UIButton!
+   
     @IBAction func showDropList(sender: AnyObject) {
-        if self.desView.isFirstResponder() {
         self.desView.resignFirstResponder()
-            self.performSelector(#selector(showDrowlist2), withObject: nil, afterDelay: 0.2)
-        }else{
-            showDrowlist2()
-        }
-    
-        
-        
-        
-    }
-    
-    func showDrowlist2()  {
         let ct = emailListTbView.frame
         //        var ct2 = emailListTbView.frame
         //        ct2.height = 0.0
@@ -122,6 +109,8 @@ class SubmitForApproveViewController: BaseViewController, UITableViewDelegate, U
         }) { (_) in
             
         }
+        
+        
     }
     
     @IBOutlet var emailListTbView: UITableView!{
@@ -141,9 +130,9 @@ class SubmitForApproveViewController: BaseViewController, UITableViewDelegate, U
     @IBAction func doSubmit(sender: UIButton) {
         self.dismissViewControllerAnimated(true) {
             if self.delegate != nil {
-                if let x = self.btnEmail.currentTitle {
-                 self.delegate?.GoToSubmit(x, emailcc: self.emailccs!, msg: self.desView.text ?? "")
-                }
+//                if let x = self.btnEmail.currentTitle {
+//                    self.delegate?.GoToEmailSubmit(x.substringFromIndex(x.startIndex.advancedBy(3)), emailcc: self.emailccs!, msg: self.desView.text ?? "")
+//                }
                 
             }
         }
@@ -165,9 +154,9 @@ class SubmitForApproveViewController: BaseViewController, UITableViewDelegate, U
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCellWithIdentifier("emailCell", forIndexPath: indexPath)
         
-            cell.textLabel?.text = xemailList![indexPath.row]
+        cell.textLabel?.text = xemailList![indexPath.row]
         
-//        cell.textLabel?.textColor = UIColor.blackColor()
+        //        cell.textLabel?.textColor = UIColor.blackColor()
         
         return cell
     }
@@ -177,7 +166,7 @@ class SubmitForApproveViewController: BaseViewController, UITableViewDelegate, U
     }
     
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-
+        
         let ct = emailListTbView.frame
         
         UIView.animateWithDuration(0.4, animations: {
@@ -188,7 +177,7 @@ class SubmitForApproveViewController: BaseViewController, UITableViewDelegate, U
             tableView.deselectRowAtIndexPath(indexPath, animated: false)
         }
         
-        btnEmail.setTitle(xemailList![indexPath.row], forState: UIControlState.Normal)
+//        btnEmail.setTitle("   \(xemailList![indexPath.row])", forState: UIControlState.Normal)
     }
     
     @IBOutlet var hightConstraints: NSLayoutConstraint!
@@ -202,13 +191,13 @@ class SubmitForApproveViewController: BaseViewController, UITableViewDelegate, U
     
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
-//        [[NSNotificationCenter defaultCenter] addObserver:self
-//            selector:@selector(myKeyboardWillHideHandler:)
-//        name:UIKeyboardWillHideNotification
-//        object:nil];
+        //        [[NSNotificationCenter defaultCenter] addObserver:self
+        //            selector:@selector(myKeyboardWillHideHandler:)
+        //        name:UIKeyboardWillHideNotification
+        //        object:nil];
         
         NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(myKeyboardWillHideHandler(_:)), name: UIKeyboardWillHideNotification, object: nil)
-         NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(myKeyboardWillShowHandler(_:)), name: UIKeyboardWillShowNotification, object: nil)
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(myKeyboardWillShowHandler(_:)), name: UIKeyboardWillShowNotification, object: nil)
         NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(OrientationchangedHandler(_:)), name: UIDeviceOrientationDidChangeNotification, object: nil)
     }
     
@@ -217,43 +206,36 @@ class SubmitForApproveViewController: BaseViewController, UITableViewDelegate, U
         NSNotificationCenter.defaultCenter().removeObserver(self, name: UIKeyboardWillHideNotification, object: nil)
         NSNotificationCenter.defaultCenter().removeObserver(self, name: UIKeyboardWillShowNotification, object: nil)
         NSNotificationCenter.defaultCenter().removeObserver(self, name: UIDeviceOrientationDidChangeNotification, object: nil)
-//        [[NSNotificationCenter defaultCenter] addObserver:self  selector:@selector(orientationChanged:)    name:UIDeviceOrientationDidChangeNotification  object:nil];
-    
+        //        [[NSNotificationCenter defaultCenter] addObserver:self  selector:@selector(orientationChanged:)    name:UIDeviceOrientationDidChangeNotification  object:nil];
+        
     }
     func OrientationchangedHandler(orientation : UIInterfaceOrientation)  {
-       
-            self.changeHeight()
+        
+        self.changeHeight()
         
         
     }
     
-private func changeHeight(){
-    if desView.isFirstResponder() {
-        //        print(max(self.view.frame.size.width, self.view.frame.size.height))
-        //        if max(self.view.frame.size.width, self.view.frame.size.height) <= 1024 {
-        let orientation = UIApplication.sharedApplication().statusBarOrientation
-        if orientation == .LandscapeLeft || orientation == .LandscapeRight{
-            hightConstraints.active = false
-            hight2?.active = true
-            self.view.updateConstraintsIfNeeded()
-        }else{
-            hightConstraints.active = true
-            hight2?.active = false
-            self.view.updateConstraintsIfNeeded()
+    private func changeHeight(){
+        if desView.isFirstResponder() {
+            //        print(max(self.view.frame.size.width, self.view.frame.size.height))
+            //        if max(self.view.frame.size.width, self.view.frame.size.height) <= 1024 {
+            let orientation = UIApplication.sharedApplication().statusBarOrientation
+            if orientation == .LandscapeLeft || orientation == .LandscapeRight{
+                hightConstraints.active = false
+                hight2?.active = true
+                self.view.updateConstraintsIfNeeded()
+            }else{
+                hightConstraints.active = true
+                hight2?.active = false
+                self.view.updateConstraintsIfNeeded()
+            }
+            //        }
         }
-        //        }
-    }
-
-    
+        
+        
     }
     func myKeyboardWillShowHandler(noti : NSNotification) {
-         let ct = emailListTbView.frame
-        UIView.animateWithDuration(0.4, animations: {
-            self.emailListTbView.frame = CGRect(x: ct.origin.x, y: ct.origin.y, width: ct.width, height: 0)
-        }) { (_) in
-            self.emailListTbView.hidden = true
-            self.emailListTbView.frame = ct
-        }
         changeHeight()
     }
     func myKeyboardWillHideHandler(noti : NSNotification) {

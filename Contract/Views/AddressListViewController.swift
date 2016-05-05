@@ -147,7 +147,7 @@ class AddressListViewController: UITableViewController, UISearchBarDelegate, ToD
         self.navigationItem.hidesBackButton = true
         self.title = constants.Title
         if tableTag != 2 {
-            filterItem.image = nil
+            salesBtn.hidden = true
         }
         
         
@@ -512,7 +512,7 @@ class AddressListViewController: UITableViewController, UISearchBarDelegate, ToD
     }
     
     private func getAddressListFromServer(sender: UIRefreshControl?){
-        print("getAddressListFromServer......")
+//        print("getAddressListFromServer......")
         let userInfo = NSUserDefaults.standardUserDefaults()
         let email = userInfo.valueForKey(CConstants.UserInfoEmail) as? String
         let password = userInfo.valueForKey(CConstants.UserInfoPwd) as? String

@@ -169,6 +169,7 @@ struct CConstants{
     static let ApplicationBarItemFontSize : CGFloat = 17.0
     
     static let ApprovedStatus : String = "Approved"
+    static let EmailSignedStatus : String = "Email Sign"
     static let ForApproveStatus : String = "For Approve"
     static let DraftStatus : String = "iPad Sign"
     

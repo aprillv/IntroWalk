@@ -19,6 +19,7 @@ protocol DoOperationDelegate
     func startover()
     func submit()
     func saveFinish()
+    func saveEmail()
     
 }
 
@@ -28,6 +29,7 @@ class SendOperationViewController: UIViewController, UITableViewDelegate, UITabl
     @IBOutlet weak var tableView: UITableView!
     var delegate1 : DoOperationDelegate?
     var showSave : Bool?
+    var FromWebSide : Bool?
     var showSubmit : Bool?
     var isapproved : Bool?
     var itemList : [String]?{
@@ -46,6 +48,7 @@ class SendOperationViewController: UIViewController, UITableViewDelegate, UITabl
         static let operationSubmit = "Submit for Approve"
         static let operationStartOver = "Start Over"
         static let operationSaveFinish = "Save & Finish"
+        static let operationSaveEmail = "Save & Email"
         static let operationEmail = "Email"
 //        static let operationSaveEmail = "Save & Email"
         static let operationClearDraftInfo = "Clear Buyer's Fields"
@@ -56,11 +59,16 @@ class SendOperationViewController: UIViewController, UITableViewDelegate, UITabl
         super.viewDidLoad()
         let userinfo = NSUserDefaults.standardUserDefaults()
         if userinfo.boolForKey(CConstants.UserInfoIsContract){
-            if isapproved! {
-                itemList = [constants.operationSaveFinish, constants.operationStartOver]
+            if FromWebSide ?? false {
+                itemList = [constants.operationSubmit]
             }else{
-                itemList = [constants.operationSavetoServer, constants.operationSubmit, constants.operationStartOver]
+                if isapproved! {
+                    itemList = [constants.operationSaveFinish, constants.operationSaveEmail, constants.operationStartOver]
+                }else{
+                    itemList = [constants.operationSavetoServer, constants.operationSubmit, constants.operationStartOver]
+                }
             }
+            
             
         }else{
             if userinfo.integerForKey("ClearDraftInfo") == 0 {
@@ -94,7 +102,7 @@ class SendOperationViewController: UIViewController, UITableViewDelegate, UITabl
             }
         }
         
-        if (cell.textLabel?.text == constants.operationSubmit || cell.textLabel?.text == constants.operationSaveFinish) {
+        if (cell.textLabel?.text == constants.operationSubmit || cell.textLabel?.text == constants.operationSaveFinish || cell.textLabel?.text == constants.operationSaveEmail) {
             if (!showSubmit!) {
                 cell.textLabel?.textColor = UIColor.darkGrayColor()
             }else{
@@ -132,6 +140,10 @@ class SendOperationViewController: UIViewController, UITableViewDelegate, UITabl
                 case constants.operationSaveFinish:
                     if self.showSubmit! {
                         delegate0.saveFinish()
+                    }
+                case constants.operationSaveEmail:
+                    if self.showSubmit! {
+                        delegate0.saveEmail()
                     }
                     
 //                case constants.operationSaveEmail:
