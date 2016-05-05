@@ -10,6 +10,7 @@ import UIKit
 protocol SaveAndEmailViewControllerDelegate
 {
     func GoToEmailSubmit(email: String, emailcc: String, msg: String)
+    func ClearEmailData()
 }
 class SaveAndEmailViewController: BaseViewController, UITableViewDelegate, UITableViewDataSource, UITextViewDelegate{
     
@@ -124,15 +125,17 @@ class SaveAndEmailViewController: BaseViewController, UITableViewDelegate, UITab
     
     @IBAction func close(sender: UIButton) {
         self.dismissViewControllerAnimated(true) {
-            
+            if let d = self.delegate {
+                d.ClearEmailData()
+            }
         }
     }
     @IBAction func doSubmit(sender: UIButton) {
         self.dismissViewControllerAnimated(true) {
             if self.delegate != nil {
-//                if let x = self.btnEmail.currentTitle {
-//                    self.delegate?.GoToEmailSubmit(x.substringFromIndex(x.startIndex.advancedBy(3)), emailcc: self.emailccs!, msg: self.desView.text ?? "")
-//                }
+                if let x = self.toEmail.text {
+                    self.delegate?.GoToEmailSubmit(x, emailcc: self.txtEmailcc.text ?? " ", msg: self.desView.text ?? " ")
+                }
                 
             }
         }

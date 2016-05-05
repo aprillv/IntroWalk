@@ -2292,9 +2292,9 @@ private func getStr(h : [[String]]?) -> String {
         
 //        let a =  ["idcontract1" : self.contractInfo!.idnumber!, "idcia": self.contractInfo!.idcia!, "email": userInfo.stringForKey(CConstants.UserInfoEmail) ?? "", "emailto" : email, "emailcc": emailcc, "msg": msg]
         
-//        let a = ["idcontract1" : self.contractInfo!.idnumber!, "idcia": self.contractInfo!.idcia!, "email": userInfo.stringForKey(CConstants.UserInfoEmail) ?? "", "emailto" : "Roberto Reletez (roberto@buildersaccess.com)", "emailcc": "Kevin Zhao (kevin@buildersaccess.com)", "msg": msg]
+        let a = ["idcontract1" : self.contractInfo!.idnumber!, "idcia": self.contractInfo!.idcia!, "email": userInfo.stringForKey(CConstants.UserInfoEmail) ?? "", "emailto" : "Roberto Reletez (roberto@buildersaccess.com)", "emailcc": "Kevin Zhao (kevin@buildersaccess.com)", "msg": msg]
         
-         let a = ["idcontract1" : self.contractInfo!.idnumber!, "idcia": self.contractInfo!.idcia!, "email": userInfo.stringForKey(CConstants.UserInfoEmail) ?? "", "emailto" : "April Lv (April@buildersaccess.com)", "emailcc": " ", "msg": msg]
+//         let a = ["idcontract1" : self.contractInfo!.idnumber!, "idcia": self.contractInfo!.idcia!, "email": userInfo.stringForKey(CConstants.UserInfoEmail) ?? "", "emailto" : "April Lv (April@buildersaccess.com)", "emailcc": emailcc, "msg": msg]
         
 //        return;
         Alamofire.request(.POST,
@@ -2414,43 +2414,57 @@ private func getStr(h : [[String]]?) -> String {
         saveToServer1(3)
     }
     
+    var emailData : String?
     func saveEmail2(savedPdfData: String) {
-        self.performSegueWithIdentifier("showEmail", sender: savedPdfData)
+        self.performSegueWithIdentifier("showEmail", sender: nil)
+        emailData = savedPdfData
     }
     
     func GoToEmailSubmit(email: String, emailcc: String, msg: String) {
-        let userInfo = NSUserDefaults.standardUserDefaults()
+//        let userInfo = NSUserDefaults.standardUserDefaults()
         hud = MBProgressHUD.showHUDAddedTo(self.view, animated: true)
-        hud?.labelText = "Submitting..."
+        hud?.labelText = "Sending Email..."
         
         //        let a =  ["idcontract1" : self.contractInfo!.idnumber!, "idcia": self.contractInfo!.idcia!, "email": userInfo.stringForKey(CConstants.UserInfoEmail) ?? "", "emailto" : email, "emailcc": emailcc, "msg": msg]
         
         //        let a = ["idcontract1" : self.contractInfo!.idnumber!, "idcia": self.contractInfo!.idcia!, "email": userInfo.stringForKey(CConstants.UserInfoEmail) ?? "", "emailto" : "Roberto Reletez (roberto@buildersaccess.com)", "emailcc": "Kevin Zhao (kevin@buildersaccess.com)", "msg": msg]
         
-        let a = ["idcontract1" : self.contractInfo!.idnumber!, "idcia": self.contractInfo!.idcia!, "email": userInfo.stringForKey(CConstants.UserInfoEmail) ?? "", "emailto" : "April Lv (April@buildersaccess.com)", "emailcc": " ", "msg": msg]
+        let a = [ "EmailTo": email, "EmailCc" : emailcc, "Subject": "\(contractInfo!.nproject!)'s Contract",
+                  "Body" : msg, "Attachment1": emailData ?? " ", "Attachment2": " ", "Attachment3": " "]
+        
+//        IdCia	query	int	No
+//        EmailTo	query	string	No
+//        EmailCc	query	string	No
+//        Subject	query	string	No
+//        Body	query	string	No
+//        Attachment1	query	string	No
+//        Attachment2	query	string	No	
+//        Attachment3
         
         //        return;
+//        print(a)
         Alamofire.request(.POST,
-            CConstants.ServerURL + "bacontract_submitForApprove.json",
+            CConstants.ServerURL + "bacontract_SendEmail.json",
             parameters:a).responseJSON{ (response) -> Void in
-                
+                self.emailData = nil
+                 print(response.result.value)
+//                print(rtnValue)
                 if response.result.isSuccess {
-                    if let rtnValue = response.result.value as? [String: AnyObject]{
-                        //                        print(rtnValue)
-                        if rtnValue["result"] as? String ?? "-1" == "-1" {
+                    if let rtnValue = response.result.value as? Bool{
+                        
+                        if !rtnValue {
                             self.hud?.hide(true)
-                            self.PopErrorMsgWithJustOK(msg: rtnValue["message"] as? String ?? "Sever Error") {
+                            self.PopErrorMsgWithJustOK(msg: "Email sent failed.") {
                                 (action : UIAlertAction) -> Void in
-                                
+                            
                             }
                         }else{
-                            self.contractInfo?.status = CConstants.ForApproveStatus
-                            self.setSendItema()
+                            
                             self.hud?.mode = .CustomView
                             let image = UIImage(named: CConstants.SuccessImageNm)
                             self.hud?.customView = UIImageView(image: image)
                             
-                            self.hud?.labelText = "Submit successfully."
+                            self.hud?.labelText = "Email sent successfully."
                             self.performSelector(#selector(PDFBaseViewController.dismissProgress as (PDFBaseViewController) -> () -> ()), withObject: nil, afterDelay: 0.5)
                         }
                     }else{
@@ -2463,6 +2477,10 @@ private func getStr(h : [[String]]?) -> String {
                 }
                 self.performSelector(#selector(PDFBaseViewController.dismissProgress as (PDFBaseViewController) -> () -> ()), withObject: nil, afterDelay: 0.5)
         }
+    }
+    
+    func ClearEmailData(){
+        emailData = nil
     }
 }
 
