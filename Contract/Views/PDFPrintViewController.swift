@@ -799,10 +799,11 @@ class PDFPrintViewController: PDFBaseViewController, UIScrollViewDelegate, PDFVi
             CConstants.ServerURL + serviceUrl!,
             parameters: param).responseJSON{ (response) -> Void in
                 hud.hide(true)
+//                print(param, serviceUrl, response.result.value)
                 if response.result.isSuccess {
                     
                     if let rtnValue = response.result.value as? [String: AnyObject]{
-//                        print(rtnValue);
+                       
                         if let msg = rtnValue["message"] as? String{
                             if msg.isEmpty{
 //                                var vc : PDFBaseViewController?

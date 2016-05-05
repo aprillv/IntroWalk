@@ -65,6 +65,10 @@ class AddressListViewController: UITableViewController, UISearchBarDelegate, ToD
     var head : AddressListViewHeadView?
     var AddressListOrigin : [ContractsItem]?{
         didSet{
+            
+            if tableTag != 2 {
+             self.AddressList = self.AddressListOrigin
+            }else{
             let userinfo = NSUserDefaults.standardUserDefaults()
             let a = userinfo.integerForKey(CConstants.ShowFilter)
             if a == 1 {
@@ -75,6 +79,7 @@ class AddressListViewController: UITableViewController, UISearchBarDelegate, ToD
                     return !$0.status!.containsString("iPad Sign")}
             }else{
                 self.AddressList = self.AddressListOrigin
+                }
             }
             
         }
