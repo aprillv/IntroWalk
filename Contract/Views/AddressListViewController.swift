@@ -73,10 +73,10 @@ class AddressListViewController: UITableViewController, UISearchBarDelegate, ToD
             let a = userinfo.integerForKey(CConstants.ShowFilter)
             if a == 1 {
                 self.AddressList = self.AddressListOrigin?.filter(){
-                    return $0.status!.containsString("iPad Sign")}
+                    return $0.status!.containsString("iPad Sign") || $0.status!.containsString("Email Sign")}
             }else if a == 2 {
                 self.AddressList = self.AddressListOrigin?.filter(){
-                    return !$0.status!.containsString("iPad Sign")}
+                    return !($0.status!.containsString("iPad Sign") || $0.status!.containsString("Email Sign"))}
             }else{
                 self.AddressList = self.AddressListOrigin
                 }
@@ -638,7 +638,7 @@ class AddressListViewController: UITableViewController, UISearchBarDelegate, ToD
     }
     func showHomeOwnerSign() {
         AddressList = AddressListOrigin?.filter(){
-             return $0.status!.containsString("iPad Sign")
+             return $0.status!.containsString("iPad Sign") || $0.status!.containsString("Email Sign")
         }
         salesBtn.setTitle("Homeowner Sign", forState: .Normal)
     }
@@ -646,7 +646,7 @@ class AddressListViewController: UITableViewController, UISearchBarDelegate, ToD
     @IBOutlet var salesBtn: UIButton!
     func showSalesSign() {
         AddressList = AddressListOrigin?.filter(){
-            return !$0.status!.containsString("iPad Sign")
+            return !($0.status!.containsString("iPad Sign") || $0.status!.containsString("Email Sign"))
         }
         salesBtn.setTitle("Sales Sign", forState: .Normal)
     }

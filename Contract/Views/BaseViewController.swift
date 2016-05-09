@@ -64,7 +64,7 @@ class BaseViewController: UIViewController {
     
     func PopErrorMsgWithJustOK(msg msg1: String, action1 : (action : UIAlertAction) -> Void){
         
-        let alert: UIAlertController = UIAlertController(title: "Error", message: msg1, preferredStyle: .Alert)
+        let alert: UIAlertController = UIAlertController(title: "Message", message: msg1, preferredStyle: .Alert)
         
         //Create and add the OK action
         let oKAction: UIAlertAction = UIAlertAction(title: CConstants.MsgOKTitle, style: .Cancel, handler:action1)

@@ -1213,7 +1213,7 @@ class PDFPrintViewController: PDFBaseViewController, UIScrollViewDelegate, PDFVi
                             }
                            
                             si.pdfViewsssss = pdfView!
-                            if contractInfo?.status ?? "" == CConstants.DraftStatus || (contractInfo?.status ?? "" == CConstants.ApprovedStatus && contractInfo?.signfinishdate ?? "" == "01/01/1980") {
+                            if contractInfo?.status ?? "" == CConstants.DraftStatus || contractInfo?.status ?? "" == "Email Sign" || (contractInfo?.status ?? "" == CConstants.ApprovedStatus && contractInfo?.signfinishdate ?? "" == "01/01/1980") {
                                 si.addSignautre(pdfView!.pdfView!.scrollView)
                             }
                             
@@ -1924,7 +1924,8 @@ private func getStr(h : [[String]]?) -> String {
 }
     
     private func getArr(str: String) -> [[String]] {
-        return str.componentsSeparatedByString(";").map(){$0.componentsSeparatedByString("|")}
+        
+        return (str.stringByReplacingOccurrencesOfString(" ", withString: "")).componentsSeparatedByString(";").map(){$0.componentsSeparatedByString("|")}
     }
 
     var initial_b1yn : [[String]]?
@@ -1961,7 +1962,7 @@ private func getStr(h : [[String]]?) -> String {
 //                             print(rtn.initial_b1yn)
                             self.initial_b1yn = self.getArr(rtn.initial_b1yn!)
                             self.initial_b2yn = self.getArr(rtn.initial_b2yn!)
-                             self.initial_s1yn = self.getArr(rtn.initial_s1yn!)
+                            self.initial_s1yn = self.getArr(rtn.initial_s1yn!)
                             self.signature_b1yn = self.getArr(rtn.signature_b1yn!)
                             self.signature_b2yn = self.getArr(rtn.signature_b2yn!)
                             self.signature_s1yn = self.getArr(rtn.signature_s1yn!)
@@ -2057,6 +2058,7 @@ private func getStr(h : [[String]]?) -> String {
                                             for l in self.hoapage3fields {
                                                 if l == sign.xname {
                                                     ab = true
+                                                    
                                                     self.setShowSignature(sign, signs: self.initial_b1!, idcator: self.initial_index![3][self.hoapage3fields.indexOf(l)!])
                                                     break;
                                                 }
@@ -2105,6 +2107,7 @@ private func getStr(h : [[String]]?) -> String {
         si.lineArray = signa as! NSMutableArray
         si.originWidth = Float(si.getOriginFrame().width)
         si.originHeight = Float(si.getOriginFrame().height)
+        
         if idcator == "1" {
             si.LineWidth = 5.0
         }else{
@@ -2295,9 +2298,10 @@ private func getStr(h : [[String]]?) -> String {
         
         let a = ["idcontract1" : self.contractInfo!.idnumber!, "idcia": self.contractInfo!.idcia!, "email": userInfo.stringForKey(CConstants.UserInfoEmail) ?? "", "emailto" : "Roberto Reletez (roberto@buildersaccess.com)", "emailcc": "Kevin Zhao (kevin@buildersaccess.com)", "msg": msg]
         
-//         let a = ["idcontract1" : self.contractInfo!.idnumber!, "idcia": self.contractInfo!.idcia!, "email": userInfo.stringForKey(CConstants.UserInfoEmail) ?? "", "emailto" : "April Lv (April@buildersaccess.com)", "emailcc": emailcc, "msg": msg]
+//         let a = ["idcontract1" : self.contractInfo!.idnumber!, "idcia": self.contractInfo!.idcia!, "email": userInfo.stringForKey(CConstants.UserInfoEmail) ?? "", "emailto" : "April Lv (April@buildersaccess.com)", "emailcc": "xiujun_85@163.com", "msg": msg]
         
 //        return;
+//        print(a)
         Alamofire.request(.POST,
             CConstants.ServerURL + "bacontract_submitForApprove.json",
             parameters:a).responseJSON{ (response) -> Void in
@@ -2430,8 +2434,17 @@ private func getStr(h : [[String]]?) -> String {
         
         //        let a = ["idcontract1" : self.contractInfo!.idnumber!, "idcia": self.contractInfo!.idcia!, "email": userInfo.stringForKey(CConstants.UserInfoEmail) ?? "", "emailto" : "Roberto Reletez (roberto@buildersaccess.com)", "emailcc": "Kevin Zhao (kevin@buildersaccess.com)", "msg": msg]
         
-        let a = [ "EmailTo": email, "EmailCc" : emailcc, "Subject": "\(contractInfo!.nproject!)'s Contract",
+        var email1 = email.stringByReplacingOccurrencesOfString(" ", withString: "")
+        if email1.hasSuffix(",") {
+            email1 = email1.stringByReplacingOccurrencesOfString(",", withString: "")
+        }
+        var emailcc1 = emailcc.stringByReplacingOccurrencesOfString(" ", withString: "")
+        if emailcc1.hasSuffix(",") {
+            emailcc1 = emailcc1.stringByReplacingOccurrencesOfString(",", withString: "")
+        }
+        let a = [ "EmailTo": email1, "EmailCc" : emailcc1, "Subject": "\(contractInfo!.nproject!)'s Contract",
                   "Body" : msg, "Attachment1": emailData ?? " ", "Attachment2": " ", "Attachment3": " "]
+//        print(a)
         
 //        IdCia	query	int	No
 //        EmailTo	query	string	No
@@ -2448,7 +2461,7 @@ private func getStr(h : [[String]]?) -> String {
             CConstants.ServerURL + "bacontract_SendEmail.json",
             parameters:a).responseJSON{ (response) -> Void in
                 self.emailData = nil
-                 print(response.result.value)
+//                 print(response.result.value)
 //                print(rtnValue)
                 if response.result.isSuccess {
                     if let rtnValue = response.result.value as? Bool{
