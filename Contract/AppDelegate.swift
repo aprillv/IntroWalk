@@ -36,7 +36,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         UIBarButtonItem.appearance().tintColor = UIColor.whiteColor()
         
          let userinfo = NSUserDefaults.standardUserDefaults()
-        userinfo.setInteger(1, forKey: CConstants.ShowFilter)
+        userinfo.setInteger(0, forKey: CConstants.ShowFilter)
         
         return true
         

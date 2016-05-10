@@ -11,8 +11,10 @@ import Alamofire
 import MessageUI
 import MBProgressHUD
 
-class PDFPrintViewController: PDFBaseViewController, UIScrollViewDelegate, PDFViewDelegate, SubmitForApproveViewControllerDelegate, SaveAndEmailViewControllerDelegate{
-    
+class PDFPrintViewController: PDFBaseViewController, UIScrollViewDelegate, PDFViewDelegate, SubmitForApproveViewControllerDelegate, SaveAndEmailViewControllerDelegate,UIImagePickerControllerDelegate, UINavigationControllerDelegate, GoToFileDelegate{
+    private struct constants{
+        static let operationMsg = "Are you sure you want to take photo of the check again?"
+    }
 //    var currentlyEditingView : SPUserResizableView?
 //    var lastEditedView : SPUserResizableView?
 //    
@@ -268,6 +270,7 @@ class PDFPrintViewController: PDFBaseViewController, UIScrollViewDelegate, PDFVi
     var page2 : Bool?
     
     var filesArray : [String]?
+    var filesPageCountArray : [Int]?
     var fileDotsDic : [String : [PDFWidgetAnnotationView]]?
     
     
@@ -283,6 +286,7 @@ class PDFPrintViewController: PDFBaseViewController, UIScrollViewDelegate, PDFVi
     override func loadPDFView(){
         
         var filesNames = [String]()
+        filesPageCountArray = [Int]()
         let param = ContractRequestItem(contractInfo: nil).DictionaryFromBasePdf(self.pdfInfo0!)
 //print(param)
         
@@ -322,6 +326,7 @@ class PDFPrintViewController: PDFBaseViewController, UIScrollViewDelegate, PDFVi
             var str : String
             
             lastheight = filePageCnt
+            
             
             switch title {
             case CConstants.ActionTitleContract,
@@ -401,6 +406,7 @@ class PDFPrintViewController: PDFBaseViewController, UIScrollViewDelegate, PDFVi
                 str = ""
                 filePageCnt += 0
             }
+            filesPageCountArray?.append(filePageCnt-lastheight)
             
             filesNames.append(str)
             
@@ -1268,7 +1274,7 @@ class PDFPrintViewController: PDFBaseViewController, UIScrollViewDelegate, PDFVi
         let alert: UIAlertController = UIAlertController(title: CConstants.MsgTitle, message: "Are you sure you want to Start Over", preferredStyle: .Alert)
         
         //Create and add the OK action
-        let oKAction: UIAlertAction = UIAlertAction(title: "YES", style: .Default) { action -> Void in
+        let oKAction: UIAlertAction = UIAlertAction(title: "Yes", style: .Default) { action -> Void in
             //Do some stuff
             for doc in self.documents! {
                 if let dd = doc.addedviewss {
@@ -1846,11 +1852,11 @@ class PDFPrintViewController: PDFBaseViewController, UIScrollViewDelegate, PDFVi
             param["initial_s1"] = " "
             param["signature_s1"] = " "
         }
-        
+         param["checked_photo"] = " "
         self.hud = MBProgressHUD.showHUDAddedTo(self.view, animated: true)
         self.hud?.labelText = CConstants.SavedMsg
         
-        print(param)
+//        print(param)
         
         Alamofire.request(.POST,
             CConstants.ServerURL + "bacontract_save_sign.json",
@@ -1956,7 +1962,7 @@ private func getStr(h : [[String]]?) -> String {
                 if response.result.isSuccess {
                     
                     if let rtnValue = response.result.value as? [String: AnyObject]{
-                       print(rtnValue)
+//                       print(rtnValue)
                         let rtn = SignatrureFields(dicInfo: rtnValue)
                         if rtn.initial_b1yn! != "" {
 //                             print(rtn.initial_b1yn)
@@ -2123,7 +2129,7 @@ private func getStr(h : [[String]]?) -> String {
         let alert: UIAlertController = UIAlertController(title: CConstants.MsgTitle, message: "Do you want to submit for approval?", preferredStyle: .Alert)
         
         //Create and add the OK action
-        let oKAction: UIAlertAction = UIAlertAction(title: "YES", style: .Default) { action -> Void in
+        let oKAction: UIAlertAction = UIAlertAction(title: "Yes", style: .Default) { action -> Void in
             //save signature to sever
 //            self.locked = true
             self.saveToServer1(1)
@@ -2146,7 +2152,7 @@ private func getStr(h : [[String]]?) -> String {
         // do submit for approve
         let userInfo = NSUserDefaults.standardUserDefaults()
         
-        print(["idcontract1" : self.contractInfo!.idnumber!, "idcia": self.contractInfo!.idcia!, "email": userInfo.stringForKey(CConstants.UserInfoEmail) ?? ""])
+//        print(["idcontract1" : self.contractInfo!.idnumber!, "idcia": self.contractInfo!.idcia!, "email": userInfo.stringForKey(CConstants.UserInfoEmail) ?? ""])
         Alamofire.request(.POST,
             CConstants.ServerURL + "bacontract_getSubmitForApproveEmail.json",
             parameters: ["idcontract1" : self.contractInfo!.idnumber!, "idcia": self.contractInfo!.idcia!, "email": userInfo.stringForKey(CConstants.UserInfoEmail) ?? ""]).responseJSON{ (response) -> Void in
@@ -2238,6 +2244,8 @@ private func getStr(h : [[String]]?) -> String {
             return true
         }
     }
+    
+    
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
        
         if let identifier = segue.identifier {
@@ -2252,6 +2260,13 @@ private func getStr(h : [[String]]?) -> String {
                         controller.xdes = "Please approve the following Contract."
                     }
                 }
+            }else if identifier == "showSkipFile" {
+                self.dismissViewControllerAnimated(true, completion: nil)
+                if let controller = segue.destinationViewController as? GoToFileViewController {
+                    controller.delegate = self
+                    controller.printList = self.filesArray!
+                }
+            
             }else if identifier == "showEmail" {
                 if let controller = segue.destinationViewController as? SaveAndEmailViewController {
                     if let contrat = self.contractInfo {
@@ -2275,7 +2290,87 @@ private func getStr(h : [[String]]?) -> String {
                     }
                 }
             }else{
-             super.prepareForSegue(segue, sender: sender)
+                if let identifier = segue.identifier {
+                    switch identifier {
+                    case CConstants.SegueToOperationsPopover:
+                        
+                        self.dismissViewControllerAnimated(true, completion: nil)
+                        if let tvc = segue.destinationViewController as? SendOperationViewController {
+                            if let ppc = tvc.popoverPresentationController {
+                                var showSave = false
+                                var showSubmit = true
+                                var isapproved = false
+                                var fromWeb = false
+                                if let c = contractInfo?.status {
+                                    if c == CConstants.ApprovedStatus {
+                                        isapproved = true
+                                    }else if c == CConstants.EmailSignedStatus{
+                                        fromWeb = true
+                                    }
+                                }
+                                tvc.isapproved = isapproved
+                                tvc.FromWebSide = fromWeb
+                                tvc.hasCheckedPhoto = contractPdfInfo!.hasCheckedPhoto
+                                if let dots = pdfView?.pdfWidgetAnnotationViews {
+                                    let ddd = dots
+                                    for doc in documents! {
+                                        if let dd = doc.addedviewss {
+                                            ddd.addObjectsFromArray(dd)
+                                        }
+                                    }
+                                    for v in ddd {
+                                        if let sign = v as? SignatureView {
+                                            if (isapproved && (sign.xname.hasSuffix("bottom3") || sign.xname.hasSuffix("seller1Sign"))) || (!isapproved){
+                                                if sign.lineArray?.count > 0 {
+                                                    //                                            if sign.xname == "p1EBbuyer1Sign" {
+                                                    //
+                                                    //                                            }
+                                                    showSave = true
+                                                    if sign.LineWidth == 0.0 && sign.xname != "p1EBExhibitbp1sellerInitialSign"{
+                                                        //                                                print(sign.xname, sign.LineWidth, sign.lineArray)
+                                                        showSubmit = false
+                                                    }
+                                                }else{
+                                                    if sign.menubtn != nil && sign.menubtn.superview != nil && sign.xname != "p1EBExhibitbp1sellerInitialSign"{
+                                                        showSubmit = false
+                                                    }
+                                                    
+                                                }
+                                            }
+                                            
+                                        }
+                                    }
+                                }
+                                
+                                tvc.showSave = showSave
+                                tvc.showSubmit = showSubmit
+                                ppc.delegate = self
+                                tvc.delegate1 = self
+                            }
+                            //                    tvc.text = "april"
+                        }
+                    case CConstants.SegueToPrintModelPopover:
+                        self.dismissViewControllerAnimated(true, completion: nil)
+                        if let tvc = segue.destinationViewController as? PrintModelTableViewController {
+                            if let ppc = tvc.popoverPresentationController {
+                                ppc.delegate = self
+                                tvc.delegate = self
+                            }
+                            //                    tvc.text = "april"
+                        }
+                    case CConstants.SegueToAddressModelPopover:
+                        self.dismissViewControllerAnimated(true, completion: nil)
+                        if let tvc = segue.destinationViewController as? AddressListModelViewController {
+                            if let ppc = tvc.popoverPresentationController {
+                                ppc.delegate = self
+                                tvc.AddressListOrigin = self.AddressList
+                                tvc.delegate = self
+                            }
+                            //                    tvc.text = "april"
+                        }
+                    default: break
+                    }
+                }
             }
         }
     }
@@ -2496,6 +2591,154 @@ private func getStr(h : [[String]]?) -> String {
     func ClearEmailData(){
         emailData = nil
     }
+    
+    var imagePicker: UIImagePickerController?
+    
+    override func attachPhoto() {
+        
+        let alert: UIAlertController = UIAlertController(title: "Attach Photo Check", message: nil, preferredStyle: .Alert)
+        
+        //Create and add the OK action
+        let oKAction: UIAlertAction = UIAlertAction(title: "Photo Library", style: .Default) { action -> Void in
+            //Do some stuff
+            self.imagePicker =  UIImagePickerController()
+            self.imagePicker?.delegate = self
+            //            self.imagePicker?.allowsEditing = true
+            self.imagePicker?.sourceType = .PhotoLibrary
+            self.presentViewController(self.imagePicker!, animated: true, completion: nil)
+        }
+        alert.addAction(oKAction)
+        
+        let cancelAction: UIAlertAction = UIAlertAction(title: "Take Photo", style: .Cancel) { action -> Void in
+            //Do some stuff
+            self.imagePicker =  UIImagePickerController()
+            self.imagePicker?.delegate = self
+            //            self.imagePicker?.allowsEditing = true
+            self.imagePicker?.sourceType = .Camera
+            self.presentViewController(self.imagePicker!, animated: true, completion: nil)
+        }
+        
+        alert.addAction(cancelAction)
+        
+        //Present the AlertController
+        self.presentViewController(alert, animated: true, completion: nil)
+        
+        
+    }
+    
+    func imagePickerController(picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : AnyObject]) {
+        
+        imagePicker?.dismissViewControllerAnimated(true, completion: nil)
+        
+        if let image = info[UIImagePickerControllerOriginalImage] as? UIImage {
+            if let c = self.contractPdfInfo?.hasCheckedPhoto {
+                if c == "1" {
+                    let alert: UIAlertController = UIAlertController(title: CConstants.MsgTitle, message: constants.operationMsg, preferredStyle: .Alert)
+                    
+                    //Create and add the OK action
+                    let oKAction: UIAlertAction = UIAlertAction(title: "Yes", style: .Default) { action -> Void in
+                        self.uploadAttachedPhoto(image)
+                    }
+                    alert.addAction(oKAction)
+                    
+                    let cancelAction: UIAlertAction = UIAlertAction(title: "Cancel", style: .Cancel, handler: nil)
+                    alert.addAction(cancelAction)
+                    
+                    //Present the AlertController
+                    self.presentViewController(alert, animated: true, completion: nil)
+                }else{
+                    uploadAttachedPhoto(image)
+                }
+            }else{
+                uploadAttachedPhoto(image)
+            }
+        }
+        
+        
+        
+        
+        
+    }
+    
+    private func uploadAttachedPhoto(image : UIImage){
+        let imageData = UIImageJPEGRepresentation(image, 0.65)
+        let string = imageData!.base64EncodedStringWithOptions(NSDataBase64EncodingOptions.EncodingEndLineWithLineFeed)
+        hud = MBProgressHUD.showHUDAddedTo(self.view, animated: true)
+        //                hud.mode = .AnnularDeterminate
+        self.hud?.labelText = "Uploading photo to BA Server..."
+        let param = ["idcontract1" : contractInfo?.idnumber ?? "0" , "checked_photo" : string]
+        Alamofire.request(.POST,
+            CConstants.ServerURL + CConstants.UploadCheckedPhotoURL,
+            parameters: param).responseJSON{ (response) -> Void in
+//                hud.hide(true)
+                //                print(param, serviceUrl, response.result.value)
+                if response.result.isSuccess {
+                    
+                    if let rtnValue = response.result.value as? Bool{
+                        
+                        if rtnValue{
+                            self.contractPdfInfo?.hasCheckedPhoto = "1"
+                            self.hud?.mode = .CustomView
+                            let image = UIImage(named: CConstants.SuccessImageNm)
+                            self.hud?.customView = UIImageView(image: image)
+                            
+                            self.hud?.labelText = "Saved successfully."
+                            
+                        }else{
+                            self.PopMsgWithJustOK(msg: CConstants.MsgServerError)
+                        }
+                    }else{
+                        self.PopMsgWithJustOK(msg: CConstants.MsgServerError)
+                    }
+                }else{
+                    //                            self.spinner?.stopAnimating()
+                    self.PopMsgWithJustOK(msg: CConstants.MsgNetworkError)
+                }
+                self.performSelector(#selector(PDFBaseViewController.dismissProgress as (PDFBaseViewController) -> () -> ()), withObject: nil, afterDelay: 0.5)
+        }
+    }
+    
+    func sumOf(numbers: [Int]) -> Int {
+        var sum = 0
+        for number in numbers {
+            sum += number
+        }
+        return sum
+    }
+    
+    func skipToFile(filenm: String) {
+        var pageCnt = 0
+        for i in 0...(self.filesArray?.count ?? 0){
+            if filenm != self.filesArray![i] {
+                pageCnt += self.filesPageCountArray![i] ?? 0
+            }else{
+                break
+            }
+        }
+        
+        let t = sumOf(self.filesPageCountArray!)
+        
+        let h = (self.pdfView?.pdfView.scrollView.contentSize.height ?? 0) - getMargins2()
+        if h > 0 {
+            let ch = (h / CGFloat(t)) * CGFloat(pageCnt)
+            self.pdfView?.pdfView.scrollView.setContentOffset(CGPoint(x: 0.0, y: Double(ch)), animated: false)
+        }
+    }
+    
+    func getMargins2() -> CGFloat {
+        let currentOrientation = UIApplication.sharedApplication().statusBarOrientation
+        if UIInterfaceOrientationIsPortrait(currentOrientation) {
+            return 6.1
+        }else{
+            if max(self.view.frame.size.height, self.view.frame.size.width) > 1024 {
+                return 2.5
+            }else{
+                return 7.5
+            }
+        }
+    }
+    
+    
 }
 
 

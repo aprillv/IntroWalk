@@ -218,89 +218,7 @@ class PDFBaseViewController: BaseViewController, DoOperationDelegate, UIPopoverP
     }
     
     
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-//        print(segue.identifier)
-        if let identifier = segue.identifier {
-            switch identifier {
-            case CConstants.SegueToOperationsPopover:
-                
-                self.dismissViewControllerAnimated(true, completion: nil)
-                if let tvc = segue.destinationViewController as? SendOperationViewController {
-                    if let ppc = tvc.popoverPresentationController {
-                        var showSave = false
-                        var showSubmit = true
-                        var isapproved = false
-                        var fromWeb = false
-                        if let c = contractInfo?.status {
-                            if c == CConstants.ApprovedStatus {
-                                isapproved = true
-                            }else if c == CConstants.EmailSignedStatus{
-                                fromWeb = true
-                            }
-                        }
-                        tvc.isapproved = isapproved
-                        tvc.FromWebSide = fromWeb
-                        if let dots = pdfView?.pdfWidgetAnnotationViews {
-                            let ddd = dots
-                            for doc in documents! {
-                                if let dd = doc.addedviewss {
-                                    ddd.addObjectsFromArray(dd)
-                                }
-                            }
-                            for v in ddd {
-                                if let sign = v as? SignatureView {
-                                    if (isapproved && (sign.xname.hasSuffix("bottom3") || sign.xname.hasSuffix("seller1Sign"))) || (!isapproved){
-                                        if sign.lineArray?.count > 0 {
-//                                            if sign.xname == "p1EBbuyer1Sign" {
-//                                                
-//                                            }
-                                            showSave = true
-                                            if sign.LineWidth == 0.0 && sign.xname != "p1EBExhibitbp1sellerInitialSign"{
-//                                                print(sign.xname, sign.LineWidth, sign.lineArray)
-                                                showSubmit = false
-                                            }
-                                        }else{
-                                            if sign.menubtn != nil && sign.menubtn.superview != nil && sign.xname != "p1EBExhibitbp1sellerInitialSign"{
-                                                showSubmit = false
-                                            }
-                                            
-                                        }
-                                    }
-                                    
-                                }
-                            }
-                        }
-                        
-                        tvc.showSave = showSave
-                        tvc.showSubmit = showSubmit
-                        ppc.delegate = self
-                        tvc.delegate1 = self
-                    }
-                    //                    tvc.text = "april"
-                }
-            case CConstants.SegueToPrintModelPopover:
-                self.dismissViewControllerAnimated(true, completion: nil)
-                if let tvc = segue.destinationViewController as? PrintModelTableViewController {
-                    if let ppc = tvc.popoverPresentationController {
-                        ppc.delegate = self
-                        tvc.delegate = self
-                    }
-                    //                    tvc.text = "april"
-                }
-            case CConstants.SegueToAddressModelPopover:
-                self.dismissViewControllerAnimated(true, completion: nil)
-                if let tvc = segue.destinationViewController as? AddressListModelViewController {
-                    if let ppc = tvc.popoverPresentationController {
-                        ppc.delegate = self
-                        tvc.AddressListOrigin = self.AddressList
-                        tvc.delegate = self
-                    }
-                    //                    tvc.text = "april"
-                }
-            default: break
-            }
-        }
-    }
+   
     
     
     
@@ -740,6 +658,9 @@ class PDFBaseViewController: BaseViewController, DoOperationDelegate, UIPopoverP
         
     }
     
+    func attachPhoto() {
+        
+    }
     
     
 }

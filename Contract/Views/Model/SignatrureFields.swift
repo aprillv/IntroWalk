@@ -23,4 +23,5 @@ class SignatrureFields: ContractObject {
     var signature_b2 : String?
     var initial_s1 : String?
     var signature_s1 : String?
+    var hasCheckedPhoto : String?
 }

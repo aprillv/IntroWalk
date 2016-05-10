@@ -20,6 +20,7 @@ protocol DoOperationDelegate
     func submit()
     func saveFinish()
     func saveEmail()
+    func attachPhoto()
     
 }
 
@@ -32,6 +33,7 @@ class SendOperationViewController: UIViewController, UITableViewDelegate, UITabl
     var FromWebSide : Bool?
     var showSubmit : Bool?
     var isapproved : Bool?
+    var hasCheckedPhoto : String?
     var itemList : [String]?{
         didSet{
             if let _ = itemList{
@@ -53,6 +55,7 @@ class SendOperationViewController: UIViewController, UITableViewDelegate, UITabl
 //        static let operationSaveEmail = "Save & Email"
         static let operationClearDraftInfo = "Clear Buyer's Fields"
         static let operationFillDraftInfo = "Fill Buyer's Fields"
+        static let operationAttatchPhoto = "Attach Photo Check"
     }
     
     override func viewDidLoad() {
@@ -68,6 +71,7 @@ class SendOperationViewController: UIViewController, UITableViewDelegate, UITabl
                     itemList = [constants.operationSavetoServer, constants.operationSubmit, constants.operationStartOver]
                 }
             }
+            itemList?.append(constants.operationAttatchPhoto)
             
             
         }else{
@@ -109,6 +113,15 @@ class SendOperationViewController: UIViewController, UITableViewDelegate, UITabl
                 cell.textLabel?.textColor = UIColor.blackColor()
             }
         }
+        cell.accessoryType = .None
+        if cell.textLabel?.text == constants.operationAttatchPhoto{
+            if let c = self.hasCheckedPhoto {
+                if c == "1" {
+                    cell.accessoryView = UIImageView(image: UIImage(named: "check3"))
+                }
+            }
+        }
+        
         cell.textLabel?.textAlignment = .Center
         return cell
     }
@@ -145,6 +158,9 @@ class SendOperationViewController: UIViewController, UITableViewDelegate, UITabl
                     if self.showSubmit! {
                         delegate0.saveEmail()
                     }
+                case constants.operationAttatchPhoto:
+                    delegate0.attachPhoto()
+                    
                     
 //                case constants.operationSaveEmail:
 //                    delegate0.save_Email()
@@ -161,7 +177,8 @@ class SendOperationViewController: UIViewController, UITableViewDelegate, UITabl
     
     override var preferredContentSize: CGSize {
         get {
-            return CGSize(width: tableView.frame.width, height: constants.rowHeight * CGFloat(itemList!.count))
+            return CGSize(width: tableView.frame.width
+                , height: constants.rowHeight * CGFloat(itemList!.count))
         }
         set { super.preferredContentSize = newValue }
     }

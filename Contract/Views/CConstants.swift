@@ -80,6 +80,8 @@ struct CConstants{
 //    static let ThirdPartyFinancingAddendumServiceURL = "bacontract_thirdPartyFinancingAddendum.json"
     //upload pdf
     static let ContractUploadPdfURL = "bacontract_upload.json"
+    
+    static let UploadCheckedPhotoURL = "bacontract_UploadCheckedPhoto.json"
    
     
     static let PdfFileNameContract = "BaseContract"

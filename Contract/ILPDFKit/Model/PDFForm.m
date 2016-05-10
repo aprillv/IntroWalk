@@ -342,10 +342,12 @@
         factor2 = factor;
     }
     
+//    NSLog(@"%f", ymargin);
+    
     
       PDFPage *pg = self.parent.document.pages[0];
     CGFloat ch = [pg cropBox].size.height*factor2+ymargin;
-    [[NSUserDefaults standardUserDefaults] setValue:[NSString stringWithFormat:@"%f", ch] forKey:@"pageHeight"];
+//    [[NSUserDefaults standardUserDefaults] setValue:[NSString stringWithFormat:@"%f", ch] forKey:@"pageHeight"];
     
     CGFloat pageOffset = ch * pageMargin;
     

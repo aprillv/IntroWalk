@@ -45,6 +45,7 @@ class ContractSignature: ContractPDFBaseModel {
     
     var hoa : String?
     var environment : String?
+    var hasCheckedPhoto : String?
     var other : String?
     var page7e2: String?
     var page7ThirdPartyFinacingAddendum: String?
