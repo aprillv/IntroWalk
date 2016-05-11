@@ -331,7 +331,12 @@ class PDFPrintViewController: PDFBaseViewController, UIScrollViewDelegate, PDFVi
             switch title {
             case CConstants.ActionTitleContract,
             CConstants.ActionTitleDraftContract:
+                if contractPdfInfo?.idcity ?? "1" == "3" {
+                str = CConstants.PdfFielNameContract_Austin
+                }else{
                 str = CConstants.PdfFileNameContract
+                }
+                
                 filePageCnt += CConstants.PdfFileNameContractPageCount
             case CConstants.ActionTitleThirdPartyFinancingAddendum:
                 str = CConstants.PdfFileNameThirdPartyFinancingAddendum
@@ -345,7 +350,12 @@ class PDFPrintViewController: PDFBaseViewController, UIScrollViewDelegate, PDFVi
                 
                 filePageCnt += CConstants.PdfFileNameINFORMATION_ABOUT_BROKERAGE_SERVICESPageCount
             case CConstants.ActionTitleAddendumA:
-                str = CConstants.PdfFileNameAddendumA
+                if contractPdfInfo?.idcity ?? "1" == "3" {
+                    str = CConstants.PdfFileNameAddendumA_austin
+                }else{
+                    str = CConstants.PdfFileNameAddendumA
+                }
+                
                 filePageCnt += CConstants.PdfFileNameAddendumAPageCount
             case CConstants.ActionTitleAddendumHOA:
                 str = CConstants.PdfFileNameAddendumHOA
@@ -391,10 +401,18 @@ class PDFPrintViewController: PDFBaseViewController, UIScrollViewDelegate, PDFVi
                 str = CConstants.PdfFileNameEXHIBIT_A
                 filePageCnt += CConstants.PdfFileNameEXHIBIT_APageCount
             case CConstants.ActionTitleEXHIBIT_B:
-                str = CConstants.PdfFileNameEXHIBIT_B
+                if contractPdfInfo?.idcity ?? "1" == "3" {
+                    str = CConstants.PdfFileNameEXHIBIT_B_austin
+                }else{
+                    str = CConstants.PdfFileNameEXHIBIT_B
+                }
                 filePageCnt += CConstants.PdfFileNameEXHIBIT_BPageCount
             case CConstants.ActionTitleEXHIBIT_C:
-                str = CConstants.PdfFileNameEXHIBIT_C
+                if contractPdfInfo?.idcity ?? "1" == "3" {
+                    str = CConstants.PdfFileNameEXHIBIT_C_austin
+                }else{
+                    str = CConstants.PdfFileNameEXHIBIT_C
+                }
                 filePageCnt += CConstants.PdfFileNameEXHIBIT_CPageCount
             case CConstants.ActionTitleClosingMemo:
                 str = CConstants.PdfFileNameClosingMemo
@@ -2310,7 +2328,7 @@ private func getStr(h : [[String]]?) -> String {
                                 }
                                 tvc.isapproved = isapproved
                                 tvc.FromWebSide = fromWeb
-                                tvc.hasCheckedPhoto = contractPdfInfo!.hasCheckedPhoto
+                                tvc.hasCheckedPhoto = contractPdfInfo?.hasCheckedPhoto ?? "0"
                                 if let dots = pdfView?.pdfWidgetAnnotationViews {
                                     let ddd = dots
                                     for doc in documents! {
@@ -2389,9 +2407,9 @@ private func getStr(h : [[String]]?) -> String {
 //        }
         hud?.labelText = "Submitting..."
         
-//        let a =  ["idcontract1" : self.contractInfo!.idnumber!, "idcia": self.contractInfo!.idcia!, "email": userInfo.stringForKey(CConstants.UserInfoEmail) ?? "", "emailto" : email, "emailcc": emailcc, "msg": msg]
+        let a =  ["idcontract1" : self.contractInfo!.idnumber!, "idcia": self.contractInfo!.idcia!, "email": userInfo.stringForKey(CConstants.UserInfoEmail) ?? "", "emailto" : email, "emailcc": emailcc, "msg": msg]
         
-        let a = ["idcontract1" : self.contractInfo!.idnumber!, "idcia": self.contractInfo!.idcia!, "email": userInfo.stringForKey(CConstants.UserInfoEmail) ?? "", "emailto" : "Roberto Reletez (roberto@buildersaccess.com)", "emailcc": "Kevin Zhao (kevin@buildersaccess.com)", "msg": msg]
+//        let a = ["idcontract1" : self.contractInfo!.idnumber!, "idcia": self.contractInfo!.idcia!, "email": userInfo.stringForKey(CConstants.UserInfoEmail) ?? "", "emailto" : "Roberto Reletez (roberto@buildersaccess.com)", "emailcc": "Kevin Zhao (kevin@buildersaccess.com)", "msg": msg]
         
 //         let a = ["idcontract1" : self.contractInfo!.idnumber!, "idcia": self.contractInfo!.idcia!, "email": userInfo.stringForKey(CConstants.UserInfoEmail) ?? "", "emailto" : "April Lv (April@buildersaccess.com)", "emailcc": "xiujun_85@163.com", "msg": msg]
         
@@ -2469,7 +2487,7 @@ private func getStr(h : [[String]]?) -> String {
                 hud = MBProgressHUD.showHUDAddedTo(self.view, animated: true)
             }
             hud?.labelText = CConstants.SavedMsg
-            
+            print(parame)
             Alamofire.request(.POST,
                 CConstants.ServerURL + CConstants.ContractUploadPdfURL,
                 parameters: parame).responseJSON{ (response) -> Void in
