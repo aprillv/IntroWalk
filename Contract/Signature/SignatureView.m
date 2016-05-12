@@ -233,6 +233,7 @@
             self.originWidth = sv.originWidth;
             self.LineWidth = sv.LineWidth;
             
+//            NSLog(@"self.xname %@", self.xname);
             if ([self.xname hasSuffix:@"buyer1Sign"] || [self.xname hasSuffix:@"buyer2Sign"] || [self.xname hasSuffix:@"seller1Sign"] || [self.xname hasSuffix:@"buyer1DateSign"] || [self.xname hasSuffix:@"buyer2DateSign"]|| [self.xname hasSuffix:@"seller1DateSign"] ) {
                 int len = 10;
                 if ([self.xname containsString:@"DateSign"]) {
@@ -240,7 +241,7 @@
                     
                 }
                 for (SignatureView *other in self.pdfViewsssss.pdfWidgetAnnotationViews) {
-                    
+//                    NSLog(@"self.xname %@", self.xname);
                     if (other == self) {
                         continue;
                     }
@@ -313,7 +314,7 @@
                         if (other.LineWidth > 0) {
                             continue;
                         }
-                        if ([other.xname hasSuffix: [self.xname substringFromIndex:2] ] || (isBuyer1Initial && ([other.xname hasSuffix:@"Sign3"] || [other.xname hasSuffix:@"bottom1"] || [other.xname isEqualToString:@"p1EBExhibitbp1sellerInitialSign"]))){
+                        if ([other.xname hasSuffix: [self.xname substringFromIndex:(self.xname.length - 7)] ] || (isBuyer1Initial && ([other.xname hasSuffix:@"Sign3"] || [other.xname hasSuffix:@"bottom1"] || [other.xname isEqualToString:@"p1EBExhibitbp1sellerInitialSign"]))){
                             
                             CGRect ct = other.frame;
                             other.frame = sv.frame;

@@ -116,6 +116,10 @@ static void renderPage1(NSUInteger page, CGContextRef ctx, CGPDFDocumentRef doc,
 //    CGFloat xf = 612.0*297.0/210.0;
     
     for (PDFWidgetAnnotationView *addedView in viewarray) {
+//        if ([addedView.value hasPrefix:@"Lot 12 Blk "]) {
+//            NSLog(@"++++++++++++ %@ %@", addedView.xname, addedView.value);
+//        }
+        
 //        NSLog(@"addedView.pagenomargin %@", addedView.pagenomargin);
          CGRect frame = addedView.frame;
 //        NSLog(@"addedView.pageno %@", addedView.pageno);
@@ -162,8 +166,16 @@ static void renderPage1(NSUInteger page, CGContextRef ctx, CGPDFDocumentRef doc,
         
 //            CGRect rect = correctedFrame;
 //            NSLog(@"%f", [texta currentFontSize]);
-            UIFont *font = [UIFont fontWithName:@"Verdana" size:(([texta currentFontSize] / factor))];
-//            UIFont *font = [UIFont systemFontOfSize:[PDFWidgetAnnotationView fontSizeForRect:rect value:texta.value multiline:NO choice:NO]];
+            UIFont *font;
+            if ([texta currentFontSize] == 0.0) {
+//                font = [UIFont systemFontOfSize: [PDFWidgetAnnotationView fontSizeForRect:rect value:texta.value multiline:NO choice:NO] ];
+//                [UIFont systemFontOfSize:<#(CGFloat)#>]
+                font = [UIFont fontWithName:@"Verdana" size:12];
+            }else{
+                font = [UIFont fontWithName:@"Verdana" size:(([texta currentFontSize] / factor))];
+            }
+            
+            
             UIGraphicsPushContext(ctx);
             NSMutableParagraphStyle *paragraphStyle = [[NSMutableParagraphStyle defaultParagraphStyle] mutableCopy];
             paragraphStyle.lineBreakMode = NSLineBreakByWordWrapping;

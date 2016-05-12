@@ -2478,7 +2478,9 @@ private func getStr(h : [[String]]?) -> String {
                     savedPdfData = document?.savedStaticPDFData()
                 }
             }
-            
+    
+//        return
+        
             let fileBase64String = savedPdfData?.base64EncodedStringWithOptions(NSDataBase64EncodingOptions.EncodingEndLineWithLineFeed)
             parame["file"] = fileBase64String
             parame["username"] = NSUserDefaults.standardUserDefaults().valueForKey(CConstants.LoggedUserNameKey) as? String ?? ""
@@ -2487,7 +2489,7 @@ private func getStr(h : [[String]]?) -> String {
                 hud = MBProgressHUD.showHUDAddedTo(self.view, animated: true)
             }
             hud?.labelText = CConstants.SavedMsg
-            print(parame)
+//            print(parame)
             Alamofire.request(.POST,
                 CConstants.ServerURL + CConstants.ContractUploadPdfURL,
                 parameters: parame).responseJSON{ (response) -> Void in
@@ -2555,7 +2557,7 @@ private func getStr(h : [[String]]?) -> String {
         if emailcc1.hasSuffix(",") {
             emailcc1 = emailcc1.stringByReplacingOccurrencesOfString(",", withString: "")
         }
-        let a = [ "EmailTo": email1, "EmailCc" : emailcc1, "Subject": "\(contractInfo!.nproject!)'s Contract",
+        let a = [ "idcontract": contractPdfInfo?.idnumber ?? " ", "EmailTo": email1, "EmailCc" : emailcc1, "Subject": "\(contractInfo!.nproject!)'s Contract",
                   "Body" : msg, "Attachment1": emailData ?? " ", "Attachment2": " ", "Attachment3": " "]
 //        print(a)
         

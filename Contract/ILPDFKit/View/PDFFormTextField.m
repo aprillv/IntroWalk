@@ -110,7 +110,10 @@
 //        if ([xname isEqualToString:@"block2"]){
 //        _currentFontSize = _baseFontSize = _currentFontSize/1.5;
 //        }
-//         NSLog(@"%@ %f", self.xname, _currentFontSize);
+//        if ([self.xname isEqualToString:@"april"]){
+//            NSLog(@"%@ %@ %f %f", self.xname, self.value, _currentFontSize, _baseFontSize);
+//        }
+        
         UIFont *font = [UIFont fontWithName:@"Verdana" size: _baseFontSize];
         
         
@@ -171,8 +174,8 @@
 //        _textFieldOrTextView.backgroundColor = [UIColor clearColor];
 //        _baseFontSize = [PDFWidgetAnnotationView fontSizeForRect:frame value:nil multiline:multiline choice:NO  font:@"Verdana"];
 //        
-//        _currentFontSize = _baseFontSize = fontsize;
-//        
+        _currentFontSize = _baseFontSize = fontsize;
+//
 //        UIFont *font = [UIFont fontWithName:@"Verdana" size: _baseFontSize];
         
         

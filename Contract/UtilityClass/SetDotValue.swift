@@ -238,6 +238,8 @@ class SetDotValue : NSObject {
                         let d = tel.componentsSeparatedByString(".")
                         if d.count > 2 {
                             pv.value = "\(d[1])-\(d[2])"
+                        }else{
+                            pv.value = tel
                         }
                     }
                 case SignContractPDFFields.seller_fax1:
@@ -253,6 +255,8 @@ class SetDotValue : NSObject {
                         let d = tel.componentsSeparatedByString(".")
                         if d.count > 2 {
                             pv.value = "\(d[1])-\(d[2])"
+                        }else{
+                            pv.value = tel
                         }
                     }
                 case SignContractPDFFields.tobuyer6:
