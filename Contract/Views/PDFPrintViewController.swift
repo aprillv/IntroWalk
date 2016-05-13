@@ -2017,10 +2017,10 @@ private func getStr(h : [[String]]?) -> String {
                                 }
                             }
                             
-                            var showseller = false
-                            if let ds = self.contractInfo?.signfinishdate, ss = self.contractInfo?.status {
-                                showseller =  ds != "01/01/1980" && ss == CConstants.ApprovedStatus
-                            }
+                            var showseller = true
+//                            if let ds = self.contractInfo?.signfinishdate, ss = self.contractInfo?.status {
+//                                showseller =  ds != "01/01/1980" && ss == CConstants.ApprovedStatus
+//                            }
                             for d in alldots{
                                 if let sign = d as? SignatureView {
 //                                    if sign.xname == "p1EBbuyer1Sign" {
@@ -2403,12 +2403,12 @@ private func getStr(h : [[String]]?) -> String {
         
 //        ["idcontract1" : self.contractInfo!.idnumber!, "idcia": self.contractInfo!.idcia!, "email": userInfo.stringForKey(CConstants.UserInfoEmail) ?? "", "emailto" : email, "emailcc": emailcc, "msg": msg]
 //        if hud == nil {
-            hud = MBProgressHUD.showHUDAddedTo(self.view, animated: true)
+        hud = MBProgressHUD.showHUDAddedTo(self.view, animated: true)
 //        }
         hud?.labelText = "Submitting..."
         
         let a =  ["idcontract1" : self.contractInfo!.idnumber!, "idcia": self.contractInfo!.idcia!, "email": userInfo.stringForKey(CConstants.UserInfoEmail) ?? "", "emailto" : email, "emailcc": emailcc, "msg": msg]
-        
+//
 //        let a = ["idcontract1" : self.contractInfo!.idnumber!, "idcia": self.contractInfo!.idcia!, "email": userInfo.stringForKey(CConstants.UserInfoEmail) ?? "", "emailto" : "Roberto Reletez (roberto@buildersaccess.com)", "emailcc": "Kevin Zhao (kevin@buildersaccess.com)", "msg": msg]
         
 //         let a = ["idcontract1" : self.contractInfo!.idnumber!, "idcia": self.contractInfo!.idcia!, "email": userInfo.stringForKey(CConstants.UserInfoEmail) ?? "", "emailto" : "April Lv (April@buildersaccess.com)", "emailcc": "xiujun_85@163.com", "msg": msg]
