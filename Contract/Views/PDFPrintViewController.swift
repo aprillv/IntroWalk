@@ -190,6 +190,11 @@ class PDFPrintViewController: PDFBaseViewController, UIScrollViewDelegate, PDFVi
             if let info = contractPdfInfo {
                 contractInfo?.status = info.status
                 contractInfo?.signfinishdate = info.signfinishdate
+                print(info.ipadsignyn)
+                let b = Bool(info.ipadsignyn ?? 0)
+                if b && (info.status == CConstants.DisApprovedStatus) {
+                    self.PopMsgWithJustOK(msg: CConstants.GoToBAMsg, txtField: nil)
+                }
                 setSendItema()
                 if let fDD = fileDotsDic {
                     let tool = SetDotValue()
@@ -308,18 +313,21 @@ class PDFPrintViewController: PDFBaseViewController, UIScrollViewDelegate, PDFVi
         var filePageCnt : Int = 0
         var called = true
 //        print(filesArray)
+        var calledContract = false
         for title in filesArray! {
             if title !=  CConstants.ActionTitleDesignCenter
             && title != CConstants.ActionTitleClosingMemo
             && title != CConstants.ActionTitleAddendumC
-                && title != CConstants.ActionTitleContract
-                && title != "Contract" {
+            && title != CConstants.ActionTitleContract
+            && title != CConstants.ActionTitleDraftContract {
                 if called{
                     self.callService(title, param: param)
                     called = false;
                 }
                 
             }else{
+                calledContract = (title == CConstants.ActionTitleContract
+                    || title == CConstants.ActionTitleDraftContract)
                 self.callService(title, param: param)
             }
             
@@ -441,6 +449,10 @@ class PDFPrintViewController: PDFBaseViewController, UIScrollViewDelegate, PDFVi
                 allAdditionViews.appendContentsOf( additionViews)
             }
             
+        }
+        
+        if (!calledContract) {
+            callService(CConstants.ActionTitleContract, param: param)
         }
 //        let a = NSDate()
 //        print(NSDate())
@@ -727,7 +739,10 @@ class PDFPrintViewController: PDFBaseViewController, UIScrollViewDelegate, PDFVi
     private func setSendItema(){
         if contractInfo!.status == CConstants.ForApproveStatus {
             sendItem.image = nil
-            sendItem.title = "Status: For Approve"
+            sendItem.title = "Status: \(CConstants.ForApproveStatus)"
+        }else if contractInfo!.status == CConstants.DisApprovedStatus {
+            sendItem.image = nil
+            sendItem.title = "Status: \(CConstants.DisApprovedStatus)"
         }else if let ds = self.contractInfo?.signfinishdate, ss = self.contractInfo?.status {
             if  ds != "01/01/1980" && ss == CConstants.ApprovedStatus {
                 sendItem.image = nil
@@ -1601,11 +1616,15 @@ class PDFPrintViewController: PDFBaseViewController, UIScrollViewDelegate, PDFVi
                 b2iynArray.append([String]())
                 b1isnArray.append([String]())
                 b2isnArray.append([String]())
+                s1iynArray.append([String]())
+                s1isnArray.append([String]())
                 for _ in 0...cntArray[i]-1 {
                     b1iynArray[i].append("0")
                     b2iynArray[i].append("0")
                     b1isnArray[i].append("0")
                     b2isnArray[i].append("0")
+                    s1iynArray[i].append("0")
+                    s1isnArray[i].append("0")
                 }
             }
             
@@ -1998,7 +2017,31 @@ private func getStr(h : [[String]]?) -> String {
                             self.initial_s1 = rtn.initial_s1
                             self.signature_s1 = rtn.signature_s1
                             
-                            self.initial_index = self.getArr(rtn.initial_index!)
+                            if rtn.initial_index == "" {
+                                let exhibitB = ["0"]
+                                var hoapage1 = [String]()
+                                var hoapage2 = [String]()
+                                var hoapage3 = [String]()
+                                for _ in 0...13{
+                                    hoapage1.append("0")
+                                }
+                                for _ in 0...12{
+                                    hoapage2.append("0")
+                                }
+                                for _ in 0...6{
+                                    hoapage3.append("0")
+                                }
+                                self.initial_index = [[String]]()
+                                self.initial_index?.append(exhibitB)
+                                self.initial_index?.append(hoapage1)
+                                self.initial_index?.append(hoapage2)
+                                self.initial_index?.append(hoapage3)
+                            }else{
+                                self.initial_index = self.getArr(rtn.initial_index!)
+                            }
+                            
+                            
+                            
                             
                             let nameArray = self.getPDFSignaturePrefix()
                             
@@ -2021,6 +2064,10 @@ private func getStr(h : [[String]]?) -> String {
 //                            if let ds = self.contractInfo?.signfinishdate, ss = self.contractInfo?.status {
 //                                showseller =  ds != "01/01/1980" && ss == CConstants.ApprovedStatus
 //                            }
+                            if let ss = self.contractInfo?.status {
+//                                showseller =  (ds != "01/01/1980" && ss == CConstants.ApprovedStatus)
+                                showseller =  ss == CConstants.ApprovedStatus
+                            }
                             for d in alldots{
                                 if let sign = d as? SignatureView {
 //                                    if sign.xname == "p1EBbuyer1Sign" {
@@ -2057,7 +2104,10 @@ private func getStr(h : [[String]]?) -> String {
                                             for l in self.hoapage1fields {
                                                 if l == sign.xname {
                                                     ab = true
-                                                    self.setShowSignature(sign, signs: self.initial_b1!, idcator: self.initial_index![1][self.hoapage1fields.indexOf(l)!])
+                                                    if self.initial_b1! != "" {
+                                                        self.setShowSignature(sign, signs: self.initial_b1!, idcator: self.initial_index![1][self.hoapage1fields.indexOf(l)!])
+                                                    }
+                                                    
                                                     break;
                                                 }
                                                 
@@ -2298,6 +2348,8 @@ private func getStr(h : [[String]]?) -> String {
                         if let email1 = contrat.buyer2email {
                             emailList.append(email1)
                         }
+                        emailList.append("phalycak@kirbytitle.com")
+                        emailList.append("heatherb@kirbytitle.com")
                         
                         controller.xemailList = emailList
                         let userInfo = NSUserDefaults.standardUserDefaults()
@@ -2338,14 +2390,14 @@ private func getStr(h : [[String]]?) -> String {
                                     }
                                     for v in ddd {
                                         if let sign = v as? SignatureView {
-                                            if (isapproved && (sign.xname.hasSuffix("bottom3") || sign.xname.hasSuffix("seller1Sign"))) || (!isapproved){
+                                            if (isapproved && (sign.xname.hasSuffix("bottom3") || sign.xname.hasSuffix("seller1Sign"))) || (!isapproved && !(sign.xname.hasSuffix("bottom3") || sign.xname.hasSuffix("seller1Sign"))){
                                                 if sign.lineArray?.count > 0 {
                                                     //                                            if sign.xname == "p1EBbuyer1Sign" {
                                                     //
                                                     //                                            }
                                                     showSave = true
                                                     if sign.LineWidth == 0.0 && sign.xname != "p1EBExhibitbp1sellerInitialSign"{
-                                                        //                                                print(sign.xname, sign.LineWidth, sign.lineArray)
+                                                                                                        print(sign.xname, sign.LineWidth, sign.lineArray)
                                                         showSubmit = false
                                                     }
                                                 }else{
@@ -2550,6 +2602,7 @@ private func getStr(h : [[String]]?) -> String {
         //        let a = ["idcontract1" : self.contractInfo!.idnumber!, "idcia": self.contractInfo!.idcia!, "email": userInfo.stringForKey(CConstants.UserInfoEmail) ?? "", "emailto" : "Roberto Reletez (roberto@buildersaccess.com)", "emailcc": "Kevin Zhao (kevin@buildersaccess.com)", "msg": msg]
         
         var email1 = email.stringByReplacingOccurrencesOfString(" ", withString: "")
+        email1 = email1.stringByReplacingOccurrencesOfString("\n", withString: "")
         if email1.hasSuffix(",") {
             email1 = email1.stringByReplacingOccurrencesOfString(",", withString: "")
         }

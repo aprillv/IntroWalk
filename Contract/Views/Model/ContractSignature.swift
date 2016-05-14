@@ -63,6 +63,8 @@ class ContractSignature: ContractPDFBaseModel {
     var page9CityState: String?
     var page9CityZip: String?
     
+    var ipadsignyn: NSNumber?
+    
     var escrow_agent: String?
     var agent_address: String?
     var insurance_company: String?

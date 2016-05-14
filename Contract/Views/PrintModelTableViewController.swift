@@ -7,6 +7,8 @@
 //
 
 import UIKit
+import Alamofire
+
 protocol ToDoPrintDelegate
 {
     func GoToPrint(modelNm: [String])
@@ -83,6 +85,16 @@ class PrintModelTableViewController: BaseViewController, UITableViewDataSource, 
     override func viewDidLoad() {
         super.viewDidLoad()
 //        filesNames = [String]()
+        
+       
+        if let c = projectInfo {
+            if c.status == CConstants.EmailSignedStatus || c.status == CConstants.DraftStatus || c.status == "" {
+                canEdit = true
+            }
+        }
+//        canEdit = true
+        
+        tableview.allowsSelection = canEdit
         let userInfo = NSUserDefaults.standardUserDefaults()
         if userInfo.boolForKey(CConstants.UserInfoIsContract) {
             printList.append(CConstants.ActionTitleBuyersExpect)
@@ -95,8 +107,6 @@ class PrintModelTableViewController: BaseViewController, UITableViewDataSource, 
                 }
             }
             
-            
-            
             printList.append(CConstants.ActionTitleWarrantyAcknowledgement)
             printList.append(CConstants.ActionTitleDesignCenter)
 //            printList.append(CConstants.ActionTitleClosingMemo)
@@ -108,7 +118,7 @@ class PrintModelTableViewController: BaseViewController, UITableViewDataSource, 
             }
             printList.append(CConstants.ActionTitleGoContract)
         }else{
-            printList[0] = CConstants.ActionTitleDraftContract
+            printList[1] = CConstants.ActionTitleDraftContract
             printList.append(CConstants.ActionTitleBuyersExpect)
             printList.append(CConstants.ActionTitleAddendumD)
             printList.append(CConstants.ActionTitleAddendumE)
@@ -129,8 +139,67 @@ class PrintModelTableViewController: BaseViewController, UITableViewDataSource, 
         }
         
         selected = [Bool]()
-        for _ in printList {
-            selected?.append(true)
+//        1	Print Contract
+//        2	Third Party Financing Addendum
+//        3	Information about Brokerage Services
+//        4	Addendum A
+//        5	Exhibit A
+//        6	Exhibit B
+//        7	Exhibit C General
+//        8	Buyers Expect
+//        9	Addendum C
+//        10	Addendum D
+//        11	Addendum E
+//        12	Floodaplain Acknowledgement
+//        13	HOA Checklist
+//        14	Warranty Acknowledgement
+//        15	Design Center
+//        17	Addendum for Property Subject to HOA
+        
+        for x in printList {
+            switch x {
+            case CConstants.ActionTitleContract, CConstants.ActionTitleDraftContract:
+                selected?.append(projectInfo?.printList?.contains(1) ?? true)
+            case CConstants.ActionTitleThirdPartyFinancingAddendum:
+                selected?.append(projectInfo?.printList?.contains(2) ?? true)
+            case CConstants.ActionTitleINFORMATION_ABOUT_BROKERAGE_SERVICES:
+                selected?.append(projectInfo?.printList?.contains(3) ?? true)
+            case CConstants.ActionTitleAddendumA:
+                selected?.append(projectInfo?.printList?.contains(4) ?? true)
+            case CConstants.ActionTitleEXHIBIT_A:
+                selected?.append(projectInfo?.printList?.contains(5) ?? true)
+            case CConstants.ActionTitleEXHIBIT_B:
+                selected?.append(projectInfo?.printList?.contains(6) ?? true)
+            case CConstants.ActionTitleEXHIBIT_C:
+                selected?.append(projectInfo?.printList?.contains(7) ?? true)
+            case CConstants.ActionTitleBuyersExpect:
+                selected?.append(projectInfo?.printList?.contains(8) ?? true)
+            case CConstants.ActionTitleAddendumC:
+                selected?.append(projectInfo?.printList?.contains(9) ?? true)
+            case CConstants.ActionTitleAddendumD:
+                selected?.append(projectInfo?.printList?.contains(10) ?? true)
+            case CConstants.ActionTitleAddendumE:
+                selected?.append(projectInfo?.printList?.contains(11) ?? true)
+            case CConstants.ActionTitleFloodPlainAck:
+                selected?.append(projectInfo?.printList?.contains(12) ?? true)
+            case CConstants.ActionTitleHoaChecklist:
+                selected?.append(projectInfo?.printList?.contains(13) ?? true)
+            case CConstants.ActionTitleWarrantyAcknowledgement:
+                selected?.append(projectInfo?.printList?.contains(14) ?? true)
+            case CConstants.ActionTitleDesignCenter:
+                selected?.append(projectInfo?.printList?.contains(15) ?? true)
+            case CConstants.ActionTitleAddendumHOA:
+                selected?.append(projectInfo?.printList?.contains(17) ?? true)
+            default:
+                selected?.append(true)
+                break
+            }
+            
+            
+        }
+        
+        if selected?.filter({$0}).count != selected?.count {
+            selected?[0] = false
         }
         
         
@@ -247,6 +316,8 @@ class PrintModelTableViewController: BaseViewController, UITableViewDataSource, 
 //        
 //    }
     
+    var canEdit : Bool = false
+    
     func touched(tap : UITapGestureRecognizer){
 
         if let cell = tap.view as? AddressListModelLastCell {
@@ -278,6 +349,12 @@ class PrintModelTableViewController: BaseViewController, UITableViewDataSource, 
                         if let delegate1 = self.delegate {
                             
                             delegate1.GoToPrint(filesNames)
+                            if self.projectInfo?.status ?? "" != "" && self.canEdit {
+                                self.UpdatePrintedFileList(filesNames)
+                            }
+                            
+                            
+                            
                         }
                     }
                 }
@@ -290,6 +367,69 @@ class PrintModelTableViewController: BaseViewController, UITableViewDataSource, 
 //        tap.view!.tag = 1 - tap.view!.tag
 
         
+    }
+    
+    
+    func UpdatePrintedFileList(filesNames : [String]){
+        var printedList : [String] = [String]()
+        for x in filesNames {
+            switch x {
+            case CConstants.ActionTitleContract, CConstants.ActionTitleDraftContract:
+                printedList.append("1")
+            case CConstants.ActionTitleThirdPartyFinancingAddendum:
+                printedList.append("2")
+            case CConstants.ActionTitleINFORMATION_ABOUT_BROKERAGE_SERVICES:
+                printedList.append("3")
+            case CConstants.ActionTitleAddendumA:
+                printedList.append("4")
+            case CConstants.ActionTitleEXHIBIT_A:
+                printedList.append("5")
+            case CConstants.ActionTitleEXHIBIT_B:
+                printedList.append("6")
+            case CConstants.ActionTitleEXHIBIT_C:
+                printedList.append("7")
+            case CConstants.ActionTitleBuyersExpect:
+                printedList.append("8")
+            case CConstants.ActionTitleAddendumC:
+                printedList.append("9")
+            case CConstants.ActionTitleAddendumD:
+                printedList.append("10")
+            case CConstants.ActionTitleAddendumE:
+                printedList.append("11")
+            case CConstants.ActionTitleFloodPlainAck:
+                printedList.append("12")
+            case CConstants.ActionTitleHoaChecklist:
+                printedList.append("13")
+            case CConstants.ActionTitleWarrantyAcknowledgement:
+                printedList.append("14")
+            case CConstants.ActionTitleDesignCenter:
+                printedList.append("15")
+            case CConstants.ActionTitleAddendumHOA:
+                printedList.append("17")
+            default:
+                break
+            }
+            
+            
+            
+        }
+        
+        
+        if let c = projectInfo {
+            let param = ["idcontract1" : c.idnumber ?? "", "idfilelist": printedList.joinWithSeparator(",")]
+//            print(param)
+            Alamofire.request(.POST, CConstants.ServerURL + "bacontract_UpdatePrintedFileList.json", parameters: param).responseJSON{ (response) -> Void in
+//                print(response.result.value)
+                if response.result.isSuccess {
+                    //                    contract?.printList = response.result.value as? String
+                    //                    self.performSegueWithIdentifier(CConstants.SegueToPrintModel, sender: contract)
+                    //                    print(response.result.value)
+                }else{
+                    //                    contract?.printList = nil
+                    //                    self.performSegueWithIdentifier(CConstants.SegueToPrintModel, sender: contract)
+                }
+            }
+        }
     }
     
 //    var filesNames : [String]?
@@ -344,25 +484,25 @@ class PrintModelTableViewController: BaseViewController, UITableViewDataSource, 
             //            cell?.contentView.tag = 1 - cell!.contentView.tag
             let iv :UIImage?
             let c = selected![indexPath.row]
-//            if !c {
-//                iv = UIImage(named: CConstants.CheckedImgNm)
-//            }else{
-//                iv = UIImage(named: CConstants.CheckImgNm)
-//            }
-//            selected![indexPath.row] = !c
+            if !c {
+                iv = UIImage(named: CConstants.CheckedImgNm)
+            }else{
+                iv = UIImage(named: CConstants.CheckImgNm)
+            }
+            selected![indexPath.row] = !c
             
             
             
-            iv = UIImage(named: CConstants.CheckedImgNm)
-            selected![indexPath.row] = true
+//            iv = UIImage(named: CConstants.CheckedImgNm)
+//            selected![indexPath.row] = true
             
 //
             cell?.imageBtn?.image = iv
             
             
                 for i in 1...(selected!.count-1) {
-//                    selected![i] = !c
-                    selected![i] = true
+                    selected![i] = !c
+//                    selected![i] = true
                     let indexother = NSIndexPath(forRow: i, inSection: 0)
                     if let cell = tableView.cellForRowAtIndexPath(indexother) as? PrintModelTableViewCell {
                         cell.imageBtn?.image =  iv
@@ -373,14 +513,14 @@ class PrintModelTableViewController: BaseViewController, UITableViewDataSource, 
             let cell = tableView.cellForRowAtIndexPath(indexPath) as? PrintModelTableViewCell
 //            cell?.contentView.tag = 1 - cell!.contentView.tag
             let iv :UIImage?
-//            let c = selected![indexPath.row]
-//            if !c {
-//                iv = UIImage(named: CConstants.CheckedImgNm)
-//            }else{
-//                iv = UIImage(named: CConstants.CheckImgNm)
-//            }
-//            selected![indexPath.row] = !c
-            iv = UIImage(named: CConstants.CheckedImgNm)
+            let c = selected![indexPath.row]
+            if !c {
+                iv = UIImage(named: CConstants.CheckedImgNm)
+            }else{
+                iv = UIImage(named: CConstants.CheckImgNm)
+            }
+            selected![indexPath.row] = !c
+//            iv = UIImage(named: CConstants.CheckedImgNm)
             cell?.imageBtn?.image = iv
             isAllCellSelected()
             

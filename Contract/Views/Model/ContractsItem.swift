@@ -35,4 +35,6 @@ class ContractsItem: ContractObject {
     var approvedate : String?
     var approveMonthdate : String?
     var broker : String?
+    
+    var printList: [Int]?
 }

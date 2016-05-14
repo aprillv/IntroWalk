@@ -50,9 +50,10 @@ class SaveAndEmailViewController: BaseViewController, UITableViewDelegate, UITab
             xtitlelbl.textColor = UIColor.whiteColor()
         }
     }
+    @IBOutlet var toEmail: UITextView!
     @IBOutlet var xtitlelbl2: UILabel!
     @IBOutlet var toCC: UITextField!
-    @IBOutlet var toEmail: UITextField!
+//    @IBOutlet var toEmail: UITextField!
     @IBOutlet var desView: UITextView!{
         didSet{
             desView.delegate = self
@@ -79,10 +80,12 @@ class SaveAndEmailViewController: BaseViewController, UITableViewDelegate, UITab
         
         var h: String = ""
         if xemailList!.count > 0 {
-            h = xemailList!.joinWithSeparator(", ")
+            h = xemailList!.filter({$0 != ""}).joinWithSeparator(", ")
         }
+//        toEmail.number
         toEmail.text = h
-        txtEmailcc.text = xemailcc ?? ""
+//        txtEmailcc.text = xemailcc ?? ""
+        txtEmailcc.text = ""
         
         
 //        btnEmail.setTitle("   \(h)", forState: UIControlState.Normal)
@@ -92,7 +95,7 @@ class SaveAndEmailViewController: BaseViewController, UITableViewDelegate, UITab
         
         
         lineHeight.constant = 1.0 / (UIScreen().scale)
-    view.updateConstraintsIfNeeded()
+        view.updateConstraintsIfNeeded()
         
     }
     

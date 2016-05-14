@@ -89,10 +89,10 @@ class AddressListViewHeadView: UIView {
         
         
         
-        ClientLbl.frame  = CGRect(x: ProjectNmLbl.frame.origin.x + ProjectNmLbl.frame.width + space, y: xy, width: xwidth * 0.34, height: xheight)
+        ClientLbl.frame  = CGRect(x: ProjectNmLbl.frame.origin.x + ProjectNmLbl.frame.width + space, y: xy, width: xwidth * 0.33, height: xheight)
         
-        ConsultantLbl.frame  = CGRect(x: ClientLbl.frame.origin.x + ClientLbl.frame.width + space, y: xy, width: xwidth * 0.18, height: xheight)
-        StatusLbl.frame  = CGRect(x: ConsultantLbl.frame.origin.x + ConsultantLbl.frame.width + space, y: xy, width: xwidth * 0.12, height: xheight)
+        ConsultantLbl.frame  = CGRect(x: ClientLbl.frame.origin.x + ClientLbl.frame.width + space, y: xy, width: xwidth * 0.17, height: xheight)
+        StatusLbl.frame  = CGRect(x: ConsultantLbl.frame.origin.x + ConsultantLbl.frame.width + space, y: xy, width: xwidth * 0.14, height: xheight)
     }
     
 }

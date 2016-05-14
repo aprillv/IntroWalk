@@ -297,7 +297,6 @@ class AddressListViewController: UITableViewController, UISearchBarDelegate, ToD
         switch printModelNm{
         case CConstants.ActionTitleAddendumC:
             serviceUrl = CConstants.AddendumCServiceURL
-       
         default:
             serviceUrl = CConstants.AddendumAServiceURL
         }
@@ -386,6 +385,7 @@ class AddressListViewController: UITableViewController, UISearchBarDelegate, ToD
 //        removebackFromCell()
 //    }
    
+    var selectRowIndex : NSIndexPath?
     override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
 //        removebackFromCell()
 //        if let selectedCell:UITableViewCell = tableView.cellForRowAtIndexPath(indexPath){
@@ -403,10 +403,36 @@ class AddressListViewController: UITableViewController, UISearchBarDelegate, ToD
                 contract = cell.contractInfo
             }
         }
+        selectRowIndex = indexPath
         NSUserDefaults.standardUserDefaults().setBool(self.tableView.tag == 2, forKey: CConstants.UserInfoIsContract)
-        self.performSegueWithIdentifier(CConstants.SegueToPrintModel, sender: contract)
-        
+        if self.tableView.tag == 2 {
+            GetPrintedFileList(contract)
+        }else{
+            contract?.printList = nil
+            self.performSegueWithIdentifier(CConstants.SegueToPrintModel, sender: contract)
+        }
     }
+    
+    func GetPrintedFileList(contract : ContractsItem?){
+        if let c = contract {
+            let param = ["idcontract1" : c.idnumber ?? ""]
+//            print(param,  CConstants.ServerURL + "bacontract_GetPrintedFileList.json")
+            Alamofire.request(.POST, CConstants.ServerURL + "bacontract_GetPrintedFileList.json", parameters: param).responseJSON{ (response) -> Void in
+//                print(response.result.value)
+                if response.result.isSuccess {
+                    contract?.printList = response.result.value as? [Int]
+                    self.performSegueWithIdentifier(CConstants.SegueToPrintModel, sender: contract)
+//                    print(response.result.value)
+                }else{
+                    contract?.printList = nil
+                    self.performSegueWithIdentifier(CConstants.SegueToPrintModel, sender: contract)
+                }
+            }
+        }
+    }
+    
+    
+    
     
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         if let identifier = segue.identifier {
@@ -444,7 +470,7 @@ class AddressListViewController: UITableViewController, UISearchBarDelegate, ToD
                 break
             case CConstants.SegueToPrintPdf:
                 if let controller = segue.destinationViewController as? PDFPrintViewController {
-                    if let indexPath = tableView.indexPathForSelectedRow {
+                    if let indexPath = (tableView.indexPathForSelectedRow ?? selectRowIndex){
                         let ddd = self.CiaNmArray?[self.CiaNm?[indexPath.section] ?? ""]
                         let item: ContractsItem = ddd![indexPath.row]
                         
