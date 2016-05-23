@@ -134,7 +134,7 @@ class GoToFileViewController: BaseViewController , UITableViewDataSource, UITabl
     private func getTableHight() -> CGFloat{
         //        print(constants.cellHeight * CGFloat(printList.count + 1), 680, (min(view.frame.height, view.frame.width) - 40))
         //        print(min(CGFloat(constants.cellHeight * CGFloat(printList.count + 1)), 680, (min(view.frame.height, view.frame.width) - 40)))
-        return min(CGFloat(constants.cellHeight * CGFloat(printList.count)), 680, (min(view.frame.height, view.frame.width) - 40))
+        return min(CGFloat(constants.cellHeight * CGFloat(printList.count + 1)), 680, (min(view.frame.height, view.frame.width) - 40))
     }
     
     

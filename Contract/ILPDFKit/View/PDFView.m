@@ -173,6 +173,7 @@
 #pragma mark - UIWebViewDelegate
 - (void)webViewDidFinishLoad:(UIWebView *)webView {
     [spinner stopAnimating];
+//    NSLog(@"%@", self.addedCCCCAnnotationViews);
     _pdfWidgetAnnotationViews = [[NSMutableArray alloc] initWithArray:nwidgetAnnotationViews];
     for (PDFWidgetAnnotationView *element in _pdfWidgetAnnotationViews) {
         element.alpha = 0;
@@ -189,6 +190,26 @@
     if (_pdfWidgetAnnotationViews) {
         [self fadeInWidgetAnnotations];
     }
+    
+    for (PDFWidgetAnnotationView *element in self.addedCCCCAnnotationViews) {
+        element.alpha = 0;
+        element.parentView = self;
+        [_pdfView.scrollView addSubview: element];
+        if ([element isKindOfClass:[PDFFormButtonField class]]) {
+            [(PDFFormButtonField*)element setButtonSuperview];
+        }
+        if ([element isKindOfClass:[PDFFormTextField class]]) {
+            [(PDFFormTextField*)element setValue:element.value];
+           
+            
+        }
+        [element updateWithZoom: _pdfView.scrollView.zoomScale];
+    }
+    _canvasLoaded = YES;
+    if (self.addedCCCCAnnotationViews) {
+        [self fadeInWidgetAnnotations];
+    }
+    
 }
 
 -(void)addMoreDots: (NSArray *)na{
@@ -225,6 +246,9 @@
 - (void)scrollViewDidZoom:(UIScrollView *)scrollView {
     CGFloat scale = scrollView.zoomScale;
     for (PDFWidgetAnnotationView *element in _pdfWidgetAnnotationViews) {
+        [element updateWithZoom:scale];
+    }
+    for (PDFWidgetAnnotationView *element in _addedCCCCAnnotationViews) {
         [element updateWithZoom:scale];
     }
 }
@@ -311,8 +335,10 @@
 - (void)fadeInWidgetAnnotations {
     [UIView animateWithDuration:0.5 delay:0.2 options:0 animations:^{
         for (UIView *v in _pdfWidgetAnnotationViews) v.alpha = 1;
+        for (UIView *v in _addedCCCCAnnotationViews) v.alpha = 1;
     } completion:^(BOOL finished) {
         for (UIView *v in _pdfWidgetAnnotationViews) v.alpha = 1;
+        for (UIView *v in _addedCCCCAnnotationViews) v.alpha = 1;
     }];
 }
 

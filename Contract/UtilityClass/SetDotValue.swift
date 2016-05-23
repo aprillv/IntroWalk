@@ -891,6 +891,7 @@ class SetDotValue : NSObject {
                     pf?.pagenomargin = (aPrice?.pagenomargin ?? 0.0)!
                     addedAnnotationViews.append(pf!)
                     
+//                    print(pf?.xname)
                     //                    print( "number \(pf?.frame) \(y)")
                     for description in items {
                         //                        print("----" + a.substringWithRange(glyphRange))
@@ -900,6 +901,9 @@ class SetDotValue : NSObject {
                         pf?.pageno = has2Pages ? "0" : "1";
                         pf?.pagenomargin = (aPrice?.pagenomargin ?? 0.0)!
                         addedAnnotationViews.append(pf!)
+                        
+//                        print(pf?.xname)
+                        
                         //                            pf?.sizeToFit()
                         y = y + pf!.frame.height
                         //                            print( "text \(pf?.frame)")
@@ -1030,6 +1034,10 @@ class SetDotValue : NSObject {
 //            }
 //            
 //        }
+        
+        for element in addedAnnotationViews {
+            element.alpha = 0
+        }
         return addedAnnotationViews
     }
     
