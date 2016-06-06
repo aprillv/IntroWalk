@@ -68,11 +68,11 @@ class PDFPrintViewController: PDFBaseViewController, UIScrollViewDelegate, PDFVi
     var addendumApdfInfo : AddendumA?{
         didSet{
 //            self.setBuyer2()
-            if let c = contractInfo?.status {
-                if c == CConstants.ApprovedStatus {
-                    addendumApdfInfo?.approvedDate = contractInfo?.approvedate
-                }
-            }
+//            if let c = contractInfo?.status {
+//                if c == CConstants.ApprovedStatus {
+//                    addendumApdfInfo?.approvedDate = contractInfo?.approvedate
+//                }
+//            }
             if let info = addendumApdfInfo {
                 if let fDD = fileDotsDic {
                     let tool = SetDotValue()
@@ -125,15 +125,7 @@ class PDFPrintViewController: PDFBaseViewController, UIScrollViewDelegate, PDFVi
                     case CConstants.ActionTitleAddendumC:
                         for doc in documents! {
                             if doc.pdfName == CConstants.ActionTitleAddendumC {
-                                if let c = contractInfo?.status {
-                                    if c == CConstants.ApprovedStatus {
-                                        info.addendumDate = contractInfo?.approvedate
-                                    }else{
-                                        info.addendumDate = ""
-                                    }
-                                }else{
-                                    info.addendumDate = ""
-                                }
+                                
 
                                 
                                 doc.addedviewss = tool.setAddendumCDots(info, additionViews: dots, pdfview: self.pdfView!, has2Pages0: self.page2!)
@@ -188,6 +180,38 @@ class PDFPrintViewController: PDFBaseViewController, UIScrollViewDelegate, PDFVi
         didSet{
            
             if let info = contractPdfInfo {
+                
+                if let c = contractInfo?.status {
+                    if c ==  CConstants.ApprovedStatus {
+//                        info.approvedate = "01/01/1980"
+                        if (info.approvedate ?? "").hasSuffix("1980") {
+                            self.PopMsgWithJustOK(msg: "Approved Date of Contract Cannot to be 1980 or emprty.")
+                            
+                            info.approvedate = ""
+                        }
+                        contractInfo?.approvedate = info.approvedate
+                        contractInfo?.approveMonthdate = info.approveMonthdate
+                        if filesArray!.contains(CConstants.ActionTitleINFORMATION_ABOUT_BROKERAGE_SERVICES){
+                            setBrokerDate()
+                        }
+                        if filesArray!.contains(CConstants.ActionTitleAddendumD){
+                            setAddendumDDate()
+                        }
+                        if filesArray!.contains(CConstants.ActionTitleAddendumE){
+                            setAddendumEDate()
+                        }
+                        if filesArray!.contains(CConstants.ActionTitleFloodPlainAck){
+                            setFloodPlainAckDate()
+                        }
+                        if filesArray!.contains(CConstants.ActionTitleWarrantyAcknowledgement){
+                            setWarrantyAcknowledgement()
+                        }
+                        if filesArray!.contains(CConstants.ActionTitleHoaChecklist){
+                            setHoaChecklist()
+                        }
+                    }
+                }
+                
                 contractInfo?.status = info.status
                 contractInfo?.signfinishdate = info.signfinishdate
                 print(info.ipadsignyn)
@@ -249,15 +273,7 @@ class PDFPrintViewController: PDFBaseViewController, UIScrollViewDelegate, PDFVi
                     for (str, dots) in fDD {
                         switch str{
                         case CConstants.ActionTitleDesignCenter:
-                            if let c = contractInfo?.status {
-                                if c == CConstants.ApprovedStatus {
-                                    info.txtDate = contractInfo?.approvedate
-                                }else{
-                                    info.txtDate = ""
-                                }
-                            }else{
-                                info.txtDate = ""
-                            }
+                            info.txtDate = info.approvedate ?? ""
                             
                             tool.setDesignCenterDots(info, additionViews: dots)
                             return
@@ -462,28 +478,7 @@ class PDFPrintViewController: PDFBaseViewController, UIScrollViewDelegate, PDFVi
 //        sendItem.title = "\(a) == \(NSDate())"
         //        print(self.document?.forms)
         setAddendumC()
-        if let c = contractInfo?.status {
-            if c ==  CConstants.ApprovedStatus {
-                if filesArray!.contains(CConstants.ActionTitleINFORMATION_ABOUT_BROKERAGE_SERVICES){
-                    setBrokerDate()
-                }
-                if filesArray!.contains(CConstants.ActionTitleAddendumD){
-                    setAddendumDDate()
-                }
-                if filesArray!.contains(CConstants.ActionTitleAddendumE){
-                    setAddendumEDate()
-                }
-                if filesArray!.contains(CConstants.ActionTitleFloodPlainAck){
-                    setFloodPlainAckDate()
-                }
-                if filesArray!.contains(CConstants.ActionTitleWarrantyAcknowledgement){
-                    setWarrantyAcknowledgement()
-                }
-                if filesArray!.contains(CConstants.ActionTitleHoaChecklist){
-                    setHoaChecklist()
-                }
-            }
-        }
+        
         
     
         
@@ -748,9 +743,13 @@ class PDFPrintViewController: PDFBaseViewController, UIScrollViewDelegate, PDFVi
                 sendItem.image = nil
                 sendItem.title = "Status: Finished"
             }else{
-                sendItem.title = nil
-                sendItem.image = UIImage(named: "send.png")
-                
+                if ds.hasSuffix("1980") || ds.isEmpty {
+                    sendItem.image = nil
+                    sendItem.title = "Status: \(CConstants.ApprovedStatus)"
+                }else{
+                    sendItem.title = nil
+                    sendItem.image = UIImage(named: "send.png")
+                }
             }
         }else{
             sendItem.title = nil
@@ -808,7 +807,7 @@ class PDFPrintViewController: PDFBaseViewController, UIScrollViewDelegate, PDFVi
        
     }
     
-    
+   
     // MARK: Request Data
     private func callService(printModelNm: String, param: [String: String]){
 //        print(param)
@@ -2414,6 +2413,7 @@ private func getStr(h : [[String]]?) -> String {
                                 
                                 tvc.showSave = showSave
                                 tvc.showSubmit = showSubmit
+//                                tvc.showSubmit = true
                                 ppc.delegate = self
                                 tvc.delegate1 = self
                             }
@@ -2458,10 +2458,10 @@ private func getStr(h : [[String]]?) -> String {
         hud = MBProgressHUD.showHUDAddedTo(self.view, animated: true)
 //        }
         hud?.labelText = "Submitting..."
-        
+//        
         let a =  ["idcontract1" : self.contractInfo!.idnumber!, "idcia": self.contractInfo!.idcia!, "email": userInfo.stringForKey(CConstants.UserInfoEmail) ?? "", "emailto" : email, "emailcc": emailcc, "msg": msg]
-//
-//        let a = ["idcontract1" : self.contractInfo!.idnumber!, "idcia": self.contractInfo!.idcia!, "email": userInfo.stringForKey(CConstants.UserInfoEmail) ?? "", "emailto" : "Roberto Reletez (roberto@buildersaccess.com)", "emailcc": "Kevin Zhao (kevin@buildersaccess.com)", "msg": msg]
+////
+////        let a = ["idcontract1" : self.contractInfo!.idnumber!, "idcia": self.contractInfo!.idcia!, "email": userInfo.stringForKey(CConstants.UserInfoEmail) ?? "", "emailto" : "Roberto Reletez (roberto@buildersaccess.com)", "emailcc": "Kevin Zhao (kevin@buildersaccess.com)", "msg": msg]
         
 //         let a = ["idcontract1" : self.contractInfo!.idnumber!, "idcia": self.contractInfo!.idcia!, "email": userInfo.stringForKey(CConstants.UserInfoEmail) ?? "", "emailto" : "April Lv (April@buildersaccess.com)", "emailcc": "xiujun_85@163.com", "msg": msg]
         

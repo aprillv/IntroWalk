@@ -14,7 +14,6 @@ class ContractAddendumC : ContractPDFBaseModel {
     var ciacityzip: String?
     var ciatelfax: String?
     var addendumNo: String?
-    var addendumDate: String?
     var contractdate: String?
     var estimatedcompletion: String?
     var estimatedclosing: String?
@@ -28,5 +27,7 @@ class ContractAddendumC : ContractPDFBaseModel {
     var itemlistStr:[[String]]?
     var found: String?
     var message: String?
+    var approvedate : String?
+    var approveMonthdate : String?
 //    var buyer2: String?
 }

@@ -52,4 +52,6 @@ class ContractClosingMemo : ContractPDFBaseModel{
     var memoItemlist:[MemoItemlistItem]?
     var found: String?
     var message: String?
+    var approvedate : String?
+    var approveMonthdate : String?
 }

@@ -103,8 +103,8 @@ class SetDotValue : NSObject {
         
         //05032016
         static let escrow_agent = "escrowagent"
-        static let agent_address = "titlecompany"
-        static let insurance_company = "address2"
+        static let agent_address = "address2"
+        static let insurance_company = "titlecompany"
         static let seller_name = "toseller1"
         static let seller_address = "toseller2"
         static let seller_tel1 = "toseller3"
@@ -293,7 +293,7 @@ class SetDotValue : NSObject {
                 case SignContractPDFFields.executeddd:
                     if let item1 = item {
                         if item1.status == CConstants.ApprovedStatus {
-                            pv.value = item1.approveMonthdate!.componentsSeparatedByString(" ")[0]
+                            pv.value = pdfInfo!.approveMonthdate!.componentsSeparatedByString(" ")[0]
                         }else{
                             pv.value = ""
                         }
@@ -308,7 +308,7 @@ class SetDotValue : NSObject {
                 case SignContractPDFFields.executedmm:
                     if let item1 = item {
                         if item1.status == CConstants.ApprovedStatus {
-                            pv.value = item1.approveMonthdate!.componentsSeparatedByString(" ")[1]
+                            pv.value = pdfInfo!.approveMonthdate!.componentsSeparatedByString(" ")[1]
                         }else{
                             pv.value = ""
                         }
@@ -321,7 +321,7 @@ class SetDotValue : NSObject {
                 case SignContractPDFFields.executedyy:
                     if let item1 = item {
                         if item1.status == CConstants.ApprovedStatus {
-                            pv.value = item1.approveMonthdate!.componentsSeparatedByString(" ")[2]
+                            pv.value = pdfInfo!.approveMonthdate!.componentsSeparatedByString(" ")[2]
                             let a = pv.value.startIndex
                             pv.value = pv.value.substringFromIndex(a.advancedBy(2))
                         }else{
@@ -368,6 +368,13 @@ class SetDotValue : NSObject {
                     
                 case SignContractPDFFields.p9Broker:
                     pv.value = pdfInfo!.page9OtherBrokerFirm
+                case "otherbroker":
+                    if let p = pdfInfo?.broker_percent {
+                        if !p.containsString("0."){
+                        pv.value = "\(p)%"
+                        }
+                        
+                    }
                 case SignContractPDFFields.p9represents:
                     if let radio = pv as? PDFFormButtonField {
                         radio .setValue2(pdfInfo!.page9BuyeronlyasBuyersagent!)
@@ -747,7 +754,7 @@ class SetDotValue : NSObject {
         for pv : PDFWidgetAnnotationView in additionViews{
             switch pv.xname {
             case AddendumAPDFFields.adate:
-                pv.value = pdfInfo?.approvedDate ?? ""
+                pv.value = pdfInfo?.approvedate ?? ""
             case AddendumAPDFFields.Nonrefundable:
                 pv.value = pdfInfo?.Nonrefundable!
             case AddendumAPDFFields.CompanyName:
@@ -815,7 +822,7 @@ class SetDotValue : NSObject {
             case AddendumCPDFFields.IdNo:
                 pv.value = pdfInfo?.addendumNo!
             case AddendumCPDFFields.DateL:
-                pv.value = pdfInfo?.addendumDate!
+                pv.value = pdfInfo?.approvedate!
             case AddendumCPDFFields.ContractDate:
                 pv.value = pdfInfo?.contractdate!
             case AddendumCPDFFields.EstimatedCompletion:
@@ -975,15 +982,15 @@ class SetDotValue : NSObject {
                         
                     case 3:
                         pf?.xname = "buyer1DateSign1"
-                        pf?.value = pdfInfo?.addendumDate
+                        pf?.value = pdfInfo?.approvedate
                     case 4:
                         pf?.xname = "buyer2DateSign1"
                         if  (pdfInfo?.buyer ?? "").containsString(" / ") {
-                            pf?.value = pdfInfo?.addendumDate
+                            pf?.value = pdfInfo?.approvedate
                         }
                     default:
                         pf?.xname = "seller1DateSign1"
-                        pf?.value = pdfInfo?.addendumDate
+                        pf?.value = pdfInfo?.approvedate
                     }
 //                    pf?.value = AddendumCPDFFields.SignArray[i]
                     pf?.pageno = has2Pages ? "0" : "1";
@@ -1121,7 +1128,7 @@ class SetDotValue : NSObject {
                 pv.value = pdfInfo?.txtDate!
             case DesignCenterPDFFields.buyer1Date:
                 pv.value = pdfInfo?.txtDate!
-            case DesignCenterPDFFields.buyer1Date:
+            case DesignCenterPDFFields.buyer2Date:
                 if let c = pdfInfo?.buyer2 {
                     if c != ""{
                     pv.value = pdfInfo?.txtDate!
@@ -1298,7 +1305,7 @@ class SetDotValue : NSObject {
             case ExhibitAPDFFields.CompanyName:
                 pv.value = pdfInfo?.CompanyName!
             case ExhibitAPDFFields.adate:
-                pv.value = pdfInfo?.approvedDate ?? ""
+                pv.value = pdfInfo?.approvedate ?? ""
             default:
                 break
             }
@@ -1325,7 +1332,7 @@ class SetDotValue : NSObject {
             case ExhibitBPDFFields.CompanyName:
                 pv.value = pdfInfo?.CompanyName!
             case ExhibitBPDFFields.adate:
-                pv.value = pdfInfo?.approvedDate ?? ""
+                pv.value = pdfInfo?.approvedate ?? ""
             default:
                 break
             }
@@ -1347,7 +1354,7 @@ class SetDotValue : NSObject {
             case ExhibitCPDFFields.CompanyName:
                 pv.value = pdfInfo?.CompanyName!
             case ExhibitCPDFFields.adate:
-                pv.value = pdfInfo?.approvedDate ?? ""
+                pv.value = pdfInfo?.approvedate ?? ""
             default:
                 break
             }

@@ -73,4 +73,8 @@ class ContractSignature: ContractPDFBaseModel {
     var seller_tel: String?
     var seller_fax: String?
     
+    var broker_percent : String?
+    var approvedate : String?
+    var approveMonthdate : String?
+    
 }

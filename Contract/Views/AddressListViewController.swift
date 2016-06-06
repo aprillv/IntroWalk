@@ -473,7 +473,8 @@ class AddressListViewController: UITableViewController, UISearchBarDelegate, ToD
                     if let indexPath = (tableView.indexPathForSelectedRow ?? selectRowIndex){
                         let ddd = self.CiaNmArray?[self.CiaNm?[indexPath.section] ?? ""]
                         let item: ContractsItem = ddd![indexPath.row]
-                        
+                        item.approvedate = "01/01/1980"
+                        item.approveMonthdate = "01 Jun 80"
                         if let info = sender as? ContractAddendumC {
                             controller.pdfInfo0 = info
                             controller.addendumCpdfInfo = info

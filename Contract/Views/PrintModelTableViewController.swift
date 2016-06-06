@@ -159,6 +159,7 @@ class PrintModelTableViewController: BaseViewController, UITableViewDataSource, 
         for x in printList {
             switch x {
             case CConstants.ActionTitleContract, CConstants.ActionTitleDraftContract:
+                print(projectInfo?.printList?.contains(1))
                 selected?.append(projectInfo?.printList?.contains(1) ?? true)
             case CConstants.ActionTitleThirdPartyFinancingAddendum:
                 selected?.append(projectInfo?.printList?.contains(2) ?? true)

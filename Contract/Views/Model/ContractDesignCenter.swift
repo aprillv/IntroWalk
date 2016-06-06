@@ -42,4 +42,6 @@ class ContractDesignCenter : ContractPDFBaseModel{
     var notes: String?
     var found: String?
     var message: String?
+    var approvedate : String?
+    var approveMonthdate : String?
 }
