@@ -313,6 +313,7 @@ class LoginViewController: BaseViewController, UITextFieldDelegate {
             if loginResult != nil{
                 let userInfo = NSUserDefaults.standardUserDefaults()
                 userInfo.setObject(loginResult!.username, forKey: CConstants.LoggedUserNameKey)
+//                 userInfo.setObject("Roberto Test", forKey: CConstants.LoggedUserNameKey)
             }
         }
     }

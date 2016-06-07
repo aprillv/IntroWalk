@@ -13,6 +13,7 @@ protocol FilterViewDelegate
     func showAll()
     func showHomeOwnerSign()
     func showSalesSign()
+    func showReCreate()
     
 }
 
@@ -36,6 +37,7 @@ class FilterViewController: UIViewController, UITableViewDelegate, UITableViewDa
         static let operationShowAll = "Show All"
         static let operationHomeownerSign = "Homeowner Sign"
         static let operationSalesSign = "Sales Sign"
+        static let operationReCreate = "Re-Create PDF"
     }
     
     var showIndex : Int?
@@ -43,7 +45,12 @@ class FilterViewController: UIViewController, UITableViewDelegate, UITableViewDa
         super.viewDidLoad()
         let userinfo = NSUserDefaults.standardUserDefaults()
         showIndex = userinfo.integerForKey(CConstants.ShowFilter)
+        if (userinfo.stringForKey(CConstants.UserInfoEmail) ?? "").lowercaseString == CConstants.Administrator {
+        itemList = [constants.operationShowAll, constants.operationHomeownerSign, constants.operationSalesSign, constants.operationReCreate]
+        }else{
         itemList = [constants.operationShowAll, constants.operationHomeownerSign, constants.operationSalesSign]
+        }
+        
     }
     
     func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
@@ -93,6 +100,8 @@ class FilterViewController: UIViewController, UITableViewDelegate, UITableViewDa
                     delegate0.showAll()
                 case constants.operationSalesSign:
                     delegate0.showSalesSign()
+                case constants.operationReCreate:
+                    delegate0.showReCreate()
                 default:
                     delegate0.showHomeOwnerSign()
                 }

@@ -732,6 +732,8 @@ class PDFPrintViewController: PDFBaseViewController, UIScrollViewDelegate, PDFVi
         }
     }
     private func setSendItema(){
+        
+        seller2Item.title = ""
         if contractInfo!.status == CConstants.ForApproveStatus {
             sendItem.image = nil
             sendItem.title = "Status: \(CConstants.ForApproveStatus)"
@@ -742,6 +744,11 @@ class PDFPrintViewController: PDFBaseViewController, UIScrollViewDelegate, PDFVi
             if  ds != "01/01/1980" && ss == CConstants.ApprovedStatus {
                 sendItem.image = nil
                 sendItem.title = "Status: Finished"
+                let userInfo = NSUserDefaults.standardUserDefaults()
+                if (userInfo.stringForKey(CConstants.UserInfoEmail) ?? "").lowercaseString == CConstants.Administrator {
+                    seller2Item.title = "Re-Create PDF"
+                }
+                
             }else{
                 let hh = contractInfo?.approvedate ?? "1980"
                 if (hh.hasSuffix("1980") || hh.isEmpty ) {
@@ -796,8 +803,8 @@ class PDFPrintViewController: PDFBaseViewController, UIScrollViewDelegate, PDFVi
             buyer2Date.title = ""
             buyer1Item.title = ""
             buyer2Item.title = ""
-            seller1Item.title = ""
-            seller2Item.title = ""
+//            seller1Item.title = ""
+//            seller2Item.title = ""
         }
         
         
@@ -1086,7 +1093,10 @@ class PDFPrintViewController: PDFBaseViewController, UIScrollViewDelegate, PDFVi
     
     
     @IBAction func  SellerSign(sender: UIBarButtonItem) {
-        BuyerSign(sender)
+//        BuyerSign(sender)
+        if sender.title != "" {
+            self.saveToServer1(2)
+        }
         
     }
     
@@ -1095,7 +1105,7 @@ class PDFPrintViewController: PDFBaseViewController, UIScrollViewDelegate, PDFVi
     @IBOutlet var buyer1Item: UIBarButtonItem!
     @IBOutlet var buyer2Item: UIBarButtonItem!
     @IBOutlet var seller2Item: UIBarButtonItem!
-    @IBOutlet var seller1Item: UIBarButtonItem!
+//    @IBOutlet var seller1Item: UIBarButtonItem!
     func pageChanged(no: Int) {
         return;
         if no == 0 {
@@ -1103,7 +1113,7 @@ class PDFPrintViewController: PDFBaseViewController, UIScrollViewDelegate, PDFVi
             buyer2Date.title = ""
             buyer1Item.title = "Buyer1"
             buyer2Item.title = "Buyer2"
-            seller1Item.title = "Seller1"
+//            seller1Item.title = "Seller1"
             seller2Item.title = "Seller2"
         } else if no == 1 {
             // broker
@@ -1111,7 +1121,7 @@ class PDFPrintViewController: PDFBaseViewController, UIScrollViewDelegate, PDFVi
             buyer2Date.title = ""
             buyer1Item.title = "Buyer1"
             buyer2Item.title = "Date1"
-            seller1Item.title = "Buyer2"
+//            seller1Item.title = "Buyer2"
             seller2Item.title = "Date2"
         } else if no == 2 {
             // addendum a
@@ -1119,7 +1129,7 @@ class PDFPrintViewController: PDFBaseViewController, UIScrollViewDelegate, PDFVi
             buyer2Date.title = ""
             buyer1Item.title = "Buyer1"
             buyer2Item.title = "Buyer2"
-            seller1Item.title = "Seller"
+//            seller1Item.title = "Seller"
             seller2Item.title = "Day"
         } else if no == 3 {
             // exhibit b
@@ -1127,7 +1137,7 @@ class PDFPrintViewController: PDFBaseViewController, UIScrollViewDelegate, PDFVi
             buyer2Date.title = ""
             buyer1Item.title = "Buyer1"
             buyer2Item.title = "Buyer2"
-            seller1Item.title = ""
+//            seller1Item.title = ""
             seller2Item.title = "Initial"
         } else if no == 4 {
             // exhibit c
@@ -1135,7 +1145,7 @@ class PDFPrintViewController: PDFBaseViewController, UIScrollViewDelegate, PDFVi
             buyer2Date.title = ""
             buyer1Item.title = "BY"
             buyer2Item.title = "Name"
-            seller1Item.title = ""
+//            seller1Item.title = ""
             seller2Item.title = "Title"
         } else if no == 5 {
             // Design center
@@ -1143,7 +1153,7 @@ class PDFPrintViewController: PDFBaseViewController, UIScrollViewDelegate, PDFVi
             buyer2Date.title = ""
             buyer1Item.title = "Buyer1"
             buyer2Item.title = "Date1"
-            seller1Item.title = "Buyer2"
+//            seller1Item.title = "Buyer2"
             seller2Item.title = "Date2"
         } else if no == 6 {
             // Addendum c
@@ -1151,7 +1161,7 @@ class PDFPrintViewController: PDFBaseViewController, UIScrollViewDelegate, PDFVi
             buyer2Item.title = "Date1"
             buyer1Date.title = "Buyer2"
             buyer2Date.title = "Date2"
-            seller1Item.title = "Seller"
+//            seller1Item.title = "Seller"
             seller2Item.title = "Date"
         }
         
@@ -1159,7 +1169,7 @@ class PDFPrintViewController: PDFBaseViewController, UIScrollViewDelegate, PDFVi
     }
     func setBuyer21() {
         
-        let a = [buyer1Item, buyer2Item,buyer1Date,buyer2Date,seller1Item,seller2Item]
+        let a = [buyer1Item, buyer2Item,buyer1Date,buyer2Date]
         for item in a {
             if item.title == "Buyer2" || item.title == "Date2" {
                 item.title = ""
@@ -1172,8 +1182,8 @@ class PDFPrintViewController: PDFBaseViewController, UIScrollViewDelegate, PDFVi
         buyer2Date.title = ""
         buyer1Item.title = ""
         buyer2Item.title = ""
-        seller1Item.title = ""
-        seller2Item.title = ""
+//        seller1Item.title = ""
+//        seller2Item.title = ""
         var showBuyer2 = false;
         if let contract = self.contractInfo {
             if contract.client2! != "" {
@@ -2434,7 +2444,7 @@ private func getStr(h : [[String]]?) -> String {
                         if let tvc = segue.destinationViewController as? AddressListModelViewController {
                             if let ppc = tvc.popoverPresentationController {
                                 ppc.delegate = self
-                                tvc.AddressListOrigin = self.AddressList
+//                                tvc.AddressListOrigin = self.AddressList
                                 tvc.delegate = self
                             }
                             //                    tvc.text = "april"

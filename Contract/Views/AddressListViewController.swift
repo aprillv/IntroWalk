@@ -35,7 +35,7 @@ class AddressListViewController: UITableViewController, UISearchBarDelegate, ToD
     func textFieldDidChange(notifications : NSNotification){
         if let txt = txtField.text?.lowercaseString{
             if txt.isEmpty{
-                AddressList = AddressListOrigin
+                showAll()
             }else{
                 AddressList = AddressListOrigin?.filter(){
                     if tableView.tag == 2 {
@@ -51,7 +51,8 @@ class AddressListViewController: UITableViewController, UISearchBarDelegate, ToD
                 }
             }
         }else{
-            AddressList = AddressListOrigin
+            showAll()
+//            AddressList = AddressListOrigin
         }
     }
 //    var lastSelectedIndexPath : NSIndexPath?
@@ -67,21 +68,26 @@ class AddressListViewController: UITableViewController, UISearchBarDelegate, ToD
         didSet{
             
             if tableTag != 2 {
-             self.AddressList = self.AddressListOrigin
+//             self.AddressList = self.AddressListOrigin
+                self.showAll()
             }else{
             let userinfo = NSUserDefaults.standardUserDefaults()
             let a = userinfo.integerForKey(CConstants.ShowFilter)
             if a == 1 {
-                self.AddressList = self.AddressListOrigin?.filter(){
-                    return $0.status!.containsString("iPad Sign") || $0.status!.containsString("Email Sign")}
+                showHomeOwnerSign()
+//                self.AddressList = self.AddressListOrigin?.filter(){
+//                    return $0.status!.containsString("iPad Sign") || $0.status!.containsString("Email Sign")}
             }else if a == 2 {
-                self.AddressList = self.AddressListOrigin?.filter(){
-                    return !($0.status!.containsString("iPad Sign") || $0.status!.containsString("Email Sign"))}
+                showSalesSign()
+//                self.AddressList = self.AddressListOrigin?.filter(){
+//                    return !($0.status!.containsString("iPad Sign") || $0.status!.containsString("Email Sign"))}
+            }else if a == 3 {
+                showReCreate()
             }else{
-                self.AddressList = self.AddressListOrigin
-                }
+                 showAll()
+                
             }
-            
+            }
         }
     }
     
@@ -478,7 +484,7 @@ class AddressListViewController: UITableViewController, UISearchBarDelegate, ToD
                         if let info = sender as? ContractAddendumC {
                             controller.pdfInfo0 = info
                             controller.addendumCpdfInfo = info
-                            controller.AddressList = self.AddressListOrigin
+//                            controller.AddressList = self.AddressListOrigin
 //                            print(self.filesNms!)
                             controller.filesArray = self.filesNms!
 //                            print(controller.filesArray)
@@ -524,7 +530,7 @@ class AddressListViewController: UITableViewController, UISearchBarDelegate, ToD
                             info.nproject = item.nproject
                             controller.contractInfo = item
                             controller.pdfInfo0 = info
-                            controller.AddressList = self.AddressListOrigin
+//                            controller.AddressList = self.AddressListOrigin
                             controller.filesArray = self.filesNms
                             controller.page2 = false
                         }
@@ -661,8 +667,17 @@ class AddressListViewController: UITableViewController, UISearchBarDelegate, ToD
     }
     
     func showAll() {
-        AddressList = AddressListOrigin
-        salesBtn.setTitle("Filter", forState: .Normal)
+        let userInfo = NSUserDefaults.standardUserDefaults()
+        if (userInfo.stringForKey(CConstants.UserInfoEmail) ?? "").lowercaseString == CConstants.Administrator {
+            AddressList = AddressListOrigin?.filter(){
+                return !((!($0.status!.containsString("iPad Sign") || $0.status!.containsString("Email Sign"))) && (!($0.signfinishdate ?? "1980").containsString("1980")))
+            }
+            salesBtn.setTitle("Filter", forState: .Normal)
+        }else{
+            AddressList = AddressListOrigin
+            salesBtn.setTitle("Filter", forState: .Normal)
+        }
+        
     }
     func showHomeOwnerSign() {
         AddressList = AddressListOrigin?.filter(){
@@ -673,11 +688,23 @@ class AddressListViewController: UITableViewController, UISearchBarDelegate, ToD
     
     @IBOutlet var salesBtn: UIButton!
     func showSalesSign() {
-        AddressList = AddressListOrigin?.filter(){
-            return !($0.status!.containsString("iPad Sign") || $0.status!.containsString("Email Sign"))
-        }
-        salesBtn.setTitle("Sales Sign", forState: .Normal)
+        
+            AddressList = AddressListOrigin?.filter(){
+                return (!($0.status!.containsString("iPad Sign") || $0.status!.containsString("Email Sign"))) && (($0.signfinishdate ?? "1980").containsString("1980"))
+            }
+            salesBtn.setTitle("Sales Sign", forState: .Normal)
+        
     }
     
+    func showReCreate() {
+        let userInfo = NSUserDefaults.standardUserDefaults()
+        if (userInfo.stringForKey(CConstants.UserInfoEmail) ?? "").lowercaseString == CConstants.Administrator {
+            AddressList = AddressListOrigin?.filter(){
+                return (!($0.status!.containsString("iPad Sign") || $0.status!.containsString("Email Sign"))) && (!($0.signfinishdate ?? "1980").containsString("1980"))
+            }
+            salesBtn.setTitle("Re-Create", forState: .Normal)
+        }
+        
+    }
     
 }

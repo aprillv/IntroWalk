@@ -463,14 +463,9 @@
                                     </segue>
                                 </connections>
                             </barButtonItem>
-                            <barButtonItem tag="4" title="Seller2" id="iTV-Vp-Tay">
+                            <barButtonItem tag="4" title="Re-Create PDF" id="iTV-Vp-Tay">
                                 <connections>
                                     <action selector="SellerSign:" destination="LV9-aA-wQE" id="Vfa-qB-fcJ"/>
-                                </connections>
-                            </barButtonItem>
-                            <barButtonItem tag="3" title="Seller1" id="omT-o4-zzm">
-                                <connections>
-                                    <action selector="SellerSign:" destination="LV9-aA-wQE" id="gW2-7R-kNu"/>
                                 </connections>
                             </barButtonItem>
                         </rightBarButtonItems>
@@ -482,7 +477,6 @@
                         <outlet property="buyer1Item" destination="cg6-zN-qzH" id="Kbq-7L-811"/>
                         <outlet property="buyer2Date" destination="RHl-Cc-oAn" id="Q9M-R7-44m"/>
                         <outlet property="buyer2Item" destination="UiR-Tu-et7" id="ffP-rW-c3A"/>
-                        <outlet property="seller1Item" destination="omT-o4-zzm" id="8AI-HV-gK3"/>
                         <outlet property="seller2Item" destination="iTV-Vp-Tay" id="9a2-BJ-HOD"/>
                         <outlet property="sendItem" destination="80F-GD-5rT" id="fX6-C6-L7w"/>
                         <outlet property="view2" destination="TVO-Xr-fgd" id="pUp-uT-HHa"/>

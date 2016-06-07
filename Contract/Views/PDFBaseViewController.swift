@@ -16,7 +16,7 @@ class PDFBaseViewController: BaseViewController, DoOperationDelegate, UIPopoverP
     var documents : [PDFDocument]?
 //    var documentAddedDotArray : [[PDFWidgetAnnotationView]]?
     var pdfView  : PDFView?
-    var AddressList : [ContractsItem]?
+//    var AddressList : [ContractsItem]?
     
 //    var locked: Bool?
     
@@ -452,7 +452,7 @@ class PDFBaseViewController: BaseViewController, DoOperationDelegate, UIPopoverP
                     controller.filesArray = modelNmA
                     controller.initWithResource(CConstants.PdfFileNameAddendumC2)
                     controller.page2 = false
-                    controller.AddressList = self.AddressList
+//                    controller.AddressList = self.AddressList
                     var na = self.navigationController?.viewControllers
                     na?.removeLast()
                     na?.append(controller)
@@ -552,13 +552,13 @@ class PDFBaseViewController: BaseViewController, DoOperationDelegate, UIPopoverP
                                 default:
                                     break;
                                 }
-                                if let vcc = vc {
-                                    vcc.AddressList = self.AddressList
-                                    var na = self.navigationController?.viewControllers
-                                    na?.removeLast()
-                                    na?.append(vcc)
-                                    self.navigationController?.viewControllers = na!
-                                }
+//                                if let vcc = vc {
+//                                    vcc.AddressList = self.AddressList
+//                                    var na = self.navigationController?.viewControllers
+//                                    na?.removeLast()
+//                                    na?.append(vcc)
+//                                    self.navigationController?.viewControllers = na!
+//                                }
                                 
                             }else{
                                 self.PopMsgWithJustOK(msg: msg)
@@ -616,7 +616,7 @@ class PDFBaseViewController: BaseViewController, DoOperationDelegate, UIPopoverP
                         controller.filesArray = printViewController.filesArray
 //                        controller.initWithResource(CConstants.PdfFileNameAddendumC2)
                         controller.page2 = false
-                        controller.AddressList = self.AddressList
+//                        controller.AddressList = self.AddressList
                         var na = self.navigationController?.viewControllers
                         na?.removeLast()
                         na?.append(controller)
