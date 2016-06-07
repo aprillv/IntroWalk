@@ -743,7 +743,8 @@ class PDFPrintViewController: PDFBaseViewController, UIScrollViewDelegate, PDFVi
                 sendItem.image = nil
                 sendItem.title = "Status: Finished"
             }else{
-                if ds.hasSuffix("1980") || ds.isEmpty {
+                let hh = contractInfo?.approvedate ?? "1980"
+                if (hh.hasSuffix("1980") || hh.isEmpty ) {
                     sendItem.image = nil
                     sendItem.title = "Status: \(CConstants.ApprovedStatus)"
                 }else{
