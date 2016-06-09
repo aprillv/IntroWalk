@@ -740,23 +740,27 @@ class PDFPrintViewController: PDFBaseViewController, UIScrollViewDelegate, PDFVi
         }else if contractInfo!.status == CConstants.DisApprovedStatus {
             sendItem.image = nil
             sendItem.title = "Status: \(CConstants.DisApprovedStatus)"
-        }else if let ds = self.contractInfo?.signfinishdate, ss = self.contractInfo?.status {
-            if  ds != "01/01/1980" && ss == CConstants.ApprovedStatus {
-                sendItem.image = nil
-                sendItem.title = "Status: Finished"
-                let userInfo = NSUserDefaults.standardUserDefaults()
-                if (userInfo.stringForKey(CConstants.UserInfoEmail) ?? "").lowercaseString == CConstants.Administrator {
-                    seller2Item.title = "Re-Create PDF"
-                }
-                
-            }else{
-                let hh = contractInfo?.approvedate ?? "1980"
-                if (hh.hasSuffix("1980") || hh.isEmpty ) {
+        }else if contractInfo!.status == CConstants.ApprovedStatus {
+            if let ds = self.contractInfo?.signfinishdate {
+                if  ds != "01/01/1980"{
                     sendItem.image = nil
-                    sendItem.title = "Status: \(CConstants.ApprovedStatus)"
+                    sendItem.title = "Status: Finished"
+                    let userInfo = NSUserDefaults.standardUserDefaults()
+                    if (userInfo.stringForKey(CConstants.UserInfoEmail) ?? "").lowercaseString == CConstants.Administrator {
+                        seller2Item.title = "Re-Create PDF"
+                    }
+                    
                 }else{
                     sendItem.title = nil
                     sendItem.image = UIImage(named: "send.png")
+//                    let hh = contractInfo?.approvedate ?? "1980"
+//                    if (hh.hasSuffix("1980") || hh.isEmpty ) {
+//                        sendItem.image = nil
+//                        sendItem.title = "Status: \(CConstants.ApprovedStatus)"
+//                    }else{
+//                        sendItem.title = nil
+//                        sendItem.image = UIImage(named: "send.png")
+//                    }
                 }
             }
         }else{

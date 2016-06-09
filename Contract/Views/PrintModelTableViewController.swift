@@ -88,7 +88,8 @@ class PrintModelTableViewController: BaseViewController, UITableViewDataSource, 
         
        
         if let c = projectInfo {
-            if c.status == CConstants.EmailSignedStatus || c.status == CConstants.DraftStatus || c.status == "" {
+//            if c.status == CConstants.EmailSignedStatus || c.status == CConstants.DraftStatus || c.status == "" {
+            if c.status ==  CConstants.DraftStatus || c.status == "" {
                 canEdit = true
             }
         }
