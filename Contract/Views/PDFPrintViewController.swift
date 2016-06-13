@@ -712,7 +712,7 @@ class PDFPrintViewController: PDFBaseViewController, UIScrollViewDelegate, PDFVi
                                 
                                 if let s = contractInfo?.client2 {
                                     if s != ""{
-                                        if si.xname == "p2Ibrokerbuyer2DateSign1" || si.xname == "p2Ibroker2buyer1DateSign2"{
+                                        if si.xname == "p2Ibrokerbuyer2DateSign1" || si.xname == "p2Ibroker2buyer2DateSign1"{
                                             si.value = contractInfo?.approvedate
                                         }
                                     }
@@ -736,22 +736,24 @@ class PDFPrintViewController: PDFBaseViewController, UIScrollViewDelegate, PDFVi
         seller2Item.title = ""
         if contractInfo!.status == CConstants.ForApproveStatus {
             sendItem.image = nil
-            sendItem.title = "Status: \(CConstants.ForApproveStatus)"
+            seller2Item.title = "Status: \(CConstants.ForApproveStatus)"
         }else if contractInfo!.status == CConstants.DisApprovedStatus {
             sendItem.image = nil
-            sendItem.title = "Status: \(CConstants.DisApprovedStatus)"
+            seller2Item.title = "Status: \(CConstants.DisApprovedStatus)"
         }else if contractInfo!.status == CConstants.ApprovedStatus {
             if let ds = self.contractInfo?.signfinishdate {
                 if  ds != "01/01/1980"{
                     sendItem.image = nil
-                    sendItem.title = "Status: Finished"
+                    seller2Item.title = "Status: Finished"
                     let userInfo = NSUserDefaults.standardUserDefaults()
                     if (userInfo.stringForKey(CConstants.UserInfoEmail) ?? "").lowercaseString == CConstants.Administrator {
                         seller2Item.title = "Re-Create PDF"
+                    }else{
+                        sendItem.image = UIImage(named: "send.png")
                     }
                     
                 }else{
-                    sendItem.title = nil
+                    seller2Item.title = nil
                     sendItem.image = UIImage(named: "send.png")
 //                    let hh = contractInfo?.approvedate ?? "1980"
 //                    if (hh.hasSuffix("1980") || hh.isEmpty ) {
@@ -764,7 +766,7 @@ class PDFPrintViewController: PDFBaseViewController, UIScrollViewDelegate, PDFVi
                 }
             }
         }else{
-            sendItem.title = nil
+            seller2Item.title = nil
             sendItem.image = UIImage(named: "send.png")
         }
         
@@ -1098,7 +1100,7 @@ class PDFPrintViewController: PDFBaseViewController, UIScrollViewDelegate, PDFVi
     
     @IBAction func  SellerSign(sender: UIBarButtonItem) {
 //        BuyerSign(sender)
-        if sender.title != "" {
+        if sender.title != "" && (sender.title ?? "").hasPrefix("Re") {
             self.saveToServer1(2)
         }
         
@@ -1677,6 +1679,8 @@ class PDFPrintViewController: PDFBaseViewController, UIScrollViewDelegate, PDFVi
         }
         
         
+        var brokerb1 = false
+        var brokerb2 = false
         for d in alldots{
             if let sign = d as? SignatureView {
 //                print("\"\(sign.xname!)\",")
@@ -1754,6 +1758,7 @@ class PDFPrintViewController: PDFBaseViewController, UIScrollViewDelegate, PDFVi
                         }
                     }
                     if sign.xname.hasSuffix("buyer1Sign") {
+                        
                         if sign.lineArray != nil && sign.lineArray.count > 0 && sign.LineWidth > 0 {
                             if b1s == nil {
                                 //                                b1s = "\(sign.lineArray)"
@@ -1765,7 +1770,9 @@ class PDFPrintViewController: PDFBaseViewController, UIScrollViewDelegate, PDFVi
                                     let names = nameArray[nameArray.count-1-j]
                                     for k in 0...names.count-1 {
                                         let name = names[k]
-                                        if sign.xname.hasPrefix(name) {
+                                        if sign.xname == "p2Ibroker2buyer1Sign" {
+                                            brokerb1 = true
+                                        } else if sign.xname.hasPrefix(name) {
                                             b1isnArray[nameArray.count-1-j][k] = "1"
                                             cont = false
                                         }
@@ -1788,7 +1795,9 @@ class PDFPrintViewController: PDFBaseViewController, UIScrollViewDelegate, PDFVi
                                     let names = nameArray[nameArray.count-1-j]
                                     for k in 0...names.count-1 {
                                         let name = names[k]
-                                        if sign.xname.hasPrefix(name) {
+                                         if sign.xname == "p2Ibroker2buyer2Sign" {
+                                            brokerb2 = true
+                                        }else if sign.xname.hasPrefix(name) {
                                             b2isnArray[nameArray.count-1-j][k] = "1"
                                             cont = false
                                         }
@@ -1800,6 +1809,10 @@ class PDFPrintViewController: PDFBaseViewController, UIScrollViewDelegate, PDFVi
                         }
                     }
                 }else{
+                    brokerb1 = true
+                    if self.contractPdfInfo?.client2 != ""{
+                    brokerb2 = true
+                    }
                     if sign.xname.hasSuffix("seller1Sign") {
                         if sign.lineArray != nil && sign.lineArray.count > 0 && sign.LineWidth > 0 {
                             if s1s == nil {
@@ -1861,7 +1874,10 @@ class PDFPrintViewController: PDFBaseViewController, UIScrollViewDelegate, PDFVi
         
 //        print(getStr(b1iynArray))
 //        return
+//        brokerb1 = false
+//        brokerb2 = false
         
+        param["brokerInfoPage2"] = (brokerb1 ? "1" : "0") + "|" +  (brokerb2 ? "1" : "0")
         var initial_index : [[String]] =  [[String]]()
         initial_index.append(exhibitB)
         initial_index.append(hoapage1)
@@ -2005,18 +2021,29 @@ private func getStr(h : [[String]]?) -> String {
     
     
     func getSignature(){
-        
+//        print(["idcontract1" : self.contractInfo!.idnumber!])
         Alamofire.request(.POST,
             CConstants.ServerURL + "bacontract_GetSignedContract.json",
             parameters: ["idcontract1" : self.contractInfo!.idnumber!]).responseJSON{ (response) -> Void in
 //                hud.hide(true)
                 if response.result.isSuccess {
-                    
+//                    print(response.result.value)
                     if let rtnValue = response.result.value as? [String: AnyObject]{
 //                       print(rtnValue)
                         let rtn = SignatrureFields(dicInfo: rtnValue)
                         if rtn.initial_b1yn! != "" {
 //                             print(rtn.initial_b1yn)
+                            var brokerb1 = false
+                            var brokerb2 = false
+                            if rtn.brokerInfoPage2 != "" {
+                                if rtn.brokerInfoPage2!.containsString("|") {
+                                    let cc = rtn.brokerInfoPage2!.componentsSeparatedByString("|")
+                                    brokerb1 = (cc[0] == "1")
+                                    brokerb2 = (cc[1] == "1")
+                                }else{
+                                    brokerb1 = (rtn.brokerInfoPage2! == "1")
+                                }
+                            }
                             self.initial_b1yn = self.getArr(rtn.initial_b1yn!)
                             self.initial_b2yn = self.getArr(rtn.initial_b2yn!)
                             self.initial_s1yn = self.getArr(rtn.initial_s1yn!)
@@ -2084,9 +2111,17 @@ private func getStr(h : [[String]]?) -> String {
                             }
                             for d in alldots{
                                 if let sign = d as? SignatureView {
-//                                    if sign.xname == "p1EBbuyer1Sign" {
-//                                        print(sign.xname)
-//                                    }
+                                    if sign.xname == "p2Ibroker2buyer1Sign" {
+                                    
+                                        self.setShowSignature(sign, signs: self.signature_b1!, idcator: brokerb1 ? "1" : "0")
+                                    
+                                        continue
+                                    }else if sign.xname == "p2Ibroker2buyer2Sign" {
+                                        self.setShowSignature(sign, signs: self.signature_b2!, idcator: (brokerb2 ? "1" : "0"))
+                                        
+                                        
+                                        continue
+                                    }
                                     
                                     if sign.xname.hasSuffix("bottom1") {
                                         if sign.xname == "p3Hbottom1" {
@@ -2316,11 +2351,11 @@ private func getStr(h : [[String]]?) -> String {
     override func shouldPerformSegueWithIdentifier(identifier: String, sender: AnyObject?) -> Bool {
         switch identifier {
         case CConstants.SegueToOperationsPopover:
-            if let ds = self.contractInfo?.signfinishdate, ss = self.contractInfo?.status {
-                if  ds != "01/01/1980" && ss == CConstants.ApprovedStatus {
-                    return false
-                }
-            }
+//            if let ds = self.contractInfo?.signfinishdate, ss = self.contractInfo?.status {
+//                if  ds != "01/01/1980" && ss == CConstants.ApprovedStatus {
+//                    return false
+//                }
+//            }
             return contractInfo!.status != CConstants.ForApproveStatus
         default:
             return true
@@ -2347,6 +2382,13 @@ private func getStr(h : [[String]]?) -> String {
                 if let controller = segue.destinationViewController as? GoToFileViewController {
                     controller.delegate = self
                     controller.printList = self.filesArray!
+                }
+            }else if identifier == "showAttachPhoto" {
+                if let controller = segue.destinationViewController as? BigPictureViewController{
+                    controller.imageUrl = NSURL(string: CConstants.ServerURL + "bacontract_photoCheck.json?ContractID=" + (self.contractInfo?.idnumber ?? ""))
+                    controller.contractPdfInfo = self.contractPdfInfo
+                    
+//                    print(CConstants.ServerURL + "bacontract_photoCheck.json?ContractID=" + (self.contractInfo?.idnumber ?? ""))
                 }
             
             }else if identifier == "showEmail" {
@@ -2385,16 +2427,27 @@ private func getStr(h : [[String]]?) -> String {
                                 var showSubmit = true
                                 var isapproved = false
                                 var fromWeb = false
+                                var justShowEmail = false
+                                
                                 if let c = contractInfo?.status {
                                     if c == CConstants.ApprovedStatus {
                                         isapproved = true
+                                        
+                                        if let ds = self.contractInfo?.signfinishdate {
+                                            if  ds != "01/01/1980"  {
+                                                justShowEmail = true
+                                            }
+                                        }
+                                        
                                     }else if c == CConstants.EmailSignedStatus{
                                         fromWeb = true
                                     }
                                 }
+                                tvc.justShowEmail = justShowEmail
                                 tvc.isapproved = isapproved
                                 tvc.FromWebSide = fromWeb
                                 tvc.hasCheckedPhoto = contractPdfInfo?.hasCheckedPhoto ?? "0"
+                                print(tvc.hasCheckedPhoto)
                                 if let dots = pdfView?.pdfWidgetAnnotationViews {
                                     let ddd = dots
                                     for doc in documents! {
@@ -2563,6 +2616,7 @@ private func getStr(h : [[String]]?) -> String {
                     if response.result.isSuccess {
                         if let rtnValue = response.result.value as? [String: String]{
                             if rtnValue["status"] == "success" {
+                                self.contractPdfInfo?.signfinishdate = "04/28/2016"
                                 self.contractInfo?.signfinishdate = "04/28/2016"
                                 self.setSendItema()
                                 self.hud?.mode = .CustomView
@@ -2683,33 +2737,9 @@ private func getStr(h : [[String]]?) -> String {
     var imagePicker: UIImagePickerController?
     
     override func attachPhoto() {
+        self.performSegueWithIdentifier("showAttachPhoto", sender: nil)
+        return
         
-        let alert: UIAlertController = UIAlertController(title: "Attach Photo Check", message: nil, preferredStyle: .Alert)
-        
-        //Create and add the OK action
-        let oKAction: UIAlertAction = UIAlertAction(title: "Photo Library", style: .Default) { action -> Void in
-            //Do some stuff
-            self.imagePicker =  UIImagePickerController()
-            self.imagePicker?.delegate = self
-            //            self.imagePicker?.allowsEditing = true
-            self.imagePicker?.sourceType = .PhotoLibrary
-            self.presentViewController(self.imagePicker!, animated: true, completion: nil)
-        }
-        alert.addAction(oKAction)
-        
-        let cancelAction: UIAlertAction = UIAlertAction(title: "Take Photo", style: .Cancel) { action -> Void in
-            //Do some stuff
-            self.imagePicker =  UIImagePickerController()
-            self.imagePicker?.delegate = self
-            //            self.imagePicker?.allowsEditing = true
-            self.imagePicker?.sourceType = .Camera
-            self.presentViewController(self.imagePicker!, animated: true, completion: nil)
-        }
-        
-        alert.addAction(cancelAction)
-        
-        //Present the AlertController
-        self.presentViewController(alert, animated: true, completion: nil)
         
         
     }
@@ -2826,7 +2856,13 @@ private func getStr(h : [[String]]?) -> String {
         }
     }
     
+   override func sendEmail2() {
     
+    }
+    
+override func viewAttachPhoto(){
+    self.performSegueWithIdentifier("showAttachPhoto", sender: nil)
+    }
 }
 
 

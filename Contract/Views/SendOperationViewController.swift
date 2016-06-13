@@ -13,6 +13,7 @@ protocol DoOperationDelegate
     func saveToServer()
     func doPrint()
     func sendEmail()
+    func sendEmail2()
     func clearDraftInfo()
     func fillDraftInfo()
     func save_Email()
@@ -21,6 +22,7 @@ protocol DoOperationDelegate
     func saveFinish()
     func saveEmail()
     func attachPhoto()
+    func viewAttachPhoto()
     
 }
 
@@ -33,6 +35,7 @@ class SendOperationViewController: UIViewController, UITableViewDelegate, UITabl
     var FromWebSide : Bool?
     var showSubmit : Bool?
     var isapproved : Bool?
+    var justShowEmail : Bool?
     var hasCheckedPhoto : String?
     var itemList : [String]?{
         didSet{
@@ -56,22 +59,31 @@ class SendOperationViewController: UIViewController, UITableViewDelegate, UITabl
         static let operationClearDraftInfo = "Clear Buyer's Fields"
         static let operationFillDraftInfo = "Fill Buyer's Fields"
         static let operationAttatchPhoto = "Attach Photo Check"
+        static let operationViewAttatchPhoto = "View Photo Check"
+        
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
         let userinfo = NSUserDefaults.standardUserDefaults()
         if userinfo.boolForKey(CConstants.UserInfoIsContract){
-            if FromWebSide ?? false {
-                itemList = [constants.operationSubmit]
+            if justShowEmail! {
+//            itemList = [constants.operationEmail, constants.operationViewAttatchPhoto]
+                
+                itemList = ["not active now"]
             }else{
-                if isapproved! {
-                    itemList = [constants.operationSaveFinish, constants.operationSaveEmail, constants.operationStartOver]
+                if FromWebSide ?? false {
+                    itemList = [constants.operationSubmit]
                 }else{
-                    itemList = [constants.operationSavetoServer, constants.operationSubmit, constants.operationStartOver]
+                    if isapproved! {
+                        itemList = [constants.operationSaveFinish, constants.operationSaveEmail, constants.operationStartOver]
+                    }else{
+                        itemList = [constants.operationSavetoServer, constants.operationSubmit, constants.operationStartOver]
+                    }
                 }
+                itemList?.append(constants.operationAttatchPhoto)
             }
-            itemList?.append(constants.operationAttatchPhoto)
+            
             
             
         }else{
@@ -137,7 +149,13 @@ class SendOperationViewController: UIViewController, UITableViewDelegate, UITabl
 //                    case constants.operationPrint:
 //                        delegate0.doPrint()
                     case constants.operationEmail:
-                        delegate0.sendEmail()
+                        let userinfo = NSUserDefaults.standardUserDefaults()
+                        if userinfo.boolForKey(CConstants.UserInfoIsContract){
+                            delegate0.sendEmail2()
+                        }else{
+                            delegate0.sendEmail()
+                        }
+                    
                 case constants.operationFillDraftInfo:
                     delegate0.fillDraftInfo()
                 case constants.operationClearDraftInfo:
@@ -160,8 +178,10 @@ class SendOperationViewController: UIViewController, UITableViewDelegate, UITabl
                     }
                 case constants.operationAttatchPhoto:
                     delegate0.attachPhoto()
+                case constants.operationViewAttatchPhoto:
+                    delegate0.viewAttachPhoto()
                     
-                    
+                  
 //                case constants.operationSaveEmail:
 //                    delegate0.save_Email()
                     default:

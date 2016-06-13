@@ -147,7 +147,7 @@ class SetDotValue : NSObject {
                 }
             }else{
                 tobuyer3 = ""
-                tobuyer4 = ""
+                tobuyer4 = b
             }
         }else{
             tobuyer3 = ""
@@ -165,7 +165,7 @@ class SetDotValue : NSObject {
                 tobuyer6 = b.substringFromIndex(index1)
             }else{
                 tobuyer5 = ""
-                tobuyer6 = ""
+                tobuyer6 = b
             }
         }else{
             tobuyer5 = ""
@@ -207,7 +207,7 @@ class SetDotValue : NSObject {
                     pv.value = pdfInfo!.nproject
                 }else if(SignContractPDFFields.Buyer == pv.xname){
                     if (pdfInfo!.client2 != ""){
-                        pv.value = pdfInfo!.client! + " and " + pdfInfo!.client2!
+                        pv.value = pdfInfo!.client! + " / " + pdfInfo!.client2!
                     }else{
                         pv.value = pdfInfo!.client!
                     }
@@ -277,7 +277,12 @@ class SetDotValue : NSObject {
                 case SignContractPDFFields.estimatedclosing_yy:
                     pv.value = pdfInfo!.estimatedclosing_yy!
                 case SignContractPDFFields.tobuyer1:
-                    pv.value = pdfInfo!.client!
+                    if (pdfInfo?.client2 ?? "") != "" {
+                        pv.value = pdfInfo!.client! + " / " +  pdfInfo!.client2!
+                    }else{
+                        pv.value = pdfInfo!.client!
+                    }
+                    
                 case SignContractPDFFields.tobuyer2:
                     pv.value = pdfInfo!.tobuyer2!
                 case SignContractPDFFields.tobuyer3:
@@ -379,14 +384,14 @@ class SetDotValue : NSObject {
                     if let radio = pv as? PDFFormButtonField {
                         radio .setValue2(pdfInfo!.page9BuyeronlyasBuyersagent!)
                     }
-                case SignContractPDFFields.p9AssociatesName:
+                case SignContractPDFFields.LicensedSupervisor:
                     pv.value = pdfInfo!.page9AssociatesName
                     
                 case SignContractPDFFields.OtherBrokerFirmNo:
                     pv.value = pdfInfo!.page9OtherBrokerFirmNo
                 case SignContractPDFFields.AssociateNameNo:
                     pv.value = pdfInfo!.page9AssociateNameNo
-                case SignContractPDFFields.LicensedSupervisor:
+                case SignContractPDFFields.p9AssociatesName:
                     pv.value = pdfInfo!.page9LicensedSupervisor
                 case SignContractPDFFields.LicensedSupervisorNo:
                     pv.value = pdfInfo!.page9LicensedSupervisorNo

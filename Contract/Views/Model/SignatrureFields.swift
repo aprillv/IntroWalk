@@ -24,4 +24,5 @@ class SignatrureFields: ContractObject {
     var initial_s1 : String?
     var signature_s1 : String?
     var hasCheckedPhoto : String?
+    var brokerInfoPage2 : String?
 }

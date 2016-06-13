@@ -301,6 +301,11 @@ class PDFBaseViewController: BaseViewController, DoOperationDelegate, UIPopoverP
         }
     }
     
+    func sendEmail2() {
+    }
+    
+    func viewAttachPhoto(){}
+    
     func configuredMailComposeViewController() -> MFMailComposeViewController {
 //        print(contractInfo?.buyer1email ?? "")
         let mailComposerVC = MFMailComposeViewController()

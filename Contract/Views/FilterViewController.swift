@@ -38,6 +38,7 @@ class FilterViewController: UIViewController, UITableViewDelegate, UITableViewDa
         static let operationHomeownerSign = "Homeowner Sign"
         static let operationSalesSign = "Sales Sign"
         static let operationReCreate = "Re-Create PDF"
+        static let operationFinished = "Finished"
     }
     
     var showIndex : Int?
@@ -48,7 +49,7 @@ class FilterViewController: UIViewController, UITableViewDelegate, UITableViewDa
         if (userinfo.stringForKey(CConstants.UserInfoEmail) ?? "").lowercaseString == CConstants.Administrator {
         itemList = [constants.operationShowAll, constants.operationHomeownerSign, constants.operationSalesSign, constants.operationReCreate]
         }else{
-        itemList = [constants.operationShowAll, constants.operationHomeownerSign, constants.operationSalesSign]
+        itemList = [constants.operationShowAll, constants.operationHomeownerSign, constants.operationSalesSign, constants.operationFinished]
         }
         
     }
@@ -100,7 +101,7 @@ class FilterViewController: UIViewController, UITableViewDelegate, UITableViewDa
                     delegate0.showAll()
                 case constants.operationSalesSign:
                     delegate0.showSalesSign()
-                case constants.operationReCreate:
+                case constants.operationReCreate, constants.operationFinished:
                     delegate0.showReCreate()
                 default:
                     delegate0.showHomeOwnerSign()

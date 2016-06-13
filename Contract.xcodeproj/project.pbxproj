@@ -68,6 +68,7 @@
 		11632BF61CD2DF2F00B70C44 /* INFORMATION_ABOUT_BROKERAGE_SERVICES2.pdf in Resources */ = {isa = PBXBuildFile; fileRef = 11632BF51CD2DF2F00B70C44 /* INFORMATION_ABOUT_BROKERAGE_SERVICES2.pdf */; };
 		11633BA01C27DA0000C11A20 /* ContractClosingMemoItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11633B9F1C27DA0000C11A20 /* ContractClosingMemoItem.swift */; };
 		11633BA21C27DA8E00C11A20 /* ContractClosingMemo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11633BA11C27DA8E00C11A20 /* ContractClosingMemo.swift */; };
+		1163ED661D0A890A004DE2AA /* BigPictureViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1163ED651D0A890A004DE2AA /* BigPictureViewController.swift */; };
 		11643C161C030B8E000E2C0A /* CConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11643C151C030B8E000E2C0A /* CConstants.swift */; };
 		1164A1891CCDDF7E005A2A69 /* AddendumC.pdf in Resources */ = {isa = PBXBuildFile; fileRef = 1164A1871CCDDF7E005A2A69 /* AddendumC.pdf */; };
 		1164A18A1CCDDF7E005A2A69 /* AddendumC2.pdf in Resources */ = {isa = PBXBuildFile; fileRef = 1164A1881CCDDF7E005A2A69 /* AddendumC2.pdf */; };
@@ -214,6 +215,7 @@
 		11632BF51CD2DF2F00B70C44 /* INFORMATION_ABOUT_BROKERAGE_SERVICES2.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; path = INFORMATION_ABOUT_BROKERAGE_SERVICES2.pdf; sourceTree = "<group>"; };
 		11633B9F1C27DA0000C11A20 /* ContractClosingMemoItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContractClosingMemoItem.swift; sourceTree = "<group>"; };
 		11633BA11C27DA8E00C11A20 /* ContractClosingMemo.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContractClosingMemo.swift; sourceTree = "<group>"; };
+		1163ED651D0A890A004DE2AA /* BigPictureViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BigPictureViewController.swift; sourceTree = "<group>"; };
 		11643C151C030B8E000E2C0A /* CConstants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CConstants.swift; sourceTree = "<group>"; };
 		1164A1871CCDDF7E005A2A69 /* AddendumC.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; path = AddendumC.pdf; sourceTree = "<group>"; };
 		1164A1881CCDDF7E005A2A69 /* AddendumC2.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; path = AddendumC2.pdf; sourceTree = "<group>"; };
@@ -440,6 +442,7 @@
 		1108B2721BFC55A2004B5D48 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				1163ED651D0A890A004DE2AA /* BigPictureViewController.swift */,
 				112118E21C056EC1000F85CE /* AddressListViewHeadView.swift */,
 				1114C7A41C8137EA00924A21 /* AddressDraftListViewCell.swift */,
 				113CB5E11BFF06E90081FDE7 /* AddressListViewCell.swift */,
@@ -757,6 +760,7 @@
 				1112E34C1CBF826000AC9123 /* SPUserResizableView.m in Sources */,
 				11633BA01C27DA0000C11A20 /* ContractClosingMemoItem.swift in Sources */,
 				1108B2601BFC4047004B5D48 /* PDFNull.m in Sources */,
+				1163ED661D0A890A004DE2AA /* BigPictureViewController.swift in Sources */,
 				113CB5E61BFF11EC0081FDE7 /* ContractSignature.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

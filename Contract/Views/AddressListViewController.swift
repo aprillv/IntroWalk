@@ -697,12 +697,15 @@ class AddressListViewController: UITableViewController, UISearchBarDelegate, ToD
     }
     
     func showReCreate() {
+        AddressList = AddressListOrigin?.filter(){
+            return (!($0.status!.containsString("iPad Sign") || $0.status!.containsString("Email Sign"))) && (!($0.signfinishdate ?? "1980").containsString("1980"))
+        }
         let userInfo = NSUserDefaults.standardUserDefaults()
         if (userInfo.stringForKey(CConstants.UserInfoEmail) ?? "").lowercaseString == CConstants.Administrator {
-            AddressList = AddressListOrigin?.filter(){
-                return (!($0.status!.containsString("iPad Sign") || $0.status!.containsString("Email Sign"))) && (!($0.signfinishdate ?? "1980").containsString("1980"))
-            }
+            
             salesBtn.setTitle("Re-Create", forState: .Normal)
+        }else{
+            salesBtn.setTitle("Finished", forState: .Normal)
         }
         
     }

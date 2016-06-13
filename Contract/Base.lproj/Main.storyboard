@@ -482,11 +482,12 @@
                         <outlet property="view2" destination="TVO-Xr-fgd" id="pUp-uT-HHa"/>
                         <segue destination="iOr-Kf-xa2" kind="presentation" identifier="showSubmit" id="PP8-6v-OBJ"/>
                         <segue destination="iD4-Vm-eo4" kind="presentation" identifier="showEmail" id="Mt6-87-XR6"/>
+                        <segue destination="XpW-bx-AVZ" kind="presentation" identifier="showAttachPhoto" id="xT6-Ws-wpl"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="cql-0G-MsS" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3935" y="-1139"/>
+            <point key="canvasLocation" x="4110" y="-1296"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="Ugg-Z2-cHQ">
@@ -1435,6 +1436,99 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="5Of-gQ-M5w" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="4071" y="38"/>
+        </scene>
+        <!--Big Picture View Controller-->
+        <scene sceneID="j3G-JM-F2l">
+            <objects>
+                <viewController modalPresentationStyle="overCurrentContext" id="XpW-bx-AVZ" customClass="BigPictureViewController" customModule="Contract" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="znB-yY-Hlv"/>
+                        <viewControllerLayoutGuide type="bottom" id="5yv-iG-uPq"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="XYv-eh-LpH">
+                        <rect key="frame" x="0.0" y="0.0" width="768" height="1024"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="vp6-Am-pC7">
+                                <rect key="frame" x="-16" y="180" width="800" height="664"/>
+                                <subviews>
+                                    <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="8cn-SX-Kac">
+                                        <rect key="frame" x="0.0" y="0.0" width="800" height="600"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="600" id="Dcd-9N-hed"/>
+                                            <constraint firstAttribute="width" constant="800" id="sMJ-p4-L0X"/>
+                                        </constraints>
+                                    </imageView>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="C9u-wW-Voh">
+                                        <rect key="frame" x="30" y="612" width="148" height="40"/>
+                                        <color key="backgroundColor" red="0.0" green="0.67843137249999996" blue="0.93725490199999995" alpha="1" colorSpace="calibratedRGB"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="148" id="9Dy-lg-DAI"/>
+                                            <constraint firstAttribute="height" constant="40" id="Wfw-Ui-N2N"/>
+                                        </constraints>
+                                        <state key="normal" title="Attach">
+                                            <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="doSave:" destination="XpW-bx-AVZ" eventType="touchUpInside" id="FiB-9A-5ry"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="mJM-jn-bec">
+                                        <rect key="frame" x="622" y="612" width="148" height="40"/>
+                                        <color key="backgroundColor" red="0.0" green="0.67843137249999996" blue="0.93725490199999995" alpha="1" colorSpace="calibratedRGB"/>
+                                        <state key="normal" title="Close">
+                                            <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="doClose:" destination="XpW-bx-AVZ" eventType="touchUpInside" id="aYO-eG-WN2"/>
+                                        </connections>
+                                    </button>
+                                    <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Please tap Attach button to attach photo check" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jfb-oy-oq8">
+                                        <rect key="frame" x="220" y="289" width="361" height="21"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstItem="C9u-wW-Voh" firstAttribute="leading" secondItem="vp6-Am-pC7" secondAttribute="leading" constant="30" id="1g2-TO-9YN"/>
+                                    <constraint firstAttribute="bottom" secondItem="C9u-wW-Voh" secondAttribute="bottom" constant="12" id="7cw-PZ-EgI"/>
+                                    <constraint firstItem="C9u-wW-Voh" firstAttribute="centerY" secondItem="vp6-Am-pC7" secondAttribute="centerY" id="9pv-UN-Djn"/>
+                                    <constraint firstItem="8cn-SX-Kac" firstAttribute="top" secondItem="vp6-Am-pC7" secondAttribute="top" id="EBp-Fj-oTL"/>
+                                    <constraint firstItem="8cn-SX-Kac" firstAttribute="leading" secondItem="vp6-Am-pC7" secondAttribute="leading" id="JLT-ij-okW"/>
+                                    <constraint firstAttribute="trailing" secondItem="8cn-SX-Kac" secondAttribute="trailing" id="JnG-gA-7rM"/>
+                                    <constraint firstItem="mJM-jn-bec" firstAttribute="centerY" secondItem="C9u-wW-Voh" secondAttribute="centerY" id="O0Z-CU-jRB"/>
+                                    <constraint firstItem="jfb-oy-oq8" firstAttribute="centerY" secondItem="8cn-SX-Kac" secondAttribute="centerY" id="Qho-Zz-prE"/>
+                                    <constraint firstAttribute="trailing" secondItem="mJM-jn-bec" secondAttribute="trailing" constant="30" id="S3h-ew-U2d"/>
+                                    <constraint firstAttribute="height" constant="664" id="no7-nB-g2T"/>
+                                    <constraint firstItem="jfb-oy-oq8" firstAttribute="centerX" secondItem="8cn-SX-Kac" secondAttribute="centerX" id="rar-YW-gx6"/>
+                                    <constraint firstItem="mJM-jn-bec" firstAttribute="height" secondItem="C9u-wW-Voh" secondAttribute="height" id="tes-HP-Dql"/>
+                                    <constraint firstItem="mJM-jn-bec" firstAttribute="width" secondItem="C9u-wW-Voh" secondAttribute="width" id="vTs-HA-95t"/>
+                                </constraints>
+                                <variation key="default">
+                                    <mask key="constraints">
+                                        <exclude reference="9pv-UN-Djn"/>
+                                    </mask>
+                                </variation>
+                            </view>
+                        </subviews>
+                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="vp6-Am-pC7" firstAttribute="centerX" secondItem="XYv-eh-LpH" secondAttribute="centerX" id="au5-fm-RoN"/>
+                            <constraint firstItem="vp6-Am-pC7" firstAttribute="centerY" secondItem="XYv-eh-LpH" secondAttribute="centerY" id="eEm-8B-kDM"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="closeBtn" destination="mJM-jn-bec" id="OHz-SK-nly"/>
+                        <outlet property="image" destination="8cn-SX-Kac" id="QEi-Yp-4Q7"/>
+                        <outlet property="lbl" destination="jfb-oy-oq8" id="YdR-Ol-ZMG"/>
+                        <outlet property="saveBtn" destination="C9u-wW-Voh" id="oqL-R1-67E"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="P5a-86-7je" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="3429" y="-1023"/>
         </scene>
     </scenes>
     <resources>
