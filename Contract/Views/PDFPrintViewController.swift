@@ -749,6 +749,7 @@ class PDFPrintViewController: PDFBaseViewController, UIScrollViewDelegate, PDFVi
                     let userInfo = NSUserDefaults.standardUserDefaults()
                     if (userInfo.stringForKey(CConstants.UserInfoEmail) ?? "").lowercaseString == CConstants.Administrator {
                         seller2Item.title = "Re-Create PDF"
+                        sendItem.image = UIImage(named: "send.png")
                     }else{
                         sendItem.image = UIImage(named: "send.png")
                     }

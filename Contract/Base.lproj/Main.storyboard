@@ -1469,14 +1469,31 @@
                             <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="OS9-o7-pca">
                                 <rect key="frame" x="374" y="512" width="20" height="20"/>
                             </activityIndicatorView>
+                            <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="vUA-gq-8ow">
+                                <rect key="frame" x="320" y="507" width="129" height="30"/>
+                                <state key="normal" title="Tap here to Reload"/>
+                                <connections>
+                                    <action selector="reloadPDF:" destination="Rb0-rG-x1l" eventType="touchUpInside" id="FUo-Nj-xmF"/>
+                                </connections>
+                            </button>
+                            <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Error happened when download from server." textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9Ig-Lj-Xxf">
+                                <rect key="frame" x="214" y="473" width="340" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="7oP-5y-CNv" firstAttribute="bottom" secondItem="nJf-ja-y0h" secondAttribute="top" id="6Mi-qR-TUr"/>
+                            <constraint firstItem="vUA-gq-8ow" firstAttribute="centerY" secondItem="7oP-5y-CNv" secondAttribute="centerY" id="BvI-mk-c8J"/>
+                            <constraint firstItem="vUA-gq-8ow" firstAttribute="top" secondItem="9Ig-Lj-Xxf" secondAttribute="bottom" constant="13" id="JEV-Et-naW"/>
                             <constraint firstAttribute="trailing" secondItem="7oP-5y-CNv" secondAttribute="trailing" id="MQ2-co-jv4"/>
+                            <constraint firstItem="9Ig-Lj-Xxf" firstAttribute="centerX" secondItem="vUA-gq-8ow" secondAttribute="centerX" id="Wzs-ub-iKz"/>
                             <constraint firstItem="OS9-o7-pca" firstAttribute="centerY" secondItem="7oP-5y-CNv" secondAttribute="centerY" id="X6t-gi-hUn"/>
                             <constraint firstItem="7oP-5y-CNv" firstAttribute="leading" secondItem="zL2-B3-yXz" secondAttribute="leading" id="gsT-Z2-3jD"/>
                             <constraint firstItem="OS9-o7-pca" firstAttribute="centerX" secondItem="7oP-5y-CNv" secondAttribute="centerX" id="h28-et-TTm"/>
+                            <constraint firstItem="vUA-gq-8ow" firstAttribute="centerX" secondItem="7oP-5y-CNv" secondAttribute="centerX" id="iYC-Js-kXN"/>
                             <constraint firstItem="7oP-5y-CNv" firstAttribute="top" secondItem="lM1-at-cMF" secondAttribute="bottom" id="rpO-Wx-cu7"/>
                         </constraints>
                     </view>
@@ -1493,6 +1510,8 @@
                         </barButtonItem>
                     </navigationItem>
                     <connections>
+                        <outlet property="errorLbl" destination="9Ig-Lj-Xxf" id="jWf-Nk-vzt"/>
+                        <outlet property="reloadBtn" destination="vUA-gq-8ow" id="4Ac-qb-cIc"/>
                         <outlet property="spinner" destination="OS9-o7-pca" id="Z4U-NI-ncT"/>
                         <outlet property="webview" destination="7oP-5y-CNv" id="H13-3f-VZM"/>
                         <segue destination="iD4-Vm-eo4" kind="presentation" identifier="showSendEmailBox" id="zgu-UJ-igY"/>

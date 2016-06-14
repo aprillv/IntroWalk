@@ -34,7 +34,8 @@ class FilterViewController: UIViewController, UITableViewDelegate, UITableViewDa
     private struct constants{
         static let cellReuseIdentifier = "filterCell"
         static let rowHeight : CGFloat = 44
-        static let operationShowAll = "Show All"
+//        static let operationShowAll = "Show All"
+         static let operationShowAll = "Sign Required"
         static let operationHomeownerSign = "Homeowner Sign"
         static let operationSalesSign = "Sales Sign"
         static let operationReCreate = "Re-Create PDF"

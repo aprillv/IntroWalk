@@ -13,6 +13,31 @@ import MBProgressHUD
 
 class EmailAfterApprovedViewController: BaseViewController, UIWebViewDelegate, SaveAndEmailViewControllerDelegate, GoToFileDelegate{
 
+    @IBAction func reloadPDF(sender: AnyObject?) {
+        errorLbl.hidden = true
+        reloadBtn.hidden = true
+        
+        let url = "https://contractssl.buildersaccess.com/bacontract_contractDocument2?idcia=" + (contractInfo?.idcia ?? "") + "&idproject=" + (contractInfo?.idproject ?? "")
+        
+        //        CGPDFDocumentRef pdf = CGPDFDocumentCreateWithURL((CFURLRef)[NSURL fileURLWithPath:@"your path"]);
+        //        int pageCount = CGPDFDocumentGetNumberOfPages(pdf);
+        
+        
+        
+        if let nsurl = NSURL(string: url) {
+            ////            CGPDFDocumentRef pdf = CGPDFDocumentCreateWithURL((CFURLRef)url);
+            ////            self.pdfPageCount = (int)CGPDFDocumentGetNumberOfPages(pdf);
+            //
+            //            let pdf  =
+            
+            let request = NSURLRequest(URL: nsurl)
+            webview.loadRequest(request)
+            spinner.startAnimating()
+        }
+        
+    }
+    @IBOutlet var errorLbl: UILabel!
+    @IBOutlet var reloadBtn: UIButton!
     @IBOutlet var webview: UIWebView!{
         didSet{
         webview.scrollView.bouncesZoom = false
@@ -40,27 +65,7 @@ class EmailAfterApprovedViewController: BaseViewController, UIWebViewDelegate, S
         webview.scrollView.contentOffset = CGPointZero
         
         
-        let url = "https://contractssl.buildersaccess.com/bacontract_contractDocument2?idcia=" + (contractInfo?.idcia ?? "") + "&idproject=" + (contractInfo?.idproject ?? "")
-        
-//        CGPDFDocumentRef pdf = CGPDFDocumentCreateWithURL((CFURLRef)[NSURL fileURLWithPath:@"your path"]);
-//        int pageCount = CGPDFDocumentGetNumberOfPages(pdf);
-        
-        
-        
-        if let nsurl = NSURL(string: url) {
-////            CGPDFDocumentRef pdf = CGPDFDocumentCreateWithURL((CFURLRef)url);
-////            self.pdfPageCount = (int)CGPDFDocumentGetNumberOfPages(pdf);
-//            
-//            let pdf  =
-            
-            let request = NSURLRequest(URL: nsurl)
-            webview.loadRequest(request)
-            spinner.startAnimating()
-        }
-//        var ct = webview.frame
-//        ct.size.width = 768
-//        webview.frame = ct
-        print(view.frame, webview.frame, webview.scrollView.frame)
+       reloadPDF(nil)
     }
     
     @IBAction func goBack(sender: AnyObject) {
@@ -75,11 +80,13 @@ class EmailAfterApprovedViewController: BaseViewController, UIWebViewDelegate, S
     
     func webView(webView: UIWebView, didFailLoadWithError error: NSError?) {
         spinner.stopAnimating()
+        errorLbl.hidden = false
+        reloadBtn.hidden = false
     }
     
     func webViewDidFinishLoad(webView: UIWebView) {
         spinner.stopAnimating()
-          print(view.frame, webview.frame, webview.scrollView.frame)
+//          print(view.frame, webview.frame, webview.scrollView.frame)
     }
 
     

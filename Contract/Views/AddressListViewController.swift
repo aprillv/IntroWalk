@@ -690,7 +690,10 @@ class AddressListViewController: UITableViewController, UISearchBarDelegate, ToD
             }
             salesBtn.setTitle("Filter", forState: .Normal)
         }else{
-            AddressList = AddressListOrigin
+//            AddressList = AddressListOrigin
+            AddressList = AddressListOrigin?.filter(){
+                return !((!($0.status!.containsString("iPad Sign") || $0.status!.containsString("Email Sign"))) && (!($0.signfinishdate ?? "1980").containsString("1980")))
+            }
             salesBtn.setTitle("Filter", forState: .Normal)
         }
         
