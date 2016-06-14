@@ -77,6 +77,7 @@
         spinner.center = _pdfView.center;
         [_pdfView addSubview:spinner];
         
+         
         if ([dataOrPath isKindOfClass:[NSString class]]) {
             [spinner startAnimating];
 //            [_pdfView loadRequest:[NSURLRequest requestWithURL:[NSURL fileURLWithPath:dataOrPath]]];
@@ -130,6 +131,8 @@
         
         outpatha = [PDFView joinPDF:filesArray];
 //        NSLog(@"sfasdf   %@", t);
+        
+//        [_pdfView loadRequest: [NSURLRequest requestWithURL:[NSURL URLWithString:@"https://contractssl.buildersaccess.com/bacontract_contractDocument2?idcia=9999&idproject=100005"]]];
         [_pdfView loadRequest: [NSURLRequest requestWithURL:[NSURL fileURLWithPath:outpatha]]];
         
         

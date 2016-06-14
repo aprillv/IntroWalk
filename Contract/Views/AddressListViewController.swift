@@ -410,9 +410,21 @@ class AddressListViewController: UITableViewController, UISearchBarDelegate, ToD
             }
         }
         selectRowIndex = indexPath
-        NSUserDefaults.standardUserDefaults().setBool(self.tableView.tag == 2, forKey: CConstants.UserInfoIsContract)
+        let userInfo = NSUserDefaults.standardUserDefaults()
+        
+        userInfo.setBool(self.tableView.tag == 2, forKey: CConstants.UserInfoIsContract)
         if self.tableView.tag == 2 {
-            GetPrintedFileList(contract)
+            if (contract?.status ?? "") == CConstants.ApprovedStatus && !(contract?.signfinishdate ?? "").containsString("1980"){
+                if (userInfo.stringForKey(CConstants.UserInfoEmail) ?? "").lowercaseString == CConstants.Administrator {
+                    GetPrintedFileList(contract)
+                }else{
+                    self.performSegueWithIdentifier("showSendEmailAfterAprroved1", sender: contract)
+                }
+                
+            }else{
+                GetPrintedFileList(contract)
+            }
+            
         }else{
             contract?.printList = nil
             self.performSegueWithIdentifier(CConstants.SegueToPrintModel, sender: contract)
@@ -443,6 +455,10 @@ class AddressListViewController: UITableViewController, UISearchBarDelegate, ToD
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         if let identifier = segue.identifier {
             switch identifier {
+            case "showSendEmailAfterAprroved1":
+                if let con = segue.destinationViewController as? EmailAfterApprovedViewController {
+                    con.contractInfo = sender as? ContractsItem
+                }
             case CConstants.SegueToPrintModel:
                 
                 if let controller = segue.destinationViewController as? PrintModelTableViewController {

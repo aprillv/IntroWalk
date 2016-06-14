@@ -14,6 +14,7 @@ import MBProgressHUD
 class PDFPrintViewController: PDFBaseViewController, UIScrollViewDelegate, PDFViewDelegate, SubmitForApproveViewControllerDelegate, SaveAndEmailViewControllerDelegate,UIImagePickerControllerDelegate, UINavigationControllerDelegate, GoToFileDelegate{
     private struct constants{
         static let operationMsg = "Are you sure you want to take photo of the check again?"
+        static let segueToSendEmailAfterApproved = "showSendEmail"
     }
 //    var currentlyEditingView : SPUserResizableView?
 //    var lastEditedView : SPUserResizableView?
@@ -2366,7 +2367,11 @@ private func getStr(h : [[String]]?) -> String {
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
        
         if let identifier = segue.identifier {
-            if identifier == "showSubmit" {
+            if identifier == constants.segueToSendEmailAfterApproved {
+                if let con = segue.destinationViewController as? EmailAfterApprovedViewController {
+                    con.contractInfo = self.contractInfo
+                }
+            }else if identifier == "showSubmit" {
                 if let controller = segue.destinationViewController as? SubmitForApproveViewController {
                     if let contrat = self.contractInfo, let rtn = sender as? [String: AnyObject] {
                         controller.delegate = self
@@ -2447,7 +2452,7 @@ private func getStr(h : [[String]]?) -> String {
                                 tvc.isapproved = isapproved
                                 tvc.FromWebSide = fromWeb
                                 tvc.hasCheckedPhoto = contractPdfInfo?.hasCheckedPhoto ?? "0"
-                                print(tvc.hasCheckedPhoto)
+//                                print(tvc.hasCheckedPhoto)
                                 if let dots = pdfView?.pdfWidgetAnnotationViews {
                                     let ddd = dots
                                     for doc in documents! {
@@ -2575,6 +2580,7 @@ private func getStr(h : [[String]]?) -> String {
         self.saveToServer1(2)
     }
     
+//    @IBOutlet var LaterWeb: UIWebView!
     func saveAndFinish2(xtype: Int8){
 //        self.savePDFToServer(fileName!, nextFunc: nil)
         
@@ -2622,8 +2628,32 @@ private func getStr(h : [[String]]?) -> String {
                                 self.hud?.mode = .CustomView
                                 let image = UIImage(named: CConstants.SuccessImageNm)
                                 self.hud?.customView = UIImageView(image: image)
-                                
                                 self.hud?.labelText = CConstants.SavedSuccessMsg
+                                
+                                
+//                                self.pdfView?.removeFromSuperview()
+//                                self.view2.hidden = true
+//                                self.LaterWeb.hidden = false
+//                                self.LaterWeb.scalesPageToFit = true
+//                                self.LaterWeb.scrollView.bouncesZoom = false
+//                                
+////                                _pdfView.scalesPageToFit = YES;
+////                                _pdfView.scrollView.delegate = self;
+////                                _pdfView.scrollView.bouncesZoom = NO;
+////                                _pdfView.delegate = self;
+//                                self.LaterWeb.backgroundColor = UIColor.whiteColor()
+////                                NSString *url = @"http://google.com?get=something&...";
+////                                NSURL *nsUrl = [NSURL URLWithString:url];
+////                                NSURLRequest *request = [NSURLRequest requestWithURL:nsUrl cachePolicy:NSURLRequestReloadIgnoringLocalAndRemoteCacheData timeoutInterval:30];
+//
+//                                let url = "https://contractssl.buildersaccess.com/bacontract_contractDocument2?idcia=9999&idproject=100005"
+////                                let blank = "about:blank"
+//                                if let nsurl = NSURL(string: url){
+//                                    let request = NSURLRequest(URL: nsurl)
+//                                    self.LaterWeb.loadRequest(request)
+//                                }
+                            
+                                
                                 
                                 if xtype == 3 {
                                     self.saveEmail2(fileBase64String!)
@@ -2655,10 +2685,10 @@ private func getStr(h : [[String]]?) -> String {
         saveToServer1(3)
     }
     
-    var emailData : String?
+//    var emailData : String?
     func saveEmail2(savedPdfData: String) {
         self.performSegueWithIdentifier("showEmail", sender: nil)
-        emailData = savedPdfData
+//        emailData = savedPdfData
     }
     
     func GoToEmailSubmit(email: String, emailcc: String, msg: String) {
@@ -2679,8 +2709,11 @@ private func getStr(h : [[String]]?) -> String {
         if emailcc1.hasSuffix(",") {
             emailcc1 = emailcc1.stringByReplacingOccurrencesOfString(",", withString: "")
         }
-        let a = [ "idcontract": contractPdfInfo?.idnumber ?? " ", "EmailTo": email1, "EmailCc" : emailcc1, "Subject": "\(contractInfo!.nproject!)'s Contract",
-                  "Body" : msg, "Attachment1": emailData ?? " ", "Attachment2": " ", "Attachment3": " "]
+        
+         let a = ["idcontract":contractInfo?.idnumber ?? "","EmailTo":email,"EmailCc":emailcc,"Subject":"\(contractInfo!.nproject!)'s Contract","Body":msg,"idcia":contractInfo?.idcia ?? "","idproject":contractInfo?.idproject ?? ""]
+        
+//        let a = [ "idcontract": contractPdfInfo?.idnumber ?? " ", "EmailTo": email1, "EmailCc" : emailcc1, "Subject": "\(contractInfo!.nproject!)'s Contract",
+//                  "Body" : msg, "Attachment1": emailData ?? " ", "Attachment2": " ", "Attachment3": " "]
 //        print(a)
         
 //        IdCia	query	int	No
@@ -2695,9 +2728,9 @@ private func getStr(h : [[String]]?) -> String {
         //        return;
 //        print(a)
         Alamofire.request(.POST,
-            CConstants.ServerURL + "bacontract_SendEmail.json",
+            CConstants.ServerURL + "bacontract_SendEmail2.json",
             parameters:a).responseJSON{ (response) -> Void in
-                self.emailData = nil
+//                self.emailData = nil
 //                 print(response.result.value)
 //                print(rtnValue)
                 if response.result.isSuccess {
@@ -2731,7 +2764,7 @@ private func getStr(h : [[String]]?) -> String {
     }
     
     func ClearEmailData(){
-        emailData = nil
+//        emailData = nil
     }
     
     var imagePicker: UIImagePickerController?
@@ -2857,7 +2890,7 @@ private func getStr(h : [[String]]?) -> String {
     }
     
    override func sendEmail2() {
-    
+    self.performSegueWithIdentifier(constants.segueToSendEmailAfterApproved, sender: nil)
     }
     
 override func viewAttachPhoto(){

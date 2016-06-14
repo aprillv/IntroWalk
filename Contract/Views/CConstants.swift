@@ -54,11 +54,12 @@ struct CConstants{
 //    static let SegueToExhibitB : String = "exhibitb"
 //    static let SegueToExhibitC : String = "exhibitc"
     static let SegueToPrintModel : String = "printModel"
+    static let SegueToPrintModel2 : String = "printModel2"
     static let SegueToPrintModelPopover : String = "Print switch"
     static let SegueToAddressModelPopover : String = "Address switch"
     static let SegueToOperationsPopover : String = "Show Operations"
     
-    static let Administrator = "roberto@buildersaccess.com"
+    static let Administrator = "roberto@buildersaccess.com1"
     
     static let LoggedUserNameKey : String = "LoggedUserNameInDefaults"
     static let InstallAppLink : String = "itms-services://?action=download-manifest&url=https://www.buildersaccess.com/iphone/contract.plist"

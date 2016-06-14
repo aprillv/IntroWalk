@@ -87,6 +87,7 @@
 		1170C8D81CD1F42500E81BCC /* Hoa_Checklist.pdf in Resources */ = {isa = PBXBuildFile; fileRef = 1170C8D61CD1F42500E81BCC /* Hoa_Checklist.pdf */; };
 		1176D20F1BFDC67C001C1C3E /* AddressListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1176D20E1BFDC67C001C1C3E /* AddressListViewController.swift */; };
 		117F9B6B1C756706008B26D5 /* PrintModelTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 117F9B6A1C756706008B26D5 /* PrintModelTableViewController.swift */; };
+		1186B8201D0F9B5F00D0C91C /* EmailAfterApprovedViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1186B81F1D0F9B5F00D0C91C /* EmailAfterApprovedViewController.swift */; };
 		118939A11CE429D600B771CE /* AddendumA.pdf in Resources */ = {isa = PBXBuildFile; fileRef = 1189399C1CE429D600B771CE /* AddendumA.pdf */; };
 		118939A21CE429D600B771CE /* BaseContract_Austin.pdf in Resources */ = {isa = PBXBuildFile; fileRef = 1189399D1CE429D600B771CE /* BaseContract_Austin.pdf */; };
 		118939A31CE429D600B771CE /* EXHIBIT_B_Austin.pdf in Resources */ = {isa = PBXBuildFile; fileRef = 1189399E1CE429D600B771CE /* EXHIBIT_B_Austin.pdf */; };
@@ -234,6 +235,7 @@
 		1170C8D61CD1F42500E81BCC /* Hoa_Checklist.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; path = Hoa_Checklist.pdf; sourceTree = "<group>"; };
 		1176D20E1BFDC67C001C1C3E /* AddressListViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddressListViewController.swift; sourceTree = "<group>"; };
 		117F9B6A1C756706008B26D5 /* PrintModelTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PrintModelTableViewController.swift; sourceTree = "<group>"; };
+		1186B81F1D0F9B5F00D0C91C /* EmailAfterApprovedViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EmailAfterApprovedViewController.swift; sourceTree = "<group>"; };
 		1189399C1CE429D600B771CE /* AddendumA.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; path = AddendumA.pdf; sourceTree = "<group>"; };
 		1189399D1CE429D600B771CE /* BaseContract_Austin.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; path = BaseContract_Austin.pdf; sourceTree = "<group>"; };
 		1189399E1CE429D600B771CE /* EXHIBIT_B_Austin.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; path = EXHIBIT_B_Austin.pdf; sourceTree = "<group>"; };
@@ -464,6 +466,7 @@
 				11A626361CD98C9D00B91EBE /* filterCell.swift */,
 				111293D81CDAE00300B0DAFC /* SaveAndEmailViewController.swift */,
 				11A107411CE18AD900B00328 /* GoToFileViewController.swift */,
+				1186B81F1D0F9B5F00D0C91C /* EmailAfterApprovedViewController.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -754,6 +757,7 @@
 				110CE6A61C03F3370096E630 /* ContractSignatureError.swift in Sources */,
 				1108B2631BFC4047004B5D48 /* PDFString.m in Sources */,
 				1108B1BA1BFC2691004B5D48 /* Contract.xcdatamodeld in Sources */,
+				1186B8201D0F9B5F00D0C91C /* EmailAfterApprovedViewController.swift in Sources */,
 				1114C7A51C8137EA00924A21 /* AddressDraftListViewCell.swift in Sources */,
 				118D54351CD09E9500F6359A /* SubmitForApproveViewController.swift in Sources */,
 				1107C09C1C0C3B530041D8D7 /* cl_pdf.m in Sources */,

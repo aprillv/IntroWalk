@@ -70,7 +70,7 @@ class SendOperationViewController: UIViewController, UITableViewDelegate, UITabl
             if justShowEmail! {
 //            itemList = [constants.operationEmail, constants.operationViewAttatchPhoto]
                 
-                itemList = ["not active now"]
+                itemList = [constants.operationEmail]
             }else{
                 if FromWebSide ?? false {
                     itemList = [constants.operationSubmit]
