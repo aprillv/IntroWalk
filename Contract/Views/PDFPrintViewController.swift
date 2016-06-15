@@ -179,7 +179,7 @@ class PDFPrintViewController: PDFBaseViewController, UIScrollViewDelegate, PDFVi
     }
     var contractPdfInfo : ContractSignature?{
         didSet{
-           
+//           print("second")
             if let info = contractPdfInfo {
                 
                 if let c = contractInfo?.status {
@@ -338,13 +338,18 @@ class PDFPrintViewController: PDFBaseViewController, UIScrollViewDelegate, PDFVi
             && title != CConstants.ActionTitleContract
             && title != CConstants.ActionTitleDraftContract {
                 if called{
+//                    print("a1", title)
                     self.callService(title, param: param)
                     called = false;
                 }
                 
             }else{
-                calledContract = (title == CConstants.ActionTitleContract
-                    || title == CConstants.ActionTitleDraftContract)
+                if !calledContract{
+                    calledContract = (title == CConstants.ActionTitleContract
+                        || title == CConstants.ActionTitleDraftContract)
+                }
+                
+//                print("b1", title)
                 self.callService(title, param: param)
             }
             
@@ -356,7 +361,8 @@ class PDFPrintViewController: PDFBaseViewController, UIScrollViewDelegate, PDFVi
             switch title {
             case CConstants.ActionTitleContract,
             CConstants.ActionTitleDraftContract:
-                if contractPdfInfo?.idcity ?? "1" == "3" {
+//                print(contractPdfInfo?.idcity)
+                if (contractInfo?.idcity ?? "1") == "3" {
                 str = CConstants.PdfFielNameContract_Austin
                 }else{
                 str = CConstants.PdfFileNameContract
@@ -375,7 +381,7 @@ class PDFPrintViewController: PDFBaseViewController, UIScrollViewDelegate, PDFVi
                 
                 filePageCnt += CConstants.PdfFileNameINFORMATION_ABOUT_BROKERAGE_SERVICESPageCount
             case CConstants.ActionTitleAddendumA:
-                if contractPdfInfo?.idcity ?? "1" == "3" {
+                if contractInfo?.idcity ?? "1" == "3" {
                     str = CConstants.PdfFileNameAddendumA_austin
                 }else{
                     str = CConstants.PdfFileNameAddendumA
@@ -426,14 +432,14 @@ class PDFPrintViewController: PDFBaseViewController, UIScrollViewDelegate, PDFVi
                 str = CConstants.PdfFileNameEXHIBIT_A
                 filePageCnt += CConstants.PdfFileNameEXHIBIT_APageCount
             case CConstants.ActionTitleEXHIBIT_B:
-                if contractPdfInfo?.idcity ?? "1" == "3" {
+                if contractInfo?.idcity ?? "1" == "3" {
                     str = CConstants.PdfFileNameEXHIBIT_B_austin
                 }else{
                     str = CConstants.PdfFileNameEXHIBIT_B
                 }
                 filePageCnt += CConstants.PdfFileNameEXHIBIT_BPageCount
             case CConstants.ActionTitleEXHIBIT_C:
-                if contractPdfInfo?.idcity ?? "1" == "3" {
+                if contractInfo?.idcity ?? "1" == "3" {
                     str = CConstants.PdfFileNameEXHIBIT_C_austin
                 }else{
                     str = CConstants.PdfFileNameEXHIBIT_C
@@ -849,6 +855,7 @@ class PDFPrintViewController: PDFBaseViewController, UIScrollViewDelegate, PDFVi
         let hud = MBProgressHUD.showHUDAddedTo(self.view, animated: true)
         //                hud.mode = .AnnularDeterminate
         hud.labelText = CConstants.RequestMsg
+//        print(printModelNm, serviceUrl)
         Alamofire.request(.POST,
             CConstants.ServerURL + serviceUrl!,
             parameters: param).responseJSON{ (response) -> Void in

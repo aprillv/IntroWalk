@@ -64,6 +64,7 @@ class SetDotValue : NSObject {
         //        static let seller_3 = "seller_3"
         static let pdf2211 = "2211"
         static let pdf2212 = "2212"
+        static let pdf2213 = "2213"
         
         static let pdf22a1 = "22a1"
         static let pdf22a15 = "22a15"
@@ -120,6 +121,7 @@ class SetDotValue : NSObject {
     }
     
     func setSignContractDots(pdfInfo:ContractSignature?, additionViews: [PDFWidgetAnnotationView], pdfview: PDFView, item: ContractsItem?){
+//        print("first")
 //        if let filedsFromTxt = readContractFieldsFromTxt(getFileName(pdfInfo)) {
 //            
 //            
@@ -272,10 +274,10 @@ class SetDotValue : NSObject {
                     pv.value = pdfInfo!.agent_address!
                 case SignContractPDFFields.insurance_company:
                     pv.value = pdfInfo!.insurance_company!
-                case SignContractPDFFields.estimatedclosing_MMdd:
-                    pv.value = pdfInfo!.estimatedclosing_MMdd!
-                case SignContractPDFFields.estimatedclosing_yy:
-                    pv.value = pdfInfo!.estimatedclosing_yy!
+//                case SignContractPDFFields.estimatedclosing_MMdd:
+//                    pv.value = pdfInfo!.estimatedclosing_MMdd!
+//                case SignContractPDFFields.estimatedclosing_yy:
+//                    pv.value = pdfInfo!.estimatedclosing_yy!
                 case SignContractPDFFields.tobuyer1:
                     if (pdfInfo?.client2 ?? "") != "" {
                         pv.value = pdfInfo!.client! + " / " +  pdfInfo!.client2!
@@ -347,9 +349,31 @@ class SetDotValue : NSObject {
                 case SignContractPDFFields.seller_2:
                     pv.value = pdfInfo!.cianame!
                 case SignContractPDFFields.pdf2211:
-                    pv.value = pdfInfo!.trec1!
+                    if (pdfInfo?.idcia ?? "100") == "386" {
+                        pv.value = "Addendums A,C,D, Exhibits A-C, Buyer & Constr."
+                    }else{
+                        if let a = pdfInfo?.idcity {
+                            if a == "1" {
+                                pv.value = "Addendums A,D,E, Exhibits A-C, Buyer & Constr."
+                            }else if a == "2" {
+                                pv.value = "Addendums A,B,D,E Exhibits A-C,"
+                            }else if a == "3" {
+                                pv.value = "Addendums A,C,D, Exhibits A-C, Buyer & Constr."
+                            }
+                        }
+                    }
+                    
                 case SignContractPDFFields.pdf2212:
-                    pv.value = pdfInfo!.trec2!
+                    if let a = pdfInfo?.idcity {
+                        if a == "2" {
+                            pv.value = "Builder Express Ltd Warranty & Performance St"
+                        }else {
+                            pv.value = "Expectations, Builder Express Ltd Warranty & Performance St"
+                        }
+                    }
+                case SignContractPDFFields.pdf2213:
+                    pv.value = "Addendum For Communities with a Homeowners's Association"
+                    
                 case SignContractPDFFields.pdf22a1:
                     if let radio = pv as? PDFFormButtonField {
                         radio .setValue2(pdfInfo!.page7ThirdPartyFinacingAddendum!)
@@ -389,6 +413,13 @@ class SetDotValue : NSObject {
                     
                 case SignContractPDFFields.OtherBrokerFirmNo:
                     pv.value = pdfInfo!.page9OtherBrokerFirmNo
+                case "7g2c3":
+                    if (pdfInfo?.idcity ?? "1") == "2" {
+                        //dallas
+                        pv.value = "38"
+                    }else{
+                        pv.value = "30"
+                    }
                 case SignContractPDFFields.AssociateNameNo:
                     pv.value = pdfInfo!.page9AssociateNameNo
                 case SignContractPDFFields.p9AssociatesName:
@@ -416,9 +447,15 @@ class SetDotValue : NSObject {
                     //                    static let chk6a83 = "6a83"
                     //                    static let chk6a8 = "6a8"
                     //                    static let chk6a = "6a"
-                case SignContractPDFFields.chkfinancing:
+//                case SignContractPDFFields.chkfinancing:
+//                    if let radio = pv as? PDFFormButtonField {
+//                        if radio.exportValue == "4a" {
+//                            radio.setValue2("1")
+//                        }
+//                    }
+                case "cer1":
                     if let radio = pv as? PDFFormButtonField {
-                        if radio.exportValue == "4a" {
+                        if radio.exportValue == "On" {
                             radio.setValue2("1")
                         }
                     }
@@ -440,6 +477,7 @@ class SetDotValue : NSObject {
                             radio.setValue2("1")
                         }
                     }
+                
                 case SignContractPDFFields.chk6e2:
                     if let radio = pv as? PDFFormButtonField {
                         if pdfInfo!.hoa == "0" {
