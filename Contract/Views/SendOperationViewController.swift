@@ -23,6 +23,7 @@ protocol DoOperationDelegate
     func saveEmail()
     func attachPhoto()
     func viewAttachPhoto()
+    func emailContractToBuyer()
     
 }
 
@@ -60,6 +61,7 @@ class SendOperationViewController: UIViewController, UITableViewDelegate, UITabl
         static let operationFillDraftInfo = "Fill Buyer's Fields"
         static let operationAttatchPhoto = "Attach Photo Check"
         static let operationViewAttatchPhoto = "View Photo Check"
+        static let operationEmailToBuyer = "Email Contract to Buyers"
         
     }
     
@@ -82,6 +84,7 @@ class SendOperationViewController: UIViewController, UITableViewDelegate, UITabl
                     }
                 }
                 itemList?.append(constants.operationAttatchPhoto)
+//                itemList?.append(constants.operationEmailToBuyer)
             }
             
             
@@ -182,8 +185,8 @@ class SendOperationViewController: UIViewController, UITableViewDelegate, UITabl
                     delegate0.viewAttachPhoto()
                     
                   
-//                case constants.operationSaveEmail:
-//                    delegate0.save_Email()
+                case constants.operationEmailToBuyer:
+                    delegate0.emailContractToBuyer()
                     default:
                         break
                 }

@@ -860,7 +860,7 @@ class PDFPrintViewController: PDFBaseViewController, UIScrollViewDelegate, PDFVi
             CConstants.ServerURL + serviceUrl!,
             parameters: param).responseJSON{ (response) -> Void in
                 hud.hide(true)
-//                print(param, serviceUrl, response.result.value)
+                print(param, serviceUrl)
                 if response.result.isSuccess {
                     
                     if let rtnValue = response.result.value as? [String: AnyObject]{
@@ -2899,6 +2899,10 @@ private func getStr(h : [[String]]?) -> String {
     
    override func sendEmail2() {
     self.performSegueWithIdentifier(constants.segueToSendEmailAfterApproved, sender: nil)
+    }
+    
+   override func emailContractToBuyer() {
+    
     }
     
 override func viewAttachPhoto(){

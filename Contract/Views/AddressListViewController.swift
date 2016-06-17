@@ -68,8 +68,8 @@ class AddressListViewController: UITableViewController, UISearchBarDelegate, ToD
         didSet{
             
             if tableTag != 2 {
-//             self.AddressList = self.AddressListOrigin
-                self.showAll()
+             self.AddressList = self.AddressListOrigin
+//                self.showAll()
             }else{
             let userinfo = NSUserDefaults.standardUserDefaults()
             let a = userinfo.integerForKey(CConstants.ShowFilter)

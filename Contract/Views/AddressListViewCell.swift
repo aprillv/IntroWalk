@@ -126,7 +126,12 @@ class AddressListViewCell: UITableViewCell {
             if let item = contractInfo{
                 ProjectNmLbl.text = item.nproject
                 ConsultantLbl.text = item.assignsales1name
-                ClientLbl.text = item.client
+                if item.client2 != "" {
+                ClientLbl.text = (item.client ?? "") + " / " + (item.client2 ?? "")
+                }else{
+                ClientLbl.text = (item.client ?? "")
+                }
+                
                 StatusLbl.text = item.status
             }
         }

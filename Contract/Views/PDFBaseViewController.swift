@@ -667,5 +667,9 @@ class PDFBaseViewController: BaseViewController, DoOperationDelegate, UIPopoverP
         
     }
     
+    func emailContractToBuyer() {
+        
+    }
+    
     
 }

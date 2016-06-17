@@ -1814,11 +1814,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Contract/Views/PDFPrintViewController.swift"
-            timestampString = "487660204.31191"
+            timestampString = "487761485.240178"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "2912"
-            endingLineNumber = "2912">
+            startingLineNumber = "2916"
+            endingLineNumber = "2916">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
