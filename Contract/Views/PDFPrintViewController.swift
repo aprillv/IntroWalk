@@ -11,10 +11,11 @@ import Alamofire
 import MessageUI
 import MBProgressHUD
 
-class PDFPrintViewController: PDFBaseViewController, UIScrollViewDelegate, PDFViewDelegate, SubmitForApproveViewControllerDelegate, SaveAndEmailViewControllerDelegate,UIImagePickerControllerDelegate, UINavigationControllerDelegate, GoToFileDelegate{
+class PDFPrintViewController: PDFBaseViewController, UIScrollViewDelegate, PDFViewDelegate, SubmitForApproveViewControllerDelegate, SaveAndEmailViewControllerDelegate,UIImagePickerControllerDelegate, UINavigationControllerDelegate, GoToFileDelegate, EmailContractToBuyerViewControllerDelegate{
     private struct constants{
         static let operationMsg = "Are you sure you want to take photo of the check again?"
         static let segueToSendEmailAfterApproved = "showSendEmail"
+        static let segueToEmailContractToBuyer = "EmailContractToBuyer"
     }
 //    var currentlyEditingView : SPUserResizableView?
 //    var lastEditedView : SPUserResizableView?
@@ -855,12 +856,12 @@ class PDFPrintViewController: PDFBaseViewController, UIScrollViewDelegate, PDFVi
         let hud = MBProgressHUD.showHUDAddedTo(self.view, animated: true)
         //                hud.mode = .AnnularDeterminate
         hud.labelText = CConstants.RequestMsg
-//        print(printModelNm, serviceUrl)
+//        print(param, serviceUrl)
         Alamofire.request(.POST,
             CConstants.ServerURL + serviceUrl!,
             parameters: param).responseJSON{ (response) -> Void in
                 hud.hide(true)
-                print(param, serviceUrl)
+//                print(param, serviceUrl)
                 if response.result.isSuccess {
                     
                     if let rtnValue = response.result.value as? [String: AnyObject]{
@@ -1323,6 +1324,8 @@ class PDFPrintViewController: PDFBaseViewController, UIScrollViewDelegate, PDFVi
                 }
             }
         }
+        
+        
         
         
         
@@ -2110,6 +2113,10 @@ private func getStr(h : [[String]]?) -> String {
                                 }
                             }
                             
+//                            for h in alldots{
+//                            print(h.xname)
+//                            }
+                            
                             var showseller = true
 //                            if let ds = self.contractInfo?.signfinishdate, ss = self.contractInfo?.status {
 //                                showseller =  ds != "01/01/1980" && ss == CConstants.ApprovedStatus
@@ -2120,6 +2127,12 @@ private func getStr(h : [[String]]?) -> String {
                             }
                             for d in alldots{
                                 if let sign = d as? SignatureView {
+//                                    if  sign.xname.hasSuffix("bottom4")
+//                                        || sign.xname.hasSuffix("seller2Sign")
+//                                        {
+//                                        print("\"" + sign.xname + "\"" + ",")
+//                                    }
+                                    
                                     if sign.xname == "p2Ibroker2buyer1Sign" {
                                     
                                         self.setShowSignature(sign, signs: self.signature_b1!, idcator: brokerb1 ? "1" : "0")
@@ -2365,6 +2378,9 @@ private func getStr(h : [[String]]?) -> String {
 //                    return false
 //                }
 //            }
+            if self.seller2Item.title == "Status: Email Sign" {
+                return false
+            }
             return contractInfo!.status != CConstants.ForApproveStatus
         default:
             return true
@@ -2379,6 +2395,12 @@ private func getStr(h : [[String]]?) -> String {
                 if let con = segue.destinationViewController as? EmailAfterApprovedViewController {
                     con.contractInfo = self.contractInfo
                 }
+            }else if identifier == constants.segueToEmailContractToBuyer {
+                if let con = segue.destinationViewController as? EmailContractToBuyerViewController {
+                    con.contractInfo = self.contractPdfInfo
+                    con.delegate = self
+                }
+            
             }else if identifier == "showSubmit" {
                 if let controller = segue.destinationViewController as? SubmitForApproveViewController {
                     if let contrat = self.contractInfo, let rtn = sender as? [String: AnyObject] {
@@ -2477,7 +2499,7 @@ private func getStr(h : [[String]]?) -> String {
                                                     //                                            }
                                                     showSave = true
                                                     if sign.LineWidth == 0.0 && sign.xname != "p1EBExhibitbp1sellerInitialSign"{
-                                                                                                        print(sign.xname, sign.LineWidth, sign.lineArray)
+//                                                                                                        print(sign.xname, sign.LineWidth, sign.lineArray)
                                                         showSubmit = false
                                                     }
                                                 }else{
@@ -2902,13 +2924,150 @@ private func getStr(h : [[String]]?) -> String {
     }
     
    override func emailContractToBuyer() {
+    self.performSegueWithIdentifier(constants.segueToEmailContractToBuyer, sender: nil)
     
     }
     
 override func viewAttachPhoto(){
     self.performSegueWithIdentifier("showAttachPhoto", sender: nil)
     }
-}
 
+    
+    
+
+func GoToSendEmailToBuyer(msg msg: String, hasbuyer1: Bool, hasbuyer2: Bool) {
+    //bacontract_SendContractToBuyer
+    print("checkBuyer1", checkBuyer1())
+    print("checkBuyer2", checkBuyer2())
+    if hasbuyer1 || hasbuyer2 {
+        
+        var b1:String
+        var b1email : String
+        var b2: String
+        var b2email: String
+        if hasbuyer1 {
+            b1email = contractPdfInfo?.bemail1 ?? ""
+            b1 = contractPdfInfo?.client ?? ""
+        }else{
+            b1email = ""
+            b1 = ""
+        }
+        
+        if hasbuyer2 {
+            b2email = contractPdfInfo?.bemail2 ?? ""
+            b2 = contractPdfInfo?.client2 ?? ""
+        }else{
+            b2email = ""
+            b2 = ""
+        }
+        
+        let param = ["idcontract":"\(self.contractInfo?.idnumber ?? "")","buyer1email":"\(b1email)", "buyer2email":"\(b2email)","idcity":"\(self.contractInfo?.idcity ?? "")","idcia":"\(self.contractInfo?.idcia ?? "")","emailcc":"","buyer1name":"\(b1)","buyer2name":"\(b2)","emailbody":"\(msg)","emailsubject":"Sign contract online"]
+//        return
+        let hud = MBProgressHUD.showHUDAddedTo(self.view, animated: true)
+        //                hud.mode = .AnnularDeterminate
+        hud.labelText = "Sending Email..."
+        //        print(printModelNm, serviceUrl)
+        Alamofire.request(.POST,
+            CConstants.ServerURL + "bacontract_SendContractToBuyer.json",
+            parameters: param).responseJSON{ (response) -> Void in
+                hud.hide(true)
+//                print(param)
+                if response.result.isSuccess {
+//                    print(response.result.value)
+                    
+                    if let a = response.result.value as? Bool {
+                        if a {
+                        
+                            self.sendItem.image = nil
+                            self.seller2Item.title = "Status: Email Sign"
+                        }else{
+                            self.PopMsgWithJustOK(msg: CConstants.MsgServerError)
+                        }
+                    }else{
+                        self.PopMsgWithJustOK(msg: CConstants.MsgServerError)
+                    }
+//                    if let rtnValue = response.result.value as? [String: AnyObject]{
+//                        print
+//                    }else{
+//                        self.PopMsgWithJustOK(msg: CConstants.MsgServerError)
+//                    }
+                }else{
+                    //                            self.spinner?.stopAnimating()
+                    self.PopMsgWithJustOK(msg: CConstants.MsgNetworkError)
+                }
+        }
+    }
+    
+    }
+    
+    
+    func checkBuyer1() -> Bool {
+        let tl = toolpdf()
+        var tmpa = [String]()
+        for (_, tmp) in tl.pdfBuyer1SignatureFields {
+            tmpa.appendContentsOf(tmp)
+        }
+        
+        var alldots = [PDFWidgetAnnotationView]()
+        
+        for (_,allAdditionViews) in self.fileDotsDic!{
+            alldots.appendContentsOf(allAdditionViews)
+        }
+        
+        for doc in self.documents!{
+            if let a = doc.addedviewss as? [PDFWidgetAnnotationView]{
+                alldots.appendContentsOf(a)
+            }
+        }
+        
+        for c in alldots {
+            if let a = c as? SignatureView {
+                if tmpa.contains(a.xname) {
+                    if !(a.lineArray != nil && a.lineArray.count > 0 && a.LineWidth != 0.0){
+                        print(a.xname)
+                        return false
+                    }
+                    
+                }
+            }
+        }
+        return true
+    }
+    
+    func checkBuyer2() -> Bool {
+        let tl = toolpdf()
+        var tmpa = [String]()
+        for (_, tmp) in tl.pdfBuyer2SignatureFields {
+            tmpa.appendContentsOf(tmp)
+        }
+        
+        var alldots = [PDFWidgetAnnotationView]()
+        
+        for (_,allAdditionViews) in self.fileDotsDic!{
+            alldots.appendContentsOf(allAdditionViews)
+        }
+        
+        for doc in self.documents!{
+            if let a = doc.addedviewss as? [PDFWidgetAnnotationView]{
+                alldots.appendContentsOf(a)
+            }
+        }
+        
+        for c in alldots {
+            if let a = c as? SignatureView {
+                if tmpa.contains(a.xname) {
+                    if !(a.lineArray != nil && a.lineArray.count > 0 && a.LineWidth != 0.0){
+                        print(a.xname)
+                        return false
+                    }
+                    
+                }
+            }
+        }
+        return true
+    }
+    
+//    {"idcontract":"String","buyer1email":"String","buyer2email":"String","idcity":"String","idcia":"String","emailcc":"String","buyer1name":"String","buyer2name":"String","emailbody":"String","emailsubject":"String"}
+}
 
 

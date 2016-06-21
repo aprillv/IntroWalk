@@ -21,6 +21,7 @@ class ContractSignature: ContractPDFBaseModel {
     var bmobile1: String?
     var bfax1: String?
     var bemail1: String?
+    var bemail2: String?
     var base64pdf: String?
     var found: String?
     var message: String?
@@ -42,6 +43,9 @@ class ContractSignature: ContractPDFBaseModel {
     
     var trec1 : String?
     var trec2 : String?
+    var trec3 : String?
+    
+
     
     var hoa : String?
     var environment : String?

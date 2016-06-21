@@ -101,6 +101,7 @@
 		11BAB2721D1251FA00F99505 /* BaseContract_Austin.pdf in Resources */ = {isa = PBXBuildFile; fileRef = 11BAB2711D1251FA00F99505 /* BaseContract_Austin.pdf */; };
 		11D911001C1AB33D00CD018A /* ContractAddendumC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11D910FF1C1AB33D00CD018A /* ContractAddendumC.swift */; };
 		11D911021C1AB36000CD018A /* ContractAddendumCItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11D911011C1AB36000CD018A /* ContractAddendumCItem.swift */; };
+		11EDB0CA1D151ACB0070BE3E /* EmailContractToBuyerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11EDB0C91D151ACB0070BE3E /* EmailContractToBuyerViewController.swift */; };
 		11EEF03B1CCF5679006422ED /* SignatrureFields.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11EEF03A1CCF5679006422ED /* SignatrureFields.swift */; };
 		11EEF03D1CCF5F3D006422ED /* Third_Party_Financing_Addendum_TREC.pdf in Resources */ = {isa = PBXBuildFile; fileRef = 11EEF03C1CCF5F3D006422ED /* Third_Party_Financing_Addendum_TREC.pdf */; };
 		11EEF03F1CCF6145006422ED /* toolpdf.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11EEF03E1CCF6145006422ED /* toolpdf.swift */; };
@@ -249,6 +250,7 @@
 		11BAB2711D1251FA00F99505 /* BaseContract_Austin.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; path = BaseContract_Austin.pdf; sourceTree = "<group>"; };
 		11D910FF1C1AB33D00CD018A /* ContractAddendumC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContractAddendumC.swift; sourceTree = "<group>"; };
 		11D911011C1AB36000CD018A /* ContractAddendumCItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContractAddendumCItem.swift; sourceTree = "<group>"; };
+		11EDB0C91D151ACB0070BE3E /* EmailContractToBuyerViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EmailContractToBuyerViewController.swift; sourceTree = "<group>"; };
 		11EEF03A1CCF5679006422ED /* SignatrureFields.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SignatrureFields.swift; sourceTree = "<group>"; };
 		11EEF03C1CCF5F3D006422ED /* Third_Party_Financing_Addendum_TREC.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; path = Third_Party_Financing_Addendum_TREC.pdf; sourceTree = "<group>"; };
 		11EEF03E1CCF6145006422ED /* toolpdf.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = toolpdf.swift; sourceTree = "<group>"; };
@@ -467,6 +469,7 @@
 				111293D81CDAE00300B0DAFC /* SaveAndEmailViewController.swift */,
 				11A107411CE18AD900B00328 /* GoToFileViewController.swift */,
 				1186B81F1D0F9B5F00D0C91C /* EmailAfterApprovedViewController.swift */,
+				11EDB0C91D151ACB0070BE3E /* EmailContractToBuyerViewController.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -734,6 +737,7 @@
 				1107507B1C29222600B68141 /* SendOperationViewController.swift in Sources */,
 				117F9B6B1C756706008B26D5 /* PrintModelTableViewController.swift in Sources */,
 				1108B25F1BFC4047004B5D48 /* PDFName.m in Sources */,
+				11EDB0CA1D151ACB0070BE3E /* EmailContractToBuyerViewController.swift in Sources */,
 				1108B26D1BFC4047004B5D48 /* PDFFormSignatureField.m in Sources */,
 				11A50B421C783BFC0017AA53 /* AddressListModelViewController.swift in Sources */,
 				113CB5BC1BFEE2D80081FDE7 /* Contract.swift in Sources */,

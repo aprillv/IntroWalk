@@ -349,30 +349,33 @@ class SetDotValue : NSObject {
                 case SignContractPDFFields.seller_2:
                     pv.value = pdfInfo!.cianame!
                 case SignContractPDFFields.pdf2211:
-                    if (pdfInfo?.idcia ?? "100") == "386" {
-                        pv.value = "Addendums A,C,D, Exhibits A-C, Buyer & Constr."
-                    }else{
-                        if let a = pdfInfo?.idcity {
-                            if a == "1" {
-                                pv.value = "Addendums A,D,E, Exhibits A-C, Buyer & Constr."
-                            }else if a == "2" {
-                                pv.value = "Addendums A,B,D,E Exhibits A-C,"
-                            }else if a == "3" {
-                                pv.value = "Addendums A,C,D, Exhibits A-C, Buyer & Constr."
-                            }
-                        }
-                    }
+                    pv.value = pdfInfo?.trec1 ?? ""
+//                    if (pdfInfo?.idcia ?? "100") == "386" {
+//                        pv.value = "Addendums A,C,D, Exhibits A-C, Buyer & Constr."
+//                    }else{
+//                        if let a = pdfInfo?.idcity {
+//                            if a == "1" {
+//                                pv.value = "Addendums A,D,E, Exhibits A-C, Buyer & Constr."
+//                            }else if a == "2" {
+//                                pv.value = "Addendums A,B,D,E Exhibits A-C,"
+//                            }else if a == "3" {
+//                                pv.value = "Addendums A,C,D, Exhibits A-C, Buyer & Constr."
+//                            }
+//                        }
+//                    }
                     
                 case SignContractPDFFields.pdf2212:
-                    if let a = pdfInfo?.idcity {
-                        if a == "2" {
-                            pv.value = "Builder Express Ltd Warranty & Performance St"
-                        }else {
-                            pv.value = "Expectations, Builder Express Ltd Warranty & Performance St"
-                        }
-                    }
+                     pv.value = pdfInfo?.trec2 ?? ""
+//                    if let a = pdfInfo?.idcity {
+//                        if a == "2" {
+//                            pv.value = "Builder Express Ltd Warranty & Performance St"
+//                        }else {
+//                            pv.value = "Expectations, Builder Express Ltd Warranty & Performance St"
+//                        }
+//                    }
                 case SignContractPDFFields.pdf2213:
-                    pv.value = "Addendum For Communities with a Homeowners's Association"
+                     pv.value = pdfInfo?.trec3 ?? ""
+//                    pv.value = "Addendum For Communities with a Homeowners's Association"
                     
                 case SignContractPDFFields.pdf22a1:
                     if let radio = pv as? PDFFormButtonField {

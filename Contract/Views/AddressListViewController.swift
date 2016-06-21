@@ -320,6 +320,7 @@ class AddressListViewController: UITableViewController, UISearchBarDelegate, ToD
                 CConstants.ServerURL + serviceUrl!,
                 parameters: ContractRequestItem(contractInfo: item).DictionaryFromObject()).responseJSON{ (response) -> Void in
                     hud.hide(true)
+                    print(ContractRequestItem(contractInfo: item).DictionaryFromObject())
                         if response.result.isSuccess {
                             
                             if let rtnValue = response.result.value as? [String: AnyObject]{
