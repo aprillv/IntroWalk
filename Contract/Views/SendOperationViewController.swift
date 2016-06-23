@@ -25,11 +25,21 @@ protocol DoOperationDelegate
     func viewAttachPhoto()
     func emailContractToBuyer()
     
+    func submitBuyer1Sign()
+    func submitBuyer2Sign()
+    
 }
 
 class SendOperationViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
 
+    var contractInfo : ContractSignature?
+//        {
+//        didSet{
+//        print(contractInfo?.verify_code, contractInfo?.verify_code2, contractInfo?.buyer1SignFinishedyn, contractInfo?.buyer2SignFinishedyn)
+//        }
+//    }
+    
     @IBOutlet weak var tableView: UITableView!
     var delegate1 : DoOperationDelegate?
     var showSave : Bool?
@@ -63,6 +73,9 @@ class SendOperationViewController: UIViewController, UITableViewDelegate, UITabl
         static let operationViewAttatchPhoto = "View Photo Check"
         static let operationEmailToBuyer = "Email Contract to Buyers"
         
+        static let operationSubmitBuyer1 = "Submit Buyer1's sign"
+        static let operationSubmitBuyer2 = "Submit Buyer2's sign"
+        
     }
     
     override func viewDidLoad() {
@@ -81,9 +94,18 @@ class SendOperationViewController: UIViewController, UITableViewDelegate, UITabl
                         itemList = [constants.operationSaveFinish, constants.operationSaveEmail, constants.operationStartOver]
                     }else{
                         itemList = [constants.operationSavetoServer, constants.operationSubmit, constants.operationStartOver]
+                        itemList?.append(constants.operationAttatchPhoto)
+                        if let info = self.contractInfo {
+                            if info.client2 != "" {
+                                itemList?.append(constants.operationSubmitBuyer1)
+                                itemList?.append(constants.operationSubmitBuyer2)
+                            }
+                        }
+                        itemList?.append(constants.operationEmailToBuyer)
+                        
                     }
                 }
-                itemList?.append(constants.operationAttatchPhoto)
+                
 //                itemList?.append(constants.operationEmailToBuyer)
             }
             
@@ -187,6 +209,10 @@ class SendOperationViewController: UIViewController, UITableViewDelegate, UITabl
                   
                 case constants.operationEmailToBuyer:
                     delegate0.emailContractToBuyer()
+                case constants.operationSubmitBuyer1:
+                    delegate0.submitBuyer1Sign()
+                case constants.operationSubmitBuyer2:
+                    delegate0.submitBuyer2Sign()
                     default:
                         break
                 }

@@ -252,47 +252,6 @@ class toolpdf: NSObject {
     let pdfBuyer1SignatureFields = [
 //    ,
 //    "p1EBExhibitbp1sellerInitialSign"
-        "Exhibit B" : ["p1EBbuyer1Sign",
-            "p1EBbottom1"],
-        "Addendum A" : ["p1Abottom1",
-            "p2Abottom1",
-            "p3Abottom1",
-            "p4Abuyer1Sign",
-            "p4Abottom1",
-            "p5Abottom1",
-            "p6Abuyer1Sign",
-            "p6Abottom1"],
-        "Addendum C" : ["p1ACbottom1",
-            "p1ACbuyer1Sign",
-            "p2ACbottom1",
-            "p2ACbuyer1Sign"],
-        "Exhibit C General" : ["p1ECbottom1",
-            "p2ECbottom1",
-            "p3ECbottom1"],
-        "Exhibit A" : ["p1EAbottom1",
-            "p1EAbuyer1Sign"],
-        "Floodplain Acknowledgement" : ["p1Fbuyer1Sign",
-            "p1Fbottom1"],
-        "Addendum E" : ["p1AEbottom1",
-            "p2AEbuyer1Sign",
-            "p2AEbottom1"],
-        "Design Center" : ["p1Dbuyer1Sign",
-            "p1Dbottom1"],
-        "Buyers Expept" : ["p1Bbottom1",
-            "p2Bbottom1",
-            "p3Bbottom1",
-            "p4Bbottom1",
-            "p5Bbuyer1Sign"],
-        "Warranty Acknowledgement" : ["p1Wbottom1",
-            "p2Wbuyer1Sign",
-            "p2Wbottom1"],
-        "Addendum D" : ["p1ADbottom1",
-            "p2ADbuyer1Sign",
-            "p2ADbottom1"],
-        "Information about Brokerage Services" : ["p1Ibottom1",
-            "p2Ibrokerbuyer1Sign",
-            "p2Ibroker2buyer1Sign",
-            "p2Ibottom1"],
         "Sign Contract" : ["p1bottom1",
             "p2bottom1",
             "p3bottom1",
@@ -303,11 +262,68 @@ class toolpdf: NSObject {
             "p8bottom1",
             "p8buyer1Sign",
             "p9bottom1"],
-        "Addendum for Property Subject to HOA" : ["p1AHbuyer1Sign",
-            "p1AHbottom1"],
+        
+        
         "Third Party Financing Addendum" : ["p1T3bottom1",
             "p2T3buyer1Sign",
             "p2T3bottom1"],
+        
+        "Information about Brokerage Services" : ["p1Ibottom1",
+            "p2Ibrokerbuyer1Sign",
+            "p2Ibroker2buyer1Sign",
+            "p2Ibottom1"],
+        
+        "Addendum A" : ["p1Abottom1",
+            "p2Abottom1",
+            "p3Abottom1",
+            "p4Abuyer1Sign",
+            "p4Abottom1",
+            "p5Abottom1",
+            "p6Abuyer1Sign",
+            "p6Abottom1"],
+        
+        "Exhibit A" : ["p1EAbottom1",
+            "p1EAbuyer1Sign"],
+        
+        
+        "Exhibit B" : ["p1EBbuyer1Sign",
+            "p1EBbottom1"],
+       
+        
+        "Exhibit C General" : ["p1ECbottom1",
+            "p2ECbottom1",
+            "p3ECbottom1"],
+        
+        "Buyers Expept" : ["p1Bbottom1",
+            "p2Bbottom1",
+            "p3Bbottom1",
+            "p4Bbottom1",
+            "p5Bbuyer1Sign"],
+        
+        "Addendum C" : ["p1ACbottom1",
+            "p1ACbuyer1Sign",
+            "p2ACbottom1",
+            "p2ACbuyer1Sign"],
+        
+        
+        "Addendum D" : ["p1ADbottom1",
+            "p2ADbuyer1Sign",
+            "p2ADbottom1"],
+        
+        "Addendum E" : ["p1AEbottom1",
+            "p2AEbuyer1Sign",
+            "p2AEbottom1"],
+        
+        
+        "Floodplain Acknowledgement" : ["p1Fbuyer1Sign",
+            "p1Fbottom1"],
+        
+        "Warranty Acknowledgement" : ["p1Wbottom1",
+            "p2Wbuyer1Sign",
+            "p2Wbottom1"],
+        
+        "Design Center" : ["p1Dbuyer1Sign",
+            "p1Dbottom1"],
         "HOA Checklist" : ["p1Hbottom1",
             "p2Hbottom1",
             "p3Hbottom1",
@@ -345,50 +361,14 @@ class toolpdf: NSObject {
             "p3Hhoa13Sign3",
             "p3Hhoa14Sign3",
             "p3Hhoa15Sign3",
-            "p3Hhoa16Sign3"]
+            "p3Hhoa16Sign3"],
+        
+        "Addendum for Property Subject to HOA" : ["p1AHbuyer1Sign",
+            "p1AHbottom1"],
+       
+        
         ]
 let pdfBuyer2SignatureFields = [
-    "Exhibit B" : ["p1EBbuyer2Sign",
-        "p1EBbottom2"],
-    "Addendum A" : ["p1Abottom2",
-        "p2Abottom2",
-        "p3Abottom2",
-        "p4Abuyer2Sign",
-        "p4Abottom2",
-        "p5Abottom2",
-        "p6Abuyer2Sign",
-        "p6Abottom2"],
-    "Addendum C" : ["p1ACbottom2",
-        "p1ACbuyer2Sign",
-        "p2ACbottom2",
-        "p2ACbuyer2Sign"],
-    "Exhibit C General" : ["p1ECbottom2",
-        "p2ECbottom2",
-        "p3ECbottom2"],
-    "Exhibit A" : ["p1EAbuyer2Sign",
-        "p1EAbottom2"],
-    "Floodplain Acknowledgement" : ["p1Fbuyer2Sign",
-        "p1Fbottom2"],
-    "Addendum E" : ["p1AEbottom2",
-        "p2AEbuyer2Sign",
-        "p2AEbottom2"],
-    "Design Center" : ["p1Dbuyer2Sign",
-        "p1Dbottom2"],
-    "Buyers Expept" : ["p1Bbottom2",
-        "p2Bbottom2",
-        "p3Bbottom2",
-        "p4Bbottom2",
-        "p5Bbuyer2Sign"],
-    "Warranty Acknowledgement" : ["p1Wbottom2",
-        "p2Wbuyer2Sign",
-        "p2Wbottom2"],
-    "Addendum D" : ["p1ADbottom2",
-        "p2ADbuyer2Sign",
-        "p2ADbottom2"],
-    "Information about Brokerage Services" : ["p1Ibottom2",
-        "p2Ibrokerbuyer2Sign",
-        "p2Ibroker2buyer2Sign",
-        "p2Ibottom2"],
     "Sign Contract" : ["p1bottom2",
         "p2bottom2",
         "p3bottom2",
@@ -399,15 +379,72 @@ let pdfBuyer2SignatureFields = [
         "p8bottom2",
         "p8buyer2Sign",
         "p9bottom2"],
-    "Addendum for Property Subject to HOA" : ["p1AHbuyer2Sign",
-        "p1AHbottom2"],
+    
     "Third Party Financing Addendum" : ["p1T3bottom2",
         "p2T3buyer2Sign",
         "p2T3bottom2"],
+    
+    "Information about Brokerage Services" : ["p1Ibottom2",
+        "p2Ibrokerbuyer2Sign",
+        "p2Ibroker2buyer2Sign",
+        "p2Ibottom2"],
+    
+    "Addendum A" : ["p1Abottom2",
+        "p2Abottom2",
+        "p3Abottom2",
+        "p4Abuyer2Sign",
+        "p4Abottom2",
+        "p5Abottom2",
+        "p6Abuyer2Sign",
+        "p6Abottom2"],
+    
+    "Exhibit A" : ["p1EAbuyer2Sign",
+        "p1EAbottom2"],
+    
+    "Exhibit B" : ["p1EBbuyer2Sign",
+        "p1EBbottom2"],
+    
+    "Exhibit C General" : ["p1ECbottom2",
+        "p2ECbottom2",
+        "p3ECbottom2"],
+    
+    "Buyers Expept" : ["p1Bbottom2",
+        "p2Bbottom2",
+        "p3Bbottom2",
+        "p4Bbottom2",
+        "p5Bbuyer2Sign"],
+    
+    "Addendum C" : ["p1ACbottom2",
+        "p1ACbuyer2Sign",
+        "p2ACbottom2",
+        "p2ACbuyer2Sign"],
+    
+    "Addendum D" : ["p1ADbottom2",
+        "p2ADbuyer2Sign",
+        "p2ADbottom2"],
+    
+    "Addendum E" : ["p1AEbottom2",
+        "p2AEbuyer2Sign",
+        "p2AEbottom2"],
+    
+    "Floodplain Acknowledgement" : ["p1Fbuyer2Sign",
+        "p1Fbottom2"],
+    
+    "Warranty Acknowledgement" : ["p1Wbottom2",
+        "p2Wbuyer2Sign",
+        "p2Wbottom2"],
+   
+    "Design Center" : ["p1Dbuyer2Sign",
+        "p1Dbottom2"],
+    
     "HOA Checklist" : ["p1Hbottom2",
         "p2Hbottom2",
         "p3Hbottom2",
-        "p3Hbuyer2Sign"]
+        "p3Hbuyer2Sign"],
+    
+    "Addendum for Property Subject to HOA" : ["p1AHbuyer2Sign",
+        "p1AHbottom2"]
+    
     ]
     
     let pdfSignatureFields = [

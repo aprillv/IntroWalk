@@ -670,6 +670,11 @@ class PDFBaseViewController: BaseViewController, DoOperationDelegate, UIPopoverP
     func emailContractToBuyer() {
         
     }
-    
+    func submitBuyer1Sign(){
+        
+    }
+    func submitBuyer2Sign(){
+        
+    }
     
 }

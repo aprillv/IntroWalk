@@ -118,11 +118,25 @@
         if ([self.xname isEqualToString:@"p1EBExhibitbp1sellerInitialSign"]){
             ct.origin.x -= 40;
         }
+        
+//        if ([self.xname isEqualToString:@"p8buyer2Sign"]){
+//            ct.origin.y += 40;
+//        }
         btn.center = ct.origin;
         
         
         [btn setImage:[UIImage imageNamed:xtitle] forState:UIControlStateNormal];
         [btn addTarget:self action:@selector(popSignature:) forControlEvents:UIControlEventTouchUpInside];
+        UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(popSignature:)];
+        tap.numberOfTapsRequired = 1;
+        
+        [self addGestureRecognizer:tap];
+//        if ([self.xname isEqualToString:@"p8buyer2Sign"]){
+//            NSLog(@"))))))))%@ %@ %@", self, btn, view);
+//            btn.layer.borderColor = [UIColor blackColor].CGColor;
+//            btn.layer.borderWidth = 5.0f;
+//        }
+//        [view insertSubview:btn atIndex:0];
         [view insertSubview:btn aboveSubview:self];
     }
     
@@ -207,6 +221,9 @@
 
 - (void)popSignature:(id)sender {
 
+    if (!self.menubtn){
+        return;
+    }
         NSString *xtitle = @"";
         if ([self.xname containsString:@"bottom"] || [self.xname isEqualToString:@"p1EBExhibitbp1sellerInitialSign"]) {
             xtitle = @"Please print your initial here";

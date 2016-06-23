@@ -775,8 +775,38 @@ class PDFPrintViewController: PDFBaseViewController, UIScrollViewDelegate, PDFVi
                 }
             }
         }else{
-            seller2Item.title = nil
-            sendItem.image = UIImage(named: "send.png")
+            if let info = contractPdfInfo {
+                if info.status == CConstants.EmailSignedStatus {
+                    if info.ipadsignyn != 1 {
+                        if info.client2 == "" {
+                            if info.verify_code != "" && info.buyer1SignFinishedyn != 1 {
+                                seller2Item.title = "Waiting for Email Sign"
+                                sendItem.image = nil
+                            }else{
+                                seller2Item.title = nil
+                                sendItem.image = UIImage(named: "send.png")
+                            }
+                        }else{
+                            if info.verify_code != "" && info.buyer1SignFinishedyn != 1 || info.verify_code2 != "" && info.buyer2SignFinishedyn != 1{
+                                seller2Item.title = "Waiting for Email Sign"
+                                sendItem.image = nil
+                            }else{
+                                seller2Item.title = nil
+                                sendItem.image = UIImage(named: "send.png")
+                            }
+                        }
+                    }else{
+                        seller2Item.title = nil
+                        sendItem.image = UIImage(named: "send.png")
+                    }
+                }else{
+                    seller2Item.title = nil
+                    sendItem.image = UIImage(named: "send.png")
+                }
+               
+                
+            }
+            
         }
         
         setBuyer2()
@@ -2478,6 +2508,7 @@ private func getStr(h : [[String]]?) -> String {
                                         fromWeb = true
                                     }
                                 }
+                                tvc.contractInfo = self.contractPdfInfo
                                 tvc.justShowEmail = justShowEmail
                                 tvc.isapproved = isapproved
                                 tvc.FromWebSide = fromWeb
@@ -3001,7 +3032,7 @@ func GoToSendEmailToBuyer(msg msg: String, hasbuyer1: Bool, hasbuyer2: Bool) {
     }
     
     
-    func checkBuyer1() -> Bool {
+    func checkBuyer1() -> (Bool, SignatureView?) {
         let tl = toolpdf()
         var tmpa = [String]()
         for (_, tmp) in tl.pdfBuyer1SignatureFields {
@@ -3024,14 +3055,14 @@ func GoToSendEmailToBuyer(msg msg: String, hasbuyer1: Bool, hasbuyer2: Bool) {
             if let a = c as? SignatureView {
                 if tmpa.contains(a.xname) {
                     if !(a.lineArray != nil && a.lineArray.count > 0 && a.LineWidth != 0.0){
-                        print(a.xname)
-                        return false
+//                        print(a.xname)
+                        return (false, a)
                     }
                     
                 }
             }
         }
-        return true
+        return (true, nil)
     }
     
     func checkBuyer2() -> Bool {
@@ -3065,6 +3096,25 @@ func GoToSendEmailToBuyer(msg msg: String, hasbuyer1: Bool, hasbuyer2: Bool) {
             }
         }
         return true
+    }
+    
+    
+    override func submitBuyer1Sign(){
+        let (finishYN, sign) = checkBuyer1()
+        if finishYN {
+            let msg = "If you submit buyer1's Sign, buyer1's Sign will cannot modify."
+        }else{
+            let tlpdf = toolpdf()
+            let buyer1Sign = tlpdf.pdfBuyer1SignatureFields
+            if buyer1Sign["Sign Contract"]!.contains(sign?.xname ?? "") {
+                self.PopMsgWithJustOK(msg: "There is a filed need sign in Contract")
+            }
+        }
+        
+    
+    }
+    override func submitBuyer2Sign(){
+    
     }
     
 //    {"idcontract":"String","buyer1email":"String","buyer2email":"String","idcity":"String","idcia":"String","emailcc":"String","buyer1name":"String","buyer2name":"String","emailbody":"String","emailsubject":"String"}

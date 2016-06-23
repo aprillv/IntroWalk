@@ -81,4 +81,10 @@ class ContractSignature: ContractPDFBaseModel {
     var approvedate : String?
     var approveMonthdate : String?
     
+    var verify_code : String?
+    var verify_code2 : String?
+    var buyer1SignFinishedyn : NSNumber?
+    var buyer2SignFinishedyn : NSNumber?
+    
+    
 }
