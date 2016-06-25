@@ -83,6 +83,7 @@ static NSMutableArray *colors;
 //uiview默认的drawRect方法，覆盖重写，可在界面上重绘，并将AViewController.xib的文件设置为自定义的MyView
 - (void)drawRect:(CGRect)rect
 {
+//    NSLog(@"sfsdfsdfs %f %f", rect);
     //获取当前上下文，
     CGContextRef context=UIGraphicsGetCurrentContext();
     CGContextBeginPath(context);

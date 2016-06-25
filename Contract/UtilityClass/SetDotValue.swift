@@ -137,20 +137,31 @@ class SetDotValue : NSObject {
         var tobuyer3 : String
         var tobuyer4 : String
         if let b = pdfInfo!.bmobile1 == "" ? pdfInfo?.boffice1! : pdfInfo?.bmobile1! {
-            let a = b.componentsSeparatedByString("-")
-            if a.count > 2 {
-                tobuyer3 = a[0]
-                if tobuyer3.characters.count != 3 {
+            if b.containsString("-") {
+                let a = b.componentsSeparatedByString("-")
+                if a.count > 2 {
+                    tobuyer3 = a[0]
+                    if tobuyer3.characters.count != 3 {
+                        tobuyer3 = ""
+                        tobuyer4 = b
+                    }else{
+                        let index1 = b.startIndex.advancedBy(4)
+                        tobuyer4 = b.substringFromIndex(index1)
+                    }
+                }else{
                     tobuyer3 = ""
                     tobuyer4 = b
-                }else{
-                    let index1 = b.startIndex.advancedBy(4)
-                    tobuyer4 = b.substringFromIndex(index1)
                 }
+            
+            }else if strlen(b) >= 10 {
+                let ss = b.startIndex.advancedBy(3)
+                tobuyer3 = b.substringToIndex(ss)
+                tobuyer4 = b.substringFromIndex(ss)
             }else{
                 tobuyer3 = ""
                 tobuyer4 = b
             }
+            
         }else{
             tobuyer3 = ""
             tobuyer4 = ""
@@ -160,15 +171,25 @@ class SetDotValue : NSObject {
         var tobuyer5 : String
         var tobuyer6 : String
         if let b = pdfInfo!.bfax1 {
-            let a = b.componentsSeparatedByString("-")
-            if a.count > 2 {
-                tobuyer5 = a[0]
-                let index1 = b.startIndex.advancedBy(4)
-                tobuyer6 = b.substringFromIndex(index1)
+            if b.containsString("-") {
+                let a = b.componentsSeparatedByString("-")
+                if a.count > 2 {
+                    tobuyer5 = a[0]
+                    let index1 = b.startIndex.advancedBy(4)
+                    tobuyer6 = b.substringFromIndex(index1)
+                }else{
+                    tobuyer5 = ""
+                    tobuyer6 = b
+                }
+            }else if strlen(b) >= 10 {
+                let ss = b.startIndex.advancedBy(3)
+                tobuyer5 = b.substringToIndex(ss)
+                tobuyer6 = b.substringFromIndex(ss)
             }else{
                 tobuyer5 = ""
                 tobuyer6 = b
             }
+            
         }else{
             tobuyer5 = ""
             tobuyer6 = ""

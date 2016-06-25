@@ -30,6 +30,7 @@ struct CConstants{
     
     static let LoginingMsg = "   Logining...   "
     static let RequestMsg = "Requesting from server..."
+     static let SubmitMsg = "Submitting to server..."
     static let SavedMsg = "Saving to the BA Server..."
     static let SavedSuccessMsg = "Saved successfully."
     static let SavedFailMsg = "Saved fail."

@@ -20,6 +20,7 @@
 @property (nonatomic, assign) float originHeight;
 @property (nonatomic, assign) float originWidth;
 -(CGRect)getOriginFrame;
+-(NSMutableArray*)getNewOriginLine: (NSMutableArray *)lineArray3;
 -(void)drawInRect:(CGRect)rect withContext:(CGContextRef )context;
 //@property (nonatomic, retain)  float lineWidthArray[10]={5.0,10.0,12.0,14.0,16.0,20.0,22.0,24.0,26.0,28.0};
 //

@@ -172,6 +172,41 @@
     CGRect ct = CGRectMake(0, 0, maxx - minx + width*4, maxy - miny + width*4);
     return ct;
 }
+
+-(NSMutableArray*)getNewOriginLine: (NSMutableArray *)lineArray3{
+    
+    float width=5;
+    
+    CGFloat maxx = 0;
+    CGFloat maxy = 0;
+    CGFloat minx = self.frame.size.width;
+    CGFloat miny = self.frame.size.height;
+    for (NSArray* lineArray1 in lineArray3) {
+        for (NSString* cpline in lineArray1) {
+            CGPoint sPoint=CGPointFromString(cpline);
+            minx = MIN(sPoint.x, minx);
+            miny = MIN(sPoint.y, miny);
+            maxx = MAX(sPoint.x, maxx);
+            maxy = MAX(sPoint.y, maxy);
+        }
+    }
+    
+    NSMutableArray *na = [[NSMutableArray alloc] init];
+    
+//    CGRect ct = CGRectMake(0, 0, maxx - minx + width*4, maxy - miny + width*4);
+    for (NSArray* lineArray1 in lineArray3) {
+        NSMutableArray *na1 = [[NSMutableArray alloc] init];
+        for (NSString* cpline in lineArray1) {
+            CGPoint sPoint=CGPointFromString(cpline);
+            sPoint.x -= minx - width;
+            sPoint.y -= miny - width;
+            [na1 addObject: NSStringFromCGPoint(sPoint)];
+        }
+        [na addObject:na1];
+    }
+    return na;
+}
+
 -(void)toSignautre{
 //    NSLog(@"%@ -- %@", self.superview, self);
 //    if (self.menubtn){
@@ -371,6 +406,9 @@
 -(void)drawInRect:(CGRect)rect withContext:(CGContextRef )context{
     if (self.originHeight > 0) {
         //        ratios = MIN(frame.size.width/self.frame.size.width, frame.size.height/self.frame.size.height);
+        if ([self.xname isEqualToString:@"p1EBExhibitbp1sellerInitialSign"]){
+            NSLog(@"p1EBExhibitbp1sellerInitialSign");
+        }
         ratios = MIN(rect.size.height/self.originHeight, rect.size.width/self.originWidth);
 //        NSLog(@"%f == %f", rect.size.height/self.originHeight, rect.size.width/self.originWidth);
     }else{

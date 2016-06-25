@@ -25,4 +25,15 @@ class SignatrureFields: ContractObject {
     var signature_s1 : String?
     var hasCheckedPhoto : String?
     var brokerInfoPage2 : String?
+    
+    var idproject : String?
+    var nproject : String?
+    var client : String?
+    var client2 : String?
+    var buyer1SignFinshedyn : String?
+    var buyer2SignFinshedyn : String?
+    var email : String?
+    var flood : String?
+    var environment : String?
+//
 }

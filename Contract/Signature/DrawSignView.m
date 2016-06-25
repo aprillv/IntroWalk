@@ -220,6 +220,7 @@ self.backgroundColor = [UIColor colorWithRed: 35/255.0 green: 174/255.0 blue: 23
     colors=[[NSMutableArray alloc]initWithObjects:[UIColor greenColor],[UIColor blueColor],[UIColor redColor],[UIColor blackColor],[UIColor whiteColor], nil];
     self.buttonHidden=YES;
     self.widthHidden=YES;
+//    NSLog(@"%f", MIN(appFrame.size.width, appFrame.size.height) - 20);
     self.drawView=[[MyView alloc]initWithFrame:CGRectMake(0, 60, MIN(appFrame.size.width, appFrame.size.height) - 20, 800/3.0)];
     [self.drawView setBackgroundColor:RGBCOLOR(255, 255, 255)];
     [self addSubview: self.drawView];

@@ -28,7 +28,10 @@ protocol DoOperationDelegate
     func submitBuyer1Sign()
     func submitBuyer2Sign()
     
+    func changeBuyre1ToIPadSign()
+    func changeBuyre2ToIPadSign()
 }
+
 
 class SendOperationViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
@@ -74,7 +77,12 @@ class SendOperationViewController: UIViewController, UITableViewDelegate, UITabl
         static let operationEmailToBuyer = "Email Contract to Buyers"
         
         static let operationSubmitBuyer1 = "Submit Buyer1's sign"
+        static let operationSubmitBuyer1Finished = "Buyer1's sign Submitted"
         static let operationSubmitBuyer2 = "Submit Buyer2's sign"
+        static let operationSubmitBuyer2Finished = "Buyer2's sign Submitted"
+        
+        static let operationChangebuyer1ToIpad = "Change Buyer1 to iPad Sign"
+        static let operationChangebuyer2ToIpad = "Change Buyer2 to iPad Sign"
         
     }
     
@@ -88,20 +96,122 @@ class SendOperationViewController: UIViewController, UITableViewDelegate, UITabl
                 itemList = [constants.operationEmail]
             }else{
                 if FromWebSide ?? false {
-                    itemList = [constants.operationSubmit]
-                }else{
-                    if isapproved! {
-                        itemList = [constants.operationSaveFinish, constants.operationSaveEmail, constants.operationStartOver]
-                    }else{
-                        itemList = [constants.operationSavetoServer, constants.operationSubmit, constants.operationStartOver]
-                        itemList?.append(constants.operationAttatchPhoto)
-                        if let info = self.contractInfo {
-                            if info.client2 != "" {
-                                itemList?.append(constants.operationSubmitBuyer1)
-                                itemList?.append(constants.operationSubmitBuyer2)
+//                    itemList = [constants.operationSubmit, constants.operationAttatchPhoto]
+                    if let info = self.contractInfo {
+                        if info.buyer1SignFinishedyn == 1 && info.buyer2SignFinishedyn == 1 {
+                            itemList = [constants.operationSubmit, constants.operationAttatchPhoto]
+                            return
+                        }
+                        
+                        if info.client2 == "" {
+                            if info.ipadsignyn == 1 || info.buyer1SignFinishedyn == 1 {
+                                itemList = [constants.operationSubmit, constants.operationAttatchPhoto]
+                                return
+                            }
+                        }else {
+                            itemList = [String]()
+                            if info.buyer1SignFinishedyn == 0 && info.buyer2SignFinishedyn == 0{
+                                if info.verify_code != "" && info.verify_code2 != ""{
+                                   itemList?.append(constants.operationChangebuyer1ToIpad)
+                                    itemList?.append(constants.operationChangebuyer2ToIpad)
+                                }else if info.verify_code == "" && info.verify_code2 != ""{
+                                    itemList?.append(constants.operationSavetoServer)
+                                    itemList?.append(constants.operationStartOver)
+                                    itemList?.append(constants.operationSubmitBuyer1)
+                                    itemList?.append(constants.operationAttatchPhoto)
+                                    itemList?.append(constants.operationChangebuyer2ToIpad)
+                                    itemList?.append(constants.operationEmailToBuyer)
+                                }else if info.verify_code != "" && info.verify_code2 == ""{
+                                    itemList?.append(constants.operationSavetoServer)
+                                    itemList?.append(constants.operationStartOver)
+                                    itemList?.append(constants.operationSubmitBuyer2)
+                                    itemList?.append(constants.operationAttatchPhoto)
+                                    itemList?.append(constants.operationChangebuyer1ToIpad)
+                                    itemList?.append(constants.operationEmailToBuyer)
+                                }
+                                
+                            }else if info.buyer1SignFinishedyn == 0 && info.buyer2SignFinishedyn == 1{
+                                if info.verify_code != "" && info.verify_code2 != ""{
+                                    itemList?.append(constants.operationSubmitBuyer2Finished)
+                                    itemList?.append(constants.operationChangebuyer1ToIpad)
+                                    
+                                }else if info.verify_code == "" && info.verify_code2 != ""{
+                                    itemList?.append(constants.operationSavetoServer)
+                                    itemList?.append(constants.operationStartOver)
+                                    itemList?.append(constants.operationSubmitBuyer1)
+                                    itemList?.append(constants.operationSubmitBuyer2Finished)
+                                    itemList?.append(constants.operationSubmit)
+                                    itemList?.append(constants.operationAttatchPhoto)
+                                    itemList?.append(constants.operationEmailToBuyer)
+                                }else if info.verify_code != "" && info.verify_code2 == ""{
+                                    itemList?.append(constants.operationSubmitBuyer2Finished)
+                                    itemList?.append(constants.operationChangebuyer1ToIpad)
+                                }
+                            
+                            }else if info.buyer1SignFinishedyn == 1 && info.buyer2SignFinishedyn == 0{
+                                if info.verify_code != "" && info.verify_code2 != ""{
+                                    itemList?.append(constants.operationSubmitBuyer1Finished)
+                                    itemList?.append(constants.operationChangebuyer2ToIpad)
+                                    
+                                    
+                                }else if info.verify_code == "" && info.verify_code2 != ""{
+                                    itemList?.append(constants.operationSubmitBuyer1Finished)
+                                    itemList?.append(constants.operationChangebuyer2ToIpad)
+                                }else if info.verify_code != "" && info.verify_code2 == ""{
+                                    
+                                    itemList?.append(constants.operationSavetoServer)
+                                    itemList?.append(constants.operationStartOver)
+                                    itemList?.append(constants.operationSubmitBuyer1Finished)
+                                    itemList?.append(constants.operationSubmitBuyer2)
+                                    itemList?.append(constants.operationSubmit)
+                                    itemList?.append(constants.operationAttatchPhoto)
+                                }
+                            
                             }
                         }
-                        itemList?.append(constants.operationEmailToBuyer)
+                    
+                    }
+                }else{
+                    if isapproved! {
+                        print(self.contractInfo?.approvedate)
+                        if self.contractInfo?.approvedate == "" || (self.contractInfo?.approvedate ?? "1980").hasPrefix("1980"){
+                            itemList = nil
+                        }else{
+                            itemList = [constants.operationSaveFinish, constants.operationSaveEmail, constants.operationStartOver]
+                        }
+                        
+                    }else{
+                        if self.contractInfo?.buyer1SignFinishedyn == 1 && self.contractInfo?.buyer2SignFinishedyn == 1 {
+                            itemList = [constants.operationSubmit]
+                        }else{
+                            itemList = [constants.operationSavetoServer, constants.operationSubmit]
+                        }
+                        
+                        var isshow = false
+                        if let info = self.contractInfo {
+                            if info.client2 != "" {
+                                if self.contractInfo?.buyer1SignFinishedyn != 1 || self.contractInfo?.buyer2SignFinishedyn != 1 {
+                                    isshow = true
+                                    itemList?.append(constants.operationStartOver)
+                                }
+                            }
+                        }
+                        
+                        itemList?.append(constants.operationAttatchPhoto)
+                        if isshow {
+                            if self.contractInfo?.buyer1SignFinishedyn == 1 {
+                                itemList?.append(constants.operationSubmitBuyer1Finished)
+                            }else{
+                                itemList?.append(constants.operationSubmitBuyer1)
+                            }
+                            if self.contractInfo?.buyer2SignFinishedyn == 1 {
+                                itemList?.append(constants.operationSubmitBuyer2Finished)
+                            }else{
+                                itemList?.append(constants.operationSubmitBuyer2)
+                            }
+                            itemList?.append(constants.operationEmailToBuyer)
+                        }
+                        
                         
                     }
                 }
@@ -157,6 +267,9 @@ class SendOperationViewController: UIViewController, UITableViewDelegate, UITabl
                     cell.accessoryView = UIImageView(image: UIImage(named: "check3"))
                 }
             }
+        }else if cell.textLabel?.text == constants.operationSubmitBuyer1Finished || cell.textLabel?.text == constants.operationSubmitBuyer2Finished{
+//            cell.accessoryView = UIImageView(image: UIImage(named: "check3"))
+            cell.textLabel?.textColor = UIColor.darkGrayColor()
         }
         
         cell.textLabel?.textAlignment = .Center
@@ -213,6 +326,10 @@ class SendOperationViewController: UIViewController, UITableViewDelegate, UITabl
                     delegate0.submitBuyer1Sign()
                 case constants.operationSubmitBuyer2:
                     delegate0.submitBuyer2Sign()
+                case constants.operationChangebuyer1ToIpad:
+                    delegate0.changeBuyre1ToIPadSign()
+                case constants.operationChangebuyer2ToIpad:
+                    delegate0.changeBuyre2ToIPadSign()
                     default:
                         break
                 }
@@ -226,8 +343,9 @@ class SendOperationViewController: UIViewController, UITableViewDelegate, UITabl
     
     override var preferredContentSize: CGSize {
         get {
+//            print(tableView.frame.width)
             return CGSize(width: tableView.frame.width
-                , height: constants.rowHeight * CGFloat(itemList!.count))
+                , height: constants.rowHeight * CGFloat(itemList?.count ?? 1))
         }
         set { super.preferredContentSize = newValue }
     }

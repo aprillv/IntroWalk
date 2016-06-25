@@ -85,11 +85,29 @@ import UIKit
 //                print(info.bemail1, info.bemail2)
                 self.buyer1Email.text = (info.client ?? "") + " (" + (info.bemail1 ?? "") + ")"
                 if info.client2 ?? "" != "" {
-                    if info.bemail2 != "" {
-                        self.buyer2Email.text = (info.client2 ?? "") + " (" + (info.bemail2 ?? "") + ")"
-                    }else{
-                        self.buyer2Email.text = (info.client2 ?? "") + " (" + (info.bemail1 ?? "") + ")"
+                    if info.buyer1SignFinishedyn != 1 && info.buyer2SignFinishedyn != 1 && (info.verify_code == "" && info.verify_code2 == "") {
+                        if info.bemail2 != "" {
+                            self.buyer2Email.text = (info.client2 ?? "") + " (" + (info.bemail2 ?? "") + ")"
+                        }else{
+                            self.buyer2Email.text = (info.client2 ?? "") + " (" + (info.bemail1 ?? "") + ")"
+                        }
+                    }else if (info.buyer1SignFinishedyn == 1 || info.verify_code != "") {
+                        if info.bemail2 != "" {
+                            self.buyer1Email.text = (info.client2 ?? "") + " (" + (info.bemail2 ?? "") + ")"
+                        }else{
+                            self.buyer1Email.text = (info.client2 ?? "") + " (" + (info.bemail1 ?? "") + ")"
+                        }
+                        self.topDistance.constant = 11
+                        self.buyer2Email.hidden  = true
+                        self.buyer2Btn.hidden = true
+                        self.view.updateConstraints()
+                    }else if (info.buyer2SignFinishedyn == 1 || info.verify_code2 != ""){
+                        self.topDistance.constant = 11
+                        self.buyer2Email.hidden  = true
+                        self.buyer2Btn.hidden = true
+                        self.view.updateConstraints()
                     }
+                    
                     
                 }else{
                 self.topDistance.constant = 11
@@ -145,11 +163,18 @@ import UIKit
             }
         }
         @IBAction func doSubmit(sender: UIButton) {
-            let a = self.buyer1Btn.tag == 1
-            let b = self.buyer2Btn.tag == 1
+            var a = self.buyer1Btn.tag == 1
+            var b = self.buyer2Btn.tag == 1
+            
+            if (self.contractInfo?.buyer1SignFinishedyn == 1 || self.contractInfo?.verify_code2 != ""){
+                b = a
+                a = false
+            }
+            
             if !a && !b {
                 return
             }
+            
             self.dismissViewControllerAnimated(true) {
                 if self.delegate != nil {
                     

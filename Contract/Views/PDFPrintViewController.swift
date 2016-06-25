@@ -182,8 +182,12 @@ class PDFPrintViewController: PDFBaseViewController, UIScrollViewDelegate, PDFVi
         didSet{
 //           print("second")
             if let info = contractPdfInfo {
-                
-                if let c = contractInfo?.status {
+                contractInfo?.status = info.status
+                contractInfo?.signfinishdate = info.signfinishdate
+                contractInfo?.approvedate = info.approvedate
+                contractInfo?.approveMonthdate = info.approveMonthdate
+                setBuyer2()
+                if let c = info.status {
                     if c ==  CConstants.ApprovedStatus {
 //                        info.approvedate = "01/01/1980"
                         if (info.approvedate ?? "").hasSuffix("1980") {
@@ -191,8 +195,7 @@ class PDFPrintViewController: PDFBaseViewController, UIScrollViewDelegate, PDFVi
                             
                             info.approvedate = ""
                         }
-                        contractInfo?.approvedate = info.approvedate
-                        contractInfo?.approveMonthdate = info.approveMonthdate
+                        
                         if filesArray!.contains(CConstants.ActionTitleINFORMATION_ABOUT_BROKERAGE_SERVICES){
                             setBrokerDate()
                         }
@@ -214,9 +217,8 @@ class PDFPrintViewController: PDFBaseViewController, UIScrollViewDelegate, PDFVi
                     }
                 }
                 
-                contractInfo?.status = info.status
-                contractInfo?.signfinishdate = info.signfinishdate
-                print(info.ipadsignyn)
+                
+//                print(info.ipadsignyn)
                 let b = Bool(info.ipadsignyn ?? 0)
                 if b && (info.status == CConstants.DisApprovedStatus) {
                     self.PopMsgWithJustOK(msg: CConstants.GoToBAMsg, txtField: nil)
@@ -488,12 +490,9 @@ class PDFPrintViewController: PDFBaseViewController, UIScrollViewDelegate, PDFVi
         setAddendumC()
         
         
-    
-        
-        
         view2.addSubview(pdfView!)
         getSignature()
-        setBuyer2()
+        
         getAllSignature()
         
         
@@ -749,7 +748,7 @@ class PDFPrintViewController: PDFBaseViewController, UIScrollViewDelegate, PDFVi
             sendItem.image = nil
             seller2Item.title = "Status: \(CConstants.DisApprovedStatus)"
         }else if contractInfo!.status == CConstants.ApprovedStatus {
-            if let ds = self.contractInfo?.signfinishdate {
+            if let ds = self.contractPdfInfo?.signfinishdate {
                 if  ds != "01/01/1980"{
                     sendItem.image = nil
                     seller2Item.title = "Status: Finished"
@@ -762,8 +761,19 @@ class PDFPrintViewController: PDFBaseViewController, UIScrollViewDelegate, PDFVi
                     }
                     
                 }else{
-                    seller2Item.title = nil
-                    sendItem.image = UIImage(named: "send.png")
+                    if let fs = self.contractPdfInfo?.approvedate {
+                        if fs == "" || fs.hasSuffix("1980"){
+                            seller2Item.title = nil
+                            sendItem.image = nil
+                        }else{
+                            seller2Item.title = nil
+                            sendItem.image = UIImage(named: "send.png")
+                        }
+                    }else{
+                        seller2Item.title = nil
+                        sendItem.image = nil
+                    }
+                    
 //                    let hh = contractInfo?.approvedate ?? "1980"
 //                    if (hh.hasSuffix("1980") || hh.isEmpty ) {
 //                        sendItem.image = nil
@@ -781,7 +791,7 @@ class PDFPrintViewController: PDFBaseViewController, UIScrollViewDelegate, PDFVi
                         if info.client2 == "" {
                             if info.verify_code != "" && info.buyer1SignFinishedyn != 1 {
                                 seller2Item.title = "Waiting for Email Sign"
-                                sendItem.image = nil
+                                sendItem.image = UIImage(named: "send.png")
                             }else{
                                 seller2Item.title = nil
                                 sendItem.image = UIImage(named: "send.png")
@@ -789,7 +799,7 @@ class PDFPrintViewController: PDFBaseViewController, UIScrollViewDelegate, PDFVi
                         }else{
                             if info.verify_code != "" && info.buyer1SignFinishedyn != 1 || info.verify_code2 != "" && info.buyer2SignFinishedyn != 1{
                                 seller2Item.title = "Waiting for Email Sign"
-                                sendItem.image = nil
+                                sendItem.image = UIImage(named: "send.png")
                             }else{
                                 seller2Item.title = nil
                                 sendItem.image = UIImage(named: "send.png")
@@ -809,7 +819,7 @@ class PDFPrintViewController: PDFBaseViewController, UIScrollViewDelegate, PDFVi
             
         }
         
-        setBuyer2()
+//        setBuyer2()
         
     }
     
@@ -1231,11 +1241,22 @@ class PDFPrintViewController: PDFBaseViewController, UIScrollViewDelegate, PDFVi
 //        seller1Item.title = ""
 //        seller2Item.title = ""
         var showBuyer2 = false;
-        if let contract = self.contractInfo {
+        var showBuyer1 = true
+        if let contract = self.contractPdfInfo {
             if contract.client2! != "" {
                 showBuyer2 = true;
             }
+            if contract.verify_code2 != "" {
+                showBuyer2 = false
+            }
+            
+            if contract.verify_code != "" {
+                showBuyer1 = false
+            }
         }
+        
+        
+        
         
         var alldots = [PDFWidgetAnnotationView]()
         if let fileDotsDic1 = fileDotsDic{
@@ -1252,13 +1273,14 @@ class PDFPrintViewController: PDFBaseViewController, UIScrollViewDelegate, PDFVi
             }
         }
         
+        let tlpdf = toolpdf()
 //        if let fileDotsDic1 = fileDotsDic{
 //            for (_,allAdditionViews) in fileDotsDic1 {
                 for sign in alldots {
                     if sign.isKindOfClass(SignatureView) {
 //                        print(sign.xname!)
                         if let si = sign as? SignatureView {
-//                            if si.xname.hasSuffix("Sign3"){
+//                            if si.xname.hasSuffix("bottom3"){
 //                                print("\"\(si.xname)\",")
 //                            }
                             
@@ -1268,11 +1290,22 @@ class PDFPrintViewController: PDFBaseViewController, UIScrollViewDelegate, PDFVi
                                         || si.xname.containsString("bottom3"){
                                         continue
                                     }
+                                }else{
+                                    if !showBuyer1{
+                                        if si.menubtn != nil {
+                                            si.menubtn.removeFromSuperview()
+                                            si.menubtn = nil
+                                        }
+                                        
+                                    }
+                                    continue
                                 }
                                 
                             }else{
-                                if si.xname == "p1EBExhibitbp1sellerInitialSign" {
-                                    continue
+                                if si.xname == "p1EBExhibitbp1sellerInitialSign"{
+                                    
+                                        continue
+                                    
                                 }else if (si.xname.containsString("buyer")
                                     || si.xname.containsString("bottom1")
                                     || si.xname.containsString("bottom2")
@@ -1306,9 +1339,22 @@ class PDFPrintViewController: PDFBaseViewController, UIScrollViewDelegate, PDFVi
                                     continue
                                 }
                             }
+                            
+                            if !showBuyer1 {
+                                if (tlpdf.isBuyer1Sign(si)){
+                                    if si.menubtn != nil {
+                                        si.menubtn.removeFromSuperview()
+                                        si.menubtn = nil
+                                    }
+                                    continue
+                                }
+                            }
                            
                             si.pdfViewsssss = pdfView!
-                            if contractInfo?.status ?? "" == CConstants.DraftStatus || contractInfo?.status ?? "" == "Email Sign" || (contractInfo?.status ?? "" == CConstants.ApprovedStatus && contractInfo?.signfinishdate ?? "" == "01/01/1980") {
+                            if contractPdfInfo?.status ?? "" == CConstants.DraftStatus
+                                || contractPdfInfo?.status ?? "" == "Email Sign"
+                                || (contractPdfInfo?.status ?? "" == CConstants.ApprovedStatus
+                                    && contractPdfInfo?.signfinishdate ?? "" == "01/01/1980") {
                                 si.addSignautre(pdfView!.pdfView!.scrollView)
                             }
                             
@@ -1361,18 +1407,54 @@ class PDFPrintViewController: PDFBaseViewController, UIScrollViewDelegate, PDFVi
         
     }
     
+    
     override func startover() {
-        let alert: UIAlertController = UIAlertController(title: CConstants.MsgTitle, message: "Are you sure you want to Start Over", preferredStyle: .Alert)
+        let msg : String
+        if self.contractPdfInfo?.status == CConstants.ApprovedStatus {
+            msg = "Are you sure you want to Start Over?"
+        }else{
+            if self.contractPdfInfo?.buyer1SignFinishedyn == 1 {
+                msg = "Buyer1's Sign have submitted, this operation will just clean buyer2's sign. Are you sure you want to Start Over?"
+            }else if self.contractPdfInfo?.buyer2SignFinishedyn == 1 {
+                msg = "Buyer2's Sign have submitted, this operation will just clean buyer2's sign. Are you sure you want to Start Over?"
+            }else if self.contractPdfInfo?.verify_code2 != "" {
+                msg = "This operation will just clean buyer1's sign. Are you sure you want to Start Over?"
+            }else if self.contractPdfInfo?.verify_code != "" {
+                msg = "This operation will just clean buyer2's sign. Are you sure you want to Start Over?"
+            }else{
+                msg = "Are you sure you want to Start Over?"
+            }
+        }
+        
+        let alert: UIAlertController = UIAlertController(title: CConstants.MsgTitle, message: msg, preferredStyle: .Alert)
         
         //Create and add the OK action
         let oKAction: UIAlertAction = UIAlertAction(title: "Yes", style: .Default) { action -> Void in
-            //Do some stuff
+            //Do some stufrf
+            let tlpdf = toolpdf()
+            
             for doc in self.documents! {
                 if let dd = doc.addedviewss {
                     for d in dd{
                         if let sign = d as? SignatureView {
+                            if self.contractPdfInfo?.status != CConstants.ApprovedStatus {
+                                if self.contractPdfInfo?.buyer2SignFinishedyn == 1 || self.contractPdfInfo?.verify_code2 != ""{
+                                    if !tlpdf.isBuyer2Sign(sign) {
+                                        
+//                                        print(sign.xname)
+                                       self.clearSignature(sign)
+                                    }
+                                }else if self.contractPdfInfo?.buyer1SignFinishedyn == 1 || self.contractPdfInfo?.verify_code != "" {
+                                    if !tlpdf.isBuyer1Sign(sign) {
+                                        self.clearSignature(sign)
+                                    }
+                                }else{
+                                    self.clearSignature(sign)
+                                }
+                            }else{
+                                self.clearSignature(sign)
+                            }
                             
-                            self.clearSignature(sign)
                         }
                     }
                 }
@@ -1386,7 +1468,21 @@ class PDFPrintViewController: PDFBaseViewController, UIScrollViewDelegate, PDFVi
                     
                     for si in dots {
                         if let sign = si as? SignatureView{
-                            self.clearSignature(sign)
+                            if self.contractPdfInfo?.status != CConstants.ApprovedStatus {
+                                if self.contractPdfInfo?.buyer2SignFinishedyn == 1 || self.contractPdfInfo?.verify_code2 != ""{
+                                    if !tlpdf.isBuyer2Sign(sign) {
+                                        self.clearSignature(sign)
+                                    }
+                                }else if self.contractPdfInfo?.buyer1SignFinishedyn == 1 || self.contractPdfInfo?.verify_code != ""{
+                                    if !tlpdf.isBuyer1Sign(sign) {
+                                        self.clearSignature(sign)
+                                    }
+                                }else{
+                                    self.clearSignature(sign)
+                                }
+                            }else{
+                                self.clearSignature(sign)
+                            }
                             
                         }
                     }
@@ -1398,19 +1494,43 @@ class PDFPrintViewController: PDFBaseViewController, UIScrollViewDelegate, PDFVi
                 self.signature_s1yn = nil
                 self.signature_s1 = nil
             }else{
-                self.initial_b1 = nil
-                self.initial_b2 = nil
-                self.initial_s1 = nil
-                self.initial_b1yn = nil
-                self.initial_b2yn = nil
-                self.initial_s1yn = nil
-                self.signature_b1yn = nil
-                self.signature_b2yn = nil
-                self.signature_s1yn = nil
-                self.signature_b1 = nil
-                self.signature_b2 = nil
-                self.signature_s1 = nil
-                self.initial_index = nil
+                if self.contractPdfInfo?.buyer2SignFinishedyn == 1 {
+                    self.initial_b1 = nil
+                    self.initial_s1 = nil
+                    self.initial_b1yn = nil
+                    self.initial_s1yn = nil
+                    self.signature_b1yn = nil
+                    self.signature_s1yn = nil
+                    self.signature_b1 = nil
+                    self.signature_s1 = nil
+                    self.initial_index = nil
+                }else if self.contractPdfInfo?.buyer1SignFinishedyn == 1 {
+                    self.initial_b2 = nil
+                    self.initial_b2yn = nil
+                    self.signature_b1yn = nil
+                    self.signature_b2yn = nil
+                    self.initial_s1 = nil
+                    self.initial_s1yn = nil
+                    self.signature_s1yn = nil
+                    self.signature_s1 = nil
+                    self.signature_b2 = nil
+                }else{
+                    self.initial_b1 = nil
+                    self.initial_b2 = nil
+                    self.initial_s1 = nil
+                    self.initial_b1yn = nil
+                    self.initial_b2yn = nil
+                    self.initial_s1yn = nil
+                    self.signature_b1yn = nil
+                    self.signature_b2yn = nil
+                    self.signature_s1yn = nil
+                    self.signature_b1 = nil
+                    self.signature_b2 = nil
+                    self.signature_s1 = nil
+                    self.initial_index = nil
+                }
+                
+                
             }
             
         }
@@ -1962,13 +2082,27 @@ class PDFPrintViewController: PDFBaseViewController, UIScrollViewDelegate, PDFVi
             param["signature_s1"] = " "
         }
          param["checked_photo"] = " "
+        var reurl : String
+        if self.contractPdfInfo?.verify_code != "" {
+            param["whichBuyer"] = "2"
+            reurl = "bacontract_save_signNew.json"
+        }else if contractPdfInfo?.verify_code2 != "" {
+            param["whichBuyer"] = "1"
+            reurl = "bacontract_save_signNew.json"
+        }else{
+            reurl = "bacontract_save_sign.json"
+        }
+        
+//        print(reurl , param)
+//        return;
         self.hud = MBProgressHUD.showHUDAddedTo(self.view, animated: true)
         self.hud?.labelText = CConstants.SavedMsg
         
 //        print(param)
         
+        
         Alamofire.request(.POST,
-            CConstants.ServerURL + "bacontract_save_sign.json",
+            CConstants.ServerURL + reurl,
             parameters: param).responseJSON{ (response) -> Void in
                 //                self.hud?.hide(true)
 //                print(response.result.value)
@@ -1984,6 +2118,16 @@ class PDFPrintViewController: PDFBaseViewController, UIScrollViewDelegate, PDFVi
                             }else if xtype == 2 || xtype == 3{
                                 self.saveAndFinish2(xtype)
                             return
+                            }else if xtype == 4 {
+                                self.hud?.mode = .Text
+                                self.hud?.labelText = "Submitting to Sever..."
+                            // submit buyer1's sign finishe.
+                                self.submitBuyerSignStep2(true)
+                            }else if xtype == 5 {
+                                self.hud?.mode = .Text
+                                self.hud?.labelText = "Submitting to Sever..."
+                                // submit buyer2's sign finishe.
+                                self.submitBuyerSignStep2(false)
                             }else{
                                 self.hud?.mode = .CustomView
                                 let image = UIImage(named: CConstants.SuccessImageNm)
@@ -2155,6 +2299,14 @@ private func getStr(h : [[String]]?) -> String {
 //                                showseller =  (ds != "01/01/1980" && ss == CConstants.ApprovedStatus)
                                 showseller =  ss == CConstants.ApprovedStatus
                             }
+//                            let v = SignatureView()
+//                            let initial_b1Line = v.getNewOriginLine(self.initial_b1.componentsSeparatedByString(";").map(){$0.componentsSeparatedByString("|")})
+//                            var initial_b2Line : String?
+//                            var signature_b1Line : String?
+//                            var signature_b2Line : String?
+//                            var initial_s1Line : String?
+//                            var signature_s1Line : String?
+                            
                             for d in alldots{
                                 if let sign = d as? SignatureView {
 //                                    if  sign.xname.hasSuffix("bottom4")
@@ -2162,6 +2314,7 @@ private func getStr(h : [[String]]?) -> String {
 //                                        {
 //                                        print("\"" + sign.xname + "\"" + ",")
 //                                    }
+                                    
                                     
                                     if sign.xname == "p2Ibroker2buyer1Sign" {
                                     
@@ -2258,17 +2411,16 @@ private func getStr(h : [[String]]?) -> String {
         
     }
     
-    private func setShowSignature(si: SignatureView, signs: String, idcator : String) {
+    private func setShowSignature(si: SignatureView, signs signsx: String, idcator : String) {
        
-//            let signs = "{86, 14.5}|{86, 14.5}|{86, 17.5}|{86, 22}|{80.5, 31}|{70.5, 44}|{56.5, 65.5}|{22, 128.5}|{12, 157}|{10.5, 165.5}|{9, 168.5}|{7.5, 176}|{6, 179}|{5, 177.5}|{5, 163}|{6, 143}|{16.5, 117.5}|{29.5, 93}|{44.5, 69.5}|{55.5, 54}|{70.5, 34.5}|{75, 28}|{80.5, 17.5}|{84.5, 11}|{86, 8}|{87.5, 5.5}|{87.5, 5}|{89, 5}|{90.5, 5}|{96.5, 10}|{117, 35.5}|{125, 46.5}|{137, 68.5}|{143, 80.5}|{146, 92.5}|{147.5, 97.5}|{149, 102}|{149, 107}|{140, 108.5}|{132.5, 109.5}|{120, 111.5}|{108, 113}|{101.5, 114}|{92.5, 114}|{88, 114}|{85, 114}|{83.5, 114}|{82, 114}|{81.5, 113}|{81.5, 112.5}|{81.5, 111}|{86, 108.5}|{98, 107}|{113.5, 105}|{122, 103.5}|{129.5, 102}|{135.5, 102}|{140, 100.5}|{141.5, 100.5}|{142, 100}|{142, 99}|{142, 98}|{144, 96}|{154.5, 91.5}|{164, 88}|{180.5, 80.5}|{193, 75.5}|{197.5, 74}|{205.5, 72.5}|{208.5, 72.5}|{214.5, 72.5}|{214.5, 74}|{214.5, 81}|{214, 92.5}|{211, 108.5}|{208.5, 119}|{205.5, 131}|{205, 139}|{203.5, 143.5}|{202.5, 145}|{202, 145}|{202, 137.5}|{202, 121}|{205, 108}|{212.5, 90}|{217, 81}|{220, 78.5}|{225, 71}|{234, 69.5}|{241.5, 69.5}|{246.5, 69.5}|{252.5, 74}|{254.5, 77.5}|{256, 85}|{256, 94.5}|{256, 97.5}|{254.5, 100}|{251.5, 102.5}|{250, 104}|{247, 104}|{244, 102.5}|{244, 98.5}|{244, 85.5}|{249.5, 80}|{261.5, 71}|{268.5, 71}|{280.5, 68.5}|{290, 68.5}|{297.5, 68.5}|{300.5, 68.5}|{306.5, 68.5}|{308, 71.5}|{309.5, 74.5}|{310, 78.5}|{310, 82.5}|{310, 89.5}|{310, 91.5}|{314, 88.5}|{320, 82.5}|{325.5, 79.5}|{340, 71}|{348, 67}|{351, 67}|{357, 64}|{360, 62.5}|{361.5, 62.5}|{363, 62.5}"
-//        print(si.xname)
+        var signs = signsx
         if signs == "" {
             return
         }
         let signa = signs.componentsSeparatedByString(";").map(){$0.componentsSeparatedByString("|")}
 //        print(signa)
         si.frame = si.frame
-        
+//         print(si.frame)
         let ct = si.frame
         var ct2 = ct
         ct2.origin.x = 0.0
@@ -2276,12 +2428,40 @@ private func getStr(h : [[String]]?) -> String {
         si.frame = ct2
         si.frame = ct
         
-//        if si.xname == "p1EBbuyer1Sign" {
-//            print(si.xname, idcator)
+//        print(si.frame)
+//        
+//        if si.xname == "p1EBExhibitbp1sellerInitialSign" {
+//            print(si.xname)
 //        }
-        si.lineArray = signa as! NSMutableArray
-        si.originWidth = Float(si.getOriginFrame().width)
-        si.originHeight = Float(si.getOriginFrame().height)
+        si.lineArray = si.getNewOriginLine(signa as! NSMutableArray)
+        let ct3 = si.getOriginFrame()
+//
+//        let na = si.lineArray
+//        var minx = CGFloat(900000.0)
+//        var miny = CGFloat(999990.0)
+//        for nap in na {
+//            minx = min(minx, nap.X)
+//            miny = min(miny, nap.Y)
+//        }
+//        var nasss = [CGPoint]()
+//        for nap in na {
+//            nasss.append(CGPoint(x: nap.X - minx + 20, y: nap.Y - miny + 5))
+//        }
+//        si.lineArray = nasss as! NSMutableArray
+//        
+//        let radio = min(ct.width/ct3.width, ct.height/ct3.height)
+//        let www = ct.width/radio
+//        let hhhh = ct.height/radio
+//        let spacew = www - ct3.width
+//        let spaceh = hhhh - ct3.height
+        
+        
+       
+//        cw = (ct.size.width - (maxx - minx)-20)/2;
+//        ch = (ct.size.height - (maxy - miny)-20)/2;
+        
+        si.originWidth = Float(ct3.width)
+        si.originHeight = Float(ct3.height)
         
         if idcator == "1" {
             si.LineWidth = 5.0
@@ -2411,6 +2591,17 @@ private func getStr(h : [[String]]?) -> String {
             if self.seller2Item.title == "Status: Email Sign" {
                 return false
             }
+            if self.contractPdfInfo?.status == CConstants.ApprovedStatus {
+                if let fs = self.contractPdfInfo?.approvedate {
+                    if fs == "" || fs.hasSuffix("1980"){
+                        return false
+                    }
+                }else{
+                    return false
+                }
+            }
+            
+            
             return contractInfo!.status != CConstants.ForApproveStatus
         default:
             return true
@@ -2494,7 +2685,7 @@ private func getStr(h : [[String]]?) -> String {
                                 var fromWeb = false
                                 var justShowEmail = false
                                 
-                                if let c = contractInfo?.status {
+                                if let c = contractPdfInfo?.status {
                                     if c == CConstants.ApprovedStatus {
                                         isapproved = true
                                         
@@ -2524,11 +2715,14 @@ private func getStr(h : [[String]]?) -> String {
                                     for v in ddd {
                                         if let sign = v as? SignatureView {
                                             if (isapproved && (sign.xname.hasSuffix("bottom3") || sign.xname.hasSuffix("seller1Sign"))) || (!isapproved && !(sign.xname.hasSuffix("bottom3") || sign.xname.hasSuffix("seller1Sign"))){
-                                                if sign.lineArray?.count > 0 {
+                                                if sign.lineArray?.count  > 0 {
                                                     //                                            if sign.xname == "p1EBbuyer1Sign" {
                                                     //
                                                     //                                            }
-                                                    showSave = true
+                                                    
+                                                        showSave = true
+//                                                    }
+                                                    
                                                     if sign.LineWidth == 0.0 && sign.xname != "p1EBExhibitbp1sellerInitialSign"{
 //                                                                                                        print(sign.xname, sign.LineWidth, sign.lineArray)
                                                         showSubmit = false
@@ -2593,11 +2787,11 @@ private func getStr(h : [[String]]?) -> String {
 //        }
         hud?.labelText = "Submitting..."
 //        
-        let a =  ["idcontract1" : self.contractInfo!.idnumber!, "idcia": self.contractInfo!.idcia!, "email": userInfo.stringForKey(CConstants.UserInfoEmail) ?? "", "emailto" : email, "emailcc": emailcc, "msg": msg]
+//        let a =  ["idcontract1" : self.contractInfo!.idnumber!, "idcia": self.contractInfo!.idcia!, "email": userInfo.stringForKey(CConstants.UserInfoEmail) ?? "", "emailto" : email, "emailcc": emailcc, "msg": msg]
 ////
 ////        let a = ["idcontract1" : self.contractInfo!.idnumber!, "idcia": self.contractInfo!.idcia!, "email": userInfo.stringForKey(CConstants.UserInfoEmail) ?? "", "emailto" : "Roberto Reletez (roberto@buildersaccess.com)", "emailcc": "Kevin Zhao (kevin@buildersaccess.com)", "msg": msg]
         
-//         let a = ["idcontract1" : self.contractInfo!.idnumber!, "idcia": self.contractInfo!.idcia!, "email": userInfo.stringForKey(CConstants.UserInfoEmail) ?? "", "emailto" : "April Lv (April@buildersaccess.com)", "emailcc": "xiujun_85@163.com", "msg": msg]
+         let a = ["idcontract1" : self.contractInfo!.idnumber!, "idcia": self.contractInfo!.idcia!, "email": userInfo.stringForKey(CConstants.UserInfoEmail) ?? "", "emailto" : "April Lv (April@buildersaccess.com)", "emailcc": "xiujun_85@163.com", "msg": msg]
         
 //        return;
 //        print(a)
@@ -2680,6 +2874,7 @@ private func getStr(h : [[String]]?) -> String {
             Alamofire.request(.POST,
                 CConstants.ServerURL + CConstants.ContractUploadPdfURL,
                 parameters: parame).responseJSON{ (response) -> Void in
+                    print(response.result.value)
                     if response.result.isSuccess {
                         if let rtnValue = response.result.value as? [String: String]{
                             if rtnValue["status"] == "success" {
@@ -2968,8 +3163,8 @@ override func viewAttachPhoto(){
 
 func GoToSendEmailToBuyer(msg msg: String, hasbuyer1: Bool, hasbuyer2: Bool) {
     //bacontract_SendContractToBuyer
-    print("checkBuyer1", checkBuyer1())
-    print("checkBuyer2", checkBuyer2())
+//    print("checkBuyer1", checkBuyer1())
+//    print("checkBuyer2", checkBuyer2())
     if hasbuyer1 || hasbuyer2 {
         
         var b1:String
@@ -2980,19 +3175,21 @@ func GoToSendEmailToBuyer(msg msg: String, hasbuyer1: Bool, hasbuyer2: Bool) {
             b1email = contractPdfInfo?.bemail1 ?? ""
             b1 = contractPdfInfo?.client ?? ""
         }else{
-            b1email = ""
-            b1 = ""
+            b1email = " "
+            b1 = " "
         }
         
         if hasbuyer2 {
             b2email = contractPdfInfo?.bemail2 ?? ""
             b2 = contractPdfInfo?.client2 ?? ""
         }else{
-            b2email = ""
-            b2 = ""
+            b2email = " "
+            b2 = " "
         }
         
         let param = ["idcontract":"\(self.contractInfo?.idnumber ?? "")","buyer1email":"\(b1email)", "buyer2email":"\(b2email)","idcity":"\(self.contractInfo?.idcity ?? "")","idcia":"\(self.contractInfo?.idcia ?? "")","emailcc":"","buyer1name":"\(b1)","buyer2name":"\(b2)","emailbody":"\(msg)","emailsubject":"Sign contract online"]
+//        return
+//        print(param)
 //        return
         let hud = MBProgressHUD.showHUDAddedTo(self.view, animated: true)
         //                hud.mode = .AnnularDeterminate
@@ -3008,9 +3205,18 @@ func GoToSendEmailToBuyer(msg msg: String, hasbuyer1: Bool, hasbuyer2: Bool) {
                     
                     if let a = response.result.value as? Bool {
                         if a {
-                        
-                            self.sendItem.image = nil
-                            self.seller2Item.title = "Status: Email Sign"
+                            self.contractPdfInfo?.status = "Email Sign"
+                            if hasbuyer1 {
+                                self.contractPdfInfo?.verify_code = "1"
+                            }
+                            if hasbuyer2 {
+                                self.contractPdfInfo?.verify_code2 = "1"
+                            }
+                            self.setSendItema()
+                            self.setBuyer2()
+//                            self.sendItem.image = UIImage(named: "send.png")
+////                            self.sendItem.image = nil
+//                            self.seller2Item.title = "Status: Email Sign"
                         }else{
                             self.PopMsgWithJustOK(msg: CConstants.MsgServerError)
                         }
@@ -3100,21 +3306,196 @@ func GoToSendEmailToBuyer(msg msg: String, hasbuyer1: Bool, hasbuyer2: Bool) {
     
     
     override func submitBuyer1Sign(){
-        let (finishYN, sign) = checkBuyer1()
+        
+        
+    submitBuyerSignStep1(true)
+    }
+    
+    private func submitBuyerSignStep1(isbuyer1: Bool){
+        let tlpdf = toolpdf()
+        let (finishYN, sign) = tlpdf.CheckBuyerFinish(self.fileDotsDic, documents: self.documents, isbuyer1: isbuyer1)
         if finishYN {
-            let msg = "If you submit buyer1's Sign, buyer1's Sign will cannot modify."
+            var msg : String
+            if isbuyer1 {
+                msg = "If you submit buyer1's Sign, buyer1's Sign will cannot be modified any more. Are you sure you want to submit?"
+            }else{
+                msg = "If you submit buyer2's Sign, buyer2's Sign will cannot be modified any more. Are you sure you want to submit?"
+            }
+            let alert: UIAlertController = UIAlertController(title: CConstants.MsgTitle, message: msg, preferredStyle: .Alert)
+            
+            //Create and add the OK action
+            let oKAction: UIAlertAction = UIAlertAction(title: "YES", style: .Default)  { Void in
+                self.saveToServer1(isbuyer1 ? 4 : 5)
+                
+            }
+            alert.addAction(oKAction)
+            
+            let cancel: UIAlertAction = UIAlertAction(title: "Cancel", style: .Cancel){ Void in
+                
+            }
+            alert.addAction(cancel)
+            
+            
+            
+            //Present the AlertController
+            self.presentViewController(alert, animated: true, completion: nil)
         }else{
-            let tlpdf = toolpdf()
-            let buyer1Sign = tlpdf.pdfBuyer1SignatureFields
-            if buyer1Sign["Sign Contract"]!.contains(sign?.xname ?? "") {
-                self.PopMsgWithJustOK(msg: "There is a filed need sign in Contract")
+            
+            var  buyerSign =  isbuyer1 ? tlpdf.pdfBuyer1SignatureFields : tlpdf.pdfBuyer2SignatureFields
+            for (x, f) in buyerSign {
+                if f.contains(sign?.xname ?? "") {
+                    
+                    //                    self.PopMsgWithJustOK(msg: "There is a filed need sign in \(x) document.")
+                    
+                    let alert: UIAlertController = UIAlertController(title: CConstants.MsgTitle, message: "There is a filed need to be signed in \(x) document. Go to that field?", preferredStyle: .Alert)
+                    
+                    //Create and add the OK action
+                    let oKAction: UIAlertAction = UIAlertAction(title: CConstants.MsgOKTitle, style: .Default)  { Void in
+                        
+                        if let cg0 = sign?.center {
+                            var cg = cg0
+                            cg.x = 0
+                            cg.y = cg.y - self.view.frame.height/2
+                            if cg.y ?? 0 > 0 {
+                                self.pdfView?.pdfView.scrollView.setContentOffset(cg, animated: false)
+                            }
+                        }
+                        
+                        
+                    }
+                    alert.addAction(oKAction)
+                    
+                    let cancel: UIAlertAction = UIAlertAction(title: "Cancel", style: .Cancel){ Void in
+                        
+                    }
+                    alert.addAction(cancel)
+                    
+                    
+                    
+                    //Present the AlertController
+                    self.presentViewController(alert, animated: true, completion: nil)
+                    
+                }
             }
         }
-        
+    }
     
+    private func submitBuyerSignStep2(isbuyer1: Bool){
+//        let hud = MBProgressHUD.showHUDAddedTo(self.view, animated: true)
+//        //                hud.mode = .AnnularDeterminate
+//        hud.labelText = CConstants.RequestMsg
+        //        print(param, serviceUrl)
+        let param = ["idcontract":self.contractPdfInfo?.idnumber ?? "","buyer1yn": (isbuyer1 ? "1" : "0") ,"buyer2yn":(isbuyer1 ? "0" : "1")]
+        Alamofire.request(.POST,
+            CConstants.ServerURL + "bacontract_SubmitBuyerSignFinshed.json",
+            parameters: param).responseJSON{ (response) -> Void in
+                self.hud?.hide(true)
+                //                print(param, serviceUrl)
+                if response.result.isSuccess {
+                    
+                    if let rtnValue = response.result.value as? Bool{
+                        
+                        if rtnValue{
+                            if isbuyer1 {
+                                self.contractPdfInfo?.buyer1SignFinishedyn = 1
+                            }else{
+                                self.contractPdfInfo?.buyer2SignFinishedyn = 1
+                            }
+                            self.PopMsgWithJustOK(msg: "Submit successfully.")
+                        }else{
+                            self.PopMsgWithJustOK(msg: "Error happened when submit, please try it again later.")
+                        }
+                    }else{
+                        self.PopMsgWithJustOK(msg: CConstants.MsgServerError)
+                    }
+                }else{
+                    //                            self.spinner?.stopAnimating()
+                    self.PopMsgWithJustOK(msg: CConstants.MsgNetworkError)
+                }
+        }
     }
     override func submitBuyer2Sign(){
+    submitBuyerSignStep1(false)
+    }
     
+    
+    override func changeBuyre1ToIPadSign(){
+        changeBuyreToIPadSign(true)
+    }
+    override func changeBuyre2ToIPadSign(){
+        changeBuyreToIPadSign(false)
+    
+    }
+    
+    private func changeBuyreToIPadSign(isbuyer1 : Bool) {
+        var msg : String
+        if isbuyer1 {
+            msg = "If you change buyer1 to ipad sign, buyer1 will cannot sign online. Are you sure you want to submit?"
+        }else{
+            msg = "If you change buyer2 to ipad sign, buyer2 will cannot sign online. Are you sure you want to submit?"
+        }
+        
+        let alert: UIAlertController = UIAlertController(title: CConstants.MsgTitle, message: msg, preferredStyle: .Alert)
+        
+        //Create and add the OK action
+        let oKAction: UIAlertAction = UIAlertAction(title: "YES", style: .Default)  { Void in
+            self.changeBuyreToIPadSignStep2(isbuyer1)
+            
+        }
+        alert.addAction(oKAction)
+        
+        let cancel: UIAlertAction = UIAlertAction(title: "Cancel", style: .Cancel){ Void in
+            
+        }
+        alert.addAction(cancel)
+        
+        
+        
+        //Present the AlertController
+        self.presentViewController(alert, animated: true, completion: nil)
+    }
+    
+    private func changeBuyreToIPadSignStep2(isbuyer1 : Bool) {
+        let param = ["idcontract":self.contractPdfInfo?.idnumber ?? "","buyer1yn": (isbuyer1 ? "1" : "0") ,"buyer2yn":(isbuyer1 ? "0" : "1")]
+                let hud = MBProgressHUD.showHUDAddedTo(self.view, animated: true)
+                //                hud.mode = .AnnularDeterminate
+                hud.labelText = CConstants.SubmitMsg
+        Alamofire.request(.POST,
+            CConstants.ServerURL + "bacontract_ChangeEmailSignToIpadSign.json",
+            parameters: param).responseJSON{ (response) -> Void in
+                hud.hide(true)
+                //                print(param, serviceUrl)
+                if response.result.isSuccess {
+                    
+                    if let rtnValue = response.result.value as? Bool{
+                        
+                        if rtnValue{
+                            
+                            if isbuyer1 {
+                                self.contractPdfInfo?.verify_code = ""
+                                if self.contractPdfInfo?.verify_code2 == "" {
+                                    self.contractPdfInfo?.status = "iPad Sign"
+                                }
+                            }else {
+                                self.contractPdfInfo?.verify_code2 = ""
+                                if self.contractPdfInfo?.verify_code == "" {
+                                    self.contractPdfInfo?.status = "iPad Sign"
+                                }
+                            }
+                            self.setBuyer2()
+                            self.setSendItema()
+                            self.PopMsgWithJustOK(msg: "Submit successfully.")
+                        }else{
+                            self.PopMsgWithJustOK(msg: "Error happened when submit, please try it again later.")
+                        }
+                    }else{
+                        self.PopMsgWithJustOK(msg: CConstants.MsgServerError)
+                    }
+                }else{
+                    //                            self.spinner?.stopAnimating()
+                    self.PopMsgWithJustOK(msg: CConstants.MsgNetworkError)
+                }
+        }
     }
     
 //    {"idcontract":"String","buyer1email":"String","buyer2email":"String","idcity":"String","idcia":"String","emailcc":"String","buyer1name":"String","buyer2name":"String","emailbody":"String","emailsubject":"String"}
