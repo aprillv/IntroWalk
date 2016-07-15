@@ -467,49 +467,50 @@ let pdfBuyer2SignatureFields = [
     
     ]
     
-    let sellerSign = ["p1EBbottom3",
-                      "p1Abottom3",
-                      "p3Abottom3",
-                      "p4Abottom3",
-                      "p5Abottom3",
-                      "p6Aseller1Sign",
-                      "p6Abottom3",
-                      "p2Abottom3",
-                      "p1ACbottom3",
-                      "p1ECbottom3",
-                      "p2ECbottom3",
-                      "p3ECbottom3",
-                      "p1EAbottom3",
-                      "p1Fbottom3",
-                      "p1AEbottom3",
-                      "p2AEbottom3",
-                      "p1Dbottom3",
-                      "p1Wbottom3",
-                      "p2Wseller1Sign",
-                      "p2Wbottom3",
-                      "p1ADbottom3",
-                      "p2ADbottom3",
-                      "p1Ibottom3",
-                      "p2Ibottom3",
-                      "p1bottom3",
-                      "p2bottom3",
-                      "p3bottom3",
-                      "p4bottom3",
-                      "p5bottom3",
-                      "p6bottom3",
-                      "p7bottom3",
-                      "p8bottom3",
-                      "p8seller1Sign",
-                      "p9bottom3",
-                      "p1AHseller1Sign",
-                      "p1AHbottom3",
-                      "p1T3bottom3",
-                      "p2T3seller1Sign",
-                      "p2T3bottom3",
-                      "p1Hbottom3",
-                      "p2Hbottom3",
-                      "p3Hbottom3",
-                      "p1ACseller1Sign", "p1ACseller2Sign"]
+    let sellerSign = ["Exhibit B": ["p1EBbottom3"],
+                      "Addendum A" : ["p1Abottom3",
+                        "p2Abottom3",
+                        "p3Abottom3",
+                        "p4Abottom3",
+                        "p5Abottom3",
+                        "p6Aseller1Sign",
+                        "p6Abottom3"],
+                      "Addendum C" : ["p1ACseller1Sign",
+                        "p1ACbottom3"],
+                      "Exhibit C General" : ["p1ECbottom3",
+                        "p2ECbottom3",
+                        "p3ECbottom3"],
+                      "Exhibit A" : [ "p1EAbottom3"],
+                      "Floodplain Acknowledgement" : ["p1Fbottom3"],
+                      "Addendum E" : ["p1AEbottom3",
+                        "p2AEbottom3"],
+                      "Design Center" : ["p1Dbottom3"],
+                      "Warranty Acknowledgement" : ["p1Wbottom3",
+                        "p2Wseller1Sign",
+                        "p2Wbottom3"],
+                      "Addendum D" : ["p1ADbottom3",
+                        "p2ADbottom3"],
+                      "Information about Brokerage Services" : ["p1Ibottom3",
+                        "p2Ibottom3"],
+                      "Sign Contract" :["p1bottom3",
+                        "p2bottom3",
+                        "p3bottom3",
+                        "p4bottom3",
+                        "p5bottom3",
+                        "p6bottom3",
+                        "p7bottom3",
+                        "p8bottom3",
+                        "p8seller1Sign",
+                        "p9bottom3"],
+                      "Addendum for Property Subject to HOA" : ["p1AHseller1Sign",
+                        "p1AHbottom3"],
+                      "Third Party Financing Addendum" : ["p1T3bottom3",
+                        "p2T3seller1Sign",
+                        "p2T3bottom3"],
+                      "HOA Checklist" : ["p1Hbottom3",
+                        "p2Hbottom3",
+                        "p3Hbottom3"]]
+    
     
     let pdfSignatureFields = [
     ["p1bottom1",
@@ -770,8 +771,10 @@ let pdfBuyer2SignatureFields = [
     }
     
      func isSellerSign(sign : SignatureView) -> Bool{
-        if sellerSign.contains(sign.xname) {
-            return true
+        for (_, h) in self.sellerSign {
+            if h.contains(sign.xname) {
+                return true
+            }
         }
         
         return false
@@ -794,6 +797,46 @@ let pdfBuyer2SignatureFields = [
             
             if let n = fileDotsDic?[x] {
 //                print(fn)
+                alldots.appendContentsOf(n)
+                
+            }
+            if x == "Addendum C" {
+                for doc in documents!{
+                    if let a = doc.addedviewss as? [PDFWidgetAnnotationView]{
+                        alldots.appendContentsOf(a)
+                    }
+                }
+            }
+            
+        }
+        
+        for c in alldots {
+            if let a = c as? SignatureView {
+                if tmpa.contains(a.xname) {
+                    if !(a.lineArray != nil && a.lineArray.count > 0 && a.LineWidth != 0.0){
+                        //                        print(a.xname)
+                        return (false, a)
+                    }
+                    
+                }
+            }
+        }
+        return (true, nil)
+    }
+    
+    func CheckSellerFinish( fileDotsDic : [String : [PDFWidgetAnnotationView]]?, documents : [PDFDocument]?) -> (Bool, SignatureView?) {
+        
+        var tmpa = [String]()
+        var alldots = [PDFWidgetAnnotationView]()
+        for x in self.filenm {
+           
+            if let tmp = self.sellerSign[x] {
+                tmpa.appendContentsOf(tmp)
+            }
+            
+            
+            if let n = fileDotsDic?[x] {
+                //                print(fn)
                 alldots.appendContentsOf(n)
                 
             }

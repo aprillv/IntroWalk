@@ -680,4 +680,8 @@ class PDFBaseViewController: BaseViewController, DoOperationDelegate, UIPopoverP
     func changeBuyre1ToIPadSign(){}
     func changeBuyre2ToIPadSign(){}
     
+    func gotoBuyer1Sign() {}
+    func gotoBuyer2Sign() {}
+    func gotoSellerSign() {}
+    
 }

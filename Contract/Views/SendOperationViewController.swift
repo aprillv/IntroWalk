@@ -30,6 +30,10 @@ protocol DoOperationDelegate
     
     func changeBuyre1ToIPadSign()
     func changeBuyre2ToIPadSign()
+    
+    func gotoBuyer1Sign()
+    func gotoBuyer2Sign()
+    func gotoSellerSign()
 }
 
 
@@ -51,6 +55,11 @@ class SendOperationViewController: UIViewController, UITableViewDelegate, UITabl
     var isapproved : Bool?
     var justShowEmail : Bool?
     var hasCheckedPhoto : String?
+    
+    var showBuyer1GoToSign: Bool = false
+    var showBuyer2GoToSign : Bool = false
+    var showSellerGoToSign : Bool = false
+    
     var itemList : [String]?{
         didSet{
             if let _ = itemList{
@@ -74,6 +83,7 @@ class SendOperationViewController: UIViewController, UITableViewDelegate, UITabl
         static let operationFillDraftInfo = "Fill Buyer's Fields"
         static let operationAttatchPhoto = "Attach Photo Check"
         static let operationViewAttatchPhoto = "View Photo Check"
+        
         static let operationEmailToBuyer = "Email Contract to Buyers"
         
         static let operationSubmitBuyer1 = "Submit Buyer1's sign"
@@ -83,6 +93,11 @@ class SendOperationViewController: UIViewController, UITableViewDelegate, UITabl
         
         static let operationChangebuyer1ToIpad = "Change Buyer1 to iPad Sign"
         static let operationChangebuyer2ToIpad = "Change Buyer2 to iPad Sign"
+        
+        static let operationBuyerGoToSign = "Buyer Go To Sign"
+    static let operationBuyer1GoToSign = "Buyer1 Go To Sign"
+        static let operationBuyer2GoToSign = "Buyer2 Go To Sign"
+        static let operationSellerGoToSign = "Seller Go To Sign"
         
     }
     
@@ -107,6 +122,10 @@ class SendOperationViewController: UIViewController, UITableViewDelegate, UITabl
                             if info.ipadsignyn == 1 || info.buyer1SignFinishedyn == 1 {
                                 itemList = [constants.operationSubmit, constants.operationAttatchPhoto]
                                 return
+                            }else{
+                                itemList = [constants.operationChangebuyer1ToIpad, constants.operationAttatchPhoto]
+                                return
+                                
                             }
                         }else {
                             itemList = [String]()
@@ -121,6 +140,9 @@ class SendOperationViewController: UIViewController, UITableViewDelegate, UITabl
                                     itemList?.append(constants.operationAttatchPhoto)
                                     itemList?.append(constants.operationChangebuyer2ToIpad)
                                     itemList?.append(constants.operationEmailToBuyer)
+                                    
+//                                    itemList?.append(constants.operationGoToSign)
+                                    
                                 }else if info.verify_code != "" && info.verify_code2 == ""{
                                     itemList?.append(constants.operationSavetoServer)
                                     itemList?.append(constants.operationStartOver)
@@ -128,6 +150,8 @@ class SendOperationViewController: UIViewController, UITableViewDelegate, UITabl
                                     itemList?.append(constants.operationAttatchPhoto)
                                     itemList?.append(constants.operationChangebuyer1ToIpad)
                                     itemList?.append(constants.operationEmailToBuyer)
+                                    
+//                                    itemList?.append(constants.operationGoToSign)
                                 }
                                 
                             }else if info.buyer1SignFinishedyn == 0 && info.buyer2SignFinishedyn == 1{
@@ -143,6 +167,10 @@ class SendOperationViewController: UIViewController, UITableViewDelegate, UITabl
                                     itemList?.append(constants.operationSubmit)
                                     itemList?.append(constants.operationAttatchPhoto)
                                     itemList?.append(constants.operationEmailToBuyer)
+                                    
+                                    
+//                                    itemList?.append(constants.operationGoToSign)
+                                    
                                 }else if info.verify_code != "" && info.verify_code2 == ""{
                                     itemList?.append(constants.operationSubmitBuyer2Finished)
                                     itemList?.append(constants.operationChangebuyer1ToIpad)
@@ -165,6 +193,8 @@ class SendOperationViewController: UIViewController, UITableViewDelegate, UITabl
                                     itemList?.append(constants.operationSubmitBuyer2)
                                     itemList?.append(constants.operationSubmit)
                                     itemList?.append(constants.operationAttatchPhoto)
+                                    
+//                                    itemList?.append(constants.operationGoToSign)
                                 }
                             
                             }
@@ -173,18 +203,21 @@ class SendOperationViewController: UIViewController, UITableViewDelegate, UITabl
                     }
                 }else{
                     if isapproved! {
-                        print(self.contractInfo?.approvedate)
+//                        print(self.contractInfo?.approvedate)
                         if self.contractInfo?.approvedate == "" || (self.contractInfo?.approvedate ?? "1980").hasPrefix("1980"){
                             itemList = nil
                         }else{
                             itemList = [constants.operationSaveFinish, constants.operationSaveEmail, constants.operationStartOver]
+                            
+//                            itemList?.append(constants.operationGoToSign)
                         }
                         
                     }else{
                         if self.contractInfo?.buyer1SignFinishedyn == 1 && self.contractInfo?.buyer2SignFinishedyn == 1 {
                             itemList = [constants.operationSubmit]
                         }else{
-                            itemList = [constants.operationSavetoServer, constants.operationSubmit]
+                            itemList = [constants.operationSavetoServer, constants.operationSubmit, constants.operationEmailToBuyer]
+                            
                         }
                         
                         var isshow = false
@@ -212,6 +245,11 @@ class SendOperationViewController: UIViewController, UITableViewDelegate, UITabl
                             itemList?.append(constants.operationEmailToBuyer)
                         }
                         
+//                        if (itemList ?? [String]()).contains(constants.operationSavetoServer) {
+//                            
+//                            itemList?.append(constants.operationGoToSign)
+//                        }
+                        
                         
                     }
                 }
@@ -219,6 +257,39 @@ class SendOperationViewController: UIViewController, UITableViewDelegate, UITabl
 //                itemList?.append(constants.operationEmailToBuyer)
             }
             
+            
+            if showBuyer1GoToSign {
+                if contractInfo?.client2 == "" {
+                    itemList?.append(constants.operationBuyerGoToSign)
+                }else{
+                    itemList?.append(constants.operationBuyer1GoToSign)
+                }
+            }
+            if showBuyer2GoToSign{
+                itemList?.append(constants.operationBuyer2GoToSign)
+            }
+            if showSellerGoToSign {
+                itemList?.append(constants.operationSellerGoToSign)
+            }
+            let user = (NSUserDefaults.standardUserDefaults().stringForKey(CConstants.UserInfoEmail) ?? "").lowercaseString
+            if !(user == CConstants.Administrator || user == "cindyl@lovetthomes.com") {
+                if let list = itemList {
+                    let nass = [constants.operationEmailToBuyer,
+                                constants.operationSubmitBuyer1 ,
+                                constants.operationSubmitBuyer1Finished,
+                                constants.operationSubmitBuyer2 ,
+                                constants.operationSubmitBuyer2Finished,
+                                constants.operationChangebuyer1ToIpad ,
+                                constants.operationChangebuyer2ToIpad ]
+                    var h = [String]()
+                    for i in list {
+                        if !nass.contains(i) {
+                            h.append(i)
+                        }
+                    }
+                    itemList = h 
+                }
+            }
             
             
         }else{
@@ -296,6 +367,14 @@ class SendOperationViewController: UIViewController, UITableViewDelegate, UITabl
                     
                 case constants.operationFillDraftInfo:
                     delegate0.fillDraftInfo()
+                case constants.operationBuyerGoToSign,
+                     constants.operationBuyer1GoToSign:
+                    delegate0.gotoBuyer1Sign()
+                case constants.operationBuyer2GoToSign:
+                    delegate0.gotoBuyer2Sign()
+                case constants.operationSellerGoToSign:
+                    delegate0.gotoSellerSign()
+                    
                 case constants.operationClearDraftInfo:
                     delegate0.clearDraftInfo()
                 case constants.operationStartOver:

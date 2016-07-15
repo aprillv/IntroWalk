@@ -85,7 +85,6 @@
 		1170C8D31CD1F26300E81BCC /* FloodaplainAcknowledement.pdf in Resources */ = {isa = PBXBuildFile; fileRef = 1170C8C91CD1F26300E81BCC /* FloodaplainAcknowledement.pdf */; };
 		1170C8D81CD1F42500E81BCC /* Hoa_Checklist.pdf in Resources */ = {isa = PBXBuildFile; fileRef = 1170C8D61CD1F42500E81BCC /* Hoa_Checklist.pdf */; };
 		1176D20F1BFDC67C001C1C3E /* AddressListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1176D20E1BFDC67C001C1C3E /* AddressListViewController.swift */; };
-		117E8CCC1D10EBA200932F08 /* BaseContract.pdf in Resources */ = {isa = PBXBuildFile; fileRef = 117E8CCB1D10EBA200932F08 /* BaseContract.pdf */; };
 		117F9B6B1C756706008B26D5 /* PrintModelTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 117F9B6A1C756706008B26D5 /* PrintModelTableViewController.swift */; };
 		1186B8201D0F9B5F00D0C91C /* EmailAfterApprovedViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1186B81F1D0F9B5F00D0C91C /* EmailAfterApprovedViewController.swift */; };
 		118939A11CE429D600B771CE /* AddendumA.pdf in Resources */ = {isa = PBXBuildFile; fileRef = 1189399C1CE429D600B771CE /* AddendumA.pdf */; };
@@ -97,6 +96,7 @@
 		11A50B421C783BFC0017AA53 /* AddressListModelViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11A50B411C783BFC0017AA53 /* AddressListModelViewController.swift */; };
 		11A626351CD989F500B91EBE /* FilterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11A626341CD989F500B91EBE /* FilterViewController.swift */; };
 		11A626371CD98C9D00B91EBE /* filterCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11A626361CD98C9D00B91EBE /* filterCell.swift */; };
+		11AC35C21D38B1EA00A69748 /* BaseContract.pdf in Resources */ = {isa = PBXBuildFile; fileRef = 11AC35C11D38B1EA00A69748 /* BaseContract.pdf */; };
 		11B18F101C8435C100D39019 /* AddressListModelCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11B18F0F1C8435C100D39019 /* AddressListModelCell.swift */; };
 		11BAB2721D1251FA00F99505 /* BaseContract_Austin.pdf in Resources */ = {isa = PBXBuildFile; fileRef = 11BAB2711D1251FA00F99505 /* BaseContract_Austin.pdf */; };
 		11D911001C1AB33D00CD018A /* ContractAddendumC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11D910FF1C1AB33D00CD018A /* ContractAddendumC.swift */; };
@@ -234,7 +234,6 @@
 		1170C8C91CD1F26300E81BCC /* FloodaplainAcknowledement.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; path = FloodaplainAcknowledement.pdf; sourceTree = "<group>"; };
 		1170C8D61CD1F42500E81BCC /* Hoa_Checklist.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; path = Hoa_Checklist.pdf; sourceTree = "<group>"; };
 		1176D20E1BFDC67C001C1C3E /* AddressListViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddressListViewController.swift; sourceTree = "<group>"; };
-		117E8CCB1D10EBA200932F08 /* BaseContract.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; path = BaseContract.pdf; sourceTree = "<group>"; };
 		117F9B6A1C756706008B26D5 /* PrintModelTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PrintModelTableViewController.swift; sourceTree = "<group>"; };
 		1186B81F1D0F9B5F00D0C91C /* EmailAfterApprovedViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EmailAfterApprovedViewController.swift; sourceTree = "<group>"; };
 		1189399C1CE429D600B771CE /* AddendumA.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; path = AddendumA.pdf; sourceTree = "<group>"; };
@@ -246,6 +245,7 @@
 		11A50B411C783BFC0017AA53 /* AddressListModelViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddressListModelViewController.swift; sourceTree = "<group>"; };
 		11A626341CD989F500B91EBE /* FilterViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FilterViewController.swift; sourceTree = "<group>"; };
 		11A626361CD98C9D00B91EBE /* filterCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = filterCell.swift; sourceTree = "<group>"; };
+		11AC35C11D38B1EA00A69748 /* BaseContract.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; path = BaseContract.pdf; sourceTree = "<group>"; };
 		11B18F0F1C8435C100D39019 /* AddressListModelCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddressListModelCell.swift; sourceTree = "<group>"; };
 		11BAB2711D1251FA00F99505 /* BaseContract_Austin.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; path = BaseContract_Austin.pdf; sourceTree = "<group>"; };
 		11D910FF1C1AB33D00CD018A /* ContractAddendumC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContractAddendumC.swift; sourceTree = "<group>"; };
@@ -477,8 +477,8 @@
 		110CE6AD1C0439A70096E630 /* pdf */ = {
 			isa = PBXGroup;
 			children = (
+				11AC35C11D38B1EA00A69748 /* BaseContract.pdf */,
 				11BAB2711D1251FA00F99505 /* BaseContract_Austin.pdf */,
-				117E8CCB1D10EBA200932F08 /* BaseContract.pdf */,
 				118939A71CE42D8900B771CE /* AddendumA_Austin.pdf */,
 				1189399C1CE429D600B771CE /* AddendumA.pdf */,
 				1189399E1CE429D600B771CE /* EXHIBIT_B_Austin.pdf */,
@@ -628,11 +628,11 @@
 				118939A41CE429D600B771CE /* EXHIBIT_C_General_Austin.pdf in Resources */,
 				118939A31CE429D600B771CE /* EXHIBIT_B_Austin.pdf in Resources */,
 				1108B1B71BFC2691004B5D48 /* Main.storyboard in Resources */,
-				117E8CCC1D10EBA200932F08 /* BaseContract.pdf in Resources */,
 				11632BF61CD2DF2F00B70C44 /* INFORMATION_ABOUT_BROKERAGE_SERVICES2.pdf in Resources */,
 				1164A18A1CCDDF7E005A2A69 /* AddendumC2.pdf in Resources */,
 				116C2C891CCCB72400B07865 /* trec_36-8.pdf in Resources */,
 				1170C8CF1CD1F26300E81BCC /* EXHIBIT_B.pdf in Resources */,
+				11AC35C21D38B1EA00A69748 /* BaseContract.pdf in Resources */,
 				1170C8D81CD1F42500E81BCC /* Hoa_Checklist.pdf in Resources */,
 				1170C8D11CD1F26300E81BCC /* EXHIBIT_A.pdf in Resources */,
 				1164A1891CCDDF7E005A2A69 /* AddendumC.pdf in Resources */,

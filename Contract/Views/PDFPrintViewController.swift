@@ -2705,6 +2705,29 @@ private func getStr(h : [[String]]?) -> String {
                                 tvc.FromWebSide = fromWeb
                                 tvc.hasCheckedPhoto = contractPdfInfo?.hasCheckedPhoto ?? "0"
 //                                print(tvc.hasCheckedPhoto)
+                                let tp = toolpdf()
+                                if isapproved {
+                                    let (n3, _) = tp.CheckSellerFinish(self.fileDotsDic, documents: self.documents)
+                                    tvc.showSellerGoToSign = !n3
+                                }else{
+                                    if self.contractPdfInfo?.buyer1SignFinishedyn == 1 || self.contractPdfInfo?.verify_code != ""{
+                                        tvc.showBuyer1GoToSign = false
+                                    }else{
+                                        let (n, _) = tp.CheckBuyerFinish(self.fileDotsDic, documents: self.documents, isbuyer1: true)
+                                        tvc.showBuyer1GoToSign = !n
+                                    }
+                                    
+                                    
+                                    
+                                    if self.contractPdfInfo?.client2 == "" || self.contractPdfInfo?.buyer2SignFinishedyn == 1 || self.contractPdfInfo?.verify_code2 != ""{
+                                        tvc.showBuyer2GoToSign = false
+                                    }else{
+                                        let (n1, _) = tp.CheckBuyerFinish(self.fileDotsDic, documents: self.documents, isbuyer1: false)
+                                        tvc.showBuyer2GoToSign = !n1
+                                    }
+                                   
+                                }
+                                
                                 if let dots = pdfView?.pdfWidgetAnnotationViews {
                                     let ddd = dots
                                     for doc in documents! {
@@ -3205,6 +3228,7 @@ func GoToSendEmailToBuyer(msg msg: String, hasbuyer1: Bool, hasbuyer2: Bool) {
                     
                     if let a = response.result.value as? Bool {
                         if a {
+                            
                             self.contractPdfInfo?.status = "Email Sign"
                             if hasbuyer1 {
                                 self.contractPdfInfo?.verify_code = "1"
@@ -3214,6 +3238,7 @@ func GoToSendEmailToBuyer(msg msg: String, hasbuyer1: Bool, hasbuyer2: Bool) {
                             }
                             self.setSendItema()
                             self.setBuyer2()
+                            self.PopMsgWithJustOK(msg: "Email Contract to Buyer successfully.")
 //                            self.sendItem.image = UIImage(named: "send.png")
 ////                            self.sendItem.image = nil
 //                            self.seller2Item.title = "Status: Email Sign"
@@ -3430,7 +3455,12 @@ func GoToSendEmailToBuyer(msg msg: String, hasbuyer1: Bool, hasbuyer2: Bool) {
     private func changeBuyreToIPadSign(isbuyer1 : Bool) {
         var msg : String
         if isbuyer1 {
-            msg = "If you change buyer1 to ipad sign, buyer1 will cannot sign online. Are you sure you want to submit?"
+            if self.contractPdfInfo?.client2 == "" {
+                msg = "If you change buyer to ipad sign, buyer will cannot sign online. Are you sure you want to submit?"
+            }else{
+                msg = "If you change buyer1 to ipad sign, buyer1 will cannot sign online. Are you sure you want to submit?"
+            }
+            
         }else{
             msg = "If you change buyer2 to ipad sign, buyer2 will cannot sign online. Are you sure you want to submit?"
         }
@@ -3495,6 +3525,42 @@ func GoToSendEmailToBuyer(msg msg: String, hasbuyer1: Bool, hasbuyer2: Bool) {
                     //                            self.spinner?.stopAnimating()
                     self.PopMsgWithJustOK(msg: CConstants.MsgNetworkError)
                 }
+        }
+    }
+    
+    override func gotoBuyer1Sign() {
+    self.gotoBuyerSign(true)
+    }
+    override func gotoBuyer2Sign() {
+    self.gotoBuyerSign(false)
+    }
+    override func gotoSellerSign() {
+        let tp = toolpdf()
+        let (t, sign) =  tp.CheckSellerFinish(self.fileDotsDic, documents: self.documents)
+        if !t {
+            if let cg0 = sign?.center {
+                var cg = cg0
+                cg.x = 0
+                cg.y = cg.y - self.view.frame.height/2
+                if cg.y ?? 0 > 0 {
+                    self.pdfView?.pdfView.scrollView.setContentOffset(cg, animated: false)
+                }
+            }
+        }
+    }
+    
+    func gotoBuyerSign(isbuyer: Bool) {
+        let tp = toolpdf()
+        let (t, sign) =  tp.CheckBuyerFinish(self.fileDotsDic, documents: self.documents, isbuyer1: isbuyer)
+        if !t {
+            if let cg0 = sign?.center {
+                var cg = cg0
+                cg.x = 0
+                cg.y = cg.y - self.view.frame.height/2
+                if cg.y ?? 0 > 0 {
+                    self.pdfView?.pdfView.scrollView.setContentOffset(cg, animated: false)
+                }
+            }
         }
     }
     
