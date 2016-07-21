@@ -169,7 +169,7 @@
     
 //    NSMutableArray *na = [[NSMutableArray alloc] init];
     
-    CGRect ct = CGRectMake(0, 0, maxx - minx + width*4, maxy - miny + width*4);
+    CGRect ct = CGRectMake(0, 0, maxx - minx + width*4+4, maxy - miny + width*4+4);
     return ct;
 }
 
@@ -415,6 +415,11 @@
         ratios = 1;
     }
     
+    CGFloat xh =  rect.size.width / ratios - self.originWidth;
+    CGFloat yh =  rect.size.height / ratios - self.originHeight ;
+    xh = xh/2;
+    yh = yh/2;
+    
     
     CGFloat prex = 2;
 //    CGContextRef context=UIGraphicsGetCurrentContext();
@@ -436,13 +441,13 @@
             {
                 CGContextBeginPath(context);
                 CGPoint myStartPoint=CGPointFromString([array objectAtIndex:0]);
-                CGContextMoveToPoint(context, myStartPoint.x*ratios+prex, myStartPoint.y*ratios);
+                CGContextMoveToPoint(context, (myStartPoint.x +xh)*ratios+prex, (myStartPoint.y+yh)*ratios);
                 
                 for (int j=0; j<[array count]-1; j++)
                 {
                     CGPoint myEndPoint=CGPointFromString([array objectAtIndex:j+1]);
                     //--------------------------------------------------------
-                    CGContextAddLineToPoint(context, myEndPoint.x*ratios+prex,myEndPoint.y*ratios);
+                    CGContextAddLineToPoint(context, (myEndPoint.x + xh) *ratios+prex , (myEndPoint.y+ yh)*ratios );
                 }
                 //获取colorArray数组里的要绘制线条的颜色
                 

@@ -163,13 +163,37 @@ import UIKit
             }
         }
         @IBAction func doSubmit(sender: UIButton) {
+//            print(self.buyer1Email.text, self.buyer2Email.text)
+//            return
             var a = self.buyer1Btn.tag == 1
             var b = self.buyer2Btn.tag == 1
             
-            if (self.contractInfo?.buyer1SignFinishedyn == 1 || self.contractInfo?.verify_code2 != ""){
+            if self.buyer1Email.text!.hasPrefix((self.contractInfo?.client ?? "  ") + " (") {
+                if self.contractInfo?.client2 == nil || self.contractInfo?.client2 == "" || self.contractInfo?.buyer2SignFinishedyn == 1 {
+                    b = false
+                }
+//                if (self.contractInfo?.buyer1SignFinishedyn == 1){
+//                    b = a
+//                    a = false
+//                }
+                if self.buyer2Btn.hidden {
+                    b = false
+                }
+            }else {
                 b = a
                 a = false
+                
             }
+//            print(self.buyer1Btn.hidden, self.buyer2Btn.hidden)
+//            if (self.contractInfo?.buyer1SignFinishedyn == 1 || self.contractInfo?.verify_code2 != ""){
+//                b = a
+//                a = false
+//            }
+            
+//            var a = !self.buyer1Btn.hidden
+//            var b = !self.buyer2Btn.hidden
+//            print(self.buyer1Btn.hidden, self.buyer2Btn.hidden)
+            
             
             if !a && !b {
                 return

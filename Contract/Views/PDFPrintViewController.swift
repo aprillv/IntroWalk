@@ -1416,7 +1416,7 @@ class PDFPrintViewController: PDFBaseViewController, UIScrollViewDelegate, PDFVi
             if self.contractPdfInfo?.buyer1SignFinishedyn == 1 {
                 msg = "Buyer1's Sign have submitted, this operation will just clean buyer2's sign. Are you sure you want to Start Over?"
             }else if self.contractPdfInfo?.buyer2SignFinishedyn == 1 {
-                msg = "Buyer2's Sign have submitted, this operation will just clean buyer2's sign. Are you sure you want to Start Over?"
+                msg = "Buyer2's Sign have submitted, this operation will just clean buyer1's sign. Are you sure you want to Start Over?"
             }else if self.contractPdfInfo?.verify_code2 != "" {
                 msg = "This operation will just clean buyer1's sign. Are you sure you want to Start Over?"
             }else if self.contractPdfInfo?.verify_code != "" {
@@ -2335,6 +2335,7 @@ private func getStr(h : [[String]]?) -> String {
                                             self.isCanSignature(nameArray, sign: sign, ynarr: self.initial_b1yn, inarr: self.initial_b1)
                                         }
                                     }else if sign.xname.hasSuffix("bottom2") {
+                                        print(sign.xname)
                                         if self.contractInfo!.client2! != "" {
                                             self.isCanSignature(nameArray, sign: sign, ynarr: self.initial_b2yn, inarr: self.initial_b2)
                                         }
@@ -2413,6 +2414,9 @@ private func getStr(h : [[String]]?) -> String {
     
     private func setShowSignature(si: SignatureView, signs signsx: String, idcator : String) {
        
+//        if si.xname == "p1EBbottom2" {
+//        print(signsx)
+//        }
         var signs = signsx
         if signs == "" {
             return
@@ -2428,6 +2432,10 @@ private func getStr(h : [[String]]?) -> String {
         si.frame = ct2
         si.frame = ct
         
+//        if si.xname == "p1EBbottom2" {
+//            print(si.frame )
+//        }
+        
 //        print(si.frame)
 //        
 //        if si.xname == "p1EBExhibitbp1sellerInitialSign" {
@@ -2435,6 +2443,10 @@ private func getStr(h : [[String]]?) -> String {
 //        }
         si.lineArray = si.getNewOriginLine(signa as! NSMutableArray)
         let ct3 = si.getOriginFrame()
+//        if si.xname == "p1EBbottom2" {
+//            print(si.lineArray, ct3)
+//        }
+//        let ct3 = si.getOriginFrame()
 //
 //        let na = si.lineArray
 //        var minx = CGFloat(900000.0)
