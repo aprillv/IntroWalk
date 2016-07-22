@@ -1,5 +1,5 @@
-<?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10117" systemVersion="15F34" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="6N7-GH-wKp">
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10117" systemVersion="16A238m" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="6N7-GH-wKp">
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
@@ -428,24 +428,14 @@
                                     <action selector="goBack:" destination="LV9-aA-wQE" id="22T-mM-SPE"/>
                                 </connections>
                             </barButtonItem>
-                            <barButtonItem tag="1" title="Buyer1" id="cg6-zN-qzH">
+                            <barButtonItem tag="1" title="Next B-1" id="cg6-zN-qzH">
                                 <connections>
-                                    <action selector="BuyerSign:" destination="LV9-aA-wQE" id="3ES-91-Eif"/>
+                                    <action selector="skiptoNext:" destination="LV9-aA-wQE" id="FA3-bp-RYY"/>
                                 </connections>
                             </barButtonItem>
-                            <barButtonItem tag="2" title="Buyer2" id="UiR-Tu-et7">
+                            <barButtonItem tag="2" title="Next B-2" id="UiR-Tu-et7">
                                 <connections>
-                                    <action selector="BuyerSign:" destination="LV9-aA-wQE" id="2FD-Oq-yrS"/>
-                                </connections>
-                            </barButtonItem>
-                            <barButtonItem tag="5" id="5eJ-BA-TTm">
-                                <connections>
-                                    <action selector="BuyerSign:" destination="LV9-aA-wQE" id="L5L-k9-LMr"/>
-                                </connections>
-                            </barButtonItem>
-                            <barButtonItem tag="6" id="RHl-Cc-oAn">
-                                <connections>
-                                    <action selector="BuyerSign:" destination="LV9-aA-wQE" id="M2W-2f-8ga"/>
+                                    <action selector="skiptoNext:" destination="LV9-aA-wQE" id="NxX-qd-v24"/>
                                 </connections>
                             </barButtonItem>
                         </leftBarButtonItems>
@@ -474,10 +464,6 @@
                     <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
                     <size key="freeformSize" width="768" height="1024"/>
                     <connections>
-                        <outlet property="buyer1Date" destination="5eJ-BA-TTm" id="Dfl-CV-3RY"/>
-                        <outlet property="buyer1Item" destination="cg6-zN-qzH" id="Kbq-7L-811"/>
-                        <outlet property="buyer2Date" destination="RHl-Cc-oAn" id="Q9M-R7-44m"/>
-                        <outlet property="buyer2Item" destination="UiR-Tu-et7" id="ffP-rW-c3A"/>
                         <outlet property="seller2Item" destination="iTV-Vp-Tay" id="9a2-BJ-HOD"/>
                         <outlet property="sendItem" destination="80F-GD-5rT" id="fX6-C6-L7w"/>
                         <outlet property="view2" destination="TVO-Xr-fgd" id="pUp-uT-HHa"/>
@@ -490,7 +476,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="cql-0G-MsS" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3658" y="-1252"/>
+            <point key="canvasLocation" x="3879" y="-1261"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="Ugg-Z2-cHQ">
@@ -1746,13 +1732,13 @@
                                         <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <button opaque="NO" tag="1" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="GQb-k3-5Zf">
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="GQb-k3-5Zf">
                                         <rect key="frame" x="44" y="92" width="38" height="32"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="32" id="52N-iO-77L"/>
                                             <constraint firstAttribute="width" constant="38" id="H0Y-RZ-EFX"/>
                                         </constraints>
-                                        <state key="normal" title="Button" image="checked"/>
+                                        <state key="normal" title="Button" image="check"/>
                                         <connections>
                                             <action selector="buyer1Changed:" destination="gjO-y6-k7V" eventType="touchUpInside" id="tCv-uJ-SBN"/>
                                         </connections>
@@ -1763,12 +1749,12 @@
                                         <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <button opaque="NO" tag="1" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="CUo-JP-BMm">
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="CUo-JP-BMm">
                                         <rect key="frame" x="44" y="141" width="38" height="32"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="32" id="TcP-sZ-IbE"/>
                                         </constraints>
-                                        <state key="normal" title="Button" image="checked"/>
+                                        <state key="normal" title="Button" image="check"/>
                                         <connections>
                                             <action selector="buyer1Changed:" destination="gjO-y6-k7V" eventType="touchUpInside" id="z8E-Sh-r7c"/>
                                         </connections>
@@ -1867,13 +1853,13 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Wab-7I-RrA" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="4216" y="-1469"/>
+            <point key="canvasLocation" x="3741" y="-1475"/>
         </scene>
     </scenes>
     <resources>
         <image name="add" width="36" height="36"/>
         <image name="back" width="30" height="30"/>
-        <image name="checked" width="30" height="30"/>
+        <image name="check" width="32" height="32"/>
         <image name="email" width="30" height="22"/>
         <image name="filter" width="26" height="26"/>
         <image name="logo" width="60" height="60"/>

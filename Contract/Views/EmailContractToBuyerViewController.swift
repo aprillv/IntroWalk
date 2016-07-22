@@ -116,7 +116,7 @@ import UIKit
                     self.view.updateConstraints()
                 }
                 
-                desView.text = "Thank you for choosing " + (info.cianame ?? "us") + " as your builder.\n\nTo sign your contract, please click the following link, "
+                desView.text = "Please sign the online contract and let me know if you have any question."
                 
             }
            
@@ -326,6 +326,16 @@ import UIKit
                 sender.setImage(UIImage(named: "check"), forState: .Normal)
             }
             sender.tag = 1 - sender.tag
+            
+//            if !buyer2Btn.hidden && sender.tag == 1 {
+//                if sender != buyer1Btn {
+//                    buyer1Btn.tag = 0
+//                    buyer1Btn.setImage(UIImage(named: "check"), forState: .Normal)
+//                }else if sender != buyer2Btn {
+//                    buyer2Btn.tag = 0
+//                    buyer2Btn.setImage(UIImage(named: "check"), forState: .Normal)
+//                }
+//            }
             
         }
                 

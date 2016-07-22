@@ -94,10 +94,10 @@ class SendOperationViewController: UIViewController, UITableViewDelegate, UITabl
         static let operationChangebuyer1ToIpad = "Change Buyer1 to iPad Sign"
         static let operationChangebuyer2ToIpad = "Change Buyer2 to iPad Sign"
         
-        static let operationBuyerGoToSign = "Buyer Go To Sign"
-    static let operationBuyer1GoToSign = "Buyer1 Go To Sign"
-        static let operationBuyer2GoToSign = "Buyer2 Go To Sign"
-        static let operationSellerGoToSign = "Seller Go To Sign"
+//        static let operationBuyerGoToSign = "Buyer Go To Sign"
+//        static let operationBuyer1GoToSign = "Buyer1 Go To Sign"
+//        static let operationBuyer2GoToSign = "Buyer2 Go To Sign"
+//        static let operationSellerGoToSign = "Seller Go To Sign"
         
     }
     
@@ -227,6 +227,11 @@ class SendOperationViewController: UIViewController, UITableViewDelegate, UITabl
                                     isshow = true
                                     itemList?.append(constants.operationStartOver)
                                 }
+                            }else {
+                                if self.contractInfo?.buyer1SignFinishedyn != 1{
+                                    isshow = true
+                                    itemList?.append(constants.operationStartOver)
+                                }
                             }
                         }
                         
@@ -241,6 +246,11 @@ class SendOperationViewController: UIViewController, UITableViewDelegate, UITabl
                                 itemList?.append(constants.operationSubmitBuyer2Finished)
                             }else{
                                 itemList?.append(constants.operationSubmitBuyer2)
+                            }
+                            
+                            if itemList!.contains(constants.operationEmailToBuyer){
+                                if let i = itemList!.indexOf(constants.operationEmailToBuyer){
+                                    itemList?.removeAtIndex(i)}
                             }
                             itemList?.append(constants.operationEmailToBuyer)
                         }
@@ -258,19 +268,19 @@ class SendOperationViewController: UIViewController, UITableViewDelegate, UITabl
             }
             
             
-            if showBuyer1GoToSign {
-                if contractInfo?.client2 == "" {
-                    itemList?.append(constants.operationBuyerGoToSign)
-                }else{
-                    itemList?.append(constants.operationBuyer1GoToSign)
-                }
-            }
-            if showBuyer2GoToSign{
-                itemList?.append(constants.operationBuyer2GoToSign)
-            }
-            if showSellerGoToSign {
-                itemList?.append(constants.operationSellerGoToSign)
-            }
+//            if showBuyer1GoToSign {
+//                if contractInfo?.client2 == "" {
+//                    itemList?.append(constants.operationBuyerGoToSign)
+//                }else{
+//                    itemList?.append(constants.operationBuyer1GoToSign)
+//                }
+//            }
+//            if showBuyer2GoToSign{
+//                itemList?.append(constants.operationBuyer2GoToSign)
+//            }
+//            if showSellerGoToSign {
+//                itemList?.append(constants.operationSellerGoToSign)
+//            }
             let user = (NSUserDefaults.standardUserDefaults().stringForKey(CConstants.UserInfoEmail) ?? "").lowercaseString
             if !(user == CConstants.Administrator || user == "cindyl@lovetthomes.com") {
                 if let list = itemList {
@@ -299,7 +309,14 @@ class SendOperationViewController: UIViewController, UITableViewDelegate, UITabl
                 itemList = [constants.operationEmail, constants.operationFillDraftInfo]
             }
         }
-        
+        if itemList?.contains(constants.operationSubmit) ?? false {
+            if let i1 = itemList?.indexOf(constants.operationSubmitBuyer1){
+                itemList?.removeAtIndex(i1)
+            }
+            if let i2 = itemList?.indexOf(constants.operationSubmitBuyer2){
+                itemList?.removeAtIndex(i2)
+            }
+        }
         
     }
     
@@ -367,13 +384,13 @@ class SendOperationViewController: UIViewController, UITableViewDelegate, UITabl
                     
                 case constants.operationFillDraftInfo:
                     delegate0.fillDraftInfo()
-                case constants.operationBuyerGoToSign,
-                     constants.operationBuyer1GoToSign:
-                    delegate0.gotoBuyer1Sign()
-                case constants.operationBuyer2GoToSign:
-                    delegate0.gotoBuyer2Sign()
-                case constants.operationSellerGoToSign:
-                    delegate0.gotoSellerSign()
+//                case constants.operationBuyerGoToSign,
+//                     constants.operationBuyer1GoToSign:
+//                    delegate0.gotoBuyer1Sign()
+//                case constants.operationBuyer2GoToSign:
+//                    delegate0.gotoBuyer2Sign()
+//                case constants.operationSellerGoToSign:
+//                    delegate0.gotoSellerSign()
                     
                 case constants.operationClearDraftInfo:
                     delegate0.clearDraftInfo()

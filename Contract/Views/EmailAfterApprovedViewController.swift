@@ -147,7 +147,9 @@ class EmailAfterApprovedViewController: BaseViewController, UIWebViewDelegate, S
             emailcc1 = emailcc1.stringByReplacingOccurrencesOfString(",", withString: "")
         }
         
-        let param = ["idcontract": contractInfo?.idnumber ?? "", "EmailTo":email1,"EmailCc":emailcc1,"Subject":"\(contractInfo!.nproject!)'s Contract","Body":msg,"idcia":contractInfo?.idcia ?? "","idproject":contractInfo?.idproject ?? ""]
+        let userInfo = NSUserDefaults.standardUserDefaults()
+        
+        let param = ["idcontract": contractInfo?.idnumber ?? "", "EmailTo":email1,"EmailCc":emailcc1,"Subject":"\(contractInfo!.nproject!)'s Contract","Body":msg,"idcia":contractInfo?.idcia ?? "","idproject":contractInfo?.idproject ?? "", "salesemail": userInfo.stringForKey(CConstants.UserInfoEmail) ?? "", "salesname": userInfo.stringForKey(CConstants.UserInfoName) ?? ""]
          hud = MBProgressHUD.showHUDAddedTo(webview, animated: true)
         //                hud.mode = .AnnularDeterminate
         hud?.labelText = "Sending Email..."

@@ -282,7 +282,7 @@ class toolpdf: NSObject {
             "p6Abuyer1Sign",
             "p6Abottom1"],
         
-        "Exhibit A" : ["p1EAbottom1",
+        "Exhibit A" : ["p1EAbottom1","p1EBExhibitbp1sellerInitialSign",
             "p1EAbuyer1Sign"],
         
         

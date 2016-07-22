@@ -260,6 +260,7 @@ class LoginViewController: BaseViewController, UITextFieldDelegate {
                                 if rtn.activeyn == 1{
                                     let userinfo = NSUserDefaults.standardUserDefaults()
                                     userinfo.setBool(true, forKey: CConstants.UserInfoIsContract)
+                                    userinfo.setObject(rtn.username, forKey: CConstants.UserInfoName)
                                     self.saveEmailAndPwdToDisk(email: email!, password: password!)
                                     self.loginResult = rtn
                                     self.performSegueWithIdentifier(CConstants.SegueToAddressList, sender: sender)

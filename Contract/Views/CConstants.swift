@@ -24,6 +24,7 @@ struct CConstants{
     
     static let UserInfoRememberMe :  String = "Login Remember Me"
     static let UserInfoEmail :  String = "Login Email"
+    static let UserInfoName :  String = "Logined User Name"
     static let UserInfoPwd :  String = "Login Password"
     static let UserInfoIsContract :  String = "is contract"
     static let UserInfoPrintModel : String = "last print files"
