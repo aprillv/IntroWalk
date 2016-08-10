@@ -1000,7 +1000,7 @@ class PDFPrintViewController: PDFBaseViewController, UIScrollViewDelegate, PDFVi
         let hud = MBProgressHUD.showHUDAddedTo(self.view, animated: true)
         //                hud.mode = .AnnularDeterminate
         hud.labelText = CConstants.RequestMsg
-//        print(param, serviceUrl)
+        print(param, serviceUrl)
         Alamofire.request(.POST,
             CConstants.ServerURL + serviceUrl!,
             parameters: param).responseJSON{ (response) -> Void in
@@ -1355,6 +1355,13 @@ class PDFPrintViewController: PDFBaseViewController, UIScrollViewDelegate, PDFVi
             
             if contract.verify_code != "" {
                 showBuyer1 = false
+            }
+            if contract.buyer1SignFinishedyn == 1 {
+            showBuyer1 = false
+            }
+            
+            if contract.buyer2SignFinishedyn == 1 {
+                showBuyer2 = false
             }
         }
         
@@ -1858,36 +1865,36 @@ class PDFPrintViewController: PDFBaseViewController, UIScrollViewDelegate, PDFVi
         var hoapage3 : [String]
         
         
-        if self.initial_b1yn != nil{
-            b1iynArray = self.initial_b1yn!
-            b2iynArray = self.initial_b2yn!
-            b1isnArray = self.signature_b1yn!
-            b2isnArray = self.signature_b2yn!
-            
-            if let _ = self.initial_s1yn {
-                s1iynArray = self.initial_s1yn!
-                s1isnArray = self.signature_s1yn!
-            }else{
-                s1iynArray = [[String]]()
-                s1isnArray = [[String]]()
-                for i in 0...(cntArray.count-1){
-                    s1iynArray.append([String]())
-                    s1isnArray.append([String]())
-                    
-                    for _ in 0...cntArray[i]-1 {
-                        s1iynArray[i].append("0")
-                        s1isnArray[i].append("0")
-                    }
-                }
-            }
-            
-            exhibitB = self.initial_index![0]
-            hoapage1 = self.initial_index![1]
-            hoapage2 = self.initial_index![2]
-            hoapage3 = self.initial_index![3]
-            
-            
-        }else{
+//        if self.initial_b1yn != nil{
+//            b1iynArray = self.initial_b1yn!
+//            b2iynArray = self.initial_b2yn!
+//            b1isnArray = self.signature_b1yn!
+//            b2isnArray = self.signature_b2yn!
+//            
+//            if let _ = self.initial_s1yn {
+//                s1iynArray = self.initial_s1yn!
+//                s1isnArray = self.signature_s1yn!
+//            }else{
+//                s1iynArray = [[String]]()
+//                s1isnArray = [[String]]()
+//                for i in 0...(cntArray.count-1){
+//                    s1iynArray.append([String]())
+//                    s1isnArray.append([String]())
+//                    
+//                    for _ in 0...cntArray[i]-1 {
+//                        s1iynArray[i].append("0")
+//                        s1isnArray[i].append("0")
+//                    }
+//                }
+//            }
+//            
+//            exhibitB = self.initial_index![0]
+//            hoapage1 = self.initial_index![1]
+//            hoapage2 = self.initial_index![2]
+//            hoapage3 = self.initial_index![3]
+//            
+//            
+//        }else{
              b1iynArray = [[String]]()
              b2iynArray = [[String]]()
              b1isnArray = [[String]]()
@@ -1926,7 +1933,7 @@ class PDFPrintViewController: PDFBaseViewController, UIScrollViewDelegate, PDFVi
             for _ in 0...6{
                 hoapage3.append("0")
             }
-        }
+//        }
         
         
         
@@ -2030,7 +2037,6 @@ class PDFPrintViewController: PDFBaseViewController, UIScrollViewDelegate, PDFVi
                         
                         if sign.lineArray != nil && sign.lineArray.count > 0 && sign.LineWidth > 0 {
                             if b1s == nil {
-                                //                                b1s = "\(sign.lineArray)"
                                 b1s = sign.lineArray as? [[String]]
                             }
                             var cont = true
@@ -2200,7 +2206,7 @@ class PDFPrintViewController: PDFBaseViewController, UIScrollViewDelegate, PDFVi
             reurl = "bacontract_save_sign.json"
         }
         
-//        print(reurl , param)
+        print(reurl , param)
 //        return;
         self.hud = MBProgressHUD.showHUDAddedTo(self.view, animated: true)
         self.hud?.labelText = CConstants.SavedMsg
@@ -2524,7 +2530,7 @@ private func getStr(h : [[String]]?) -> String {
 //        if si.xname == "p1EBbottom2" {
 //        print(signsx)
 //        }
-        var signs = signsx
+        let signs = signsx
         if signs == "" {
             return
         }
@@ -2549,35 +2555,12 @@ private func getStr(h : [[String]]?) -> String {
 //            print(si.xname)
 //        }
         si.lineArray = si.getNewOriginLine(signa as! NSMutableArray)
-        let ct3 = si.getOriginFrame()
+        si.lineArray = si.getNewOriginLine(si.lineArray as NSMutableArray)
 //        if si.xname == "p1EBbottom2" {
-//            print(si.lineArray, ct3)
+//            print(si.lineArray)
 //        }
-//        let ct3 = si.getOriginFrame()
-//
-//        let na = si.lineArray
-//        var minx = CGFloat(900000.0)
-//        var miny = CGFloat(999990.0)
-//        for nap in na {
-//            minx = min(minx, nap.X)
-//            miny = min(miny, nap.Y)
-//        }
-//        var nasss = [CGPoint]()
-//        for nap in na {
-//            nasss.append(CGPoint(x: nap.X - minx + 20, y: nap.Y - miny + 5))
-//        }
-//        si.lineArray = nasss as! NSMutableArray
-//        
-//        let radio = min(ct.width/ct3.width, ct.height/ct3.height)
-//        let www = ct.width/radio
-//        let hhhh = ct.height/radio
-//        let spacew = www - ct3.width
-//        let spaceh = hhhh - ct3.height
-        
-        
-       
-//        cw = (ct.size.width - (maxx - minx)-20)/2;
-//        ch = (ct.size.height - (maxy - miny)-20)/2;
+        let ct3 = si.getOriginFrame()
+//        ct3 = si.getOriginFrame()
         
         si.originWidth = Float(ct3.width)
         si.originHeight = Float(ct3.height)
@@ -2934,7 +2917,7 @@ private func getStr(h : [[String]]?) -> String {
 ////
 ////        let a = ["idcontract1" : self.contractInfo!.idnumber!, "idcia": self.contractInfo!.idcia!, "email": userInfo.stringForKey(CConstants.UserInfoEmail) ?? "", "emailto" : "Roberto Reletez (roberto@buildersaccess.com)", "emailcc": "Kevin Zhao (kevin@buildersaccess.com)", "msg": msg]
         
-        // let a = ["idcontract1" : self.contractInfo!.idnumber!, "idcia": self.contractInfo!.idcia!, "email": userInfo.stringForKey(CConstants.UserInfoEmail) ?? "", "emailto" : "April Lv (April@buildersaccess.com)", "emailcc": "xiujun_85@163.com", "msg": msg]
+//         let a = ["idcontract1" : self.contractInfo!.idnumber!, "idcia": self.contractInfo!.idcia!, "email": userInfo.stringForKey(CConstants.UserInfoEmail) ?? "", "emailto" : "April Lv (April@buildersaccess.com)", "emailcc": "xiujun_85@163.com", "msg": msg]
         
 //        return;
 //        print(a)
@@ -3461,12 +3444,13 @@ func GoToSendEmailToBuyer(msg msg: String, hasbuyer1: Bool, hasbuyer2: Bool) {
     private func submitBuyerSignStep1(isbuyer1: Bool){
         let tlpdf = toolpdf()
         let (finishYN, sign) = tlpdf.CheckBuyerFinish(self.fileDotsDic, documents: self.documents, isbuyer1: isbuyer1)
+//        print(sign?.xname)
         if finishYN {
             var msg : String
             if isbuyer1 {
-                msg = "If you submit buyer1's Sign, buyer1's Sign will cannot be modified any more. Are you sure you want to submit?"
+                msg = "Are you sure you want to submit buyer1's Sign?"
             }else{
-                msg = "If you submit buyer2's Sign, buyer2's Sign will cannot be modified any more. Are you sure you want to submit?"
+                msg = "Are you sure you want to submit buyer2's Sign?"
             }
             let alert: UIAlertController = UIAlertController(title: CConstants.MsgTitle, message: msg, preferredStyle: .Alert)
             
@@ -3488,9 +3472,9 @@ func GoToSendEmailToBuyer(msg msg: String, hasbuyer1: Bool, hasbuyer2: Bool) {
             self.presentViewController(alert, animated: true, completion: nil)
         }else{
             
-            var  buyerSign =  isbuyer1 ? tlpdf.pdfBuyer1SignatureFields : tlpdf.pdfBuyer2SignatureFields
+            let  buyerSign =  isbuyer1 ? tlpdf.pdfBuyer1SignatureFields : tlpdf.pdfBuyer2SignatureFields
             for (x, f) in buyerSign {
-                if f.contains(sign?.xname ?? "") {
+                if f.contains(sign?.xname ?? "") && (sign?.xname ?? "") != "p1EBExhibitbp1sellerInitialSign" {
                     
                     //                    self.PopMsgWithJustOK(msg: "There is a filed need sign in \(x) document.")
                     

@@ -227,7 +227,7 @@ class SetDotValue : NSObject {
                 if SignContractPDFFields.Address_zip == pv.xname{
                     
                     if pdfInfo!.zipcode! != "" {
-                        pv.value = "\(pdfInfo!.nproject!)/\(pdfInfo!.zipcode!)"
+                        pv.value = "\(pdfInfo!.nproject!) / \(pdfInfo!.zipcode!)"
                     }else{
                         pv.value = pdfInfo!.nproject!
                     }
@@ -443,13 +443,13 @@ class SetDotValue : NSObject {
                     
                 case SignContractPDFFields.OtherBrokerFirmNo:
                     pv.value = pdfInfo!.page9OtherBrokerFirmNo
-                case "7g2c3":
-                    if (pdfInfo?.idcity ?? "1") == "2" {
-                        //dallas
-                        pv.value = "38"
-                    }else{
-                        pv.value = "30"
-                    }
+//                case "7g2c3":
+//                    if (pdfInfo?.idcity ?? "1") == "2" {
+//                        //dallas
+//                        pv.value = "38"
+//                    }else{
+//                        pv.value = "30"
+//                    }
                 case SignContractPDFFields.AssociateNameNo:
                     pv.value = pdfInfo!.page9AssociateNameNo
                 case SignContractPDFFields.p9AssociatesName:
@@ -477,12 +477,12 @@ class SetDotValue : NSObject {
                     //                    static let chk6a83 = "6a83"
                     //                    static let chk6a8 = "6a8"
                     //                    static let chk6a = "6a"
-//                case SignContractPDFFields.chkfinancing:
-//                    if let radio = pv as? PDFFormButtonField {
-//                        if radio.exportValue == "4a" {
-//                            radio.setValue2("1")
-//                        }
-//                    }
+                case SignContractPDFFields.chkfinancing:
+                    if let radio = pv as? PDFFormButtonField {
+                        if radio.exportValue == "4a" {
+                            radio.setValue2("1")
+                        }
+                    }
                 case "cer1":
                     if let radio = pv as? PDFFormButtonField {
                         if radio.exportValue == "On" {
@@ -941,7 +941,9 @@ class SetDotValue : NSObject {
         var addedAnnotationViews : [PDFWidgetAnnotationView] = [PDFWidgetAnnotationView]()
 //        var addedAnnotationViews2 : [PDFWidgetAnnotationView] = [PDFWidgetAnnotationView]()
         var j : CGFloat = 1
-        
+//        if UIScreen.mainScreen().or
+        var xxxx :CGFloat  = 130
+         var k  = 0
         if let price = aPrice {
             var pf : PDFFormTextField?
             var line : PDFWidgetAnnotationView?
@@ -958,8 +960,11 @@ class SetDotValue : NSObject {
                 }
             }
             
+           
+            
             if let list = pdfInfo?.itemlistStr {
                 var i: Int = 0
+               
                 for items in list {
                     i += 1
                     let font = floor(aPrice!.currentFontSize())
@@ -974,6 +979,7 @@ class SetDotValue : NSObject {
 //                    print(pf?.xname)
                     //                    print( "number \(pf?.frame) \(y)")
                     for description in items {
+                        k += 1
                         //                        print("----" + a.substringWithRange(glyphRange))
                         pf = PDFFormTextField(frame: CGRect(x: x+25, y: y, width: w-25, height: h), multiline: false, alignment: NSTextAlignment.Left, secureEntry: false, readOnly: true, withFont: font)
                         pf?.xname = "april"
@@ -998,7 +1004,12 @@ class SetDotValue : NSObject {
                     //                    print( "line \(line?.frame) \(y)")
                     y = y + 5.5
                     
-                    if has2Pages && y+50  > (aPrice2!.frame.origin.y - aPrice!.frame.origin.y) * j {
+//                    if has2Pages && y+xxxx  > (aPrice2!.frame.origin.y - aPrice!.frame.origin.y) * j {
+//                        has2Pages = false
+//                        y = aPrice2!.frame.origin.y + aPrice2!.frame.size.height + 20
+//                    }
+                    
+                    if has2Pages && k >= 31 {
                         has2Pages = false
                         y = aPrice2!.frame.origin.y + aPrice2!.frame.size.height + 20
                     }
@@ -1007,7 +1018,11 @@ class SetDotValue : NSObject {
             }
             
             y = y + 22
-            if has2Pages && y+50 > (aPrice2!.frame.origin.y - aPrice!.frame.origin.y) {
+//            if has2Pages && y+xxxx > (aPrice2!.frame.origin.y - aPrice!.frame.origin.y) {
+//                has2Pages = false
+//                y = aPrice2!.frame.origin.y + aPrice2!.frame.size.height + 20
+//            }
+            if has2Pages && k >= 31 {
                 has2Pages = false
                 y = aPrice2!.frame.origin.y + aPrice2!.frame.size.height + 20
             }
@@ -1020,7 +1035,11 @@ class SetDotValue : NSObject {
             addedAnnotationViews.append(pf!)
             
             y = y + h
-            if has2Pages && y+50 > (aPrice2!.frame.origin.y - aPrice!.frame.origin.y) {
+//            if has2Pages && y+xxxx > (aPrice2!.frame.origin.y - aPrice!.frame.origin.y) {
+//                has2Pages = false
+//                y = aPrice2!.frame.origin.y + aPrice2!.frame.size.height + 20
+//            }
+            if has2Pages && k >= 31 {
                 has2Pages = false
                 y = aPrice2!.frame.origin.y + aPrice2!.frame.size.height + 20
             }

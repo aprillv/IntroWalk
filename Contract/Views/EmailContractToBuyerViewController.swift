@@ -116,7 +116,7 @@ import UIKit
                     self.view.updateConstraints()
                 }
                 
-                desView.text = "Please sign the online contract and let me know if you have any question."
+                desView.text = "Your online contract is ready!"
                 
             }
            

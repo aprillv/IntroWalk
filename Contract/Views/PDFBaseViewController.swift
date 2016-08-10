@@ -264,7 +264,7 @@ class PDFBaseViewController: BaseViewController, DoOperationDelegate, UIPopoverP
             printController.delegate = self
         }
     }
-    func printInteractionControllerParentViewController(printInteractionController: UIPrintInteractionController) -> UIViewController {
+    func printInteractionControllerParentViewController(printInteractionController: UIPrintInteractionController) -> UIViewController? {
         return self.navigationController!
     }
     func printInteractionControllerWillPresentPrinterOptions(printInteractionController: UIPrintInteractionController) {

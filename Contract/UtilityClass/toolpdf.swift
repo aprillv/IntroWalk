@@ -282,11 +282,11 @@ class toolpdf: NSObject {
             "p6Abuyer1Sign",
             "p6Abottom1"],
         
-        "Exhibit A" : ["p1EAbottom1","p1EBExhibitbp1sellerInitialSign",
+        "Exhibit A" : ["p1EAbottom1",
             "p1EAbuyer1Sign"],
         
         
-        "Exhibit B" : ["p1EBbuyer1Sign",
+        "Exhibit B" : ["p1EBbuyer1Sign","p1EBExhibitbp1sellerInitialSign",
             "p1EBbottom1"],
        
         
@@ -786,9 +786,15 @@ let pdfBuyer2SignatureFields = [
          var alldots = [PDFWidgetAnnotationView]()
         for x in self.filenm {
             if isbuyer1 {
-                if let tmp = self.pdfBuyer1SignatureFields[x] {
-                    tmpa.appendContentsOf(tmp)
-                }
+                
+                    if let tmp = self.pdfBuyer1SignatureFields[x] {
+                        
+                            tmpa.appendContentsOf(tmp)
+                        
+                        
+                    }
+                
+                
             }else{
                 if let tmp = self.pdfBuyer2SignatureFields[x] {
                     tmpa.appendContentsOf(tmp)
@@ -813,10 +819,13 @@ let pdfBuyer2SignatureFields = [
         for c in alldots {
             if let a = c as? SignatureView {
                 if tmpa.contains(a.xname) {
-                    if !(a.lineArray != nil && a.lineArray.count > 0 && a.LineWidth != 0.0){
-                        //                        print(a.xname)
-                        return (false, a)
+                    if a.xname != "p1EBExhibitbp1sellerInitialSign"{
+                        if !(a.lineArray != nil && a.lineArray.count > 0 && a.LineWidth != 0.0){
+                            //                        print(a.xname)
+                            return (false, a)
+                        }
                     }
+                    
                     
                 }
             }

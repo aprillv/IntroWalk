@@ -174,6 +174,14 @@ class SendOperationViewController: UIViewController, UITableViewDelegate, UITabl
                                 }else if info.verify_code != "" && info.verify_code2 == ""{
                                     itemList?.append(constants.operationSubmitBuyer2Finished)
                                     itemList?.append(constants.operationChangebuyer1ToIpad)
+                                }else if info.verify_code == "" && info.verify_code2 == ""{
+                                    itemList?.append(constants.operationSavetoServer)
+                                    itemList?.append(constants.operationStartOver)
+//                                    itemList?.append(constants.operationSubmitBuyer1)
+                                    itemList?.append(constants.operationSubmitBuyer2Finished)
+                                    itemList?.append(constants.operationSubmit)
+                                    itemList?.append(constants.operationAttatchPhoto)
+                                    itemList?.append(constants.operationEmailToBuyer)
                                 }
                             
                             }else if info.buyer1SignFinishedyn == 1 && info.buyer2SignFinishedyn == 0{
@@ -195,6 +203,14 @@ class SendOperationViewController: UIViewController, UITableViewDelegate, UITabl
                                     itemList?.append(constants.operationAttatchPhoto)
                                     
 //                                    itemList?.append(constants.operationGoToSign)
+                                }else if info.verify_code == "" && info.verify_code2 == ""{
+                                    
+                                    itemList?.append(constants.operationSavetoServer)
+                                    itemList?.append(constants.operationStartOver)
+                                    itemList?.append(constants.operationSubmitBuyer1Finished)
+//                                    itemList?.append(constants.operationSubmitBuyer2)
+                                    itemList?.append(constants.operationSubmit)
+                                    itemList?.append(constants.operationAttatchPhoto)
                                 }
                             
                             }
@@ -281,25 +297,25 @@ class SendOperationViewController: UIViewController, UITableViewDelegate, UITabl
 //            if showSellerGoToSign {
 //                itemList?.append(constants.operationSellerGoToSign)
 //            }
-            let user = (NSUserDefaults.standardUserDefaults().stringForKey(CConstants.UserInfoEmail) ?? "").lowercaseString
-            if !(user == CConstants.Administrator || user == "cindyl@lovetthomes.com") {
-                if let list = itemList {
-                    let nass = [constants.operationEmailToBuyer,
-                                constants.operationSubmitBuyer1 ,
-                                constants.operationSubmitBuyer1Finished,
-                                constants.operationSubmitBuyer2 ,
-                                constants.operationSubmitBuyer2Finished,
-                                constants.operationChangebuyer1ToIpad ,
-                                constants.operationChangebuyer2ToIpad ]
-                    var h = [String]()
-                    for i in list {
-                        if !nass.contains(i) {
-                            h.append(i)
-                        }
-                    }
-                    itemList = h 
-                }
-            }
+//            let user = (NSUserDefaults.standardUserDefaults().stringForKey(CConstants.UserInfoEmail) ?? "").lowercaseString
+//            if !(user == CConstants.Administrator || user == "cindyl@lovetthomes.com") {
+//                if let list = itemList {
+//                    let nass = [constants.operationEmailToBuyer,
+//                                constants.operationSubmitBuyer1 ,
+//                                constants.operationSubmitBuyer1Finished,
+//                                constants.operationSubmitBuyer2 ,
+//                                constants.operationSubmitBuyer2Finished,
+//                                constants.operationChangebuyer1ToIpad ,
+//                                constants.operationChangebuyer2ToIpad ]
+//                    var h = [String]()
+//                    for i in list {
+//                        if !nass.contains(i) {
+//                            h.append(i)
+//                        }
+//                    }
+//                    itemList = h 
+//                }
+//            }
             
             
         }else{
