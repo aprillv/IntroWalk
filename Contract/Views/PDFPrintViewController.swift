@@ -1000,7 +1000,7 @@ class PDFPrintViewController: PDFBaseViewController, UIScrollViewDelegate, PDFVi
         let hud = MBProgressHUD.showHUDAddedTo(self.view, animated: true)
         //                hud.mode = .AnnularDeterminate
         hud.labelText = CConstants.RequestMsg
-        print(param, serviceUrl)
+//        print(param, serviceUrl)
         Alamofire.request(.POST,
             CConstants.ServerURL + serviceUrl!,
             parameters: param).responseJSON{ (response) -> Void in

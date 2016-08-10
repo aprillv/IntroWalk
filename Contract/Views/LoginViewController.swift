@@ -12,6 +12,13 @@ import MBProgressHUD
 
 class LoginViewController: BaseViewController, UITextFieldDelegate {
 
+    @IBOutlet var btnhowto: UIButton!
+    @IBAction func openhowtouse() {
+        if let url = NSURL(string: "http://www.buildersaccess.com/iphone/signcontract.pdf") {
+            UIApplication.sharedApplication().openURL(url)
+        }
+        
+    }
     
     @IBOutlet var copyrightLbl: UIBarButtonItem!
 //        {
@@ -337,11 +344,41 @@ class LoginViewController: BaseViewController, UITextFieldDelegate {
     }
     
     
+//    func removeHud() {
+//        HUDD?.hide(<#T##animated: Bool##Bool#>, afterDelay: <#T##NSTimeInterval#>)
+//    }
+//    
+//    var HUDD : MBProgressHUD?
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 //        print(view.frame.size)
 //        checkUpate()
+        let userInfo = NSUserDefaults.standardUserDefaults()
+        if !(userInfo.boolForKey("havealerthowtouse") ?? false) {
+        if let f = UIFont(name: CConstants.ApplicationBarFontName, size: 22.0) {
+            self.btnhowto.titleLabel?.font = f
+//            self.btnhowto.titleLabel?.text = "How to use this app"
+//            self.btnhowto.font
+        }
         
+//            let hud = MBProgressHUD.showHUDAddedTo(self.view, animated: true)
+//            //                hud.mode = .AnnularDeterminate
+//            hud.labelText = "If you have question of how to use this app, \n please click the right bottom corner \nlink 'How to Use'"
+//            hud.mode = .Text
+////            HUDD = hud
+//        hud.hide(true, afterDelay: 2)
+//            self.performSelector(#selec, withObject: <#T##AnyObject?#>, afterDelay: <#T##NSTimeInterval#>)
+//            self.performSelector(#selector(removeHud), withObject: nil, afterDelay: 1)
+//            self.PopMsgWithJustOK(msg: "You can click the bottom right corner link 'How to Use this app' when you have problem with using this app", txtField: nil)
+            userInfo.setBool(true, forKey: "havealerthowtouse")
+        }else{
+            if let f = UIFont(name: CConstants.ApplicationBarFontName, size: 16.0) {
+                self.btnhowto.titleLabel?.font = f
+                //            self.btnhowto.titleLabel?.text = "How to use this app"
+                //            self.btnhowto.font
+            }
+        }
         setSignInBtn()
     }
     override func viewWillAppear(animated: Bool) {
