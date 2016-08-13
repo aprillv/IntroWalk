@@ -61,7 +61,7 @@ struct CConstants{
     static let SegueToAddressModelPopover : String = "Address switch"
     static let SegueToOperationsPopover : String = "Show Operations"
     
-    static let Administrator = "roberto1@buildersaccess.com"
+    static let Administrator = "roberto@buildersaccess.com"
     
     static let LoggedUserNameKey : String = "LoggedUserNameInDefaults"
     static let InstallAppLink : String = "itms-services://?action=download-manifest&url=https://www.buildersaccess.com/iphone/contract.plist"
