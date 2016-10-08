@@ -126,7 +126,7 @@ class GoToFileViewController: BaseViewController , UITableViewDataSource, UITabl
     override var preferredContentSize: CGSize {
         
         get {
-            return CGSize(width: tableview.frame.width, height:getTableHight())
+            return CGSize(width: 380, height:getTableHight())
         }
         set { super.preferredContentSize = newValue }
     }

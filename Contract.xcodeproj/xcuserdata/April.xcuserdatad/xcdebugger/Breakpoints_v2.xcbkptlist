@@ -141,8 +141,8 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "99"
             endingLineNumber = "99"
-            landmarkName = "GetCapitalFirstWord(_:)"
-            landmarkType = "5">
+            landmarkName = "GetCapitalFirstWord(str:)"
+            landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy

@@ -454,6 +454,7 @@ class SetDotValue : NSObject {
                     pv.value = pdfInfo!.page9AssociateNameNo
                 case SignContractPDFFields.p9AssociatesName:
                     pv.value = pdfInfo!.page9LicensedSupervisor
+//                    pv.value = pdfInfo!.page9AssociatesName
                 case SignContractPDFFields.LicensedSupervisorNo:
                     pv.value = pdfInfo!.page9LicensedSupervisorNo
                 case SignContractPDFFields.OtherBrokerAddress:

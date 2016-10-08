@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11185.3" systemVersion="16A270f" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="6N7-GH-wKp">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11201" systemVersion="16A313a" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="6N7-GH-wKp">
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11151.4"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11161"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
         <capability name="Navigation items with more than one left or right bar item" minToolsVersion="7.0"/>
@@ -152,18 +152,18 @@
                                 <variation key="default">
                                     <mask key="constraints">
                                         <exclude reference="Wq5-Mu-gVu"/>
-                                        <exclude reference="9Dg-N3-afz"/>
-                                        <exclude reference="LBa-Y8-lKA"/>
-                                        <exclude reference="Eln-Jz-HW8"/>
-                                        <exclude reference="I8q-js-rnw"/>
-                                        <exclude reference="szO-Yc-WMg"/>
-                                        <exclude reference="R08-O1-9vY"/>
-                                        <exclude reference="8G0-gv-OwO"/>
-                                        <exclude reference="PEV-LY-lOb"/>
-                                        <exclude reference="W5E-TE-7nP"/>
                                         <exclude reference="AZ6-lx-1dm"/>
                                         <exclude reference="SCA-wA-buL"/>
                                         <exclude reference="sOJ-py-CHz"/>
+                                        <exclude reference="8G0-gv-OwO"/>
+                                        <exclude reference="PEV-LY-lOb"/>
+                                        <exclude reference="W5E-TE-7nP"/>
+                                        <exclude reference="R08-O1-9vY"/>
+                                        <exclude reference="Eln-Jz-HW8"/>
+                                        <exclude reference="I8q-js-rnw"/>
+                                        <exclude reference="szO-Yc-WMg"/>
+                                        <exclude reference="9Dg-N3-afz"/>
+                                        <exclude reference="LBa-Y8-lKA"/>
                                     </mask>
                                 </variation>
                             </view>
@@ -220,14 +220,14 @@
                         <variation key="default">
                             <mask key="constraints">
                                 <exclude reference="3bL-rA-N6J"/>
+                                <exclude reference="9Ml-4a-hD6"/>
+                                <exclude reference="J97-SW-4bv"/>
+                                <exclude reference="K7o-1c-TEL"/>
                                 <exclude reference="9wH-2w-3wP"/>
                                 <exclude reference="MeL-Li-JLr"/>
                                 <exclude reference="wpv-j6-DQK"/>
                                 <exclude reference="Ezs-lL-kqp"/>
                                 <exclude reference="5vh-Gs-OMP"/>
-                                <exclude reference="9Ml-4a-hD6"/>
-                                <exclude reference="J97-SW-4bv"/>
-                                <exclude reference="K7o-1c-TEL"/>
                             </mask>
                         </variation>
                     </view>
@@ -262,7 +262,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <view key="tableHeaderView" contentMode="scaleToFill" id="1is-hJ-19M">
-                            <frame key="frameInset" minY="64" width="768" height="44"/>
+                            <rect key="frame" x="0.0" y="64" width="768" height="44"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <subviews>
                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="2j4-ed-f9g">
@@ -311,7 +311,7 @@
                         </view>
                         <prototypes>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="Address Cell Identifier" id="MWM-YE-Ihm" customClass="AddressListViewCell" customModule="Contract" customModuleProvider="target">
-                                <frame key="frameInset" minY="136" width="768" height="44"/>
+                                <rect key="frame" x="0.0" y="136" width="768" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="MWM-YE-Ihm" id="Dj7-R1-2es">
                                     <frame key="frameInset" width="768" height="44"/>
@@ -322,7 +322,7 @@
                                 </connections>
                             </tableViewCell>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="AddressDraft Cell Identifier" id="juQ-HB-aKn" customClass="AddressDraftListViewCell" customModule="Contract" customModuleProvider="target">
-                                <frame key="frameInset" minY="180" width="768" height="44"/>
+                                <rect key="frame" x="0.0" y="180" width="768" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="juQ-HB-aKn" id="ZvC-3F-Uk6">
                                     <frame key="frameInset" width="768" height="44"/>
@@ -366,6 +366,7 @@
                     </navigationItem>
                     <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
                     <refreshControl key="refreshControl" opaque="NO" multipleTouchEnabled="YES" contentMode="center" enabled="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" id="1U6-pS-cP6">
+                        <rect key="frame" x="0.0" y="0.0" width="1000" height="1000"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <connections>
                             <action selector="refreshAddressList:" destination="dHY-yp-nIM" eventType="valueChanged" id="gMf-0h-BRF"/>
@@ -512,7 +513,7 @@
                                 <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="operationCellIdentifier" id="mPn-0f-gpj">
-                                        <frame key="frameInset" minY="28" width="260" height="44"/>
+                                        <rect key="frame" x="0.0" y="28" width="260" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="mPn-0f-gpj" id="MQe-hz-deQ">
                                             <frame key="frameInset" width="260" height="43"/>
@@ -556,7 +557,7 @@
                                 </constraints>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="cellIdentifier" id="7OE-yE-b25" customClass="PrintModelTableViewCell" customModule="Contract" customModuleProvider="target">
-                                        <frame key="frameInset" minY="28" width="420" height="44"/>
+                                        <rect key="frame" x="0.0" y="28" width="420" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="7OE-yE-b25" id="NCn-Z4-gyK">
                                             <frame key="frameInset" width="420" height="43"/>
@@ -606,7 +607,7 @@
                                         </connections>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="lastCell" id="wfK-bF-UPf" customClass="AddressListModelLastCell" customModule="Contract" customModuleProvider="target">
-                                        <frame key="frameInset" minY="72" width="420" height="44"/>
+                                        <rect key="frame" x="0.0" y="72" width="420" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="wfK-bF-UPf" id="03m-bc-Uu2">
                                             <frame key="frameInset" width="420" height="43"/>
@@ -640,7 +641,7 @@
                                         </connections>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="firstCell" id="YbJ-qW-JOT">
-                                        <frame key="frameInset" minY="116" width="420" height="44"/>
+                                        <rect key="frame" x="0.0" y="116" width="420" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="YbJ-qW-JOT" id="pTJ-xI-Cta">
                                             <frame key="frameInset" width="420" height="43"/>
@@ -681,7 +682,7 @@
                     </connections>
                 </tapGestureRecognizer>
             </objects>
-            <point key="canvasLocation" x="4272" y="-155"/>
+            <point key="canvasLocation" x="3913" y="-260"/>
         </scene>
         <!--Address List Model View Controller-->
         <scene sceneID="jn7-Ts-MfM">
@@ -703,7 +704,7 @@
                                     <constraint firstAttribute="height" constant="548" id="nLb-Tp-NFH"/>
                                 </constraints>
                                 <searchBar key="tableHeaderView" contentMode="redraw" id="gVq-8h-ZA0">
-                                    <frame key="frameInset" width="360" height="44"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="360" height="44"/>
                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                     <textInputTraits key="textInputTraits"/>
                                     <connections>
@@ -712,7 +713,7 @@
                                 </searchBar>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="AddressModelUITableViewCell" id="48Q-dK-juq" customClass="AddressListModelCell" customModule="Contract" customModuleProvider="target">
-                                        <frame key="frameInset" minY="72" width="360" height="44"/>
+                                        <rect key="frame" x="0.0" y="72" width="360" height="44"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="48Q-dK-juq" id="l57-qx-U0f">
                                             <frame key="frameInset" width="360" height="43"/>
@@ -838,7 +839,7 @@
                                         </constraints>
                                         <prototypes>
                                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="emailCell" id="aiy-H1-f9v">
-                                                <frame key="frameInset" minY="28" width="448" height="44"/>
+                                                <rect key="frame" x="0.0" y="28" width="448" height="44"/>
                                                 <autoresizingMask key="autoresizingMask"/>
                                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="aiy-H1-f9v" id="iDr-Mm-EeF">
                                                     <frame key="frameInset" width="448" height="43"/>
@@ -918,11 +919,11 @@
                                 </constraints>
                                 <variation key="default">
                                     <mask key="constraints">
-                                        <exclude reference="ay7-Qj-Dlu"/>
                                         <exclude reference="2W8-fa-aeE"/>
+                                        <exclude reference="ibY-ie-F1p"/>
                                         <exclude reference="UiA-tg-Et2"/>
                                         <exclude reference="tOQ-qj-VHt"/>
-                                        <exclude reference="ibY-ie-F1p"/>
+                                        <exclude reference="ay7-Qj-Dlu"/>
                                     </mask>
                                 </variation>
                             </view>
@@ -977,7 +978,7 @@
                                 <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="filterCell" id="vlw-FN-52H" customClass="filterCell" customModule="Contract" customModuleProvider="target">
-                                        <frame key="frameInset" minY="28" width="200" height="44"/>
+                                        <rect key="frame" x="0.0" y="28" width="200" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="vlw-FN-52H" id="AZk-RY-wox">
                                             <frame key="frameInset" width="200" height="43"/>
@@ -1131,7 +1132,7 @@
                                         </constraints>
                                         <prototypes>
                                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="emailCell" id="SDD-ql-nf1">
-                                                <frame key="frameInset" minY="28" width="448" height="44"/>
+                                                <rect key="frame" x="0.0" y="28" width="448" height="44"/>
                                                 <autoresizingMask key="autoresizingMask"/>
                                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="SDD-ql-nf1" id="gjK-6q-GW5">
                                                     <frame key="frameInset" width="448" height="43"/>
@@ -1242,14 +1243,14 @@
                                 </constraints>
                                 <variation key="default">
                                     <mask key="constraints">
-                                        <exclude reference="tQ5-PS-OIp"/>
-                                        <exclude reference="j27-gt-Si0"/>
-                                        <exclude reference="S0Y-Hh-rMZ"/>
-                                        <exclude reference="kSl-uN-r1z"/>
                                         <exclude reference="bNa-gN-JCg"/>
-                                        <exclude reference="Ecw-Sc-lAk"/>
+                                        <exclude reference="kSl-uN-r1z"/>
+                                        <exclude reference="S0Y-Hh-rMZ"/>
+                                        <exclude reference="j27-gt-Si0"/>
                                         <exclude reference="U0F-c6-Ld5"/>
                                         <exclude reference="h4I-dA-8ap"/>
+                                        <exclude reference="tQ5-PS-OIp"/>
+                                        <exclude reference="Ecw-Sc-lAk"/>
                                     </mask>
                                 </variation>
                             </view>
@@ -1309,7 +1310,7 @@
                                 </constraints>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="cellIdentifier" id="ueL-cS-KqT" customClass="PrintModelTableViewCell" customModule="Contract" customModuleProvider="target">
-                                        <frame key="frameInset" minY="28" width="380" height="44"/>
+                                        <rect key="frame" x="0.0" y="28" width="380" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="ueL-cS-KqT" id="ocv-Yd-lNU">
                                             <frame key="frameInset" width="380" height="43"/>
@@ -1318,7 +1319,7 @@
                                         <inset key="separatorInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="lastCell" id="BKt-Uj-T4O" customClass="AddressListModelLastCell" customModule="Contract" customModuleProvider="target">
-                                        <frame key="frameInset" minY="72" width="380" height="44"/>
+                                        <rect key="frame" x="0.0" y="72" width="380" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="BKt-Uj-T4O" id="Ewl-Bu-HrV">
                                             <frame key="frameInset" width="380" height="43"/>
@@ -1352,7 +1353,7 @@
                                         </connections>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="firstCell" id="jJr-tR-axg">
-                                        <frame key="frameInset" minY="116" width="380" height="44"/>
+                                        <rect key="frame" x="0.0" y="116" width="380" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="jJr-tR-axg" id="ujr-Qf-y0R">
                                             <frame key="frameInset" width="380" height="43"/>
@@ -1737,10 +1738,10 @@
                                 </constraints>
                                 <variation key="default">
                                     <mask key="constraints">
-                                        <exclude reference="khR-hl-1Gq"/>
                                         <exclude reference="ap2-Fc-v7c"/>
-                                        <exclude reference="adB-Cb-QN9"/>
                                         <exclude reference="yFq-oA-XtX"/>
+                                        <exclude reference="adB-Cb-QN9"/>
+                                        <exclude reference="khR-hl-1Gq"/>
                                     </mask>
                                 </variation>
                             </view>
