@@ -12,6 +12,7 @@ import MBProgressHUD
 
 class LoginViewController: BaseViewController, UITextFieldDelegate {
 
+    
     @IBOutlet var btnhowto: UIButton!
     @IBAction func openhowtouse() {
         if let url = NSURL(string: "http://www.buildersaccess.com/iphone/signcontract.pdf") {
@@ -20,13 +21,15 @@ class LoginViewController: BaseViewController, UITextFieldDelegate {
         
     }
     
-    @IBOutlet var copyrightLbl: UIBarButtonItem!
-//        {
-//        didSet{
-//            copyrightLbl.setTitleTextAttributes([NSFontAttributeName : UIFont(name: "Futura", size: 9)!, NSForegroundColorAttributeName: UIColor.whiteColor()], forState: UIControlState.Normal)
-//            
-//        }
-//    }
+    @IBOutlet var copyrightLbl: UIBarButtonItem!{
+        didSet{
+            let currentDate = NSDate()
+            let usDateFormat = NSDateFormatter()
+            usDateFormat.dateFormat = NSDateFormatter.dateFormatFromTemplate("yyyy", options: 0, locale: NSLocale(localeIdentifier: "en-US"))
+            
+            copyrightLbl.title = "Copyright © " + usDateFormat.stringFromDate(currentDate) + " All Rights Reserved"
+        }
+    }
     // MARK: - Page constants
     private struct constants{
         static let PasswordEmptyMsg : String = "Password Required."

@@ -10,11 +10,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Contract/Views/AddressListViewController.swift"
-            timestampString = "488360218.845382"
+            timestampString = "505379726.427499"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "528"
-            endingLineNumber = "528"
+            startingLineNumber = "537"
+            endingLineNumber = "537"
             landmarkName = "prepareForSegue(segue:sender:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -26,11 +26,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Contract/Views/AddressListViewController.swift"
-            timestampString = "488360218.845382"
+            timestampString = "505379726.427499"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "530"
-            endingLineNumber = "530"
+            startingLineNumber = "539"
+            endingLineNumber = "539"
             landmarkName = "prepareForSegue(segue:sender:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -42,11 +42,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Contract/Views/AddressListViewController.swift"
-            timestampString = "488360218.845382"
+            timestampString = "505379726.427499"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "531"
-            endingLineNumber = "531"
+            startingLineNumber = "540"
+            endingLineNumber = "540"
             landmarkName = "prepareForSegue(segue:sender:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -74,11 +74,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Contract/Views/AddressListViewController.swift"
-            timestampString = "488360218.845382"
+            timestampString = "505379726.427499"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "762"
-            endingLineNumber = "762">
+            startingLineNumber = "771"
+            endingLineNumber = "771">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -152,11 +152,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Contract/Views/PDFPrintViewController.swift"
-            timestampString = "490793572.186841"
+            timestampString = "505379726.427499"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "356"
-            endingLineNumber = "356"
+            startingLineNumber = "365"
+            endingLineNumber = "365"
             landmarkName = "loadPDFView()"
             landmarkType = "7">
          </BreakpointContent>
@@ -168,11 +168,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Contract/Views/PDFPrintViewController.swift"
-            timestampString = "490793572.186841"
+            timestampString = "505379726.427499"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "387"
-            endingLineNumber = "387"
+            startingLineNumber = "396"
+            endingLineNumber = "396"
             landmarkName = "loadPDFView()"
             landmarkType = "7">
          </BreakpointContent>
@@ -184,11 +184,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Contract/Views/PDFPrintViewController.swift"
-            timestampString = "490792421.796739"
+            timestampString = "505379726.427499"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "125"
-            endingLineNumber = "125"
+            startingLineNumber = "134"
+            endingLineNumber = "134"
             landmarkName = "PDFPrintViewController"
             landmarkType = "3">
          </BreakpointContent>
@@ -200,11 +200,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Contract/Views/PDFPrintViewController.swift"
-            timestampString = "490792421.796739"
+            timestampString = "505379726.427499"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "127"
-            endingLineNumber = "127"
+            startingLineNumber = "136"
+            endingLineNumber = "136"
             landmarkName = "PDFPrintViewController"
             landmarkType = "3">
          </BreakpointContent>
@@ -216,11 +216,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Contract/UtilityClass/SetDotValue.swift"
-            timestampString = "491281450.186143"
+            timestampString = "505374864.291703"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "1627"
-            endingLineNumber = "1627">
+            startingLineNumber = "1679"
+            endingLineNumber = "1679">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -230,11 +230,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Contract/UtilityClass/SetDotValue.swift"
-            timestampString = "491281450.186143"
+            timestampString = "505374864.291703"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "1550"
-            endingLineNumber = "1550"
+            startingLineNumber = "1602"
+            endingLineNumber = "1602"
             landmarkName = "AddendumHoaPDFFields"
             landmarkType = "14">
          </BreakpointContent>
@@ -246,11 +246,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Contract/Views/PDFPrintViewController.swift"
-            timestampString = "490792421.796739"
+            timestampString = "505379726.427499"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "129"
-            endingLineNumber = "129"
+            startingLineNumber = "138"
+            endingLineNumber = "138"
             landmarkName = "PDFPrintViewController"
             landmarkType = "3">
          </BreakpointContent>
@@ -262,11 +262,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Contract/Views/PDFPrintViewController.swift"
-            timestampString = "490793572.186841"
+            timestampString = "505379726.427499"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "498"
-            endingLineNumber = "498"
+            startingLineNumber = "508"
+            endingLineNumber = "508"
             landmarkName = "loadPDFView()"
             landmarkType = "7">
          </BreakpointContent>
@@ -278,11 +278,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Contract/Views/PDFPrintViewController.swift"
-            timestampString = "490792421.796739"
+            timestampString = "505379726.427499"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "126"
-            endingLineNumber = "126"
+            startingLineNumber = "135"
+            endingLineNumber = "135"
             landmarkName = "PDFPrintViewController"
             landmarkType = "3">
          </BreakpointContent>
@@ -294,11 +294,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Contract/Views/PDFPrintViewController.swift"
-            timestampString = "490865602.212824"
+            timestampString = "505379726.427499"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "1032"
-            endingLineNumber = "1032"
+            startingLineNumber = "1035"
+            endingLineNumber = "1035"
             landmarkName = "callService(printModelNm:param:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -310,11 +310,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Contract/Views/PDFPrintViewController.swift"
-            timestampString = "490865602.212824"
+            timestampString = "505379726.427499"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "1131"
-            endingLineNumber = "1131"
+            startingLineNumber = "1134"
+            endingLineNumber = "1134"
             landmarkName = "afterGotofield()"
             landmarkType = "7">
          </BreakpointContent>
@@ -326,11 +326,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Contract/Views/PDFPrintViewController.swift"
-            timestampString = "490865602.212824"
+            timestampString = "505379726.427499"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "1106"
-            endingLineNumber = "1106"
+            startingLineNumber = "1109"
+            endingLineNumber = "1109"
             landmarkName = "BuyerSign(sender:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -342,11 +342,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Contract/Views/PDFPrintViewController.swift"
-            timestampString = "490865602.212824"
+            timestampString = "505379726.427499"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "1115"
-            endingLineNumber = "1115"
+            startingLineNumber = "1118"
+            endingLineNumber = "1118"
             landmarkName = "BuyerSign(sender:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -358,11 +358,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Contract/Views/PDFPrintViewController.swift"
-            timestampString = "490865602.212824"
+            timestampString = "505379726.427499"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "1122"
-            endingLineNumber = "1122"
+            startingLineNumber = "1125"
+            endingLineNumber = "1125"
             landmarkName = "afterGotofield()"
             landmarkType = "7">
          </BreakpointContent>
@@ -374,11 +374,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Contract/Views/PDFPrintViewController.swift"
-            timestampString = "490865602.212824"
+            timestampString = "505379726.427499"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "1140"
-            endingLineNumber = "1140"
+            startingLineNumber = "1143"
+            endingLineNumber = "1143"
             landmarkName = "afterGotofield()"
             landmarkType = "7">
          </BreakpointContent>
@@ -390,11 +390,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Contract/Views/PDFPrintViewController.swift"
-            timestampString = "490865602.212824"
+            timestampString = "505379726.427499"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "1148"
-            endingLineNumber = "1148"
+            startingLineNumber = "1151"
+            endingLineNumber = "1151"
             landmarkName = "afterGotofield()"
             landmarkType = "7">
          </BreakpointContent>
@@ -406,11 +406,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Contract/Views/PDFPrintViewController.swift"
-            timestampString = "490865602.212824"
+            timestampString = "505379726.427499"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "1157"
-            endingLineNumber = "1157"
+            startingLineNumber = "1160"
+            endingLineNumber = "1160"
             landmarkName = "afterGotofield()"
             landmarkType = "7">
          </BreakpointContent>
@@ -422,11 +422,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Contract/Views/PDFPrintViewController.swift"
-            timestampString = "490865602.212824"
+            timestampString = "505379726.427499"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "1163"
-            endingLineNumber = "1163"
+            startingLineNumber = "1166"
+            endingLineNumber = "1166"
             landmarkName = "afterGotofield()"
             landmarkType = "7">
          </BreakpointContent>
@@ -486,12 +486,12 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Contract/Views/LoginViewController.swift"
-            timestampString = "492504242.572939"
+            timestampString = "505379509.749386"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "264"
-            endingLineNumber = "264"
-            landmarkName = "doLogin(sender:)"
+            startingLineNumber = "267"
+            endingLineNumber = "267"
+            landmarkName = "doLogin(_:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
@@ -518,11 +518,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Contract/Views/PDFPrintViewController.swift"
-            timestampString = "490793572.186841"
+            timestampString = "505379726.427499"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "510"
-            endingLineNumber = "510"
+            startingLineNumber = "520"
+            endingLineNumber = "520"
             landmarkName = "loadPDFView()"
             landmarkType = "7">
          </BreakpointContent>
@@ -534,11 +534,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Contract/Views/PDFPrintViewController.swift"
-            timestampString = "490793572.186841"
+            timestampString = "505379726.427499"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "363"
-            endingLineNumber = "363"
+            startingLineNumber = "372"
+            endingLineNumber = "372"
             landmarkName = "loadPDFView()"
             landmarkType = "7">
          </BreakpointContent>
@@ -598,12 +598,12 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Contract/Views/AddressListViewController.swift"
-            timestampString = "488360218.845382"
+            timestampString = "505379726.427499"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "560"
-            endingLineNumber = "560"
-            landmarkName = "prepareForSegue(segue:sender:)"
+            startingLineNumber = "569"
+            endingLineNumber = "569"
+            landmarkName = "getAddressListFromServer(sender:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
@@ -614,11 +614,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Contract/Views/AddressListViewController.swift"
-            timestampString = "488360218.845382"
+            timestampString = "505379726.427499"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "521"
-            endingLineNumber = "521"
+            startingLineNumber = "530"
+            endingLineNumber = "530"
             landmarkName = "prepareForSegue(segue:sender:)"
             landmarkType = "7">
             <Locations>
@@ -662,11 +662,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Contract/UtilityClass/SetDotValue.swift"
-            timestampString = "488449218.946023"
+            timestampString = "505374864.291703"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "314"
-            endingLineNumber = "314"
+            startingLineNumber = "325"
+            endingLineNumber = "325"
             landmarkName = "setSignContractDots(pdfInfo:additionViews:pdfview:item:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -678,11 +678,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Contract/Views/PDFPrintViewController.swift"
-            timestampString = "490865602.212824"
+            timestampString = "505379726.427499"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "1216"
-            endingLineNumber = "1216"
+            startingLineNumber = "1219"
+            endingLineNumber = "1219"
             landmarkName = "afterGotofield()"
             landmarkType = "7">
          </BreakpointContent>
@@ -694,11 +694,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Contract/Views/PDFPrintViewController.swift"
-            timestampString = "490865602.212824"
+            timestampString = "505379726.427499"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "1292"
-            endingLineNumber = "1292"
+            startingLineNumber = "1295"
+            endingLineNumber = "1295"
             landmarkName = "pageChanged(no:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -774,11 +774,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Contract/Views/PDFPrintViewController.swift"
-            timestampString = "491300643.137512"
+            timestampString = "505379726.427499"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "1369"
-            endingLineNumber = "1369"
+            startingLineNumber = "1372"
+            endingLineNumber = "1372"
             landmarkName = "setBuyer2()"
             landmarkType = "7">
          </BreakpointContent>
@@ -790,11 +790,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Contract/Views/PDFPrintViewController.swift"
-            timestampString = "491300643.137512"
+            timestampString = "505379726.427499"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "1370"
-            endingLineNumber = "1370"
+            startingLineNumber = "1373"
+            endingLineNumber = "1373"
             landmarkName = "setBuyer2()"
             landmarkType = "7">
          </BreakpointContent>
@@ -806,11 +806,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Contract/Views/PDFPrintViewController.swift"
-            timestampString = "490865602.212824"
+            timestampString = "505379726.427499"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "1201"
-            endingLineNumber = "1201"
+            startingLineNumber = "1204"
+            endingLineNumber = "1204"
             landmarkName = "afterGotofield()"
             landmarkType = "7">
          </BreakpointContent>
@@ -828,7 +828,7 @@
             startingLineNumber = "348"
             endingLineNumber = "348"
             landmarkName = "-createWidgetAnnotationViewForSuperviewWithWidth:xMargin:yMargin:pageMargin:"
-            landmarkType = "5">
+            landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -838,11 +838,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Contract/Views/PDFPrintViewController.swift"
-            timestampString = "490793572.186841"
+            timestampString = "505379726.427499"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "361"
-            endingLineNumber = "361"
+            startingLineNumber = "370"
+            endingLineNumber = "370"
             landmarkName = "loadPDFView()"
             landmarkType = "7">
          </BreakpointContent>
@@ -934,11 +934,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Contract/Views/PDFPrintViewController.swift"
-            timestampString = "490792421.796739"
+            timestampString = "505379726.427499"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "184"
-            endingLineNumber = "184"
+            startingLineNumber = "193"
+            endingLineNumber = "193"
             landmarkName = "setAddendumC()"
             landmarkType = "7">
          </BreakpointContent>
@@ -1238,11 +1238,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Contract/Views/PDFPrintViewController.swift"
-            timestampString = "490793572.186841"
+            timestampString = "505379726.427499"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "735"
-            endingLineNumber = "735"
+            startingLineNumber = "745"
+            endingLineNumber = "745"
             landmarkName = "setBrokerDate()"
             landmarkType = "7">
          </BreakpointContent>
@@ -1254,11 +1254,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Contract/Views/PDFPrintViewController.swift"
-            timestampString = "490793572.186841"
+            timestampString = "505379726.427499"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "742"
-            endingLineNumber = "742"
+            startingLineNumber = "752"
+            endingLineNumber = "752"
             landmarkName = "setBrokerDate()"
             landmarkType = "7">
          </BreakpointContent>
@@ -1270,11 +1270,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Contract/Views/PDFPrintViewController.swift"
-            timestampString = "490793572.186841"
+            timestampString = "505379726.427499"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "738"
-            endingLineNumber = "738"
+            startingLineNumber = "748"
+            endingLineNumber = "748"
             landmarkName = "setBrokerDate()"
             landmarkType = "7">
          </BreakpointContent>
@@ -1286,11 +1286,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Contract/Views/PDFPrintViewController.swift"
-            timestampString = "491300643.137512"
+            timestampString = "505379726.427499"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "1899"
-            endingLineNumber = "1899"
+            startingLineNumber = "1902"
+            endingLineNumber = "1902"
             landmarkName = "saveToServer1(xtype:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -1302,11 +1302,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Contract/Views/PDFPrintViewController.swift"
-            timestampString = "491300643.137512"
+            timestampString = "505379726.427499"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "1390"
-            endingLineNumber = "1390"
+            startingLineNumber = "1393"
+            endingLineNumber = "1393"
             landmarkName = "setBuyer2()"
             landmarkType = "7">
          </BreakpointContent>
@@ -1318,11 +1318,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Contract/Views/PDFPrintViewController.swift"
-            timestampString = "491300643.137512"
+            timestampString = "505379726.427499"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "1389"
-            endingLineNumber = "1389"
+            startingLineNumber = "1392"
+            endingLineNumber = "1392"
             landmarkName = "setBuyer2()"
             landmarkType = "7">
          </BreakpointContent>
@@ -1334,11 +1334,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Contract/Views/PDFPrintViewController.swift"
-            timestampString = "491300643.137512"
+            timestampString = "505379726.427499"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "2092"
-            endingLineNumber = "2092"
+            startingLineNumber = "2095"
+            endingLineNumber = "2095"
             landmarkName = "saveToServer1(xtype:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -1350,11 +1350,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Contract/Views/PDFPrintViewController.swift"
-            timestampString = "491300643.137512"
+            timestampString = "505379726.427499"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "2093"
-            endingLineNumber = "2093"
+            startingLineNumber = "2096"
+            endingLineNumber = "2096"
             landmarkName = "saveToServer1(xtype:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -1366,11 +1366,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Contract/Views/PDFPrintViewController.swift"
-            timestampString = "491300643.137512"
+            timestampString = "505379726.427499"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "2201"
-            endingLineNumber = "2201"
+            startingLineNumber = "2204"
+            endingLineNumber = "2204"
             landmarkName = "saveToServer1(xtype:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -1382,11 +1382,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Contract/Views/PDFPrintViewController.swift"
-            timestampString = "491300643.137512"
+            timestampString = "505379726.427499"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "2233"
-            endingLineNumber = "2233"
+            startingLineNumber = "2236"
+            endingLineNumber = "2236"
             landmarkName = "saveToServer1(xtype:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -1430,12 +1430,12 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Contract/Views/LoginViewController.swift"
-            timestampString = "492504242.572939"
+            timestampString = "505379509.749386"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "261"
-            endingLineNumber = "261"
-            landmarkName = "doLogin(sender:)"
+            startingLineNumber = "264"
+            endingLineNumber = "264"
+            landmarkName = "doLogin(_:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
@@ -1446,11 +1446,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Contract/Views/PDFPrintViewController.swift"
-            timestampString = "491300643.137512"
+            timestampString = "505379726.427499"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "2462"
-            endingLineNumber = "2462"
+            startingLineNumber = "2475"
+            endingLineNumber = "2475"
             landmarkName = "getSignature()"
             landmarkType = "7">
          </BreakpointContent>
@@ -1462,11 +1462,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Contract/Views/PDFPrintViewController.swift"
-            timestampString = "491300643.137512"
+            timestampString = "505379726.427499"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "2223"
-            endingLineNumber = "2223"
+            startingLineNumber = "2226"
+            endingLineNumber = "2226"
             landmarkName = "saveToServer1(xtype:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -1478,11 +1478,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Contract/Views/PDFPrintViewController.swift"
-            timestampString = "491300643.137512"
+            timestampString = "505379726.427499"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "2405"
-            endingLineNumber = "2405"
+            startingLineNumber = "2417"
+            endingLineNumber = "2417"
             landmarkName = "getSignature()"
             landmarkType = "7">
          </BreakpointContent>
@@ -1494,11 +1494,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Contract/Views/PDFPrintViewController.swift"
-            timestampString = "491300643.137512"
+            timestampString = "505379726.427499"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "1814"
-            endingLineNumber = "1814"
+            startingLineNumber = "1817"
+            endingLineNumber = "1817"
             landmarkName = "getPDFSignaturePrefix()"
             landmarkType = "7">
          </BreakpointContent>
@@ -1510,11 +1510,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Contract/Views/PDFPrintViewController.swift"
-            timestampString = "491300643.137512"
+            timestampString = "505379726.427499"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "2157"
-            endingLineNumber = "2157"
+            startingLineNumber = "2160"
+            endingLineNumber = "2160"
             landmarkName = "saveToServer1(xtype:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -1606,11 +1606,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Contract/Views/AddressListViewController.swift"
-            timestampString = "488257516.578462"
+            timestampString = "505379726.427499"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "272"
-            endingLineNumber = "272"
+            startingLineNumber = "281"
+            endingLineNumber = "281"
             landmarkName = "GoToPrint(modelNm:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -1622,11 +1622,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Contract/Views/AddressListViewController.swift"
-            timestampString = "488360218.845382"
+            timestampString = "505379726.427499"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "506"
-            endingLineNumber = "506"
+            startingLineNumber = "515"
+            endingLineNumber = "515"
             landmarkName = "prepareForSegue(segue:sender:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -1750,11 +1750,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Contract/Views/PDFPrintViewController.swift"
-            timestampString = "491300643.137512"
+            timestampString = "505379726.427499"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "2903"
-            endingLineNumber = "2903"
+            startingLineNumber = "2918"
+            endingLineNumber = "2918"
             landmarkName = "GoToSubmit(email:emailcc:msg:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -1766,11 +1766,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Contract/Views/PDFPrintViewController.swift"
-            timestampString = "491300643.137512"
+            timestampString = "505379726.427499"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "2177"
-            endingLineNumber = "2177"
+            startingLineNumber = "2180"
+            endingLineNumber = "2180"
             landmarkName = "saveToServer1(xtype:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -1782,11 +1782,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Contract/Views/PDFPrintViewController.swift"
-            timestampString = "491300643.137512"
+            timestampString = "505379726.427499"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "3577"
-            endingLineNumber = "3577"
+            startingLineNumber = "3591"
+            endingLineNumber = "3591"
             landmarkName = "changeBuyreToIPadSign(isbuyer1:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -1798,12 +1798,12 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Contract/Views/LoginViewController.swift"
-            timestampString = "492504242.572939"
+            timestampString = "505379509.749386"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "260"
-            endingLineNumber = "260"
-            landmarkName = "doLogin(sender:)"
+            startingLineNumber = "263"
+            endingLineNumber = "263"
+            landmarkName = "doLogin(_:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
@@ -1814,11 +1814,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Contract/Views/PDFPrintViewController.swift"
-            timestampString = "491300643.137512"
+            timestampString = "505379726.427499"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "2936"
-            endingLineNumber = "2936"
+            startingLineNumber = "2950"
+            endingLineNumber = "2950"
             landmarkName = "GoToSubmit(email:emailcc:msg:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -1830,11 +1830,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Contract/Views/PDFPrintViewController.swift"
-            timestampString = "491300643.137512"
+            timestampString = "505379726.427499"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "2934"
-            endingLineNumber = "2934"
+            startingLineNumber = "2948"
+            endingLineNumber = "2948"
             landmarkName = "GoToSubmit(email:emailcc:msg:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -1846,11 +1846,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Contract/Views/PDFPrintViewController.swift"
-            timestampString = "490793572.186841"
+            timestampString = "505379726.427499"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "252"
-            endingLineNumber = "252"
+            startingLineNumber = "261"
+            endingLineNumber = "261"
             landmarkName = "PDFPrintViewController"
             landmarkType = "3">
          </BreakpointContent>
@@ -1862,11 +1862,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Contract/Views/PDFPrintViewController.swift"
-            timestampString = "490865602.212824"
+            timestampString = "505379726.427499"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "946"
-            endingLineNumber = "946"
+            startingLineNumber = "948"
+            endingLineNumber = "948"
             landmarkName = "viewDidLoad()"
             landmarkType = "7">
          </BreakpointContent>
@@ -1932,7 +1932,7 @@
             startingLineNumber = "230"
             endingLineNumber = "230"
             landmarkName = "-initWithResource:"
-            landmarkType = "5">
+            landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -1942,11 +1942,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Contract/Views/PDFPrintViewController.swift"
-            timestampString = "491300643.137512"
+            timestampString = "505379726.427499"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "2392"
-            endingLineNumber = "2392"
+            startingLineNumber = "2404"
+            endingLineNumber = "2404"
             landmarkName = "getSignature()"
             landmarkType = "7">
          </BreakpointContent>
@@ -1958,11 +1958,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Contract/Views/PDFPrintViewController.swift"
-            timestampString = "491300643.137512"
+            timestampString = "505379726.427499"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "2391"
-            endingLineNumber = "2391"
+            startingLineNumber = "2403"
+            endingLineNumber = "2403"
             landmarkName = "getSignature()"
             landmarkType = "7">
          </BreakpointContent>
@@ -1974,11 +1974,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Contract/Views/PDFPrintViewController.swift"
-            timestampString = "491300643.137512"
+            timestampString = "505379726.427499"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "2224"
-            endingLineNumber = "2224"
+            startingLineNumber = "2227"
+            endingLineNumber = "2227"
             landmarkName = "saveToServer1(xtype:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -1990,12 +1990,12 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Contract/Views/AddressListViewController.swift"
-            timestampString = "488360218.845382"
+            timestampString = "505379726.427499"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "687"
-            endingLineNumber = "687"
-            landmarkName = "viewWillAppear(animated:)"
+            startingLineNumber = "696"
+            endingLineNumber = "696"
+            landmarkName = "showAll()"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
@@ -2006,11 +2006,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Contract/Views/PDFPrintViewController.swift"
-            timestampString = "491300643.137512"
+            timestampString = "505379726.427499"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "2083"
-            endingLineNumber = "2083"
+            startingLineNumber = "2086"
+            endingLineNumber = "2086"
             landmarkName = "saveToServer1(xtype:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -2022,11 +2022,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Contract/Views/PDFPrintViewController.swift"
-            timestampString = "491300643.137512"
+            timestampString = "505379726.427499"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "2946"
-            endingLineNumber = "2946"
+            startingLineNumber = "2960"
+            endingLineNumber = "2960"
             landmarkName = "GoToSubmit(email:emailcc:msg:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -2038,11 +2038,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Contract/Views/PDFPrintViewController.swift"
-            timestampString = "490793572.186841"
+            timestampString = "505379726.427499"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "853"
-            endingLineNumber = "853"
+            startingLineNumber = "855"
+            endingLineNumber = "855"
             landmarkName = "setSendItema()"
             landmarkType = "7">
          </BreakpointContent>
@@ -2054,11 +2054,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Contract/Views/PDFPrintViewController.swift"
-            timestampString = "491300643.137512"
+            timestampString = "505379726.427499"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "2450"
-            endingLineNumber = "2450"
+            startingLineNumber = "2462"
+            endingLineNumber = "2462"
             landmarkName = "getSignature()"
             landmarkType = "7">
          </BreakpointContent>
@@ -2108,7 +2108,7 @@
             startingLineNumber = "332"
             endingLineNumber = "332"
             landmarkName = "-createWidgetAnnotationViewForSuperviewWithWidth:xMargin:yMargin:pageMargin:"
-            landmarkType = "5">
+            landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -2124,7 +2124,7 @@
             startingLineNumber = "333"
             endingLineNumber = "333"
             landmarkName = "-createWidgetAnnotationViewForSuperviewWithWidth:xMargin:yMargin:pageMargin:"
-            landmarkType = "5">
+            landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -2140,7 +2140,7 @@
             startingLineNumber = "342"
             endingLineNumber = "342"
             landmarkName = "-createWidgetAnnotationViewForSuperviewWithWidth:xMargin:yMargin:pageMargin:"
-            landmarkType = "5">
+            landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -2150,11 +2150,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Contract/Views/PDFPrintViewController.swift"
-            timestampString = "491300643.137512"
+            timestampString = "505379726.427499"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "2924"
-            endingLineNumber = "2924"
+            startingLineNumber = "2938"
+            endingLineNumber = "2938"
             landmarkName = "GoToSubmit(email:emailcc:msg:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -2172,7 +2172,7 @@
             startingLineNumber = "173"
             endingLineNumber = "173"
             landmarkName = "renderPage1()"
-            landmarkType = "7">
+            landmarkType = "9">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -2214,12 +2214,12 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Contract/Views/AddressListViewController.swift"
-            timestampString = "488360218.845382"
+            timestampString = "505379726.427499"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "446"
-            endingLineNumber = "446"
-            landmarkName = "GetPrintedFileList(contract:)"
+            startingLineNumber = "455"
+            endingLineNumber = "455"
+            landmarkName = "prepareForSegue(segue:sender:)"
             landmarkType = "7">
             <Locations>
                <Location
@@ -2262,12 +2262,12 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Contract/Views/AddressListViewController.swift"
-            timestampString = "488360218.845382"
+            timestampString = "505379726.427499"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "454"
-            endingLineNumber = "454"
-            landmarkName = "GetPrintedFileList(contract:)"
+            startingLineNumber = "463"
+            endingLineNumber = "463"
+            landmarkName = "prepareForSegue(segue:sender:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
@@ -2278,12 +2278,12 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Contract/Views/AddressListViewController.swift"
-            timestampString = "488360218.845382"
+            timestampString = "505379726.427499"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "449"
-            endingLineNumber = "449"
-            landmarkName = "GetPrintedFileList(contract:)"
+            startingLineNumber = "458"
+            endingLineNumber = "458"
+            landmarkName = "prepareForSegue(segue:sender:)"
             landmarkType = "7">
             <Locations>
                <Location
@@ -2326,12 +2326,28 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Contract/Views/AddressListViewController.swift"
-            timestampString = "488360218.845382"
+            timestampString = "505379726.427499"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "438"
-            endingLineNumber = "438"
-            landmarkName = "tableView(tableView:didSelectRowAtIndexPath:)"
+            startingLineNumber = "447"
+            endingLineNumber = "447"
+            landmarkName = "AddressListViewController"
+            landmarkType = "3">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Contract/Views/AddressListViewController.swift"
+            timestampString = "505379726.427499"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "462"
+            endingLineNumber = "462"
+            landmarkName = "prepareForSegue(segue:sender:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
@@ -2342,28 +2358,12 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Contract/Views/AddressListViewController.swift"
-            timestampString = "488360218.845382"
+            timestampString = "505379726.427499"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "453"
-            endingLineNumber = "453"
-            landmarkName = "GetPrintedFileList(contract:)"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "Contract/Views/AddressListViewController.swift"
-            timestampString = "488360218.845382"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "451"
-            endingLineNumber = "451"
-            landmarkName = "GetPrintedFileList(contract:)"
+            startingLineNumber = "460"
+            endingLineNumber = "460"
+            landmarkName = "prepareForSegue(segue:sender:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
@@ -2438,11 +2438,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Contract/Views/AddressListViewController.swift"
-            timestampString = "488360218.845382"
+            timestampString = "505379726.427499"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "505"
-            endingLineNumber = "505"
+            startingLineNumber = "514"
+            endingLineNumber = "514"
             landmarkName = "prepareForSegue(segue:sender:)"
             landmarkType = "7">
             <Locations>
@@ -2486,12 +2486,12 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Contract/Views/AddressListViewController.swift"
-            timestampString = "488360218.845382"
+            timestampString = "505379726.427499"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "556"
-            endingLineNumber = "556"
-            landmarkName = "prepareForSegue(segue:sender:)"
+            startingLineNumber = "565"
+            endingLineNumber = "565"
+            landmarkName = "getAddressListFromServer(sender:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
@@ -2502,11 +2502,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Contract/Views/AddressListViewController.swift"
-            timestampString = "488257516.578462"
+            timestampString = "505379726.427499"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "335"
-            endingLineNumber = "335"
+            startingLineNumber = "344"
+            endingLineNumber = "344"
             landmarkName = "callService(printModelNms:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -2518,11 +2518,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Contract/Views/PDFPrintViewController.swift"
-            timestampString = "490793572.186841"
+            timestampString = "505379726.427499"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "507"
-            endingLineNumber = "507"
+            startingLineNumber = "517"
+            endingLineNumber = "517"
             landmarkName = "loadPDFView()"
             landmarkType = "7">
          </BreakpointContent>
@@ -2534,11 +2534,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Contract/Views/PDFPrintViewController.swift"
-            timestampString = "490793572.186841"
+            timestampString = "505379726.427499"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "250"
-            endingLineNumber = "250"
+            startingLineNumber = "259"
+            endingLineNumber = "259"
             landmarkName = "PDFPrintViewController"
             landmarkType = "3">
          </BreakpointContent>
@@ -2550,11 +2550,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Contract/Views/PDFPrintViewController.swift"
-            timestampString = "491300643.137512"
+            timestampString = "505379726.427499"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "2788"
-            endingLineNumber = "2788"
+            startingLineNumber = "2801"
+            endingLineNumber = "2801"
             landmarkName = "prepareForSegue(segue:sender:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -2566,11 +2566,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Contract/Views/PDFPrintViewController.swift"
-            timestampString = "491300643.137512"
+            timestampString = "505379726.427499"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "2792"
-            endingLineNumber = "2792"
+            startingLineNumber = "2805"
+            endingLineNumber = "2805"
             landmarkName = "prepareForSegue(segue:sender:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -2582,11 +2582,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Contract/Views/PDFPrintViewController.swift"
-            timestampString = "491300643.137512"
+            timestampString = "505379726.427499"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "2791"
-            endingLineNumber = "2791"
+            startingLineNumber = "2804"
+            endingLineNumber = "2804"
             landmarkName = "prepareForSegue(segue:sender:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -2646,11 +2646,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Contract/Views/PDFPrintViewController.swift"
-            timestampString = "490793572.186841"
+            timestampString = "505379726.427499"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "217"
-            endingLineNumber = "217"
+            startingLineNumber = "226"
+            endingLineNumber = "226"
             landmarkName = "PDFPrintViewController"
             landmarkType = "3">
          </BreakpointContent>
@@ -2678,28 +2678,12 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Contract/Views/PDFPrintViewController.swift"
-            timestampString = "491300643.137512"
+            timestampString = "505379726.427499"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "2378"
-            endingLineNumber = "2378"
+            startingLineNumber = "2390"
+            endingLineNumber = "2390"
             landmarkName = "getSignature()"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "Contract/Views/PDFPrintViewController.swift"
-            timestampString = "491300643.137512"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "2279"
-            endingLineNumber = "2279"
-            landmarkName = "isCanSignature(nameArray:sign:ynarr:inarr:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
@@ -2774,11 +2758,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Contract/Views/AddressListViewController.swift"
-            timestampString = "488360218.845382"
+            timestampString = "505379726.427499"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "414"
-            endingLineNumber = "414"
+            startingLineNumber = "423"
+            endingLineNumber = "423"
             landmarkName = "tableView(tableView:didSelectRowAtIndexPath:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -2806,11 +2790,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Contract/Views/PDFPrintViewController.swift"
-            timestampString = "490793572.186841"
+            timestampString = "505379726.427499"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "394"
-            endingLineNumber = "394"
+            startingLineNumber = "403"
+            endingLineNumber = "403"
             landmarkName = "loadPDFView()"
             landmarkType = "7">
          </BreakpointContent>
@@ -2822,11 +2806,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Contract/Views/PDFPrintViewController.swift"
-            timestampString = "490793572.186841"
+            timestampString = "505379726.427499"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "216"
-            endingLineNumber = "216"
+            startingLineNumber = "225"
+            endingLineNumber = "225"
             landmarkName = "PDFPrintViewController"
             landmarkType = "3">
             <Locations>
@@ -2870,11 +2854,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Contract/Views/PDFPrintViewController.swift"
-            timestampString = "491300643.137512"
+            timestampString = "505379726.427499"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "2640"
-            endingLineNumber = "2640"
+            startingLineNumber = "2653"
+            endingLineNumber = "2653"
             landmarkName = "submitStep0()"
             landmarkType = "7">
             <Locations>
@@ -2918,11 +2902,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Contract/Views/PDFPrintViewController.swift"
-            timestampString = "491300643.137512"
+            timestampString = "505379726.427499"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "3216"
-            endingLineNumber = "3216"
+            startingLineNumber = "3230"
+            endingLineNumber = "3230"
             landmarkName = "uploadAttachedPhoto(image:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -2998,12 +2982,12 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Contract/Views/AddressListViewController.swift"
-            timestampString = "488360218.845382"
+            timestampString = "505379726.427499"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "698"
-            endingLineNumber = "698"
-            landmarkName = "showAll()"
+            startingLineNumber = "707"
+            endingLineNumber = "707"
+            landmarkName = "showHomeOwnerSign()"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
@@ -3046,11 +3030,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Contract/Views/AddressListViewController.swift"
-            timestampString = "488360218.845382"
+            timestampString = "505379726.427499"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "512"
-            endingLineNumber = "512"
+            startingLineNumber = "521"
+            endingLineNumber = "521"
             landmarkName = "prepareForSegue(segue:sender:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -3062,12 +3046,12 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Contract/Views/AddressListViewController.swift"
-            timestampString = "488360218.845382"
+            timestampString = "505379726.427499"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "559"
-            endingLineNumber = "559"
-            landmarkName = "prepareForSegue(segue:sender:)"
+            startingLineNumber = "568"
+            endingLineNumber = "568"
+            landmarkName = "getAddressListFromServer(sender:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
@@ -3078,12 +3062,12 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Contract/Views/AddressListViewController.swift"
-            timestampString = "488360218.845382"
+            timestampString = "505379726.427499"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "558"
-            endingLineNumber = "558"
-            landmarkName = "prepareForSegue(segue:sender:)"
+            startingLineNumber = "567"
+            endingLineNumber = "567"
+            landmarkName = "getAddressListFromServer(sender:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
@@ -3094,11 +3078,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Contract/Views/AddressListViewController.swift"
-            timestampString = "488360150.80532"
+            timestampString = "505379726.427499"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "274"
-            endingLineNumber = "274"
+            startingLineNumber = "283"
+            endingLineNumber = "283"
             landmarkName = "GoToPrint(modelNm:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -3110,11 +3094,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Contract/Views/AddressListViewController.swift"
-            timestampString = "488360160.71619"
+            timestampString = "505379726.427499"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "332"
-            endingLineNumber = "332"
+            startingLineNumber = "341"
+            endingLineNumber = "341"
             landmarkName = "callService(printModelNms:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -3126,11 +3110,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Contract/Views/AddressListViewController.swift"
-            timestampString = "488360218.845382"
+            timestampString = "505379726.427499"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "346"
-            endingLineNumber = "346"
+            startingLineNumber = "355"
+            endingLineNumber = "355"
             landmarkName = "callService(printModelNms:)"
             landmarkType = "7">
             <Locations>
@@ -3174,11 +3158,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Contract/Views/PDFPrintViewController.swift"
-            timestampString = "491300643.137512"
+            timestampString = "505379726.427499"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "3545"
-            endingLineNumber = "3545"
+            startingLineNumber = "3559"
+            endingLineNumber = "3559"
             landmarkName = "submitBuyerSignStep2(isbuyer1:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -3190,11 +3174,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Contract/Views/PDFPrintViewController.swift"
-            timestampString = "491300643.137512"
+            timestampString = "505379726.427499"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "3269"
-            endingLineNumber = "3269"
+            startingLineNumber = "3283"
+            endingLineNumber = "3283"
             landmarkName = "getMargins2()"
             landmarkType = "7">
          </BreakpointContent>
@@ -3222,11 +3206,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Contract/Views/PDFPrintViewController.swift"
-            timestampString = "491300643.137512"
+            timestampString = "505379726.427499"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "2719"
-            endingLineNumber = "2719"
+            startingLineNumber = "2732"
+            endingLineNumber = "2732"
             landmarkName = "prepareForSegue(segue:sender:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -3238,11 +3222,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Contract/Views/PDFPrintViewController.swift"
-            timestampString = "491300643.137512"
+            timestampString = "505379726.427499"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "2802"
-            endingLineNumber = "2802"
+            startingLineNumber = "2815"
+            endingLineNumber = "2815"
             landmarkName = "prepareForSegue(segue:sender:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -3254,11 +3238,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Contract/Views/PDFPrintViewController.swift"
-            timestampString = "491300643.137512"
+            timestampString = "505379726.427499"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "2725"
-            endingLineNumber = "2725"
+            startingLineNumber = "2738"
+            endingLineNumber = "2738"
             landmarkName = "prepareForSegue(segue:sender:)"
             landmarkType = "7">
             <Locations>
@@ -3302,11 +3286,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Contract/Views/PDFPrintViewController.swift"
-            timestampString = "491300643.137512"
+            timestampString = "505379726.427499"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "1509"
-            endingLineNumber = "1509"
+            startingLineNumber = "1512"
+            endingLineNumber = "1512"
             landmarkName = "getAllSignature()"
             landmarkType = "7">
          </BreakpointContent>
@@ -3318,11 +3302,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Contract/Views/PDFPrintViewController.swift"
-            timestampString = "491300643.137512"
+            timestampString = "505379726.427499"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "2783"
-            endingLineNumber = "2783"
+            startingLineNumber = "2796"
+            endingLineNumber = "2796"
             landmarkName = "prepareForSegue(segue:sender:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -3334,11 +3318,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Contract/Views/PDFPrintViewController.swift"
-            timestampString = "491300643.137512"
+            timestampString = "505379726.427499"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "2782"
-            endingLineNumber = "2782"
+            startingLineNumber = "2795"
+            endingLineNumber = "2795"
             landmarkName = "prepareForSegue(segue:sender:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -3350,11 +3334,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Contract/Views/PDFPrintViewController.swift"
-            timestampString = "490865602.212824"
+            timestampString = "505379726.427499"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "1354"
-            endingLineNumber = "1354"
+            startingLineNumber = "1357"
+            endingLineNumber = "1357"
             landmarkName = "setBuyer2()"
             landmarkType = "7">
          </BreakpointContent>
@@ -3366,11 +3350,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Contract/Views/PDFPrintViewController.swift"
-            timestampString = "490865602.212824"
+            timestampString = "505379726.427499"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "1355"
-            endingLineNumber = "1355"
+            startingLineNumber = "1358"
+            endingLineNumber = "1358"
             landmarkName = "setBuyer2()"
             landmarkType = "7">
          </BreakpointContent>
@@ -3382,11 +3366,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Contract/Views/PDFPrintViewController.swift"
-            timestampString = "491300643.137512"
+            timestampString = "505379726.427499"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "2479"
-            endingLineNumber = "2479"
+            startingLineNumber = "2492"
+            endingLineNumber = "2492"
             landmarkName = "getSignature()"
             landmarkType = "7">
             <Locations>
@@ -3430,11 +3414,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Contract/Views/PDFPrintViewController.swift"
-            timestampString = "491300643.137512"
+            timestampString = "505379726.427499"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "2414"
-            endingLineNumber = "2414"
+            startingLineNumber = "2426"
+            endingLineNumber = "2426"
             landmarkName = "getSignature()"
             landmarkType = "7">
          </BreakpointContent>
@@ -3446,11 +3430,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Contract/Views/PDFPrintViewController.swift"
-            timestampString = "491300643.137512"
+            timestampString = "505379726.427499"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "2488"
-            endingLineNumber = "2488"
+            startingLineNumber = "2501"
+            endingLineNumber = "2501"
             landmarkName = "getSignature()"
             landmarkType = "7">
          </BreakpointContent>
@@ -3606,11 +3590,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Contract/Views/PDFPrintViewController.swift"
-            timestampString = "491300643.137512"
+            timestampString = "505379726.427499"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "2534"
-            endingLineNumber = "2534"
+            startingLineNumber = "2547"
+            endingLineNumber = "2547"
             landmarkName = "setShowSignature(si:signs:idcator:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -3622,11 +3606,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Contract/Views/PDFPrintViewController.swift"
-            timestampString = "491300643.137512"
+            timestampString = "505379726.427499"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "2789"
-            endingLineNumber = "2789"
+            startingLineNumber = "2802"
+            endingLineNumber = "2802"
             landmarkName = "prepareForSegue(segue:sender:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -3638,11 +3622,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Contract/Views/PDFPrintViewController.swift"
-            timestampString = "490865602.212824"
+            timestampString = "505379726.427499"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "1328"
-            endingLineNumber = "1328"
+            startingLineNumber = "1331"
+            endingLineNumber = "1331"
             landmarkName = "pageChanged(no:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -3654,11 +3638,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Contract/Views/PDFPrintViewController.swift"
-            timestampString = "491300643.137512"
+            timestampString = "505379726.427499"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "1411"
-            endingLineNumber = "1411"
+            startingLineNumber = "1414"
+            endingLineNumber = "1414"
             landmarkName = "setBuyer2()"
             landmarkType = "7">
          </BreakpointContent>
@@ -3670,11 +3654,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Contract/Views/PDFPrintViewController.swift"
-            timestampString = "490865602.212824"
+            timestampString = "505379726.427499"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "1329"
-            endingLineNumber = "1329"
+            startingLineNumber = "1332"
+            endingLineNumber = "1332"
             landmarkName = "setBuyer21()"
             landmarkType = "7">
          </BreakpointContent>
@@ -3686,11 +3670,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Contract/Views/PDFPrintViewController.swift"
-            timestampString = "491300643.137512"
+            timestampString = "505379726.427499"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "2741"
-            endingLineNumber = "2741"
+            startingLineNumber = "2754"
+            endingLineNumber = "2754"
             landmarkName = "prepareForSegue(segue:sender:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -3702,11 +3686,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Contract/Views/PDFPrintViewController.swift"
-            timestampString = "491300643.137512"
+            timestampString = "505379726.427499"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "2172"
-            endingLineNumber = "2172"
+            startingLineNumber = "2175"
+            endingLineNumber = "2175"
             landmarkName = "saveToServer1(xtype:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -3718,11 +3702,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Contract/Views/PDFPrintViewController.swift"
-            timestampString = "491300643.137512"
+            timestampString = "505379726.427499"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "2916"
-            endingLineNumber = "2916"
+            startingLineNumber = "2931"
+            endingLineNumber = "2931"
             landmarkName = "GoToSubmit(email:emailcc:msg:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -3734,39 +3718,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Contract/Views/PDFPrintViewController.swift"
-            timestampString = "491300643.137512"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "1497"
-            endingLineNumber = "1497"
-            landmarkName = "getAllSignature()"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "Contract/Views/PDFPrintViewController.swift"
-            timestampString = "491300643.137512"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "1498"
-            endingLineNumber = "1498"
-            landmarkName = "getAllSignature()"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "Contract/Views/PDFPrintViewController.swift"
-            timestampString = "491300643.137512"
+            timestampString = "505379726.427499"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "1500"
@@ -3782,11 +3734,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Contract/Views/PDFPrintViewController.swift"
-            timestampString = "491300643.137512"
+            timestampString = "505379726.427499"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "1500"
-            endingLineNumber = "1500"
+            startingLineNumber = "1501"
+            endingLineNumber = "1501"
             landmarkName = "getAllSignature()"
             landmarkType = "7">
          </BreakpointContent>
@@ -3798,11 +3750,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Contract/Views/PDFPrintViewController.swift"
-            timestampString = "491300643.137512"
+            timestampString = "505379726.427499"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "1502"
-            endingLineNumber = "1502"
+            startingLineNumber = "1503"
+            endingLineNumber = "1503"
             landmarkName = "getAllSignature()"
             landmarkType = "7">
          </BreakpointContent>
@@ -3814,11 +3766,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Contract/Views/PDFPrintViewController.swift"
-            timestampString = "491300643.137512"
+            timestampString = "505379726.427499"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "1506"
-            endingLineNumber = "1506"
+            startingLineNumber = "1503"
+            endingLineNumber = "1503"
             landmarkName = "getAllSignature()"
             landmarkType = "7">
          </BreakpointContent>
@@ -3830,11 +3782,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Contract/Views/PDFPrintViewController.swift"
-            timestampString = "491300643.137512"
+            timestampString = "505379726.427499"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "1512"
-            endingLineNumber = "1512"
+            startingLineNumber = "1505"
+            endingLineNumber = "1505"
             landmarkName = "getAllSignature()"
             landmarkType = "7">
          </BreakpointContent>
@@ -3846,11 +3798,43 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Contract/Views/PDFPrintViewController.swift"
-            timestampString = "491300643.137512"
+            timestampString = "505379726.427499"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "2283"
-            endingLineNumber = "2283"
+            startingLineNumber = "1509"
+            endingLineNumber = "1509"
+            landmarkName = "getAllSignature()"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Contract/Views/PDFPrintViewController.swift"
+            timestampString = "505379726.427499"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "1515"
+            endingLineNumber = "1515"
+            landmarkName = "getAllSignature()"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Contract/Views/PDFPrintViewController.swift"
+            timestampString = "505379726.427499"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "2288"
+            endingLineNumber = "2288"
             landmarkName = "isCanSignature(nameArray:sign:ynarr:inarr:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -3862,11 +3846,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Contract/Views/PDFPrintViewController.swift"
-            timestampString = "491300643.137512"
+            timestampString = "505379726.427499"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "2384"
-            endingLineNumber = "2384"
+            startingLineNumber = "2396"
+            endingLineNumber = "2396"
             landmarkName = "getSignature()"
             landmarkType = "7">
          </BreakpointContent>
@@ -3878,11 +3862,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Contract/Views/PDFPrintViewController.swift"
-            timestampString = "491300643.137512"
+            timestampString = "505379726.427499"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "2948"
-            endingLineNumber = "2948"
+            startingLineNumber = "2962"
+            endingLineNumber = "2962"
             landmarkName = "GoToSubmit(email:emailcc:msg:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -3894,11 +3878,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Contract/Views/PDFPrintViewController.swift"
-            timestampString = "491300643.137512"
+            timestampString = "505379726.427499"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "2954"
-            endingLineNumber = "2954"
+            startingLineNumber = "2968"
+            endingLineNumber = "2968"
             landmarkName = "GoToSubmit(email:emailcc:msg:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -3910,11 +3894,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Contract/Views/PDFPrintViewController.swift"
-            timestampString = "491300643.137512"
+            timestampString = "505379726.427499"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "2952"
-            endingLineNumber = "2952"
+            startingLineNumber = "2966"
+            endingLineNumber = "2966"
             landmarkName = "GoToSubmit(email:emailcc:msg:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -3942,11 +3926,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Contract/Views/PDFPrintViewController.swift"
-            timestampString = "491300643.137512"
+            timestampString = "505379726.427499"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "2729"
-            endingLineNumber = "2729"
+            startingLineNumber = "2742"
+            endingLineNumber = "2742"
             landmarkName = "prepareForSegue(segue:sender:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -3958,11 +3942,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Contract/Views/PDFPrintViewController.swift"
-            timestampString = "491300643.137512"
+            timestampString = "505379726.427499"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "2794"
-            endingLineNumber = "2794"
+            startingLineNumber = "2807"
+            endingLineNumber = "2807"
             landmarkName = "prepareForSegue(segue:sender:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -4006,11 +3990,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Contract/Views/PDFPrintViewController.swift"
-            timestampString = "491300643.137512"
+            timestampString = "505379726.427499"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "2145"
-            endingLineNumber = "2145"
+            startingLineNumber = "2148"
+            endingLineNumber = "2148"
             landmarkName = "saveToServer1(xtype:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -4054,11 +4038,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Contract/Views/PDFPrintViewController.swift"
-            timestampString = "491300643.137512"
+            timestampString = "505379726.427499"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "3242"
-            endingLineNumber = "3242"
+            startingLineNumber = "3256"
+            endingLineNumber = "3256"
             landmarkName = "sumOf(numbers:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -4070,11 +4054,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Contract/Views/PDFPrintViewController.swift"
-            timestampString = "491300643.137512"
+            timestampString = "505379726.427499"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "3248"
-            endingLineNumber = "3248"
+            startingLineNumber = "3262"
+            endingLineNumber = "3262"
             landmarkName = "skipToFile(filenm:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -4182,11 +4166,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Contract/Views/PDFPrintViewController.swift"
-            timestampString = "491300643.137512"
+            timestampString = "505379726.427499"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "2398"
-            endingLineNumber = "2398"
+            startingLineNumber = "2410"
+            endingLineNumber = "2410"
             landmarkName = "getSignature()"
             landmarkType = "7">
          </BreakpointContent>
@@ -4198,11 +4182,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Contract/Views/PDFPrintViewController.swift"
-            timestampString = "491300643.137512"
+            timestampString = "505379726.427499"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "2483"
-            endingLineNumber = "2483"
+            startingLineNumber = "2496"
+            endingLineNumber = "2496"
             landmarkName = "getSignature()"
             landmarkType = "7">
             <Locations>
@@ -4246,11 +4230,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Contract/Views/PDFPrintViewController.swift"
-            timestampString = "491300643.137512"
+            timestampString = "505379726.427499"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "2492"
-            endingLineNumber = "2492"
+            startingLineNumber = "2505"
+            endingLineNumber = "2505"
             landmarkName = "getSignature()"
             landmarkType = "7">
          </BreakpointContent>
@@ -4374,11 +4358,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Contract/Views/PDFPrintViewController.swift"
-            timestampString = "491300643.137512"
+            timestampString = "505379726.427499"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "2939"
-            endingLineNumber = "2939"
+            startingLineNumber = "2953"
+            endingLineNumber = "2953"
             landmarkName = "GoToSubmit(email:emailcc:msg:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -4390,11 +4374,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Contract/Views/PDFPrintViewController.swift"
-            timestampString = "490844628.608924"
+            timestampString = "505379726.427499"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "770"
-            endingLineNumber = "770"
+            startingLineNumber = "780"
+            endingLineNumber = "780"
             landmarkName = "setSendItema()"
             landmarkType = "7">
          </BreakpointContent>
@@ -4406,11 +4390,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Contract/Views/PDFPrintViewController.swift"
-            timestampString = "491300643.137512"
+            timestampString = "505379726.427499"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "1417"
-            endingLineNumber = "1417"
+            startingLineNumber = "1420"
+            endingLineNumber = "1420"
             landmarkName = "setBuyer2()"
             landmarkType = "7">
          </BreakpointContent>
@@ -4422,11 +4406,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Contract/Views/PDFPrintViewController.swift"
-            timestampString = "491300643.137512"
+            timestampString = "505379726.427499"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "1415"
-            endingLineNumber = "1415"
+            startingLineNumber = "1418"
+            endingLineNumber = "1418"
             landmarkName = "setBuyer2()"
             landmarkType = "7">
          </BreakpointContent>
@@ -4438,11 +4422,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Contract/Views/PDFPrintViewController.swift"
-            timestampString = "491300643.137512"
+            timestampString = "505379726.427499"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "1404"
-            endingLineNumber = "1404"
+            startingLineNumber = "1407"
+            endingLineNumber = "1407"
             landmarkName = "setBuyer2()"
             landmarkType = "7">
          </BreakpointContent>
@@ -4470,11 +4454,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Contract/Views/PDFPrintViewController.swift"
-            timestampString = "491300643.137512"
+            timestampString = "505379726.427499"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "2452"
-            endingLineNumber = "2452"
+            startingLineNumber = "2464"
+            endingLineNumber = "2464"
             landmarkName = "getSignature()"
             landmarkType = "7">
          </BreakpointContent>
@@ -4502,11 +4486,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Contract/Views/PDFPrintViewController.swift"
-            timestampString = "491300643.137512"
+            timestampString = "505379726.427499"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "3477"
-            endingLineNumber = "3477"
+            startingLineNumber = "3491"
+            endingLineNumber = "3491"
             landmarkName = "submitBuyerSignStep1(isbuyer1:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -4518,11 +4502,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Contract/Views/PDFPrintViewController.swift"
-            timestampString = "491300643.137512"
+            timestampString = "505379726.427499"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "3481"
-            endingLineNumber = "3481"
+            startingLineNumber = "3495"
+            endingLineNumber = "3495"
             landmarkName = "submitBuyerSignStep1(isbuyer1:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -4534,11 +4518,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Contract/Views/PDFPrintViewController.swift"
-            timestampString = "491300643.137512"
+            timestampString = "505379726.427499"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "3480"
-            endingLineNumber = "3480"
+            startingLineNumber = "3494"
+            endingLineNumber = "3494"
             landmarkName = "submitBuyerSignStep1(isbuyer1:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -4550,11 +4534,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Contract/Views/PDFPrintViewController.swift"
-            timestampString = "491300643.137512"
+            timestampString = "505379726.427499"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "3445"
-            endingLineNumber = "3445"
+            startingLineNumber = "3459"
+            endingLineNumber = "3459"
             landmarkName = "submitBuyerSignStep1(isbuyer1:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -4566,11 +4550,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Contract/Views/PDFPrintViewController.swift"
-            timestampString = "491300643.137512"
+            timestampString = "505379726.427499"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "3448"
-            endingLineNumber = "3448"
+            startingLineNumber = "3462"
+            endingLineNumber = "3462"
             landmarkName = "submitBuyerSignStep1(isbuyer1:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -4582,11 +4566,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Contract/Views/PDFPrintViewController.swift"
-            timestampString = "492423666.088993"
+            timestampString = "505379726.427499"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "1004"
-            endingLineNumber = "1004"
+            startingLineNumber = "1006"
+            endingLineNumber = "1006"
             landmarkName = "callService(printModelNm:param:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -4646,12 +4630,444 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Contract/Views/PDFPrintViewController.swift"
-            timestampString = "492743777.052866"
+            timestampString = "505379726.427499"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "395"
-            endingLineNumber = "395"
+            startingLineNumber = "404"
+            endingLineNumber = "404"
             landmarkName = "loadPDFView()"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Contract/UtilityClass/SetDotValue.swift"
+            timestampString = "505374864.291703"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "848"
+            endingLineNumber = "848"
+            landmarkName = "setCloingMemoDots(pdfInfo:additionViews:pdfview:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Contract/UtilityClass/SetDotValue.swift"
+            timestampString = "505374864.291703"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "1103"
+            endingLineNumber = "1103"
+            landmarkName = "setAddendumCDots(pdfInfo:additionViews:pdfview:has2Pages0:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Contract/UtilityClass/SetDotValue.swift"
+            timestampString = "505374864.291703"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "1121"
+            endingLineNumber = "1121"
+            landmarkName = "setAddendumCDots(pdfInfo:additionViews:pdfview:has2Pages0:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Contract/ILPDFKit/Model/PDFForm.m"
+            timestampString = "501407187.25409"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "429"
+            endingLineNumber = "429"
+            landmarkName = "-createWidgetAnnotationViewForSuperviewWithWidth:xMargin:yMargin:pageMargin:"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Contract/Views/PDFPrintViewController.swift"
+            timestampString = "505379726.427499"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "510"
+            endingLineNumber = "510"
+            landmarkName = "loadPDFView()"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Contract/Views/PDFPrintViewController.swift"
+            timestampString = "505379726.427499"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "505"
+            endingLineNumber = "505"
+            landmarkName = "loadPDFView()"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Contract/Views/PDFPrintViewController.swift"
+            timestampString = "505379726.427499"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "507"
+            endingLineNumber = "507"
+            landmarkName = "loadPDFView()"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "Contract.PDFPrintViewController.loadPDFView () -&gt; ()"
+                  moduleName = "Contract"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/April/Desktop/BuildersAccess/Contract/Contract/Views/PDFPrintViewController.swift"
+                  timestampString = "501407781.810752"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "498"
+                  endingLineNumber = "498"
+                  offsetFromSymbolStart = "16755">
+               </Location>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "Contract.PDFPrintViewController.loadPDFView () -&gt; ()"
+                  moduleName = "Contract"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/April/Desktop/BuildersAccess/Contract/Contract/Views/PDFPrintViewController.swift"
+                  timestampString = "501407781.814172"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "498"
+                  endingLineNumber = "498"
+                  offsetFromSymbolStart = "17618">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Contract/UtilityClass/SetDotValue.swift"
+            timestampString = "505374864.291703"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "1055"
+            endingLineNumber = "1055"
+            landmarkName = "setAddendumCDots(pdfInfo:additionViews:pdfview:has2Pages0:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Contract/Views/PDFPrintViewController.swift"
+            timestampString = "505379726.427499"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "2729"
+            endingLineNumber = "2729"
+            landmarkName = "prepareForSegue(segue:sender:)"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "Contract.PDFPrintViewController.prepareForSegue (__ObjC.UIStoryboardSegue, sender : Swift.Optional&lt;Swift.AnyObject&gt;) -&gt; ()"
+                  moduleName = "Contract"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/April/Desktop/BuildersAccess/Contract/Contract/Views/PDFPrintViewController.swift"
+                  timestampString = "505191133.935664"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "2709"
+                  endingLineNumber = "2709"
+                  offsetFromSymbolStart = "35">
+               </Location>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "Contract.PDFPrintViewController.prepareForSegue (__ObjC.UIStoryboardSegue, sender : Swift.Optional&lt;Swift.AnyObject&gt;) -&gt; ()"
+                  moduleName = "Contract"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/April/Desktop/BuildersAccess/Contract/Contract/Views/PDFPrintViewController.swift"
+                  timestampString = "505191133.942107"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "2709"
+                  endingLineNumber = "2709"
+                  offsetFromSymbolStart = "296">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Contract/Views/PDFPrintViewController.swift"
+            timestampString = "505379726.427499"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "2883"
+            endingLineNumber = "2883"
+            landmarkName = "prepareForSegue(segue:sender:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Contract/Views/PDFPrintViewController.swift"
+            timestampString = "505379726.427499"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "2867"
+            endingLineNumber = "2867"
+            landmarkName = "prepareForSegue(segue:sender:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Contract/Views/PDFPrintViewController.swift"
+            timestampString = "505379726.427499"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "2873"
+            endingLineNumber = "2873"
+            landmarkName = "prepareForSegue(segue:sender:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Contract/Views/PDFPrintViewController.swift"
+            timestampString = "505379726.427499"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "2872"
+            endingLineNumber = "2872"
+            landmarkName = "prepareForSegue(segue:sender:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Contract/Views/PDFPrintViewController.swift"
+            timestampString = "505379726.427499"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "2435"
+            endingLineNumber = "2435"
+            landmarkName = "getSignature()"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Contract/Views/PDFPrintViewController.swift"
+            timestampString = "505379726.427499"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "2475"
+            endingLineNumber = "2475"
+            landmarkName = "getSignature()"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Contract/Views/PDFPrintViewController.swift"
+            timestampString = "505379726.427499"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "2280"
+            endingLineNumber = "2280"
+            landmarkName = "isCanSignature(nameArray:sign:ynarr:inarr:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Contract/Views/PDFPrintViewController.swift"
+            timestampString = "505379726.427499"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "2335"
+            endingLineNumber = "2335"
+            landmarkName = "getSignature()"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Contract/Views/PDFPrintViewController.swift"
+            timestampString = "505379726.427499"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "2363"
+            endingLineNumber = "2363"
+            landmarkName = "getSignature()"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Contract/Views/PDFPrintViewController.swift"
+            timestampString = "505379726.427499"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "1027"
+            endingLineNumber = "1027"
+            landmarkName = "callService(printModelNm:param:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Contract/UtilityClass/SetDotValue.swift"
+            timestampString = "505374864.291703"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "336"
+            endingLineNumber = "336"
+            landmarkName = "setSignContractDots(pdfInfo:additionViews:pdfview:item:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Contract/UtilityClass/SetDotValue.swift"
+            timestampString = "505374864.291703"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "340"
+            endingLineNumber = "340"
+            landmarkName = "setSignContractDots(pdfInfo:additionViews:pdfview:item:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Contract/UtilityClass/SetDotValue.swift"
+            timestampString = "505374849.456667"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "210"
+            endingLineNumber = "210"
+            landmarkName = "setSignContractDots(pdfInfo:additionViews:pdfview:item:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Contract/UtilityClass/SetDotValue.swift"
+            timestampString = "505374910.285016"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "207"
+            endingLineNumber = "207"
+            landmarkName = "setSignContractDots(pdfInfo:additionViews:pdfview:item:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>

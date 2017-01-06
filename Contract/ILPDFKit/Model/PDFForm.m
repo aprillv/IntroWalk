@@ -424,8 +424,8 @@
             break;
     }
     if (_formUIElement) {
-        [_formUIElement setValue:self.value];
-        [_formUIElement setXname:_name];
+        [_formUIElement setValue : self.value];
+        [_formUIElement setXname : _name];
         _formUIElement.pagenomargin =  ([pg cropBox].size.height*factor2+ymargin) * pageMargin;
         _formUIElement.delegate = self;
 //        _formUIElement.myform = self;

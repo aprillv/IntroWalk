@@ -19,7 +19,9 @@ class ContractSignature: ContractPDFBaseModel {
     var sold: String?
     var client2: String?
     var bmobile1: String?
+    var bmobile2: String?
     var bfax1: String?
+    var bfax2: String?
     var bemail1: String?
     var bemail2: String?
     var base64pdf: String?

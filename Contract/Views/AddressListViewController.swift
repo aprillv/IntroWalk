@@ -262,6 +262,15 @@ class AddressListViewController: UITableViewController, UISearchBarDelegate, ToD
         }
     }
     
+    @IBOutlet var copyrightlbl: UIBarButtonItem!{
+        didSet{
+            let currentDate = NSDate()
+            let usDateFormat = NSDateFormatter()
+            usDateFormat.dateFormat = NSDateFormatter.dateFormatFromTemplate("yyyy", options: 0, locale: NSLocale(localeIdentifier: "en-US"))
+            
+            copyrightlbl.title = "Copyright © " + usDateFormat.stringFromDate(currentDate) + " All Rights Reserved"
+        }
+    }
     func GoToPrint(modelNm: [String]) {
          self.filesNms = modelNm
 //        self.filesNms = ["Addendum C"]
@@ -278,26 +287,6 @@ class AddressListViewController: UITableViewController, UISearchBarDelegate, ToD
         
 
     }
-    
-    // go to print Addendum C signature
-//    private func doAddendumCAction(_ : UIAlertAction) -> Void {
-//        callService(CConstants.AddendumCServiceURL)
-//    }
-//    // go to print ClosingMemo
-//    private func doClosingMemoAction(_ : UIAlertAction) -> Void {
-//        callService(CConstants.ClosingMemoServiceURL)
-//    }
-//    // go to print DesignCenter
-//    private func doDesignCenterAction(_ : UIAlertAction) -> Void {
-//        callService(CConstants.DesignCenterServiceURL)
-//    }
-//    // go to print Contract signature
-//    private func doContractAction(_ : UIAlertAction) -> Void {
-//        callService(CConstants.ContractServiceURL)
-//    }
-//    private func doThirdPartyFinancingAddendumAction(_: UIAlertAction) -> Void{
-//        callService(CConstants.AddendumAServiceURL)
-//    }
     
     @IBOutlet var filterItem: UIBarButtonItem!
     
@@ -404,11 +393,7 @@ class AddressListViewController: UITableViewController, UISearchBarDelegate, ToD
    
     var selectRowIndex : NSIndexPath?
     override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-//        removebackFromCell()
-//        if let selectedCell:UITableViewCell = tableView.cellForRowAtIndexPath(indexPath){
-//            lastSelectedIndexPath = indexPath
-//            selectedCell.contentView.backgroundColor = CConstants.SearchBarBackColor
-//        }
+
        self.txtField.resignFirstResponder()
         var contract : ContractsItem?
         if tableView.tag == 2{

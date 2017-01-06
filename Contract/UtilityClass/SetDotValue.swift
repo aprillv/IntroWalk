@@ -167,6 +167,11 @@ class SetDotValue : NSObject {
             tobuyer4 = ""
         }
         
+        if (pdfInfo?.client2 ?? "") != "" {
+//            tobuyer4 = tobuyer4 + " / " +  (pdfInfo!.bmobile2 ?? "")
+            tobuyer4 = tobuyer4  +  doPhoneNo(pdfInfo!.bmobile2 ?? "")
+        }
+        
         
         var tobuyer5 : String
         var tobuyer6 : String
@@ -194,6 +199,12 @@ class SetDotValue : NSObject {
             tobuyer5 = ""
             tobuyer6 = ""
         }
+//        print(pdfInfo!.bfax2)
+        if (pdfInfo?.client2 ?? "") != "" {
+            //            tobuyer4 = tobuyer4 + " / " +  (pdfInfo!.bmobile2 ?? "")
+            tobuyer6 = tobuyer6  +  doPhoneNo(pdfInfo!.bfax2 ?? "")
+        }
+//        print(tobuyer6)
         
         
         var overrideFields : [String: String]
@@ -322,7 +333,16 @@ class SetDotValue : NSObject {
                 case SignContractPDFFields.tobuyer6:
                     pv.value = tobuyer6
                 case SignContractPDFFields.tobuyer7:
-                    pv.value = pdfInfo!.bemail1!
+                    if (pdfInfo?.client2 ?? "") != "" && pdfInfo?.bemail2 != "" && (pdfInfo?.bemail1 ?? "") != (pdfInfo?.bemail2 ?? ""){
+                        pv.value = pdfInfo!.bemail1
+                    }
+                case "tobuyer72":
+                    if (pdfInfo?.client2 ?? "") != "" && pdfInfo?.bemail2 != "" && (pdfInfo?.bemail1 ?? "") != (pdfInfo?.bemail2 ?? ""){
+                        pv.value = pdfInfo!.bemail2!
+                    }else{
+                        pv.value = pdfInfo!.bemail1!
+                    }
+//                    pv.value = pdfInfo!.bemail1!
                 case SignContractPDFFields.executeddd:
                     if let item1 = item {
                         if item1.status == CConstants.ApprovedStatus {
@@ -406,7 +426,7 @@ class SetDotValue : NSObject {
                     
                 case SignContractPDFFields.pdf22a1:
                     if let radio = pv as? PDFFormButtonField {
-                        radio .setValue2(pdfInfo!.page7ThirdPartyFinacingAddendum!)
+                        radio.setValue2(pdfInfo!.page7ThirdPartyFinacingAddendum!)
                     }
                 case SignContractPDFFields.pdf22a15:
                     if let radio = pv as? PDFFormButtonField {
@@ -550,6 +570,35 @@ class SetDotValue : NSObject {
         }
     }
     
+    private func doPhoneNo( txtphone : String) -> String{
+        let na = ["0", "1", "2", "3", "4", "5", "6", "7", "8", "9"]
+        var s1 = ""
+        var s2 = ""
+        var s3 = ""
+        var j = 0
+        for i in txtphone.characters {
+            if na.contains(String(i)){
+                j = j + 1;
+                if j < 4 {
+                    s1 = s1 + String(i)
+                }else if j < 7 {
+                    s2 = s2 + String(i)
+                }else{
+                    s3 = s3 + String(i)
+                }
+            }
+            
+        }
+        let h = s1.characters.count + s2.characters.count + s3.characters.count
+        if h >= 10 {
+            return " / (" + s1 + ")" + s2 + "-" + s3
+        }else if h > 0 {
+            return  " / " + s1 + s2 + s3
+        }else{
+            return ""
+        }
+    }
+    
     private func readContractFieldsFromTxt(fileName: String) ->[String: String]? {
         if let path = NSBundle.mainBundle().pathForResource(fileName, ofType: "txt") {
             var fieldsDic = [String : String]()
@@ -560,7 +609,7 @@ class SetDotValue : NSObject {
                 for one in n{
                     let s = one.componentsSeparatedByString(":")
                     if s.count != 2 {
-                        print(one)
+//                        print(one)
                     }else{
                         fieldsDic[s.first!] = s.last!
                     }
@@ -795,6 +844,7 @@ class SetDotValue : NSObject {
                         bank1.xname = "april"
                         bank1.value = xvalue
                         bank1.pagenomargin = (bankField?.pagenomargin ?? 0.0)!
+//                        print(bank1.pagenomargin)
                         addedAnnotationViews.append(bank1)
                         y += 1
                     }
@@ -1001,6 +1051,7 @@ class SetDotValue : NSObject {
                     line?.backgroundColor = UIColor.lightGrayColor()
                     line?.pageno = has2Pages ? "0" : "1";
                     line?.pagenomargin = (aPrice?.pagenomargin ?? 0.0)!
+//                    print(line?.pagenomargin)
                     addedAnnotationViews.append(line!)
                     //                    print( "line \(line?.frame) \(y)")
                     y = y + 5.5
@@ -1066,6 +1117,7 @@ class SetDotValue : NSObject {
                         sign?.xname = "p1AC\(sign?.xname ?? "")"
                     }
                     sign?.pagenomargin = (aPrice?.pagenomargin ?? 0.0)!
+//                    print(sign?.pagenomargin)
                     addedAnnotationViews.append(sign!)
                 }else{
                     

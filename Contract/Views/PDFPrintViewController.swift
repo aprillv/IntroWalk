@@ -12,6 +12,15 @@ import MessageUI
 import MBProgressHUD
 
 class PDFPrintViewController: PDFBaseViewController, UIScrollViewDelegate, PDFViewDelegate, SubmitForApproveViewControllerDelegate, SaveAndEmailViewControllerDelegate,UIImagePickerControllerDelegate, UINavigationControllerDelegate, GoToFileDelegate, EmailContractToBuyerViewControllerDelegate{
+    @IBOutlet var copyrightlbl: UIBarButtonItem!{
+        didSet{
+            let currentDate = NSDate()
+            let usDateFormat = NSDateFormatter()
+            usDateFormat.dateFormat = NSDateFormatter.dateFormatFromTemplate("yyyy", options: 0, locale: NSLocale(localeIdentifier: "en-US"))
+            
+            copyrightlbl.title = "Copyright © " + usDateFormat.stringFromDate(currentDate) + " All Rights Reserved"
+        }
+    }
     private struct constants{
         static let operationMsg = "Are you sure you want to take photo of the check again?"
         static let segueToSendEmailAfterApproved = "showSendEmail"
@@ -493,6 +502,7 @@ class PDFPrintViewController: PDFBaseViewController, UIScrollViewDelegate, PDFVi
             document.pdfName = title
             documents?.append(document)
             
+            print(CGFloat(lastheight))
             
             if let additionViews = document.forms.createWidgetAnnotationViewsForSuperviewWithWidth(view.bounds.size.width, margin: margins.x, hMargin: margins.y, pageMargin: CGFloat(lastheight)) as? [PDFWidgetAnnotationView]{
                 
@@ -802,14 +812,6 @@ class PDFPrintViewController: PDFBaseViewController, UIScrollViewDelegate, PDFVi
                             sendItem.image = nil
                         }
                         
-                        //                    let hh = contractInfo?.approvedate ?? "1980"
-                        //                    if (hh.hasSuffix("1980") || hh.isEmpty ) {
-                        //                        sendItem.image = nil
-                        //                        sendItem.title = "Status: \(CConstants.ApprovedStatus)"
-                        //                    }else{
-                        //                        sendItem.title = nil
-                        //                        sendItem.image = UIImage(named: "send.png")
-                        //                    }
                     }
                 }
             }else{
@@ -977,7 +979,7 @@ class PDFPrintViewController: PDFBaseViewController, UIScrollViewDelegate, PDFVi
    
     // MARK: Request Data
     private func callService(printModelNm: String, param: [String: String]){
-//        print(param)
+        print(param)
         var serviceUrl: String?
         switch printModelNm{
         case CConstants.ActionTitleDesignCenter:
@@ -1021,6 +1023,7 @@ class PDFPrintViewController: PDFBaseViewController, UIScrollViewDelegate, PDFVi
                                     self.designCenterPdfInfo = ContractDesignCenter(dicInfo: rtnValue)
                                 case CConstants.ActionTitleContract,
                                 CConstants.ActionTitleDraftContract:
+//                                    print(rtnValue)
                                     self.contractPdfInfo = ContractSignature(dicInfo: rtnValue)
                                 
                                 default:
@@ -2206,7 +2209,7 @@ class PDFPrintViewController: PDFBaseViewController, UIScrollViewDelegate, PDFVi
             reurl = "bacontract_save_sign.json"
         }
         
-        print(reurl , param)
+//        print(reurl , param)
 //        return;
         self.hud = MBProgressHUD.showHUDAddedTo(self.view, animated: true)
         self.hud?.labelText = CConstants.SavedMsg
@@ -2274,11 +2277,13 @@ class PDFPrintViewController: PDFBaseViewController, UIScrollViewDelegate, PDFVi
             let na = nameArray[ji]
             for k in 0...na.count-1 {
                 let t = na[k]
-                if sign.xname.hasPrefix(t) {
+                 if sign.xname.hasPrefix(t) {
                     self.setShowSignature(sign, signs: inarr!, idcator: ynarr![ji][k])
                     
                     return
                 }
+                
+                
             }
         }
     }
@@ -2348,6 +2353,13 @@ private func getStr(h : [[String]]?) -> String {
                             self.initial_s1yn = self.getArr(rtn.initial_s1yn!)
                             self.signature_b1yn = self.getArr(rtn.signature_b1yn!)
                             self.signature_b2yn = self.getArr(rtn.signature_b2yn!)
+//                            print(self.signature_b2yn![8][0])
+                            if self.signature_b2yn![8][1] == "1" {
+                            self.signature_b2yn![8][0] = "1"
+                            }
+                            
+//                            print(self.signature_b2yn![8][0])
+//                            print(self.signature_b2yn![8][1])
                             self.signature_s1yn = self.getArr(rtn.signature_s1yn!)
                             
                             self.initial_b1 = rtn.initial_b1
@@ -2460,6 +2472,7 @@ private func getStr(h : [[String]]?) -> String {
                                     }else if sign.xname.hasSuffix("seller1Sign") && showseller {
                                         self.isCanSignature(nameArray, sign: sign, ynarr: self.signature_s1yn, inarr: self.signature_s1)
                                      }else if sign.xname.hasSuffix("buyer2Sign") {
+                                        
                                         if self.contractInfo!.client2! != "" {
                                             self.isCanSignature(nameArray, sign: sign, ynarr: self.signature_b2yn, inarr: self.signature_b2)
                                         }
@@ -2849,11 +2862,13 @@ private func getStr(h : [[String]]?) -> String {
 //                                                    }
                                                     
                                                     if sign.LineWidth == 0.0 && sign.xname != "p1EBExhibitbp1sellerInitialSign"{
+//                                                        print(sign.xname)
 //                                                                                                        print(sign.xname, sign.LineWidth, sign.lineArray)
                                                         showSubmit = false
                                                     }
                                                 }else{
                                                     if sign.menubtn != nil && sign.menubtn.superview != nil && sign.xname != "p1EBExhibitbp1sellerInitialSign"{
+//                                                         print(sign.xname)
                                                         showSubmit = false
                                                     }
                                                     
@@ -2914,8 +2929,7 @@ private func getStr(h : [[String]]?) -> String {
 //        
         
        let a =  ["idcontract1" : self.contractInfo!.idnumber!, "idcia": self.contractInfo!.idcia!, "email": userInfo.stringForKey(CConstants.UserInfoEmail) ?? "", "emailto" : email, "emailcc": emailcc, "msg": msg]
-////
-////        let a = ["idcontract1" : self.contractInfo!.idnumber!, "idcia": self.contractInfo!.idcia!, "email": userInfo.stringForKey(CConstants.UserInfoEmail) ?? "", "emailto" : "Roberto Reletez (roberto@buildersaccess.com)", "emailcc": "Kevin Zhao (kevin@buildersaccess.com)", "msg": msg]
+
         
 //         let a = ["idcontract1" : self.contractInfo!.idnumber!, "idcia": self.contractInfo!.idcia!, "email": userInfo.stringForKey(CConstants.UserInfoEmail) ?? "", "emailto" : "April Lv (April@buildersaccess.com)", "emailcc": "xiujun_85@163.com", "msg": msg]
         
@@ -3002,7 +3016,7 @@ private func getStr(h : [[String]]?) -> String {
             Alamofire.request(.POST,
                 CConstants.ServerURL + CConstants.ContractUploadPdfURL,
                 parameters: parame).responseJSON{ (response) -> Void in
-                    print(response.result.value)
+//                    print(response.result.value)
                     if response.result.isSuccess {
                         if let rtnValue = response.result.value as? [String: String]{
                             if rtnValue["status"] == "success" {
