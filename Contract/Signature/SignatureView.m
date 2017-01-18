@@ -406,9 +406,9 @@
 -(void)drawInRect:(CGRect)rect withContext:(CGContextRef )context{
     if (self.originHeight > 0) {
         //        ratios = MIN(frame.size.width/self.frame.size.width, frame.size.height/self.frame.size.height);
-        if ([self.xname isEqualToString:@"p1EBExhibitbp1sellerInitialSign"]){
-            NSLog(@"p1EBExhibitbp1sellerInitialSign");
-        }
+//        if ([self.xname isEqualToString:@"p1EBExhibitbp1sellerInitialSign"]){
+//            NSLog(@"p1EBExhibitbp1sellerInitialSign");
+//        }
         ratios = MIN(rect.size.height/self.originHeight, rect.size.width/self.originWidth);
 //        NSLog(@"%f == %f", rect.size.height/self.originHeight, rect.size.width/self.originWidth);
     }else{
@@ -443,11 +443,17 @@
                 CGPoint myStartPoint=CGPointFromString([array objectAtIndex:0]);
                 CGContextMoveToPoint(context, (myStartPoint.x +xh)*ratios+prex, (myStartPoint.y+yh)*ratios);
                 
-                for (int j=0; j<[array count]-1; j++)
-                {
-                    CGPoint myEndPoint=CGPointFromString([array objectAtIndex:j+1]);
-                    //--------------------------------------------------------
-                    CGContextAddLineToPoint(context, (myEndPoint.x + xh) *ratios+prex , (myEndPoint.y+ yh)*ratios );
+                
+                if (array.count == 1) {
+                    CGContextAddLineToPoint(context,(myStartPoint.x +xh)*ratios+prex, (myStartPoint.y+yh)*ratios);
+                }else{
+                    
+                    for (int j=0; j<[array count]-1; j++)
+                    {
+                        CGPoint myEndPoint=CGPointFromString([array objectAtIndex:j+1]);
+                        //--------------------------------------------------------
+                        CGContextAddLineToPoint(context, (myEndPoint.x + xh) *ratios+prex , (myEndPoint.y+ yh)*ratios );
+                    }
                 }
                 //获取colorArray数组里的要绘制线条的颜色
                 

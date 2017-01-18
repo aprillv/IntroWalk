@@ -502,7 +502,7 @@ class PDFPrintViewController: PDFBaseViewController, UIScrollViewDelegate, PDFVi
             document.pdfName = title
             documents?.append(document)
             
-            print(CGFloat(lastheight))
+//            print(CGFloat(lastheight))
             
             if let additionViews = document.forms.createWidgetAnnotationViewsForSuperviewWithWidth(view.bounds.size.width, margin: margins.x, hMargin: margins.y, pageMargin: CGFloat(lastheight)) as? [PDFWidgetAnnotationView]{
                 
@@ -979,7 +979,7 @@ class PDFPrintViewController: PDFBaseViewController, UIScrollViewDelegate, PDFVi
    
     // MARK: Request Data
     private func callService(printModelNm: String, param: [String: String]){
-        print(param)
+//        print(param)
         var serviceUrl: String?
         switch printModelNm{
         case CConstants.ActionTitleDesignCenter:

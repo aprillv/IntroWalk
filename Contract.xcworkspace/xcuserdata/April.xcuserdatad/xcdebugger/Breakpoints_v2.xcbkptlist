@@ -491,7 +491,7 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "267"
             endingLineNumber = "267"
-            landmarkName = "doLogin(_:)"
+            landmarkName = "doLogin(sender:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
@@ -732,7 +732,7 @@
             startingLineNumber = "80"
             endingLineNumber = "80"
             landmarkName = "-addSignautre:"
-            landmarkType = "5">
+            landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -748,7 +748,7 @@
             startingLineNumber = "71"
             endingLineNumber = "71"
             landmarkName = "-touchesEnded:withEvent:"
-            landmarkType = "5">
+            landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -764,7 +764,7 @@
             startingLineNumber = "70"
             endingLineNumber = "70"
             landmarkName = "-touchesEnded:withEvent:"
-            landmarkType = "5">
+            landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -892,7 +892,7 @@
             startingLineNumber = "280"
             endingLineNumber = "280"
             landmarkName = "-popSignature:"
-            landmarkType = "5">
+            landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -908,7 +908,7 @@
             startingLineNumber = "278"
             endingLineNumber = "278"
             landmarkName = "-popSignature:"
-            landmarkType = "5">
+            landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -924,7 +924,7 @@
             startingLineNumber = "275"
             endingLineNumber = "275"
             landmarkName = "-popSignature:"
-            landmarkType = "5">
+            landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -956,7 +956,7 @@
             startingLineNumber = "249"
             endingLineNumber = "249"
             landmarkName = "-toSignautre"
-            landmarkType = "5">
+            landmarkType = "7">
             <Locations>
                <Location
                   shouldBeEnabled = "No"
@@ -1004,7 +1004,7 @@
             startingLineNumber = "273"
             endingLineNumber = "273"
             landmarkName = "-popSignature:"
-            landmarkType = "5">
+            landmarkType = "7">
             <Locations>
                <Location
                   shouldBeEnabled = "No"
@@ -1052,7 +1052,7 @@
             startingLineNumber = "283"
             endingLineNumber = "283"
             landmarkName = "-popSignature:"
-            landmarkType = "5">
+            landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -1068,7 +1068,7 @@
             startingLineNumber = "315"
             endingLineNumber = "315"
             landmarkName = "-popSignature:"
-            landmarkType = "5">
+            landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -1084,7 +1084,7 @@
             startingLineNumber = "88"
             endingLineNumber = "88"
             landmarkName = "-drawRect:"
-            landmarkType = "5">
+            landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -1100,7 +1100,7 @@
             startingLineNumber = "166"
             endingLineNumber = "166"
             landmarkName = "-drawRect:"
-            landmarkType = "5">
+            landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -1116,7 +1116,7 @@
             startingLineNumber = "77"
             endingLineNumber = "77"
             landmarkName = "-setLineArray1:"
-            landmarkType = "5">
+            landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -1132,7 +1132,7 @@
             startingLineNumber = "147"
             endingLineNumber = "147"
             landmarkName = "-drawRect:"
-            landmarkType = "5">
+            landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -1148,7 +1148,7 @@
             startingLineNumber = "180"
             endingLineNumber = "180"
             landmarkName = "-drawRect:"
-            landmarkType = "5">
+            landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -1164,7 +1164,7 @@
             startingLineNumber = "167"
             endingLineNumber = "167"
             landmarkName = "-drawRect:"
-            landmarkType = "5">
+            landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -1180,7 +1180,7 @@
             startingLineNumber = "148"
             endingLineNumber = "148"
             landmarkName = "-drawRect:"
-            landmarkType = "5">
+            landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -1196,7 +1196,7 @@
             startingLineNumber = "155"
             endingLineNumber = "155"
             landmarkName = "-drawRect:"
-            landmarkType = "5">
+            landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -1212,7 +1212,7 @@
             startingLineNumber = "75"
             endingLineNumber = "75"
             landmarkName = "-addSignautre:"
-            landmarkType = "5">
+            landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -1404,7 +1404,7 @@
             startingLineNumber = "371"
             endingLineNumber = "371"
             landmarkName = "-popSignature:"
-            landmarkType = "5">
+            landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -1420,7 +1420,7 @@
             startingLineNumber = "48"
             endingLineNumber = "48"
             landmarkName = "-initWithFrame:"
-            landmarkType = "5">
+            landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -1435,7 +1435,7 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "264"
             endingLineNumber = "264"
-            landmarkName = "doLogin(_:)"
+            landmarkName = "doLogin(sender:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
@@ -1803,7 +1803,7 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "263"
             endingLineNumber = "263"
-            landmarkName = "doLogin(_:)"
+            landmarkName = "doLogin(sender:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
@@ -2956,7 +2956,7 @@
             startingLineNumber = "262"
             endingLineNumber = "262"
             landmarkName = "-popSignature:"
-            landmarkType = "5">
+            landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -2972,7 +2972,7 @@
             startingLineNumber = "263"
             endingLineNumber = "263"
             landmarkName = "-popSignature:"
-            landmarkType = "5">
+            landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -3452,7 +3452,7 @@
             startingLineNumber = "173"
             endingLineNumber = "173"
             landmarkName = "-getOriginFrame"
-            landmarkType = "5">
+            landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -3468,7 +3468,7 @@
             startingLineNumber = "412"
             endingLineNumber = "412"
             landmarkName = "-drawInRect:withContext:"
-            landmarkType = "5">
+            landmarkType = "7">
             <Locations>
                <Location
                   shouldBeEnabled = "No"
@@ -3516,7 +3516,7 @@
             startingLineNumber = "410"
             endingLineNumber = "410"
             landmarkName = "-drawInRect:withContext:"
-            landmarkType = "5">
+            landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -3532,7 +3532,7 @@
             startingLineNumber = "131"
             endingLineNumber = "131"
             landmarkName = "-drawRect:"
-            landmarkType = "5">
+            landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -3548,7 +3548,7 @@
             startingLineNumber = "89"
             endingLineNumber = "89"
             landmarkName = "-drawRect:"
-            landmarkType = "5">
+            landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -3564,7 +3564,7 @@
             startingLineNumber = "101"
             endingLineNumber = "101"
             landmarkName = "-drawRect:"
-            landmarkType = "5">
+            landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -3580,7 +3580,7 @@
             startingLineNumber = "103"
             endingLineNumber = "103"
             landmarkName = "-drawRect:"
-            landmarkType = "5">
+            landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -4252,7 +4252,7 @@
             startingLineNumber = "424"
             endingLineNumber = "424"
             landmarkName = "-drawInRect:withContext:"
-            landmarkType = "5">
+            landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -5068,6 +5068,86 @@
             startingLineNumber = "207"
             endingLineNumber = "207"
             landmarkName = "setSignContractDots(pdfInfo:additionViews:pdfview:item:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Contract/Views/PDFPrintViewController.swift"
+            timestampString = "506308122.513167"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "2552"
+            endingLineNumber = "2552"
+            landmarkName = "setShowSignature(si:signs:idcator:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Contract/Views/PDFPrintViewController.swift"
+            timestampString = "506308428.998681"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "2575"
+            endingLineNumber = "2575"
+            landmarkName = "setShowSignature(si:signs:idcator:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Contract/Signature/SignatureView.m"
+            timestampString = "506308673.420143"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "498"
+            endingLineNumber = "498"
+            landmarkName = "-drawInRect2:withContext:"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Contract/Signature/SignatureView.m"
+            timestampString = "506308507.40955"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "407"
+            endingLineNumber = "407"
+            landmarkName = "-drawInRect:withContext:"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Contract/Signature/SignatureView.m"
+            timestampString = "506308566.156254"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "436"
+            endingLineNumber = "436"
+            landmarkName = "-drawInRect:withContext:"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
