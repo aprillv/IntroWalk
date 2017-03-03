@@ -7,104 +7,44 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		1104A8491C76B66800B59E60 /* AddendumA.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1104A8481C76B66800B59E60 /* AddendumA.swift */; };
-		1107507B1C29222600B68141 /* SendOperationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1107507A1C29222600B68141 /* SendOperationViewController.swift */; };
-		1107C09C1C0C3B530041D8D7 /* cl_pdf.m in Sources */ = {isa = PBXBuildFile; fileRef = 1107C09B1C0C3B530041D8D7 /* cl_pdf.m */; };
+		1106EE221E3634C2003598BF /* BSImagePicker.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1106EE211E3634C2003598BF /* BSImagePicker.framework */; };
 		1108B1B71BFC2691004B5D48 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1108B1B51BFC2691004B5D48 /* Main.storyboard */; };
-		1108B1BA1BFC2691004B5D48 /* Contract.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 1108B1B81BFC2691004B5D48 /* Contract.xcdatamodeld */; };
 		1108B1BF1BFC2691004B5D48 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1108B1BD1BFC2691004B5D48 /* LaunchScreen.storyboard */; };
-		1108B21B1BFC290F004B5D48 /* DrawSignView.m in Sources */ = {isa = PBXBuildFile; fileRef = 1108B2141BFC290F004B5D48 /* DrawSignView.m */; };
-		1108B21C1BFC290F004B5D48 /* MyView.m in Sources */ = {isa = PBXBuildFile; fileRef = 1108B2161BFC290F004B5D48 /* MyView.m */; };
-		1108B21D1BFC290F004B5D48 /* PopSignUtil.m in Sources */ = {isa = PBXBuildFile; fileRef = 1108B2181BFC290F004B5D48 /* PopSignUtil.m */; };
-		1108B21E1BFC290F004B5D48 /* SignatureView.m in Sources */ = {isa = PBXBuildFile; fileRef = 1108B21A1BFC290F004B5D48 /* SignatureView.m */; };
 		1108B2201BFC2A3B004B5D48 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1108B21F1BFC2A3B004B5D48 /* Foundation.framework */; };
 		1108B2221BFC2A66004B5D48 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1108B2211BFC2A66004B5D48 /* CoreGraphics.framework */; };
 		1108B2241BFC2A6D004B5D48 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1108B2231BFC2A6D004B5D48 /* UIKit.framework */; };
-		1108B25B1BFC4047004B5D48 /* PDFSerializer.m in Sources */ = {isa = PBXBuildFile; fileRef = 1108B2291BFC4047004B5D48 /* PDFSerializer.m */; };
-		1108B25D1BFC4047004B5D48 /* PDFArray.m in Sources */ = {isa = PBXBuildFile; fileRef = 1108B22F1BFC4047004B5D48 /* PDFArray.m */; };
-		1108B25E1BFC4047004B5D48 /* PDFDictionary.m in Sources */ = {isa = PBXBuildFile; fileRef = 1108B2311BFC4047004B5D48 /* PDFDictionary.m */; };
-		1108B25F1BFC4047004B5D48 /* PDFName.m in Sources */ = {isa = PBXBuildFile; fileRef = 1108B2331BFC4047004B5D48 /* PDFName.m */; };
-		1108B2601BFC4047004B5D48 /* PDFNull.m in Sources */ = {isa = PBXBuildFile; fileRef = 1108B2351BFC4047004B5D48 /* PDFNull.m */; };
-		1108B2611BFC4047004B5D48 /* PDFNumber.m in Sources */ = {isa = PBXBuildFile; fileRef = 1108B2371BFC4047004B5D48 /* PDFNumber.m */; };
-		1108B2621BFC4047004B5D48 /* PDFStream.m in Sources */ = {isa = PBXBuildFile; fileRef = 1108B23A1BFC4047004B5D48 /* PDFStream.m */; };
-		1108B2631BFC4047004B5D48 /* PDFString.m in Sources */ = {isa = PBXBuildFile; fileRef = 1108B23C1BFC4047004B5D48 /* PDFString.m */; };
-		1108B2641BFC4047004B5D48 /* PDFDocument.m in Sources */ = {isa = PBXBuildFile; fileRef = 1108B23E1BFC4047004B5D48 /* PDFDocument.m */; };
-		1108B2651BFC4047004B5D48 /* PDFForm.m in Sources */ = {isa = PBXBuildFile; fileRef = 1108B2401BFC4047004B5D48 /* PDFForm.m */; };
-		1108B2661BFC4047004B5D48 /* PDFFormContainer.m in Sources */ = {isa = PBXBuildFile; fileRef = 1108B2421BFC4047004B5D48 /* PDFFormContainer.m */; };
-		1108B2671BFC4047004B5D48 /* PDFPage.m in Sources */ = {isa = PBXBuildFile; fileRef = 1108B2441BFC4047004B5D48 /* PDFPage.m */; };
-		1108B2681BFC4047004B5D48 /* PDFObjectParser.m in Sources */ = {isa = PBXBuildFile; fileRef = 1108B2481BFC4047004B5D48 /* PDFObjectParser.m */; };
-		1108B2691BFC4047004B5D48 /* PDFUtility.m in Sources */ = {isa = PBXBuildFile; fileRef = 1108B24A1BFC4047004B5D48 /* PDFUtility.m */; };
-		1108B26A1BFC4047004B5D48 /* PDFFormButtonField.m in Sources */ = {isa = PBXBuildFile; fileRef = 1108B24D1BFC4047004B5D48 /* PDFFormButtonField.m */; };
-		1108B26B1BFC4047004B5D48 /* PDFFormChoiceField.m in Sources */ = {isa = PBXBuildFile; fileRef = 1108B24F1BFC4047004B5D48 /* PDFFormChoiceField.m */; };
-		1108B26C1BFC4047004B5D48 /* PDFFormImageView.m in Sources */ = {isa = PBXBuildFile; fileRef = 1108B2511BFC4047004B5D48 /* PDFFormImageView.m */; };
-		1108B26D1BFC4047004B5D48 /* PDFFormSignatureField.m in Sources */ = {isa = PBXBuildFile; fileRef = 1108B2531BFC4047004B5D48 /* PDFFormSignatureField.m */; };
-		1108B26E1BFC4047004B5D48 /* PDFFormTextField.m in Sources */ = {isa = PBXBuildFile; fileRef = 1108B2551BFC4047004B5D48 /* PDFFormTextField.m */; };
-		1108B26F1BFC4047004B5D48 /* PDFView.m in Sources */ = {isa = PBXBuildFile; fileRef = 1108B2571BFC4047004B5D48 /* PDFView.m */; };
-		1108B2701BFC4047004B5D48 /* PDFWidgetAnnotationView.m in Sources */ = {isa = PBXBuildFile; fileRef = 1108B2591BFC4047004B5D48 /* PDFWidgetAnnotationView.m */; };
-		1108B2751BFC55CF004B5D48 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1108B2741BFC55CF004B5D48 /* LoginViewController.swift */; };
-		1108B2791BFC6133004B5D48 /* BaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1108B2781BFC6133004B5D48 /* BaseViewController.swift */; };
-		110CE6A61C03F3370096E630 /* ContractSignatureError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 110CE6A51C03F3370096E630 /* ContractSignatureError.swift */; };
-		11116CE51CA3D8DC0021B680 /* BuyersExpect.pdf in Resources */ = {isa = PBXBuildFile; fileRef = 11116CE41CA3D8DC0021B680 /* BuyersExpect.pdf */; };
-		111293D91CDAE00300B0DAFC /* SaveAndEmailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 111293D81CDAE00300B0DAFC /* SaveAndEmailViewController.swift */; };
-		1112E34C1CBF826000AC9123 /* SPUserResizableView.m in Sources */ = {isa = PBXBuildFile; fileRef = 1112E34A1CBF826000AC9123 /* SPUserResizableView.m */; };
 		1114C79C1C812AE900924A21 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1114C79B1C812AE900924A21 /* AppDelegate.swift */; };
-		1114C7A51C8137EA00924A21 /* AddressDraftListViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1114C7A41C8137EA00924A21 /* AddressDraftListViewCell.swift */; };
-		1114C7AB1C816F2D00924A21 /* PrintModelTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1114C7AA1C816F2D00924A21 /* PrintModelTableViewCell.swift */; };
-		111E20381C7BF275004D43D8 /* PDFPrintViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 111E20371C7BF275004D43D8 /* PDFPrintViewController.swift */; };
-		111E20401C7C5F3D004D43D8 /* SetDotValue.swift in Sources */ = {isa = PBXBuildFile; fileRef = 111E203F1C7C5F3D004D43D8 /* SetDotValue.swift */; };
-		112118E31C056EC1000F85CE /* AddressListViewHeadView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 112118E21C056EC1000F85CE /* AddressListViewHeadView.swift */; };
-		113CB5961BFEC8D60081FDE7 /* ContractObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = 113CB5951BFEC8D60081FDE7 /* ContractObject.swift */; };
-		113CB5BA1BFEE27A0081FDE7 /* ContractsItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 113CB5B91BFEE27A0081FDE7 /* ContractsItem.swift */; };
-		113CB5BC1BFEE2D80081FDE7 /* Contract.swift in Sources */ = {isa = PBXBuildFile; fileRef = 113CB5BB1BFEE2D80081FDE7 /* Contract.swift */; };
-		113CB5DE1BFEE5A80081FDE7 /* LoginUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 113CB5DD1BFEE5A80081FDE7 /* LoginUser.swift */; };
-		113CB5E21BFF06E90081FDE7 /* AddressListViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 113CB5E11BFF06E90081FDE7 /* AddressListViewCell.swift */; };
-		113CB5E41BFF0CBF0081FDE7 /* ContractRequestItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 113CB5E31BFF0CBF0081FDE7 /* ContractRequestItem.swift */; };
-		113CB5E61BFF11EC0081FDE7 /* ContractSignature.swift in Sources */ = {isa = PBXBuildFile; fileRef = 113CB5E51BFF11EC0081FDE7 /* ContractSignature.swift */; };
-		1145460D1E2354990070D5F4 /* AddendumA_Austin.pdf in Resources */ = {isa = PBXBuildFile; fileRef = 1145460C1E2354990070D5F4 /* AddendumA_Austin.pdf */; };
-		115338C21C27DE5900E1B65A /* PDFBaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 115338C11C27DE5900E1B65A /* PDFBaseViewController.swift */; };
-		115338CA1C27F59E00E1B65A /* ContractPDFBaseModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 115338C91C27F59E00E1B65A /* ContractPDFBaseModel.swift */; };
-		1157B3C41C34C68D008ED758 /* ContractDesignCenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1157B3C31C34C68D008ED758 /* ContractDesignCenter.swift */; };
-		11609E5F1C86FA6600596281 /* AddressListModelLastCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11609E5E1C86FA6600596281 /* AddressListModelLastCell.swift */; };
-		11632BF61CD2DF2F00B70C44 /* INFORMATION_ABOUT_BROKERAGE_SERVICES2.pdf in Resources */ = {isa = PBXBuildFile; fileRef = 11632BF51CD2DF2F00B70C44 /* INFORMATION_ABOUT_BROKERAGE_SERVICES2.pdf */; };
-		11633BA01C27DA0000C11A20 /* ContractClosingMemoItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11633B9F1C27DA0000C11A20 /* ContractClosingMemoItem.swift */; };
-		11633BA21C27DA8E00C11A20 /* ContractClosingMemo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11633BA11C27DA8E00C11A20 /* ContractClosingMemo.swift */; };
-		1163ED661D0A890A004DE2AA /* BigPictureViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1163ED651D0A890A004DE2AA /* BigPictureViewController.swift */; };
-		11643C161C030B8E000E2C0A /* CConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11643C151C030B8E000E2C0A /* CConstants.swift */; };
-		1164A1891CCDDF7E005A2A69 /* AddendumC.pdf in Resources */ = {isa = PBXBuildFile; fileRef = 1164A1871CCDDF7E005A2A69 /* AddendumC.pdf */; };
-		1164A18A1CCDDF7E005A2A69 /* AddendumC2.pdf in Resources */ = {isa = PBXBuildFile; fileRef = 1164A1881CCDDF7E005A2A69 /* AddendumC2.pdf */; };
+		115C730A1E39DFF4003F243F /* checklistItemL.swift in Sources */ = {isa = PBXBuildFile; fileRef = 115C73091E39DFF4003F243F /* checklistItemL.swift */; };
+		115D6E801E3839E5002B6DA6 /* cl_introWalkPhotoLocal.swift in Sources */ = {isa = PBXBuildFile; fileRef = 115D6E7F1E3839E5002B6DA6 /* cl_introWalkPhotoLocal.swift */; };
 		11661D611CC7750A00C974A0 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 11661D601CC7750A00C974A0 /* Assets.xcassets */; };
-		116C2C851CCCB1CB00B07865 /* Hoa_Checklist2.pdf in Resources */ = {isa = PBXBuildFile; fileRef = 116C2C831CCCB1CB00B07865 /* Hoa_Checklist2.pdf */; };
-		116C2C891CCCB72400B07865 /* trec_36-8.pdf in Resources */ = {isa = PBXBuildFile; fileRef = 116C2C881CCCB72400B07865 /* trec_36-8.pdf */; };
-		116C2C8B1CCCB75D00B07865 /* Warranty_Builder_s.pdf in Resources */ = {isa = PBXBuildFile; fileRef = 116C2C8A1CCCB75D00B07865 /* Warranty_Builder_s.pdf */; };
-		1170C8CB1CD1F26300E81BCC /* EXHIBIT_C_General.pdf in Resources */ = {isa = PBXBuildFile; fileRef = 1170C8C11CD1F26300E81BCC /* EXHIBIT_C_General.pdf */; };
-		1170C8CC1CD1F26300E81BCC /* INFORMATION_ABOUT_BROKERAGE_SERVICES.pdf in Resources */ = {isa = PBXBuildFile; fileRef = 1170C8C21CD1F26300E81BCC /* INFORMATION_ABOUT_BROKERAGE_SERVICES.pdf */; };
-		1170C8CD1CD1F26300E81BCC /* DesignCenter.pdf in Resources */ = {isa = PBXBuildFile; fileRef = 1170C8C31CD1F26300E81BCC /* DesignCenter.pdf */; };
-		1170C8D11CD1F26300E81BCC /* EXHIBIT_A.pdf in Resources */ = {isa = PBXBuildFile; fileRef = 1170C8C71CD1F26300E81BCC /* EXHIBIT_A.pdf */; };
-		1170C8D21CD1F26300E81BCC /* AddendumE.pdf in Resources */ = {isa = PBXBuildFile; fileRef = 1170C8C81CD1F26300E81BCC /* AddendumE.pdf */; };
-		1170C8D31CD1F26300E81BCC /* FloodaplainAcknowledement.pdf in Resources */ = {isa = PBXBuildFile; fileRef = 1170C8C91CD1F26300E81BCC /* FloodaplainAcknowledement.pdf */; };
-		1170C8D81CD1F42500E81BCC /* Hoa_Checklist.pdf in Resources */ = {isa = PBXBuildFile; fileRef = 1170C8D61CD1F42500E81BCC /* Hoa_Checklist.pdf */; };
-		1176D20F1BFDC67C001C1C3E /* AddressListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1176D20E1BFDC67C001C1C3E /* AddressListViewController.swift */; };
-		117F9B6B1C756706008B26D5 /* PrintModelTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 117F9B6A1C756706008B26D5 /* PrintModelTableViewController.swift */; };
-		1186B8201D0F9B5F00D0C91C /* EmailAfterApprovedViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1186B81F1D0F9B5F00D0C91C /* EmailAfterApprovedViewController.swift */; };
-		118939A41CE429D600B771CE /* EXHIBIT_C_General_Austin.pdf in Resources */ = {isa = PBXBuildFile; fileRef = 1189399F1CE429D600B771CE /* EXHIBIT_C_General_Austin.pdf */; };
-		118D54351CD09E9500F6359A /* SubmitForApproveViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 118D54341CD09E9500F6359A /* SubmitForApproveViewController.swift */; };
-		11A107421CE18AD900B00328 /* GoToFileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11A107411CE18AD900B00328 /* GoToFileViewController.swift */; };
-		11A50B421C783BFC0017AA53 /* AddressListModelViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11A50B411C783BFC0017AA53 /* AddressListModelViewController.swift */; };
-		11A626351CD989F500B91EBE /* FilterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11A626341CD989F500B91EBE /* FilterViewController.swift */; };
-		11A626371CD98C9D00B91EBE /* filterCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11A626361CD98C9D00B91EBE /* filterCell.swift */; };
-		11B18F101C8435C100D39019 /* AddressListModelCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11B18F0F1C8435C100D39019 /* AddressListModelCell.swift */; };
-		11BB1FB61D45B1E7003A12F5 /* EXHIBIT_B.pdf in Resources */ = {isa = PBXBuildFile; fileRef = 11BB1FB41D45B1E7003A12F5 /* EXHIBIT_B.pdf */; };
-		11BB1FB71D45B1E7003A12F5 /* EXHIBIT_B_Austin.pdf in Resources */ = {isa = PBXBuildFile; fileRef = 11BB1FB51D45B1E7003A12F5 /* EXHIBIT_B_Austin.pdf */; };
-		11D911001C1AB33D00CD018A /* ContractAddendumC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11D910FF1C1AB33D00CD018A /* ContractAddendumC.swift */; };
-		11D911021C1AB36000CD018A /* ContractAddendumCItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11D911011C1AB36000CD018A /* ContractAddendumCItem.swift */; };
-		11ECB4BD1E1F3F320037DA6E /* BaseContract_Austin.pdf in Resources */ = {isa = PBXBuildFile; fileRef = 11ECB4BB1E1F3F320037DA6E /* BaseContract_Austin.pdf */; };
-		11ECB4BE1E1F3F320037DA6E /* BaseContract.pdf in Resources */ = {isa = PBXBuildFile; fileRef = 11ECB4BC1E1F3F320037DA6E /* BaseContract.pdf */; };
-		11EDB0CA1D151ACB0070BE3E /* EmailContractToBuyerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11EDB0C91D151ACB0070BE3E /* EmailContractToBuyerViewController.swift */; };
-		11EEF03B1CCF5679006422ED /* SignatrureFields.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11EEF03A1CCF5679006422ED /* SignatrureFields.swift */; };
-		11EEF03D1CCF5F3D006422ED /* Third_Party_Financing_Addendum_TREC.pdf in Resources */ = {isa = PBXBuildFile; fileRef = 11EEF03C1CCF5F3D006422ED /* Third_Party_Financing_Addendum_TREC.pdf */; };
-		11EEF03F1CCF6145006422ED /* toolpdf.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11EEF03E1CCF6145006422ED /* toolpdf.swift */; };
-		11F9FBCA1D7E572F00A90664 /* AddendumD.pdf in Resources */ = {isa = PBXBuildFile; fileRef = 11F9FBC71D7E572F00A90664 /* AddendumD.pdf */; };
-		11F9FBCB1D7E572F00A90664 /* AddendumA.pdf in Resources */ = {isa = PBXBuildFile; fileRef = 11F9FBC81D7E572F00A90664 /* AddendumA.pdf */; };
+		117CA2EC1E359E4E00166AFB /* util.swift in Sources */ = {isa = PBXBuildFile; fileRef = 117CA2EB1E359E4E00166AFB /* util.swift */; };
+		118D95A41E34D4F000D7E28C /* cl_introWalkLocal.swift in Sources */ = {isa = PBXBuildFile; fileRef = 118D95A31E34D4F000D7E28C /* cl_introWalkLocal.swift */; };
+		119AA3861E334B5F00EF8D3C /* IntroWalkItemViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 119AA37D1E334B5F00EF8D3C /* IntroWalkItemViewController.swift */; };
+		119AA3881E334B5F00EF8D3C /* AddressListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 119AA37F1E334B5F00EF8D3C /* AddressListViewController.swift */; };
+		119AA3891E334B5F00EF8D3C /* BaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 119AA3801E334B5F00EF8D3C /* BaseViewController.swift */; };
+		119AA38A1E334B5F00EF8D3C /* BigPictureViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 119AA3811E334B5F00EF8D3C /* BigPictureViewController.swift */; };
+		119AA38B1E334B5F00EF8D3C /* CConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 119AA3821E334B5F00EF8D3C /* CConstants.swift */; };
+		119AA38C1E334B5F00EF8D3C /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 119AA3841E334B5F00EF8D3C /* LoginViewController.swift */; };
+		119AA38D1E334B5F00EF8D3C /* AddressListViewHeadView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 119AA3851E334B5F00EF8D3C /* AddressListViewHeadView.swift */; };
+		119AA3921E334B8A00EF8D3C /* projectItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 119AA38E1E334B8A00EF8D3C /* projectItem.swift */; };
+		119AA3931E334B8A00EF8D3C /* BaseObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = 119AA38F1E334B8A00EF8D3C /* BaseObject.swift */; };
+		119AA3941E334B8A00EF8D3C /* LoginUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 119AA3901E334B8A00EF8D3C /* LoginUser.swift */; };
+		119AA3951E334B8A00EF8D3C /* LoginInUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 119AA3911E334B8A00EF8D3C /* LoginInUser.swift */; };
+		119AA3991E334BF500EF8D3C /* cl_project.swift in Sources */ = {isa = PBXBuildFile; fileRef = 119AA3961E334BF500EF8D3C /* cl_project.swift */; };
+		119AA39A1E334BF500EF8D3C /* Contract.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 119AA3971E334BF500EF8D3C /* Contract.xcdatamodeld */; };
+		119AA39C1E33512C00EF8D3C /* selectionImageCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 119AA39B1E33512C00EF8D3C /* selectionImageCell.swift */; };
+		119AA39F1E3351AD00EF8D3C /* myUILabel.m in Sources */ = {isa = PBXBuildFile; fileRef = 119AA39E1E3351AD00EF8D3C /* myUILabel.m */; };
+		4243E2601E5BDE3900A32213 /* cl_ObjIntroWalk2Photo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4243E25F1E5BDE3900A32213 /* cl_ObjIntroWalk2Photo.swift */; };
+		425AA2EE1E5A922B005995B4 /* SendOperationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 425AA2ED1E5A922B005995B4 /* SendOperationViewController.swift */; };
+		425AA2F01E5AC022005995B4 /* AddressUITableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 425AA2EF1E5AC022005995B4 /* AddressUITableViewCell.swift */; };
+		425D479A1E5D1C7600C044FD /* cl_ObjIntroWalk2.swift in Sources */ = {isa = PBXBuildFile; fileRef = 425D47991E5D1C7600C044FD /* cl_ObjIntroWalk2.swift */; };
+		4282F0761E56901600576A9D /* IntroWalkListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4282F0751E56901600576A9D /* IntroWalkListViewController.swift */; };
+		4282F0781E5694C200576A9D /* IntroWalkTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4282F0771E5694C200576A9D /* IntroWalkTableViewCell.swift */; };
+		4282F07A1E56BDAF00576A9D /* ChecklistItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4282F0791E56BDAF00576A9D /* ChecklistItem.swift */; };
+		42CA8BF11E5D623C00C025F3 /* DrawSignView.m in Sources */ = {isa = PBXBuildFile; fileRef = 42CA8BE81E5D623C00C025F3 /* DrawSignView.m */; };
+		42CA8BF21E5D623C00C025F3 /* MyView.m in Sources */ = {isa = PBXBuildFile; fileRef = 42CA8BEA1E5D623C00C025F3 /* MyView.m */; };
+		42CA8BF31E5D623C00C025F3 /* PopSignUtil.m in Sources */ = {isa = PBXBuildFile; fileRef = 42CA8BEC1E5D623C00C025F3 /* PopSignUtil.m */; };
+		42CA8BF51E5D623C00C025F3 /* SPUserResizableView.m in Sources */ = {isa = PBXBuildFile; fileRef = 42CA8BF01E5D623C00C025F3 /* SPUserResizableView.m */; };
 		640AC2494E0AC9F5E5CA743E /* Pods_Contract.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 22F18C19584528B1717CD718 /* Pods_Contract.framework */; };
 /* End PBXBuildFile section */
 
@@ -122,139 +62,55 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
-		1104A8481C76B66800B59E60 /* AddendumA.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddendumA.swift; sourceTree = "<group>"; };
-		1107507A1C29222600B68141 /* SendOperationViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SendOperationViewController.swift; sourceTree = "<group>"; };
-		1107C09A1C0C3B530041D8D7 /* cl_pdf.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = cl_pdf.h; sourceTree = "<group>"; };
-		1107C09B1C0C3B530041D8D7 /* cl_pdf.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = cl_pdf.m; sourceTree = "<group>"; };
+		1106EE211E3634C2003598BF /* BSImagePicker.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = BSImagePicker.framework; path = "../../Library/Developer/Xcode/DerivedData/Contract-hjdivrrliwejwdaukdnyotwvmrog/Build/Products/Debug-iphonesimulator/BSImagePicker/BSImagePicker.framework"; sourceTree = "<group>"; };
 		1108B1A91BFC2690004B5D48 /* Contract.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Contract.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		1108B1B61BFC2691004B5D48 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
-		1108B1B91BFC2691004B5D48 /* Contract.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Contract.xcdatamodel; sourceTree = "<group>"; };
 		1108B1BE1BFC2691004B5D48 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		1108B1C01BFC2691004B5D48 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		1108B2131BFC290F004B5D48 /* DrawSignView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DrawSignView.h; sourceTree = "<group>"; };
-		1108B2141BFC290F004B5D48 /* DrawSignView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DrawSignView.m; sourceTree = "<group>"; };
-		1108B2151BFC290F004B5D48 /* MyView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MyView.h; sourceTree = "<group>"; };
-		1108B2161BFC290F004B5D48 /* MyView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MyView.m; sourceTree = "<group>"; };
-		1108B2171BFC290F004B5D48 /* PopSignUtil.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PopSignUtil.h; sourceTree = "<group>"; };
-		1108B2181BFC290F004B5D48 /* PopSignUtil.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PopSignUtil.m; sourceTree = "<group>"; };
-		1108B2191BFC290F004B5D48 /* SignatureView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SignatureView.h; sourceTree = "<group>"; };
-		1108B21A1BFC290F004B5D48 /* SignatureView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SignatureView.m; sourceTree = "<group>"; };
 		1108B21F1BFC2A3B004B5D48 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		1108B2211BFC2A66004B5D48 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
 		1108B2231BFC2A6D004B5D48 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		1108B2251BFC2B0B004B5D48 /* ILPDFKitSample-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "ILPDFKitSample-Prefix.pch"; sourceTree = "<group>"; };
-		1108B2281BFC4047004B5D48 /* PDFSerializer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PDFSerializer.h; sourceTree = "<group>"; };
-		1108B2291BFC4047004B5D48 /* PDFSerializer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PDFSerializer.m; sourceTree = "<group>"; };
-		1108B22E1BFC4047004B5D48 /* PDFArray.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PDFArray.h; sourceTree = "<group>"; };
-		1108B22F1BFC4047004B5D48 /* PDFArray.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PDFArray.m; sourceTree = "<group>"; };
-		1108B2301BFC4047004B5D48 /* PDFDictionary.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PDFDictionary.h; sourceTree = "<group>"; };
-		1108B2311BFC4047004B5D48 /* PDFDictionary.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PDFDictionary.m; sourceTree = "<group>"; };
-		1108B2321BFC4047004B5D48 /* PDFName.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PDFName.h; sourceTree = "<group>"; };
-		1108B2331BFC4047004B5D48 /* PDFName.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PDFName.m; sourceTree = "<group>"; };
-		1108B2341BFC4047004B5D48 /* PDFNull.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PDFNull.h; sourceTree = "<group>"; };
-		1108B2351BFC4047004B5D48 /* PDFNull.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PDFNull.m; sourceTree = "<group>"; };
-		1108B2361BFC4047004B5D48 /* PDFNumber.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PDFNumber.h; sourceTree = "<group>"; };
-		1108B2371BFC4047004B5D48 /* PDFNumber.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PDFNumber.m; sourceTree = "<group>"; };
-		1108B2381BFC4047004B5D48 /* PDFObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PDFObject.h; sourceTree = "<group>"; };
-		1108B2391BFC4047004B5D48 /* PDFStream.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PDFStream.h; sourceTree = "<group>"; };
-		1108B23A1BFC4047004B5D48 /* PDFStream.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PDFStream.m; sourceTree = "<group>"; };
-		1108B23B1BFC4047004B5D48 /* PDFString.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PDFString.h; sourceTree = "<group>"; };
-		1108B23C1BFC4047004B5D48 /* PDFString.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PDFString.m; sourceTree = "<group>"; };
-		1108B23D1BFC4047004B5D48 /* PDFDocument.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PDFDocument.h; sourceTree = "<group>"; };
-		1108B23E1BFC4047004B5D48 /* PDFDocument.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PDFDocument.m; sourceTree = "<group>"; };
-		1108B23F1BFC4047004B5D48 /* PDFForm.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PDFForm.h; sourceTree = "<group>"; };
-		1108B2401BFC4047004B5D48 /* PDFForm.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PDFForm.m; sourceTree = "<group>"; };
-		1108B2411BFC4047004B5D48 /* PDFFormContainer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PDFFormContainer.h; sourceTree = "<group>"; };
-		1108B2421BFC4047004B5D48 /* PDFFormContainer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PDFFormContainer.m; sourceTree = "<group>"; };
-		1108B2431BFC4047004B5D48 /* PDFPage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PDFPage.h; sourceTree = "<group>"; };
-		1108B2441BFC4047004B5D48 /* PDFPage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PDFPage.m; sourceTree = "<group>"; };
-		1108B2451BFC4047004B5D48 /* PDF.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PDF.h; sourceTree = "<group>"; };
-		1108B2471BFC4047004B5D48 /* PDFObjectParser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PDFObjectParser.h; sourceTree = "<group>"; };
-		1108B2481BFC4047004B5D48 /* PDFObjectParser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PDFObjectParser.m; sourceTree = "<group>"; };
-		1108B2491BFC4047004B5D48 /* PDFUtility.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PDFUtility.h; sourceTree = "<group>"; };
-		1108B24A1BFC4047004B5D48 /* PDFUtility.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PDFUtility.m; sourceTree = "<group>"; };
-		1108B24C1BFC4047004B5D48 /* PDFFormButtonField.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PDFFormButtonField.h; sourceTree = "<group>"; };
-		1108B24D1BFC4047004B5D48 /* PDFFormButtonField.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PDFFormButtonField.m; sourceTree = "<group>"; };
-		1108B24E1BFC4047004B5D48 /* PDFFormChoiceField.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PDFFormChoiceField.h; sourceTree = "<group>"; };
-		1108B24F1BFC4047004B5D48 /* PDFFormChoiceField.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PDFFormChoiceField.m; sourceTree = "<group>"; };
-		1108B2501BFC4047004B5D48 /* PDFFormImageView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PDFFormImageView.h; sourceTree = "<group>"; };
-		1108B2511BFC4047004B5D48 /* PDFFormImageView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PDFFormImageView.m; sourceTree = "<group>"; };
-		1108B2521BFC4047004B5D48 /* PDFFormSignatureField.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PDFFormSignatureField.h; sourceTree = "<group>"; };
-		1108B2531BFC4047004B5D48 /* PDFFormSignatureField.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PDFFormSignatureField.m; sourceTree = "<group>"; };
-		1108B2541BFC4047004B5D48 /* PDFFormTextField.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PDFFormTextField.h; sourceTree = "<group>"; };
-		1108B2551BFC4047004B5D48 /* PDFFormTextField.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PDFFormTextField.m; sourceTree = "<group>"; };
-		1108B2561BFC4047004B5D48 /* PDFView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PDFView.h; sourceTree = "<group>"; };
-		1108B2571BFC4047004B5D48 /* PDFView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PDFView.m; sourceTree = "<group>"; };
-		1108B2581BFC4047004B5D48 /* PDFWidgetAnnotationView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PDFWidgetAnnotationView.h; sourceTree = "<group>"; };
-		1108B2591BFC4047004B5D48 /* PDFWidgetAnnotationView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PDFWidgetAnnotationView.m; sourceTree = "<group>"; };
-		1108B2731BFC55CF004B5D48 /* Contract-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Contract-Bridging-Header.h"; sourceTree = "<group>"; };
-		1108B2741BFC55CF004B5D48 /* LoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
-		1108B2781BFC6133004B5D48 /* BaseViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BaseViewController.swift; sourceTree = "<group>"; };
-		110CE6A51C03F3370096E630 /* ContractSignatureError.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContractSignatureError.swift; sourceTree = "<group>"; };
-		11116CE41CA3D8DC0021B680 /* BuyersExpect.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; path = BuyersExpect.pdf; sourceTree = "<group>"; };
-		111293D81CDAE00300B0DAFC /* SaveAndEmailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SaveAndEmailViewController.swift; sourceTree = "<group>"; };
-		1112E34A1CBF826000AC9123 /* SPUserResizableView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SPUserResizableView.m; sourceTree = "<group>"; };
-		1112E34B1CBF826000AC9123 /* SPUserResizableView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SPUserResizableView.h; sourceTree = "<group>"; };
 		1114C79B1C812AE900924A21 /* AppDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		1114C7A41C8137EA00924A21 /* AddressDraftListViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddressDraftListViewCell.swift; sourceTree = "<group>"; };
-		1114C7AA1C816F2D00924A21 /* PrintModelTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PrintModelTableViewCell.swift; sourceTree = "<group>"; };
-		111E20371C7BF275004D43D8 /* PDFPrintViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PDFPrintViewController.swift; sourceTree = "<group>"; };
-		111E203F1C7C5F3D004D43D8 /* SetDotValue.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SetDotValue.swift; sourceTree = "<group>"; };
-		112118E21C056EC1000F85CE /* AddressListViewHeadView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddressListViewHeadView.swift; sourceTree = "<group>"; };
-		113CB5951BFEC8D60081FDE7 /* ContractObject.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContractObject.swift; sourceTree = "<group>"; };
-		113CB5B91BFEE27A0081FDE7 /* ContractsItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContractsItem.swift; sourceTree = "<group>"; };
-		113CB5BB1BFEE2D80081FDE7 /* Contract.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Contract.swift; sourceTree = "<group>"; };
-		113CB5DD1BFEE5A80081FDE7 /* LoginUser.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginUser.swift; sourceTree = "<group>"; };
-		113CB5E11BFF06E90081FDE7 /* AddressListViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddressListViewCell.swift; sourceTree = "<group>"; };
-		113CB5E31BFF0CBF0081FDE7 /* ContractRequestItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContractRequestItem.swift; sourceTree = "<group>"; };
-		113CB5E51BFF11EC0081FDE7 /* ContractSignature.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContractSignature.swift; sourceTree = "<group>"; };
-		1145460C1E2354990070D5F4 /* AddendumA_Austin.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; path = AddendumA_Austin.pdf; sourceTree = "<group>"; };
-		115338C11C27DE5900E1B65A /* PDFBaseViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PDFBaseViewController.swift; sourceTree = "<group>"; };
-		115338C91C27F59E00E1B65A /* ContractPDFBaseModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContractPDFBaseModel.swift; sourceTree = "<group>"; };
-		1157B3C31C34C68D008ED758 /* ContractDesignCenter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContractDesignCenter.swift; sourceTree = "<group>"; };
 		1158E57A1CB34FD0004C2A47 /* Alamofire.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Alamofire.framework; path = "../../../Library/Developer/Xcode/DerivedData/Contract-dcqjjoxvaaolymaiaqvwpxclpghp/Build/Products/Debug-iphonesimulator/Alamofire/Alamofire.framework"; sourceTree = "<group>"; };
-		11609E5E1C86FA6600596281 /* AddressListModelLastCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddressListModelLastCell.swift; sourceTree = "<group>"; };
-		11632BF51CD2DF2F00B70C44 /* INFORMATION_ABOUT_BROKERAGE_SERVICES2.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; path = INFORMATION_ABOUT_BROKERAGE_SERVICES2.pdf; sourceTree = "<group>"; };
-		11633B9F1C27DA0000C11A20 /* ContractClosingMemoItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContractClosingMemoItem.swift; sourceTree = "<group>"; };
-		11633BA11C27DA8E00C11A20 /* ContractClosingMemo.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContractClosingMemo.swift; sourceTree = "<group>"; };
-		1163ED651D0A890A004DE2AA /* BigPictureViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BigPictureViewController.swift; sourceTree = "<group>"; };
-		11643C151C030B8E000E2C0A /* CConstants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CConstants.swift; sourceTree = "<group>"; };
-		1164A1871CCDDF7E005A2A69 /* AddendumC.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; path = AddendumC.pdf; sourceTree = "<group>"; };
-		1164A1881CCDDF7E005A2A69 /* AddendumC2.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; path = AddendumC2.pdf; sourceTree = "<group>"; };
+		115C73091E39DFF4003F243F /* checklistItemL.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = checklistItemL.swift; sourceTree = "<group>"; };
+		115D6E7F1E3839E5002B6DA6 /* cl_introWalkPhotoLocal.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = cl_introWalkPhotoLocal.swift; sourceTree = "<group>"; };
 		11661D601CC7750A00C974A0 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
-		116C2C831CCCB1CB00B07865 /* Hoa_Checklist2.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; path = Hoa_Checklist2.pdf; sourceTree = "<group>"; };
-		116C2C881CCCB72400B07865 /* trec_36-8.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; path = "trec_36-8.pdf"; sourceTree = "<group>"; };
-		116C2C8A1CCCB75D00B07865 /* Warranty_Builder_s.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; path = Warranty_Builder_s.pdf; sourceTree = "<group>"; };
-		1170C8C11CD1F26300E81BCC /* EXHIBIT_C_General.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; path = EXHIBIT_C_General.pdf; sourceTree = "<group>"; };
-		1170C8C21CD1F26300E81BCC /* INFORMATION_ABOUT_BROKERAGE_SERVICES.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; path = INFORMATION_ABOUT_BROKERAGE_SERVICES.pdf; sourceTree = "<group>"; };
-		1170C8C31CD1F26300E81BCC /* DesignCenter.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; path = DesignCenter.pdf; sourceTree = "<group>"; };
-		1170C8C71CD1F26300E81BCC /* EXHIBIT_A.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; path = EXHIBIT_A.pdf; sourceTree = "<group>"; };
-		1170C8C81CD1F26300E81BCC /* AddendumE.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; path = AddendumE.pdf; sourceTree = "<group>"; };
-		1170C8C91CD1F26300E81BCC /* FloodaplainAcknowledement.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; path = FloodaplainAcknowledement.pdf; sourceTree = "<group>"; };
-		1170C8D61CD1F42500E81BCC /* Hoa_Checklist.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; path = Hoa_Checklist.pdf; sourceTree = "<group>"; };
-		1176D20E1BFDC67C001C1C3E /* AddressListViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddressListViewController.swift; sourceTree = "<group>"; };
-		117F9B6A1C756706008B26D5 /* PrintModelTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PrintModelTableViewController.swift; sourceTree = "<group>"; };
-		1186B81F1D0F9B5F00D0C91C /* EmailAfterApprovedViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EmailAfterApprovedViewController.swift; sourceTree = "<group>"; };
-		1189399F1CE429D600B771CE /* EXHIBIT_C_General_Austin.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; path = EXHIBIT_C_General_Austin.pdf; sourceTree = "<group>"; };
-		118D54341CD09E9500F6359A /* SubmitForApproveViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SubmitForApproveViewController.swift; sourceTree = "<group>"; };
-		11A107411CE18AD900B00328 /* GoToFileViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GoToFileViewController.swift; sourceTree = "<group>"; };
-		11A50B411C783BFC0017AA53 /* AddressListModelViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddressListModelViewController.swift; sourceTree = "<group>"; };
-		11A626341CD989F500B91EBE /* FilterViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FilterViewController.swift; sourceTree = "<group>"; };
-		11A626361CD98C9D00B91EBE /* filterCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = filterCell.swift; sourceTree = "<group>"; };
-		11B18F0F1C8435C100D39019 /* AddressListModelCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddressListModelCell.swift; sourceTree = "<group>"; };
-		11BB1FB41D45B1E7003A12F5 /* EXHIBIT_B.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; path = EXHIBIT_B.pdf; sourceTree = "<group>"; };
-		11BB1FB51D45B1E7003A12F5 /* EXHIBIT_B_Austin.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; path = EXHIBIT_B_Austin.pdf; sourceTree = "<group>"; };
-		11D910FF1C1AB33D00CD018A /* ContractAddendumC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContractAddendumC.swift; sourceTree = "<group>"; };
-		11D911011C1AB36000CD018A /* ContractAddendumCItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContractAddendumCItem.swift; sourceTree = "<group>"; };
-		11ECB4BB1E1F3F320037DA6E /* BaseContract_Austin.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; path = BaseContract_Austin.pdf; sourceTree = "<group>"; };
-		11ECB4BC1E1F3F320037DA6E /* BaseContract.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; path = BaseContract.pdf; sourceTree = "<group>"; };
-		11EDB0C91D151ACB0070BE3E /* EmailContractToBuyerViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EmailContractToBuyerViewController.swift; sourceTree = "<group>"; };
-		11EEF03A1CCF5679006422ED /* SignatrureFields.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SignatrureFields.swift; sourceTree = "<group>"; };
-		11EEF03C1CCF5F3D006422ED /* Third_Party_Financing_Addendum_TREC.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; path = Third_Party_Financing_Addendum_TREC.pdf; sourceTree = "<group>"; };
-		11EEF03E1CCF6145006422ED /* toolpdf.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = toolpdf.swift; sourceTree = "<group>"; };
-		11F9FBC71D7E572F00A90664 /* AddendumD.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; path = AddendumD.pdf; sourceTree = "<group>"; };
-		11F9FBC81D7E572F00A90664 /* AddendumA.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; path = AddendumA.pdf; sourceTree = "<group>"; };
+		117CA2EB1E359E4E00166AFB /* util.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = util.swift; sourceTree = "<group>"; };
+		118D95A31E34D4F000D7E28C /* cl_introWalkLocal.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = cl_introWalkLocal.swift; sourceTree = "<group>"; };
+		119AA37D1E334B5F00EF8D3C /* IntroWalkItemViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IntroWalkItemViewController.swift; sourceTree = "<group>"; };
+		119AA37F1E334B5F00EF8D3C /* AddressListViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddressListViewController.swift; sourceTree = "<group>"; };
+		119AA3801E334B5F00EF8D3C /* BaseViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BaseViewController.swift; sourceTree = "<group>"; };
+		119AA3811E334B5F00EF8D3C /* BigPictureViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BigPictureViewController.swift; sourceTree = "<group>"; };
+		119AA3821E334B5F00EF8D3C /* CConstants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CConstants.swift; sourceTree = "<group>"; };
+		119AA3831E334B5F00EF8D3C /* Contract-Bridging-Header.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "Contract-Bridging-Header.h"; sourceTree = "<group>"; };
+		119AA3841E334B5F00EF8D3C /* LoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
+		119AA3851E334B5F00EF8D3C /* AddressListViewHeadView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddressListViewHeadView.swift; sourceTree = "<group>"; };
+		119AA38E1E334B8A00EF8D3C /* projectItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = projectItem.swift; sourceTree = "<group>"; };
+		119AA38F1E334B8A00EF8D3C /* BaseObject.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BaseObject.swift; sourceTree = "<group>"; };
+		119AA3901E334B8A00EF8D3C /* LoginUser.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginUser.swift; sourceTree = "<group>"; };
+		119AA3911E334B8A00EF8D3C /* LoginInUser.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginInUser.swift; sourceTree = "<group>"; };
+		119AA3961E334BF500EF8D3C /* cl_project.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = cl_project.swift; sourceTree = "<group>"; };
+		119AA3981E334BF500EF8D3C /* Contract.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Contract.xcdatamodel; sourceTree = "<group>"; };
+		119AA39B1E33512C00EF8D3C /* selectionImageCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = selectionImageCell.swift; sourceTree = "<group>"; };
+		119AA39D1E3351AD00EF8D3C /* myUILabel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = myUILabel.h; sourceTree = "<group>"; };
+		119AA39E1E3351AD00EF8D3C /* myUILabel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = myUILabel.m; sourceTree = "<group>"; };
 		22F18C19584528B1717CD718 /* Pods_Contract.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Contract.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		4243E25F1E5BDE3900A32213 /* cl_ObjIntroWalk2Photo.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = cl_ObjIntroWalk2Photo.swift; sourceTree = "<group>"; };
+		425AA2ED1E5A922B005995B4 /* SendOperationViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SendOperationViewController.swift; sourceTree = "<group>"; };
+		425AA2EF1E5AC022005995B4 /* AddressUITableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddressUITableViewCell.swift; sourceTree = "<group>"; };
+		425D47991E5D1C7600C044FD /* cl_ObjIntroWalk2.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = cl_ObjIntroWalk2.swift; sourceTree = "<group>"; };
+		4282F0751E56901600576A9D /* IntroWalkListViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IntroWalkListViewController.swift; sourceTree = "<group>"; };
+		4282F0771E5694C200576A9D /* IntroWalkTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IntroWalkTableViewCell.swift; sourceTree = "<group>"; };
+		4282F0791E56BDAF00576A9D /* ChecklistItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChecklistItem.swift; sourceTree = "<group>"; };
+		42CA8BE71E5D623C00C025F3 /* DrawSignView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DrawSignView.h; sourceTree = "<group>"; };
+		42CA8BE81E5D623C00C025F3 /* DrawSignView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DrawSignView.m; sourceTree = "<group>"; };
+		42CA8BE91E5D623C00C025F3 /* MyView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MyView.h; sourceTree = "<group>"; };
+		42CA8BEA1E5D623C00C025F3 /* MyView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MyView.m; sourceTree = "<group>"; };
+		42CA8BEB1E5D623C00C025F3 /* PopSignUtil.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PopSignUtil.h; sourceTree = "<group>"; };
+		42CA8BEC1E5D623C00C025F3 /* PopSignUtil.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PopSignUtil.m; sourceTree = "<group>"; };
+		42CA8BEF1E5D623C00C025F3 /* SPUserResizableView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SPUserResizableView.h; sourceTree = "<group>"; };
+		42CA8BF01E5D623C00C025F3 /* SPUserResizableView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SPUserResizableView.m; sourceTree = "<group>"; };
 		8FD0FE342786EA5417C6A9FD /* Pods-Contract.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Contract.release.xcconfig"; path = "Pods/Target Support Files/Pods-Contract/Pods-Contract.release.xcconfig"; sourceTree = "<group>"; };
 		AB0FE999F8EB22254D6D15D8 /* Pods.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		E423097CA2371A0B4502711B /* Pods-Contract.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Contract.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Contract/Pods-Contract.debug.xcconfig"; sourceTree = "<group>"; };
@@ -265,6 +121,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1106EE221E3634C2003598BF /* BSImagePicker.framework in Frameworks */,
 				1108B2241BFC2A6D004B5D48 /* UIKit.framework in Frameworks */,
 				1108B2221BFC2A66004B5D48 /* CoreGraphics.framework in Frameworks */,
 				1108B2201BFC2A3B004B5D48 /* Foundation.framework in Frameworks */,
@@ -278,9 +135,12 @@
 		1107C0901C0C359B0041D8D7 /* Data */ = {
 			isa = PBXGroup;
 			children = (
-				1107C09A1C0C3B530041D8D7 /* cl_pdf.h */,
-				1107C09B1C0C3B530041D8D7 /* cl_pdf.m */,
-				1108B1B81BFC2691004B5D48 /* Contract.xcdatamodeld */,
+				425D47991E5D1C7600C044FD /* cl_ObjIntroWalk2.swift */,
+				119AA3961E334BF500EF8D3C /* cl_project.swift */,
+				119AA3971E334BF500EF8D3C /* Contract.xcdatamodeld */,
+				118D95A31E34D4F000D7E28C /* cl_introWalkLocal.swift */,
+				115D6E7F1E3839E5002B6DA6 /* cl_introWalkPhotoLocal.swift */,
+				4243E25F1E5BDE3900A32213 /* cl_ObjIntroWalk2Photo.swift */,
 			);
 			name = Data;
 			path = Views/Data;
@@ -307,13 +167,12 @@
 		1108B1AB1BFC2691004B5D48 /* Contract */ = {
 			isa = PBXGroup;
 			children = (
+				42CA8BE61E5D623C00C025F3 /* Signature */,
 				111E203E1C7C5F28004D43D8 /* UtilityClass */,
 				1107C0901C0C359B0041D8D7 /* Data */,
-				110CE6AD1C0439A70096E630 /* pdf */,
 				113CB5901BFEC87A0081FDE7 /* Model */,
+				426A832F1E666772005A1A2C /* pages */,
 				1108B2721BFC55A2004B5D48 /* Views */,
-				1108B2261BFC4047004B5D48 /* ILPDFKit */,
-				1108B2121BFC290F004B5D48 /* Signature */,
 				1108B1B51BFC2691004B5D48 /* Main.storyboard */,
 				1108B1BD1BFC2691004B5D48 /* LaunchScreen.storyboard */,
 				11661D601CC7750A00C974A0 /* Assets.xcassets */,
@@ -335,180 +194,28 @@
 			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
-		1108B2121BFC290F004B5D48 /* Signature */ = {
-			isa = PBXGroup;
-			children = (
-				1112E34A1CBF826000AC9123 /* SPUserResizableView.m */,
-				1112E34B1CBF826000AC9123 /* SPUserResizableView.h */,
-				1108B2131BFC290F004B5D48 /* DrawSignView.h */,
-				1108B2141BFC290F004B5D48 /* DrawSignView.m */,
-				1108B2151BFC290F004B5D48 /* MyView.h */,
-				1108B2161BFC290F004B5D48 /* MyView.m */,
-				1108B2171BFC290F004B5D48 /* PopSignUtil.h */,
-				1108B2181BFC290F004B5D48 /* PopSignUtil.m */,
-				1108B2191BFC290F004B5D48 /* SignatureView.h */,
-				1108B21A1BFC290F004B5D48 /* SignatureView.m */,
-			);
-			path = Signature;
-			sourceTree = "<group>";
-		};
-		1108B2261BFC4047004B5D48 /* ILPDFKit */ = {
-			isa = PBXGroup;
-			children = (
-				1108B2271BFC4047004B5D48 /* Controller */,
-				1108B22C1BFC4047004B5D48 /* Model */,
-				1108B2451BFC4047004B5D48 /* PDF.h */,
-				1108B2461BFC4047004B5D48 /* Utility */,
-				1108B24B1BFC4047004B5D48 /* View */,
-			);
-			path = ILPDFKit;
-			sourceTree = "<group>";
-		};
-		1108B2271BFC4047004B5D48 /* Controller */ = {
-			isa = PBXGroup;
-			children = (
-				1108B2281BFC4047004B5D48 /* PDFSerializer.h */,
-				1108B2291BFC4047004B5D48 /* PDFSerializer.m */,
-			);
-			path = Controller;
-			sourceTree = "<group>";
-		};
-		1108B22C1BFC4047004B5D48 /* Model */ = {
-			isa = PBXGroup;
-			children = (
-				1108B22D1BFC4047004B5D48 /* Objects */,
-				1108B23D1BFC4047004B5D48 /* PDFDocument.h */,
-				1108B23E1BFC4047004B5D48 /* PDFDocument.m */,
-				1108B23F1BFC4047004B5D48 /* PDFForm.h */,
-				1108B2401BFC4047004B5D48 /* PDFForm.m */,
-				1108B2411BFC4047004B5D48 /* PDFFormContainer.h */,
-				1108B2421BFC4047004B5D48 /* PDFFormContainer.m */,
-				1108B2431BFC4047004B5D48 /* PDFPage.h */,
-				1108B2441BFC4047004B5D48 /* PDFPage.m */,
-			);
-			path = Model;
-			sourceTree = "<group>";
-		};
-		1108B22D1BFC4047004B5D48 /* Objects */ = {
-			isa = PBXGroup;
-			children = (
-				1108B22E1BFC4047004B5D48 /* PDFArray.h */,
-				1108B22F1BFC4047004B5D48 /* PDFArray.m */,
-				1108B2301BFC4047004B5D48 /* PDFDictionary.h */,
-				1108B2311BFC4047004B5D48 /* PDFDictionary.m */,
-				1108B2321BFC4047004B5D48 /* PDFName.h */,
-				1108B2331BFC4047004B5D48 /* PDFName.m */,
-				1108B2341BFC4047004B5D48 /* PDFNull.h */,
-				1108B2351BFC4047004B5D48 /* PDFNull.m */,
-				1108B2361BFC4047004B5D48 /* PDFNumber.h */,
-				1108B2371BFC4047004B5D48 /* PDFNumber.m */,
-				1108B2381BFC4047004B5D48 /* PDFObject.h */,
-				1108B2391BFC4047004B5D48 /* PDFStream.h */,
-				1108B23A1BFC4047004B5D48 /* PDFStream.m */,
-				1108B23B1BFC4047004B5D48 /* PDFString.h */,
-				1108B23C1BFC4047004B5D48 /* PDFString.m */,
-			);
-			path = Objects;
-			sourceTree = "<group>";
-		};
-		1108B2461BFC4047004B5D48 /* Utility */ = {
-			isa = PBXGroup;
-			children = (
-				1108B2471BFC4047004B5D48 /* PDFObjectParser.h */,
-				1108B2481BFC4047004B5D48 /* PDFObjectParser.m */,
-				1108B2491BFC4047004B5D48 /* PDFUtility.h */,
-				1108B24A1BFC4047004B5D48 /* PDFUtility.m */,
-			);
-			path = Utility;
-			sourceTree = "<group>";
-		};
-		1108B24B1BFC4047004B5D48 /* View */ = {
-			isa = PBXGroup;
-			children = (
-				1108B24C1BFC4047004B5D48 /* PDFFormButtonField.h */,
-				1108B24D1BFC4047004B5D48 /* PDFFormButtonField.m */,
-				1108B24E1BFC4047004B5D48 /* PDFFormChoiceField.h */,
-				1108B24F1BFC4047004B5D48 /* PDFFormChoiceField.m */,
-				1108B2501BFC4047004B5D48 /* PDFFormImageView.h */,
-				1108B2511BFC4047004B5D48 /* PDFFormImageView.m */,
-				1108B2521BFC4047004B5D48 /* PDFFormSignatureField.h */,
-				1108B2531BFC4047004B5D48 /* PDFFormSignatureField.m */,
-				1108B2541BFC4047004B5D48 /* PDFFormTextField.h */,
-				1108B2551BFC4047004B5D48 /* PDFFormTextField.m */,
-				1108B2561BFC4047004B5D48 /* PDFView.h */,
-				1108B2571BFC4047004B5D48 /* PDFView.m */,
-				1108B2581BFC4047004B5D48 /* PDFWidgetAnnotationView.h */,
-				1108B2591BFC4047004B5D48 /* PDFWidgetAnnotationView.m */,
-			);
-			path = View;
-			sourceTree = "<group>";
-		};
 		1108B2721BFC55A2004B5D48 /* Views */ = {
 			isa = PBXGroup;
 			children = (
-				1163ED651D0A890A004DE2AA /* BigPictureViewController.swift */,
-				112118E21C056EC1000F85CE /* AddressListViewHeadView.swift */,
-				1114C7A41C8137EA00924A21 /* AddressDraftListViewCell.swift */,
-				113CB5E11BFF06E90081FDE7 /* AddressListViewCell.swift */,
-				1114C7AA1C816F2D00924A21 /* PrintModelTableViewCell.swift */,
-				11B18F0F1C8435C100D39019 /* AddressListModelCell.swift */,
-				11643C151C030B8E000E2C0A /* CConstants.swift */,
-				1108B2731BFC55CF004B5D48 /* Contract-Bridging-Header.h */,
-				1108B2781BFC6133004B5D48 /* BaseViewController.swift */,
-				115338C11C27DE5900E1B65A /* PDFBaseViewController.swift */,
-				1108B2741BFC55CF004B5D48 /* LoginViewController.swift */,
-				1176D20E1BFDC67C001C1C3E /* AddressListViewController.swift */,
-				111E20371C7BF275004D43D8 /* PDFPrintViewController.swift */,
-				117F9B6A1C756706008B26D5 /* PrintModelTableViewController.swift */,
-				1107507A1C29222600B68141 /* SendOperationViewController.swift */,
-				11A50B411C783BFC0017AA53 /* AddressListModelViewController.swift */,
-				11609E5E1C86FA6600596281 /* AddressListModelLastCell.swift */,
-				118D54341CD09E9500F6359A /* SubmitForApproveViewController.swift */,
-				11A626341CD989F500B91EBE /* FilterViewController.swift */,
-				11A626361CD98C9D00B91EBE /* filterCell.swift */,
-				111293D81CDAE00300B0DAFC /* SaveAndEmailViewController.swift */,
-				11A107411CE18AD900B00328 /* GoToFileViewController.swift */,
-				1186B81F1D0F9B5F00D0C91C /* EmailAfterApprovedViewController.swift */,
-				11EDB0C91D151ACB0070BE3E /* EmailContractToBuyerViewController.swift */,
+				119AA39D1E3351AD00EF8D3C /* myUILabel.h */,
+				119AA39E1E3351AD00EF8D3C /* myUILabel.m */,
+				119AA39B1E33512C00EF8D3C /* selectionImageCell.swift */,
+				119AA3801E334B5F00EF8D3C /* BaseViewController.swift */,
+				119AA3811E334B5F00EF8D3C /* BigPictureViewController.swift */,
+				119AA3821E334B5F00EF8D3C /* CConstants.swift */,
+				119AA3831E334B5F00EF8D3C /* Contract-Bridging-Header.h */,
+				119AA3841E334B5F00EF8D3C /* LoginViewController.swift */,
+				119AA3851E334B5F00EF8D3C /* AddressListViewHeadView.swift */,
+				4282F0771E5694C200576A9D /* IntroWalkTableViewCell.swift */,
+				425AA2EF1E5AC022005995B4 /* AddressUITableViewCell.swift */,
 			);
 			path = Views;
-			sourceTree = "<group>";
-		};
-		110CE6AD1C0439A70096E630 /* pdf */ = {
-			isa = PBXGroup;
-			children = (
-				1145460C1E2354990070D5F4 /* AddendumA_Austin.pdf */,
-				11ECB4BB1E1F3F320037DA6E /* BaseContract_Austin.pdf */,
-				11ECB4BC1E1F3F320037DA6E /* BaseContract.pdf */,
-				11F9FBC71D7E572F00A90664 /* AddendumD.pdf */,
-				11F9FBC81D7E572F00A90664 /* AddendumA.pdf */,
-				11BB1FB41D45B1E7003A12F5 /* EXHIBIT_B.pdf */,
-				11BB1FB51D45B1E7003A12F5 /* EXHIBIT_B_Austin.pdf */,
-				1189399F1CE429D600B771CE /* EXHIBIT_C_General_Austin.pdf */,
-				11632BF51CD2DF2F00B70C44 /* INFORMATION_ABOUT_BROKERAGE_SERVICES2.pdf */,
-				1170C8D61CD1F42500E81BCC /* Hoa_Checklist.pdf */,
-				1170C8C11CD1F26300E81BCC /* EXHIBIT_C_General.pdf */,
-				1170C8C21CD1F26300E81BCC /* INFORMATION_ABOUT_BROKERAGE_SERVICES.pdf */,
-				1170C8C31CD1F26300E81BCC /* DesignCenter.pdf */,
-				1170C8C71CD1F26300E81BCC /* EXHIBIT_A.pdf */,
-				1170C8C81CD1F26300E81BCC /* AddendumE.pdf */,
-				1170C8C91CD1F26300E81BCC /* FloodaplainAcknowledement.pdf */,
-				11EEF03C1CCF5F3D006422ED /* Third_Party_Financing_Addendum_TREC.pdf */,
-				1164A1871CCDDF7E005A2A69 /* AddendumC.pdf */,
-				1164A1881CCDDF7E005A2A69 /* AddendumC2.pdf */,
-				116C2C8A1CCCB75D00B07865 /* Warranty_Builder_s.pdf */,
-				116C2C881CCCB72400B07865 /* trec_36-8.pdf */,
-				116C2C831CCCB1CB00B07865 /* Hoa_Checklist2.pdf */,
-				11116CE41CA3D8DC0021B680 /* BuyersExpect.pdf */,
-			);
-			path = pdf;
 			sourceTree = "<group>";
 		};
 		111E203E1C7C5F28004D43D8 /* UtilityClass */ = {
 			isa = PBXGroup;
 			children = (
-				111E203F1C7C5F3D004D43D8 /* SetDotValue.swift */,
-				11EEF03E1CCF6145006422ED /* toolpdf.swift */,
+				117CA2EB1E359E4E00166AFB /* util.swift */,
 			);
 			path = UtilityClass;
 			sourceTree = "<group>";
@@ -516,21 +223,12 @@
 		113CB5901BFEC87A0081FDE7 /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				1157B3C31C34C68D008ED758 /* ContractDesignCenter.swift */,
-				113CB5951BFEC8D60081FDE7 /* ContractObject.swift */,
-				113CB5B91BFEE27A0081FDE7 /* ContractsItem.swift */,
-				113CB5BB1BFEE2D80081FDE7 /* Contract.swift */,
-				113CB5DD1BFEE5A80081FDE7 /* LoginUser.swift */,
-				113CB5E31BFF0CBF0081FDE7 /* ContractRequestItem.swift */,
-				113CB5E51BFF11EC0081FDE7 /* ContractSignature.swift */,
-				110CE6A51C03F3370096E630 /* ContractSignatureError.swift */,
-				11D910FF1C1AB33D00CD018A /* ContractAddendumC.swift */,
-				11D911011C1AB36000CD018A /* ContractAddendumCItem.swift */,
-				11633B9F1C27DA0000C11A20 /* ContractClosingMemoItem.swift */,
-				11633BA11C27DA8E00C11A20 /* ContractClosingMemo.swift */,
-				115338C91C27F59E00E1B65A /* ContractPDFBaseModel.swift */,
-				1104A8481C76B66800B59E60 /* AddendumA.swift */,
-				11EEF03A1CCF5679006422ED /* SignatrureFields.swift */,
+				119AA38E1E334B8A00EF8D3C /* projectItem.swift */,
+				119AA38F1E334B8A00EF8D3C /* BaseObject.swift */,
+				119AA3901E334B8A00EF8D3C /* LoginUser.swift */,
+				119AA3911E334B8A00EF8D3C /* LoginInUser.swift */,
+				115C73091E39DFF4003F243F /* checklistItemL.swift */,
+				4282F0791E56BDAF00576A9D /* ChecklistItem.swift */,
 			);
 			name = Model;
 			path = Views/Model;
@@ -539,11 +237,39 @@
 		1EF557691D4D81ABA6AB3018 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				1106EE211E3634C2003598BF /* BSImagePicker.framework */,
 				1158E57A1CB34FD0004C2A47 /* Alamofire.framework */,
 				AB0FE999F8EB22254D6D15D8 /* Pods.framework */,
 				22F18C19584528B1717CD718 /* Pods_Contract.framework */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		426A832F1E666772005A1A2C /* pages */ = {
+			isa = PBXGroup;
+			children = (
+				425AA2ED1E5A922B005995B4 /* SendOperationViewController.swift */,
+				119AA37F1E334B5F00EF8D3C /* AddressListViewController.swift */,
+				119AA37D1E334B5F00EF8D3C /* IntroWalkItemViewController.swift */,
+				4282F0751E56901600576A9D /* IntroWalkListViewController.swift */,
+			);
+			name = pages;
+			path = Views;
+			sourceTree = "<group>";
+		};
+		42CA8BE61E5D623C00C025F3 /* Signature */ = {
+			isa = PBXGroup;
+			children = (
+				42CA8BE71E5D623C00C025F3 /* DrawSignView.h */,
+				42CA8BE81E5D623C00C025F3 /* DrawSignView.m */,
+				42CA8BE91E5D623C00C025F3 /* MyView.h */,
+				42CA8BEA1E5D623C00C025F3 /* MyView.m */,
+				42CA8BEB1E5D623C00C025F3 /* PopSignUtil.h */,
+				42CA8BEC1E5D623C00C025F3 /* PopSignUtil.m */,
+				42CA8BEF1E5D623C00C025F3 /* SPUserResizableView.h */,
+				42CA8BF01E5D623C00C025F3 /* SPUserResizableView.m */,
+			);
+			path = Signature;
 			sourceTree = "<group>";
 		};
 		6039CFF6B9841E7E909BD201 /* Pods */ = {
@@ -562,13 +288,13 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 1108B1C31BFC2691004B5D48 /* Build configuration list for PBXNativeTarget "Contract" */;
 			buildPhases = (
-				E13C99A7898A777581128094 /* 📦 Check Pods Manifest.lock */,
+				E13C99A7898A777581128094 /* [CP] Check Pods Manifest.lock */,
 				1108B1A51BFC2690004B5D48 /* Sources */,
 				1108B1A61BFC2690004B5D48 /* Frameworks */,
 				1108B1A71BFC2690004B5D48 /* Resources */,
 				113CB5DB1BFEE4990081FDE7 /* Embed Frameworks */,
-				7FCF7F64E137686B930EE05B /* 📦 Embed Pods Frameworks */,
-				957C77327E1C8714CB724CA2 /* 📦 Copy Pods Resources */,
+				7FCF7F64E137686B930EE05B /* [CP] Embed Pods Frameworks */,
+				957C77327E1C8714CB724CA2 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -585,13 +311,13 @@
 		1108B1A11BFC2690004B5D48 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastUpgradeCheck = 0710;
+				LastUpgradeCheck = 0820;
 				ORGANIZATIONNAME = HapApp;
 				TargetAttributes = {
 					1108B1A81BFC2690004B5D48 = {
 						CreatedOnToolsVersion = 7.1.1;
 						DevelopmentTeam = 7D8CVP7EK4;
-						LastSwiftMigration = 0800;
+						LastSwiftMigration = 0820;
 					};
 				};
 			};
@@ -618,46 +344,23 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				1145460D1E2354990070D5F4 /* AddendumA_Austin.pdf in Resources */,
-				1170C8D21CD1F26300E81BCC /* AddendumE.pdf in Resources */,
-				11ECB4BD1E1F3F320037DA6E /* BaseContract_Austin.pdf in Resources */,
 				1108B1BF1BFC2691004B5D48 /* LaunchScreen.storyboard in Resources */,
-				11F9FBCB1D7E572F00A90664 /* AddendumA.pdf in Resources */,
-				11BB1FB61D45B1E7003A12F5 /* EXHIBIT_B.pdf in Resources */,
-				11116CE51CA3D8DC0021B680 /* BuyersExpect.pdf in Resources */,
-				11EEF03D1CCF5F3D006422ED /* Third_Party_Financing_Addendum_TREC.pdf in Resources */,
-				116C2C851CCCB1CB00B07865 /* Hoa_Checklist2.pdf in Resources */,
-				118939A41CE429D600B771CE /* EXHIBIT_C_General_Austin.pdf in Resources */,
-				11ECB4BE1E1F3F320037DA6E /* BaseContract.pdf in Resources */,
 				1108B1B71BFC2691004B5D48 /* Main.storyboard in Resources */,
-				11632BF61CD2DF2F00B70C44 /* INFORMATION_ABOUT_BROKERAGE_SERVICES2.pdf in Resources */,
-				1164A18A1CCDDF7E005A2A69 /* AddendumC2.pdf in Resources */,
-				116C2C891CCCB72400B07865 /* trec_36-8.pdf in Resources */,
-				1170C8D81CD1F42500E81BCC /* Hoa_Checklist.pdf in Resources */,
-				1170C8D11CD1F26300E81BCC /* EXHIBIT_A.pdf in Resources */,
-				1164A1891CCDDF7E005A2A69 /* AddendumC.pdf in Resources */,
-				1170C8CD1CD1F26300E81BCC /* DesignCenter.pdf in Resources */,
-				11BB1FB71D45B1E7003A12F5 /* EXHIBIT_B_Austin.pdf in Resources */,
 				11661D611CC7750A00C974A0 /* Assets.xcassets in Resources */,
-				116C2C8B1CCCB75D00B07865 /* Warranty_Builder_s.pdf in Resources */,
-				1170C8CB1CD1F26300E81BCC /* EXHIBIT_C_General.pdf in Resources */,
-				1170C8CC1CD1F26300E81BCC /* INFORMATION_ABOUT_BROKERAGE_SERVICES.pdf in Resources */,
-				11F9FBCA1D7E572F00A90664 /* AddendumD.pdf in Resources */,
-				1170C8D31CD1F26300E81BCC /* FloodaplainAcknowledement.pdf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		7FCF7F64E137686B930EE05B /* 📦 Embed Pods Frameworks */ = {
+		7FCF7F64E137686B930EE05B /* [CP] Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputPaths = (
 			);
-			name = "📦 Embed Pods Frameworks";
+			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -665,14 +368,14 @@
 			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Contract/Pods-Contract-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
-		957C77327E1C8714CB724CA2 /* 📦 Copy Pods Resources */ = {
+		957C77327E1C8714CB724CA2 /* [CP] Copy Pods Resources */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputPaths = (
 			);
-			name = "📦 Copy Pods Resources";
+			name = "[CP] Copy Pods Resources";
 			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -680,19 +383,19 @@
 			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Contract/Pods-Contract-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
-		E13C99A7898A777581128094 /* 📦 Check Pods Manifest.lock */ = {
+		E13C99A7898A777581128094 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputPaths = (
 			);
-			name = "📦 Check Pods Manifest.lock";
+			name = "[CP] Check Pods Manifest.lock";
 			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
 			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */
@@ -702,75 +405,37 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				1157B3C41C34C68D008ED758 /* ContractDesignCenter.swift in Sources */,
-				1114C7AB1C816F2D00924A21 /* PrintModelTableViewCell.swift in Sources */,
-				1108B2701BFC4047004B5D48 /* PDFWidgetAnnotationView.m in Sources */,
-				115338CA1C27F59E00E1B65A /* ContractPDFBaseModel.swift in Sources */,
-				11EEF03B1CCF5679006422ED /* SignatrureFields.swift in Sources */,
-				11633BA21C27DA8E00C11A20 /* ContractClosingMemo.swift in Sources */,
-				111293D91CDAE00300B0DAFC /* SaveAndEmailViewController.swift in Sources */,
-				11D911001C1AB33D00CD018A /* ContractAddendumC.swift in Sources */,
-				1108B2651BFC4047004B5D48 /* PDFForm.m in Sources */,
-				111E20401C7C5F3D004D43D8 /* SetDotValue.swift in Sources */,
-				1108B2671BFC4047004B5D48 /* PDFPage.m in Sources */,
-				115338C21C27DE5900E1B65A /* PDFBaseViewController.swift in Sources */,
-				1108B2691BFC4047004B5D48 /* PDFUtility.m in Sources */,
-				113CB5E41BFF0CBF0081FDE7 /* ContractRequestItem.swift in Sources */,
-				11B18F101C8435C100D39019 /* AddressListModelCell.swift in Sources */,
-				1108B2791BFC6133004B5D48 /* BaseViewController.swift in Sources */,
-				1108B25B1BFC4047004B5D48 /* PDFSerializer.m in Sources */,
-				11A107421CE18AD900B00328 /* GoToFileViewController.swift in Sources */,
-				1108B2641BFC4047004B5D48 /* PDFDocument.m in Sources */,
-				1108B26A1BFC4047004B5D48 /* PDFFormButtonField.m in Sources */,
-				11643C161C030B8E000E2C0A /* CConstants.swift in Sources */,
-				1108B2681BFC4047004B5D48 /* PDFObjectParser.m in Sources */,
-				111E20381C7BF275004D43D8 /* PDFPrintViewController.swift in Sources */,
-				11A626351CD989F500B91EBE /* FilterViewController.swift in Sources */,
-				11EEF03F1CCF6145006422ED /* toolpdf.swift in Sources */,
-				1108B25D1BFC4047004B5D48 /* PDFArray.m in Sources */,
-				1108B26C1BFC4047004B5D48 /* PDFFormImageView.m in Sources */,
-				112118E31C056EC1000F85CE /* AddressListViewHeadView.swift in Sources */,
-				11609E5F1C86FA6600596281 /* AddressListModelLastCell.swift in Sources */,
-				1108B2751BFC55CF004B5D48 /* LoginViewController.swift in Sources */,
-				113CB5961BFEC8D60081FDE7 /* ContractObject.swift in Sources */,
-				1108B2611BFC4047004B5D48 /* PDFNumber.m in Sources */,
-				113CB5BA1BFEE27A0081FDE7 /* ContractsItem.swift in Sources */,
-				1107507B1C29222600B68141 /* SendOperationViewController.swift in Sources */,
-				117F9B6B1C756706008B26D5 /* PrintModelTableViewController.swift in Sources */,
-				1108B25F1BFC4047004B5D48 /* PDFName.m in Sources */,
-				11EDB0CA1D151ACB0070BE3E /* EmailContractToBuyerViewController.swift in Sources */,
-				1108B26D1BFC4047004B5D48 /* PDFFormSignatureField.m in Sources */,
-				11A50B421C783BFC0017AA53 /* AddressListModelViewController.swift in Sources */,
-				113CB5BC1BFEE2D80081FDE7 /* Contract.swift in Sources */,
+				119AA39C1E33512C00EF8D3C /* selectionImageCell.swift in Sources */,
+				118D95A41E34D4F000D7E28C /* cl_introWalkLocal.swift in Sources */,
+				42CA8BF51E5D623C00C025F3 /* SPUserResizableView.m in Sources */,
+				119AA3941E334B8A00EF8D3C /* LoginUser.swift in Sources */,
+				115C730A1E39DFF4003F243F /* checklistItemL.swift in Sources */,
+				119AA38A1E334B5F00EF8D3C /* BigPictureViewController.swift in Sources */,
+				115D6E801E3839E5002B6DA6 /* cl_introWalkPhotoLocal.swift in Sources */,
+				119AA38D1E334B5F00EF8D3C /* AddressListViewHeadView.swift in Sources */,
+				119AA3951E334B8A00EF8D3C /* LoginInUser.swift in Sources */,
+				119AA3991E334BF500EF8D3C /* cl_project.swift in Sources */,
+				119AA3881E334B5F00EF8D3C /* AddressListViewController.swift in Sources */,
+				119AA38B1E334B5F00EF8D3C /* CConstants.swift in Sources */,
+				425D479A1E5D1C7600C044FD /* cl_ObjIntroWalk2.swift in Sources */,
+				425AA2F01E5AC022005995B4 /* AddressUITableViewCell.swift in Sources */,
+				42CA8BF21E5D623C00C025F3 /* MyView.m in Sources */,
+				4282F0761E56901600576A9D /* IntroWalkListViewController.swift in Sources */,
+				119AA3921E334B8A00EF8D3C /* projectItem.swift in Sources */,
+				119AA38C1E334B5F00EF8D3C /* LoginViewController.swift in Sources */,
+				42CA8BF31E5D623C00C025F3 /* PopSignUtil.m in Sources */,
 				1114C79C1C812AE900924A21 /* AppDelegate.swift in Sources */,
-				1108B26B1BFC4047004B5D48 /* PDFFormChoiceField.m in Sources */,
-				1108B26E1BFC4047004B5D48 /* PDFFormTextField.m in Sources */,
-				11D911021C1AB36000CD018A /* ContractAddendumCItem.swift in Sources */,
-				1104A8491C76B66800B59E60 /* AddendumA.swift in Sources */,
-				1108B21E1BFC290F004B5D48 /* SignatureView.m in Sources */,
-				1108B26F1BFC4047004B5D48 /* PDFView.m in Sources */,
-				1176D20F1BFDC67C001C1C3E /* AddressListViewController.swift in Sources */,
-				1108B21B1BFC290F004B5D48 /* DrawSignView.m in Sources */,
-				113CB5E21BFF06E90081FDE7 /* AddressListViewCell.swift in Sources */,
-				1108B21C1BFC290F004B5D48 /* MyView.m in Sources */,
-				1108B21D1BFC290F004B5D48 /* PopSignUtil.m in Sources */,
-				11A626371CD98C9D00B91EBE /* filterCell.swift in Sources */,
-				1108B2661BFC4047004B5D48 /* PDFFormContainer.m in Sources */,
-				113CB5DE1BFEE5A80081FDE7 /* LoginUser.swift in Sources */,
-				1108B2621BFC4047004B5D48 /* PDFStream.m in Sources */,
-				1108B25E1BFC4047004B5D48 /* PDFDictionary.m in Sources */,
-				110CE6A61C03F3370096E630 /* ContractSignatureError.swift in Sources */,
-				1108B2631BFC4047004B5D48 /* PDFString.m in Sources */,
-				1108B1BA1BFC2691004B5D48 /* Contract.xcdatamodeld in Sources */,
-				1186B8201D0F9B5F00D0C91C /* EmailAfterApprovedViewController.swift in Sources */,
-				1114C7A51C8137EA00924A21 /* AddressDraftListViewCell.swift in Sources */,
-				118D54351CD09E9500F6359A /* SubmitForApproveViewController.swift in Sources */,
-				1107C09C1C0C3B530041D8D7 /* cl_pdf.m in Sources */,
-				1112E34C1CBF826000AC9123 /* SPUserResizableView.m in Sources */,
-				11633BA01C27DA0000C11A20 /* ContractClosingMemoItem.swift in Sources */,
-				1108B2601BFC4047004B5D48 /* PDFNull.m in Sources */,
-				1163ED661D0A890A004DE2AA /* BigPictureViewController.swift in Sources */,
-				113CB5E61BFF11EC0081FDE7 /* ContractSignature.swift in Sources */,
+				4243E2601E5BDE3900A32213 /* cl_ObjIntroWalk2Photo.swift in Sources */,
+				4282F0781E5694C200576A9D /* IntroWalkTableViewCell.swift in Sources */,
+				425AA2EE1E5A922B005995B4 /* SendOperationViewController.swift in Sources */,
+				4282F07A1E56BDAF00576A9D /* ChecklistItem.swift in Sources */,
+				119AA39F1E3351AD00EF8D3C /* myUILabel.m in Sources */,
+				119AA3861E334B5F00EF8D3C /* IntroWalkItemViewController.swift in Sources */,
+				117CA2EC1E359E4E00166AFB /* util.swift in Sources */,
+				42CA8BF11E5D623C00C025F3 /* DrawSignView.m in Sources */,
+				119AA3931E334B8A00EF8D3C /* BaseObject.swift in Sources */,
+				119AA3891E334B5F00EF8D3C /* BaseViewController.swift in Sources */,
+				119AA39A1E334BF500EF8D3C /* Contract.xcdatamodeld in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -809,8 +474,10 @@
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
@@ -853,8 +520,10 @@
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
@@ -873,6 +542,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = iphoneos;
+				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
 				TARGETED_DEVICE_FAMILY = 2;
 				VALIDATE_PRODUCT = YES;
 			};
@@ -882,26 +552,26 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = E423097CA2371A0B4502711B /* Pods-Contract.debug.xcconfig */;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "iPhone Distribution: EloveIT, Ltd.";
 				DEFINES_MODULE = YES;
 				DEVELOPMENT_TEAM = 7D8CVP7EK4;
-				EMBEDDED_CONTENT_CONTAINS_SWIFT = YES;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Contract/ILPDFKitSample-Prefix.pch";
 				INFOPLIST_FILE = Contract/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_QUOTE_LINKER_ARGUMENTS_FOR_COMPILER_DRIVER = YES;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				OTHER_LDFLAGS = "$(inherited)";
-				PRODUCT_BUNDLE_IDENTIFIER = com.ba.Contract;
+				PRODUCT_BUNDLE_IDENTIFIER = com.ba.checklist;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "bc72218b-c973-4eb2-993d-49691788c615";
-				PROVISIONING_PROFILE_SPECIFIER = "XC: com.ba.*";
+				PROVISIONING_PROFILE = "b2239817-2abf-4fab-a2a2-3764f9027169";
+				PROVISIONING_PROFILE_SPECIFIER = BAForTestNew;
 				SWIFT_OBJC_BRIDGING_HEADER = "Contract/Views/Contract-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
-				SWIFT_VERSION = 2.3;
+				SWIFT_VERSION = 3.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
@@ -910,25 +580,25 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 8FD0FE342786EA5417C6A9FD /* Pods-Contract.release.xcconfig */;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "iPhone Distribution: EloveIT, Ltd.";
 				DEFINES_MODULE = YES;
 				DEVELOPMENT_TEAM = 7D8CVP7EK4;
-				EMBEDDED_CONTENT_CONTAINS_SWIFT = YES;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Contract/ILPDFKitSample-Prefix.pch";
 				INFOPLIST_FILE = Contract/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_QUOTE_LINKER_ARGUMENTS_FOR_COMPILER_DRIVER = YES;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				OTHER_LDFLAGS = "$(inherited)";
-				PRODUCT_BUNDLE_IDENTIFIER = com.ba.Contract;
+				PRODUCT_BUNDLE_IDENTIFIER = com.ba.checklist;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "bc72218b-c973-4eb2-993d-49691788c615";
-				PROVISIONING_PROFILE_SPECIFIER = "XC: com.ba.*";
+				PROVISIONING_PROFILE = "b2239817-2abf-4fab-a2a2-3764f9027169";
+				PROVISIONING_PROFILE_SPECIFIER = BAForTestNew;
 				SWIFT_OBJC_BRIDGING_HEADER = "Contract/Views/Contract-Bridging-Header.h";
-				SWIFT_VERSION = 2.3;
+				SWIFT_VERSION = 3.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Release;
@@ -957,14 +627,13 @@
 /* End XCConfigurationList section */
 
 /* Begin XCVersionGroup section */
-		1108B1B81BFC2691004B5D48 /* Contract.xcdatamodeld */ = {
+		119AA3971E334BF500EF8D3C /* Contract.xcdatamodeld */ = {
 			isa = XCVersionGroup;
 			children = (
-				1108B1B91BFC2691004B5D48 /* Contract.xcdatamodel */,
+				119AA3981E334BF500EF8D3C /* Contract.xcdatamodel */,
 			);
-			currentVersion = 1108B1B91BFC2691004B5D48 /* Contract.xcdatamodel */;
-			name = Contract.xcdatamodeld;
-			path = ../../Contract.xcdatamodeld;
+			currentVersion = 119AA3981E334BF500EF8D3C /* Contract.xcdatamodel */;
+			path = Contract.xcdatamodeld;
 			sourceTree = "<group>";
 			versionGroupType = wrapper.xcdatamodel;
 		};

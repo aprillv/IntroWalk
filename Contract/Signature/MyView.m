@@ -7,33 +7,36 @@
 //
 
 #import "MyView.h"
-#import "SignatureView.h"
+//#import "SignatureView.h"
 
 @implementation MyView{
     BOOL editabless;
+    
+    //保存线条颜色
+    NSMutableArray *colorArray;
+    //保存被移除的线条颜色
+    NSMutableArray *deleColorArray;
+    //每次触摸结束前经过的点，形成线的点数组
+    NSMutableArray *pointArray;
+    //每次触摸结束后的线数组
+    NSMutableArray *lineArray;
+    //删除的线的数组，方便重做时取出来
+    NSMutableArray *deleArray;
+    //线条宽度的数组
+//    float lineWidthArray[10];
+    //删除线条时删除的线条宽度储存的数组
+    NSMutableArray *deleWidthArray;
+    //正常存储的线条宽度的数组
+    NSMutableArray *WidthArray;
+    //确定颜色的值，将颜色计数的值存到数组里默认为0，即为绿色
+    NSInteger colorCount;
+    //确定宽度的值，将宽度计数的值存到数组里默认为0，即为10
+    NSInteger widthCount;
+    //保存颜色的数组
+    NSMutableArray *colors;
+    
 }
-//保存线条颜色
-static NSMutableArray *colorArray;
-//保存被移除的线条颜色
-static NSMutableArray *deleColorArray;
-//每次触摸结束前经过的点，形成线的点数组
-static NSMutableArray *pointArray;
-//每次触摸结束后的线数组
-static NSMutableArray *lineArray;
-//删除的线的数组，方便重做时取出来
-static NSMutableArray *deleArray;
-//线条宽度的数组
-static float lineWidthArray[10]={5.0,10.0,12.0,14.0,16.0,20.0,22.0,24.0,26.0,28.0};
-//删除线条时删除的线条宽度储存的数组
-static NSMutableArray *deleWidthArray;
-//正常存储的线条宽度的数组
-static NSMutableArray *WidthArray;
-//确定颜色的值，将颜色计数的值存到数组里默认为0，即为绿色
-static NSInteger colorCount;
-//确定宽度的值，将宽度计数的值存到数组里默认为0，即为10
-static NSInteger widthCount;
-//保存颜色的数组
-static NSMutableArray *colors;
+
 - (id)init
 {
     self = [super init];
@@ -42,10 +45,15 @@ static NSMutableArray *colors;
     }
     return self;
 }
+
+-(NSArray *)getLineArray{
+    return self->lineArray;
+}
 - (id)initWithFrame:(CGRect)frame
 {
     self = [super initWithFrame:frame];
     if (self) {
+//        lineWidthArray = {5.0,10.0,12.0,14.0,16.0,20.0,22.0,24.0,26.0,28.0};
         //初始化颜色数组，将用到的颜色存储到数组里
         colors=[[NSMutableArray alloc]initWithObjects:[UIColor blackColor],[UIColor greenColor],[UIColor blueColor],[UIColor redColor],[UIColor blackColor],[UIColor whiteColor], nil];
         WidthArray = [[NSMutableArray alloc]init];
@@ -196,7 +204,8 @@ static NSMutableArray *colors;
         }
         
         UIColor *lineColor=[colors objectAtIndex:colorCount];
-        float width=lineWidthArray[widthCount];
+//        float width=lineWidthArray[widthCount];
+        float width = 5;
         CGContextSetStrokeColorWithColor(context,[lineColor CGColor]);
         //-------------------------------------------------------
         CGContextSetLineWidth(context, width);
@@ -230,7 +239,7 @@ static NSMutableArray *colors;
         
         NSMutableArray *na = [[NSMutableArray alloc] init];
        
-        CGRect ct = CGRectMake(0, 0, maxx - minx + width*4, maxy - miny + width*4);
+//        CGRect ct = CGRectMake(0, 0, maxx - minx + width*4, maxy - miny + width*4);
         for (NSArray* lineArray1 in lineArray) {
              NSMutableArray *na1 = [[NSMutableArray alloc] init];
             for (NSString* cpline in lineArray1) {
@@ -241,15 +250,16 @@ static NSMutableArray *colors;
             }
             [na addObject:na1];
         }
-        SignatureView *sign = [[SignatureView alloc] initWithFrame:ct];
-        sign.lineArray = na;
-        sign.originHeight = ct.size.height;
-        sign.originWidth = ct.size.width;
-        sign.LineWidth =width;
-        CGRect ct2 = sign.frame;
-        ct2.origin.x = ct2.origin.y = 0;
-        sign.frame = ct2;
-        return sign;
+//        SignatureView *sign = [[SignatureView alloc] initWithFrame:ct];
+//        sign.lineArray = na;
+//        sign.originHeight = ct.size.height;
+//        sign.originWidth = ct.size.width;
+//        sign.LineWidth =width;
+//        CGRect ct2 = sign.frame;
+//        ct2.origin.x = ct2.origin.y = 0;
+//        sign.frame = ct2;
+//        return sign;
+         return nil;
     }else{
         return nil;
     }
@@ -273,7 +283,7 @@ static NSMutableArray *colors;
 
 #pragma mark -
 //手指开始触屏开始
-static CGPoint MyBeganpoint;
+ CGPoint MyBeganpoint;
 -(void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event
 {
     if (!editabless) {
@@ -378,4 +388,8 @@ static CGPoint MyBeganpoint;
     //    deleArray =[NSMutableArray arrayWithArray:lineArray];
     //    deleColorArray =[NSMutableArray arrayWithArray:colorArray];
 }
+
+
+
+
 @end

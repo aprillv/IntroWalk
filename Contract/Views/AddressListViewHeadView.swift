@@ -12,16 +12,20 @@ class AddressListViewHeadView: UIView {
     
     var CiaNmLbl: UILabel!
     
-    private var ProjectNmLbl: UILabel!
-    private var ConsultantLbl: UILabel!
-    private var ClientLbl: UILabel!
-    private var StatusLbl: UILabel!
+    fileprivate var ProjectNmLbl: UILabel!
+//    private var ConsultantLbl: UILabel!
+//    private var ClientLbl: UILabel!
+    fileprivate var StatusLbl: UILabel!
     
-    private struct constants{
+    fileprivate var CheckListLbl: UILabel!
+    
+    fileprivate struct constants{
         static let ProjectNM = "Project"
-        static let Consultant = "Consultant"
-        static let Client = "Client"
+//        static let Consultant = "Consultant"
+//        static let Client = "Client"
         static let Status = "Status"
+        
+        static let CheckList = "CheckList"
         static let HeadBackGroudColor = UIColor(red: 204/255.0, green: 204/255.0, blue: 204/255.0, alpha: 1)
     }
     
@@ -34,32 +38,44 @@ class AddressListViewHeadView: UIView {
         
         CiaNmLbl = UILabel()
         self.addSubview(CiaNmLbl)
-        CiaNmLbl.font = UIFont.boldSystemFontOfSize(17)
-        CiaNmLbl.textAlignment = NSTextAlignment.Left
+        CiaNmLbl.font = UIFont.boldSystemFont(ofSize: 17)
+        CiaNmLbl.textAlignment = NSTextAlignment.left
         
         ProjectNmLbl = UILabel()
         addSubview(ProjectNmLbl)
-        ProjectNmLbl.textAlignment = .Left
+        ProjectNmLbl.textAlignment = .left
         ProjectNmLbl.text = constants.ProjectNM
-        ProjectNmLbl.font = UIFont.boldSystemFontOfSize(16)
+        ProjectNmLbl.font = UIFont.boldSystemFont(ofSize: 16)
         
-        ConsultantLbl = UILabel()
-        addSubview(ConsultantLbl)
-        ConsultantLbl.text = constants.Consultant
-        ConsultantLbl.textAlignment = .Left
-        ConsultantLbl.font = UIFont.boldSystemFontOfSize(16)
+        CheckListLbl = UILabel()
+        addSubview(CheckListLbl)
+        CheckListLbl.textAlignment = .center
+        CheckListLbl.text = constants.CheckList
+        CheckListLbl.font = UIFont.boldSystemFont(ofSize: 16)
         
-        ClientLbl = UILabel()
-        addSubview(ClientLbl)
-        ClientLbl.textAlignment = .Left
-        ClientLbl.text = constants.Client
-        ClientLbl.font = UIFont.boldSystemFontOfSize(16)
+//        ConsultantLbl = UILabel()
+//        addSubview(ConsultantLbl)
+//        ConsultantLbl.text = constants.Consultant
+//        ConsultantLbl.textAlignment = .Left
+//        ConsultantLbl.font = UIFont.boldSystemFontOfSize(16)
+//        
+//        ClientLbl = UILabel()
+//        addSubview(ClientLbl)
+//        ClientLbl.textAlignment = .Left
+//        ClientLbl.text = constants.Client
+//        ClientLbl.font = UIFont.boldSystemFontOfSize(16)
         
         StatusLbl = UILabel()
         addSubview(StatusLbl)
-        StatusLbl.textAlignment = .Left
+        StatusLbl.textAlignment = .left
         StatusLbl.text = constants.Status
-        StatusLbl.font = UIFont.boldSystemFontOfSize(16)
+        StatusLbl.font = UIFont.boldSystemFont(ofSize: 16)
+        
+        StatusLbl = UILabel()
+        addSubview(StatusLbl)
+        StatusLbl.textAlignment = .left
+        StatusLbl.text = constants.Status
+        StatusLbl.font = UIFont.boldSystemFont(ofSize: 16)
         
         setDisplaySubViews()
         
@@ -84,15 +100,17 @@ class AddressListViewHeadView: UIView {
         let xheight = frame.height * 0.5
         let xy = CiaNmLbl.frame.height
         
-        let xwidth = frame.width - space * 3 - 16
-        ProjectNmLbl.frame  = CGRect(x: 8, y: xy, width: xwidth * 0.36, height: xheight)
+        let xwidth = frame.width - space * 2 - 16
+        ProjectNmLbl.frame  = CGRect(x: 8, y: xy, width: xwidth * 0.6, height: xheight)
         
         
         
-        ClientLbl.frame  = CGRect(x: ProjectNmLbl.frame.origin.x + ProjectNmLbl.frame.width + space, y: xy, width: xwidth * 0.33, height: xheight)
+//        ClientLbl.frame  = CGRect(x: ProjectNmLbl.frame.origin.x + ProjectNmLbl.frame.width + space, y: xy, width: xwidth * 0.33, height: xheight)
+//        
+//        ConsultantLbl.frame  = CGRect(x: ClientLbl.frame.origin.x + ClientLbl.frame.width + space, y: xy, width: xwidth * 0.17, height: xheight)
+        StatusLbl.frame  = CGRect(x: ProjectNmLbl.frame.origin.x + ProjectNmLbl.frame.width + space, y: xy, width: xwidth * 0.2, height: xheight)
         
-        ConsultantLbl.frame  = CGRect(x: ClientLbl.frame.origin.x + ClientLbl.frame.width + space, y: xy, width: xwidth * 0.17, height: xheight)
-        StatusLbl.frame  = CGRect(x: ConsultantLbl.frame.origin.x + ConsultantLbl.frame.width + space, y: xy, width: xwidth * 0.14, height: xheight)
+        CheckListLbl.frame  = CGRect(x: StatusLbl.frame.origin.x + StatusLbl.frame.width + space, y: xy, width: xwidth * 0.2, height: xheight)
     }
     
 }

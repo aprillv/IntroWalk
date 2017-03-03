@@ -11,17 +11,17 @@ import Foundation
 class LoginUser: NSObject {
     var email: String?
     var password: String?
-    var isContract : String?
+    var keyword : String?
     
-    required init(email: String, password: String, iscontract: String){
+    required init(email: String, password: String, keyword: String){
         super.init()
         self.email = email
         self.password = password
-        self.isContract = iscontract
+        self.keyword = keyword
     }
     
     func DictionaryFromObject() -> [String: String]{
-        return ["email" : email ?? "", "password" : password ?? "", "isContract" : isContract ?? "1"]
+        return ["email" : email ?? "", "password" : password ?? "", "keyword" : keyword!]
     }
     
 }

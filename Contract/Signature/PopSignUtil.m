@@ -17,6 +17,8 @@ static PopSignUtil *popSignUtil = nil;
     UIButton *cancelBtn;
     //遮罩层
     UIView *zhezhaoView;
+    DrawSignView *draw1;
+    DrawSignView *draw2;
 }
 
 
@@ -25,6 +27,7 @@ static PopSignUtil *popSignUtil = nil;
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
         popSignUtil = [[PopSignUtil alloc]init];
+        [[NSNotificationCenter defaultCenter] addObserver: popSignUtil selector:   @selector(deviceOrientationDidChange:) name: UIDeviceOrientationDidChangeNotification object: nil];
     });
     return popSignUtil;
 }
@@ -37,8 +40,70 @@ static PopSignUtil *popSignUtil = nil;
         //遮罩层
         zhezhaoView = [[UIView alloc]init];
         zhezhaoView.backgroundColor = [UIColor colorWithWhite:0.2 alpha:0.5];
+        
+//        NotificationCenter.default.addObserver(self, selector: #selector(AppDelegate.rotated), name: NSNotification.Name.UIDeviceOrientationDidChange, object: nil)
     }
     return self;
+}
+
+- (void)deviceOrientationDidChange:(NSNotification *)notification {
+    //Obtain current device orientation
+    UIDeviceOrientation orientation = [[UIDevice currentDevice] orientation];
+    
+    if (orientation == 1 || orientation == 2) {
+        // portral
+        id<UIApplicationDelegate> appDelegate = [[UIApplication sharedApplication] delegate];
+//        [appDelegate.window.rootViewController.view addSubview:zhezhaoView];
+//        CGSize screenSize = [appDelegate.window.rootViewController.view bounds].size;
+        //    NSLog(@"%@", appDelegate.window.rootViewController.view);
+//        zhezhaoView.frame = CGRectMake(screenSize.height, 0, screenSize.height, screenSize.width);
+        
+        
+        //    [signCallBackBlock release];
+        
+        CGRect appFrame = appDelegate.window.rootViewController.view.frame;
+        zhezhaoView.frame = CGRectMake( 0, 0, MIN(appFrame.size.width, appFrame.size.height), MAX(appFrame.size.width, appFrame.size.height));
+        
+        if (draw2 != nil) {
+            CGFloat width = MAX(appFrame.size.width, appFrame.size.height)/2 - 7.5;
+            CGFloat height = width * .75 + 120;
+            CGFloat orignx = (MIN(appFrame.size.width, appFrame.size.height) - width)/2;
+            CGFloat origny = (MAX(appFrame.size.width, appFrame.size.height) - height*2-10)/2;
+            draw1.frame = CGRectMake( orignx, origny, width, height);
+            draw2.frame = CGRectMake( orignx, origny + height + 10 , width, height);
+        }else{
+//            CGFloat width = MIN(appFrame.size.width, appFrame.size.height) - 20;
+//            CGFloat orginy = (MAX(appFrame.size.width, appFrame.size.height) - width * .75 - 120)/2;
+//            draw1.frame = CGRectMake( 10, orginy, width, width*.75 + 120);
+            draw1.center = zhezhaoView.center;
+        }
+        
+    }else{
+        id<UIApplicationDelegate> appDelegate = [[UIApplication sharedApplication] delegate];
+//        [appDelegate.window.rootViewController.view addSubview:zhezhaoView];
+        CGRect appFrame = appDelegate.window.rootViewController.view.frame;
+        zhezhaoView.frame = CGRectMake( 0, 0, MAX(appFrame.size.width, appFrame.size.height), MIN(appFrame.size.width, appFrame.size.height));
+        if (draw2 != nil) {
+            CGFloat width = MAX(appFrame.size.width, appFrame.size.height)/2 - 7.5;
+            CGFloat height = width * .75 + 120;
+            CGFloat origny = (MIN(appFrame.size.width, appFrame.size.height) - height)/2;
+            draw1.frame = CGRectMake( 5, origny, width, height);
+            draw2.frame = CGRectMake( 10 + width, origny, width, height);
+        }else{
+//            CGFloat width = MIN(appFrame.size.width, appFrame.size.height) - 20;
+//            CGFloat orginy = (MAX(appFrame.size.width, appFrame.size.height) - width * .75 - 120)/2;
+//            draw1.frame = CGRectMake( 10, orginy, width, width*.75 + 120);
+            draw1.center = zhezhaoView.center;
+        }
+        
+    }
+    
+    //Do my thing
+}
+
+-(void) dealloc{
+    [[NSNotificationCenter defaultCenter] removeObserver: self];
+    [[UIDevice currentDevice] endGeneratingDeviceOrientationNotifications];
 }
 
 //定制弹出框。模态对话框。
@@ -48,33 +113,21 @@ static PopSignUtil *popSignUtil = nil;
 //    [p setPopWithVC:VC withOk:signCallBackBlock withCancel:callBackBlock showAll:show title:title];
 //}
 
-+(void)getSignWithVC:(UIViewController *)VC withOk:(SignCallBackBlock)signCallBackBlock
-          withCancel:(CallBackBlock)callBackBlock showAll:(BOOL) show withTitle: (NSString *)title withLineArray:(NSArray*)na{
++(void)getSignWithVC:(UIViewController *)VC withOk:(SignCallBackBlock)signCallBackBlock withCancel:(CallBackBlock)callBackBlock{
     PopSignUtil *p = [PopSignUtil shareRestance];
-    [p setPopWithVC:VC withOk:signCallBackBlock withCancel:callBackBlock showAll:show title:title withLineArray: na];
-}
-
-
-+(void)getSignWithVC:(UIViewController *)VC withOk:(SignCallBackBlock)signCallBackBlock
-          withCancel:(CallBackBlock)callBackBlock title:(NSString *) title{
-    PopSignUtil *p = [PopSignUtil shareRestance];
-    [p setPopWithVC:VC withOk:signCallBackBlock withCancel:callBackBlock showAll:NO title:title withLineArray: nil];
+    [p setPopWithVC:VC withOk:signCallBackBlock withCancel:callBackBlock showAll:NO title:nil withLineArray: nil];
 }
 
 
 
-/** 设定 */
--(void)setPopWithVC:(UIViewController *)VCrrr withOk:(SignCallBackBlock)signCallBackBlock
-         withCancel:(CallBackBlock)cancelBlock showAll:(BOOL) show{
-    [self setPopWithVC:VCrrr withOk:signCallBackBlock withCancel:cancelBlock showAll:show title:@"" withLineArray: nil];
-}
+
 -(void)setPopWithVC:(UIViewController *)VCrrr withOk:(SignCallBackBlock)signCallBackBlock
          withCancel:(CallBackBlock)cancelBlock showAll:(BOOL) show title:(NSString *) title withLineArray:(NSArray*)na{
-
+    
     if (!zhezhaoView) {
         zhezhaoView = [[UIView alloc]init];
         zhezhaoView.backgroundColor = [UIColor colorWithWhite:0.2 alpha:0.5];
-//        zhezhaoView.autoresizingMask = UIViewAutoresizingFlexibleHeight|UIViewAutoresizingFlexibleWidth;
+        //        zhezhaoView.autoresizingMask = UIViewAutoresizingFlexibleHeight|UIViewAutoresizingFlexibleWidth;
     }else{
         for (UIView *tmp in zhezhaoView.subviews) {
             [tmp removeFromSuperview];
@@ -83,54 +136,105 @@ static PopSignUtil *popSignUtil = nil;
     id<UIApplicationDelegate> appDelegate = [[UIApplication sharedApplication] delegate];
     [appDelegate.window.rootViewController.view addSubview:zhezhaoView];
     CGSize screenSize = [appDelegate.window.rootViewController.view bounds].size;
-//    NSLog(@"%@", appDelegate.window.rootViewController.view);
+    //    NSLog(@"%@", appDelegate.window.rootViewController.view);
     zhezhaoView.frame = CGRectMake(screenSize.height, 0, screenSize.height, screenSize.width);
+    
+    
+    //    [signCallBackBlock release];
+    
+    CGRect appFrame = appDelegate.window.rootViewController.view.frame;
+    zhezhaoView.frame = appFrame;
+//    NSLog(@"===%d", [[UIDevice currentDevice] orientation]);
+    if ([[UIDevice currentDevice] orientation] == 1 || [[UIDevice currentDevice] orientation] == 2) {
+    
+        CGFloat width = MAX(appFrame.size.width, appFrame.size.height)/2 - 7.5;
+        CGFloat height = width * .75 + 120;
+        CGFloat orignx = (MIN(appFrame.size.width, appFrame.size.height) - width)/2;
+        CGFloat origny = (MAX(appFrame.size.width, appFrame.size.height) - height*2-10)/2;
+        DrawSignView *conformView = [[DrawSignView alloc]initWithFrame:CGRectMake( orignx, origny, width, height)];
+        conformView.showSwitch = show;
+        [conformView setLineArray:na];
+        [conformView setTitle: @"Project Manager Signatrue"];
+        [zhezhaoView addSubview:conformView];
+        
+        
+        DrawSignView *conformView2 = [[DrawSignView alloc]initWithFrame: CGRectMake( orignx, origny + height + 10 , width, height)];
+        conformView2.showSwitch = show;
+        [conformView2 setLineArray: nil];
+        conformView2.lastView = conformView;
+        [conformView2 setTitle: @"Homeowner Signatrue"];
+        conformView2.cancelBlock = cancelBlock;
+        conformView2.signCallBackBlock  = signCallBackBlock;
+        [zhezhaoView addSubview:conformView2];
+        draw1 = conformView;
+        draw2 = conformView2;
+        
+    }else{
+        CGFloat width = MAX(appFrame.size.width, appFrame.size.height)/2 - 7.5;
+        CGFloat height = width * .75 + 120;
+        CGFloat origny = (MIN(appFrame.size.width, appFrame.size.height) - height)/2;
+        DrawSignView *conformView = [[DrawSignView alloc]initWithFrame:CGRectMake( 5, origny, width, height)];
+        conformView.showSwitch = show;
+        [conformView setLineArray:na];
+        [conformView setTitle: @"Project Manager Signatrue"];
+        [zhezhaoView addSubview:conformView];
+        
+        DrawSignView *conformView2 = [[DrawSignView alloc]initWithFrame: CGRectMake( 10 + width, origny, width, height)];
+        conformView2.showSwitch = show;
+        [conformView2 setLineArray: nil];
+        conformView2.lastView = conformView;
+        [conformView2 setTitle: @"Homeowner Signatrue"];
+        conformView2.cancelBlock = cancelBlock;
+        conformView2.signCallBackBlock  = signCallBackBlock;
+        [zhezhaoView addSubview:conformView2];
+        draw1 = conformView;
+        draw2 = conformView2;
+    }
+}
++(void)getInitialWithVC:(UIViewController *)VC withOk:(SignCallBackBlock)signCallBackBlock withTitle: (NSString *)title withLineArray:(NSArray*)na withCancel:(CallBackBlock)callBackBlock {
+    PopSignUtil *p = [PopSignUtil shareRestance];
+    [p setPopWithVC2: VC withOk: signCallBackBlock withCancel: callBackBlock title: title withLineArray: na];
+}
 
-    DrawSignView *conformView = [[DrawSignView alloc]init];
-     conformView.showSwitch = show;
-    [conformView setLineArray:na];
-    if (show) {
-        if ([title hasPrefix:@"p1T"]) {
-            [conformView setShowSwitch2:show];
+-(void)setPopWithVC2:(UIViewController *)VCrrr withOk:(SignCallBackBlock)signCallBackBlock
+           withCancel:(CallBackBlock)cancelBlock title:(NSString *) title withLineArray:(NSArray*)na{
+    
+    if (!zhezhaoView) {
+        zhezhaoView = [[UIView alloc]init];
+        zhezhaoView.backgroundColor = [UIColor colorWithWhite:0.2 alpha:0.5];
+    }else{
+        for (UIView *tmp in zhezhaoView.subviews) {
+            [tmp removeFromSuperview];
         }
     }
+    id<UIApplicationDelegate> appDelegate = [[UIApplication sharedApplication] delegate];
+    [appDelegate.window.rootViewController.view addSubview:zhezhaoView];
+    CGSize screenSize = [appDelegate.window.rootViewController.view bounds].size;
+    zhezhaoView.frame = CGRectMake(screenSize.height, 0, screenSize.height, screenSize.width);
     
-   
-    if (![title isEqualToString:@""]) {
-        [conformView setTitle: title];
-    }
-//    [conformView setConformMsg:@"XXX" okTitle:@"确定" cancelTitle:@"取消"];
-//    conformView.yesB = yesB;
-//    conformView.noB = noB;
-    conformView.cancelBlock = cancelBlock;
-//    [cancelBlock release];
-    conformView.signCallBackBlock  = signCallBackBlock;
-//    [signCallBackBlock release];
-
     CGRect appFrame = appDelegate.window.rootViewController.view.frame;
-//    CGFloat v_x = (screenSize.height-conformView.frame.size.height)/2.0;
-//    CGFloat v_y = (appFrame.size.height-conformView.frame.size.width)/2.0;
-    CGFloat h = MIN(appFrame.size.width, appFrame.size.height);
-//    CGFloat w = MAX(appFrame.size.width, appFrame.size.height);
-//    if (appFrame.size.width == h) {
-//        conformView.frame = CGRectMake( 10, v_y, h-20, conformView.frame.size.width);
-//    }else{
-//        conformView.frame = CGRectMake( (w-h)/2, v_y, h-20,conformView.frame.size.width);
-//    }
-    conformView.frame = CGRectMake( 0, 0, h-20, conformView.frame.size.width-110);
-    conformView.center = zhezhaoView.center;
-    [zhezhaoView addSubview:conformView];
-//    [conformView release];
-    conformView.autoresizingMask = UIViewAutoresizingFlexibleLeftMargin | UIViewAutoresizingFlexibleRightMargin | UIViewAutoresizingFlexibleTopMargin | UIViewAutoresizingFlexibleBottomMargin;
+    CGFloat width = MIN(appFrame.size.width, appFrame.size.height) - 20;
+    CGFloat orginy = (MAX(appFrame.size.width, appFrame.size.height) - width * .75 - 120)/2;
     
-    zhezhaoView.autoresizesSubviews = YES;
-    zhezhaoView.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
+    DrawSignView *conformView = [[DrawSignView alloc]initWithFrame:CGRectMake( 10, orginy, width, width*.75 + 120)];
+    conformView.showSwitch = false;
+    [conformView setLineArray:na];
+   
+    conformView.cancelBlock = cancelBlock;
+    conformView.signCallBackBlock  = signCallBackBlock;
+    [conformView setTitle: @"Please print your initial here"];
+    [zhezhaoView addSubview:conformView];
+    
+    draw1 = conformView;
+    
     [UIView beginAnimations:nil context:NULL];
-	[UIView setAnimationDuration:0.3];
+    [UIView setAnimationDuration:0.3];
     zhezhaoView.frame = appFrame;
     conformView.center = zhezhaoView.center;
     [UIView commitAnimations];
 }
+
+
 
 
 

@@ -61,12 +61,12 @@ static NSMutableArray *colors;
     self = [super initWithFrame:frame];
     if (self) {
         // Initialization code
-        [self createView];
+        [self createView: frame];
     }
     return self;
 }
 
-- (void)createView
+- (void)createView:(CGRect)originframe
 {
     CGFloat btn_x = 10;
     CGFloat btn_y = 100;
@@ -77,7 +77,7 @@ static NSMutableArray *colors;
 
 
     //self
-    self.frame = CGRectMake(0, 0, 500, 1000);
+//    self.frame = CGRectMake(originframe.origin.x, originframe.origin.y, originframe.size.width,originframe.size.height);
 //       self.backgroundColor = [UIColor gr];
     CALayer *layer = self.layer;
     [layer setCornerRadius:5.0];
@@ -156,17 +156,22 @@ self.backgroundColor = [UIColor colorWithRed: 35/255.0 green: 174/255.0 blue: 23
 //    }
 //    i = 0;
     
-     id<UIApplicationDelegate> appDelegate = [[UIApplication sharedApplication] delegate];
+//     id<UIApplicationDelegate> appDelegate = [[UIApplication sharedApplication] delegate];
     
-    CGRect appFrame = appDelegate.window.rootViewController.view.frame;
+//    CGRect appFrame = appDelegate.window.rootViewController.view.frame;
+    CGRect appFrame = self.frame;
     CGFloat cx = MIN(appFrame.size.width, appFrame.size.height) - btn_w * 3 - 60 - btn_mid * 2 +30;
     for (UIButton *btn in btnRArr) {
         [btn.titleLabel setFont:[UIFont fontWithName:@"Futura" size:17]];
         CGRect ct = CGRectMake(cx + i * (btn_w+btn_mid), 400, btn_w, btn_h);
-        ct.origin.y -= 60;
+        ct.origin.y = originframe.size.height - btn_h - 10;
         btn.frame = ct;
         i++;
     }
+    CGRect ct = clearBtn.frame;
+    ct.origin.x = 20;
+    clearBtn.frame = ct;
+    
 
 //    [btnLArr release];
 //    [btnRArr release];
@@ -221,10 +226,17 @@ self.backgroundColor = [UIColor colorWithRed: 35/255.0 green: 174/255.0 blue: 23
     self.buttonHidden=YES;
     self.widthHidden=YES;
 //    NSLog(@"%f", MIN(appFrame.size.width, appFrame.size.height) - 20);
-    self.drawView=[[MyView alloc]initWithFrame:CGRectMake(0, 60, MIN(appFrame.size.width, appFrame.size.height) - 20, 800/3.0)];
-    [self.drawView setBackgroundColor:RGBCOLOR(255, 255, 255)];
+    UIView *back =[[UIView alloc]initWithFrame:CGRectMake(0, 60, self.frame.size.width, self.frame.size.width * .75)];
+    
+    self.drawView=[[MyView alloc]initWithFrame:CGRectMake(0, 60, self.frame.size.width, self.frame.size.width * .75)];
+    [self addSubview:back];
+    [back setBackgroundColor:RGBCOLOR(255, 255, 255)];
+    self.drawView.backgroundColor = [UIColor clearColor];
     [self addSubview: self.drawView];
-    [self sendSubviewToBack:self.drawView];
+    
+    
+    
+//    [self sendSubviewToBack:self.drawView];
 	// Do any additional setup after loading the view, typically from a nib.
 }
 
@@ -240,7 +252,7 @@ self.backgroundColor = [UIColor colorWithRed: 35/255.0 green: 174/255.0 blue: 23
     toAllSwitch.hidden = !showSwitch;
     sliderLbl.hidden = !showSwitch;
     
-    contentLbl.text = showSwitch? @"Please print your initial here" : @"Please signature here";
+    contentLbl.text = @"Please print your initial here";
 }
 
 -(void)setShowSwitch2:(BOOL)showSwitch{
@@ -252,6 +264,22 @@ self.backgroundColor = [UIColor colorWithRed: 35/255.0 green: 174/255.0 blue: 23
 
 -(void) setTitle: (NSString *)xtitle{
     contentLbl.text = xtitle;
+    if ([xtitle isEqualToString:@"Project Manager Signatrue"]) {
+        okBtn.hidden = YES;
+        cancelBtn.hidden = YES;
+    
+    }else if ([xtitle isEqualToString:@"Homeowner Signatrue"]) {
+//        okBtn.frame = cancelBtn.frame;
+//        cancelBtn.hidden = YES;
+        
+    }else{
+        CGRect ct = okBtn.frame;
+        ct.origin.x += ct.size.width;
+        okBtn.frame = ct;
+        ct = cancelBtn.frame;
+        ct.origin.x += ct.size.width;
+        cancelBtn.frame = ct;
+    }
 }
 
 -(void)changeColors:(id)sender{
@@ -345,7 +373,18 @@ self.backgroundColor = [UIColor colorWithRed: 35/255.0 green: 174/255.0 blue: 23
     if (sender == cancelBtn) {
         cancelBlock();
     }else if (sender == okBtn){
-        signCallBackBlock([self.drawView Signature], toAllSwitch.on);
+        if (self.lastView != nil) {
+            if ([[self.lastView.drawView getLineArray] count] > 0 && [[self.drawView getLineArray] count] > 0) {
+            signCallBackBlock([DrawSignView imageWithView: self.drawView], [DrawSignView imageWithView: self.lastView.drawView]);
+            }
+            
+        }else{
+            if ([[self.drawView getLineArray] count] > 0) {
+                signCallBackBlock([DrawSignView imageWithView: self.drawView], nil);
+            }
+//
+        }
+        
 //        signCallBackBlock([self saveScreen]);
     }else if (sender == redoBtn){
        [ self.drawView revocation];
@@ -472,5 +511,17 @@ void ProviderReleaseData (void *info, const void *data, size_t size)
     return img;
 }
 
-
++ (UIImage *) imageWithView:(UIView *)view
+{
+//    NSLog(@"%f %f", view.bounds.size.height, view.bounds.size.width);
+    
+    UIGraphicsBeginImageContextWithOptions(view.bounds.size, NO, 0.0);
+    [view.layer renderInContext:UIGraphicsGetCurrentContext()];
+    
+    UIImage * img = UIGraphicsGetImageFromCurrentImageContext();
+//       NSLog(@"%f %f", img.size.height, img.size.width);
+    UIGraphicsEndImageContext();
+    
+    return img;
+}
 @end

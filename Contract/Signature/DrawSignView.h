@@ -10,11 +10,11 @@
 #import "MyView.h"
 #import <UIKit/UIKit.h>
 
-typedef void(^SignCallBackBlock) (UIView*image, BOOL isToAll);
+typedef void(^SignCallBackBlock) (UIImage*image,UIImage*image2);
 typedef void(^CallBackBlock) ();
 
 @interface DrawSignView : UIView
-
+@property (nonatomic, assign) DrawSignView *lastView;
 @property(nonatomic, assign) BOOL showSwitch;
 -(void)setShowSwitch2:(BOOL)showSwitch;
 -(void)setLineArray:(NSArray *)lineArray;

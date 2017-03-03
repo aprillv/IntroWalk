@@ -14,10 +14,8 @@
 @interface PopSignUtil : UIView
 @property(nonatomic,copy)CallBackBlock noB;
 
-+(void)getSignWithVC:(UIViewController *)VC withOk:(SignCallBackBlock)signCallBackBlock
-          withCancel:(CallBackBlock)callBackBlock showAll:(BOOL) show withTitle: (NSString *)title withLineArray:(NSArray*)na;
-
-+(void)getSignWithVC:(UIViewController *)VC withOk:(SignCallBackBlock)signCallBackBlock
-          withCancel:(CallBackBlock)callBackBlock title:(NSString *) title;
++(void)getSignWithVC:(UIViewController *)VC withOk:(SignCallBackBlock)signCallBackBlock withCancel:(CallBackBlock)callBackBlock;
++(void)getInitialWithVC:(UIViewController *)VC withOk:(SignCallBackBlock)signCallBackBlock withTitle: (NSString *)title withLineArray:(NSArray*)na withCancel:(CallBackBlock)callBackBlock;
 +(void)closePop;
++ (UIImage *) imageWithView:(UIView *)view;
 @end

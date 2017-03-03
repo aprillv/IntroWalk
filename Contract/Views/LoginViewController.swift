@@ -15,23 +15,23 @@ class LoginViewController: BaseViewController, UITextFieldDelegate {
     
     @IBOutlet var btnhowto: UIButton!
     @IBAction func openhowtouse() {
-        if let url = NSURL(string: "http://www.buildersaccess.com/iphone/signcontract.pdf") {
-            UIApplication.sharedApplication().openURL(url)
-        }
+//        if let url = NSURL(string: "http://www.buildersaccess.com/iphone/signcontract.pdf") {
+//            UIApplication.sharedApplication().openURL(url)
+//        }
         
     }
     
     @IBOutlet var copyrightLbl: UIBarButtonItem!{
         didSet{
-            let currentDate = NSDate()
-            let usDateFormat = NSDateFormatter()
-            usDateFormat.dateFormat = NSDateFormatter.dateFormatFromTemplate("yyyy", options: 0, locale: NSLocale(localeIdentifier: "en-US"))
+            let currentDate = Date()
+            let usDateFormat = DateFormatter()
+            usDateFormat.dateFormat = DateFormatter.dateFormat(fromTemplate: "yyyy", options: 0, locale: Locale(identifier: "en-US"))
             
-            copyrightLbl.title = "Copyright © " + usDateFormat.stringFromDate(currentDate) + " All Rights Reserved"
+            copyrightLbl.title = "Copyright © " + usDateFormat.string(from: currentDate) + " All Rights Reserved"
         }
     }
     // MARK: - Page constants
-    private struct constants{
+    fileprivate struct constants{
         static let PasswordEmptyMsg : String = "Password Required."
         static let EmailEmptyMsg :  String = "Email Required."
         static let WrongEmailOrPwdMsg :  String = "Email or password is incorrect."
@@ -43,28 +43,28 @@ class LoginViewController: BaseViewController, UITextFieldDelegate {
     // MARK: Outlets
     @IBOutlet weak var emailTxt: UITextField!{
         didSet{
-            emailTxt.returnKeyType = .Next
+            emailTxt.returnKeyType = .next
             emailTxt.delegate = self
-            let userInfo = NSUserDefaults.standardUserDefaults()
-            emailTxt.text = userInfo.objectForKey(CConstants.UserInfoEmail) as? String
+            let userInfo = UserDefaults.standard
+            emailTxt.text = userInfo.object(forKey: CConstants.UserInfoEmail) as? String
         }
     }
     @IBOutlet weak var passwordTxt: UITextField!{
         didSet{
-            passwordTxt.returnKeyType = .Go
+            passwordTxt.returnKeyType = .go
             passwordTxt.enablesReturnKeyAutomatically = true
             passwordTxt.delegate = self
-            let userInfo = NSUserDefaults.standardUserDefaults()
-            if let isRemembered = userInfo.objectForKey(CConstants.UserInfoRememberMe) as? Bool{
+            let userInfo = UserDefaults.standard
+            if let isRemembered = userInfo.object(forKey: CConstants.UserInfoRememberMe) as? Bool{
                 if isRemembered {
-                    passwordTxt.text = userInfo.objectForKey(CConstants.UserInfoPwd) as? String
+                    passwordTxt.text = userInfo.object(forKey: CConstants.UserInfoPwd) as? String
                 }
                 
             }
         }
     }
     
-    func textFieldDidBeginEditing(textField: UITextField) {
+    func textFieldDidBeginEditing(_ textField: UITextField) {
          setSignInBtn()
 //        1298.943376
     }
@@ -73,25 +73,25 @@ class LoginViewController: BaseViewController, UITextFieldDelegate {
 //    }
     
     
-    @IBOutlet weak var rememberMeSwitch: UISwitch!{
-        didSet {
-            rememberMeSwitch.transform = CGAffineTransformMakeScale(0.9, 0.9)
-            let userInfo = NSUserDefaults.standardUserDefaults()
-            if let isRemembered = userInfo.objectForKey(CConstants.UserInfoRememberMe) as? Bool{
-                rememberMeSwitch.on = isRemembered
-            }else{
-                rememberMeSwitch.on = true
-            }
-        }
-    }
+//    @IBOutlet weak var rememberMeSwitch: UISwitch!{
+//        didSet {
+//            rememberMeSwitch.transform = CGAffineTransformMakeScale(0.9, 0.9)
+//            let userInfo = NSUserDefaults.standardUserDefaults()
+//            if let isRemembered = userInfo.objectForKey(CConstants.UserInfoRememberMe) as? Bool{
+//                rememberMeSwitch.on = isRemembered
+//            }else{
+//                rememberMeSwitch.on = true
+//            }
+//        }
+//    }
     
     @IBOutlet weak var backView: UIView!{
         didSet{
 //            backView.backgroundColor = UIColor.whiteColor()
-            backView.layer.borderColor = CConstants.BorderColor.CGColor
+            backView.layer.borderColor = CConstants.BorderColor.cgColor
             backView.layer.borderWidth = 1.0
 //            backView.layer.cornerRadius = 8
-            backView.layer.shadowColor = UIColor.lightGrayColor().CGColor
+            backView.layer.shadowColor = UIColor.lightGray.cgColor
             backView.layer.shadowOpacity = 1
             backView.layer.shadowRadius = 8.0
             backView.layer.shadowOffset = CGSize(width: -0.5, height: 0.0)
@@ -109,14 +109,18 @@ class LoginViewController: BaseViewController, UITextFieldDelegate {
     @IBOutlet weak var signInBtn: UIButton!
         {
         didSet{
-            signInBtn.layer.cornerRadius = 5.0
-            signInBtn.titleLabel?.font = UIFont(name: CConstants.ApplicationBarFontName, size: CConstants.ApplicationBarItemFontSize)
+            self.setBtnStyle(signInBtn)
         }
     }
     
     
+    @IBOutlet var lineHeight: NSLayoutConstraint!{
+        didSet{
+            lineHeight.constant = 1.0 / UIScreen.main.scale
+        }
+    }
     // MARK: UITextField Delegate
-    func textFieldShouldReturn(textField: UITextField) -> Bool {
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         switch textField{
         case emailTxt:
             passwordTxt.becomeFirstResponder()
@@ -131,68 +135,73 @@ class LoginViewController: BaseViewController, UITextFieldDelegate {
     @IBAction func textChanaged() {
         setSignInBtn()
     }
-    func textField(textField: UITextField, shouldChangeCharactersInRange range: NSRange, replacementString string: String) -> Bool {
+    func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
         setSignInBtn()
         return true
     }
     
-    private func setSignInBtn(){
-        signInBtn.enabled = !self.IsNilOrEmpty(passwordTxt.text)
+    fileprivate func setSignInBtn(){
+        signInBtn.isEnabled = !self.IsNilOrEmpty(passwordTxt.text)
             && !self.IsNilOrEmpty(emailTxt.text)
     }
     
     
     // MARK: Outlet Action
-    @IBAction func rememberChanged(sender: UISwitch) {
-        let userInfo = NSUserDefaults.standardUserDefaults()
-        userInfo.setObject(rememberMeSwitch.on, forKey: CConstants.UserInfoRememberMe)
-        if !rememberMeSwitch.on {
-            userInfo.setObject("", forKey: CConstants.UserInfoPwd)
-        }
-    }
+//    @IBAction func rememberChanged(sender: UISwitch) {
+//        let userInfo = NSUserDefaults.standardUserDefaults()
+//        userInfo.setObject(rememberMeSwitch.on, forKey: CConstants.UserInfoRememberMe)
+//        if !rememberMeSwitch.on {
+//            userInfo.setObject("", forKey: CConstants.UserInfoPwd)
+//        }
+//    }
     
     
-    func checkUpate(sender: UIButton){
-        let version = NSBundle.mainBundle().infoDictionary?["CFBundleVersion"]
-        let parameter = ["version": "\((version == nil ?  "" : version!))"]
+    func checkUpate(_ sender: UIButton){
+        let net = NetworkReachabilityManager()
+//                print(net?.isReachable)
         
         
-        
-        Alamofire.request(.POST,
-            CConstants.ServerURL + CConstants.CheckUpdateServiceURL,
-            parameters: parameter).responseJSON{ (response) -> Void in
-            if response.result.isSuccess {
-                if let rtnValue = response.result.value{
-                    if rtnValue.integerValue == 1 {
-                        self.disAblePageControl()
-                        self.doLogin(sender)
-                    }else{
-                        if let url = NSURL(string: CConstants.InstallAppLink){
-                            self.toEablePageControl()
-                            UIApplication.sharedApplication().openURL(url)
+        if  !(net?.isReachable ?? true) {
+            self.doLogin(sender)
+        }else{
+            let version = Bundle.main.infoDictionary?["CFBundleVersion"]
+            let parameter = ["version": "\((version == nil ?  "" : version!))"]
+            
+            Alamofire.request(CConstants.ServerURL + CConstants.CheckUpdateServiceURL, method: .post, parameters: parameter, encoding: JSONEncoding.default, headers: nil).responseJSON{ (response) -> Void in
+                    if response.result.isSuccess {
+                        if let rtnValue = response.result.value{
+                            if (rtnValue as AnyObject).integerValue == 1 {
+                                self.disAblePageControl()
+                                self.doLogin(sender)
+                            }else{
+                                if let url = NSURL(string: CConstants.InstallAppLink){
+                                    self.toEablePageControl()
+                                    UIApplication.shared.openURL(url as URL)
+                                }else{
+                                }
+                            }
                         }else{
+                            //                    self.doLogin()
                         }
+                    }else{
+                        //                self.doLogin()
                     }
-                }else{
-//                    self.doLogin()
-                }
-            }else{
-//                self.doLogin()
             }
         }
+        
         //     NSString*   version = [[[NSBundle mainBundle] infoDictionary] objectForKey:@"CFBundleVersion"];
     }
     
-    @IBAction func PrintDraft(sender: UIButton) {
+    @IBAction func PrintDraft(_ sender: UIButton) {
         checkUpate(sender)
     }
     
-    @IBAction func Login(sender: UIButton) {
+    @IBAction func Login(_ sender: UIButton) {
         checkUpate(sender)
         
     }
     
-    private func disAblePageControl(){
+    fileprivate func disAblePageControl(){
         
         //        signInBtn.hidden = true
         emailTxt.resignFirstResponder()
@@ -217,7 +226,7 @@ class LoginViewController: BaseViewController, UITextFieldDelegate {
 //    self.noticeOnlyText(CConstants.LoginingMsg)
         
     }
-    private func doLogin(sender: UIButton){
+    fileprivate func doLogin(_ sender: UIButton){
         emailTxt.resignFirstResponder()
         passwordTxt.resignFirstResponder()
         
@@ -245,35 +254,51 @@ class LoginViewController: BaseViewController, UITextFieldDelegate {
 //                    [hud hide:YES];
 //                    }];
                 
-                let hud = MBProgressHUD.showHUDAddedTo(self.view, animated: true)
-//                hud.mode = .AnnularDeterminate
-                hud.labelText = CConstants.LoginingMsg
+                let net = NetworkReachabilityManager()
+                //        print(net?.isReachable)
                 
                 
-                let loginUserInfo = LoginUser(email: email!, password: password!, iscontract:  sender.currentTitle!.hasPrefix("Sign") ? "1" : "0")
-                
-                let a = loginUserInfo.DictionaryFromObject()
-//                print(a)
-                Alamofire.request(.POST, CConstants.ServerURL + CConstants.LoginServiceURL, parameters: a).responseJSON{ (response) -> Void in
-//                    self.clearNotice()
-                    hud.hide(true)
-//                    self.progressBar?.dismissViewControllerAnimated(true){ () -> Void in
-//                        self.spinner?.stopAnimating()
+                if  !(net?.isReachable ?? true) {
+                    let userinfo = UserDefaults.standard
+//                    userinfo.setObject(password!, forKey: CConstants.UserInfoPwd)
+                    if let ae = userinfo.string(forKey: CConstants.UserInfoEmail), let ap = userinfo.string(forKey: CConstants.UserInfoPwdbefore){
+                        if ae == email! && ap == password! {
+                            userinfo.set(ap, forKey: CConstants.UserInfoPwd)
+                            self.performSegue(withIdentifier: CConstants.SegueToAddressList, sender: sender)
+                        }else{
+                            self.PopMsgValidationWithJustOK(msg: "Please try to login with last time account when there is internet.", txtField: nil)
+                        }
+                    }
+                }else{
+                    let hud = MBProgressHUD.showAdded(to: self.view, animated: true)
+                    //                hud.mode = .AnnularDeterminate
+                    hud.label.text = CConstants.LoginingMsg
+                    
+                    
+                    let loginUserInfo = LoginUser(email: email!, password: password!, keyword:"")
+                    
+                    let a = loginUserInfo.DictionaryFromObject()
+                    //                print(a)
+                    Alamofire.request(CConstants.ServerURL + CConstants.LoginServiceURL, parameters: a).responseJSON{ (response) -> Void in
+                        //                    self.clearNotice()
+                        hud.hide(animated: true)
+                        //                    self.progressBar?.dismissViewControllerAnimated(true){ () -> Void in
+                        //                        self.spinner?.stopAnimating()
                         if response.result.isSuccess {
 //                            print(response.result.value)
                             if let rtnValue = response.result.value as? [String: AnyObject]{
-                                let rtn = Contract(dicInfo: rtnValue)
+                                let rtn = LoginInUser(dicInfo: rtnValue)
                                 
                                 
                                 self.toEablePageControl()
                                 
                                 if rtn.activeyn == 1{
-                                    let userinfo = NSUserDefaults.standardUserDefaults()
-                                    userinfo.setBool(true, forKey: CConstants.UserInfoIsContract)
-                                    userinfo.setObject(rtn.username, forKey: CConstants.UserInfoName)
+                                    let userinfo = UserDefaults()
+                                    
+                                    userinfo.set(rtn.username, forKey: CConstants.UserInfoName)
                                     self.saveEmailAndPwdToDisk(email: email!, password: password!)
                                     self.loginResult = rtn
-                                    self.performSegueWithIdentifier(CConstants.SegueToAddressList, sender: sender)
+                                    self.performSegue(withIdentifier: CConstants.SegueToAddressList, sender: sender)
                                 }else{
                                     self.PopMsgValidationWithJustOK(msg: constants.WrongEmailOrPwdMsg, txtField: nil)
                                 }
@@ -286,16 +311,13 @@ class LoginViewController: BaseViewController, UITextFieldDelegate {
                             self.PopNetworkError()
                         }
                     }
-                    
-//                }
-                
-                ////                request(method: Alamofire.Method, _ URLString: URLStringConvertible, parameters: [String : AnyObject]? = default, encoding: Alamofire.ParameterEncoding = default, headers: [String : String]? = default) -> Alamofire.Request
+                }
                 
                 
             }
         }
     }
-   private func toEablePageControl(){
+   fileprivate func toEablePageControl(){
 //    self.view.userInteractionEnabled = true
 //    self.signInBtn.hidden = false
 //    self.emailTxt.enabled = true
@@ -306,37 +328,36 @@ class LoginViewController: BaseViewController, UITextFieldDelegate {
 //    self.spinner?.stopAnimating()
     }
     
-    func saveEmailAndPwdToDisk(email email: String, password: String){
-        let userInfo = NSUserDefaults.standardUserDefaults()
-        if rememberMeSwitch.on {
-            userInfo.setObject(true, forKey: CConstants.UserInfoRememberMe)
-        }else{
-            userInfo.setObject(false, forKey: CConstants.UserInfoRememberMe)
-        }
-        userInfo.setObject(email, forKey: CConstants.UserInfoEmail)
-        userInfo.setObject(password, forKey: CConstants.UserInfoPwd)
+    func saveEmailAndPwdToDisk(email: String, password: String){
+        let userInfo = UserDefaults.standard
+//        if rememberMeSwitch.on {
+            userInfo.set(true, forKey: CConstants.UserInfoRememberMe)
+//        }else{
+//            userInfo.setObject(false, forKey: CConstants.UserInfoRememberMe)
+//        }
+        userInfo.set(email, forKey: CConstants.UserInfoEmail)
+        userInfo.set(password, forKey: CConstants.UserInfoPwd)
     }
     
     
     // MARK: PrepareForSegue
-    private var loginResult : Contract?{
+    fileprivate var loginResult : LoginInUser?{
         didSet{
             if loginResult != nil{
-                let userInfo = NSUserDefaults.standardUserDefaults()
-                userInfo.setObject(loginResult!.username, forKey: CConstants.LoggedUserNameKey)
+                let userInfo = UserDefaults.standard
+                userInfo.set(loginResult!.username, forKey: CConstants.LoggedUserNameKey)
 //                 userInfo.setObject("Roberto Test", forKey: CConstants.LoggedUserNameKey)
             }
         }
     }
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if let identifier = segue.identifier {
             switch identifier {
                 case CConstants.SegueToAddressList:
-                    if let addressListView = segue.destinationViewController as? AddressListViewController{
+                    if let addressListView = segue.destination as? AddressListViewController{
                         if let a = sender as? UIButton {
                             addressListView.tableTag = a.currentTitle!.hasPrefix("Sign") ? 2 : 1
                         }
-                        addressListView.AddressListOrigin = loginResult?.contracts
                     }
                 break
             default:
@@ -355,10 +376,12 @@ class LoginViewController: BaseViewController, UITextFieldDelegate {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-//        print(view.frame.size)
+        print(view.frame.size)
 //        checkUpate()
-        let userInfo = NSUserDefaults.standardUserDefaults()
-        if !(userInfo.boolForKey("havealerthowtouse") ?? false) {
+        
+        self.navigationController?.navigationItem.title = "BA CheckList"
+        let userInfo = UserDefaults.standard
+        if !(userInfo.bool(forKey: "havealerthowtouse")) {
         if let f = UIFont(name: CConstants.ApplicationBarFontName, size: 22.0) {
             self.btnhowto.titleLabel?.font = f
 //            self.btnhowto.titleLabel?.text = "How to use this app"
@@ -374,7 +397,7 @@ class LoginViewController: BaseViewController, UITextFieldDelegate {
 //            self.performSelector(#selec, withObject: <#T##AnyObject?#>, afterDelay: <#T##NSTimeInterval#>)
 //            self.performSelector(#selector(removeHud), withObject: nil, afterDelay: 1)
 //            self.PopMsgWithJustOK(msg: "You can click the bottom right corner link 'How to Use this app' when you have problem with using this app", txtField: nil)
-            userInfo.setBool(true, forKey: "havealerthowtouse")
+            userInfo.set(true, forKey: "havealerthowtouse")
         }else{
             if let f = UIFont(name: CConstants.ApplicationBarFontName, size: 16.0) {
                 self.btnhowto.titleLabel?.font = f
@@ -383,21 +406,30 @@ class LoginViewController: BaseViewController, UITextFieldDelegate {
             }
         }
         setSignInBtn()
+        
+        if let a = self.navigationController?.viewControllers{
+            if a.count > 1 {
+                if let b = a.last {
+                    self.navigationController?.viewControllers = [b]
+                }
+            }
+            
+        }
     }
-    override func viewWillAppear(animated: Bool) {
+    override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         self.navigationController?.navigationBar.barTintColor = CConstants.ApplicationColor
-        self.navigationController?.navigationBar.barStyle = .Black
+        self.navigationController?.navigationBar.barStyle = .black
         self.navigationController?.navigationBar.titleTextAttributes = [
             NSFontAttributeName : UIFont(name: CConstants.ApplicationBarFontName, size: CConstants.ApplicationBarFontSize)!
             
         ]
         self.navigationController?.toolbar.barTintColor = CConstants.ApplicationColor
-        self.navigationController?.toolbar.barStyle = .Black
+        self.navigationController?.toolbar.barStyle = .black
         
     }
     
-    override func viewWillDisappear(animated: Bool) {
+    override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
     }
 }

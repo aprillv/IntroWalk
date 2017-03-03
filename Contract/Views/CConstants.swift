@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import UIKit
 
 struct CConstants{
    
@@ -16,7 +17,9 @@ struct CConstants{
     
     static let ShowFilter : String = "ShowFilter"
     
-    static let MsgTitle : String = "BA Contract"
+    static let UserInfohasLogout :  String = "logout"
+    
+    static let MsgTitle : String = "BA Checklist"
     static let MsgOKTitle : String = "OK"
     static let MsgValidationTitle : String = "Validation Failed"
     static let MsgServerError : String = "Server Error, please try again later"
@@ -24,16 +27,15 @@ struct CConstants{
     
     static let UserInfoRememberMe :  String = "Login Remember Me"
     static let UserInfoEmail :  String = "Login Email"
+    static let UserInfoPwdbefore : String = "Login Password Last"
     static let UserInfoName :  String = "Logined User Name"
     static let UserInfoPwd :  String = "Login Password"
-    static let UserInfoIsContract :  String = "is contract"
-    static let UserInfoPrintModel : String = "last print files"
     
     static let LoginingMsg = "   Logining...   "
     static let RequestMsg = "Requesting from server..."
      static let SubmitMsg = "Submitting to server..."
     static let SavedMsg = "Saving to the BA Server..."
-    static let SavedSuccessMsg = "Saved successfully."
+    static let SavedSuccessMsg = "Photo Saved successfully."
     static let SavedFailMsg = "Saved fail."
     static let SendEmailSuccessfullMsg = "Sent email successfully."
     static let PrintSuccessfullMsg = "Print successfully."
@@ -63,114 +65,39 @@ struct CConstants{
     
     static let Administrator = "roberto@buildersaccess.com"
     
+    static let ServerURL = "https://contractssl.buildersaccess.com/"
     static let LoggedUserNameKey : String = "LoggedUserNameInDefaults"
-    static let InstallAppLink : String = "itms-services://?action=download-manifest&url=https://www.buildersaccess.com/iphone/contract.plist"
-    static let ServerURL : String = "https://contractssl.buildersaccess.com/"
-    //validate login and get address list
-    static let LoginServiceURL: String = "bacontract_login.json"
+    static let InstallAppLink : String = "itms-services://?action=download-manifest&url=https://www.buildersaccess.com/iphone/checklist.plist"
+     //validate login and get address list
+    static let LoginServiceURL: String = "bachecklist_login.json"
     //check app version
-    static let CheckUpdateServiceURL: String = "bacontract_version.json"
-    //get contract signature
-    static let ContractServiceURL = "bacontract_signature.json"
-    //get contract Addendum A
-    static let AddendumAServiceURL = "bacontract_addendumA.json"
-    //get contract Addendum c
-    static let AddendumCServiceURL = "bacontract_addendumc.json"
-    //get contract ClosingMemo
-    static let ClosingMemoServiceURL = "bacontract_closingMemo.json"
-    //get contract Design Center
-    static let DesignCenterServiceURL = "bacontract_designCenter.json"
-    // get Third Party Financing Addendum
-//    static let ThirdPartyFinancingAddendumServiceURL = "bacontract_thirdPartyFinancingAddendum.json"
-    //upload pdf
-    static let ContractUploadPdfURL = "bacontract_upload.json"
+    static let CheckUpdateServiceURL: String = "bachecklist_version.json"
+    //get project list
+    static let ProjectListServiceURL = "bachecklist_projectSearch.json"
+    //get check list Table
+    static let GetCheckListTableServiceURL = "bachecklist_getChecklistTable.json"
+    //get check list
+    static let GetCheckListServiceURL = "bachecklist_getChecklist.json"
+    //save Intro Walk1
+    static let SaveIntroWalk1ServiceURL = "bachecklist_saveIntroWalk1.json"
     
-    static let UploadCheckedPhotoURL = "bacontract_UploadCheckedPhoto.json"
-   
+    static let GetIntroWalkPhotoURL = "bachecklist_getIntroWalkPhoto"
     
-    static let PdfFileNameContract = "BaseContract"
-    static let PdfFielNameContract_Austin = "BaseContract_Austin"
-    static let PdfFileNameThirdPartyFinancingAddendum = "Third_Party_Financing_Addendum_TREC"
-    static let PdfFileNameClosingMemo = "ClosingMemo"
-    static let PdfFileNameDesignCenter = "DesignCenter"
-    static let PdfFileNameEXHIBIT_A = "EXHIBIT_A"
-    static let PdfFileNameEXHIBIT_B = "EXHIBIT_B"
-    static let PdfFileNameEXHIBIT_B_austin = "EXHIBIT_B_Austin"
-    static let PdfFileNameEXHIBIT_C = "EXHIBIT_C_General"
-    static let PdfFileNameEXHIBIT_C_austin = "EXHIBIT_C_General_Austin"
-    static let PdfFileNameINFORMATION_ABOUT_BROKERAGE_SERVICES = "INFORMATION_ABOUT_BROKERAGE_SERVICES"
-    static let PdfFileNameINFORMATION_ABOUT_BROKERAGE_SERVICES2 = "INFORMATION_ABOUT_BROKERAGE_SERVICES2"
-    static let PdfFileNameAddendumA = "AddendumA"
-    static let PdfFileNameAddendumA_austin = "AddendumA_Austin"
-    static let PdfFileNameAddendumC = "AddendumC"
-    static let PdfFileNameAddendumC2 = "AddendumC2"
-    static let PdfFileNameAddendumD = "AddendumD"
-    static let PdfFileNameAddendumE = "AddendumE"
-    static let PdfFileNameBuyersExpect = "BuyersExpect"
-    static let PdfFileNameFloodPlainAck = "FloodaplainAcknowledement"
-    static let PdfFileNameHoaChecklist = "Hoa_Checklist"
-    static let PdfFileNameHoaChecklist2 = "Hoa_Checklist2"
-    static let PdfFileNameWarrantyAcknowledgement = "Warranty_Builder_s"
-    static let PdfFileNameAddendumHOA = "trec_36-8"
+    //save Intro Walk2
+    static let SaveIntroWalk2ServiceURL = "bachecklist_saveIntroWalk2.json"
     
-    static let PdfPageHeight : CGFloat = 976.688235
-//    static let PdfPageMarginUserDefault = "pageHMargin"
-    static let PdfFileNameContractPageCount = 9
-    static let PdfFileNameThirdPartyFinancingAddendumPageCount = 2
-    static let PdfFileNameClosingMemoPageCount = 1
-    static let PdfFileNameDesignCenterPageCount = 1
-    static let PdfFileNameEXHIBIT_APageCount = 1
-    static let PdfFileNameEXHIBIT_BPageCount = 1
-    static let PdfFileNameEXHIBIT_CPageCount = 3
-    static let PdfFileNameINFORMATION_ABOUT_BROKERAGE_SERVICESPageCount = 2
-    static let PdfFileNameAddendumAPageCount = 6
-    static let PdfFileNameAddendumCPageCount = 1
-    static let PdfFileNameAddendumC2PageCount = 2
-    static let PdfFileNameAddendumDPageCount = 2
-    static let PdfFileNameAddendumEPageCount = 2
+    //save Intro Walk2 Photo
+    static let SaveIntroWalk2PhotoServiceURL = "bachecklist_saveIntroWalk2Photo.json"
     
-    static let PdfFileNameBuyersExpectPageCount = 5
-    static let PdfFileNameFloodPlainAckPageCount = 1
-    static let PdfFileNameHoaChecklistPageCount = 3
-    static let PdfFileNameWarrantyAcknowledgementPageCount = 2
-    static let PdfFileNameAddendumHoaPageCount = 1
+    static let GetIntroWalk1ServiceURL = "bachecklist_getIntroWalk.json"
+    //seve checklist photo
+    static let SaveChecklistPhotoServiceURL = "bachecklist_saveChecklistPhoto.json"
     
-    static let ControllerNameContract = "SignContractViewController"
-    static let ControllerNameExhibitA = "ExhibitAViewController"
-    static let ControllerNameExhibitB = "ExhibitBViewController"
-    static let ControllerNameExhibitC = "ExhibitCGeneralViewController"
-    static let ControllerNameAddendumA = "AddendumAViewController"
-    static let ControllerNameAddendumC = "AddendumCViewController"
-    static let ControllerNameClosingMemo = "ClosingMemoViewController"
-    static let ControllerNameDesignCenter = "DesignCenterViewController"
-    static let ControllerNameThirdPartyFinancingAddendum = "ThirdPartyFinacingAddendumViewController"
-    static let ControllerNameINFORMATION_ABOUT_BROKERAGE_SERVICES = "InformationAboutBrokerageServicesViewController"
-    static let ControllerNamePrint = "PDFPrintViewController"
     
     
     static let StoryboardName = "Main"
     
-    static let ActionTitleAddendumC : String = "Addendum C"
-    static let ActionTitleAddendumD : String = "Addendum D"
-    static let ActionTitleAddendumE : String = "Addendum E"
-    static let ActionTitleAddendumA : String = "Addendum A"
-    static let ActionTitleClosingMemo : String = "Closing Memo"
-    static let ActionTitleDesignCenter : String = "Design Center"
-    static let ActionTitleContract : String = "Sign Contract"
-    static let ActionTitleDraftContract : String = "Contract"
-    static let ActionTitleThirdPartyFinancingAddendum : String = "Third Party Financing Addendum"
-    static let ActionTitleEXHIBIT_A : String = "Exhibit A"
-    static let ActionTitleEXHIBIT_B : String = "Exhibit B"
-    static let ActionTitleEXHIBIT_C : String = "Exhibit C General"
-//    static let ActionTitleINFORMATION_ABOUT_BROKERAGE_SERVICES = "Information about brokerage services"
-    static let ActionTitleINFORMATION_ABOUT_BROKERAGE_SERVICES = "Information about Brokerage Services"
-    static let ActionTitleAddendumHOA : String = "Addendum for Property Subject to HOA"
-    static let ActionTitleGoContract : String = "Print Contract"
-    static let ActionTitleGoDraft : String = "Print Draft"
-    static let ActionTitleBuyersExpect : String = "Buyers Expept"
-    static let ActionTitleFloodPlainAck : String = "Floodplain Acknowledgement"
-    static let ActionTitleHoaChecklist : String = "HOA Checklist"
-    static let ActionTitleWarrantyAcknowledgement : String = "Warranty Acknowledgement"
+   
     
     static let ApplicationColor  = UIColor(red: 0, green: 164/255.0, blue: 236/255.0, alpha: 1)
     static let SearchBarBackColor = UIColor(red: 238/255.0, green: 238/255.0, blue: 238/255.0, alpha: 1)
@@ -178,13 +105,7 @@ struct CConstants{
     static let ApplicationBarFontSize : CGFloat = 25.0
     static let ApplicationBarItemFontSize : CGFloat = 17.0
     
-    static let ApprovedStatus : String = "Approved"
-    static let DisApprovedStatus : String = "Disapproved"
-    static let EmailSignedStatus : String = "Email Sign"
-    static let ForApproveStatus : String = "For Approve"
-    static let DraftStatus : String = "iPad Sign"
     
-    static let GoToBAMsg : String = "Go back to BA to modify and send to IPAD /Email  again."
     
 }
 

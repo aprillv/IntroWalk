@@ -18,4 +18,5 @@
 -(void)setLineColor:(NSInteger)color;
 -(void)setLineArray1:(NSArray *)lineArray;
 -(void)setlineWidth:(NSInteger)width;
+-(NSArray *)getLineArray;
 @end

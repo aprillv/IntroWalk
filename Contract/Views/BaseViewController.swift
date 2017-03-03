@@ -25,16 +25,21 @@ class BaseViewController: UIViewController {
 //        return UIStatusBarStyle.LightContent
 //    }
     
-    func IsNilOrEmpty(str : String?) -> Bool{
+    func setBtnStyle(_ signInBtn: UIButton){
+        signInBtn.layer.cornerRadius = 5.0
+        signInBtn.titleLabel?.font = UIFont(name: CConstants.ApplicationBarFontName, size: CConstants.ApplicationBarItemFontSize)
+    }
+    
+    func IsNilOrEmpty(_ str : String?) -> Bool{
         return str == nil || str!.isEmpty
     }
     
     func PopMsgWithJustOK(msg msg1: String, txtField : UITextField?){
         
-        let alert: UIAlertController = UIAlertController(title: CConstants.MsgTitle, message: msg1, preferredStyle: .Alert)
+        let alert: UIAlertController = UIAlertController(title: CConstants.MsgTitle, message: msg1, preferredStyle: .alert)
         
         //Create and add the OK action
-        let oKAction: UIAlertAction = UIAlertAction(title: CConstants.MsgOKTitle, style: .Cancel) { action -> Void in
+        let oKAction: UIAlertAction = UIAlertAction(title: CConstants.MsgOKTitle, style: .cancel) { action -> Void in
             //Do some stuff
             txtField?.becomeFirstResponder()
         }
@@ -42,37 +47,55 @@ class BaseViewController: UIViewController {
         
         
         //Present the AlertController
-        self.presentViewController(alert, animated: true, completion: nil)
+        self.present(alert, animated: true, completion: nil)
         
         
     }
     
-    func PopMsgWithJustOK(msg msg1: String, action1 : (action : UIAlertAction) -> Void){
+    func PopMsgWithJustOK(msg msg1: String, action1 : @escaping (_ action : UIAlertAction) -> Void){
         
-        let alert: UIAlertController = UIAlertController(title: CConstants.MsgTitle, message: msg1, preferredStyle: .Alert)
+        let alert: UIAlertController = UIAlertController(title: CConstants.MsgTitle, message: msg1, preferredStyle: .alert)
         
         //Create and add the OK action
-        let oKAction: UIAlertAction = UIAlertAction(title: CConstants.MsgOKTitle, style: .Cancel, handler:action1)
+        let oKAction: UIAlertAction = UIAlertAction(title: CConstants.MsgOKTitle, style: .cancel, handler:action1)
         alert.addAction(oKAction)
         
         
         //Present the AlertController
-        self.presentViewController(alert, animated: true, completion: nil)
+        self.present(alert, animated: true, completion: nil)
         
         
     }
     
-    func PopErrorMsgWithJustOK(msg msg1: String, action1 : (action : UIAlertAction) -> Void){
+    func PopErrorMsgWithJustOK(msg msg1: String, action1 : @escaping (_ action : UIAlertAction) -> Void){
         
-        let alert: UIAlertController = UIAlertController(title: "Message", message: msg1, preferredStyle: .Alert)
+        let alert: UIAlertController = UIAlertController(title: "Message", message: msg1, preferredStyle: .alert)
         
         //Create and add the OK action
-        let oKAction: UIAlertAction = UIAlertAction(title: CConstants.MsgOKTitle, style: .Cancel, handler:action1)
+        let oKAction: UIAlertAction = UIAlertAction(title: CConstants.MsgOKTitle, style: .cancel, handler:action1)
         alert.addAction(oKAction)
         
         
         //Present the AlertController
-        self.presentViewController(alert, animated: true, completion: nil)
+        self.present(alert, animated: true, completion: nil)
+        
+        
+    }
+    
+    func PopConfirmMsg(msg msg1: String, action1 : @escaping (_ action : UIAlertAction) -> Void){
+        
+        let alert: UIAlertController = UIAlertController(title: CConstants.MsgTitle, message: msg1, preferredStyle: .alert)
+        
+        //Create and add the OK action
+        let oKAction: UIAlertAction = UIAlertAction(title: CConstants.MsgOKTitle, style: .default, handler:action1)
+        alert.addAction(oKAction)
+        
+        let canc: UIAlertAction = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
+        alert.addAction(canc)
+        
+        
+        //Present the AlertController
+        self.present(alert, animated: true, completion: nil)
         
         
     }
@@ -88,10 +111,10 @@ class BaseViewController: UIViewController {
     
     func PopMsgValidationWithJustOK(msg msg1: String, txtField : UITextField?){
         
-        let alert: UIAlertController = UIAlertController(title: CConstants.MsgValidationTitle, message: msg1, preferredStyle: .Alert)
+        let alert: UIAlertController = UIAlertController(title: CConstants.MsgValidationTitle, message: msg1, preferredStyle: .alert)
         
         //Create and add the OK action
-        let oKAction: UIAlertAction = UIAlertAction(title: CConstants.MsgOKTitle, style: .Cancel) { action -> Void in
+        let oKAction: UIAlertAction = UIAlertAction(title: CConstants.MsgOKTitle, style: .cancel) { action -> Void in
             //Do some stuff
             txtField?.becomeFirstResponder()
         }
@@ -99,7 +122,7 @@ class BaseViewController: UIViewController {
         
         
         //Present the AlertController
-        self.presentViewController(alert, animated: true, completion: nil)
+        self.present(alert, animated: true, completion: nil)
         
         
     }
@@ -125,17 +148,17 @@ class BaseViewController: UIViewController {
     
     func PopMsgWithJustOK(msg msg1: String){
         
-        let alert: UIAlertController = UIAlertController(title: CConstants.MsgTitle, message: msg1, preferredStyle: .Alert)
+        let alert: UIAlertController = UIAlertController(title: CConstants.MsgTitle, message: msg1, preferredStyle: .alert)
         
         //Create and add the OK action
-        let oKAction: UIAlertAction = UIAlertAction(title: CConstants.MsgOKTitle, style: .Cancel) { Void in
+        let oKAction: UIAlertAction = UIAlertAction(title: CConstants.MsgOKTitle, style: .cancel) { Void in
             
         }
         alert.addAction(oKAction)
         
         
         //Present the AlertController
-        self.presentViewController(alert, animated: true, completion: nil)
+        self.present(alert, animated: true, completion: nil)
         
         
     }

@@ -1,10 +1,56 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<model userDefinedModelVersionIdentifier="" type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="9057" systemVersion="14F1021" minimumToolsVersion="Xcode 7.0">
-    <entity name="PDF_FIELD" syncable="YES">
-        <attribute name="field" optional="YES" attributeType="Binary" syncable="YES"/>
-        <attribute name="idcia_idcity" optional="YES" attributeType="String" syncable="YES"/>
+<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="11759" systemVersion="16D32" minimumToolsVersion="Xcode 7.0" sourceLanguage="Objective-C" userDefinedModelVersionIdentifier="">
+    <entity name="IntroWalk2Local" representedClassName="IntroWalk2Local" syncable="YES">
+        <attribute name="comments" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="creaby" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="creadate" optional="YES" attributeType="Date" usesScalarValueType="NO" syncable="YES"/>
+        <attribute name="idcia" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="idnumber" optional="YES" attributeType="Integer 32" defaultValueString="0" usesScalarValueType="NO" syncable="YES"/>
+        <attribute name="idproject" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="initial_finishyn" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="initial_status" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="initialUrl" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="modiby" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="modidate" optional="YES" attributeType="Date" usesScalarValueType="NO" syncable="YES"/>
+        <attribute name="photoyn" optional="YES" attributeType="Boolean" usesScalarValueType="NO" syncable="YES"/>
+        <attribute name="sidintrowalk1" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="sidnumber" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="xno" optional="YES" attributeType="Integer 32" defaultValueString="0" usesScalarValueType="NO" syncable="YES"/>
+    </entity>
+    <entity name="IntroWalk2photoLocal" representedClassName="IntroWalk2photoLocal" syncable="YES">
+        <attribute name="creaby" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="creadate" optional="YES" attributeType="Date" usesScalarValueType="NO" syncable="YES"/>
+        <attribute name="idintrowalk2" optional="YES" attributeType="Integer 32" defaultValueString="0" usesScalarValueType="NO" syncable="YES"/>
+        <attribute name="idnumber" optional="YES" attributeType="Integer 32" defaultValueString="0" usesScalarValueType="NO" syncable="YES"/>
+        <attribute name="modiby" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="modidate" optional="YES" attributeType="Date" usesScalarValueType="NO" syncable="YES"/>
+        <attribute name="photoUrl" optional="YES" attributeType="String" syncable="YES"/>
+    </entity>
+    <entity name="Project" syncable="YES">
+        <attribute name="buyer1name" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="buyer2name" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="cianame" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="finishDate" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="finishyn" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="haschecklistDB" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="haschecklistLocal" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="idcia" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="idintrowalk1" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="idproject" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="idsub" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="introwalk_status" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="introwalk_statusid" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="projectname" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="status" optional="YES" attributeType="String" syncable="YES"/>
+    </entity>
+    <entity name="User" syncable="YES">
+        <attribute name="email" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="password" optional="YES" attributeType="String" syncable="YES"/>
     </entity>
     <elements>
-        <element name="PDF_FIELD" positionX="-63" positionY="-18" width="128" height="75"/>
+        <element name="IntroWalk2Local" positionX="-36" positionY="162" width="128" height="270"/>
+        <element name="IntroWalk2photoLocal" positionX="-45" positionY="117" width="128" height="150"/>
+        <element name="Project" positionX="-63" positionY="0" width="128" height="270"/>
+        <element name="User" positionX="-36" positionY="18" width="128" height="75"/>
     </elements>
 </model>
