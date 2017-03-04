@@ -442,7 +442,7 @@ class IntroWalkListViewController: BaseViewController, UITableViewDataSource, UI
             let userinfo = UserDefaults.standard
             var param = [String: String]()
             param["email"] = (userinfo.value(forKey: CConstants.UserInfoEmail) as? String) ?? ""
-            param["password"] = (userinfo.value(forKey: CConstants.UserInfoPwd) as? String) ?? ""
+            param["password"] = self.MD5(str: ((userinfo.value(forKey: CConstants.UserInfoPwd) as? String) ?? ""))
             param["username"] = (userinfo.value(forKey: CConstants.UserInfoName) as? String) ?? ""
             param["idcia"] = pro.idcia ?? ""
              param["idproject"] = pro.idproject ?? ""
@@ -528,7 +528,7 @@ class IntroWalkListViewController: BaseViewController, UITableViewDataSource, UI
                 let userinfo = UserDefaults.standard
                 var param = [String: String]()
                 param["email"] = (userinfo.value(forKey: CConstants.UserInfoEmail) as? String) ?? ""
-                param["password"] = (userinfo.value(forKey: CConstants.UserInfoPwd) as? String) ?? ""
+                param["password"] = self.MD5(str: ((userinfo.value(forKey: CConstants.UserInfoPwd) as? String) ?? ""))
                 param["username"] = (userinfo.value(forKey: CConstants.UserInfoName) as? String) ?? ""
                 param["idintrowalk1"] = "\(idintrowalk1)"
                 param["comments"] = item.comments ?? ""
@@ -594,7 +594,7 @@ class IntroWalkListViewController: BaseViewController, UITableViewDataSource, UI
                     
                     var param2 = [String: String]()
                     param2["email"] = (userinfo.value(forKey: CConstants.UserInfoEmail) as? String) ?? ""
-                    param2["password"] = (userinfo.value(forKey: CConstants.UserInfoPwd) as? String) ?? ""
+                    param2["password"] = self.MD5(str: ((userinfo.value(forKey: CConstants.UserInfoPwd) as? String) ?? ""))
                     param2["username"] = (userinfo.value(forKey: CConstants.UserInfoName) as? String) ?? ""
                     param2["idintrowalk2"] = item.sidnumber
                     param2["idnumber"] = "0"
@@ -739,7 +739,7 @@ class IntroWalkListViewController: BaseViewController, UITableViewDataSource, UI
                 let userinfo = UserDefaults.standard
                 var param = [String: String]()
                 param["email"] = (userinfo.value(forKey: CConstants.UserInfoEmail) as? String) ?? ""
-                param["password"] = (userinfo.value(forKey: CConstants.UserInfoPwd) as? String) ?? ""
+                param["password"] = self.MD5(str: ((userinfo.value(forKey: CConstants.UserInfoPwd) as? String) ?? ""))
                 param["idintrowalk1"] = pro.idintrowalk1!
                 
                 self.progresshud = MBProgressHUD.showAdded(to: self.view, animated: true)
@@ -893,7 +893,7 @@ class IntroWalkListViewController: BaseViewController, UITableViewDataSource, UI
                     let userinfo = UserDefaults.standard
                     var param = [String: String]()
                     param["email"] = (userinfo.value(forKey: CConstants.UserInfoEmail) as? String) ?? ""
-                    param["password"] = (userinfo.value(forKey: CConstants.UserInfoPwd) as? String) ?? ""
+                    param["password"] = self.MD5(str: ((userinfo.value(forKey: CConstants.UserInfoPwd) as? String) ?? ""))
                     param["username"] = (userinfo.value(forKey: CConstants.UserInfoName) as? String) ?? ""
                     param["idintrowalk1"] = self.projectInfo?.idintrowalk1 ?? ""
                     
@@ -933,7 +933,7 @@ class IntroWalkListViewController: BaseViewController, UITableViewDataSource, UI
             let userinfo = UserDefaults.standard
             var param = [String: String]()
             param["email"] = (userinfo.value(forKey: CConstants.UserInfoEmail) as? String) ?? ""
-            param["password"] = (userinfo.value(forKey: CConstants.UserInfoPwd) as? String) ?? ""
+            param["password"] = self.MD5(str: ((userinfo.value(forKey: CConstants.UserInfoPwd) as? String) ?? ""))
             param["username"] = (userinfo.value(forKey: CConstants.UserInfoName) as? String) ?? ""
             param["idcia"] = pro.idcia ?? ""
             param["idproject"] = pro.idproject ?? ""

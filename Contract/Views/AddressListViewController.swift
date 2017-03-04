@@ -313,8 +313,8 @@ class AddressListViewController: UITableViewController, UISearchBarDelegate, UIT
             let email = userInfo.value(forKey: CConstants.UserInfoEmail) as? String
             let password = userInfo.value(forKey: CConstants.UserInfoPwd) as? String
             
-            
-            let loginUserInfo = LoginUser(email: email!, password: password!, keyword: self.txtField.text ?? "")
+            let tool = util()
+            let loginUserInfo = LoginUser(email: email!, password: tool.MD5(string: password!)!, keyword: self.txtField.text ?? "")
             
             let a = loginUserInfo.DictionaryFromObject()
             let hud = MBProgressHUD.showAdded(to: self.view, animated: true)

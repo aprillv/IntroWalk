@@ -127,7 +127,12 @@ class BaseViewController: UIViewController {
         
     }
     
-//    func MD5(str tmp : String) -> String! {
+    func MD5(str tmp : String) -> String! {
+    let tool = util()
+        return tool.MD5(string: tmp)
+    }
+    
+//
 //        let str = tmp.cStringUsingEncoding(NSUTF8StringEncoding)
 //        let strLen = CC_LONG(tmp.lengthOfBytesUsingEncoding(NSUTF8StringEncoding))
 //        let digestLen = Int(CC_MD5_DIGEST_LENGTH)

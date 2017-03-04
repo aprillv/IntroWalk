@@ -274,8 +274,9 @@ class LoginViewController: BaseViewController, UITextFieldDelegate {
                     //                hud.mode = .AnnularDeterminate
                     hud.label.text = CConstants.LoginingMsg
                     
+//                    print()
                     
-                    let loginUserInfo = LoginUser(email: email!, password: password!, keyword:"")
+                    let loginUserInfo = LoginUser(email: email!, password: self.MD5(str: password!), keyword:"")
                     
                     let a = loginUserInfo.DictionaryFromObject()
                     //                print(a)

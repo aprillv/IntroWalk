@@ -204,7 +204,6 @@
 				119AA3811E334B5F00EF8D3C /* BigPictureViewController.swift */,
 				119AA3821E334B5F00EF8D3C /* CConstants.swift */,
 				119AA3831E334B5F00EF8D3C /* Contract-Bridging-Header.h */,
-				119AA3841E334B5F00EF8D3C /* LoginViewController.swift */,
 				119AA3851E334B5F00EF8D3C /* AddressListViewHeadView.swift */,
 				4282F0771E5694C200576A9D /* IntroWalkTableViewCell.swift */,
 				425AA2EF1E5AC022005995B4 /* AddressUITableViewCell.swift */,
@@ -248,6 +247,7 @@
 		426A832F1E666772005A1A2C /* pages */ = {
 			isa = PBXGroup;
 			children = (
+				119AA3841E334B5F00EF8D3C /* LoginViewController.swift */,
 				425AA2ED1E5A922B005995B4 /* SendOperationViewController.swift */,
 				119AA37F1E334B5F00EF8D3C /* AddressListViewController.swift */,
 				119AA37D1E334B5F00EF8D3C /* IntroWalkItemViewController.swift */,
